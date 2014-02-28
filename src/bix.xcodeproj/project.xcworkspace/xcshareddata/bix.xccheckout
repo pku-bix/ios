@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>EC09B596-05A2-4AC9-8861-8781300FD0EC</string>
+	<key>IDESourceControlProjectName</key>
+	<string>bix</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C8F089DF-257A-4452-972E-E3FCEA87DBE7</key>
+		<string>https://bitbucket.org/pkubix/bix.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>bix/bix.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C8F089DF-257A-4452-972E-E3FCEA87DBE7</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/pkubix/bix.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C8F089DF-257A-4452-972E-E3FCEA87DBE7</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C8F089DF-257A-4452-972E-E3FCEA87DBE7</string>
+			<key>IDESourceControlWCCName</key>
+			<string>bix-client</string>
+		</dict>
+	</array>
+</dict>
+</plist>
