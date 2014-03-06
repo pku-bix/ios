@@ -1,5 +1,5 @@
 //
-//  bixFirstViewController.h
+//  bixSecondViewController.h
 //  bix
 //
 //  Created by harttle on 14-2-28.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface bixFirstViewController : UIViewController
+@interface bixContactViewController : UIViewController
 
 @end

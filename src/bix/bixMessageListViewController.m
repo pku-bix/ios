@@ -6,13 +6,14 @@
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
 
-#import "bixFirstViewController.h"
+#import "bixMessageListViewController.h"
 
-@interface bixFirstViewController ()
+@interface bixMessageListViewController ()
+- (IBAction)testBtn:(id)sender;
 
 @end
 
-@implementation bixFirstViewController
+@implementation bixMessageListViewController
 
 - (void)viewDidLoad
 {
@@ -26,4 +27,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)testBtn:(id)sender {
+    [self performSegueWithIdentifier:@"login" sender:self];
+}
 @end

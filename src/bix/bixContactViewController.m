@@ -6,13 +6,13 @@
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
 
-#import "bixSecondViewController.h"
+#import "bixContactViewController.h"
 
-@interface bixSecondViewController ()
+@interface bixContactViewController ()
 
 @end
 
-@implementation bixSecondViewController
+@implementation bixContactViewController
 
 - (void)viewDidLoad
 {

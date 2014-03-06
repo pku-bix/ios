@@ -12,6 +12,8 @@
 	<dict>
 		<key>C8F089DF-257A-4452-972E-E3FCEA87DBE7</key>
 		<string>https://bitbucket.org/pkubix/bix.git</string>
+		<key>D8481CB5-F41E-4567-AE9C-DDFA06FD36EC</key>
+		<string>https://github.com/robbiehanson/XMPPFramework.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>bix/bix.xcodeproj/project.xcworkspace</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>C8F089DF-257A-4452-972E-E3FCEA87DBE7</key>
 		<string>../../..</string>
+		<key>D8481CB5-F41E-4567-AE9C-DDFA06FD36EC</key>
+		<string>../../../../XMPPFramework</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://bitbucket.org/pkubix/bix.git</string>
@@ -35,6 +39,14 @@
 			<string>C8F089DF-257A-4452-972E-E3FCEA87DBE7</string>
 			<key>IDESourceControlWCCName</key>
 			<string>bix-client</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D8481CB5-F41E-4567-AE9C-DDFA06FD36EC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>XMPPFramework</string>
 		</dict>
 	</array>
 </dict>
