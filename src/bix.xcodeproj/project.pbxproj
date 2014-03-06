@@ -82,8 +82,8 @@
 /* Begin PBXFileReference section */
 		EC10200918C85DF200B3775E /* bixMainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixMainTabBarController.h; sourceTree = "<group>"; };
 		EC10200A18C85DF200B3775E /* bixMainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixMainTabBarController.m; sourceTree = "<group>"; };
-		EC10200C18C86FF100B3775E /* bixSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixSettingViewController.h; sourceTree = SOURCE_ROOT; };
-		EC10200D18C86FF100B3775E /* bixSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixSettingViewController.m; sourceTree = SOURCE_ROOT; };
+		EC10200C18C86FF100B3775E /* bixSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bixSettingViewController.h; path = bix/bixSettingViewController.h; sourceTree = SOURCE_ROOT; };
+		EC10200D18C86FF100B3775E /* bixSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = bixSettingViewController.m; path = bix/bixSettingViewController.m; sourceTree = SOURCE_ROOT; };
 		EC10200F18C8701400B3775E /* bixMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixMapViewController.h; sourceTree = "<group>"; };
 		EC10201018C8701400B3775E /* bixMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixMapViewController.m; sourceTree = "<group>"; };
 		EC28329318C6D3CB00CACA40 /* bixLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixLoginViewController.h; sourceTree = "<group>"; };
