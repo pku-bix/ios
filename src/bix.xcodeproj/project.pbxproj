@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EC10200B18C85DF200B3775E /* bixMainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200A18C85DF200B3775E /* bixMainTabBarController.m */; };
-		EC10200E18C86FF100B3775E /* bixSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200D18C86FF100B3775E /* bixSettingViewController.m */; };
-		EC10201118C8701400B3775E /* bixMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10201018C8701400B3775E /* bixMapViewController.m */; };
-		EC28329518C6D3CB00CACA40 /* bixLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28329418C6D3CB00CACA40 /* bixLoginViewController.m */; };
+		EC10200B18C85DF200B3775E /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200A18C85DF200B3775E /* MainTabBarController.m */; };
+		EC10200E18C86FF100B3775E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200D18C86FF100B3775E /* SettingViewController.m */; };
+		EC10201118C8701400B3775E /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10201018C8701400B3775E /* MapViewController.m */; };
+		EC28329518C6D3CB00CACA40 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28329418C6D3CB00CACA40 /* LoginViewController.m */; };
 		EC99080A18C3356300798FAB /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EC99080918C3356300798FAB /* GCDAsyncSocket.m */; };
 		EC99080C18C3383600798FAB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC99080B18C3383600798FAB /* CFNetwork.framework */; };
 		EC99080E18C3384B00798FAB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC99080D18C3384B00798FAB /* Security.framework */; };
@@ -52,15 +52,23 @@
 		EC9908A718C33C9200798FAB /* XMPPSRVResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = EC99088E18C33C9200798FAB /* XMPPSRVResolver.m */; };
 		EC9908A818C33C9200798FAB /* XMPPStringPrep.m in Sources */ = {isa = PBXBuildFile; fileRef = EC99089018C33C9200798FAB /* XMPPStringPrep.m */; };
 		EC9908AA18C33CEE00798FAB /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC9908A918C33CEE00798FAB /* libresolv.dylib */; };
+		ECED787918CF7FE30041CCC7 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED787818CF7FE30041CCC7 /* Account.m */; };
+		ECED788218CF80040041CCC7 /* MessageBox.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED787C18CF80040041CCC7 /* MessageBox.m */; };
+		ECED788318CF80040041CCC7 /* DataWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED787F18CF80040041CCC7 /* DataWorker.m */; };
+		ECED788418CF80040041CCC7 /* XMPPStream+Wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED788118CF80040041CCC7 /* XMPPStream+Wrapper.m */; };
+		ECED788718CF81040041CCC7 /* NSString+Account.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED788618CF81040041CCC7 /* NSString+Account.m */; };
+		ECED788B18CF835E0041CCC7 /* NSDate+Wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED788A18CF835E0041CCC7 /* NSDate+Wrapper.m */; };
+		ECED788E18D00CA10041CCC7 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED788D18D00CA10041CCC7 /* Message.m */; };
+		ECED789118D00CAD0041CCC7 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED789018D00CAD0041CCC7 /* Session.m */; };
 		ECF7E1CE18C0516D002BA385 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF7E1CD18C0516D002BA385 /* Foundation.framework */; };
 		ECF7E1D018C0516D002BA385 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF7E1CF18C0516D002BA385 /* CoreGraphics.framework */; };
 		ECF7E1D218C0516D002BA385 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF7E1D118C0516D002BA385 /* UIKit.framework */; };
 		ECF7E1D818C0516D002BA385 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ECF7E1D618C0516D002BA385 /* InfoPlist.strings */; };
 		ECF7E1DA18C0516D002BA385 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF7E1D918C0516D002BA385 /* main.m */; };
-		ECF7E1DE18C0516D002BA385 /* bixAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF7E1DD18C0516D002BA385 /* bixAppDelegate.m */; };
+		ECF7E1DE18C0516D002BA385 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF7E1DD18C0516D002BA385 /* AppDelegate.m */; };
 		ECF7E1E118C0516D002BA385 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECF7E1DF18C0516D002BA385 /* Main.storyboard */; };
-		ECF7E1E418C0516D002BA385 /* bixMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF7E1E318C0516D002BA385 /* bixMessageListViewController.m */; };
-		ECF7E1E718C0516D002BA385 /* bixContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF7E1E618C0516D002BA385 /* bixContactViewController.m */; };
+		ECF7E1E418C0516D002BA385 /* MessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF7E1E318C0516D002BA385 /* MessageListViewController.m */; };
+		ECF7E1E718C0516D002BA385 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF7E1E618C0516D002BA385 /* ContactViewController.m */; };
 		ECF7E1E918C0516D002BA385 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECF7E1E818C0516D002BA385 /* Images.xcassets */; };
 		ECF7E1F018C0516D002BA385 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF7E1EF18C0516D002BA385 /* XCTest.framework */; };
 		ECF7E1F118C0516D002BA385 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF7E1CD18C0516D002BA385 /* Foundation.framework */; };
@@ -80,14 +88,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EC10200918C85DF200B3775E /* bixMainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixMainTabBarController.h; sourceTree = "<group>"; };
-		EC10200A18C85DF200B3775E /* bixMainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixMainTabBarController.m; sourceTree = "<group>"; };
-		EC10200C18C86FF100B3775E /* bixSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bixSettingViewController.h; path = bix/bixSettingViewController.h; sourceTree = SOURCE_ROOT; };
-		EC10200D18C86FF100B3775E /* bixSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = bixSettingViewController.m; path = bix/bixSettingViewController.m; sourceTree = SOURCE_ROOT; };
-		EC10200F18C8701400B3775E /* bixMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixMapViewController.h; sourceTree = "<group>"; };
-		EC10201018C8701400B3775E /* bixMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixMapViewController.m; sourceTree = "<group>"; };
-		EC28329318C6D3CB00CACA40 /* bixLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixLoginViewController.h; sourceTree = "<group>"; };
-		EC28329418C6D3CB00CACA40 /* bixLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixLoginViewController.m; sourceTree = "<group>"; };
+		EC10200918C85DF200B3775E /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
+		EC10200A18C85DF200B3775E /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
+		EC10200C18C86FF100B3775E /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingViewController.h; path = bix/SettingViewController.h; sourceTree = SOURCE_ROOT; };
+		EC10200D18C86FF100B3775E /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingViewController.m; path = bix/SettingViewController.m; sourceTree = SOURCE_ROOT; };
+		EC10200F18C8701400B3775E /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		EC10201018C8701400B3775E /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		EC28329318C6D3CB00CACA40 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		EC28329418C6D3CB00CACA40 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		EC99080818C3356300798FAB /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		EC99080918C3356300798FAB /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		EC99080B18C3383600798FAB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -173,6 +181,23 @@
 		EC99088F18C33C9200798FAB /* XMPPStringPrep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPStringPrep.h; sourceTree = "<group>"; };
 		EC99089018C33C9200798FAB /* XMPPStringPrep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPStringPrep.m; sourceTree = "<group>"; };
 		EC9908A918C33CEE00798FAB /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		ECED787718CF7FE30041CCC7 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
+		ECED787818CF7FE30041CCC7 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		ECED787B18CF80040041CCC7 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		ECED787C18CF80040041CCC7 /* MessageBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBox.m; sourceTree = "<group>"; };
+		ECED787D18CF80040041CCC7 /* NSString+Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Account.h"; sourceTree = "<group>"; };
+		ECED787F18CF80040041CCC7 /* DataWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataWorker.m; sourceTree = "<group>"; };
+		ECED788018CF80040041CCC7 /* XMPPStream+Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XMPPStream+Wrapper.h"; sourceTree = "<group>"; };
+		ECED788118CF80040041CCC7 /* XMPPStream+Wrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XMPPStream+Wrapper.m"; sourceTree = "<group>"; };
+		ECED788518CF808B0041CCC7 /* MessageBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageBox.h; sourceTree = "<group>"; };
+		ECED788618CF81040041CCC7 /* NSString+Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Account.m"; sourceTree = "<group>"; };
+		ECED788818CF82890041CCC7 /* DataWorker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataWorker.h; sourceTree = "<group>"; };
+		ECED788918CF835E0041CCC7 /* NSDate+Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Wrapper.h"; sourceTree = "<group>"; };
+		ECED788A18CF835E0041CCC7 /* NSDate+Wrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Wrapper.m"; sourceTree = "<group>"; };
+		ECED788C18D00CA10041CCC7 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		ECED788D18D00CA10041CCC7 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		ECED788F18D00CAD0041CCC7 /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
+		ECED789018D00CAD0041CCC7 /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
 		ECF7E1CA18C0516D002BA385 /* bix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECF7E1CD18C0516D002BA385 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ECF7E1CF18C0516D002BA385 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -181,13 +206,13 @@
 		ECF7E1D718C0516D002BA385 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ECF7E1D918C0516D002BA385 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ECF7E1DB18C0516D002BA385 /* bix-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bix-Prefix.pch"; sourceTree = "<group>"; };
-		ECF7E1DC18C0516D002BA385 /* bixAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bixAppDelegate.h; sourceTree = "<group>"; };
-		ECF7E1DD18C0516D002BA385 /* bixAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bixAppDelegate.m; sourceTree = "<group>"; };
+		ECF7E1DC18C0516D002BA385 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		ECF7E1DD18C0516D002BA385 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		ECF7E1E018C0516D002BA385 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		ECF7E1E218C0516D002BA385 /* bixMessageListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bixMessageListViewController.h; sourceTree = "<group>"; };
-		ECF7E1E318C0516D002BA385 /* bixMessageListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bixMessageListViewController.m; sourceTree = "<group>"; };
-		ECF7E1E518C0516D002BA385 /* bixContactViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bixContactViewController.h; sourceTree = "<group>"; };
-		ECF7E1E618C0516D002BA385 /* bixContactViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bixContactViewController.m; sourceTree = "<group>"; };
+		ECF7E1E218C0516D002BA385 /* MessageListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageListViewController.h; sourceTree = "<group>"; };
+		ECF7E1E318C0516D002BA385 /* MessageListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageListViewController.m; sourceTree = "<group>"; };
+		ECF7E1E518C0516D002BA385 /* ContactViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
+		ECF7E1E618C0516D002BA385 /* ContactViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		ECF7E1E818C0516D002BA385 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		ECF7E1EE18C0516D002BA385 /* bixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECF7E1EF18C0516D002BA385 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -233,6 +258,7 @@
 				EC99080718C3356300798FAB /* CocoaAsyncSocket */,
 			);
 			name = Vendor;
+			path = XMPP/Vendor;
 			sourceTree = "<group>";
 		};
 		EC99080718C3356300798FAB /* CocoaAsyncSocket */ = {
@@ -320,6 +346,7 @@
 		EC99085118C33C5D00798FAB /* XMPP */ = {
 			isa = PBXGroup;
 			children = (
+				EC99080618C3335600798FAB /* Vendor */,
 				EC99085218C33C9200798FAB /* Authentication */,
 				EC99086918C33C9200798FAB /* Categories */,
 				EC99087018C33C9200798FAB /* Core */,
@@ -340,7 +367,8 @@
 				EC99086518C33C9200798FAB /* X-OAuth2-Google */,
 				EC99086818C33C9200798FAB /* XMPPSASLAuthentication.h */,
 			);
-			path = Authentication;
+			name = Authentication;
+			path = XMPP/Authentication;
 			sourceTree = "<group>";
 		};
 		EC99085318C33C9200798FAB /* Anonymous */ = {
@@ -416,7 +444,8 @@
 				EC99086E18C33C9200798FAB /* NSXMLElement+XMPP.h */,
 				EC99086F18C33C9200798FAB /* NSXMLElement+XMPP.m */,
 			);
-			path = Categories;
+			name = Categories;
+			path = XMPP/Categories;
 			sourceTree = "<group>";
 		};
 		EC99087018C33C9200798FAB /* Core */ = {
@@ -442,7 +471,8 @@
 				EC99088218C33C9200798FAB /* XMPPStream.h */,
 				EC99088318C33C9200798FAB /* XMPPStream.m */,
 			);
-			path = Core;
+			name = Core;
+			path = XMPP/Core;
 			sourceTree = "<group>";
 		};
 		EC99088418C33C9200798FAB /* Utilities */ = {
@@ -461,7 +491,46 @@
 				EC99088F18C33C9200798FAB /* XMPPStringPrep.h */,
 				EC99089018C33C9200798FAB /* XMPPStringPrep.m */,
 			);
+			name = Utilities;
+			path = XMPP/Utilities;
+			sourceTree = "<group>";
+		};
+		ECED787618CF7FE30041CCC7 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				ECED787718CF7FE30041CCC7 /* Account.h */,
+				ECED787818CF7FE30041CCC7 /* Account.m */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		ECED787A18CF80040041CCC7 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				ECED787B18CF80040041CCC7 /* Constants.h */,
+				ECED788518CF808B0041CCC7 /* MessageBox.h */,
+				ECED787C18CF80040041CCC7 /* MessageBox.m */,
+				ECED787D18CF80040041CCC7 /* NSString+Account.h */,
+				ECED788618CF81040041CCC7 /* NSString+Account.m */,
+				ECED788918CF835E0041CCC7 /* NSDate+Wrapper.h */,
+				ECED788A18CF835E0041CCC7 /* NSDate+Wrapper.m */,
+			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		ECED787E18CF80040041CCC7 /* XMPPWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				ECED788818CF82890041CCC7 /* DataWorker.h */,
+				ECED787F18CF80040041CCC7 /* DataWorker.m */,
+				ECED788018CF80040041CCC7 /* XMPPStream+Wrapper.h */,
+				ECED788118CF80040041CCC7 /* XMPPStream+Wrapper.m */,
+				ECED788C18D00CA10041CCC7 /* Message.h */,
+				ECED788D18D00CA10041CCC7 /* Message.m */,
+				ECED788F18D00CAD0041CCC7 /* Session.h */,
+				ECED789018D00CAD0041CCC7 /* Session.m */,
+			);
+			path = XMPPWrapper;
 			sourceTree = "<group>";
 		};
 		ECF7E1C118C0516D002BA385 = {
@@ -500,24 +569,26 @@
 		ECF7E1D318C0516D002BA385 /* bix */ = {
 			isa = PBXGroup;
 			children = (
-				ECF7E1DC18C0516D002BA385 /* bixAppDelegate.h */,
-				ECF7E1DD18C0516D002BA385 /* bixAppDelegate.m */,
+				ECED787A18CF80040041CCC7 /* Utilities */,
+				ECED787E18CF80040041CCC7 /* XMPPWrapper */,
+				ECED787618CF7FE30041CCC7 /* Account */,
+				ECF7E1DC18C0516D002BA385 /* AppDelegate.h */,
+				ECF7E1DD18C0516D002BA385 /* AppDelegate.m */,
 				ECF7E1DF18C0516D002BA385 /* Main.storyboard */,
-				EC10200918C85DF200B3775E /* bixMainTabBarController.h */,
-				EC10200A18C85DF200B3775E /* bixMainTabBarController.m */,
-				EC28329318C6D3CB00CACA40 /* bixLoginViewController.h */,
-				EC28329418C6D3CB00CACA40 /* bixLoginViewController.m */,
-				ECF7E1E218C0516D002BA385 /* bixMessageListViewController.h */,
-				ECF7E1E318C0516D002BA385 /* bixMessageListViewController.m */,
-				ECF7E1E518C0516D002BA385 /* bixContactViewController.h */,
-				ECF7E1E618C0516D002BA385 /* bixContactViewController.m */,
-				EC10200C18C86FF100B3775E /* bixSettingViewController.h */,
-				EC10200D18C86FF100B3775E /* bixSettingViewController.m */,
-				EC10200F18C8701400B3775E /* bixMapViewController.h */,
-				EC10201018C8701400B3775E /* bixMapViewController.m */,
+				EC10200918C85DF200B3775E /* MainTabBarController.h */,
+				EC10200A18C85DF200B3775E /* MainTabBarController.m */,
+				EC28329318C6D3CB00CACA40 /* LoginViewController.h */,
+				EC28329418C6D3CB00CACA40 /* LoginViewController.m */,
+				ECF7E1E218C0516D002BA385 /* MessageListViewController.h */,
+				ECF7E1E318C0516D002BA385 /* MessageListViewController.m */,
+				ECF7E1E518C0516D002BA385 /* ContactViewController.h */,
+				ECF7E1E618C0516D002BA385 /* ContactViewController.m */,
+				EC10200C18C86FF100B3775E /* SettingViewController.h */,
+				EC10200D18C86FF100B3775E /* SettingViewController.m */,
+				EC10200F18C8701400B3775E /* MapViewController.h */,
+				EC10201018C8701400B3775E /* MapViewController.m */,
 				ECF7E1E818C0516D002BA385 /* Images.xcassets */,
 				EC99085118C33C5D00798FAB /* XMPP */,
-				EC99080618C3335600798FAB /* Vendor */,
 				ECF7E1D418C0516D002BA385 /* Supporting Files */,
 			);
 			path = bix;
@@ -652,29 +723,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC9908A518C33C9200798FAB /* RFImageToDataTransformer.m in Sources */,
-				EC10201118C8701400B3775E /* bixMapViewController.m in Sources */,
+				EC10201118C8701400B3775E /* MapViewController.m in Sources */,
 				EC99089918C33C9200798FAB /* NSNumber+XMPP.m in Sources */,
 				EC99080A18C3356300798FAB /* GCDAsyncSocket.m in Sources */,
+				ECED788718CF81040041CCC7 /* NSString+Account.m in Sources */,
 				EC99084818C3397000798FAB /* DispatchQueueLogFormatter.m in Sources */,
+				ECED788B18CF835E0041CCC7 /* NSDate+Wrapper.m in Sources */,
 				EC9908A718C33C9200798FAB /* XMPPSRVResolver.m in Sources */,
 				EC99084418C3397000798FAB /* DDFileLogger.m in Sources */,
 				EC99089518C33C9200798FAB /* XMPPPlainAuthentication.m in Sources */,
 				EC9908A118C33C9200798FAB /* XMPPPresence.m in Sources */,
 				EC99089718C33C9200798FAB /* XMPPXOAuth2Google.m in Sources */,
 				EC99089418C33C9200798FAB /* XMPPDigestMD5Authentication.m in Sources */,
+				ECED788E18D00CA10041CCC7 /* Message.m in Sources */,
 				EC9908A218C33C9200798FAB /* XMPPStream.m in Sources */,
 				EC99083018C3391300798FAB /* DDXMLNode.m in Sources */,
-				ECF7E1E418C0516D002BA385 /* bixMessageListViewController.m in Sources */,
+				ECED789118D00CAD0041CCC7 /* Session.m in Sources */,
+				ECF7E1E418C0516D002BA385 /* MessageListViewController.m in Sources */,
 				EC99089218C33C9200798FAB /* XMPPDeprecatedDigestAuthentication.m in Sources */,
-				EC10200E18C86FF100B3775E /* bixSettingViewController.m in Sources */,
-				EC10200B18C85DF200B3775E /* bixMainTabBarController.m in Sources */,
+				EC10200E18C86FF100B3775E /* SettingViewController.m in Sources */,
+				EC10200B18C85DF200B3775E /* MainTabBarController.m in Sources */,
 				EC99089A18C33C9200798FAB /* NSXMLElement+XMPP.m in Sources */,
+				ECED787918CF7FE30041CCC7 /* Account.m in Sources */,
+				ECED788318CF80040041CCC7 /* DataWorker.m in Sources */,
 				EC99084318C3397000798FAB /* DDASLLogger.m in Sources */,
 				EC99084618C3397000798FAB /* DDTTYLogger.m in Sources */,
 				EC99089B18C33C9200798FAB /* XMPPElement.m in Sources */,
 				EC9908A418C33C9200798FAB /* GCDMulticastDelegate.m in Sources */,
 				EC99089C18C33C9200798FAB /* XMPPIQ.m in Sources */,
-				ECF7E1DE18C0516D002BA385 /* bixAppDelegate.m in Sources */,
+				ECF7E1DE18C0516D002BA385 /* AppDelegate.m in Sources */,
 				EC99084218C3397000798FAB /* DDAbstractDatabaseLogger.m in Sources */,
 				EC9908A318C33C9200798FAB /* DDList.m in Sources */,
 				EC99089F18C33C9200798FAB /* XMPPModule.m in Sources */,
@@ -683,18 +760,20 @@
 				EC99089318C33C9200798FAB /* XMPPDeprecatedPlainAuthentication.m in Sources */,
 				EC99084718C3397000798FAB /* ContextFilterLogFormatter.m in Sources */,
 				EC99084518C3397000798FAB /* DDLog.m in Sources */,
+				ECED788218CF80040041CCC7 /* MessageBox.m in Sources */,
 				EC99082F18C3391300798FAB /* DDXMLElement.m in Sources */,
 				EC99082D18C3391300798FAB /* NSString+DDXML.m in Sources */,
 				EC9908A018C33C9200798FAB /* XMPPParser.m in Sources */,
-				ECF7E1E718C0516D002BA385 /* bixContactViewController.m in Sources */,
+				ECF7E1E718C0516D002BA385 /* ContactViewController.m in Sources */,
 				EC99089818C33C9200798FAB /* NSData+XMPP.m in Sources */,
 				ECF7E1DA18C0516D002BA385 /* main.m in Sources */,
-				EC28329518C6D3CB00CACA40 /* bixLoginViewController.m in Sources */,
+				EC28329518C6D3CB00CACA40 /* LoginViewController.m in Sources */,
 				EC9908A618C33C9200798FAB /* XMPPIDTracker.m in Sources */,
 				EC99082E18C3391300798FAB /* DDXMLDocument.m in Sources */,
 				EC99089618C33C9200798FAB /* XMPPXFacebookPlatformAuthentication.m in Sources */,
 				EC9908A818C33C9200798FAB /* XMPPStringPrep.m in Sources */,
 				EC99089118C33C9200798FAB /* XMPPAnonymousAuthentication.m in Sources */,
+				ECED788418CF80040041CCC7 /* XMPPStream+Wrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,7 +915,7 @@
 				INFOPLIST_FILE = "bix/bix-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/harttle/code/bix-client/src/bix/libidn",
+					/Users/harttle/code/bix/src/bix/XMPP/Vendor/libidn,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -853,7 +932,7 @@
 				INFOPLIST_FILE = "bix/bix-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/harttle/code/bix-client/src/bix/libidn",
+					/Users/harttle/code/bix/src/bix/XMPP/Vendor/libidn,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
