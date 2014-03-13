@@ -26,7 +26,7 @@
                                          MARGIN_TIMEINFO)];
         timeInfo.font = [UIFont systemFontOfSize:11.0];
         timeInfo.textColor = [UIColor lightGrayColor];
-        timeInfo.adjustsFontSizeToFitWidth = false;
+        //timeInfo.adjustsFontSizeToFitWidth = false;
         timeInfo.textAlignment =  NSTextAlignmentCenter;
         
         [self.contentView addSubview:timeInfo];
@@ -40,8 +40,12 @@
         msgTextView.backgroundColor = [UIColor clearColor];
         msgTextView.editable = NO;
         msgTextView.scrollEnabled = NO;
-        msgTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);   //0 padding
-        //[msgTextView sizeToFit];
+        
+        //0 padding
+        msgTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        msgTextView.textContainer.lineFragmentPadding = 0;
+        
+        [msgTextView setFont:[UIFont systemFontOfSize:13]];
         [self.contentView addSubview:msgTextView];
 
     }

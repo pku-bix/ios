@@ -21,5 +21,7 @@
 -(void)goOnline;
 //下线
 -(void)goOffline;
+//发送
+-(void)send: (NSString*)remoteJid Message:(NSString*)msgtxt;
 
 @end

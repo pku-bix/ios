@@ -14,6 +14,7 @@
 #import "xmpp.h"
 #import "Message.h"
 #import "Session.h"
+#import "NSString+Account.h"
 
 @implementation DataWorker
 
@@ -34,7 +35,8 @@
     // only chat message with body proceeds
     if (!message.isChatMessageWithBody) {
 #ifdef DEBUG
-        NSLog(@"message descarded:\n%@\n\n",message);
+        NSLog(@"message descarded");
+        //NSLog(@"message descarded:\n%@\n\n",message);
 #endif
         return;
     }
@@ -90,7 +92,7 @@
 
         Account* remoteAccount;
         if (filteredContacts.count == 0) {
-            remoteAccount = [[Account alloc] initWithJid:remoteJid];
+            remoteAccount = [[Account alloc] initWithAddr:[remoteJid toAddr:@""]];
             [self.contacts addObject:remoteAccount];
         }
         else{
@@ -112,11 +114,51 @@
 #endif
         
     }
-    else{
 #ifdef DEBUG
-        NSLog(@"presence descarded:\n%@\n\n",presence);
-#endif
+    else{
+        NSLog(@"presence descarded");
+        //NSLog(@"presence descarded:\n%@\n\n",presence);
     }
+#endif
+}
+
+
+/**
+ * These methods are called after their respective XML elements are sent over the stream.
+ * These methods may be used to listen for certain events (such as an unavailable presence having been sent),
+ * or for general logging purposes. (E.g. a central history logging mechanism).
+ **/
+- (void)xmppStream:(XMPPStream *)sender didSendIQ:(XMPPIQ *)iq{
+    
+}
+
+- (void)xmppStream:(XMPPStream *)sender didSendMessage:(XMPPMessage *)message{
+    
+#ifdef DEBUG
+    NSLog(@"send message succeed:\n %@\n\n",message);
+#endif
+}
+
+- (void)xmppStream:(XMPPStream *)sender didSendPresence:(XMPPPresence *)presence{
+    
+}
+
+/**
+ * These methods are called after failing to send the respective XML elements over the stream.
+ **/
+- (void)xmppStream:(XMPPStream *)sender didFailToSendIQ:(XMPPIQ *)iq error:(NSError *)error{
+    
+}
+
+- (void)xmppStream:(XMPPStream *)sender didFailToSendMessage:(XMPPMessage *)message error:(NSError *)error{
+
+#ifdef DEBUG
+    NSLog(@"send message failed: %@",error);
+#endif
+
+}
+
+- (void)xmppStream:(XMPPStream *)sender didFailToSendPresence:(XMPPPresence *)presence error:(NSError *)error{
 }
 
 @end

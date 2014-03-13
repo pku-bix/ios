@@ -9,6 +9,7 @@
 #import "XMPPStream+Wrapper.m"
 #import "AppDelegate.h"
 #import "Constants.h"
+#import "Message.h"
 
 @implementation XMPPStream (Wrapper)
 
@@ -69,6 +70,32 @@ Account* account;
 -(void) authenticate{
     NSError *error = nil;
     [self authenticateWithPassword:account.password error:&error];
+}
+
+-(void)send: (NSString*)remoteJid Message:(NSString*)msgtxt{
+    
+    //生成XML消息文档
+    NSXMLElement *msgele = [NSXMLElement elementWithName:@"message"];
+    [msgele addAttributeWithName:@"type" stringValue:@"chat"];
+    [msgele addAttributeWithName:@"to" stringValue:remoteJid];
+    [msgele addAttributeWithName:@"from" stringValue: [self.myJID user]];
+    
+    //生成<body>文档
+    NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
+    [body setStringValue:msgtxt];
+    [msgele addChild:body];
+    
+    //发送消息
+    [self sendElement:msgele];
+    
+    //发送通知
+    Message* message = [[Message alloc] initWithMessageText:msgtxt isMine:YES];
+    
+#ifdef DEBUG
+    NSLog(@"message(chat) sent to %@:\n%@\n\n", remoteJid, message.text);
+#endif
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_MESSAGE_RECEIVED object:message ];
 }
 
 @end

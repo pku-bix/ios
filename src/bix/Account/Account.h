@@ -10,16 +10,23 @@
 
 @interface Account : NSObject
 
-@property (nonatomic,copy) NSString* username;
+@property (nonatomic,copy) NSString* address;
 @property (nonatomic,copy) NSString* password;
+
+@property (nonatomic) NSString* username;
+@property (nonatomic) NSString* servername;
+@property (nonatomic) NSString* devicename;
+@property (nonatomic) NSString* Jid;
+
+
 @property (nonatomic) int selectedTabIndex;
 @property (nonatomic) BOOL autoLogin;
-@property (nonatomic) NSString* Jid;
 @property (nonatomic) BOOL presence;
 
-- (id) init;
-- (id) initWithJid: (NSString*)Jid;
-- (id) initWithUsername:(NSString*)username Password:(NSString*)password;
+
+-(id) init;
+-(id) initWithAddr: (NSString*)addr;
+-(id) initWithAddr: (NSString*) addr Password:(NSString*) password;
 
 
 - (void) save;

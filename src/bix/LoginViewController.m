@@ -11,7 +11,8 @@
 #import "MessageBox.h"
 #import "XMPP.h"
 #import "XMPPStream+Wrapper.h"
-
+#import "NSString+Account.h"
+#import "Constants.h"
 
 
 @interface LoginViewController ()
@@ -114,8 +115,11 @@ AppDelegate* appdelegate;
 
 
 - (void) generateAccount{
-    self.account = [[Account alloc] initWithUsername: self.username.text
-                                       Password:self.password.text];
+    self.account = [[Account alloc]
+                    initWithAddr: [[self.username.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]]
+                                   toAddr:SERVER_NAME
+                                   Devicename:@""]
+                    Password:self.password.text];
 }
 
 - (void) doLogin{

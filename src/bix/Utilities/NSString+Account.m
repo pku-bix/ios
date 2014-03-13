@@ -13,14 +13,66 @@
 @implementation NSString(Account)
 
 -(NSString*)toJid{
-    return [self stringByAppendingFormat: @"@%@", SERVER_NAME];
+    //addr
+    if ([self rangeOfString:@"/"].location != NSNotFound )
+        return [[self componentsSeparatedByString:@"/"] objectAtIndex:0];
+    
+    //Jid
+    //if ([self rangeOfString:@"@"].location != NSNotFound )
+    return self;
+}
+
+//username
+-(NSString*)toJid:(NSString*)servername{
+    
+    return [self stringByAppendingFormat: @"@%@", servername];
 }
 
 -(NSString*)toUsername{
-    if ([self rangeOfString:@"@"].location == NSNotFound ) {
+    //username
+    if ([self rangeOfString:@"@"].location == NSNotFound )
         return self;
-    }
+    
+    //Jid/addr
     return [[self componentsSeparatedByString:@"@"] objectAtIndex:0];
+}
+
+-(NSString*)toAddr:(NSString*)devicename{
+    //addr
+    if ([self rangeOfString:@"/"].location != NSNotFound )
+        return self;
+    
+    //Jid
+    //if ([self rangeOfString:@"@"].location != NSNotFound )
+    return [self stringByAppendingFormat: @"/%@", devicename];
+}
+
+//username
+-(NSString*)toAddr:(NSString*)servername Devicename:(NSString*)devicename{
+    
+    return [self stringByAppendingFormat:@"@%@/%@",servername, devicename];
+}
+
+-(NSString*)toServername{
+    NSString* res = nil;
+    
+    //Jid/addr
+    if ([self rangeOfString:@"@"].location != NSNotFound )
+        res =[[self componentsSeparatedByString:@"@"] objectAtIndex:1];
+    
+    //addr
+    if ([res rangeOfString:@"/"].location != NSNotFound )
+        res =[[self componentsSeparatedByString:@"/"] objectAtIndex:0];
+    
+    return res;
+}
+
+-(NSString*)toDevicename{
+    
+    if ([self rangeOfString:@"/"].location == NSNotFound )
+        return Nil;
+    //addr
+    return [[self componentsSeparatedByString:@"/"] objectAtIndex:1];
 }
 
 -(BOOL)isValidUsername{
@@ -41,7 +93,7 @@
     
 }
 
--(BOOL)isValidateEmail{
+-(BOOL)isValidEmail{
     
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
@@ -49,4 +101,10 @@
     return [emailTest evaluateWithObject:self];
 }
 
+-(BOOL)isValidAddress{
+    NSString *jidRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+";
+    NSPredicate *jidTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", jidRegex];
+    
+    return [jidTest evaluateWithObject:[self toJid]];
+}
 @end

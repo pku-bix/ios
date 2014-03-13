@@ -32,12 +32,6 @@ Session* sessionToOpen;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(updateList:)
-     name:EVENT_MESSAGE_RECEIVED
-     object:nil];
-    
     [self.tableView reloadData];
 }
 
@@ -47,7 +41,17 @@ Session* sessionToOpen;
     // Dispose of any resources that can be recreated.
 }
 
--(void)dealloc{
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(updateList:)
+     name:EVENT_MESSAGE_RECEIVED
+     object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
     [[NSNotificationCenter defaultCenter]
      removeObserver:self
      name:EVENT_MESSAGE_RECEIVED

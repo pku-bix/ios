@@ -12,63 +12,71 @@
 
 @implementation Account
 
+
+// getter
+@synthesize username;
+-(NSString*) username{
+    return [self.address toUsername];
+}
+@synthesize servername;
+-(NSString*) servername{
+    return [self.address toServername];
+}
+@synthesize devicename;
+-(NSString*) devicename{
+    return [self.address toDevicename];
+}
 @synthesize Jid;
-
 -(NSString*) Jid{
-    return [self.username toJid];
+    return [self.address toJid];
 }
 
--(void) setUsername:(NSString *)username{
-    //trimming
-    _username = [username stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-}
+// constructor
 
 -(id) init {
-    return [self initWithUsername:nil Password:nil];
+    return [self initWithAddr:@""];
 }
 
--(id) initWithJid:(NSString *)_Jid{
-    return [self initWithUsername:[_Jid toUsername] Password:@""];
+-(id) initWithAddr: (NSString*)addr{
+    return [self initWithAddr:addr Password:@""];
 }
 
--(id) initWithUsername: (NSString*) username Password:(NSString*) password{
-    return [self initWithUsername:username Password:password AutoLogin:TRUE];
-}
-
--(id) initWithUsername: (NSString*) username Password:(NSString*) password AutoLogin:(BOOL) autoLogin{
+-(id) initWithAddr: (NSString*) addr Password:(NSString*) password{
     self = [super init];
     if(self)   {
-        self.username = username;
+        self.address = addr;
         self.password = password;
-        self.autoLogin = autoLogin;
     }
     return self;
 }
 
 - (BOOL) isValid{
-    return [self.password isValidPassword] && [self.username isValidUsername];
+    return [self.address isValidAddress] && [self.password isValidPassword];
 }
 
 - (void) save{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:self.password forKey: [self.username stringByAppendingString: PASSWORD_SUFFIX]];
-    [defaults setBool:self.autoLogin forKey: [self.username stringByAppendingString: AUTOLOGIN_SUFFIX]];
-    [defaults setInteger:self.selectedTabIndex forKey:[self.username stringByAppendingString:DEFAULTTAB_SUFFIX]];
+    [defaults setObject:self.password forKey: [self.address stringByAppendingString: PASSWORD_SUFFIX]];
+    [defaults setBool:self.autoLogin forKey: [self.address stringByAppendingString: AUTOLOGIN_SUFFIX]];
+    [defaults setInteger:self.selectedTabIndex forKey:[self.address stringByAppendingString:DEFAULTTAB_SUFFIX]];
 }
 
 + (Account*) loadDefault{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString* username = [defaults stringForKey: LAST_USERID];
+    NSString* address = [defaults stringForKey: LASTUSER_ADDRESS];
     
-    if (username == nil) {
+    if (address == nil) {
         return nil;
     }
     
-    NSString* password = [defaults stringForKey: [username stringByAppendingString: PASSWORD_SUFFIX]];
-    BOOL autoLogin = [defaults boolForKey: [username stringByAppendingString: AUTOLOGIN_SUFFIX]];
+    NSString* password = [defaults stringForKey: [address stringByAppendingString: PASSWORD_SUFFIX]];
     
-    Account* account = [[Account alloc] initWithUsername: username Password: password AutoLogin:autoLogin];
-    account.selectedTabIndex = [defaults integerForKey:[username stringByAppendingString:DEFAULTTAB_SUFFIX]];
+    Account* account = [[Account alloc] initWithAddr: address
+                                            Password: password];
+    account.autoLogin = [defaults boolForKey:
+                         [address stringByAppendingString: AUTOLOGIN_SUFFIX]];
+    account.selectedTabIndex = [defaults integerForKey:
+                                [address stringByAppendingString:DEFAULTTAB_SUFFIX]];
     return account;
 }
 

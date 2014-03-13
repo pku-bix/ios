@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Session.h"
 
-@interface ChatViewController : UITableViewController
+@interface ChatViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic,retain) Session* session;
 

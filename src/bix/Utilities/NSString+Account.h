@@ -13,8 +13,24 @@
 -(BOOL)isValidUsername;
 -(BOOL)isValidEmail;
 -(BOOL)isValidPassword;
+-(BOOL)isValidAddress;
 
+// Jid/addr
 -(NSString*)toJid;
+// username
+-(NSString*)toJid:(NSString*)servername;
+
+// username/Jid/addr
 -(NSString*)toUsername;
 
+// Jid/addr
+-(NSString*)toAddr:(NSString*)devicename;
+// username
+-(NSString*)toAddr:(NSString*)servername Devicename:(NSString*)devicename;
+
+// Jid/addr
+-(NSString*)toServername;
+
+// addr
+-(NSString*)toDevicename;
 @end

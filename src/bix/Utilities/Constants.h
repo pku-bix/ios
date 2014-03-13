@@ -9,7 +9,7 @@
 #ifndef Bix_Constants_h
 #define Bix_Constants_h
 
-static NSString *LAST_USERID = @"lastuserid";
+static NSString *LASTUSER_ADDRESS = @"lastuser_address";
 static NSString *PASSWORD_SUFFIX = @"_password";
 static NSString *AUTOLOGIN_SUFFIX= @"_autologin";
 static NSString *DEFAULTTAB_SUFFIX=@"_default_tab";
@@ -25,11 +25,12 @@ static NSString *REUSE_CELLID_MSGLIST=@"reuse_cellid_msglist";
 
 #define MARGIN_MSG_RECEIVER     10
 #define MARGIN_MSG_SENDER       5
-#define MARGIN_MSG_TOP          10
+#define MARGIN_MSG_TOP          5
+#define MARGIN_MSG_BOTTOM       5
 
 #define PADDING_MSG_TOP         10
 #define PADDING_MSG_BOTTOM      10
-#define PADDING_MSG_RECEIVER    10
+#define PADDING_MSG_RECEIVER    12
 #define PADDING_MSG_SENDER      20
 
 #define IMGCAP_WIDTH_SENDER     20

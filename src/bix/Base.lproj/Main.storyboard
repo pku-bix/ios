@@ -22,11 +22,64 @@
         <scene sceneID="uxE-es-de4">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FER-HM-oVd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="MC3-cf-Ayd" customClass="ChatViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="MC3-cf-Ayd" customClass="ChatViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hz8-pD-aJF"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ae8-xV-abu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="568" id="v3a-ms-RPh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="fv7-m6-D1r">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" id="JEf-Fx-EVn">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入发送内容" minimumFontSize="17" clearButtonMode="whileEditing" id="A6D-6Y-92a">
+                                            <rect key="frame" x="16" y="7" width="234" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="MC3-cf-Ayd" id="84c-dD-L31"/>
+                                            </connections>
+                                        </textField>
+                                    </barButtonItem>
+                                    <barButtonItem title="发送" id="AzN-eo-a0e">
+                                        <connections>
+                                            <action selector="Send:" destination="MC3-cf-Ayd" id="imS-CI-UEY"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tXb-Jj-y3y">
+                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fv7-m6-D1r" firstAttribute="leading" secondItem="tXb-Jj-y3y" secondAttribute="leading" id="8xu-BE-PJT"/>
+                            <constraint firstItem="fv7-m6-D1r" firstAttribute="top" secondItem="tXb-Jj-y3y" secondAttribute="bottom" id="COj-az-qxX"/>
+                            <constraint firstAttribute="bottom" secondItem="fv7-m6-D1r" secondAttribute="bottom" id="Tur-qa-FHF"/>
+                            <constraint firstAttribute="trailing" secondItem="tXb-Jj-y3y" secondAttribute="trailing" id="a4C-8c-5dJ"/>
+                            <constraint firstItem="tXb-Jj-y3y" firstAttribute="top" secondItem="Hz8-pD-aJF" secondAttribute="bottom" id="hu9-6g-oHE"/>
+                            <constraint firstItem="fv7-m6-D1r" firstAttribute="trailing" secondItem="tXb-Jj-y3y" secondAttribute="trailing" id="iFX-GN-CGa"/>
+                            <constraint firstItem="tXb-Jj-y3y" firstAttribute="leading" secondItem="v3a-ms-RPh" secondAttribute="leading" id="t7n-Gy-kRP"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="4gl-Q1-GMv"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="tXb-Jj-y3y" id="Scf-Dv-BgH"/>
+                        <outlet property="textView" destination="A6D-6Y-92a" id="f4T-7n-VCJ"/>
+                    </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1608" y="-1072"/>
+            <point key="canvasLocation" x="1621" y="-1072"/>
         </scene>
         <!--Map View Controller - 地图-->
         <scene sceneID="7GM-jd-6cT">
@@ -56,6 +109,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OUs-Gy-Ehp">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Pmt-SW-AON">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="CZ4-MO-1fc" kind="relationship" relationship="rootViewController" id="Nun-aC-Ius"/>
                     </connections>
@@ -88,7 +145,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="9fN-Zf-E0i"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" size="system"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
                         </subviews>
@@ -139,7 +196,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名/手机号/邮箱" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0bP-6N-AeW">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0bP-6N-AeW">
                                 <rect key="frame" x="20" y="89" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
