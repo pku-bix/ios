@@ -8,8 +8,8 @@
 
 @interface DataWorker : NSObject 
 
-@property (nonatomic, retain) NSMapTable* contacts;
-@property (nonatomic, retain) NSMapTable* sessions;
+@property (nonatomic, retain) NSMutableArray* contacts;
+@property (nonatomic, retain) NSMutableArray* sessions;
 
 -(id)init;
     

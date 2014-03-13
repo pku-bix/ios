@@ -8,9 +8,20 @@
 
 
 #import <Foundation/Foundation.h>
+#import "Constants.h"
 
 @implementation NSString(Account)
 
+-(NSString*)toJid{
+    return [self stringByAppendingFormat: @"@%@", SERVER_NAME];
+}
+
+-(NSString*)toUsername{
+    if ([self rangeOfString:@"@"].location == NSNotFound ) {
+        return self;
+    }
+    return [[self componentsSeparatedByString:@"@"] objectAtIndex:0];
+}
 
 -(BOOL)isValidUsername{
     

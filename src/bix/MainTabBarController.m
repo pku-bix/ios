@@ -7,12 +7,15 @@
 //
 
 #import "MainTabBarController.h"
+#import "AppDelegate.h"
 
 @interface MainTabBarController ()
 
 @end
 
 @implementation MainTabBarController
+
+AppDelegate *appdelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,12 +31,28 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.selectedIndex = appdelegate.account.selectedTabIndex;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    appdelegate.account.selectedTabIndex = self.selectedIndex;
 }
 
 @end

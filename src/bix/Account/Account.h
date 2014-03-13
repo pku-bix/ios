@@ -15,9 +15,13 @@
 @property (nonatomic) int selectedTabIndex;
 @property (nonatomic) BOOL autoLogin;
 @property (nonatomic) NSString* Jid;
+@property (nonatomic) BOOL presence;
 
-- (Account * ) init;
-- (Account*) initWithUsername:(NSString*)username Password:(NSString*)password;
+- (id) init;
+- (id) initWithJid: (NSString*)Jid;
+- (id) initWithUsername:(NSString*)username Password:(NSString*)password;
+
+
 - (void) save;
 - (BOOL) isValid;
 

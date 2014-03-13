@@ -15,7 +15,7 @@
 @synthesize Jid;
 
 -(NSString*) Jid{
-    return [self.username stringByAppendingFormat: @"@%@", SERVER_NAME];
+    return [self.username toJid];
 }
 
 -(void) setUsername:(NSString *)username{
@@ -23,15 +23,19 @@
     _username = [username stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
--(Account * ) init {
+-(id) init {
     return [self initWithUsername:nil Password:nil];
 }
 
--(Account *) initWithUsername: (NSString*) username Password:(NSString*) password{
+-(id) initWithJid:(NSString *)_Jid{
+    return [self initWithUsername:[_Jid toUsername] Password:@""];
+}
+
+-(id) initWithUsername: (NSString*) username Password:(NSString*) password{
     return [self initWithUsername:username Password:password AutoLogin:TRUE];
 }
 
--(Account *) initWithUsername: (NSString*) username Password:(NSString*) password AutoLogin:(BOOL) autoLogin{
+-(id) initWithUsername: (NSString*) username Password:(NSString*) password AutoLogin:(BOOL) autoLogin{
     self = [super init];
     if(self)   {
         self.username = username;

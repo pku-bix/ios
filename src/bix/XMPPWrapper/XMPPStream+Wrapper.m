@@ -27,7 +27,7 @@ Account* account;
     //发送在线状态
     XMPPPresence *presence = [XMPPPresence presence];
     [self sendElement:presence];
-    
+    account.presence = true;
 }
 
 -(void)goOffline{

@@ -1,5 +1,5 @@
 //
-//  MessageListViewController.h
+//  ChatListViewController.h
 //  bix
 //
 //  Created by harttle on 14-2-28.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "XMPPStream.h"
 
-@interface MessageListViewController : UIViewController
+@interface ChatListViewController : UITableViewController
 
 //XMPPStream xmppStream = new XMPPStream();
 //xmppStream.myJID = [XMPPJID jidWithString:@"user@dev1.myCompany.com"];

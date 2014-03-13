@@ -11,7 +11,9 @@
 
 @interface Session : NSObject
 
-@property (nonatomic,retain) Account* remote;
-@property (nonatomic,retain) NSArray* msgs;
+@property (nonatomic,retain) NSString* remoteJid;
+@property (nonatomic,retain) NSMutableArray* msgs;
+
+-(id) initWithRemoteJid:(NSString*) Jid;
 
 @end

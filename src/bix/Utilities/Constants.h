@@ -20,4 +20,22 @@ static NSString *SERVER_NAME = @"orange.local";
 static NSString *EVENT_BUDDY_PRESENCE=@"event_buddy_presence";
 static NSString *EVENT_MESSAGE_RECEIVED=@"event_message_received";
 
+static NSString *REUSE_CELLID_CHATLIST=@"reuse_cellid_chatlist";
+static NSString *REUSE_CELLID_MSGLIST=@"reuse_cellid_msglist";
+
+#define MARGIN_MSG_RECEIVER     10
+#define MARGIN_MSG_SENDER       5
+#define MARGIN_MSG_TOP          10
+
+#define PADDING_MSG_TOP         10
+#define PADDING_MSG_BOTTOM      10
+#define PADDING_MSG_RECEIVER    10
+#define PADDING_MSG_SENDER      20
+
+#define IMGCAP_WIDTH_SENDER     20
+#define IMGCAP_HEIGHT_SENDER    15
+#define IMGCAP_WIDTH_RECEIVER   14
+#define IMGCAP_HEIGHT_RECEIVER  15
+#define MARGIN_TIMEINFO         20
+
 #endif

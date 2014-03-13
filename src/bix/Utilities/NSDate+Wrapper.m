@@ -10,17 +10,18 @@
 
 @implementation NSDate(Wrapper)
 
-+(NSString *)getCurrentTime{
-    
-    NSDate *nowUTC = [NSDate date];
++(NSString *)getCurrentTimeString{
+    return [[NSDate date] toString];
+}
+
+-(NSString*) toString{
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
     
-    return [dateFormatter stringFromDate:nowUTC];
-    
+    return [dateFormatter stringFromDate:self];
 }
 
 @end

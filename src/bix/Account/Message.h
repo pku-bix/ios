@@ -16,4 +16,6 @@
 @property (nonatomic) BOOL isMine;
 @property (nonatomic,retain) NSDate* time;
 
+-(id)initWithMessageText:(NSString*)msg isMine:(BOOL)isMine;
+
 @end

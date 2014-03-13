@@ -10,6 +10,8 @@
 
 @interface NSDate(Wrapper)
 
-+(NSString *)getCurrentTime;
++(NSString *)getCurrentTimeString;
 
+-(NSString*) toString;
+    
 @end

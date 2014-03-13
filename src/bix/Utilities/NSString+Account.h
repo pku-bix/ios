@@ -14,4 +14,7 @@
 -(BOOL)isValidEmail;
 -(BOOL)isValidPassword;
 
+-(NSString*)toJid;
+-(NSString*)toUsername;
+
 @end
