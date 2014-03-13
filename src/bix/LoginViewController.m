@@ -59,7 +59,7 @@ AppDelegate* appdelegate;
     self.account = [Account loadDefault];
     if (self.account != nil) {
         
-        self.username.text = self.account.username;
+        self.username.text = [self.account.Jid user];
         self.password.text = self.account.password;
         
         if(self.account.autoLogin){
@@ -115,10 +115,12 @@ AppDelegate* appdelegate;
 
 
 - (void) generateAccount{
+    NSString* user = [self.username.text
+                      stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString* bareJid = [user stringByAppendingFormat:@"@%@",SERVER_DOMAIN];
+                      
     self.account = [[Account alloc]
-                    initWithAddr: [[self.username.text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]]
-                                   toAddr:SERVER_NAME
-                                   Devicename:@""]
+                    initWithJid: [XMPPJID jidWithString:bareJid]
                     Password:self.password.text];
 }
 

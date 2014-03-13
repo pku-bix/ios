@@ -28,9 +28,28 @@
     return self;
 }
 
+
+//query contact, add when needed
+-(Account*)updateConcact: (XMPPJID*)Jid{
+    NSArray* filteredContacts =[self.contacts
+                                filteredArrayUsingPredicate:
+                                [NSPredicate predicateWithFormat:@"bareJid == %@",Jid.bare]];
+    
+    Account* account;
+    if (filteredContacts.count == 0) {
+        account = [[Account alloc] initWithJid:Jid];
+        [self.contacts addObject:account];
+    }
+    else{
+        account = filteredContacts[0];
+    }
+    account.Jid = Jid; // update Jid, resource especially
+    return account;
+}
+
+
 //收到消息
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
-    
     
     // only chat message with body proceeds
     if (!message.isChatMessageWithBody) {
@@ -72,35 +91,20 @@
 }
 
 
-
-
 //收到好友状态
 - (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence{
 
     //取得好友状态
     NSString *presenceType = [presence type]; //"available", "unavailable"
     //当前用户
-    NSString *myJid = [[sender myJID] user];
+    XMPPJID *myJid = [sender myJID];
     //在线用户
-    NSString *remoteJid = [[presence from] user];
+    XMPPJID *remoteJid = [presence from];
     
-    if (![remoteJid isEqualToString:myJid]) {
-        
-        NSArray* filteredContacts =[self.contacts
-                                    filteredArrayUsingPredicate:
-                                    [NSPredicate predicateWithFormat:@"Jid == %@",remoteJid]];
-
-        Account* remoteAccount;
-        if (filteredContacts.count == 0) {
-            remoteAccount = [[Account alloc] initWithAddr:[remoteJid toAddr:@""]];
-            [self.contacts addObject:remoteAccount];
-        }
-        else{
-            remoteAccount = filteredContacts[0];
-        }
-        
+        Account* remoteAccount = [self updateConcact:remoteJid];
         remoteAccount.presence = [presenceType isEqual: @"available"];
-        
+    
+    if (![remoteJid.bare isEqualToString:myJid.bare]) {
         //发送通知
             
         [[NSNotificationCenter defaultCenter]
@@ -108,17 +112,10 @@
          object:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                  remoteAccount, @"account",
                  nil ]];
-        
-#ifdef DEBUG
-        NSLog(@"presence received from %@: %@", remoteJid, presence);
-#endif
-        
     }
+    
 #ifdef DEBUG
-    else{
-        NSLog(@"presence descarded");
-        //NSLog(@"presence descarded:\n%@\n\n",presence);
-    }
+    NSLog(@"presence received from %@: %@", remoteJid, presence);
 #endif
 }
 

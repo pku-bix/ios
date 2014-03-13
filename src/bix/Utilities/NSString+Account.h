@@ -13,8 +13,9 @@
 -(BOOL)isValidUsername;
 -(BOOL)isValidEmail;
 -(BOOL)isValidPassword;
--(BOOL)isValidAddress;
+-(BOOL)isValidJid;
 
+/*
 // Jid/addr
 -(NSString*)toJid;
 // username
@@ -33,4 +34,5 @@
 
 // addr
 -(NSString*)toDevicename;
+ */
 @end

@@ -13,7 +13,7 @@
 @implementation Account
 
 
-// getter
+/*/ getter
 @synthesize username;
 -(NSString*) username{
     return [self.address toUsername];
@@ -29,54 +29,59 @@
 @synthesize Jid;
 -(NSString*) Jid{
     return [self.address toJid];
+}*/
+
+@synthesize bareJid;
+-(NSString*) bareJid{
+    return [self.Jid bare];
 }
 
 // constructor
 
 -(id) init {
-    return [self initWithAddr:@""];
+    return [self initWithJid:nil];
 }
 
--(id) initWithAddr: (NSString*)addr{
-    return [self initWithAddr:addr Password:@""];
+-(id) initWithJid: (XMPPJID*) jid{
+    return [self initWithJid:jid Password:@""];
 }
 
--(id) initWithAddr: (NSString*) addr Password:(NSString*) password{
+-(id) initWithJid: (XMPPJID*) jid Password:(NSString*) password{
     self = [super init];
     if(self)   {
-        self.address = addr;
+        self.Jid = jid;
         self.password = password;
     }
     return self;
 }
 
 - (BOOL) isValid{
-    return [self.address isValidAddress] && [self.password isValidPassword];
+    return [[self.Jid bare] isValidJid] && [self.password isValidPassword];
 }
 
 - (void) save{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:self.password forKey: [self.address stringByAppendingString: PASSWORD_SUFFIX]];
-    [defaults setBool:self.autoLogin forKey: [self.address stringByAppendingString: AUTOLOGIN_SUFFIX]];
-    [defaults setInteger:self.selectedTabIndex forKey:[self.address stringByAppendingString:DEFAULTTAB_SUFFIX]];
+    [defaults setObject:self.password forKey: [[self.Jid bare] stringByAppendingString: PASSWORD_SUFFIX]];
+    [defaults setBool:self.autoLogin forKey: [[self.Jid bare] stringByAppendingString: AUTOLOGIN_SUFFIX]];
+    [defaults setInteger:self.selectedTabIndex forKey:[[self.Jid bare] stringByAppendingString:DEFAULTTAB_SUFFIX]];
 }
 
 + (Account*) loadDefault{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString* address = [defaults stringForKey: LASTUSER_ADDRESS];
+    NSString* bareJid = [defaults stringForKey: LASTUSER_BAREJID];
     
-    if (address == nil) {
+    if (bareJid == nil) {
         return nil;
     }
     
-    NSString* password = [defaults stringForKey: [address stringByAppendingString: PASSWORD_SUFFIX]];
+    NSString* password = [defaults stringForKey: [bareJid stringByAppendingString: PASSWORD_SUFFIX]];
     
-    Account* account = [[Account alloc] initWithAddr: address
+    Account* account = [[Account alloc] initWithJid:[XMPPJID jidWithString: bareJid]
                                             Password: password];
     account.autoLogin = [defaults boolForKey:
-                         [address stringByAppendingString: AUTOLOGIN_SUFFIX]];
+                         [bareJid stringByAppendingString: AUTOLOGIN_SUFFIX]];
     account.selectedTabIndex = [defaults integerForKey:
-                                [address stringByAppendingString:DEFAULTTAB_SUFFIX]];
+                                [bareJid stringByAppendingString:DEFAULTTAB_SUFFIX]];
     return account;
 }
 

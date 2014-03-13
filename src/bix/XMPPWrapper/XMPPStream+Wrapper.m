@@ -52,7 +52,7 @@ Account* account;
     }
     
     //设置用户
-    self.myJID = [XMPPJID jidWithString:account.Jid];
+    self.myJID = account.Jid;
                   
     //设置服务器
     self.hostName = SERVER;

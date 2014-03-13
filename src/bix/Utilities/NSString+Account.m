@@ -12,6 +12,7 @@
 
 @implementation NSString(Account)
 
+/*
 -(NSString*)toJid{
     //addr
     if ([self rangeOfString:@"/"].location != NSNotFound )
@@ -74,6 +75,7 @@
     //addr
     return [[self componentsSeparatedByString:@"/"] objectAtIndex:1];
 }
+ */
 
 -(BOOL)isValidUsername{
     
@@ -101,10 +103,10 @@
     return [emailTest evaluateWithObject:self];
 }
 
--(BOOL)isValidAddress{
+-(BOOL)isValidJid{
     NSString *jidRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+";
     NSPredicate *jidTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", jidRegex];
     
-    return [jidTest evaluateWithObject:[self toJid]];
+    return [jidTest evaluateWithObject:self];
 }
 @end

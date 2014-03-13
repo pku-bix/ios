@@ -22,7 +22,7 @@
     _account = newAccount;
     
     //record active account
-    [[NSUserDefaults standardUserDefaults] setObject:newAccount.address forKey:LASTUSER_ADDRESS];
+    [[NSUserDefaults standardUserDefaults] setObject:newAccount.Jid.bare forKey:LASTUSER_BAREJID];
 }
 
 
