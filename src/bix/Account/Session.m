@@ -10,7 +10,14 @@
 
 @implementation Session
 
--(id) initWithRemoteJid:(NSString*) Jid{
+
+@synthesize bareJid;
+-(NSString*) bareJid{
+    return [self.remoteJid bare];
+}
+
+
+-(id) initWithRemoteJid:(XMPPJID*) Jid{
     self = [super init];
     if(self){
         self.remoteJid = Jid;

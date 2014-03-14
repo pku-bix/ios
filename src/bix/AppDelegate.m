@@ -36,7 +36,7 @@
     
     //初始化XMPPStream
     self.xmppStream = [[XMPPStream alloc] initWithAccount:self.account];
-    [self.xmppStream addDelegate:self.dataWorker delegateQueue:dispatch_get_main_queue()];
+    [self.xmppStream addDelegate:self.xmppDelegate delegateQueue:dispatch_get_main_queue()];
     
 }
 
@@ -45,7 +45,7 @@
 {
     // Override point for customization after application launch.
     
-    self.dataWorker = [DataWorker new];
+    self.xmppDelegate = [XMPPDelegate new];
     return YES;
 }
 							

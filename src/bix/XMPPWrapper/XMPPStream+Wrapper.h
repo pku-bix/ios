@@ -22,6 +22,6 @@
 //下线
 -(void)goOffline;
 //发送
--(void)send: (NSString*)remoteJid Message:(NSString*)msgtxt;
+-(void)send: (XMPPJID*)remoteJid Message:(NSString*)msgtxt;
 
 @end

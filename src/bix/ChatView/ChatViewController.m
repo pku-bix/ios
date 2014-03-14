@@ -9,10 +9,10 @@
 #import "ChatViewController.h"
 #import "AppDelegate.h"
 #import "Constants.h"
-#import "Message.h"
 #import "MessageCell.h"
 #import "NSDate+Wrapper.h"
 #import "XMPPStream+Wrapper.h"
+#import "XMPPMessage+Wrapper.h"
 
 @interface ChatViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -120,11 +120,11 @@ AppDelegate* appdelegate;
     cell.userInteractionEnabled = NO;
     
     // get msg
-    Message* msg = [self.session.msgs objectAtIndex:indexPath.row];
+    XMPPMessage* msg = [self.session.msgs objectAtIndex:indexPath.row];
     
     
     // msg text
-    cell.msgTextView.text = msg.text;
+    cell.msgTextView.text = msg.body;
     
     // msg time
     cell.timeInfo.text = [msg.time toString];
@@ -134,7 +134,7 @@ AppDelegate* appdelegate;
 
     
     // msg img
-    CGSize size = [self getTextSize:msg.text];
+    CGSize size = [self getTextSize:msg.body];
     UIImage *bgImage = nil;
     
     //NSLog(@"ss%f", size.width);
@@ -177,9 +177,9 @@ AppDelegate* appdelegate;
 //每一行的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    Message* msg = [self.session.msgs objectAtIndex:indexPath.row];
+    XMPPMessage* msg = [self.session.msgs objectAtIndex:indexPath.row];
     
-    CGSize size = [self getTextSize:msg.text];
+    CGSize size = [self getTextSize:msg.body];
     
     int margin_msg_top = MARGIN_MSG_TOP + MARGIN_TIMEINFO;
     return size.height + PADDING_MSG_TOP + PADDING_MSG_BOTTOM + margin_msg_top + MARGIN_MSG_BOTTOM;
@@ -268,6 +268,8 @@ AppDelegate* appdelegate;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.navigationItem.title = [NSString stringWithFormat: @"%@", self.session.bareJid];
+    
     // register for keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -284,6 +286,11 @@ AppDelegate* appdelegate;
                                              selector:@selector(updateList:)
                                                  name:EVENT_MESSAGE_RECEIVED
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateList:)
+                                                 name:EVENT_MESSAGE_SENT
+                                               object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -298,10 +305,12 @@ AppDelegate* appdelegate;
                                                   object:nil];
     
     // message update
-    [[NSNotificationCenter defaultCenter]
-     removeObserver:self
-     name:EVENT_MESSAGE_RECEIVED
-     object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:EVENT_MESSAGE_RECEIVED
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:EVENT_MESSAGE_SENT
+                                                  object:nil];
 }
 
 // keyboard dismiss

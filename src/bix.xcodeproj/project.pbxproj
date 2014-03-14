@@ -16,6 +16,7 @@
 		EC10200E18C86FF100B3775E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200D18C86FF100B3775E /* SettingViewController.m */; };
 		EC10201118C8701400B3775E /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10201018C8701400B3775E /* MapViewController.m */; };
 		EC28329518C6D3CB00CACA40 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28329418C6D3CB00CACA40 /* LoginViewController.m */; };
+		EC93762818D3438C00D23984 /* XMPPMessage+Wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93762718D3438C00D23984 /* XMPPMessage+Wrapper.m */; };
 		EC99080A18C3356300798FAB /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EC99080918C3356300798FAB /* GCDAsyncSocket.m */; };
 		EC99080C18C3383600798FAB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC99080B18C3383600798FAB /* CFNetwork.framework */; };
 		EC99080E18C3384B00798FAB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC99080D18C3384B00798FAB /* Security.framework */; };
@@ -59,11 +60,10 @@
 		EC9908AA18C33CEE00798FAB /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC9908A918C33CEE00798FAB /* libresolv.dylib */; };
 		ECED787918CF7FE30041CCC7 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED787818CF7FE30041CCC7 /* Account.m */; };
 		ECED788218CF80040041CCC7 /* MessageBox.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED787C18CF80040041CCC7 /* MessageBox.m */; };
-		ECED788318CF80040041CCC7 /* DataWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED787F18CF80040041CCC7 /* DataWorker.m */; };
+		ECED788318CF80040041CCC7 /* XMPPDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED787F18CF80040041CCC7 /* XMPPDelegate.m */; };
 		ECED788418CF80040041CCC7 /* XMPPStream+Wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED788118CF80040041CCC7 /* XMPPStream+Wrapper.m */; };
 		ECED788718CF81040041CCC7 /* NSString+Account.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED788618CF81040041CCC7 /* NSString+Account.m */; };
 		ECED788B18CF835E0041CCC7 /* NSDate+Wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED788A18CF835E0041CCC7 /* NSDate+Wrapper.m */; };
-		ECED788E18D00CA10041CCC7 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED788D18D00CA10041CCC7 /* Message.m */; };
 		ECED789118D00CAD0041CCC7 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED789018D00CAD0041CCC7 /* Session.m */; };
 		ECED789818D090920041CCC7 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED789718D090920041CCC7 /* MessageCell.m */; };
 		ECF7E1CE18C0516D002BA385 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF7E1CD18C0516D002BA385 /* Foundation.framework */; };
@@ -108,6 +108,8 @@
 		EC10201018C8701400B3775E /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		EC28329318C6D3CB00CACA40 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		EC28329418C6D3CB00CACA40 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		EC93762618D3438C00D23984 /* XMPPMessage+Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XMPPMessage+Wrapper.h"; sourceTree = "<group>"; };
+		EC93762718D3438C00D23984 /* XMPPMessage+Wrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XMPPMessage+Wrapper.m"; sourceTree = "<group>"; };
 		EC99080818C3356300798FAB /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		EC99080918C3356300798FAB /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		EC99080B18C3383600798FAB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -198,16 +200,14 @@
 		ECED787B18CF80040041CCC7 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		ECED787C18CF80040041CCC7 /* MessageBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBox.m; sourceTree = "<group>"; };
 		ECED787D18CF80040041CCC7 /* NSString+Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Account.h"; sourceTree = "<group>"; };
-		ECED787F18CF80040041CCC7 /* DataWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataWorker.m; sourceTree = "<group>"; };
+		ECED787F18CF80040041CCC7 /* XMPPDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPDelegate.m; sourceTree = "<group>"; };
 		ECED788018CF80040041CCC7 /* XMPPStream+Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XMPPStream+Wrapper.h"; sourceTree = "<group>"; };
 		ECED788118CF80040041CCC7 /* XMPPStream+Wrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XMPPStream+Wrapper.m"; sourceTree = "<group>"; };
 		ECED788518CF808B0041CCC7 /* MessageBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageBox.h; sourceTree = "<group>"; };
 		ECED788618CF81040041CCC7 /* NSString+Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Account.m"; sourceTree = "<group>"; };
-		ECED788818CF82890041CCC7 /* DataWorker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataWorker.h; sourceTree = "<group>"; };
+		ECED788818CF82890041CCC7 /* XMPPDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMPPDelegate.h; sourceTree = "<group>"; };
 		ECED788918CF835E0041CCC7 /* NSDate+Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Wrapper.h"; sourceTree = "<group>"; };
 		ECED788A18CF835E0041CCC7 /* NSDate+Wrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Wrapper.m"; sourceTree = "<group>"; };
-		ECED788C18D00CA10041CCC7 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		ECED788D18D00CA10041CCC7 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		ECED788F18D00CAD0041CCC7 /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
 		ECED789018D00CAD0041CCC7 /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
 		ECED789618D090920041CCC7 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageCell.h; path = ChatView/MessageCell.h; sourceTree = "<group>"; };
@@ -531,8 +531,6 @@
 		ECED787618CF7FE30041CCC7 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				ECED788C18D00CA10041CCC7 /* Message.h */,
-				ECED788D18D00CA10041CCC7 /* Message.m */,
 				ECED788F18D00CAD0041CCC7 /* Session.h */,
 				ECED789018D00CAD0041CCC7 /* Session.m */,
 				ECED787718CF7FE30041CCC7 /* Account.h */,
@@ -558,8 +556,10 @@
 		ECED787E18CF80040041CCC7 /* XMPPWrapper */ = {
 			isa = PBXGroup;
 			children = (
-				ECED788818CF82890041CCC7 /* DataWorker.h */,
-				ECED787F18CF80040041CCC7 /* DataWorker.m */,
+				EC93762618D3438C00D23984 /* XMPPMessage+Wrapper.h */,
+				EC93762718D3438C00D23984 /* XMPPMessage+Wrapper.m */,
+				ECED788818CF82890041CCC7 /* XMPPDelegate.h */,
+				ECED787F18CF80040041CCC7 /* XMPPDelegate.m */,
 				ECED788018CF80040041CCC7 /* XMPPStream+Wrapper.h */,
 				ECED788118CF80040041CCC7 /* XMPPStream+Wrapper.m */,
 			);
@@ -784,8 +784,8 @@
 				EC99089518C33C9200798FAB /* XMPPPlainAuthentication.m in Sources */,
 				EC9908A118C33C9200798FAB /* XMPPPresence.m in Sources */,
 				EC99089718C33C9200798FAB /* XMPPXOAuth2Google.m in Sources */,
+				EC93762818D3438C00D23984 /* XMPPMessage+Wrapper.m in Sources */,
 				EC99089418C33C9200798FAB /* XMPPDigestMD5Authentication.m in Sources */,
-				ECED788E18D00CA10041CCC7 /* Message.m in Sources */,
 				EC9908A218C33C9200798FAB /* XMPPStream.m in Sources */,
 				ECED789818D090920041CCC7 /* MessageCell.m in Sources */,
 				EC99083018C3391300798FAB /* DDXMLNode.m in Sources */,
@@ -796,7 +796,7 @@
 				EC10200B18C85DF200B3775E /* MainTabBarController.m in Sources */,
 				EC99089A18C33C9200798FAB /* NSXMLElement+XMPP.m in Sources */,
 				ECED787918CF7FE30041CCC7 /* Account.m in Sources */,
-				ECED788318CF80040041CCC7 /* DataWorker.m in Sources */,
+				ECED788318CF80040041CCC7 /* XMPPDelegate.m in Sources */,
 				EC99084318C3397000798FAB /* DDASLLogger.m in Sources */,
 				EC99084618C3397000798FAB /* DDTTYLogger.m in Sources */,
 				EC99089B18C33C9200798FAB /* XMPPElement.m in Sources */,

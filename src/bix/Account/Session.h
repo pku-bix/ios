@@ -11,9 +11,11 @@
 
 @interface Session : NSObject
 
-@property (nonatomic,retain) NSString* remoteJid;
+@property (nonatomic,retain) XMPPJID* remoteJid;
+@property (nonatomic) NSString* bareJid;
+
 @property (nonatomic,retain) NSMutableArray* msgs;
 
--(id) initWithRemoteJid:(NSString*) Jid;
+-(id) initWithRemoteJid:(XMPPJID*) Jid;
 
 @end

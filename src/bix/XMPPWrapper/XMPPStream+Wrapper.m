@@ -9,7 +9,7 @@
 #import "XMPPStream+Wrapper.m"
 #import "AppDelegate.h"
 #import "Constants.h"
-#import "Message.h"
+#import "XMPPMessage+Wrapper.h"
 
 @implementation XMPPStream (Wrapper)
 
@@ -51,12 +51,8 @@ Account* account;
         return NO;
     }
     
-    //设置用户
     self.myJID = account.Jid;
-                  
-    //设置服务器
     self.hostName = SERVER;
-    
     
     //连接服务器
     NSError *error = nil;
@@ -72,30 +68,13 @@ Account* account;
     [self authenticateWithPassword:account.password error:&error];
 }
 
--(void)send: (NSString*)remoteJid Message:(NSString*)msgtxt{
+-(void)send: (XMPPJID*)remoteJid Message:(NSString*)body{
     
-    //生成XML消息文档
-    NSXMLElement *msgele = [NSXMLElement elementWithName:@"message"];
-    [msgele addAttributeWithName:@"type" stringValue:@"chat"];
-    [msgele addAttributeWithName:@"to" stringValue:remoteJid];
-    [msgele addAttributeWithName:@"from" stringValue: [self.myJID user]];
-    
-    //生成<body>文档
-    NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
-    [body setStringValue:msgtxt];
-    [msgele addChild:body];
+    XMPPMessage *msg = [[XMPPMessage alloc] initWithBody:body From:self.myJID To:remoteJid];
     
     //发送消息
-    [self sendElement:msgele];
+    [self sendElement:msg];
     
-    //发送通知
-    Message* message = [[Message alloc] initWithMessageText:msgtxt isMine:YES];
-    
-#ifdef DEBUG
-    NSLog(@"message(chat) sent to %@:\n%@\n\n", remoteJid, message.text);
-#endif
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_MESSAGE_RECEIVED object:message ];
 }
 
 @end

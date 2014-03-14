@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "XMPP.h"
 #import "Account.h"
-#import "DataWorker.h"
+#import "XMPPDelegate.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
     Account *_account;
@@ -17,7 +17,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (nonatomic, retain)DataWorker* dataWorker;
+@property (nonatomic, retain)XMPPDelegate* xmppDelegate;
 @property (nonatomic, retain)XMPPStream* xmppStream;
 @property (nonatomic, retain)Account* account;
 

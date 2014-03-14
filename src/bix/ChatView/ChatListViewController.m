@@ -33,6 +33,7 @@ Session* sessionToOpen;
     self.tableView.delegate = self;
     
     [self.tableView reloadData];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,7 +69,7 @@ Session* sessionToOpen;
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
   
-    return [appdelegate.dataWorker.sessions count];
+    return [appdelegate.xmppDelegate.sessions count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -83,10 +84,10 @@ Session* sessionToOpen;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:REUSE_CELLID_CHATLIST];
     }
-    Session *session = [appdelegate.dataWorker.sessions objectAtIndex:[indexPath row]];
+    Session *session = [appdelegate.xmppDelegate.sessions objectAtIndex:[indexPath row]];
     
     //文本
-    cell.textLabel.text = session.remoteJid;
+    cell.textLabel.text = session.remoteJid.bare;
     //标记
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -99,7 +100,7 @@ Session* sessionToOpen;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     //start a Chat
-    sessionToOpen = [appdelegate.dataWorker.sessions objectAtIndex:[indexPath row]];
+    sessionToOpen = [appdelegate.xmppDelegate.sessions objectAtIndex:[indexPath row]];
     
     [self performSegueWithIdentifier:@"chat" sender:self];
     

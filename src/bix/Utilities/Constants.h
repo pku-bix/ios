@@ -20,6 +20,7 @@ static NSString *SERVER_DOMAIN = @"orange.local";
 
 static NSString *EVENT_BUDDY_PRESENCE=@"event_buddy_presence";
 static NSString *EVENT_MESSAGE_RECEIVED=@"event_message_received";
+static NSString *EVENT_MESSAGE_SENT=@"event_message_sent";
 
 static NSString *REUSE_CELLID_CHATLIST=@"reuse_cellid_chatlist";
 static NSString *REUSE_CELLID_MSGLIST=@"reuse_cellid_msglist";

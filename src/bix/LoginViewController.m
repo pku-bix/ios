@@ -158,7 +158,7 @@ AppDelegate* appdelegate;
     
     // go online
     [appdelegate.xmppStream goOnline];
-    [appdelegate.dataWorker.contacts addObject:self.account];
+    [appdelegate.xmppDelegate.contacts addObject:self.account];
     
     // navigation
     [self performSegueWithIdentifier:@"main" sender:self];
