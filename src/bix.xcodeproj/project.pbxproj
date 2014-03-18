@@ -108,6 +108,7 @@
 		EC10201018C8701400B3775E /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		EC28329318C6D3CB00CACA40 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		EC28329418C6D3CB00CACA40 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		EC45298818D888E200610B66 /* XMPPFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPFramework.h; path = XMPP/XMPPFramework.h; sourceTree = "<group>"; };
 		EC93762618D3438C00D23984 /* XMPPMessage+Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XMPPMessage+Wrapper.h"; sourceTree = "<group>"; };
 		EC93762718D3438C00D23984 /* XMPPMessage+Wrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XMPPMessage+Wrapper.m"; sourceTree = "<group>"; };
 		EC99080818C3356300798FAB /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
@@ -379,6 +380,7 @@
 		EC99085118C33C5D00798FAB /* XMPP */ = {
 			isa = PBXGroup;
 			children = (
+				EC45298818D888E200610B66 /* XMPPFramework.h */,
 				EC99080618C3335600798FAB /* Vendor */,
 				EC99085218C33C9200798FAB /* Authentication */,
 				EC99086918C33C9200798FAB /* Categories */,

@@ -88,7 +88,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_MESSAGE_RECEIVED object:message ];
 }
 
-
 //收到好友状态
 - (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence{
     
@@ -118,31 +117,23 @@
     }
 }
 
-/**
- * These methods are called before their respective XML elements are sent over the stream.
- * These methods can be used to modify outgoing elements on the fly.
- * (E.g. add standard information for custom protocols.)
- *
- * You may also filter outgoing elements by returning nil.
- *
- * When implementing these methods to modify the element, you do not need to copy the given element.
- * You can simply edit the given element, and return it.
- * The reason these methods return an element, instead of void, is to allow filtering.
- *
- * Concerning thread-safety, delegates implementing the method are invoked one-at-a-time to
- * allow thread-safe modification of the given elements.
- *
- * You should NOT implement these methods unless you have good reason to do so.
- * For general processing and notification of sent elements, please use xmppStream:didSendX: methods.
- *
- * @see xmppStream:didSendIQ:
- * @see xmppStream:didSendMessage:
- * @see xmppStream:didSendPresence:
- **/
+//收到错误信息
+- (void)xmppStream:(XMPPStream *)sender didReceiveError:(NSXMLElement *)error{
+    
+#ifdef DEBUG
+    NSLog(@"error received:\n%@\n\n",error);
+#endif
+    
+}
 
+
+
+//将要发送IQ
 - (XMPPIQ *)xmppStream:(XMPPStream *)sender willSendIQ:(XMPPIQ *)iq{
     return iq;
 }
+
+//将要发送信息
 - (XMPPMessage *)xmppStream:(XMPPStream *)sender willSendMessage:(XMPPMessage *)message{
     Session* session = [self updateSession:message.to];
     [session.msgs addObject:message];
@@ -150,16 +141,14 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_MESSAGE_SENT object:message ];
     return message;
 }
+
+//将要发送在线状态
 - (XMPPPresence *)xmppStream:(XMPPStream *)sender willSendPresence:(XMPPPresence *)presence{
     return presence;
 }
 
 
-/**
- * These methods are called after their respective XML elements are sent over the stream.
- * These methods may be used to listen for certain events (such as an unavailable presence having been sent),
- * or for general logging purposes. (E.g. a central history logging mechanism).
- **/
+//已发送IQ
 - (void)xmppStream:(XMPPStream *)sender didSendIQ:(XMPPIQ *)iq{
     
 #ifdef DEBUG
@@ -167,6 +156,7 @@
 #endif
 }
 
+//已发送信息
 - (void)xmppStream:(XMPPStream *)sender didSendMessage:(XMPPMessage *)message{
     
 #ifdef DEBUG
@@ -174,6 +164,7 @@
 #endif
 }
 
+//已发送在线状态
 - (void)xmppStream:(XMPPStream *)sender didSendPresence:(XMPPPresence *)presence{
     
 #ifdef DEBUG
@@ -181,9 +172,8 @@
 #endif
 }
 
-/**
- * These methods are called after failing to send the respective XML elements over the stream.
- **/
+
+//发送IQ失败
 - (void)xmppStream:(XMPPStream *)sender didFailToSendIQ:(XMPPIQ *)iq error:(NSError *)error{
     
 #ifdef DEBUG
@@ -191,6 +181,7 @@
 #endif
 }
 
+//发送信息失败
 - (void)xmppStream:(XMPPStream *)sender didFailToSendMessage:(XMPPMessage *)message error:(NSError *)error{
 
 #ifdef DEBUG
@@ -198,28 +189,12 @@
 #endif
 }
 
+//发送在线状态失败
 - (void)xmppStream:(XMPPStream *)sender didFailToSendPresence:(XMPPPresence *)presence error:(NSError *)error{
     
 #ifdef DEBUG
     NSLog(@"send presence failed error: %@\npresence:\n%@\n\n",error,presence);
 #endif
-}
-
-/**
- * This method is called if an XMPP error is received.
- * In other words, a <stream:error/>.
- *
- * However, this method may also be called for any unrecognized xml stanzas.
- *
- * Note that standard errors (<iq type='error'/> for example) are delivered normally,
- * via the other didReceive...: methods.
- **/
-- (void)xmppStream:(XMPPStream *)sender didReceiveError:(NSXMLElement *)error{
-    
-#ifdef DEBUG
-    NSLog(@"error received:\n%@\n\n",error);
-#endif
-
 }
 
 @end
