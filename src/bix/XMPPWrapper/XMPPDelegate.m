@@ -85,7 +85,7 @@
     [session.msgs addObject:message];
 
     //发送通知
-    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_MESSAGE_RECEIVED object:message ];
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_MESSAGE_RECEIVED object:self ];
 }
 
 //收到好友状态
@@ -111,7 +111,8 @@
             
         [[NSNotificationCenter defaultCenter]
          postNotificationName:EVENT_BUDDY_PRESENCE
-         object:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+         object:self
+         userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
                  remoteAccount, @"account",
                  nil ]];
     }

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "XMPP.h"
 
-@interface Account : NSObject
+@interface Account : NSObject<NSCoding>
 
 @property (nonatomic,copy) NSString* password;
 
@@ -27,6 +27,8 @@
 @property (nonatomic) BOOL autoLogin;
 @property (nonatomic) BOOL presence;
 
+@property (nonatomic, retain) NSMutableArray* contacts;
+
 
 -(id) init;
 /*-(id) initWithAddr: (NSString*) addr;
@@ -36,9 +38,20 @@
 -(id) initWithJid: (XMPPJID*) jid Password:(NSString*) password;
 
 
-- (void) save;
+/*
+ * query
+ */
 - (BOOL) isValid;
+-(Account*)updateConcact: (XMPPJID*)Jid;
 
+
+/*
+ * local storage
+ */
+- (void) save;
+//- (void) saveValue: (NSObject*)value InSessionWithKey:(NSString*)key;
+//- (NSArray*) getStringArrayWithKey: (NSString*)key;
 + (Account*) loadDefault;
+
 
 @end
