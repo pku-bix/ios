@@ -135,7 +135,6 @@ AppDelegate* appdelegate;
         
         //save now!
         [self.account save];
-        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     else{
         self.btnLogin.enabled = true;

@@ -9,23 +9,47 @@
 #ifndef Bix_Constants_h
 #define Bix_Constants_h
 
-static NSString *LASTUSER_BAREJID = @"lastuser_barejid";
-static NSString *PASSWORD_SUFFIX = @"_password";
-static NSString *AUTOLOGIN_SUFFIX= @"_autologin";
-static NSString *DEFAULTTAB_SUFFIX=@"_default_tab";
 
-static NSString *SERVER = @"127.0.0.1";
+/* local storage string
+ * used for local storage identity
+ */
+static NSString *KEY_ACTIVE_JID = @"active_jid";
+static NSString *KEY_PASSWORD = @"password";
+static NSString *KEY_AUTOLOGIN= @"autologin";
+//static NSString *KEY_ACTIVE_TABINDEX=@"active_tabindex";
+static NSString *KEY_CONTACT_LIST=@"contact_list";
+static NSString *KEY_JID=@"jid";
+
 
 //static NSString *SERVER_DOMAIN = @"orange.local";
-static NSString *SERVER_DOMAIN = @"dsxdemacbook-pro.local";
+//static NSString *SERVER_DOMAIN = @"dsxdemacbook-pro.local";
 
-static NSString *EVENT_BUDDY_PRESENCE=@"event_buddy_presence";
-static NSString *EVENT_MESSAGE_RECEIVED=@"event_message_received";
-static NSString *EVENT_MESSAGE_SENT=@"event_message_sent";
+/* server spec
+ * used for server config
+ */
+static NSString *SERVER = @"127.0.0.1";
+static NSString *SERVER_DOMAIN = @"orange.local";
 
+/* event strings
+ * used for notification event identity.
+ */
+static NSString *EVENT_BUDDY_PRESENCE=@"buddy_presence";
+static NSString *EVENT_MESSAGE_RECEIVED=@"message_received";
+static NSString *EVENT_MESSAGE_SENT=@"message_sent";
+static NSString *EVENT_CONTACT_ADDED=@"contact_added";
+
+
+/* reuse key
+ * used for reuse resource identity
+ */
 static NSString *REUSE_CELLID_CHATLIST=@"reuse_cellid_chatlist";
 static NSString *REUSE_CELLID_MSGLIST=@"reuse_cellid_msglist";
+static NSString *REUSE_CELLID_CONTACTLIST=@"reuse_cellid_contactlist";
 
+
+/* graphic config
+ * used for graphic drawing
+ */
 #define MARGIN_MSG_RECEIVER     10
 #define MARGIN_MSG_SENDER       5
 #define MARGIN_MSG_TOP          5

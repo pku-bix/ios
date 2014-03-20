@@ -1,36 +1,29 @@
 //
-//  ChatListViewController.m
+//  ContactViewController.m
 //  bix
 //
 //  Created by harttle on 14-2-28.
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
 
-#import "ChatListViewController.h"
-#import "ChatViewController.h"
+#import "ContactViewController.h"
 #import "AppDelegate.h"
 #import "Constants.h"
 #import "Session.h"
+#import "ChatViewController.h"
 
-@interface ChatListViewController ()
+@interface ContactViewController ()
 
 @end
 
-@implementation ChatListViewController
-
+@implementation ContactViewController
 AppDelegate* appdelegate;
+
 Session* sessionToOpen;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    
-    // retain xmppStream
-    appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
-    // update msgs when absent
-    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,44 +32,38 @@ Session* sessionToOpen;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(updateList:)
-     name:EVENT_MESSAGE_RECEIVED
-     object:nil];
+- (void)viewWillAppear:(BOOL)animated{
+    
+    // reload when entering
+    [self updateContact];
+    
+    // contacts update
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateContact)
+                                                 name:EVENT_CONTACT_ADDED
+                                               object:nil];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [[NSNotificationCenter defaultCenter]
-     removeObserver:self
-     name:EVENT_MESSAGE_RECEIVED
-     object:nil];
+- (void)viewWillDisappear:(BOOL)animated{
+
+    // contacts update
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:EVENT_CONTACT_ADDED
+                                                  object:nil];
 }
 
-- (void) updateList: (NSNotification*) notification
-{
+-(void)updateContact{
     [self.tableView reloadData];
 }
 
-// init chat controller
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([[segue identifier] isEqualToString:@"chat"]) {
-        
-        ChatViewController *chatViewController = [segue destinationViewController];
-        chatViewController.session = sessionToOpen;
-    }
-}
 
 
 
 #pragma mark UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-  
-    return [appdelegate.xmppDelegate.sessions count];
+    
+    return [appdelegate.account.contacts count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -86,17 +73,19 @@ Session* sessionToOpen;
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:REUSE_CELLID_CHATLIST];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:REUSE_CELLID_CONTACTLIST];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:REUSE_CELLID_CHATLIST];
+                                      reuseIdentifier:REUSE_CELLID_CONTACTLIST];
     }
-    Session *session = [appdelegate.xmppDelegate.sessions objectAtIndex:[indexPath row]];
+    
+    Account *account = [appdelegate.account.contacts objectAtIndex:[indexPath row]];
     
     //文本
-    cell.textLabel.text = session.remoteJid.user;
+    cell.textLabel.text = account.Jid.user;
+    
     //标记
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryNone;
     
     return cell;
 }
@@ -114,16 +103,23 @@ Session* sessionToOpen;
     return @"删除";
 }
 
-
 #pragma mark UITableViewDelegate
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     //start a Chat
-    sessionToOpen = [appdelegate.xmppDelegate.sessions objectAtIndex:[indexPath row]];
-    
+    Account* account = [appdelegate.account.contacts objectAtIndex:[indexPath row]];
+    sessionToOpen = [appdelegate.xmppDelegate updateSession:account.Jid];
     [self performSegueWithIdentifier:@"chat" sender:self];
-    
+}
+
+// init chat controller
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue identifier] isEqualToString:@"chat"]) {
+        
+        ChatViewController *chatViewController = [segue destinationViewController];
+        chatViewController.session = sessionToOpen;
+    }
 }
 
 // Override to support editing the table view.
@@ -132,9 +128,10 @@ Session* sessionToOpen;
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         //add code here for when you hit delete
-        [appdelegate.xmppDelegate.sessions removeObjectAtIndex:indexPath.row];
+        [appdelegate.account.contacts removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
+
 
 @end

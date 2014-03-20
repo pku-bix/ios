@@ -28,7 +28,6 @@
 @property (nonatomic, retain)XMPPStream* xmppStream;
 @property (nonatomic, retain)Account* account;
 
-
 // account should be set before call this method
 -(void)setupStream;
 

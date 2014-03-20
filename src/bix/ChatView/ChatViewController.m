@@ -62,12 +62,12 @@ bool scrollNeeded;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    [self updateList:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    self.navigationItem.title = [NSString stringWithFormat: @"%@", self.session.bareJid];
+    self.navigationItem.title = [NSString stringWithFormat: @"%@", self.session.remoteJid.user];
+    
+    [self updateList:nil];
     
     // viewsize update
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -90,9 +90,6 @@ bool scrollNeeded;
                                              selector:@selector(updateList:)
                                                  name:EVENT_MESSAGE_SENT
                                                object:nil];
-    
-    
-    //[self ScrollToBottom];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

@@ -22,7 +22,7 @@
     _account = newAccount;
     
     //record active account
-    [[NSUserDefaults standardUserDefaults] setObject:newAccount.Jid.bare forKey:LASTUSER_BAREJID];
+    [[NSUserDefaults standardUserDefaults] setObject:newAccount.Jid.bare forKey:KEY_ACTIVE_JID];
 }
 
 
@@ -30,6 +30,15 @@
 
 ////////////////////////////////////////////////////////////////
 //methods
+
+
+-(id)init{
+    self = [super init];
+    if(self){
+        // initialization
+    }
+    return self;
+}
 
 
 -(void)setupStream{
@@ -97,7 +106,6 @@
     // save account states
     
     [self.account save];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end
