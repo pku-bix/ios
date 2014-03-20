@@ -16,7 +16,8 @@ static NSString *DEFAULTTAB_SUFFIX=@"_default_tab";
 
 static NSString *SERVER = @"127.0.0.1";
 
-static NSString *SERVER_DOMAIN = @"orange.local";
+//static NSString *SERVER_DOMAIN = @"orange.local";
+static NSString *SERVER_DOMAIN = @"dsxdemacbook-pro.local";
 
 static NSString *EVENT_BUDDY_PRESENCE=@"event_buddy_presence";
 static NSString *EVENT_MESSAGE_RECEIVED=@"event_message_received";

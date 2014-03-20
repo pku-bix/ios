@@ -44,6 +44,25 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    NSLog(@"didFinishLaunchingWithOptions");
+    // 要使用百度地图，请先启动BaiduMapManager
+    _mapManager = [[BMKMapManager alloc]init];
+    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
+    BOOL ret = [_mapManager start:@"oCvXZCd41PsMzOw0disOu1QA"  generalDelegate:self];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
+    //  BMKMapView* mapView2 = [[BMKMapView alloc]initWithFrame:CGRectMake(50, 50, 300, 500)];
+    
+    // Add the navigation controller's view to the window and display.
+    //[self.window addSubview:navigationController.view];
+    // [_mapManager release];
+    //      [_mapManager release];
+    //[self.window addSubview:mapView2];
+    
+    [self.window addSubview:navigationController.view];
+    [self.window makeKeyAndVisible];
+    
     
     self.xmppDelegate = [XMPPDelegate new];
     return YES;
