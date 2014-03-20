@@ -87,10 +87,10 @@ int action;
             [app performSelector:@selector(suspend)];
             
             //wait 2 seconds while app is going background
-            //[NSThread sleepForTimeInterval:2.0];
+            [NSThread sleepForTimeInterval:2.0];
             
             //exit app when app is in background
-            //exit(0);
+            exit(0);
             
             break;
         }

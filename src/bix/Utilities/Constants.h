@@ -29,6 +29,8 @@ static NSString *KEY_JID=@"jid";
  */
 static NSString *SERVER = @"127.0.0.1";
 static NSString *SERVER_DOMAIN = @"orange.local";
+static NSString *BAIDU_MAP_KEY = @"oCvXZCd41PsMzOw0disOu1QA";
+
 
 /* event strings
  * used for notification event identity.
