@@ -11,8 +11,6 @@
 
 @interface SettingViewController ()
 - (IBAction)Logout:(id)sender;
-- (IBAction)Exit:(id)sender;
-
 @end
 
 @implementation SettingViewController
@@ -44,7 +42,7 @@ int action;
 }
 
 - (IBAction)Logout:(id)sender {
-    action = 0;
+    //action = 0;
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"确认"
                                                     message:@"是否退出当前账号？"
                                                    delegate:self
@@ -54,7 +52,7 @@ int action;
 
 }
 
-- (IBAction)Exit:(id)sender {
+/*- (IBAction)Exit:(id)sender {
     action = 1;
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"确认"
                                                     message:@"是否确认退出 Bix？"
@@ -62,42 +60,29 @@ int action;
                                           cancelButtonTitle:@"取消"
                                           otherButtonTitles:@"确定", nil];
     [alert show];
-}
+}*/
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) return;  // 0 == the cancel button
     
     
+    appdelegate.account.autoLogin = false;
     
-    switch (action) {
-        case 0:{// enable variable declares
-            appdelegate.account.autoLogin = false;
-            [appdelegate.account save];
-            
-            [self performSegueWithIdentifier:@"login" sender:self];
+    [appdelegate.account save];
+    [self performSegueWithIdentifier:@"login" sender:self];
         
-            break;
-        }
-        
-        case 1:{
-            UIApplication *app = [UIApplication sharedApplication];
+
+            //UIApplication *app = [UIApplication sharedApplication];
             
             //home button press programmatically
-            [app performSelector:@selector(suspend)];
+            //[app performSelector:@selector(suspend)];
             
             //wait 2 seconds while app is going background
-            [NSThread sleepForTimeInterval:2.0];
+            //[NSThread sleepForTimeInterval:2.0];
             
             //exit app when app is in background
-            exit(0);
-            
-            break;
-        }
-        default:
-            break;
-    }
-    
+            //exit(0);
 }
 
 @end

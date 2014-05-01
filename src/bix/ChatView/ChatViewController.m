@@ -69,7 +69,7 @@ bool scrollNeeded;
     
     [self updateList:nil];
     
-    // viewsize update
+    // viewsize update event
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(KeyboardWillChangeFrame:)
                                                  name:UIKeyboardWillChangeFrameNotification
@@ -80,7 +80,7 @@ bool scrollNeeded;
                                                  name:UIKeyboardDidChangeFrameNotification
                                                object:nil];
     
-    // message udpate
+    // message udpate event
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateList:)
                                                  name:EVENT_MESSAGE_RECEIVED
@@ -91,6 +91,7 @@ bool scrollNeeded;
                                                  name:EVENT_MESSAGE_SENT
                                                object:nil];
 }
+
 
 - (void)viewWillDisappear:(BOOL)animated{
     // viewsize update
@@ -121,9 +122,8 @@ bool scrollNeeded;
     if (message.length == 0) return;
     
     [appdelegate.xmppStream send:self.session.remoteJid Message:message];
-    [appdelegate.xmppStream send:[XMPPJID jidWithString:@"harttle@orange.local"] Message:message];
-    self.textView.text = @"";
     
+    self.textView.text = @"";
     [self.textView resignFirstResponder];
 }
 
@@ -248,39 +248,45 @@ bool scrollNeeded;
 
 #pragma mark - Keyboard related
 
-// update view height now!
+// generate animation when keyboard will change
 -(void)KeyboardWillChangeFrame: (NSNotification *)notification {
     isAnimating = YES;
     
     // Get the keyboard rect
-    CGRect kbBeginrect = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    CGRect kbEndrect   = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    NSTimeInterval duration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    CGRect kbBeginrect = [[[notification userInfo]
+                           objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    CGRect kbEndrect   = [[[notification userInfo]
+                           objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    NSTimeInterval duration = [[[notification userInfo]
+                                objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    UIViewAnimationCurve curve = (UIViewAnimationCurve)[[notification userInfo]
+                                                        objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+
     
-    // Animate the current view out of the way
+    // set animation
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:duration];
+    [UIView setAnimationCurve:curve];
     
+    // calculate frame rect
     CGRect rect = self.view.frame;
     double height_change = kbEndrect.origin.y - kbBeginrect.origin.y;
     rect.size.height += height_change;
     self.view.frame = rect;
-    //NSLog(@"before:%f,%f",self.tableView.frame.size.height,self.tableView.frame.origin.y);
     
-    [UIView commitAnimations];
-}
-
-// scroll tableview
--(void)keyboardDidChangeFrame:(NSNotification*)notification{
-    // Get the keyboard rect
-    CGRect kbBeginrect = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    CGRect kbEndrect   = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    
-    // animate when up or need scroll
+    // scroll msgs when up or need scroll
     if (kbEndrect.origin.y < kbBeginrect.origin.y || scrollNeeded) {
         [self.tableView layoutIfNeeded];    // important! recompute size of tableview
         [self ScrollToBottom];
     }
+}
+
+// commit animation & scroll tableview
+-(void)keyboardDidChangeFrame:(NSNotification*)notification{
+    
+    // commit animation
+    [UIView commitAnimations];
+    
     isAnimating = false;
 }
 

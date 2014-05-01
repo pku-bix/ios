@@ -10,6 +10,4 @@
 
 @interface LoginViewController : UIViewController<UITextFieldDelegate>
 
-@property (nonatomic, retain) Account* account;
-
 @end

@@ -8,6 +8,7 @@
 
 #import "MainTabBarController.h"
 #import "AppDelegate.h"
+#import "ChatListViewController.h"
 
 @interface MainTabBarController ()
 
@@ -27,6 +28,16 @@ AppDelegate *appdelegate;
     return self;
 }
 
+-(void)openSession: (Session*)session{
+    [self setSelectedIndex:1];
+    
+    UINavigationController* nav = (UINavigationController*)self.selectedViewController;
+
+    ChatListViewController* chatlist = (ChatListViewController*)nav.topViewController;
+    [chatlist openSession:session];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -44,15 +55,11 @@ AppDelegate *appdelegate;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    self.selectedIndex = appdelegate.account.selectedTabIndex;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
-    appdelegate.account.selectedTabIndex = self.selectedIndex;
 }
 
 @end

@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Account.h"
+#import "XMPPFramework.h"
 
-@interface Session : NSObject
+@interface Session : NSObject<NSCoding>
 
 @property (nonatomic,retain) XMPPJID* remoteJid;
-@property (nonatomic) NSString* bareJid;
+@property (nonatomic,readonly) NSString* bareJid;
 
 @property (nonatomic,retain) NSMutableArray* msgs;
 

@@ -11,6 +11,8 @@
 #import "Constants.h"
 #import "Session.h"
 #import "ChatViewController.h"
+#import "ChatListViewController.h"
+#import "MainTabBarController.h"
 
 @interface ContactViewController ()
 
@@ -19,7 +21,6 @@
 @implementation ContactViewController
 AppDelegate* appdelegate;
 
-Session* sessionToOpen;
 
 - (void)viewDidLoad
 {
@@ -105,21 +106,15 @@ Session* sessionToOpen;
 
 #pragma mark UITableViewDelegate
 
+
+// contact selected
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    //start a Chat
     Account* account = [appdelegate.account.contacts objectAtIndex:[indexPath row]];
-    sessionToOpen = [appdelegate.xmppDelegate updateSession:account.Jid];
-    [self performSegueWithIdentifier:@"chat" sender:self];
-}
-
-// init chat controller
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([[segue identifier] isEqualToString:@"chat"]) {
-        
-        ChatViewController *chatViewController = [segue destinationViewController];
-        chatViewController.session = sessionToOpen;
-    }
+    Session* sessionToOpen = [appdelegate.account getSession:account.Jid];
+    
+    MainTabBarController* mainTabBarController = (MainTabBarController*)self.tabBarController;
+    [mainTabBarController openSession: sessionToOpen];
 }
 
 // Override to support editing the table view.

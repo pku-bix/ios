@@ -15,10 +15,11 @@
 -(BOOL)isValidPassword;
 -(BOOL)isValidJid;
 
-/*
+
 // Jid/addr
 -(NSString*)toJid;
-// username
+/*
+ // username
 -(NSString*)toJid:(NSString*)servername;
 
 // username/Jid/addr

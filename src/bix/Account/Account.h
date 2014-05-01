@@ -8,49 +8,40 @@
 
 #import <Foundation/Foundation.h>
 #import "XMPP.h"
+#import "Session.h"
 
 @interface Account : NSObject<NSCoding>
 
+@property (nonatomic,retain) XMPPJID* Jid;
+@property (nonatomic, readonly) NSString* bareJid;
 @property (nonatomic,copy) NSString* password;
 
-/*
-@property (nonatomic,copy) NSString* address;
-@property (nonatomic) NSString* username;
-@property (nonatomic) NSString* servername;
-@property (nonatomic) NSString* devicename;
-@property (nonatomic) NSString* Jid;*/
-
-@property (nonatomic,retain) XMPPJID* Jid;
-@property (nonatomic) NSString* bareJid;
-
-@property (nonatomic) int selectedTabIndex;
+//@property (nonatomic) int selectedTabIndex;
 @property (nonatomic) BOOL autoLogin;
 @property (nonatomic) BOOL presence;
 
 @property (nonatomic, retain) NSMutableArray* contacts;
+@property (nonatomic, retain) NSMutableArray* sessions;
 
 
 -(id) init;
-/*-(id) initWithAddr: (NSString*) addr;
--(id) initWithAddr: (NSString*) addr Password:(NSString*) password;
-*/
 -(id) initWithJid: (XMPPJID*) jid;
 -(id) initWithJid: (XMPPJID*) jid Password:(NSString*) password;
+-(id) initWithUsername: (NSString*)username Password:(NSString*) password;
 
 
 /*
  * query
  */
 - (BOOL) isValid;
--(Account*)updateConcact: (XMPPJID*)Jid;
-
+-(Account*)getConcact: (XMPPJID*)Jid;
+-(Session*)getSession: (XMPPJID*)Jid;
 
 /*
  * local storage
  */
 - (void) save;
-//- (void) saveValue: (NSObject*)value InSessionWithKey:(NSString*)key;
-//- (NSArray*) getStringArrayWithKey: (NSString*)key;
++ (Account*) loadAccount: (NSString*)bareJid;
 + (Account*) loadDefault;
 
 

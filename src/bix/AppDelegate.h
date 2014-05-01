@@ -20,13 +20,13 @@
 }
 
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
 @property (nonatomic, retain)XMPPDelegate* xmppDelegate;
 @property (nonatomic, retain)XMPPStream* xmppStream;
 @property (nonatomic, retain)Account* account;
 
 // account should be set before call this method
--(void)setupStream;
+-(void)setupAccount: (Account*)account;
+
 
 @end

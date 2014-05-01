@@ -12,17 +12,24 @@
 
 @implementation NSString(Account)
 
-/*
+
 -(NSString*)toJid{
     //addr
     if ([self rangeOfString:@"/"].location != NSNotFound )
         return [[self componentsSeparatedByString:@"/"] objectAtIndex:0];
     
     //Jid
-    //if ([self rangeOfString:@"@"].location != NSNotFound )
-    return self;
+    if ([self rangeOfString:@"@"].location != NSNotFound )
+        return self;
+    
+    //username
+    NSString* username = [self
+                      stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString* bareJid = [username stringByAppendingFormat:@"@%@",SERVER_DOMAIN];
+    return bareJid;
 }
 
+/*
 //username
 -(NSString*)toJid:(NSString*)servername{
     
@@ -79,7 +86,7 @@
 
 -(BOOL)isValidUsername{
     
-    NSString *usernameRegex = @"[A-Z0-9a-z._%+-]{1,20}";
+    NSString *usernameRegex = @"[A-Za-z][A-Z0-9a-z]{1,31}";
     NSPredicate *usernameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", usernameRegex];
     
     return [usernameTest evaluateWithObject:self];

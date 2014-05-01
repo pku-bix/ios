@@ -18,7 +18,6 @@
 @interface LoginViewController ()
 
 - (IBAction)Login:(id)sender;
-- (IBAction)Register:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITextField *username;
 @property (weak, nonatomic) IBOutlet UITextField *password;
@@ -29,6 +28,8 @@
 
 
 @implementation LoginViewController
+
+Account* account;
 
 // Global App Class
 AppDelegate* appdelegate;
@@ -56,13 +57,13 @@ AppDelegate* appdelegate;
     [appdelegate.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
     
     // auto login
-    self.account = [Account loadDefault];
-    if (self.account != nil) {
+    account = [Account loadDefault];
+    if (account != nil) {
         
-        self.username.text = [self.account.Jid user];
-        self.password.text = self.account.password;
+        self.username.text = [account.Jid user];
+        self.password.text = account.password;
         
-        if(self.account.autoLogin){
+        if(account.autoLogin){
             [self doLogin];
         }
     }
@@ -79,19 +80,31 @@ AppDelegate* appdelegate;
 
 - (IBAction)Login:(id)sender
 {
-    [self generateAccount];
+    // try to load
+    if([account.bareJid isEqualToString: [self.username.text toJid]]){
+        
+        // already loaded, update pswd
+        account.password = self.password.text;
+    }
+    else{
+        account = [Account loadAccount:[self.username.text toJid]];
+        if(account == nil){
+            account = [[Account alloc]
+                    initWithUsername:self.username.text
+                    Password:self.password.text];
+        }
+        else{
+            account.password = self.password.text;
+        }
+    }
     
-    if ([self.account isValid]){
+    // try to login
+    if ([account isValid]){
         [self doLogin];
     }
     else{
         [MessageBox ShowMessage: @"账户格式不正确"];
     }
-}
-
-
-- (IBAction)Register:(id)sender {
-    [MessageBox ShowMessage: @"正在内测期间，很快会开放注册!"];
 }
 
 
@@ -114,37 +127,26 @@ AppDelegate* appdelegate;
 // private methods
 
 
-- (void) generateAccount{
-    NSString* user = [self.username.text
-                      stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString* bareJid = [user stringByAppendingFormat:@"@%@",SERVER_DOMAIN];
-                      
-    self.account = [[Account alloc]
-                    initWithJid: [XMPPJID jidWithString:bareJid]
-                    Password:self.password.text];
-}
-
 - (void) doLogin{
     self.btnLogin.enabled = false;
     
-    appdelegate.account = self.account;
-    [appdelegate setupStream];
+    [appdelegate setupAccount: account];
     [appdelegate.xmppStream addDelegate: self delegateQueue:dispatch_get_main_queue()];
     
-    if([appdelegate.xmppStream connect]) {
+    if(![appdelegate.xmppStream connect]){
         
-        //save now!
-        [self.account save];
+        self.btnLogin.enabled = true;
+        [MessageBox ShowMessage: @"无法连接到服务器，请检查网络设置"];
     }
     else{
-        self.btnLogin.enabled = true;
-        
-        [MessageBox ShowMessage: @"无法连接到服务器，请检查网络设置"];
+        //mark account as active
+        [[NSUserDefaults standardUserDefaults] setObject:account.bareJid forKey:KEY_ACTIVE_JID];
     }
 }
 
 // connect succeed
 - (void)xmppStreamDidConnect:(XMPPStream *)sender{
+    
     [appdelegate.xmppStream authenticate];
 }
 
@@ -152,14 +154,10 @@ AppDelegate* appdelegate;
 // authentication succeed
 - (void) xmppStreamDidAuthenticate:(XMPPStream *)sender{
     
-    // update info
-    self.account.autoLogin = YES;
-    
-    // go online
+    account.autoLogin = YES;
+
     [appdelegate.xmppStream goOnline];
-    [appdelegate.xmppDelegate.contacts addObject:self.account];
     
-    // navigation
     [self performSegueWithIdentifier:@"main" sender:self];
 }
 
@@ -168,6 +166,7 @@ AppDelegate* appdelegate;
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error{
     
     self.btnLogin.enabled = true;
+    
     [MessageBox ShowMessage: @"用户名或密码不正确"];
 }
 

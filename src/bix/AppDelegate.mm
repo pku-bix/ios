@@ -9,22 +9,17 @@
 #import "AppDelegate.h"
 #import "Constants.h"
 #import "XMPPStream+Wrapper.h"
+#import "MainTabBarController.h"
 
 @implementation AppDelegate
 
 ///////////////////////////////////////////////////////////////
 //properties
 
+@synthesize account;
 
-@synthesize account = _account;
 
-- (void) setAccount:(Account *)newAccount{
-    _account = newAccount;
-    
-    //record active account
-    [[NSUserDefaults standardUserDefaults] setObject:newAccount.Jid.bare forKey:KEY_ACTIVE_JID];
-}
-
+//MainTabBarController* mainTabBarController;
 
 
 
@@ -41,12 +36,15 @@
 }
 
 
--(void)setupStream{
+-(void)setupAccount: (Account*) ac{
+    
+    self.account = ac;
+    
+    self.xmppDelegate.account = ac;
     
     //初始化XMPPStream
     self.xmppStream = [[XMPPStream alloc] initWithAccount:self.account];
     [self.xmppStream addDelegate:self.xmppDelegate delegateQueue:dispatch_get_main_queue()];
-    
 }
 
 
@@ -92,6 +90,10 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    if (self.account.presence) {
+        [self.account save];
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -108,9 +110,8 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     
-    // save account states
-    
-    [self.account save];
+    // not guaranteed to be called!
+    // use applicationDidEnterBackground to save data.
 }
 
 @end

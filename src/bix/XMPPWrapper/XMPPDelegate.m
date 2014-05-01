@@ -15,55 +15,15 @@
 #import "Session.h"
 #import "NSString+Account.h"
 #import "XMPPMessage+Wrapper.h"
+#import "XMPPStream+Wrapper.h"
 
 @implementation XMPPDelegate
 
 
 -(id)init{
     self = [super init];
-    
-    self.contacts = [NSMutableArray array];
-    self.sessions = [NSMutableArray array];
-    
+        
     return self;
-}
-
-
-//query contact, add when needed
--(Account*)updateConcact: (XMPPJID*)Jid{
-    NSArray* filteredContacts =[self.contacts
-                                filteredArrayUsingPredicate:
-                                [NSPredicate predicateWithFormat:@"bareJid == %@",Jid.bare]];
-    
-    Account* account;
-    if (filteredContacts.count == 0) {
-        account = [[Account alloc] initWithJid:Jid];
-        [self.contacts addObject:account];
-    }
-    else{
-        account = filteredContacts[0];
-    }
-    account.Jid = Jid; // update Jid, resource especially
-    return account;
-}
-
-//query session, add when needed
--(Session*)updateSession: (XMPPJID*)Jid{
-    
-    NSArray* filteredSessions =[self.sessions
-                                filteredArrayUsingPredicate:
-                                [NSPredicate predicateWithFormat:@"bareJid == %@",Jid.bare]];
-    
-    Session* session;
-    if (filteredSessions.count == 0) {
-        session = [[Session alloc] initWithRemoteJid:Jid];
-        [self.sessions addObject:session];
-    }
-    else{
-        session = filteredSessions[0];
-    }
-    session.remoteJid = Jid;
-    return session;
 }
 
 //收到消息
@@ -81,7 +41,7 @@
     // set date
     message.time = [NSDate date];
     
-    Session* session = [self updateSession:message.from];
+    Session* session = [self.account getSession:message.from];
     [session.msgs addObject:message];
 
     //发送通知
@@ -103,7 +63,7 @@
     //在线用户
     XMPPJID *remoteJid = [presence from];
     
-    Account* remoteAccount = [self updateConcact:remoteJid];
+    Account* remoteAccount = [self.account getConcact:remoteJid];
     remoteAccount.presence = [presenceType isEqual: @"available"];
     
     if (![remoteJid.bare isEqualToString:myJid.bare]) {
@@ -136,7 +96,7 @@
 
 //将要发送信息
 - (XMPPMessage *)xmppStream:(XMPPStream *)sender willSendMessage:(XMPPMessage *)message{
-    Session* session = [self updateSession:message.to];
+    Session* session = [self.account getSession:message.to];
     [session.msgs addObject:message];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_MESSAGE_SENT object:message ];
@@ -196,6 +156,20 @@
 #ifdef DEBUG
     NSLog(@"send presence failed error: %@\npresence:\n%@\n\n",error,presence);
 #endif
+}
+
+
+// authentication succeed
+- (void) xmppStreamDidAuthenticate:(XMPPStream *)sender{
+/*    // update info
+    self.account.autoLogin = YES;
+    
+    // go online
+    [sender goOnline];
+    
+    
+    //mark account as active
+    [[NSUserDefaults standardUserDefaults] setObject:sender.myJID.bare forKey:KEY_ACTIVE_JID];*/
 }
 
 @end

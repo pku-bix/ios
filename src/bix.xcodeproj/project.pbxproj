@@ -20,6 +20,7 @@
 		EC10200E18C86FF100B3775E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200D18C86FF100B3775E /* SettingViewController.m */; };
 		EC10201118C8701400B3775E /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10201018C8701400B3775E /* MapViewController.m */; };
 		EC28329518C6D3CB00CACA40 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28329418C6D3CB00CACA40 /* LoginViewController.m */; };
+		EC41749C1910E9C7009E5157 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC41749B1910E9C7009E5157 /* RegisterViewController.m */; };
 		EC93762818D3438C00D23984 /* XMPPMessage+Wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93762718D3438C00D23984 /* XMPPMessage+Wrapper.m */; };
 		EC99080A18C3356300798FAB /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EC99080918C3356300798FAB /* GCDAsyncSocket.m */; };
 		EC99080C18C3383600798FAB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC99080B18C3383600798FAB /* CFNetwork.framework */; };
@@ -117,8 +118,10 @@
 		EC10200D18C86FF100B3775E /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingViewController.m; path = bix/SettingViewController.m; sourceTree = SOURCE_ROOT; };
 		EC10200F18C8701400B3775E /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		EC10201018C8701400B3775E /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		EC28329318C6D3CB00CACA40 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		EC28329418C6D3CB00CACA40 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		EC28329318C6D3CB00CACA40 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = RegisterView/LoginViewController.h; sourceTree = "<group>"; };
+		EC28329418C6D3CB00CACA40 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = RegisterView/LoginViewController.m; sourceTree = "<group>"; };
+		EC41749A1910E9C7009E5157 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterViewController.h; path = RegisterView/RegisterViewController.h; sourceTree = "<group>"; };
+		EC41749B1910E9C7009E5157 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterViewController.m; path = RegisterView/RegisterViewController.m; sourceTree = "<group>"; };
 		EC45298818D888E200610B66 /* XMPPFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPFramework.h; path = XMPP/XMPPFramework.h; sourceTree = "<group>"; };
 		EC93762618D3438C00D23984 /* XMPPMessage+Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XMPPMessage+Wrapper.h"; sourceTree = "<group>"; };
 		EC93762718D3438C00D23984 /* XMPPMessage+Wrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XMPPMessage+Wrapper.m"; sourceTree = "<group>"; };
@@ -341,6 +344,17 @@
 				EC05DD9E18D0BE49000C9D89 /* orange.png */,
 			);
 			path = img;
+			sourceTree = "<group>";
+		};
+		EC4174991910E952009E5157 /* RegisterView */ = {
+			isa = PBXGroup;
+			children = (
+				EC28329318C6D3CB00CACA40 /* LoginViewController.h */,
+				EC28329418C6D3CB00CACA40 /* LoginViewController.m */,
+				EC41749A1910E9C7009E5157 /* RegisterViewController.h */,
+				EC41749B1910E9C7009E5157 /* RegisterViewController.m */,
+			);
+			name = RegisterView;
 			sourceTree = "<group>";
 		};
 		EC99080618C3335600798FAB /* Vendor */ = {
@@ -749,6 +763,7 @@
 		ECF7E1D318C0516D002BA385 /* bix */ = {
 			isa = PBXGroup;
 			children = (
+				EC4174991910E952009E5157 /* RegisterView */,
 				ECD998BB18DACE9F00F30FE3 /* BaiduMap */,
 				EC05DD9918D0BE49000C9D89 /* Resources */,
 				ECED789518D08F980041CCC7 /* ChatView */,
@@ -761,8 +776,6 @@
 				ECF7E1DF18C0516D002BA385 /* Main.storyboard */,
 				EC10200918C85DF200B3775E /* MainTabBarController.h */,
 				EC10200A18C85DF200B3775E /* MainTabBarController.m */,
-				EC28329318C6D3CB00CACA40 /* LoginViewController.h */,
-				EC28329418C6D3CB00CACA40 /* LoginViewController.m */,
 				EC10200C18C86FF100B3775E /* SettingViewController.h */,
 				EC10200D18C86FF100B3775E /* SettingViewController.m */,
 				EC10200F18C8701400B3775E /* MapViewController.h */,
@@ -946,6 +959,7 @@
 				EC99089D18C33C9200798FAB /* XMPPJID.m in Sources */,
 				EC99089E18C33C9200798FAB /* XMPPMessage.m in Sources */,
 				EC99089318C33C9200798FAB /* XMPPDeprecatedPlainAuthentication.m in Sources */,
+				EC41749C1910E9C7009E5157 /* RegisterViewController.m in Sources */,
 				EC99084718C3397000798FAB /* ContextFilterLogFormatter.m in Sources */,
 				EC99084518C3397000798FAB /* DDLog.m in Sources */,
 				ECED788218CF80040041CCC7 /* MessageBox.m in Sources */,

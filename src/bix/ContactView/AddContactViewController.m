@@ -58,7 +58,8 @@
     NSString* user = [self.username.text
                       stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString* bareJid = [user stringByAppendingFormat:@"@%@",SERVER_DOMAIN];
-    [account updateConcact:[XMPPJID jidWithString:bareJid]];
+    
+    [account getConcact:[XMPPJID jidWithString:bareJid]];
     [account save];
     
     //NSLog(@"%d",account.contacts.count);

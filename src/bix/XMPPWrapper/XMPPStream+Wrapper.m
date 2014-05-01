@@ -63,6 +63,17 @@ Account* account;
     return YES;
 }
 
+-(NSString*) registerAccount{
+    NSError* error = nil;
+    
+    if([self registerWithPassword:account.password error:&error]){
+        return nil;
+    }
+    else{
+        return @"error";
+    }
+}
+
 -(void) authenticate{
     NSError *error = nil;
     [self authenticateWithPassword:account.password error:&error];

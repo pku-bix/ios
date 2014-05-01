@@ -29,8 +29,6 @@ Session* sessionToOpen;
     // retain xmppStream
     appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
-    // update msgs when absent
-    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,6 +39,10 @@ Session* sessionToOpen;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    // update msgs when absent
+    [self updateList:nil];
+
+    // msg event
     [[NSNotificationCenter defaultCenter]
      addObserver:self
      selector:@selector(updateList:)
@@ -61,7 +63,11 @@ Session* sessionToOpen;
     [self.tableView reloadData];
 }
 
-// init chat controller
+-(void) openSession: (Session*)session{
+    sessionToOpen = session;
+    [self performSegueWithIdentifier:@"chat" sender:self];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([[segue identifier] isEqualToString:@"chat"]) {
         
@@ -76,7 +82,7 @@ Session* sessionToOpen;
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
   
-    return [appdelegate.xmppDelegate.sessions count];
+    return [appdelegate.xmppDelegate.account.sessions count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -91,7 +97,7 @@ Session* sessionToOpen;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:REUSE_CELLID_CHATLIST];
     }
-    Session *session = [appdelegate.xmppDelegate.sessions objectAtIndex:[indexPath row]];
+    Session *session = [appdelegate.xmppDelegate.account.sessions objectAtIndex:[indexPath row]];
     
     //文本
     cell.textLabel.text = session.remoteJid.user;
@@ -119,11 +125,8 @@ Session* sessionToOpen;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    //start a Chat
-    sessionToOpen = [appdelegate.xmppDelegate.sessions objectAtIndex:[indexPath row]];
-    
-    [self performSegueWithIdentifier:@"chat" sender:self];
-    
+    Session* session = [appdelegate.xmppDelegate.account.sessions objectAtIndex:[indexPath row]];
+    [self openSession:session];
 }
 
 // Override to support editing the table view.
@@ -132,7 +135,7 @@ Session* sessionToOpen;
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         //add code here for when you hit delete
-        [appdelegate.xmppDelegate.sessions removeObjectAtIndex:indexPath.row];
+        [appdelegate.xmppDelegate.account.sessions removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }

@@ -17,6 +17,8 @@
 -(BOOL)connect;
 //验证
 -(void)authenticate;
+//注册
+-(NSString*) registerAccount;
 //上线
 -(void)goOnline;
 //下线

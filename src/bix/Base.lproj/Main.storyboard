@@ -21,7 +21,7 @@
         <!--Chat View Controller-->
         <scene sceneID="uxE-es-de4">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="MC3-cf-Ayd" customClass="ChatViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatViewController" hidesBottomBarWhenPushed="YES" id="MC3-cf-Ayd" customClass="ChatViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hz8-pD-aJF"/>
                         <viewControllerLayoutGuide type="bottom" id="Ae8-xV-abu"/>
@@ -149,12 +149,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E7j-KQ-vTl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1247" y="292"/>
+            <point key="canvasLocation" x="1247" y="278"/>
         </scene>
         <!--Navigation Controller - 消息-->
         <scene sceneID="xOX-DP-ODC">
             <objects>
-                <navigationController definesPresentationContext="YES" id="9s6-sq-Thm" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ChatListViewController" definesPresentationContext="YES" id="9s6-sq-Thm" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="消息" image="first" id="cA3-dT-0rJ"/>
                     <navigationItem key="navigationItem" id="dAi-NV-QHz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OUs-Gy-Ehp">
@@ -188,9 +188,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="MC3-cf-Ayd" kind="push" identifier="chat" id="Ykz-zh-xqP"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4j-fp-P08" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -276,16 +273,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sam-mC-9fv">
-                                <rect key="frame" x="115" y="269" width="91" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="退出 Bix">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="Exit:" destination="yGa-6K-2Pj" eventType="touchUpInside" id="q6C-xx-c2T"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIe-p0-x9J">
                                 <rect key="frame" x="119" y="231" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -308,7 +295,7 @@
             </objects>
             <point key="canvasLocation" x="1247" y="926"/>
         </scene>
-        <!--Login View Controller - 登录到Bix-->
+        <!--Login View Controller - 登录到 Bix-->
         <scene sceneID="c4v-0H-Wcf">
             <objects>
                 <viewController id="gwR-gu-Shx" customClass="LoginViewController" sceneMemberID="viewController">
@@ -355,13 +342,15 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="注册"/>
                                 <connections>
-                                    <action selector="Register:" destination="gwR-gu-Shx" eventType="touchUpInside" id="KMo-Tv-hjx"/>
+                                    <segue destination="qpI-RJ-gCb" kind="push" id="7uC-GT-49a"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="登录到Bix" id="zkB-tN-L07"/>
+                    <navigationItem key="navigationItem" title="登录到 Bix" id="zkB-tN-L07">
+                        <barButtonItem key="backBarButtonItem" title="登录" id="gDy-NG-hIb"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="btnLogin" destination="icB-44-XJh" id="jGY-ur-NzD"/>
                         <outlet property="password" destination="OaS-Id-Aga" id="2p0-qc-9Mw"/>
@@ -409,6 +398,67 @@
             </objects>
             <point key="canvasLocation" x="-184" y="-399"/>
         </scene>
+        <!--Register View Controller - 新用户-->
+        <scene sceneID="hp2-rv-I2E">
+            <objects>
+                <viewController id="qpI-RJ-gCb" customClass="RegisterViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mRf-PW-Mob"/>
+                        <viewControllerLayoutGuide type="bottom" id="gHv-hu-Ndj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vkg-FO-bb3" customClass="RigisterViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="欢迎使用Bix车辆分享系统" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bey-rZ-VeJ">
+                                <rect key="frame" x="20" y="273" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exP-zg-iPX">
+                                <rect key="frame" x="254" y="201" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="注册">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="register:" destination="qpI-RJ-gCb" eventType="touchUpInside" id="ai0-eq-nyZ"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="确认新密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tUY-OM-dSs">
+                                <rect key="frame" x="20" y="163" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="新密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nS1-vL-7BJ">
+                                <rect key="frame" x="20" y="125" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="新用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tbg-Xp-aFq">
+                                <rect key="frame" x="20" y="87" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="新用户" id="tJa-us-cMp"/>
+                    <connections>
+                        <outlet property="pswd" destination="nS1-vL-7BJ" id="CyJ-rr-J8G"/>
+                        <outlet property="pswd2" destination="tUY-OM-dSs" id="SlW-tL-lAq"/>
+                        <outlet property="username" destination="tbg-Xp-aFq" id="qvx-dr-kSE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VN2-Ka-M1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-378" y="926"/>
+        </scene>
         <!--Navigation Controller - 设置-->
         <scene sceneID="Lkl-VF-nmZ">
             <objects>
@@ -438,7 +488,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="Ykz-zh-xqP"/>
-    </inferredMetricsTieBreakers>
 </document>

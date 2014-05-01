@@ -18,8 +18,9 @@ static NSString *KEY_PASSWORD = @"password";
 static NSString *KEY_AUTOLOGIN= @"autologin";
 //static NSString *KEY_ACTIVE_TABINDEX=@"active_tabindex";
 static NSString *KEY_CONTACT_LIST=@"contact_list";
+static NSString *KEY_SESSION_LIST=@"session_list";
+static NSString *KEY_MESSAGE_LIST=@"message_list";
 static NSString *KEY_JID=@"jid";
-
 
 //static NSString *SERVER_DOMAIN = @"orange.local";
 //static NSString *SERVER_DOMAIN = @"dsxdemacbook-pro.local";

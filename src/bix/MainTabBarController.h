@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Session.h"
 
 @interface MainTabBarController : UITabBarController
+
+-(void)openSession: (Session*)session;
 
 @end
