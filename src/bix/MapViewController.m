@@ -58,22 +58,28 @@
     //[self.window makeKeyAndVisible];*/
     
     _search = [[BMKSearch alloc] init];
-    _search.delegate = self;
+   
+    //_search.delegate = self;
     
-    BMKMapView* mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 50, 320, 500)];
+   // BMKMapView* mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 50, 320, 500)];
     
+    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 50, 320, 500)];
+    
+    _mapView.delegate = self;
     
     // self.subView = mapView;
     //[self.subView makeKeyAndVisible];
     
-    [self.view addSubview: mapView];
+    [self.view addSubview: _mapView];
 }
 
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [_mapView viewWillAppear];
+    //self.searchDisplayController
     _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
+    
     _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
 }
 -(void)viewWillDisappear:(BOOL)animated

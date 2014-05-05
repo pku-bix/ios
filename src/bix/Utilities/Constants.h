@@ -29,7 +29,9 @@ static NSString *KEY_JID=@"jid";
  * used for server config
  */
 static NSString *SERVER = @"127.0.0.1";
-static NSString *SERVER_DOMAIN = @"orange.local";
+//static NSString *SERVER_DOMAIN = @"orange.local";
+static NSString *SERVER_DOMAIN = @"dsxdemacbook-pro.local";
+
 static NSString *BAIDU_MAP_KEY = @"oCvXZCd41PsMzOw0disOu1QA";
 
 
