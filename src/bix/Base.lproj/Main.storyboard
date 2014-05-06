@@ -113,7 +113,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2DP-xn-oHk" customClass="BMKMapView">
-                                <rect key="frame" x="0.0" y="47" width="320" height="472"/>
+                                <rect key="frame" x="0.0" y="38" width="320" height="472"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>

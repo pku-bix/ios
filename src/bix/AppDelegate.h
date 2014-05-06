@@ -15,7 +15,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate, BMKGeneralDelegate>{
     Account *_account;
     BMKMapManager* _mapManager;
-    BMKMapView *_mapView2;
+   // BMKMapView *_mapView;
 
 }
 

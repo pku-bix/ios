@@ -2,7 +2,7 @@
 //  MapViewController.m
 //  bix
 //
-//  Created by harttle on 14-3-6.
+//  implement by dusx5
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
 
@@ -10,8 +10,6 @@
 
 
 @implementation MapViewController
-
-//BMKMapManager *_mapManager;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,44 +30,18 @@
         //        self.edgesForExtendedLayout=UIRectEdgeNone;
         self.navigationController.navigationBar.translucent = NO;
     }
-    
-    
-    // 要使用百度地图，请先启动BaiduMapManager
-    /*_mapManager = [[BMKMapManager alloc]init];
-    
-    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-    BOOL ret = [_mapManager start:@"oCvXZCd41PsMzOw0disOu1QA"  generalDelegate:self];
-    
-#ifdef DEBUG
-    if (!ret) {
-        NSLog(@"manager start failed!");
-    }
-#endif
-    
-    //  BMKMapView* mapView2 = [[BMKMapView alloc]initWithFrame:CGRectMake(50, 50, 300, 500)];
-    
-    // Add the navigation controller's view to the window and display.
-    //[self.window addSubview:navigationController.view];
-    // [_mapManager release];
-    //      [_mapManager release];
-    //[self.window addSubview:mapView2];
-    
-    //[self.window addSubview: self.navigationController.view];
-    //[self.window makeKeyAndVisible];*/
-    
-    _search = [[BMKSearch alloc] init];
+   
+    _search = [[BMKSearch alloc]init];
    
     //_search.delegate = self;
-    
-   // BMKMapView* mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 50, 320, 500)];
-    
     _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 50, 320, 500)];
-    
     _mapView.delegate = self;
     
-    // self.subView = mapView;
-    //[self.subView makeKeyAndVisible];
-    
+    // once launch the baidu map, locate the position of user immediately
+    _mapView.showsUserLocation = NO;
+    _mapView.userTrackingMode = BMKUserTrackingModeFollow;
+    _mapView.showsUserLocation = YES;
+        
     [self.view addSubview: _mapView];
 }
 
@@ -77,16 +49,16 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [_mapView viewWillAppear];
-    //self.searchDisplayController
+    _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
     _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
     
-    _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
+
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     [_mapView viewWillDisappear];
-    _search.delegate = nil; // 不用时，置nil
     _mapView.delegate = nil; // 不用时，置nil
+    _search.delegate = nil; // 不用时，置nil
 }
 
 

@@ -63,18 +63,7 @@
         NSLog(@"manager start failed!");
     }
 #endif
-    
-    //  BMKMapView* mapView2 = [[BMKMapView alloc]initWithFrame:CGRectMake(50, 50, 300, 500)];
-    
-    // Add the navigation controller's view to the window and display.
-    //[self.window addSubview:navigationController.view];
-    // [_mapManager release];
-    //      [_mapManager release];
-    //[self.window addSubview:mapView2];
-    
-    /*[self.window addSubview: self.navigationController.view];
-    [self.window makeKeyAndVisible];*/
-    
+    NSLog(@"didFinishLaunchingWithOption");    
     
     self.xmppDelegate = [XMPPDelegate new];
     return YES;
@@ -84,6 +73,7 @@
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    NSLog(@"applicationWillResignActive");
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application

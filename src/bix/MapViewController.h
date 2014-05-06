@@ -2,7 +2,7 @@
 //  MapViewController.h
 //  bix
 //
-//  Created by harttle on 14-3-6.
+//  implement by dusx5
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
 
@@ -11,14 +11,15 @@
 
 @interface MapViewController : UIViewController<BMKMapViewDelegate>
 {
-    BMKSearch *_search;
-    BMKUserLocation *current_Location;
+    
     
     IBOutlet BMKMapView *_mapView;
     
     IBOutlet UIButton *followingBtn;
     
     IBOutlet UIButton *compass;
+    BMKSearch *_search;
+    BMKUserLocation *current_Location;
 }
 - (IBAction)startFollow:(id)sender;
 
