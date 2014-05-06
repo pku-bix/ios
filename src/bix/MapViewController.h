@@ -18,8 +18,10 @@
     IBOutlet UIButton *followingBtn;
     
     IBOutlet UIButton *compass;
+    
     BMKSearch *_search;
     BMKUserLocation *current_Location;
+    NSArray* array;
 }
 - (IBAction)startFollow:(id)sender;
 

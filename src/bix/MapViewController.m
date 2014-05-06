@@ -73,7 +73,14 @@
     _mapView.showsUserLocation = NO;
     _mapView.userTrackingMode = BMKUserTrackingModeFollow;
     _mapView.showsUserLocation = YES;
-
+    
+    //remove the annotation array of baidu mapview added
+    array = [NSArray arrayWithArray:_mapView.annotations];
+	[_mapView removeAnnotations:array];
+    
+    //remove the overlay infomation that baidu mapview has added, eg: navigation info.
+	array = [NSArray arrayWithArray:_mapView.overlays];
+	[_mapView removeOverlays:array];
 }
 
 - (IBAction)compassHeading:(id)sender {
@@ -82,12 +89,19 @@
     _mapView.showsUserLocation = NO;
     _mapView.userTrackingMode = BMKUserTrackingModeFollowWithHeading;
     _mapView.showsUserLocation = YES;
-
+    
+    //remove the annotation array of baidu mapview added
+    array = [NSArray arrayWithArray:_mapView.annotations];
+	[_mapView removeAnnotations:array];
+    
+    //remove the overlay infomation that baidu mapview has added, eg: navigation info.
+	array = [NSArray arrayWithArray:_mapView.overlays];
+	[_mapView removeOverlays:array];
 }
 
 - (void)onGetAddrResult:(BMKAddrInfo*)result errorCode:(int)error
 {
-    NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
+     array = [NSArray arrayWithArray:_mapView.annotations];
 	[_mapView removeAnnotations:array];
 	array = [NSArray arrayWithArray:_mapView.overlays];
 	[_mapView removeOverlays:array];
@@ -113,6 +127,7 @@
         //}
         
         UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:titleStr message:showmeg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定",nil];
+        
         [myAlertView show];
         //[myAlertView release];
         //		[item release];
