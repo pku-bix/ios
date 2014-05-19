@@ -34,15 +34,24 @@
     _search = [[BMKSearch alloc]init];
    
     //_search.delegate = self;
-    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 50, 320, 500)];
+    //_mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 50, 320, 500)];
+    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, 320, 500)];
+   
     _mapView.delegate = self;
     
     // once launch the baidu map, locate the position of user immediately
     _mapView.showsUserLocation = NO;
     _mapView.userTrackingMode = BMKUserTrackingModeFollow;
     _mapView.showsUserLocation = YES;
-        
+    
     [self.view addSubview: _mapView];
+    [self.view addSubview:followingBtn];
+    [self.view addSubview:compass];
+    [self.view addSubview:shareBtn];
+    
+
+    //[self.view addSubview:_search];
+    
 }
 
 
@@ -59,6 +68,7 @@
     [_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
     _search.delegate = nil; // 不用时，置nil
+    NSLog(@"map view disappear");
 }
 
 
@@ -82,6 +92,7 @@
 	array = [NSArray arrayWithArray:_mapView.overlays];
 	[_mapView removeOverlays:array];
 }
+
 
 - (IBAction)compassHeading:(id)sender {
     
