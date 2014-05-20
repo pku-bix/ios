@@ -22,6 +22,9 @@
     IBOutlet UIButton *compass;
     //IBOutlet UIButton *compass;
 
+    IBOutlet UIButton *magnifyBtn;
+    
+    IBOutlet UIButton *lessen;
     IBOutlet UIButton *shareBtn;
     BMKSearch *_search;
     BMKUserLocation *current_Location;
@@ -35,5 +38,7 @@
 //- (IBAction)compassHeading:(id)sender;
 
 - (IBAction)getReverseGeoAddress:(id)sender;
+- (IBAction)enLarge:(id)sender;
+- (IBAction)zoomOut:(id)sender;
 
 @end

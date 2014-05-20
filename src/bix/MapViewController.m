@@ -48,8 +48,8 @@
     [self.view addSubview:followingBtn];
     [self.view addSubview:compass];
     [self.view addSubview:shareBtn];
-    
-
+    [self.view addSubview:magnifyBtn];
+    [self.view addSubview:lessen];
     //[self.view addSubview:_search];
     
 }
@@ -163,6 +163,30 @@
         NSLog(@"ReverseGeocode search failed!");
     }
     
+}
+
+- (IBAction)enLarge:(id)sender {
+    NSLog(@"_mapView.zoomLevel is %f",_mapView.zoomLevel);
+    if(_mapView.zoomLevel < 18)
+    {
+        _mapView.zoomLevel += 1;
+    }
+    else
+    {
+        _mapView.zoomLevel = 18;
+    }
+}
+
+- (IBAction)zoomOut:(id)sender {
+    NSLog(@"_mapView.zoomLevel is %f",_mapView.zoomLevel);
+    if(_mapView.zoomLevel > 3)
+    {
+        _mapView.zoomLevel -= 1;
+    }
+    else
+    {
+        _mapView.zoomLevel = 3;
+    }
 }
 
 

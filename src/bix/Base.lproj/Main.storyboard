@@ -105,6 +105,28 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2DP-xn-oHk" customClass="BMKMapView">
                                 <rect key="frame" x="0.0" y="54" width="320" height="472"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jZ-s2-a0c">
+                                        <rect key="frame" x="40" y="118" width="60" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="放大地图">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="enLarge:" destination="cgf-f9-7YI" eventType="touchUpInside" id="PMJ-td-Rvq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zqn-Ft-UvP">
+                                        <rect key="frame" x="40" y="185" width="60" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="缩小地图">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="zoomOut:" destination="cgf-f9-7YI" eventType="touchUpInside" id="aTx-lV-aNF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2w-bx-2fN">
@@ -147,6 +169,8 @@
                         <outlet property="_mapView" destination="2DP-xn-oHk" id="MYw-ax-bzU"/>
                         <outlet property="compass" destination="24W-S2-zzg" id="meQ-55-qgn"/>
                         <outlet property="followingBtn" destination="IbW-on-r30" id="64c-xo-RYN"/>
+                        <outlet property="lessen" destination="Zqn-Ft-UvP" id="7ya-6x-eAO"/>
+                        <outlet property="magnifyBtn" destination="0jZ-s2-a0c" id="Sy2-1e-UhM"/>
                         <outlet property="shareBtn" destination="L2w-bx-2fN" id="Vt2-hh-55W"/>
                     </connections>
                 </viewController>
