@@ -90,9 +90,14 @@
 
 + (Account*) loadDefault{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString* bareJid = [defaults stringForKey: KEY_ACTIVE_JID];
+    NSString* activeJid = [defaults stringForKey: KEY_ACTIVE_JID];
     
-    return bareJid == nil ? nil : [Account loadAccount:bareJid];
+    return activeJid == nil ? nil : [Account loadAccount:activeJid];
+}
+
+- (void) clearAll{
+    [self.sessions removeAllObjects];
+    [self.contacts removeAllObjects];
 }
 
 //query contact, add when needed

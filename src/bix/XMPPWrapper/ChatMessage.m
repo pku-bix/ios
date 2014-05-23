@@ -1,28 +1,17 @@
 //
-//  XMPPMessage+Wrapper.m
+//  ChatMessage.m
 //  bix
 //
 //  Created by harttle on 14-3-14.
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
 
-#import "XMPPMessage+Wrapper.h"
+#import "ChatMessage.h"
 #import "AppDelegate.h"
 
-@implementation XMPPMessage (Wrapper)
+@implementation ChatMessage
 
-
-// time property
-NSDate* _time;
-
--(NSDate*)time{
-    return _time;
-}
-
--(void)setTime:(NSDate*) time{
-    _time = time;
-}
-
+@synthesize date;
 
 // isMine property
 -(BOOL) isMine{
@@ -31,18 +20,23 @@ NSDate* _time;
     return [appdelegate.account.Jid.bare isEqualToString: self.from.bare];
 }
 
-
 // constructor
 -(id)initWithBody:(NSString *)body From:(XMPPJID*)from To:(XMPPJID*)to{
     
-    self = [self initWithType:@"chat" to:to];
+    self = [super initWithType:@"chat" to:to];
     if(self){
         [self addBody:body];
         [self addAttributeWithName:@"from" stringValue: [from bare]];
-        self.time = [NSDate date];
+        self.date = [NSDate date];
+        
+        //self.date = [self.date dateByAddingTimeInterval:-8*24*3600 +500];
     }
     return self;
 }
 
+-(id)initWithXMPPMessage:(XMPPMessage*)msg{
+    self = [self initWithBody:msg.body From:msg.from To:msg.to];
+    return self;
+}
 
 @end

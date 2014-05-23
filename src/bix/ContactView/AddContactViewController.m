@@ -10,6 +10,7 @@
 #import "NSString+Account.h"
 #import "AppDelegate.h"
 #import "Constants.h"
+#import "MessageBox.h"
 
 @interface AddContactViewController ()
 
@@ -21,6 +22,7 @@
 @end
 
 @implementation AddContactViewController
+AppDelegate* appdelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,7 +37,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-
+    appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -59,6 +61,10 @@
                       stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString* bareJid = [user stringByAppendingFormat:@"@%@",SERVER_DOMAIN];
     
+    if( [appdelegate.account.bareJid isEqualToString: bareJid] ){
+        [MessageBox ShowMessage:@"不可添加当前用户"];
+        return;
+    }
     [account getConcact:[XMPPJID jidWithString:bareJid]];
     [account save];
     

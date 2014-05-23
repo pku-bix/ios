@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BMapKit.h"
 
-@interface MapViewController : UIViewController<BMKMapViewDelegate>
+@interface MapViewController : UIViewController<BMKMapViewDelegate,BMKSearchDelegate>
 {
     
     

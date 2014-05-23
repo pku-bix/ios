@@ -41,6 +41,7 @@
  * local storage
  */
 - (void) save;
+- (void) clearAll;
 + (Account*) loadAccount: (NSString*)bareJid;
 + (Account*) loadDefault;
 

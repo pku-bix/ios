@@ -15,5 +15,4 @@
 @property(nonatomic, retain) UITextView *msgTextView;
 @property(nonatomic, retain) UIImageView *bgImageView;
 
-
 @end

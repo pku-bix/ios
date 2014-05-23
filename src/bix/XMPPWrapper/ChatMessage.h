@@ -1,5 +1,5 @@
 //
-//  XMPPMessage+Wrapper.h
+//  ChatMessage.h
 //  bix
 //
 //  Created by harttle on 14-3-14.
@@ -11,12 +11,12 @@
 #import "NSDate+Wrapper.h"
 
 
-@interface XMPPMessage (Wrapper)
+@interface ChatMessage: XMPPMessage
 
-@property (nonatomic,retain) NSDate* time;
+@property (nonatomic,retain) NSDate* date;
 @property (nonatomic,readonly) BOOL isMine;
 
 -(id)initWithBody:(NSString *)body From:(XMPPJID*)from To:(XMPPJID*)to;
-
+-(id)initWithXMPPMessage:(XMPPMessage*)msg;
 
 @end

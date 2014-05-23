@@ -29,8 +29,8 @@ static NSString *KEY_JID=@"jid";
  * used for server config
  */
 static NSString *SERVER = @"127.0.0.1";
-//static NSString *SERVER_DOMAIN = @"orange.local";
-static NSString *SERVER_DOMAIN = @"dsxdemacbook-pro.local";
+static NSString *SERVER_DOMAIN = @"orange.local";
+//static NSString *SERVER_DOMAIN = @"dsxdemacbook-pro.local";
 
 static NSString *BAIDU_MAP_KEY = @"oCvXZCd41PsMzOw0disOu1QA";
 
@@ -52,23 +52,20 @@ static NSString *REUSE_CELLID_MSGLIST=@"reuse_cellid_msglist";
 static NSString *REUSE_CELLID_CONTACTLIST=@"reuse_cellid_contactlist";
 
 
-/* graphic config
+/* msg in session
  * used for graphic drawing
  */
-#define MARGIN_MSG_RECEIVER     10
-#define MARGIN_MSG_SENDER       5
-#define MARGIN_MSG_TOP          5
-#define MARGIN_MSG_BOTTOM       5
+#define MARGIN_MSG_RECEIVER     10  //接收方
+#define MARGIN_MSG_SENDER       5   //发送方
+#define MARGIN_MSG_TOP          5   //上方
+#define MARGIN_MSG_BOTTOM       5   //下方
 
-#define PADDING_MSG_TOP         10
-#define PADDING_MSG_BOTTOM      10
-#define PADDING_MSG_RECEIVER    12
-#define PADDING_MSG_SENDER      20
+#define PADDING_MSG_TOP         10  //上方
+#define PADDING_MSG_BOTTOM      14  //下方
+#define PADDING_MSG_RECEIVER    15  //接收方
+#define PADDING_MSG_SENDER      15  //发送方
 
-#define IMGCAP_WIDTH_SENDER     20
-#define IMGCAP_HEIGHT_SENDER    15
-#define IMGCAP_WIDTH_RECEIVER   14
-#define IMGCAP_HEIGHT_RECEIVER  15
-#define MARGIN_TIMEINFO         20
+#define TIMEINFO_HEIGHT         20
+#define EXPIRE_TIME_INTERVAL    60.0    //回话过期时间（s），此后需重新显示日期
 
 #endif

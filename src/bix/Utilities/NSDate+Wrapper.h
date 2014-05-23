@@ -10,8 +10,9 @@
 
 @interface NSDate(Wrapper)
 
++(NSString *)getWeekdayWithNumber:(int)number;
 +(NSString *)getCurrentTimeString;
 
--(NSString*) toString;
+-(NSString*) toFriendlyString;
     
 @end

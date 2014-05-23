@@ -7,6 +7,7 @@
 //
 
 #import "Session.h"
+#import "ChatMessage.h"
 #import "Constants.h"
 
 @implementation Session
@@ -44,6 +45,16 @@
 - (void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.bareJid forKey:KEY_JID];
     [coder encodeObject:self.msgs forKey:KEY_MESSAGE_LIST];
+}
+
+- (bool)msgExpiredAt:(int)index{
+    if(index <= 0)  return true;
+    
+    ChatMessage* mcurrent = [self.msgs objectAtIndex:index];
+    ChatMessage* mlast = [self.msgs objectAtIndex:index - 1];
+    NSTimeInterval interval = [mcurrent.date timeIntervalSinceDate:mlast.date];
+
+    return interval > EXPIRE_TIME_INTERVAL;
 }
 
 @end

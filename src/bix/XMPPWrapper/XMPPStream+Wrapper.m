@@ -9,7 +9,7 @@
 #import "XMPPStream+Wrapper.m"
 #import "AppDelegate.h"
 #import "Constants.h"
-#import "XMPPMessage+Wrapper.h"
+#import "ChatMessage.h"
 
 @implementation XMPPStream (Wrapper)
 
@@ -81,7 +81,7 @@ Account* account;
 
 -(void)send: (XMPPJID*)remoteJid Message:(NSString*)body{
     
-    XMPPMessage *msg = [[XMPPMessage alloc] initWithBody:body From:self.myJID To:remoteJid];
+    ChatMessage *msg = [[ChatMessage alloc] initWithBody:body From:self.myJID To:remoteJid];
     
     //发送消息
     [self sendElement:msg];

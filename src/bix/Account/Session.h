@@ -17,5 +17,5 @@
 @property (nonatomic,retain) NSMutableArray* msgs;
 
 -(id) initWithRemoteJid:(XMPPJID*) Jid;
-
+-(bool) msgExpiredAt: (int) index;
 @end

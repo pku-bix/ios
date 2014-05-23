@@ -21,14 +21,15 @@
     if (self) {
         //时间标签
         timeInfo = [[UILabel alloc] initWithFrame:
-                              CGRectMake(0, 0,
+                              CGRectMake(0,
+                                         0,
                                          [UIScreen mainScreen].currentMode.size.width,
-                                         MARGIN_TIMEINFO)];
+                                         TIMEINFO_HEIGHT)];
         timeInfo.font = [UIFont systemFontOfSize:11.0];
         timeInfo.textColor = [UIColor lightGrayColor];
         //timeInfo.adjustsFontSizeToFitWidth = false;
         timeInfo.textAlignment =  NSTextAlignmentCenter;
-        
+        //self.timeHidden = false;
         [self.contentView addSubview:timeInfo];
         
         //背景

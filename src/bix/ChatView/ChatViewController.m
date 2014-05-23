@@ -12,7 +12,7 @@
 #import "MessageCell.h"
 #import "NSDate+Wrapper.h"
 #import "XMPPStream+Wrapper.h"
-#import "XMPPMessage+Wrapper.h"
+#import "ChatMessage.h"
 
 @interface ChatViewController ()
 
@@ -168,6 +168,8 @@ bool scrollNeeded;
     return [self.session.msgs count];
 }
 
+
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     // try to reuse cell
     MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:REUSE_CELLID_MSGLIST];
@@ -181,40 +183,63 @@ bool scrollNeeded;
     cell.userInteractionEnabled = NO;
     
     // get msg
-    XMPPMessage* msg = [self.session.msgs objectAtIndex:indexPath.row];
+    ChatMessage* msg = [self.session.msgs objectAtIndex:indexPath.row];
     
-    // set msg cell
+    // set msg time
+    int margin_msg_top = 0;
+    
+    if ([self.session msgExpiredAt:indexPath.row]) {
+    
+        cell.timeInfo.text = [msg.date toFriendlyString];
+        [cell.timeInfo sizeToFit];
+        cell.timeInfo.center = CGPointMake(self.view.frame.size.width/2,
+                                               TIMEINFO_HEIGHT - cell.timeInfo.frame.size.height/2);
+        [cell.timeInfo setHidden:false];
+        margin_msg_top =MARGIN_MSG_TOP + TIMEINFO_HEIGHT;
+    }
+    else{
+        [cell.timeInfo setHidden:true];
+        margin_msg_top = MARGIN_MSG_TOP;
+    }
+    
+    // set msg text
     cell.msgTextView.text = msg.body;
-    cell.timeInfo.text = [msg.time toString];
-    [cell.timeInfo sizeToFit];
-    cell.timeInfo.center = CGPointMake(self.view.frame.size.width/2,
-                                       MARGIN_TIMEINFO - cell.timeInfo.frame.size.height/2);
+    
     CGSize size = [self getDisplaySize:msg.body];
     UIImage *bgImage = nil;
-    
-    int margin_msg_top = MARGIN_MSG_TOP + MARGIN_TIMEINFO;
-    if (!msg.isMine) {
-        
-        bgImage = [[UIImage imageNamed:@"BlueBubble2.png"] stretchableImageWithLeftCapWidth:IMGCAP_WIDTH_SENDER topCapHeight:IMGCAP_HEIGHT_SENDER];
-        [cell.msgTextView setFrame:CGRectMake(PADDING_MSG_SENDER + MARGIN_MSG_SENDER,
-                                                     margin_msg_top + PADDING_MSG_TOP,
-                                                     size.width, size.height)];
-        [cell.bgImageView setFrame:CGRectMake(MARGIN_MSG_SENDER, margin_msg_top,
-                                              size.width + PADDING_MSG_RECEIVER + PADDING_MSG_SENDER,
-                                              size.height + PADDING_MSG_TOP + PADDING_MSG_BOTTOM)];
-    }else {
-        bgImage = [[UIImage imageNamed:@"GreenBubble2.png"] stretchableImageWithLeftCapWidth:IMGCAP_WIDTH_RECEIVER topCapHeight:IMGCAP_HEIGHT_RECEIVER];
+
+    if (msg.isMine) {
         
         [cell.msgTextView setFrame:
          CGRectMake(self.view.frame.size.width - size.width - PADDING_MSG_SENDER - MARGIN_MSG_SENDER,
                     margin_msg_top + PADDING_MSG_TOP,
                     size.width,
                     size.height)];
+        
         [cell.bgImageView setFrame:
          CGRectMake(self.view.frame.size.width - size.width - MARGIN_MSG_SENDER - PADDING_MSG_SENDER - PADDING_MSG_RECEIVER,
                     margin_msg_top,
                     size.width + PADDING_MSG_RECEIVER + PADDING_MSG_SENDER,
                     size.height + PADDING_MSG_TOP + PADDING_MSG_BOTTOM)];
+        
+        bgImage = [[UIImage imageNamed:@"msg_sent.png"]
+                   resizableImageWithCapInsets:UIEdgeInsetsMake(6, 6, 10, 24)
+                   resizingMode:UIImageResizingModeStretch];
+
+    }else {
+        
+        [cell.msgTextView setFrame:CGRectMake(PADDING_MSG_SENDER + MARGIN_MSG_SENDER,
+                                              margin_msg_top + PADDING_MSG_TOP,
+                                              size.width,
+                                              size.height)];
+        [cell.bgImageView setFrame:CGRectMake(MARGIN_MSG_SENDER,
+                                              margin_msg_top,
+                                              size.width + PADDING_MSG_RECEIVER + PADDING_MSG_SENDER,
+                                              size.height + PADDING_MSG_TOP + PADDING_MSG_BOTTOM)];
+        
+        bgImage = [[UIImage imageNamed:@"msg_received.png"]
+                   resizableImageWithCapInsets:UIEdgeInsetsMake(6, 24, 10, 6)
+                   resizingMode:UIImageResizingModeStretch];
     }
     cell.bgImageView.image = bgImage;
 
@@ -226,8 +251,10 @@ bool scrollNeeded;
     XMPPMessage* msg = [self.session.msgs objectAtIndex:indexPath.row];
     
     CGSize size = [self getDisplaySize:msg.body];
+
+    int margin_msg_top = MARGIN_MSG_TOP;
+    if ([self.session msgExpiredAt:indexPath.row]) margin_msg_top += TIMEINFO_HEIGHT;
     
-    int margin_msg_top = MARGIN_MSG_TOP + MARGIN_TIMEINFO;
     return size.height + PADDING_MSG_TOP + PADDING_MSG_BOTTOM + margin_msg_top + MARGIN_MSG_BOTTOM;
 }
 

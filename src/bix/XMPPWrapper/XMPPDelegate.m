@@ -14,7 +14,7 @@
 #import "xmpp.h"
 #import "Session.h"
 #import "NSString+Account.h"
-#import "XMPPMessage+Wrapper.h"
+#import "ChatMessage.h"
 #import "XMPPStream+Wrapper.h"
 
 @implementation XMPPDelegate
@@ -38,12 +38,12 @@
         return;
     }
 
-    // set date
-    message.time = [NSDate date];
+    // generate chatMessage
+    ChatMessage *chatMessage = [[ChatMessage alloc] initWithBody:message.body From:message.from To:message.to];
     
-    Session* session = [self.account getSession:message.from];
-    [session.msgs addObject:message];
-
+    Session* session = [self.account getSession:chatMessage.from];
+    [session.msgs addObject:chatMessage];
+    
     //发送通知
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_MESSAGE_RECEIVED object:self ];
 }
@@ -97,10 +97,11 @@
 //将要发送信息
 - (XMPPMessage *)xmppStream:(XMPPStream *)sender willSendMessage:(XMPPMessage *)message{
     Session* session = [self.account getSession:message.to];
-    [session.msgs addObject:message];
+    ChatMessage* chatMessage = [[ChatMessage alloc] initWithXMPPMessage:message];
+    [session.msgs addObject:chatMessage];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_MESSAGE_SENT object:message ];
-    return message;
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_MESSAGE_SENT object:chatMessage ];
+    return chatMessage;
 }
 
 //将要发送在线状态
