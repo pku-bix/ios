@@ -11,7 +11,7 @@
 #import "NSDate+Wrapper.h"
 
 
-@interface ChatMessage: XMPPMessage
+@interface ChatMessage: XMPPMessage<NSCoding>
 
 @property (nonatomic,retain) NSDate* date;
 @property (nonatomic,readonly) BOOL isMine;

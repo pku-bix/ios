@@ -41,26 +41,12 @@ Account* account;
 
 -(BOOL)connect{
     
-    //already connected
-    if (![self isDisconnected]) {
-        return YES;
-    }
-    
-    //account illegal
-    if (!account.isValid) {
-        return NO;
-    }
-    
     self.myJID = account.Jid;
     self.hostName = SERVER;
     
     //连接服务器
     NSError *error = nil;
-    if (![self connectWithTimeout:XMPPStreamTimeoutNone error: &error]) {
-        return NO;
-    }
-    
-    return YES;
+    return [self connectWithTimeout:CONNECT_TIMEOUT error: &error];
 }
 
 -(NSString*) registerAccount{

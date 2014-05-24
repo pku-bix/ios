@@ -8,10 +8,12 @@
 
 #import "SettingViewController.h"
 #import "AppDelegate.h"
+#import "UIButton+Bootstrap.h"
 
 @interface SettingViewController ()
 - (IBAction)Logout:(id)sender;
 - (IBAction)Clear:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *btnLogout;
 @end
 
 @implementation SettingViewController
@@ -34,6 +36,10 @@ int action;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 
+    [self.btnLogout dangerStyle];
+    
+    //AppDelegate* appdelegate  = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    //[appdelegate.account save];
 }
 
 - (void)didReceiveMemoryWarning

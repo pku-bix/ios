@@ -16,8 +16,18 @@
 		EC10200E18C86FF100B3775E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200D18C86FF100B3775E /* SettingViewController.m */; };
 		EC10201118C8701400B3775E /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10201018C8701400B3775E /* MapViewController.m */; };
 		EC28329518C6D3CB00CACA40 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC28329418C6D3CB00CACA40 /* LoginViewController.m */; };
-		EC316613192F20DC002E9609 /* msg_received.png in Resources */ = {isa = PBXBuildFile; fileRef = EC316611192F20DC002E9609 /* msg_received.png */; };
-		EC316614192F20DC002E9609 /* msg_sent.png in Resources */ = {isa = PBXBuildFile; fileRef = EC316612192F20DC002E9609 /* msg_sent.png */; };
+		EC316621193065AC002E9609 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC316618193065AC002E9609 /* FontAwesome.ttf */; };
+		EC316623193065AC002E9609 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = EC31661B193065AC002E9609 /* NSString+FontAwesome.m */; };
+		EC316626193065AC002E9609 /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = EC31661F193065AC002E9609 /* UIButton+Bootstrap.m */; };
+		EC31662A19308978002E9609 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EC31662919308978002E9609 /* MBProgressHUD.m */; };
+		EC3166301930B595002E9609 /* map_marker-24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC31662E1930B595002E9609 /* map_marker-24@2x.png */; };
+		EC3166351930B95E002E9609 /* settings-24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC3166321930B95E002E9609 /* settings-24@2x.png */; };
+		EC3166361930B95E002E9609 /* topic-24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC3166331930B95E002E9609 /* topic-24@2x.png */; };
+		EC3166381930BA6F002E9609 /* contacts-24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC3166371930BA6F002E9609 /* contacts-24@2x.png */; };
+		EC31663D1930BC18002E9609 /* msg_received-100.png in Resources */ = {isa = PBXBuildFile; fileRef = EC3166391930BC18002E9609 /* msg_received-100.png */; };
+		EC31663E1930BC18002E9609 /* msg_received-100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC31663A1930BC18002E9609 /* msg_received-100@2x.png */; };
+		EC31663F1930BC18002E9609 /* msg_sent-100.png in Resources */ = {isa = PBXBuildFile; fileRef = EC31663B1930BC18002E9609 /* msg_sent-100.png */; };
+		EC3166401930BC18002E9609 /* msg_sent-100@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC31663C1930BC18002E9609 /* msg_sent-100@2x.png */; };
 		EC41749C1910E9C7009E5157 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC41749B1910E9C7009E5157 /* RegisterViewController.m */; };
 		EC93762818D3438C00D23984 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93762718D3438C00D23984 /* ChatMessage.m */; };
 		EC99080A18C3356300798FAB /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EC99080918C3356300798FAB /* GCDAsyncSocket.m */; };
@@ -114,8 +124,21 @@
 		EC10201018C8701400B3775E /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		EC28329318C6D3CB00CACA40 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = RegisterView/LoginViewController.h; sourceTree = "<group>"; };
 		EC28329418C6D3CB00CACA40 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = RegisterView/LoginViewController.m; sourceTree = "<group>"; };
-		EC316611192F20DC002E9609 /* msg_received.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg_received.png; sourceTree = "<group>"; };
-		EC316612192F20DC002E9609 /* msg_sent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg_sent.png; sourceTree = "<group>"; };
+		EC316618193065AC002E9609 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		EC31661A193065AC002E9609 /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
+		EC31661B193065AC002E9609 /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
+		EC31661E193065AC002E9609 /* UIButton+Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Bootstrap.h"; sourceTree = "<group>"; };
+		EC31661F193065AC002E9609 /* UIButton+Bootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Bootstrap.m"; sourceTree = "<group>"; };
+		EC31662819308978002E9609 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		EC31662919308978002E9609 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		EC31662E1930B595002E9609 /* map_marker-24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_marker-24@2x.png"; sourceTree = "<group>"; };
+		EC3166321930B95E002E9609 /* settings-24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-24@2x.png"; sourceTree = "<group>"; };
+		EC3166331930B95E002E9609 /* topic-24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topic-24@2x.png"; sourceTree = "<group>"; };
+		EC3166371930BA6F002E9609 /* contacts-24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contacts-24@2x.png"; sourceTree = "<group>"; };
+		EC3166391930BC18002E9609 /* msg_received-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "msg_received-100.png"; sourceTree = "<group>"; };
+		EC31663A1930BC18002E9609 /* msg_received-100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "msg_received-100@2x.png"; sourceTree = "<group>"; };
+		EC31663B1930BC18002E9609 /* msg_sent-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "msg_sent-100.png"; sourceTree = "<group>"; };
+		EC31663C1930BC18002E9609 /* msg_sent-100@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "msg_sent-100@2x.png"; sourceTree = "<group>"; };
 		EC41749A1910E9C7009E5157 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterViewController.h; path = RegisterView/RegisterViewController.h; sourceTree = "<group>"; };
 		EC41749B1910E9C7009E5157 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterViewController.m; path = RegisterView/RegisterViewController.m; sourceTree = "<group>"; };
 		EC45298818D888E200610B66 /* XMPPFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPFramework.h; path = XMPP/XMPPFramework.h; sourceTree = "<group>"; };
@@ -334,10 +357,37 @@
 		EC05DD9A18D0BE49000C9D89 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				EC316611192F20DC002E9609 /* msg_received.png */,
-				EC316612192F20DC002E9609 /* msg_sent.png */,
+				EC3166391930BC18002E9609 /* msg_received-100.png */,
+				EC31663A1930BC18002E9609 /* msg_received-100@2x.png */,
+				EC31663B1930BC18002E9609 /* msg_sent-100.png */,
+				EC31663C1930BC18002E9609 /* msg_sent-100@2x.png */,
+				EC3166371930BA6F002E9609 /* contacts-24@2x.png */,
+				EC3166321930B95E002E9609 /* settings-24@2x.png */,
+				EC3166331930B95E002E9609 /* topic-24@2x.png */,
+				EC31662E1930B595002E9609 /* map_marker-24@2x.png */,
 			);
 			path = img;
+			sourceTree = "<group>";
+		};
+		EC316616193065AC002E9609 /* UIButton-Bootstrap */ = {
+			isa = PBXGroup;
+			children = (
+				EC316618193065AC002E9609 /* FontAwesome.ttf */,
+				EC31661A193065AC002E9609 /* NSString+FontAwesome.h */,
+				EC31661B193065AC002E9609 /* NSString+FontAwesome.m */,
+				EC31661E193065AC002E9609 /* UIButton+Bootstrap.h */,
+				EC31661F193065AC002E9609 /* UIButton+Bootstrap.m */,
+			);
+			path = "UIButton-Bootstrap";
+			sourceTree = "<group>";
+		};
+		EC3166271930895E002E9609 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				EC31662819308978002E9609 /* MBProgressHUD.h */,
+				EC31662919308978002E9609 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		EC4174991910E952009E5157 /* RegisterView */ = {
@@ -757,6 +807,8 @@
 		ECF7E1D318C0516D002BA385 /* bix */ = {
 			isa = PBXGroup;
 			children = (
+				EC3166271930895E002E9609 /* MBProgressHUD */,
+				EC316616193065AC002E9609 /* UIButton-Bootstrap */,
 				EC4174991910E952009E5157 /* RegisterView */,
 				ECD998BB18DACE9F00F30FE3 /* BaiduMap */,
 				EC05DD9918D0BE49000C9D89 /* Resources */,
@@ -887,13 +939,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC3166351930B95E002E9609 /* settings-24@2x.png in Resources */,
+				EC3166381930BA6F002E9609 /* contacts-24@2x.png in Resources */,
 				ECD998E818DACE9F00F30FE3 /* mapapi.bundle in Resources */,
-				EC316614192F20DC002E9609 /* msg_sent.png in Resources */,
+				EC3166361930B95E002E9609 /* topic-24@2x.png in Resources */,
 				ECF7E1E918C0516D002BA385 /* Images.xcassets in Resources */,
-				EC316613192F20DC002E9609 /* msg_received.png in Resources */,
+				EC31663F1930BC18002E9609 /* msg_sent-100.png in Resources */,
+				EC316621193065AC002E9609 /* FontAwesome.ttf in Resources */,
+				EC3166401930BC18002E9609 /* msg_sent-100@2x.png in Resources */,
 				ECF7E1D818C0516D002BA385 /* InfoPlist.strings in Resources */,
 				EC99084918C3397000798FAB /* README.txt in Resources */,
+				EC31663D1930BC18002E9609 /* msg_received-100.png in Resources */,
+				EC3166301930B595002E9609 /* map_marker-24@2x.png in Resources */,
 				ECF7E1E118C0516D002BA385 /* Main.storyboard in Resources */,
+				EC31663E1930BC18002E9609 /* msg_received-100@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -941,10 +1000,12 @@
 				EC99084318C3397000798FAB /* DDASLLogger.m in Sources */,
 				EC99084618C3397000798FAB /* DDTTYLogger.m in Sources */,
 				EC99089B18C33C9200798FAB /* XMPPElement.m in Sources */,
+				EC316623193065AC002E9609 /* NSString+FontAwesome.m in Sources */,
 				ECC16B8518D97EB800C1A37E /* AddContactViewController.m in Sources */,
 				EC9908A418C33C9200798FAB /* GCDMulticastDelegate.m in Sources */,
 				EC99089C18C33C9200798FAB /* XMPPIQ.m in Sources */,
 				ECF7E1DE18C0516D002BA385 /* AppDelegate.mm in Sources */,
+				EC316626193065AC002E9609 /* UIButton+Bootstrap.m in Sources */,
 				EC99084218C3397000798FAB /* DDAbstractDatabaseLogger.m in Sources */,
 				EC9908A318C33C9200798FAB /* DDList.m in Sources */,
 				EC99089F18C33C9200798FAB /* XMPPModule.m in Sources */,
@@ -965,6 +1026,7 @@
 				EC9908A618C33C9200798FAB /* XMPPIDTracker.m in Sources */,
 				EC99082E18C3391300798FAB /* DDXMLDocument.m in Sources */,
 				EC99089618C33C9200798FAB /* XMPPXFacebookPlatformAuthentication.m in Sources */,
+				EC31662A19308978002E9609 /* MBProgressHUD.m in Sources */,
 				EC9908A818C33C9200798FAB /* XMPPStringPrep.m in Sources */,
 				EC99089118C33C9200798FAB /* XMPPAnonymousAuthentication.m in Sources */,
 				ECED788418CF80040041CCC7 /* XMPPStream+Wrapper.m in Sources */,

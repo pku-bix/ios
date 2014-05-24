@@ -13,7 +13,8 @@
 #import "XMPPStream+Wrapper.h"
 #import "NSString+Account.h"
 #import "Constants.h"
-
+#import "UIButton+Bootstrap.h"
+#import "MBProgressHUD.h"
 
 @interface LoginViewController ()
 
@@ -29,6 +30,7 @@
 
 @implementation LoginViewController
 
+MBProgressHUD* hud;
 Account* account;
 
 // Global App Class
@@ -49,6 +51,9 @@ AppDelegate* appdelegate;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    // UI enhancement
+    [self.btnLogin primaryStyle];
+
     
     // retain xmppStream
     appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -80,15 +85,21 @@ AppDelegate* appdelegate;
 
 - (IBAction)Login:(id)sender
 {
-    // try to load
+    // already loaded
     if([account.bareJid isEqualToString: [self.username.text toJid]]){
         
-        // already loaded, update pswd
+        // update pswd
         account.password = self.password.text;
     }
+    // new login user
     else{
+        
+        // try load account
         account = [Account loadAccount:[self.username.text toJid]];
+        
         if(account == nil){
+            
+            // create account
             account = [[Account alloc]
                     initWithUsername:self.username.text
                     Password:self.password.text];
@@ -99,12 +110,7 @@ AppDelegate* appdelegate;
     }
     
     // try to login
-    if ([account isValid]){
-        [self doLogin];
-    }
-    else{
-        [MessageBox ShowMessage: @"账户格式不正确"];
-    }
+    [self doLogin];
 }
 
 
@@ -126,48 +132,62 @@ AppDelegate* appdelegate;
 //////////////////////////////////////////////////////////////////////////////////////////
 // private methods
 
-
 - (void) doLogin{
-    self.btnLogin.enabled = false;
+
+    self.view.userInteractionEnabled = NO;
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"正在连接服务器";
     
     [appdelegate setupAccount: account];
     [appdelegate.xmppStream addDelegate: self delegateQueue:dispatch_get_main_queue()];
     
-    if(![appdelegate.xmppStream connect]){
-        
-        self.btnLogin.enabled = true;
-        [MessageBox ShowMessage: @"无法连接到服务器，请检查网络设置"];
-    }
-    else{
-        //mark account as active
-        [[NSUserDefaults standardUserDefaults] setObject:account.bareJid forKey:KEY_ACTIVE_JID];
-    }
+    [appdelegate.xmppStream connect];
 }
+
 
 // connect succeed
 - (void)xmppStreamDidConnect:(XMPPStream *)sender{
     
+    hud.labelText = @"正在验证";
     [appdelegate.xmppStream authenticate];
+}
+- (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
+    [self xmppStreamConnectDidTimeout:sender];
+}
+- (void)xmppStreamConnectDidTimeout:(XMPPStream *)sender{
+    
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"无法连接到服务器";
+    [hud hide:YES afterDelay:1.0];
+    
+    self.view.userInteractionEnabled = YES;
 }
 
 
-// authentication succeed
+// authentication
 - (void) xmppStreamDidAuthenticate:(XMPPStream *)sender{
     
-    account.autoLogin = YES;
-
     [appdelegate.xmppStream goOnline];
+    account.autoLogin = YES;
+    [[NSUserDefaults standardUserDefaults] setObject:account.bareJid forKey:KEY_ACTIVE_JID];
+    
+    self.view.userInteractionEnabled = YES;
     
     [self performSegueWithIdentifier:@"main" sender:self];
 }
-
-
-//authentication failed
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error{
     
-    self.btnLogin.enabled = true;
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"用户名或密码不正确";
+    [hud hide:YES afterDelay:2.0];
     
-    [MessageBox ShowMessage: @"用户名或密码不正确"];
+    self.view.userInteractionEnabled = YES;
+}
+
+
+// keyboard dismiss
+- (IBAction)Tap:(id)sender {
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
 
 @end

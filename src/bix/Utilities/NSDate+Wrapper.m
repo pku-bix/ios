@@ -17,10 +17,9 @@
 
 -(NSString*) toFriendlyString{
     
-    unsigned unitFlags =NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitMonth | NSCalendarUnitYear;
+    unsigned unitFlags =NSCalendarUnitDay | NSCalendarUnitWeekday;
     NSDateComponents *componentsMsg = [[NSCalendar currentCalendar] components:unitFlags fromDate:self];
     NSDateComponents *componentsNow = [[NSCalendar currentCalendar] components:unitFlags fromDate:[NSDate date]];
-    
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
@@ -34,17 +33,17 @@
         // in 1 normal day
         if(componentsNow.day > componentsMsg.day ) szDate  = @"昨天 ";
         
-        [dateFormatter setDateFormat:@"H:m"];
+        [dateFormatter setDateFormat:@"HH:mm"];
     }
     // in 1 normal week
     else if(timeInterval > -7*24*3600 && componentsNow.weekday != componentsMsg.weekday){
        
         szDate = [NSDate getWeekdayWithNumber:componentsMsg.weekday];
-        [dateFormatter setDateFormat:@" H:m"];
+        [dateFormatter setDateFormat:@" HH:mm"];
     }
     else{
         // 1 week before
-        [dateFormatter setDateFormat:@"yyyy-M-d H:m"];
+        [dateFormatter setDateFormat:@"yyyy-M-d HH:mm"];
     }
     return [szDate stringByAppendingString:[dateFormatter stringFromDate:self]];
 }

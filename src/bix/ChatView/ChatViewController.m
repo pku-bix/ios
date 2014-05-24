@@ -188,19 +188,26 @@ bool scrollNeeded;
     // set msg time
     int margin_msg_top = 0;
     
+    //NSLog(@"msg row: %d",indexPath.row);
     if ([self.session msgExpiredAt:indexPath.row]) {
     
+        //NSLog(@"expires");
+        
         cell.timeInfo.text = [msg.date toFriendlyString];
         [cell.timeInfo sizeToFit];
         cell.timeInfo.center = CGPointMake(self.view.frame.size.width/2,
                                                TIMEINFO_HEIGHT - cell.timeInfo.frame.size.height/2);
-        [cell.timeInfo setHidden:false];
         margin_msg_top =MARGIN_MSG_TOP + TIMEINFO_HEIGHT;
     }
     else{
+        
+        //NSLog(@"doesn't expire");
+        
         [cell.timeInfo setHidden:true];
         margin_msg_top = MARGIN_MSG_TOP;
     }
+    
+    //NSLog(@"date: %@", msg.date);
     
     // set msg text
     cell.msgTextView.text = msg.body;
@@ -222,7 +229,7 @@ bool scrollNeeded;
                     size.width + PADDING_MSG_RECEIVER + PADDING_MSG_SENDER,
                     size.height + PADDING_MSG_TOP + PADDING_MSG_BOTTOM)];
         
-        bgImage = [[UIImage imageNamed:@"msg_sent.png"]
+        bgImage = [[UIImage imageNamed:@"msg_sent-100.png"]
                    resizableImageWithCapInsets:UIEdgeInsetsMake(6, 6, 10, 24)
                    resizingMode:UIImageResizingModeStretch];
 
@@ -237,7 +244,7 @@ bool scrollNeeded;
                                               size.width + PADDING_MSG_RECEIVER + PADDING_MSG_SENDER,
                                               size.height + PADDING_MSG_TOP + PADDING_MSG_BOTTOM)];
         
-        bgImage = [[UIImage imageNamed:@"msg_received.png"]
+        bgImage = [[UIImage imageNamed:@"msg_received-100.png"]
                    resizableImageWithCapInsets:UIEdgeInsetsMake(6, 24, 10, 6)
                    resizingMode:UIImageResizingModeStretch];
     }
@@ -248,7 +255,7 @@ bool scrollNeeded;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    XMPPMessage* msg = [self.session.msgs objectAtIndex:indexPath.row];
+    ChatMessage* msg = [self.session.msgs objectAtIndex:indexPath.row];
     
     CGSize size = [self getDisplaySize:msg.body];
 

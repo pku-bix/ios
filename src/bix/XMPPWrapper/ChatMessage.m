@@ -39,4 +39,21 @@
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)coder {
+    self=[super initWithCoder:coder];
+    
+    if (self) {
+        self.date = [coder decodeObjectForKey:@"date"];
+    }
+    return self;
+}
+
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [super encodeWithCoder:coder];
+    
+    [coder encodeObject:self.date forKey:@"date"];
+}
+
+
 @end
