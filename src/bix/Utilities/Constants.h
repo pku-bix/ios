@@ -29,8 +29,8 @@ static NSString *const KEY_JID=@"jid";
  * used for server config
  */
 static NSString* const SERVER = @"127.0.0.1";
-static NSString* const SERVER_DOMAIN = @"orange.local";
-//static NSString const *SERVER_DOMAIN = @"dsxdemacbook-pro.local";
+//static NSString* const SERVER_DOMAIN = @"orange.local";
+static NSString const *SERVER_DOMAIN = @"dsxdemacbook-pro.local";
 static const NSTimeInterval CONNECT_TIMEOUT = 5;
 static NSString* const BAIDU_MAP_KEY = @"oCvXZCd41PsMzOw0disOu1QA";
 
