@@ -52,6 +52,11 @@
 {
     // Override point for customization after application launch.
     
+    
+    // new a thread to make launch interface remain for 3 seconds
+    [NSThread sleepForTimeInterval:3];
+    
+
     // 要使用百度地图，请先启动BaiduMapManager
     _mapManager = [[BMKMapManager alloc]init];
     
