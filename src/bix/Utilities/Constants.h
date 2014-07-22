@@ -30,7 +30,6 @@ static NSString *const KEY_JID=@"jid";
  */
 static NSString* const SERVER = @"121.40.72.197";
 static NSString* const SERVER_DOMAIN = @"bix.org";
-//static NSString const *SERVER_DOMAIN = @"dsxdemacbook-pro.local";
 static const NSTimeInterval CONNECT_TIMEOUT = 5;
 static NSString* const BAIDU_MAP_KEY = @"oCvXZCd41PsMzOw0disOu1QA";
 
