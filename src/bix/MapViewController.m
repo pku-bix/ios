@@ -33,16 +33,24 @@
    
     _search = [[BMKSearch alloc]init];
    
+    
+    CGRect rect = [[UIScreen mainScreen] bounds];
+  //  CGSize size = rect.size;
+  //CGFloat width = size.width;
+  //  CGFloat height = size.height;
+    
     //_search.delegate = self;
     //_mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 50, 320, 500)];
-    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, 320, 500)];
-   
+//    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, 320, 500)];
+    _mapView = [[BMKMapView alloc]initWithFrame:rect];
     _mapView.delegate = self;
     
     // once launch the baidu map, locate the position of user immediately
     _mapView.showsUserLocation = NO;
     _mapView.userTrackingMode = BMKUserTrackingModeFollow;
     _mapView.showsUserLocation = YES;
+     NSLog(@"_mapView.zoomLevel is %f",_mapView.zoomLevel);
+    _mapView.zoomLevel = 15;
     
     [self.view addSubview: _mapView];
     [self.view addSubview:followingBtn];
