@@ -49,14 +49,15 @@ Account* account;
     return [self connectWithTimeout:CONNECT_TIMEOUT error: &error];
 }
 
--(NSString*) registerAccount{
+-(bool) registerAccount{
     NSError* error = nil;
     
     if([self registerWithPassword:account.password error:&error]){
-        return nil;
+        return true;
     }
     else{
-        return @"error";
+        NSLog(@"register error: %@", error);
+        return false;
     }
 }
 

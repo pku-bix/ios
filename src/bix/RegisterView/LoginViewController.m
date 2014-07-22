@@ -41,7 +41,7 @@ AppDelegate* appdelegate;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-    
+        
     }
     return self;
 }
@@ -53,7 +53,7 @@ AppDelegate* appdelegate;
     
     // UI enhancement
     [self.btnLogin primaryStyle];
-
+    
     
     // retain xmppStream
     appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -101,8 +101,8 @@ AppDelegate* appdelegate;
             
             // create account
             account = [[Account alloc]
-                    initWithUsername:self.username.text
-                    Password:self.password.text];
+                       initWithUsername:self.username.text
+                       Password:self.password.text];
         }
         else{
             account.password = self.password.text;
@@ -133,7 +133,7 @@ AppDelegate* appdelegate;
 // private methods
 
 - (void) doLogin{
-
+    
     self.view.userInteractionEnabled = NO;
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"正在连接服务器";
@@ -152,13 +152,18 @@ AppDelegate* appdelegate;
     [appdelegate.xmppStream authenticate];
 }
 - (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
-    [self xmppStreamConnectDidTimeout:sender];
+    
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"连接服务器错误，请检查网络设置";
+    [hud hide:YES afterDelay:2.0];
+    
+    self.view.userInteractionEnabled = YES;
 }
 - (void)xmppStreamConnectDidTimeout:(XMPPStream *)sender{
     
     hud.mode = MBProgressHUDModeText;
-    hud.labelText = @"无法连接到服务器";
-    [hud hide:YES afterDelay:1.0];
+    hud.labelText = @"连接服务器超时，请检查网络设置";
+    [hud hide:YES afterDelay:2.0];
     
     self.view.userInteractionEnabled = YES;
 }

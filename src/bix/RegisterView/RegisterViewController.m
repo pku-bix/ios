@@ -12,6 +12,7 @@
 #import "Account.h"
 #import "AppDelegate.h"
 #import "XMPPStream+Wrapper.h"
+#import "MBProgressHUD.h"
 
 @interface RegisterViewController ()
 - (IBAction)register:(id)sender;
@@ -57,38 +58,64 @@ AppDelegate* appdelegate;
         return;
     }
     
-    if([self.pswd.text isEqualToString:self.pswd2.text]){
-        //do register
-        Account* account = [[Account alloc]
-                        initWithUsername:self.username.text
-                        Password:self.pswd.text];
+    if(![self.pswd.text isEqualToString:self.pswd2.text]){
         
-        [appdelegate setupAccount: account];
-        [appdelegate.xmppStream addDelegate: self delegateQueue:dispatch_get_main_queue()];
-        
-        if(![appdelegate.xmppStream connect]) {
-            [MessageBox ShowMessage: @"无法连接到服务器，请检查网络设置"];
-        }
-    }
-    else{
-        [MessageBox ShowMessage:@"两次输入的密码不一致，请确认。"];
+        [MessageBox ShowToast:@"两次输入的密码不一致，请确认。"];
         return;
     }
+    
+    //do register
+    Account* account = [[Account alloc]
+                        initWithUsername:self.username.text
+                        Password:self.pswd.text];
+    
+    [appdelegate setupAccount: account];
+    [appdelegate.xmppStream addDelegate: self delegateQueue:dispatch_get_main_queue()];
+    
+    // do wait
+    self.view.userInteractionEnabled = NO;
+    [MessageBox Show:MBProgressHUDModeIndeterminate Toast:@"正在连接服务器" ];
+    
+    [appdelegate.xmppStream connect];
+    
 }
-
 
 // connect succeed
 - (void)xmppStreamDidConnect:(XMPPStream *)sender{
-    NSString* result = [appdelegate.xmppStream registerAccount];
     
-    if(result == nil){
-        // success
-        [MessageBox ShowMessage:@"注册成功！"];
-        [self.navigationController popToRootViewControllerAnimated:true];
+    if(![appdelegate.xmppStream registerAccount]){
+        
+        self.view.userInteractionEnabled = YES;
+        [MessageBox ShowToast:@"未知错误，请联系管理员。"];
     }
-    else{
-        NSLog(@"register failed:%@", result);
-    }
+    
+}
+- (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
+    
+    self.view.userInteractionEnabled = YES;
+    [MessageBox ShowToast: @"连接服务器错误，请检查网络设置"];
+}
+- (void)xmppStreamConnectDidTimeout:(XMPPStream *)sender{
+    
+    self.view.userInteractionEnabled = YES;
+    [MessageBox ShowToast: @"连接服务器超时，请检查网络设置"];
+}
+
+
+// register succeed
+- (void)xmppStreamDidRegister:(XMPPStream *)sender{
+    
+    self.view.userInteractionEnabled = YES;
+    
+    [MessageBox ShowToast:@"注册成功！"];
+    [self.navigationController popToRootViewControllerAnimated:true];
+}
+
+- (void)xmppStream:(XMPPStream *)sender didNotRegister:(NSXMLElement *)error{
+    
+    self.view.userInteractionEnabled = YES;
+    [MessageBox ShowToast:@"注册失败，请联系管理员。"];
+    NSLog(@"register error: %@", error);
 }
 
 @end
