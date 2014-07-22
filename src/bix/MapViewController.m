@@ -35,6 +35,7 @@
    
     
     CGRect rect = [[UIScreen mainScreen] bounds];
+    rect.size.height -= 40;
   //  CGSize size = rect.size;
   //CGFloat width = size.width;
   //  CGFloat height = size.height;
@@ -43,6 +44,7 @@
     //_mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 50, 320, 500)];
 //    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, 320, 500)];
     _mapView = [[BMKMapView alloc]initWithFrame:rect];
+    
     _mapView.delegate = self;
     
     // once launch the baidu map, locate the position of user immediately
