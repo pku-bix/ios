@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A3028" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jJR-kc-dNW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13A3028" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jJR-kc-dNW">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Chat List View Controller - First-->
@@ -102,13 +102,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2DP-xn-oHk" customClass="BMKMapView">
-                                <rect key="frame" x="0.0" y="54" width="320" height="472"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="517"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jZ-s2-a0c">
-                                        <rect key="frame" x="258" y="308" width="27" height="27"/>
+                                        <rect key="frame" x="258" y="362" width="27" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="plus2-32.png">
+                                        <state key="normal" image="plus2-64.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -116,9 +116,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zqn-Ft-UvP">
-                                        <rect key="frame" x="259" y="351" width="27" height="27"/>
+                                        <rect key="frame" x="259" y="405" width="27" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="minus2-32.png">
+                                        <state key="normal" image="minus2-64.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -126,10 +126,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbW-on-r30">
-                                        <rect key="frame" x="36" y="350" width="27" height="27"/>
+                                        <rect key="frame" x="36" y="404" width="27" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" image="define_location-32.png">
+                                        <state key="normal" image="define_location-64.png">
                                             <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -138,9 +138,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24W-S2-zzg">
-                                        <rect key="frame" x="259" y="82" width="27" height="27"/>
+                                        <rect key="frame" x="259" y="151" width="26" height="26"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="compass-32.png">
+                                        <state key="normal" image="compass-64.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -148,9 +148,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2w-bx-2fN">
-                                        <rect key="frame" x="259" y="30" width="27" height="27"/>
+                                        <rect key="frame" x="258" y="88" width="27" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="geo_fence-32.png">
+                                        <state key="normal" image="geo_fence-64.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -529,13 +529,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="compass-32.png" width="32" height="32"/>
+        <image name="compass-64.png" width="32" height="32"/>
         <image name="contacts-24.png" width="24" height="24"/>
-        <image name="define_location-32.png" width="32" height="32"/>
-        <image name="geo_fence-32.png" width="32" height="32"/>
+        <image name="define_location-64.png" width="32" height="32"/>
+        <image name="geo_fence-64.png" width="32" height="32"/>
         <image name="map_marker-24.png" width="24" height="24"/>
-        <image name="minus2-32.png" width="32" height="32"/>
-        <image name="plus2-32.png" width="32" height="32"/>
+        <image name="minus2-64.png" width="32" height="32"/>
+        <image name="plus2-64.png" width="32" height="32"/>
         <image name="settings-24.png" width="24" height="24"/>
         <image name="topic-24.png" width="24" height="24"/>
     </resources>

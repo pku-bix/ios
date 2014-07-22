@@ -49,8 +49,8 @@
     _mapView.showsUserLocation = NO;
     _mapView.userTrackingMode = BMKUserTrackingModeFollow;
     _mapView.showsUserLocation = YES;
-     NSLog(@"_mapView.zoomLevel is %f",_mapView.zoomLevel);
-    _mapView.zoomLevel = 15;
+     //NSLog(@"_mapView.zoomLevel is %f",_mapView.zoomLevel);
+    _mapView.zoomLevel = 15;   // make the zoomLevel = 15 so that once the app launches the map will have a fitness interface
     
     [self.view addSubview: _mapView];
     [self.view addSubview:followingBtn];
@@ -76,7 +76,7 @@
     [_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
     _search.delegate = nil; // 不用时，置nil
-    NSLog(@"map view disappear");
+   // NSLog(@"map view disappear");
 }
 
 
@@ -87,7 +87,7 @@
 }
 
 - (IBAction)startFollow:(id)sender {
-    NSLog(@"进入跟随态");
+   // NSLog(@"进入跟随态");
     _mapView.showsUserLocation = NO;
     _mapView.userTrackingMode = BMKUserTrackingModeFollow;
     _mapView.showsUserLocation = YES;
@@ -104,7 +104,7 @@
 
 - (IBAction)compassHeading:(id)sender {
     
-    NSLog(@"进入罗盘态");
+   // NSLog(@"进入罗盘态");
     _mapView.showsUserLocation = NO;
     _mapView.userTrackingMode = BMKUserTrackingModeFollowWithHeading;
     _mapView.showsUserLocation = YES;
@@ -159,22 +159,22 @@
     
     // CLLocationCoordinate2D pt = {22.599155,113.981154};
     
-    NSLog(@"经纬度：%f %f", current_Location.location.coordinate.latitude, current_Location.location.coordinate.longitude);
+    //NSLog(@"经纬度：%f %f", current_Location.location.coordinate.latitude, current_Location.location.coordinate.longitude);
 	
     BOOL flag = [_search reverseGeocode:pt];
     
 	if (flag) {
-		NSLog(@"ReverseGeocode search success.");
+		//NSLog(@"ReverseGeocode search success.");
         
 	}
     else{
-        NSLog(@"ReverseGeocode search failed!");
+        //NSLog(@"ReverseGeocode search failed!");
     }
     
 }
 
 - (IBAction)enLarge:(id)sender {
-    NSLog(@"_mapView.zoomLevel is %f",_mapView.zoomLevel);
+   // NSLog(@"_mapView.zoomLevel is %f",_mapView.zoomLevel);
     if(_mapView.zoomLevel < 18)
     {
         _mapView.zoomLevel += 1;
@@ -186,7 +186,7 @@
 }
 
 - (IBAction)zoomOut:(id)sender {
-    NSLog(@"_mapView.zoomLevel is %f",_mapView.zoomLevel);
+    //NSLog(@"_mapView.zoomLevel is %f",_mapView.zoomLevel);
     if(_mapView.zoomLevel > 3)
     {
         _mapView.zoomLevel -= 1;
@@ -204,7 +204,7 @@
  */
 - (void)mapViewWillStartLocatingUser:(BMKMapView *)mapView
 {
-	NSLog(@"start locate");
+	//NSLog(@"start locate");
 }
 
 /**
@@ -216,7 +216,7 @@
 - (void)mapView:(BMKMapView *)mapView didUpdateUserLocation:(BMKUserLocation *)userLocation
 {
 	if (userLocation != nil) {
-		NSLog(@"%f %f", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
+		//NSLog(@"%f %f", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
 	}
 	
     //CLLocation *currlocation = [userLocation lastObject];
@@ -229,7 +229,7 @@
  */
 - (void)mapViewDidStopLocatingUser:(BMKMapView *)mapView
 {
-    NSLog(@"stop locate");
+   // NSLog(@"stop locate");
 }
 
 
@@ -240,7 +240,8 @@
  */
 - (void)mapView:(BMKMapView *)mapView didFailToLocateUserWithError:(NSError *)error
 {
-    NSLog(@"location error");
+    //NSLog(@"location error");
 }
+
 
 @end
