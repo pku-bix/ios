@@ -12,7 +12,7 @@
 
 @interface SettingViewController ()
 - (IBAction)Logout:(id)sender;
-- (IBAction)Clear:(id)sender;
+//- (IBAction)Clear:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogout;
 @end
 
@@ -59,7 +59,7 @@ int action;
 
 }
 
-- (IBAction)Clear:(id)sender {
+/*- (IBAction)Clear:(id)sender {
     action = 1;
     
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"确认"
@@ -68,7 +68,7 @@ int action;
                                           cancelButtonTitle:@"取消"
                                           otherButtonTitles:@"确定", nil];
     [alert show];
-}
+}*/
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
