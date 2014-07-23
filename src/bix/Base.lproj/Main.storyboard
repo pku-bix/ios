@@ -101,12 +101,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2DP-xn-oHk" customClass="BMKMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="517"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DP-xn-oHk" customClass="BMKMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="520"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jZ-s2-a0c">
-                                        <rect key="frame" x="258" y="362" width="27" height="27"/>
+                                        <rect key="frame" x="258" y="406" width="27" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="plus2-64.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -116,7 +116,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zqn-Ft-UvP">
-                                        <rect key="frame" x="259" y="405" width="27" height="27"/>
+                                        <rect key="frame" x="258" y="453" width="27" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="minus2-64.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -126,7 +126,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbW-on-r30">
-                                        <rect key="frame" x="36" y="404" width="27" height="27"/>
+                                        <rect key="frame" x="30" y="453" width="27" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" image="define_location-64.png">
@@ -162,6 +162,12 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="2DP-xn-oHk" secondAttribute="bottom" constant="48" id="HbS-sE-NNo"/>
+                            <constraint firstAttribute="trailing" secondItem="2DP-xn-oHk" secondAttribute="trailing" id="XvO-Ks-Ypw"/>
+                            <constraint firstItem="2DP-xn-oHk" firstAttribute="leading" secondItem="fRV-09-ZcG" secondAttribute="leading" id="amx-Y6-Auj"/>
+                            <constraint firstItem="2DP-xn-oHk" firstAttribute="top" secondItem="fRV-09-ZcG" secondAttribute="top" id="d5o-Ah-i9d"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="地图" image="map_marker-24.png" id="1Kn-20-5cf"/>
                     <connections>
@@ -308,26 +314,23 @@
                                     <action selector="Logout:" destination="yGa-6K-2Pj" eventType="touchUpInside" id="8Yo-QB-5Wd"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DQ8-E1-FUE">
-                                <rect key="frame" x="45" y="95" width="230" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="                   关于Bix      本软件是一款集地图、社交、共享于一体的app，旨在通过地图和社交元素帮助电动汽车共享充电桩、共享汽车，从而方便用户，建立圈子。" translatesAutoresizingMaskIntoConstraints="NO" id="Cwh-hh-ysh">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="                   关于Bix       本软件是一款集地图、社交、共享于一体的app，旨在通过地图和社交元素帮助电动汽车共享充电桩、共享汽车，从而方便用户，建立圈子。" translatesAutoresizingMaskIntoConstraints="NO" id="Cwh-hh-ysh">
                                 <rect key="frame" x="40" y="311" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Tesla.png" translatesAutoresizingMaskIntoConstraints="NO" id="cEA-fp-t4n">
+                                <rect key="frame" x="40" y="106" width="230" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="gTo-lk-5I7" secondAttribute="bottom" constant="80" id="6Nu-qR-18M"/>
-                            <constraint firstItem="DQ8-E1-FUE" firstAttribute="top" secondItem="mXW-dW-Sva" secondAttribute="bottom" constant="31" id="7kN-t1-YA0"/>
                             <constraint firstAttribute="trailing" secondItem="gTo-lk-5I7" secondAttribute="trailing" constant="20" id="B67-dr-h5O"/>
-                            <constraint firstAttribute="trailing" secondItem="DQ8-E1-FUE" secondAttribute="trailing" constant="45" id="W6I-pl-P7E"/>
                             <constraint firstItem="gTo-lk-5I7" firstAttribute="leading" secondItem="Yqc-qf-cPp" secondAttribute="leading" constant="20" id="cA3-R6-2lZ"/>
-                            <constraint firstItem="DQ8-E1-FUE" firstAttribute="leading" secondItem="Yqc-qf-cPp" secondAttribute="leading" constant="45" id="f5T-a6-7Z2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="设置" id="L5w-Lb-kQK"/>
@@ -527,6 +530,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Tesla.png" width="115" height="75"/>
         <image name="compass-64.png" width="32" height="32"/>
         <image name="contacts-24.png" width="24" height="24"/>
         <image name="define_location-64.png" width="32" height="32"/>

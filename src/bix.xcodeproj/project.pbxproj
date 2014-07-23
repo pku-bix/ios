@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E33A5BB8197F43220065F7C7 /* Tesla@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33A5BB7197F43220065F7C7 /* Tesla@2x.png */; };
 		E33FF0CE197E4CFD007FE69F /* compass-32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0CD197E4CFD007FE69F /* compass-32@2x.png */; };
 		E33FF0D0197E4F37007FE69F /* compass-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0CF197E4F37007FE69F /* compass-64@2x.png */; };
 		E33FF0D2197E50C3007FE69F /* plus2-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D1197E50C3007FE69F /* plus2-64@2x.png */; };
@@ -125,6 +126,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E33A5BB7197F43220065F7C7 /* Tesla@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tesla@2x.png"; sourceTree = "<group>"; };
 		E33FF0CD197E4CFD007FE69F /* compass-32@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-32@2x.png"; sourceTree = "<group>"; };
 		E33FF0CF197E4F37007FE69F /* compass-64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-64@2x.png"; sourceTree = "<group>"; };
 		E33FF0D1197E50C3007FE69F /* plus2-64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus2-64@2x.png"; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				EC3166391930BC18002E9609 /* msg_received-100.png */,
 				E33FF0D1197E50C3007FE69F /* plus2-64@2x.png */,
 				E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */,
+				E33A5BB7197F43220065F7C7 /* Tesla@2x.png */,
 				EC31663A1930BC18002E9609 /* msg_received-100@2x.png */,
 				EC31663B1930BC18002E9609 /* msg_sent-100.png */,
 				EC31663C1930BC18002E9609 /* msg_sent-100@2x.png */,
@@ -996,6 +999,7 @@
 				EC3166361930B95E002E9609 /* topic-24@2x.png in Resources */,
 				E33FF0D2197E50C3007FE69F /* plus2-64@2x.png in Resources */,
 				E3B4EDDB197EB5A800ABB50D /* road@2x.png in Resources */,
+				E33A5BB8197F43220065F7C7 /* Tesla@2x.png in Resources */,
 				E33FF0D4197E50D7007FE69F /* minus2-64@2x.png in Resources */,
 				ECF7E1E918C0516D002BA385 /* Images.xcassets in Resources */,
 				E369B6B9197C07EB00C1E83F /* Icon.png in Resources */,
