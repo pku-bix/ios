@@ -55,16 +55,18 @@
     
     _textViewTitle = [[UITextView alloc] init];
     _textViewTitle.frame = CGRectMake((rect.size.width-image.size.width)/2-10, 90+image.size.height+20, image.size.width+30, 50);
-    _textViewTitle.text = @"       关于Bix\n";
+    _textViewTitle.text = @"       关于Bix";
     _textViewTitle.font = [UIFont boldSystemFontOfSize:16];
+    
     _textViewTitle.editable = NO;
     [self.view addSubview:_textViewTitle];
     
     _textView = [[UITextView alloc]init];
-    _textView.frame = CGRectMake((rect.size.width-image.size.width)/2-10, 90+image.size.height+20+30, image.size.width+30, 120);
-    aboutApp = @"本软件是一款集地图、社交、共享于一体的app，旨在通过地图和社交元素帮助电动汽车共享充电桩、共享汽车，从而方便用户，建立圈子";
+    _textView.frame = CGRectMake((rect.size.width-image.size.width)/2-10, 90+image.size.height+20+30, image.size.width+30, 150);
+    aboutApp = @"本软件是一款集地图、社交、共享于一体的app，旨在通过地图和社交元素帮助电动汽车共享充电桩、共享汽车，从而方便用户，建立圈子.";
     _textView.text = aboutApp;
-   // _textView.text = [_textView.text stringByAppendingString:aboutApp];
+    _textView.font = [UIFont systemFontOfSize:15];
+   //_textView.text = [_textView.text stringByAppendingString:aboutApp];
     
     _textView.editable = NO;
     [self.view addSubview: _textView];
