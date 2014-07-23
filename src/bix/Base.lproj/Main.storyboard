@@ -314,15 +314,15 @@
                                     <action selector="Logout:" destination="yGa-6K-2Pj" eventType="touchUpInside" id="8Yo-QB-5Wd"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="                   关于Bix       本软件是一款集地图、社交、共享于一体的app，旨在通过地图和社交元素帮助电动汽车共享充电桩、共享汽车，从而方便用户，建立圈子。" translatesAutoresizingMaskIntoConstraints="NO" id="Cwh-hh-ysh">
-                                <rect key="frame" x="40" y="311" width="240" height="128"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" text="                   关于Bix       本软件是一款集地图、社交、共享于一体的app，旨在通过地图和社交元素帮助电动汽车共享充电桩、共享汽车，从而方便用户，建立圈子。" translatesAutoresizingMaskIntoConstraints="NO" id="Cwh-hh-ysh">
+                                <rect key="frame" x="44" y="248" width="242" height="121"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Tesla.png" translatesAutoresizingMaskIntoConstraints="NO" id="cEA-fp-t4n">
-                                <rect key="frame" x="40" y="106" width="230" height="150"/>
+                                <rect key="frame" x="65" y="101" width="191" height="125"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -330,7 +330,9 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="gTo-lk-5I7" secondAttribute="bottom" constant="80" id="6Nu-qR-18M"/>
                             <constraint firstAttribute="trailing" secondItem="gTo-lk-5I7" secondAttribute="trailing" constant="20" id="B67-dr-h5O"/>
+                            <constraint firstItem="Cwh-hh-ysh" firstAttribute="leading" secondItem="Yqc-qf-cPp" secondAttribute="leading" constant="40" id="B7v-fT-MY0"/>
                             <constraint firstItem="gTo-lk-5I7" firstAttribute="leading" secondItem="Yqc-qf-cPp" secondAttribute="leading" constant="20" id="cA3-R6-2lZ"/>
+                            <constraint firstAttribute="trailing" secondItem="Cwh-hh-ysh" secondAttribute="trailing" constant="40" id="vck-Wa-w1f"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="设置" id="L5w-Lb-kQK"/>

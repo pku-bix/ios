@@ -35,12 +35,10 @@
    
     
     CGRect rect = [[UIScreen mainScreen] bounds];
-  //  CGSize size = rect.s  ize;
+  //  CGSize size = rect.size;
   //CGFloat width = size.width;
   //  CGFloat height = size.height;
     
-    //_search.delegate = self;
-    //_mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 50, 320, 500)];
     _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height-40)];
     //_mapView = [[BMKMapView alloc]initWithFrame:rect];
     _mapView.delegate = self;
@@ -49,7 +47,7 @@
     _mapView.showsUserLocation = NO;
     _mapView.userTrackingMode = BMKUserTrackingModeFollow;
     _mapView.showsUserLocation = YES;
-     //NSLog(@"_mapView.zoomLevel is %f",_mapView.zoomLevel);
+   
     _mapView.zoomLevel = 15;   // make the zoomLevel = 15 so that once the app launches the map will have a fitness interface
     
     [self.view addSubview: _mapView];
