@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E32C5FB1197FF23300E7CC61 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E32C5FAF197FF23300E7CC61 /* Icon.png */; };
+		E32C5FB2197FF23300E7CC61 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E32C5FB0197FF23300E7CC61 /* Icon@2x.png */; };
 		E33A5BB8197F43220065F7C7 /* Tesla@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33A5BB7197F43220065F7C7 /* Tesla@2x.png */; };
 		E33FF0CE197E4CFD007FE69F /* compass-32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0CD197E4CFD007FE69F /* compass-32@2x.png */; };
 		E33FF0D0197E4F37007FE69F /* compass-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0CF197E4F37007FE69F /* compass-64@2x.png */; };
@@ -14,8 +16,6 @@
 		E33FF0D4197E50D7007FE69F /* minus2-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D3197E50D7007FE69F /* minus2-64@2x.png */; };
 		E33FF0D6197E50ED007FE69F /* geo_fence-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D5197E50ED007FE69F /* geo_fence-64@2x.png */; };
 		E33FF0D8197E50FD007FE69F /* define_location-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */; };
-		E369B6B7197C07AF00C1E83F /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E369B6B5197C07AF00C1E83F /* Icon@2x.png */; };
-		E369B6B9197C07EB00C1E83F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E369B6B8197C07EB00C1E83F /* Icon.png */; };
 		E374AA8018D9E22700EC575A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA7F18D9E22700EC575A /* CoreLocation.framework */; };
 		E374AA8218D9E23700EC575A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA8118D9E23700EC575A /* QuartzCore.framework */; };
 		E374AA8418D9E24200EC575A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA8318D9E24200EC575A /* OpenGLES.framework */; };
@@ -125,6 +125,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E32C5FAF197FF23300E7CC61 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		E32C5FB0197FF23300E7CC61 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		E33A5BB7197F43220065F7C7 /* Tesla@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tesla@2x.png"; sourceTree = "<group>"; };
 		E33FF0CD197E4CFD007FE69F /* compass-32@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-32@2x.png"; sourceTree = "<group>"; };
 		E33FF0CF197E4F37007FE69F /* compass-64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-64@2x.png"; sourceTree = "<group>"; };
@@ -132,8 +134,6 @@
 		E33FF0D3197E50D7007FE69F /* minus2-64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minus2-64@2x.png"; sourceTree = "<group>"; };
 		E33FF0D5197E50ED007FE69F /* geo_fence-64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "geo_fence-64@2x.png"; sourceTree = "<group>"; };
 		E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "define_location-64@2x.png"; sourceTree = "<group>"; };
-		E369B6B5197C07AF00C1E83F /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		E369B6B8197C07EB00C1E83F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		E374AA7F18D9E22700EC575A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E374AA8118D9E23700EC575A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E374AA8318D9E24200EC575A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -387,8 +387,6 @@
 		EC05DD9A18D0BE49000C9D89 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				E369B6B8197C07EB00C1E83F /* Icon.png */,
-				E369B6B5197C07AF00C1E83F /* Icon@2x.png */,
 				E3E36AFA19741D7900278D96 /* Default.png */,
 				E3E36AFB19741D7900278D96 /* Default@2x.png */,
 				E33FF0CD197E4CFD007FE69F /* compass-32@2x.png */,
@@ -396,6 +394,8 @@
 				E3E36AFD19741D7900278D96 /* geo_fence-32.png */,
 				E33FF0CF197E4F37007FE69F /* compass-64@2x.png */,
 				E3E36B0019741D7900278D96 /* minus2-32.png */,
+				E32C5FAF197FF23300E7CC61 /* Icon.png */,
+				E32C5FB0197FF23300E7CC61 /* Icon@2x.png */,
 				E33FF0D5197E50ED007FE69F /* geo_fence-64@2x.png */,
 				E3E36B0119741D7900278D96 /* plus2-32.png */,
 				EC3166391930BC18002E9609 /* msg_received-100.png */,
@@ -985,20 +985,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3E36B0619741D7900278D96 /* geo_fence-32.png in Resources */,
+				E32C5FB2197FF23300E7CC61 /* Icon@2x.png in Resources */,
 				EC3166351930B95E002E9609 /* settings-24@2x.png in Resources */,
 				EC3166381930BA6F002E9609 /* contacts-24@2x.png in Resources */,
 				E33FF0D0197E4F37007FE69F /* compass-64@2x.png in Resources */,
 				E33FF0CE197E4CFD007FE69F /* compass-32@2x.png in Resources */,
 				ECD998E818DACE9F00F30FE3 /* mapapi.bundle in Resources */,
-				E369B6B7197C07AF00C1E83F /* Icon@2x.png in Resources */,
 				E3E36B0319741D7900278D96 /* Default.png in Resources */,
 				E33FF0D8197E50FD007FE69F /* define_location-64@2x.png in Resources */,
 				EC3166361930B95E002E9609 /* topic-24@2x.png in Resources */,
 				E33FF0D2197E50C3007FE69F /* plus2-64@2x.png in Resources */,
 				E33A5BB8197F43220065F7C7 /* Tesla@2x.png in Resources */,
 				E33FF0D4197E50D7007FE69F /* minus2-64@2x.png in Resources */,
+				E32C5FB1197FF23300E7CC61 /* Icon.png in Resources */,
 				ECF7E1E918C0516D002BA385 /* Images.xcassets in Resources */,
-				E369B6B9197C07EB00C1E83F /* Icon.png in Resources */,
 				EC31663F1930BC18002E9609 /* msg_sent-100.png in Resources */,
 				EC316621193065AC002E9609 /* FontAwesome.ttf in Resources */,
 				E3E36B0419741D7900278D96 /* Default@2x.png in Resources */,
