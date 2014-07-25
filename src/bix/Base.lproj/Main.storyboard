@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13A3028" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jJR-kc-dNW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jJR-kc-dNW">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -104,60 +104,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DP-xn-oHk" customClass="BMKMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="520"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jZ-s2-a0c">
-                                        <rect key="frame" x="258" y="406" width="27" height="27"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="plus2-64.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="enLarge:" destination="cgf-f9-7YI" eventType="touchUpInside" id="PMJ-td-Rvq"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zqn-Ft-UvP">
-                                        <rect key="frame" x="258" y="453" width="27" height="27"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="minus2-64.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="zoomOut:" destination="cgf-f9-7YI" eventType="touchUpInside" id="aTx-lV-aNF"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbW-on-r30">
-                                        <rect key="frame" x="30" y="453" width="27" height="27"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" image="define_location-64.png">
-                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="startFollow:" destination="cgf-f9-7YI" eventType="touchUpInside" id="WWe-VO-Itd"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24W-S2-zzg">
-                                        <rect key="frame" x="259" y="151" width="26" height="26"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="compass-64.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="compassHeading:" destination="cgf-f9-7YI" eventType="touchUpInside" id="5qD-d6-57n"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2w-bx-2fN">
-                                        <rect key="frame" x="258" y="88" width="27" height="27"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="geo_fence-64.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="getReverseGeoAddress:" destination="cgf-f9-7YI" eventType="touchUpInside" id="xhA-nN-wIe"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -172,11 +118,6 @@
                     <tabBarItem key="tabBarItem" title="地图" image="map_marker-24.png" id="1Kn-20-5cf"/>
                     <connections>
                         <outlet property="_mapView" destination="2DP-xn-oHk" id="MYw-ax-bzU"/>
-                        <outlet property="compass" destination="24W-S2-zzg" id="meQ-55-qgn"/>
-                        <outlet property="followingBtn" destination="IbW-on-r30" id="64c-xo-RYN"/>
-                        <outlet property="lessen" destination="Zqn-Ft-UvP" id="7ya-6x-eAO"/>
-                        <outlet property="magnifyBtn" destination="0jZ-s2-a0c" id="Sy2-1e-UhM"/>
-                        <outlet property="shareBtn" destination="L2w-bx-2fN" id="Vt2-hh-55W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E7j-KQ-vTl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -519,13 +460,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="compass-64.png" width="32" height="32"/>
         <image name="contacts-24.png" width="24" height="24"/>
-        <image name="define_location-64.png" width="32" height="32"/>
-        <image name="geo_fence-64.png" width="32" height="32"/>
         <image name="map_marker-24.png" width="24" height="24"/>
-        <image name="minus2-64.png" width="32" height="32"/>
-        <image name="plus2-64.png" width="32" height="32"/>
         <image name="settings-24.png" width="24" height="24"/>
         <image name="topic-24.png" width="24" height="24"/>
     </resources>

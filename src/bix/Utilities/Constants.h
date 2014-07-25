@@ -34,6 +34,8 @@ static const NSTimeInterval CONNECT_TIMEOUT = 5;
 static NSString* const BAIDU_MAP_KEY = @"oCvXZCd41PsMzOw0disOu1QA";
 
 
+
+
 /* event strings
  * used for notification event identity.
  */

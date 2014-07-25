@@ -10,22 +10,18 @@
 		E32C5FB1197FF23300E7CC61 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E32C5FAF197FF23300E7CC61 /* Icon.png */; };
 		E32C5FB2197FF23300E7CC61 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E32C5FB0197FF23300E7CC61 /* Icon@2x.png */; };
 		E33A5BB8197F43220065F7C7 /* Tesla@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33A5BB7197F43220065F7C7 /* Tesla@2x.png */; };
-		E33FF0CE197E4CFD007FE69F /* compass-32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0CD197E4CFD007FE69F /* compass-32@2x.png */; };
 		E33FF0D0197E4F37007FE69F /* compass-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0CF197E4F37007FE69F /* compass-64@2x.png */; };
 		E33FF0D2197E50C3007FE69F /* plus2-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D1197E50C3007FE69F /* plus2-64@2x.png */; };
 		E33FF0D4197E50D7007FE69F /* minus2-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D3197E50D7007FE69F /* minus2-64@2x.png */; };
 		E33FF0D6197E50ED007FE69F /* geo_fence-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D5197E50ED007FE69F /* geo_fence-64@2x.png */; };
 		E33FF0D8197E50FD007FE69F /* define_location-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */; };
+		E34419971980BAA400F03459 /* MapButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E34419961980BAA400F03459 /* MapButton.m */; };
 		E374AA8018D9E22700EC575A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA7F18D9E22700EC575A /* CoreLocation.framework */; };
 		E374AA8218D9E23700EC575A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA8118D9E23700EC575A /* QuartzCore.framework */; };
 		E374AA8418D9E24200EC575A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA8318D9E24200EC575A /* OpenGLES.framework */; };
 		E374AA8618D9E24C00EC575A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA8518D9E24C00EC575A /* SystemConfiguration.framework */; };
 		E3D8A8E519800B9B00E40C14 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D8A8E319800B9B00E40C14 /* Default.png */; };
 		E3D8A8E619800B9B00E40C14 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D8A8E419800B9B00E40C14 /* Default@2x.png */; };
-		E3E36B0519741D7900278D96 /* define_location-32.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E36AFC19741D7900278D96 /* define_location-32.png */; };
-		E3E36B0619741D7900278D96 /* geo_fence-32.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E36AFD19741D7900278D96 /* geo_fence-32.png */; };
-		E3E36B0919741D7900278D96 /* minus2-32.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E36B0019741D7900278D96 /* minus2-32.png */; };
-		E3E36B0A19741D7900278D96 /* plus2-32.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E36B0119741D7900278D96 /* plus2-32.png */; };
 		EC05DD9818D0B1B7000C9D89 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC05DD9718D0B1B7000C9D89 /* ChatViewController.m */; };
 		EC10200B18C85DF200B3775E /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200A18C85DF200B3775E /* MainTabBarController.m */; };
 		EC10200E18C86FF100B3775E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200D18C86FF100B3775E /* SettingViewController.m */; };
@@ -128,22 +124,19 @@
 		E32C5FAF197FF23300E7CC61 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		E32C5FB0197FF23300E7CC61 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		E33A5BB7197F43220065F7C7 /* Tesla@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tesla@2x.png"; sourceTree = "<group>"; };
-		E33FF0CD197E4CFD007FE69F /* compass-32@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-32@2x.png"; sourceTree = "<group>"; };
 		E33FF0CF197E4F37007FE69F /* compass-64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-64@2x.png"; sourceTree = "<group>"; };
 		E33FF0D1197E50C3007FE69F /* plus2-64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus2-64@2x.png"; sourceTree = "<group>"; };
 		E33FF0D3197E50D7007FE69F /* minus2-64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minus2-64@2x.png"; sourceTree = "<group>"; };
 		E33FF0D5197E50ED007FE69F /* geo_fence-64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "geo_fence-64@2x.png"; sourceTree = "<group>"; };
 		E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "define_location-64@2x.png"; sourceTree = "<group>"; };
+		E34419951980BAA400F03459 /* MapButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapButton.h; sourceTree = "<group>"; };
+		E34419961980BAA400F03459 /* MapButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapButton.m; sourceTree = "<group>"; };
 		E374AA7F18D9E22700EC575A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E374AA8118D9E23700EC575A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E374AA8318D9E24200EC575A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E374AA8518D9E24C00EC575A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E3D8A8E319800B9B00E40C14 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E3D8A8E419800B9B00E40C14 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		E3E36AFC19741D7900278D96 /* define_location-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "define_location-32.png"; sourceTree = "<group>"; };
-		E3E36AFD19741D7900278D96 /* geo_fence-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "geo_fence-32.png"; sourceTree = "<group>"; };
-		E3E36B0019741D7900278D96 /* minus2-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minus2-32.png"; sourceTree = "<group>"; };
-		E3E36B0119741D7900278D96 /* plus2-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus2-32.png"; sourceTree = "<group>"; };
 		EC05DD9618D0B1B7000C9D89 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatViewController.h; path = ChatView/ChatViewController.h; sourceTree = "<group>"; };
 		EC05DD9718D0B1B7000C9D89 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatViewController.m; path = ChatView/ChatViewController.m; sourceTree = "<group>"; };
 		EC10200918C85DF200B3775E /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
@@ -387,17 +380,12 @@
 		EC05DD9A18D0BE49000C9D89 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				E33FF0CD197E4CFD007FE69F /* compass-32@2x.png */,
-				E3E36AFC19741D7900278D96 /* define_location-32.png */,
-				E3E36AFD19741D7900278D96 /* geo_fence-32.png */,
 				E33FF0CF197E4F37007FE69F /* compass-64@2x.png */,
-				E3E36B0019741D7900278D96 /* minus2-32.png */,
 				E32C5FAF197FF23300E7CC61 /* Icon.png */,
 				E32C5FB0197FF23300E7CC61 /* Icon@2x.png */,
 				E33FF0D5197E50ED007FE69F /* geo_fence-64@2x.png */,
 				E3D8A8E319800B9B00E40C14 /* Default.png */,
 				E3D8A8E419800B9B00E40C14 /* Default@2x.png */,
-				E3E36B0119741D7900278D96 /* plus2-32.png */,
 				EC3166391930BC18002E9609 /* msg_received-100.png */,
 				E33FF0D1197E50C3007FE69F /* plus2-64@2x.png */,
 				E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */,
@@ -871,6 +859,8 @@
 				EC10200D18C86FF100B3775E /* SettingViewController.m */,
 				EC10200F18C8701400B3775E /* MapViewController.h */,
 				EC10201018C8701400B3775E /* MapViewController.m */,
+				E34419951980BAA400F03459 /* MapButton.h */,
+				E34419961980BAA400F03459 /* MapButton.m */,
 				ECF7E1E818C0516D002BA385 /* Images.xcassets */,
 				EC99085118C33C5D00798FAB /* XMPP */,
 				ECF7E1D418C0516D002BA385 /* Supporting Files */,
@@ -984,12 +974,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3E36B0619741D7900278D96 /* geo_fence-32.png in Resources */,
 				E32C5FB2197FF23300E7CC61 /* Icon@2x.png in Resources */,
 				EC3166351930B95E002E9609 /* settings-24@2x.png in Resources */,
 				EC3166381930BA6F002E9609 /* contacts-24@2x.png in Resources */,
 				E33FF0D0197E4F37007FE69F /* compass-64@2x.png in Resources */,
-				E33FF0CE197E4CFD007FE69F /* compass-32@2x.png in Resources */,
 				ECD998E818DACE9F00F30FE3 /* mapapi.bundle in Resources */,
 				E33FF0D8197E50FD007FE69F /* define_location-64@2x.png in Resources */,
 				EC3166361930B95E002E9609 /* topic-24@2x.png in Resources */,
@@ -1006,12 +994,9 @@
 				ECF7E1D818C0516D002BA385 /* InfoPlist.strings in Resources */,
 				EC99084918C3397000798FAB /* README.txt in Resources */,
 				EC31663D1930BC18002E9609 /* msg_received-100.png in Resources */,
-				E3E36B0519741D7900278D96 /* define_location-32.png in Resources */,
-				E3E36B0919741D7900278D96 /* minus2-32.png in Resources */,
 				EC3166301930B595002E9609 /* map_marker-24@2x.png in Resources */,
 				ECF7E1E118C0516D002BA385 /* Main.storyboard in Resources */,
 				E3D8A8E619800B9B00E40C14 /* Default@2x.png in Resources */,
-				E3E36B0A19741D7900278D96 /* plus2-32.png in Resources */,
 				EC31663E1930BC18002E9609 /* msg_received-100@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1039,6 +1024,7 @@
 				EC99084818C3397000798FAB /* DispatchQueueLogFormatter.m in Sources */,
 				ECED788B18CF835E0041CCC7 /* NSDate+Wrapper.m in Sources */,
 				EC9908A718C33C9200798FAB /* XMPPSRVResolver.m in Sources */,
+				E34419971980BAA400F03459 /* MapButton.m in Sources */,
 				EC99084418C3397000798FAB /* DDFileLogger.m in Sources */,
 				EC99089518C33C9200798FAB /* XMPPPlainAuthentication.m in Sources */,
 				EC9908A118C33C9200798FAB /* XMPPPresence.m in Sources */,
