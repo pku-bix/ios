@@ -85,12 +85,16 @@
     _mapManager = [[BMKMapManager alloc]init];
     
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-    BOOL ret = [_mapManager start:BAIDU_MAP_KEY  generalDelegate:self];
     
 #ifdef DEBUG
+    BOOL ret = [_mapManager start:BAIDU_MAP_KEY  generalDelegate:self];
+    
     if (!ret) {
         NSLog(@"manager start failed!");
     }
+#else
+    [_mapManager start:BAIDU_MAP_KEY  generalDelegate:self];
+    
 #endif
     //NSLog(@"didFinishLaunchingWithOption");
     
