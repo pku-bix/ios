@@ -18,11 +18,9 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *textView;
-
 - (IBAction)Tap:(id)sender;
 
 @end
-
 
 
 @implementation ChatViewController
@@ -69,46 +67,25 @@ bool scrollNeeded;
     [self updateList:nil];
     
     // viewsize update event
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(KeyboardWillChangeFrame:)
-                                                 name:UIKeyboardWillChangeFrameNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidChangeFrame:)
-                                                 name:UIKeyboardDidChangeFrameNotification
-                                               object:nil];
-    
-    // message udpate event
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(updateList:)
-                                                 name:EVENT_MESSAGE_RECEIVED
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(updateList:)
-                                                 name:EVENT_MESSAGE_SENT
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(KeyboardWillChangeFrame:)
+                                                 name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(keyboardDidChangeFrame:)
+                                                 name:UIKeyboardDidChangeFrameNotification  object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(updateList:)
+                                                 name:EVENT_MESSAGE_RECEIVED    object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(updateList:)
+                                                 name:EVENT_MESSAGE_SENT    object:nil];
 }
 
-
 - (void)viewWillDisappear:(BOOL)animated{
-    // viewsize update
     [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillChangeFrameNotification
-                                                  object:nil];
-    
+                                                    name:UIKeyboardWillChangeFrameNotification  object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardDidChangeFrameNotification
-                                                  object:nil];
-    
-    // message update
+                                                    name:UIKeyboardDidChangeFrameNotification   object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:EVENT_MESSAGE_RECEIVED
-                                                  object:nil];
+                                                    name:EVENT_MESSAGE_RECEIVED object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:EVENT_MESSAGE_SENT
-                                                  object:nil];
+                                                    name:EVENT_MESSAGE_SENT object:nil];
 }
 
 - (void)didReceiveMemoryWarning{
@@ -117,34 +94,31 @@ bool scrollNeeded;
 }
 
 - (void) updateList: (NSNotification*) notification{
-    
-    [UIView animateWithDuration:0 animations:^{
-        [self.tableView reloadData];    //async
-    } completion:^(BOOL finished) {
-        
-        if (isAnimating) {
-            scrollNeeded = YES;
-        }
-        else{
-            [self ScrollToBottom];
-        }
-    }];
-    
+//    [UIView animateWithDuration:0 animations:^{
+//        [self.tableView reloadData];
+//    } completion:^(BOOL finished) {
+//        
+//        if (isAnimating) {
+//            scrollNeeded = YES;
+//        }
+//        else{
+//            [self ScrollToBottom];
+//        }
+//    }];
+    [self.tableView reloadData];
+    [self ScrollToBottom];
 }
 
 - (void) ScrollToBottom{
     
-     if (self.tableView.contentSize.height > self.tableView.frame.size.height)
+    if (self.tableView.contentSize.height > self.tableView.frame.size.height)
     {
         CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height);
-        //NSLog(@"scrollToBottom:%f;%f",self.tableView.contentOffset.y, offset.y);
         
         [self.tableView setContentOffset:offset animated:YES];
-        
         scrollNeeded = false;
     }
 }
-
 
 
 #pragma mark - Table view data source
@@ -156,8 +130,6 @@ bool scrollNeeded;
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [self.session.msgs count];
 }
-
-
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     // try to reuse cell
@@ -177,11 +149,7 @@ bool scrollNeeded;
     // set msg time
     int margin_msg_top = 0;
     
-    //NSLog(@"msg row: %d",indexPath.row);
     if ([self.session msgExpiredAt:indexPath.row]) {
-    
-        //NSLog(@"expires");
-        
         cell.timeInfo.text = [msg.date toFriendlyString];
         [cell.timeInfo sizeToFit];
         cell.timeInfo.center = CGPointMake(self.view.frame.size.width/2,
@@ -189,14 +157,9 @@ bool scrollNeeded;
         margin_msg_top =MARGIN_MSG_TOP + TIMEINFO_HEIGHT;
     }
     else{
-        
-        //NSLog(@"doesn't expire");
-        
         [cell.timeInfo setHidden:true];
         margin_msg_top = MARGIN_MSG_TOP;
     }
-    
-    //NSLog(@"date: %@", msg.date);
     
     // set msg text
     cell.msgTextView.text = msg.body;
@@ -205,7 +168,6 @@ bool scrollNeeded;
     UIImage *bgImage = nil;
 
     if (msg.isMine) {
-        
         [cell.msgTextView setFrame:
          CGRectMake(self.view.frame.size.width - size.width - PADDING_MSG_SENDER - MARGIN_MSG_SENDER,
                     margin_msg_top + PADDING_MSG_TOP,
@@ -223,13 +185,10 @@ bool scrollNeeded;
                    resizingMode:UIImageResizingModeStretch];
 
     }else {
-        
         [cell.msgTextView setFrame:CGRectMake(PADDING_MSG_SENDER + MARGIN_MSG_SENDER,
                                               margin_msg_top + PADDING_MSG_TOP,
-                                              size.width,
-                                              size.height)];
-        [cell.bgImageView setFrame:CGRectMake(MARGIN_MSG_SENDER,
-                                              margin_msg_top,
+                                              size.width,   size.height)];
+        [cell.bgImageView setFrame:CGRectMake(MARGIN_MSG_SENDER,    margin_msg_top,
                                               size.width + PADDING_MSG_RECEIVER + PADDING_MSG_SENDER,
                                               size.height + PADDING_MSG_TOP + PADDING_MSG_BOTTOM)];
         
@@ -238,27 +197,22 @@ bool scrollNeeded;
                    resizingMode:UIImageResizingModeStretch];
     }
     cell.bgImageView.image = bgImage;
-
     return cell;
 }
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     ChatMessage* msg = [self.session.msgs objectAtIndex:indexPath.row];
-    
-    CGSize size = [self getDisplaySize:msg.body];
 
+    CGSize size = [self getDisplaySize:msg.body];
     int margin_msg_top = MARGIN_MSG_TOP;
     if ([self.session msgExpiredAt:indexPath.row]) margin_msg_top += TIMEINFO_HEIGHT;
     
     return size.height + PADDING_MSG_TOP + PADDING_MSG_BOTTOM + margin_msg_top + MARGIN_MSG_BOTTOM;
 }
-
 -(CGSize) getDisplaySize:(NSString*) str{
     
     CGSize textSize = {self.view.frame.size.width
-        - PADDING_MSG_RECEIVER - PADDING_MSG_SENDER - MARGIN_MSG_RECEIVER- MARGIN_MSG_SENDER,
-        INTMAX_MAX};
+        - PADDING_MSG_RECEIVER - PADDING_MSG_SENDER - MARGIN_MSG_RECEIVER- MARGIN_MSG_SENDER,   INTMAX_MAX};
     
     CGSize size = [str boundingRectWithSize:textSize
                                     options:NSStringDrawingUsesLineFragmentOrigin
@@ -285,7 +239,6 @@ bool scrollNeeded;
     UIViewAnimationCurve curve = (UIViewAnimationCurve)[[notification userInfo]
                                                         objectForKey:UIKeyboardAnimationCurveUserInfoKey];
 
-    
     // set animation
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:duration];
@@ -298,18 +251,16 @@ bool scrollNeeded;
     self.view.frame = rect;
     
     // scroll msgs when up or need scroll
-    if (kbEndrect.origin.y < kbBeginrect.origin.y || scrollNeeded) {
+    //if (kbEndrect.origin.y < kbBeginrect.origin.y || scrollNeeded) {
         [self.tableView layoutIfNeeded];    // important! recompute size of tableview
         [self ScrollToBottom];
-    }
+    //}
 }
 
 // commit animation & scroll tableview
 -(void)keyboardDidChangeFrame:(NSNotification*)notification{
     
-    // commit animation
-    [UIView commitAnimations];
-    
+    [UIView commitAnimations];  // commit animation
     isAnimating = false;
 }
 
@@ -332,7 +283,8 @@ bool scrollNeeded;
 
 // keyboard dismiss
 - (IBAction)Tap:(id)sender {
-    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder)
+                                               to:nil from:nil forEvent:nil];
 }
 
 @end
