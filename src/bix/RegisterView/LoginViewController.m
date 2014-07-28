@@ -86,10 +86,9 @@ AppDelegate* appdelegate;
 
 - (IBAction)Login:(id)sender
 {
-    // already loaded
+    // already loaded, update pswd
     if([account.bareJid isEqualToString: [self.username.text toJid]]){
         
-        // update pswd
         account.password = self.password.text;
     }
     // new login user
@@ -99,10 +98,7 @@ AppDelegate* appdelegate;
         account = [Account loadAccount:[self.username.text toJid]];
         
         if(account == nil){
-            
-            // create account
-            account = [[Account alloc]
-                       initWithUsername:self.username.text
+            account = [[Account alloc] initWithUsername:self.username.text
                        Password:self.password.text];
         }
         else{

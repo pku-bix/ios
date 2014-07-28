@@ -29,9 +29,9 @@
 //收到消息
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
     
-#ifdef DEBUG
-    NSLog(@"message received:\n%@\n\n",message);
-#endif
+//#ifdef DEBUG
+//    NSLog(@"message received:\n%@\n\n",message);
+//#endif
 
     // only chat message with body proceeds
     if (!message.isChatMessageWithBody) {
@@ -121,9 +121,9 @@
 //已发送信息
 - (void)xmppStream:(XMPPStream *)sender didSendMessage:(XMPPMessage *)message{
     
-#ifdef DEBUG
-    NSLog(@"send message succeed:\n%@\n\n",message);
-#endif
+//#ifdef DEBUG
+//    NSLog(@"send message succeed:\n%@\n\n",message);
+//#endif
 }
 
 //已发送在线状态
