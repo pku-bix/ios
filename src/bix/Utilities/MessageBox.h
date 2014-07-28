@@ -13,9 +13,11 @@
 @interface MessageBox : NSObject
 
 + (UIAlertView*) ShowMessage: (NSString*) msg;
-+ (MBProgressHUD*) ShowToast: (NSString*) msg;
-+ (MBProgressHUD*) Show: (MBProgressHUDMode) mode Toast:(NSString *)msg;
-+ (MBProgressHUD*) ShowToast:(NSString *)msg Within:(NSTimeInterval)time;
-+ (MBProgressHUD*) Show: (MBProgressHUDMode) mode Toast:(NSString *)msg Within:(NSTimeInterval)time;
++ (MBProgressHUD*) Toast: (NSString*) msg In: (UIView*)view;
++ (MBProgressHUD*) Toasting: (NSString*) msg In: (UIView*)view;
++ (MBProgressHUD*) Toast:(NSString *)msg Mode: (MBProgressHUDMode) mode In: (UIView*)view;
++ (MBProgressHUD*) Toast:(NSString *)msg Mode: (MBProgressHUDMode) mode Within:(NSTimeInterval)time In: (UIView*)view;
++ (void) hideTopToast:(UIView *)view;
++ (void) clearToasts:(UIView *)view;
 
 @end

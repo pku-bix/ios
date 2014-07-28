@@ -60,7 +60,7 @@ AppDelegate* appdelegate;
     
     if(![self.pswd.text isEqualToString:self.pswd2.text]){
         
-        [MessageBox ShowToast:@"两次输入的密码不一致，请确认。"];
+        [MessageBox Toast:@"两次输入的密码不一致，请确认。" In: self.view];
         return;
     }
     
@@ -74,7 +74,7 @@ AppDelegate* appdelegate;
     
     // do wait
     self.view.userInteractionEnabled = NO;
-    [MessageBox Show:MBProgressHUDModeIndeterminate Toast:@"正在连接服务器" ];
+    [MessageBox Toast:@"正在连接服务器" Mode:MBProgressHUDModeIndeterminate In: self.view];
     
     [appdelegate.xmppStream connect];
     
@@ -86,19 +86,19 @@ AppDelegate* appdelegate;
     if(![appdelegate.xmppStream registerAccount]){
         
         self.view.userInteractionEnabled = YES;
-        [MessageBox ShowToast:@"未知错误，请联系管理员。"];
+        [MessageBox Toast:@"未知错误，请联系管理员。" In: self.view];
     }
     
 }
 - (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
     
     self.view.userInteractionEnabled = YES;
-    [MessageBox ShowToast: @"连接服务器错误，请检查网络设置"];
+    [MessageBox Toast: @"连接服务器错误，请检查网络设置" In: self.view];
 }
 - (void)xmppStreamConnectDidTimeout:(XMPPStream *)sender{
     
     self.view.userInteractionEnabled = YES;
-    [MessageBox ShowToast: @"连接服务器超时，请检查网络设置"];
+    [MessageBox Toast: @"连接服务器超时，请检查网络设置" In: self.view];
 }
 
 
@@ -107,14 +107,14 @@ AppDelegate* appdelegate;
     
     self.view.userInteractionEnabled = YES;
     
-    [MessageBox ShowToast:@"注册成功！"];
+    [MessageBox Toast:@"注册成功！" In:self.view];
     [self.navigationController popToRootViewControllerAnimated:true];
 }
 
 - (void)xmppStream:(XMPPStream *)sender didNotRegister:(NSXMLElement *)error{
     
     self.view.userInteractionEnabled = YES;
-    [MessageBox ShowToast:@"注册失败，请联系管理员。"];
+    [MessageBox Toast:@"注册失败，请联系管理员。" In: self.view];
     NSLog(@"register error: %@", error);
 }
 

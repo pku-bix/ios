@@ -22,40 +22,76 @@
 
 -(id)init{
     self = [super init];
-        
     return self;
 }
 
-//收到消息
-- (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
-    
+// 连接成功
+- (void)xmppStreamDidConnect:(XMPPStream *)sender{
 #ifdef DEBUG
-    NSLog(@"message received:\n%@\n\n",message);
+    NSLog(@"xmppstream connected");
 #endif
-
-    // only chat message with body proceeds
-    if (!message.isChatMessageWithBody) {
-        return;
+    // 验证
+    if (!sender.isAuthenticated && !sender.isAuthenticating) {
+        [sender authenticate];
     }
-
-    // generate chatMessage
-    ChatMessage *chatMessage = [[ChatMessage alloc] initWithBody:message.body From:message.from To:message.to];
-    
-    Session* session = [self.account getSession:chatMessage.from];
-    [session.msgs addObject:chatMessage];
-    
-    //发送通知
-    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_MESSAGE_RECEIVED object:self ];
+}
+// 连接超时
+- (void)xmppStreamConnectDidTimeout:(XMPPStream *)sender{
+#ifdef DEBUG
+    NSLog(@"xmppstream connect timeout");
+#endif
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_DISCONNECTED object:self];
+}
+// 断开连接成功
+- (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
+#ifdef DEBUG
+    NSLog(@"xmppstream disconnect");
+#endif
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_DISCONNECTED object:self];
 }
 
-//收到好友状态
-- (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence{
-    
-    
+// 验证成功
+- (void) xmppStreamDidAuthenticate:(XMPPStream *)sender{
 #ifdef DEBUG
-    NSLog(@"presence received:\n%@\n\n", presence);
+    NSLog(@"xmppstream authenticated");
 #endif
-    
+    // 上线
+    [sender goOnline];
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_AUTHENTICATED object:self];
+}
+// 验证失败
+- (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error{
+#ifdef DEBUG
+    NSLog(@"xmppstream authenticate failed");
+#endif    
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_AUTHENTICATE_FAILED object:self];
+}
+
+
+//将要发送状态
+- (XMPPPresence *)xmppStream:(XMPPStream *)sender willSendPresence:(XMPPPresence *)presence{
+#ifdef DEBUG
+    NSLog(@"xmpp will send presence\n%@\n\n",presence);
+#endif
+    return presence;
+}
+//已发送状态
+- (void)xmppStream:(XMPPStream *)sender didSendPresence:(XMPPPresence *)presence{
+#ifdef DEBUG
+    NSLog(@"xmpp sent presence:\n%@\n\n",presence);
+#endif
+}
+//发送状态失败
+- (void)xmppStream:(XMPPStream *)sender didFailToSendPresence:(XMPPPresence *)presence error:(NSError *)error{
+#ifdef DEBUG
+    NSLog(@"xmpp send presence failed, error: %@\npresence:\n%@\n\n",error,presence);
+#endif
+}
+//收到状态
+- (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence{
+#ifdef DEBUG
+    NSLog(@"xmpp presence received:\n%@\n\n", presence);
+#endif
     //取得好友状态
     NSString *presenceType = [presence type]; //"available", "unavailable"
     //当前用户
@@ -68,130 +104,85 @@
     
     if (![remoteJid.bare isEqualToString:myJid.bare]) {
         //发送通知
-            
+        
         [[NSNotificationCenter defaultCenter]
          postNotificationName:EVENT_BUDDY_PRESENCE
          object:self
          userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                 remoteAccount, @"account",
-                 nil ]];
+                   remoteAccount, @"account",
+                   nil ]];
     }
 }
 
-//收到错误信息
-- (void)xmppStream:(XMPPStream *)sender didReceiveError:(NSXMLElement *)error{
-    
-#ifdef DEBUG
-    NSLog(@"error received:\n%@\n\n",error);
-#endif
-    
-}
-
-
-
-//将要发送IQ
-- (XMPPIQ *)xmppStream:(XMPPStream *)sender willSendIQ:(XMPPIQ *)iq{
-    return iq;
-}
-
-//将要发送信息
+//将要发送聊天
 - (XMPPMessage *)xmppStream:(XMPPStream *)sender willSendMessage:(XMPPMessage *)message{
     Session* session = [self.account getSession:message.to];
     ChatMessage* chatMessage = [[ChatMessage alloc] initWithXMPPMessage:message];
     [session.msgs addObject:chatMessage];
-
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_MESSAGE_SENT object:chatMessage ];
     return chatMessage;
 }
-
-//将要发送在线状态
-- (XMPPPresence *)xmppStream:(XMPPStream *)sender willSendPresence:(XMPPPresence *)presence{
-    return presence;
+//已发送聊天
+- (void)xmppStream:(XMPPStream *)sender didSendMessage:(XMPPMessage *)message{
+#ifdef DEBUG
+    NSLog(@"xmpp sent message:\n%@\n\n",message);
+#endif
+}
+//发送聊天失败
+- (void)xmppStream:(XMPPStream *)sender didFailToSendMessage:(XMPPMessage *)message error:(NSError *)error{
+#ifdef DEBUG
+    NSLog(@"xmpp send message failed: %@\nmessage:\n%@\n\n",error,message);
+#endif
+}
+//收到聊天
+- (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
+#ifdef DEBUG
+    NSLog(@"xmpp message received:\n%@\n\n",message);
+#endif
+    // only chat message with body proceeds
+    if (!message.isChatMessageWithBody) {
+        return;
+    }
+    
+    // generate chatMessage
+    ChatMessage *chatMessage = [[ChatMessage alloc] initWithBody:message.body From:message.from To:message.to];
+    
+    Session* session = [self.account getSession:chatMessage.from];
+    [session.msgs addObject:chatMessage];
+    
+    //发送通知
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_MESSAGE_RECEIVED object:self ];
 }
 
 
+//将要发送IQ
+- (XMPPIQ *)xmppStream:(XMPPStream *)sender willSendIQ:(XMPPIQ *)iq{
+#ifdef DEBUG
+    NSLog(@"xmpp will send iq:\n%@\n\n",iq);
+#endif
+    return iq;
+}
 //已发送IQ
 - (void)xmppStream:(XMPPStream *)sender didSendIQ:(XMPPIQ *)iq{
-    
 #ifdef DEBUG
-    NSLog(@"send iq succeed:\n%@\n\n",iq);
+    NSLog(@"xmpp send iq succeed:\n%@\n\n",iq);
 #endif
 }
-
-//已发送信息
-- (void)xmppStream:(XMPPStream *)sender didSendMessage:(XMPPMessage *)message{
-    
-#ifdef DEBUG
-    NSLog(@"send message succeed:\n%@\n\n",message);
-#endif
-}
-
-//已发送在线状态
-- (void)xmppStream:(XMPPStream *)sender didSendPresence:(XMPPPresence *)presence{
-    
-#ifdef DEBUG
-    NSLog(@"send presence succeed:\n%@\n\n",presence);
-#endif
-}
-
-
 //发送IQ失败
 - (void)xmppStream:(XMPPStream *)sender didFailToSendIQ:(XMPPIQ *)iq error:(NSError *)error{
-    
 #ifdef DEBUG
-    NSLog(@"send iq failed error: %@\niq:\n%@\n\n",error,iq);
+    NSLog(@"xmpp send iq failed: %@\niq:\n%@\n\n",error,iq);
 #endif
 }
 
-//发送信息失败
-- (void)xmppStream:(XMPPStream *)sender didFailToSendMessage:(XMPPMessage *)message error:(NSError *)error{
 
+//收到错误信息
+- (void)xmppStream:(XMPPStream *)sender didReceiveError:(NSXMLElement *)error{
 #ifdef DEBUG
-    NSLog(@"send message failed error: %@\nmessage:\n%@\n\n",error,message);
+    NSLog(@"xmpp error received:\n%@\n\n",error);
 #endif
 }
 
-//发送在线状态失败
-- (void)xmppStream:(XMPPStream *)sender didFailToSendPresence:(XMPPPresence *)presence error:(NSError *)error{
-    
-#ifdef DEBUG
-    NSLog(@"send presence failed error: %@\npresence:\n%@\n\n",error,presence);
-#endif
-}
 
-// 连接成功
-- (void)xmppStreamDidConnect:(XMPPStream *)sender{
-#ifdef DEBUG
-    NSLog(@"xmppstream did connect");
-#endif
-}
-
-//连接超时
-- (void)xmppStreamConnectDidTimeout:(XMPPStream *)sender{
-#ifdef DEBUG
-    NSLog(@"xmppstream connect timeout");
-#endif
-}
-
-// 断开连接成功
-- (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
-#ifdef DEBUG
-    NSLog(@"xmppstream did disconnect");
-#endif
-    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_DISCONNECTED object:self];
-}
-
-// 验证成功
-- (void) xmppStreamDidAuthenticate:(XMPPStream *)sender{
-#ifdef DEBUG
-    NSLog(@"xmppstream did authenticate");
-#endif
-}
-
-// 验证失败
-- (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error{
-#ifdef DEBUG
-    NSLog(@"xmppstream did not authenticate");
-#endif
-}
 @end

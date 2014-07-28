@@ -11,6 +11,7 @@
 
 @implementation MessageBox
 
+// 提示信息，模态对话框
 + (UIAlertView*) ShowMessage: (NSString*) msg
 {
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
@@ -20,17 +21,18 @@
     return alert;
 }
 
-
-+ (MBProgressHUD*) ShowToast: (NSString*) msg{
-    return [self Show: MBProgressHUDModeText Toast:msg Within:2.0];
+// 显示提示信息，自动消失
++ (MBProgressHUD*) Toast: (NSString*) msg In: (UIView*)view{
+    return [self Toast:msg Mode: MBProgressHUDModeText Within:2.0 In:view];
 }
 
-+ (MBProgressHUD*) Show: (MBProgressHUDMode) mode Toast:(NSString *)msg{
-    
-    UIWindow *topWindow = [[[UIApplication sharedApplication] windows] lastObject];
-    UIView *topView = [[topWindow subviews] lastObject];
-    
-    MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:topView animated:YES];
+// 显示等待信息，不自动消失
++ (MBProgressHUD*) Toasting: (NSString*) msg In: (UIView*)view{
+    return [self  Toast:msg Mode: MBProgressHUDModeIndeterminate In: view];
+}
+
++ (MBProgressHUD*) Toast:(NSString *)msg Mode: (MBProgressHUDMode) mode In: (UIView*)view{
+    MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
     
     hud.mode = mode;
     hud.labelText = msg;
@@ -39,16 +41,24 @@
     return hud;
 }
 
-+ (MBProgressHUD*) ShowToast:(NSString *)msg Within:(NSTimeInterval)time{
-    MBProgressHUD* hud = [self ShowToast:msg];
++ (MBProgressHUD*) Toast:(NSString *)msg Within:(NSTimeInterval)time In: (UIView*)view{
+    MBProgressHUD* hud = [self Toast:msg In: (UIView*)view];
     [hud hide:YES afterDelay:time];
     return hud;
 }
 
-+ (MBProgressHUD*) Show: (MBProgressHUDMode) mode Toast:(NSString *)msg Within:(NSTimeInterval)time{
-    MBProgressHUD* hud = [self Show: mode Toast:msg];
++ (MBProgressHUD*) Toast:(NSString *)msg Mode: (MBProgressHUDMode) mode Within:(NSTimeInterval)time In: (UIView*)view{
+    MBProgressHUD* hud = [self Toast:msg Mode:mode In: (UIView*)view];
     [hud hide:YES afterDelay:time];
     return hud;
+}
+
++ (void) clearToasts:(UIView *)view{
+    [MBProgressHUD hideAllHUDsForView:view animated:NO];
+}
+
++ (void) hideTopToast:(UIView *)view{
+    [MBProgressHUD hideHUDForView:view animated:NO];
 }
 
 @end

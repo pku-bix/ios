@@ -49,33 +49,20 @@ AppDelegate* appdelegate;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
-    // UI enhancement
+	// UI enhancement
     [self.btnLogin primaryStyle];
-    
     
     // retain xmppStream
     appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
-    // add self to xmppStream delegate
-    [appdelegate.xmppStream removeDelegate:self];
-    [appdelegate.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
-    
     // 尝试加载用户
     account = [Account loadDefault];
     if (account != nil) {
-        
         self.username.text = [account.Jid user];
         self.password.text = account.password;
-        
-        if(account.autoLogin){
-            [self doLogin];
-        }
+        if(account.autoLogin)   [self doLogin];
     }
-    else{
-        [self.username becomeFirstResponder];
-    }
+    else    [self.username becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -88,28 +75,20 @@ AppDelegate* appdelegate;
 {
     // already loaded, update pswd
     if([account.bareJid isEqualToString: [self.username.text toJid]]){
-        
         account.password = self.password.text;
     }
     // new login user
     else{
-        
-        // try load account
         account = [Account loadAccount:[self.username.text toJid]];
         
         if(account == nil){
             account = [[Account alloc] initWithUsername:self.username.text
                        Password:self.password.text];
         }
-        else{
-            account.password = self.password.text;
-        }
+        else    account.password = self.password.text;
     }
-    
-    // try to login
     [self doLogin];
 }
-
 
 // 结束输入。
 // 对于用户名：关闭软键盘；对于密码：执行登录。
@@ -126,72 +105,74 @@ AppDelegate* appdelegate;
 }
 
 
-
-//////////////////////////////////////////////////////////////////////////////////////////
-// private methods
-
 - (void) doLogin{
-    
+    hud = [MessageBox Toasting:@"正在连接服务器" In:self.view];
     self.view.userInteractionEnabled = NO;
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"正在连接服务器";
     
     [appdelegate setupAccount: account];
-    [appdelegate.xmppStream removeDelegate:self];
-    [appdelegate.xmppStream addDelegate: self delegateQueue:dispatch_get_main_queue()];
-    
     [appdelegate.xmppStream connect];
 }
 
-
-// connect succeed
-- (void)xmppStreamDidConnect:(XMPPStream *)sender{
-    
-    hud.labelText = @"正在验证";
-    [appdelegate.xmppStream authenticate];
+- (void)viewWillAppear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(connected:)
+                                                 name:EVENT_CONNECTED   object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(connect_timeout:)
+                                                 name:EVENT_CONNECT_TIMEOUT   object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(connect_error:)
+                                                 name:EVENT_DISCONNECTED   object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(authenticated:)
+                                                 name:EVENT_AUTHENTICATED   object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(authenticate_failed:)
+                                                 name:EVENT_AUTHENTICATE_FAILED   object:nil];
 }
-//- (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
-//    
-//    hud.mode = MBProgressHUDModeText;
-//    hud.labelText = @"连接服务器错误，请检查网络设置";
-//    [hud hide:YES afterDelay:2.0];
-//    
-//    self.view.userInteractionEnabled = YES;
-//}
-- (void)xmppStreamConnectDidTimeout:(XMPPStream *)sender{
-    
-    hud.mode = MBProgressHUDModeText;
-    hud.labelText = @"连接服务器超时，请检查网络设置";
-    [hud hide:YES afterDelay:2.0];
-    
+- (void)viewWillDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:EVENT_CONNECTED  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:EVENT_CONNECT_TIMEOUT  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:EVENT_DISCONNECTED  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:EVENT_AUTHENTICATED  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:EVENT_AUTHENTICATE_FAILED  object:nil];
+}
+- (void)connected:(NSNotification*)n{
+    hud.labelText = @"正在验证";
+}
+- (void)connect_error:(NSNotification*)n{
+    [hud hide:YES];
+    [MessageBox Toast:@"连接服务器错误，请检查网络设置" In:self.view];
     self.view.userInteractionEnabled = YES;
 }
-
-
-// authentication
-- (void) xmppStreamDidAuthenticate:(XMPPStream *)sender{
+- (void)connect_timeout:(NSNotification*)n{
+    [hud hide:YES];
+    [MessageBox Toast:@"连接服务器超时，请检查网络设置" In:self.view];
+    self.view.userInteractionEnabled = YES;
+}
+- (void)authenticated:(NSNotification*)n{
+    [hud hide:YES];
+    self.view.userInteractionEnabled = YES;
     
-    [appdelegate.xmppStream goOnline];
     account.autoLogin = YES;
     [[NSUserDefaults standardUserDefaults] setObject:account.bareJid forKey:KEY_ACTIVE_JID];
-    
-    self.view.userInteractionEnabled = YES;
-    
     [self performSegueWithIdentifier:@"main" sender:self];
 }
-- (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error{
+- (void)authenticate_failed:(NSNotification*)n{
+    [hud hide:YES];
+    [MessageBox Toast:@"用户名或密码不正确" In: self.view];
     
-    hud.mode = MBProgressHUDModeText;
-    hud.labelText = @"用户名或密码不正确";
-    [hud hide:YES afterDelay:2.0];
-    
+    self.password.text = @"";
+    account.autoLogin = NO;
+    account.password = @"";
+    [account save];
     self.view.userInteractionEnabled = YES;
 }
-
 
 // keyboard dismiss
 - (IBAction)Tap:(id)sender {
-    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+    [[UIApplication sharedApplication]
+     sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
 
 @end

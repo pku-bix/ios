@@ -23,17 +23,15 @@ Account* account;
     return self;
 }
 
+//发送在线状态
 -(void)goOnline{
-    
-    //发送在线状态
     XMPPPresence *presence = [XMPPPresence presence];
     [self sendElement:presence];
     account.presence = true;
 }
 
+//发送下线状态
 -(void)goOffline{
-    
-    //发送下线状态
     XMPPPresence *presence = [XMPPPresence presenceWithType:@"unavailable"];
     [self sendElement:presence];
     

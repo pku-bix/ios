@@ -15,8 +15,6 @@
 @property (nonatomic,retain) XMPPJID* Jid;
 @property (nonatomic, readonly) NSString* bareJid;
 @property (nonatomic,copy) NSString* password;
-
-//@property (nonatomic) int selectedTabIndex;
 @property (nonatomic) BOOL autoLogin;
 @property (nonatomic) BOOL presence;
 

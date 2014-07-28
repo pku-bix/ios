@@ -44,6 +44,10 @@ static  NSString *const EVENT_MESSAGE_RECEIVED=@"message_received";
 static  NSString *const EVENT_MESSAGE_SENT=@"message_sent";
 static  NSString *const EVENT_CONTACT_ADDED=@"contact_added";
 static  NSString *const EVENT_DISCONNECTED=@"disconnected";
+static  NSString *const EVENT_CONNECTED=@"connected";
+static  NSString *const EVENT_CONNECT_TIMEOUT=@"connect_timeout";
+static  NSString *const EVENT_AUTHENTICATED=@"authenticated";
+static  NSString *const EVENT_AUTHENTICATE_FAILED=@"authenticate_failed";
 
 
 /* reuse key
