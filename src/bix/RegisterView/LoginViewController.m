@@ -59,6 +59,7 @@ AppDelegate* appdelegate;
     appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     // add self to xmppStream delegate
+    [appdelegate.xmppStream removeDelegate:self];
     [appdelegate.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
     
     // auto login
@@ -139,6 +140,7 @@ AppDelegate* appdelegate;
     hud.labelText = @"正在连接服务器";
     
     [appdelegate setupAccount: account];
+    [appdelegate.xmppStream removeDelegate:self];
     [appdelegate.xmppStream addDelegate: self delegateQueue:dispatch_get_main_queue()];
     
     [appdelegate.xmppStream connect];

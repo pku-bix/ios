@@ -42,6 +42,9 @@
     
     self.xmppDelegate.account = ac;
     
+    //释放原来的代理
+    [self.xmppStream removeDelegate:self.xmppDelegate];
+
     //初始化XMPPStream
     self.xmppStream = [[XMPPStream alloc] initWithAccount:self.account];
     [self.xmppStream addDelegate:self.xmppDelegate delegateQueue:dispatch_get_main_queue()];
