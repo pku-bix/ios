@@ -150,14 +150,14 @@ AppDelegate* appdelegate;
     hud.labelText = @"正在验证";
     [appdelegate.xmppStream authenticate];
 }
-- (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
-    
-    hud.mode = MBProgressHUDModeText;
-    hud.labelText = @"连接服务器错误，请检查网络设置";
-    [hud hide:YES afterDelay:2.0];
-    
-    self.view.userInteractionEnabled = YES;
-}
+//- (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
+//    
+//    hud.mode = MBProgressHUDModeText;
+//    hud.labelText = @"连接服务器错误，请检查网络设置";
+//    [hud hide:YES afterDelay:2.0];
+//    
+//    self.view.userInteractionEnabled = YES;
+//}
 - (void)xmppStreamConnectDidTimeout:(XMPPStream *)sender{
     
     hud.mode = MBProgressHUDModeText;

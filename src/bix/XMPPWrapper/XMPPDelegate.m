@@ -29,9 +29,9 @@
 //收到消息
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
     
-//#ifdef DEBUG
-//    NSLog(@"message received:\n%@\n\n",message);
-//#endif
+#ifdef DEBUG
+    NSLog(@"message received:\n%@\n\n",message);
+#endif
 
     // only chat message with body proceeds
     if (!message.isChatMessageWithBody) {
@@ -121,9 +121,9 @@
 //已发送信息
 - (void)xmppStream:(XMPPStream *)sender didSendMessage:(XMPPMessage *)message{
     
-//#ifdef DEBUG
-//    NSLog(@"send message succeed:\n%@\n\n",message);
-//#endif
+#ifdef DEBUG
+    NSLog(@"send message succeed:\n%@\n\n",message);
+#endif
 }
 
 //已发送在线状态
@@ -159,15 +159,39 @@
 #endif
 }
 
-
-// authentication succeed
-- (void) xmppStreamDidAuthenticate:(XMPPStream *)sender{
+// 连接成功
+- (void)xmppStreamDidConnect:(XMPPStream *)sender{
+#ifdef DEBUG
+    NSLog(@"xmppstream did connect");
+#endif
 }
 
-// 成功断开连接
+//连接超时
+- (void)xmppStreamConnectDidTimeout:(XMPPStream *)sender{
+#ifdef DEBUG
+    NSLog(@"xmppstream connect timeout");
+#endif
+}
+
+// 断开连接成功
 - (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
-    
+#ifdef DEBUG
+    NSLog(@"xmppstream did disconnect");
+#endif
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_DISCONNECTED object:self];
 }
 
+// 验证成功
+- (void) xmppStreamDidAuthenticate:(XMPPStream *)sender{
+#ifdef DEBUG
+    NSLog(@"xmppstream did authenticate");
+#endif
+}
+
+// 验证失败
+- (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error{
+#ifdef DEBUG
+    NSLog(@"xmppstream did not authenticate");
+#endif
+}
 @end
