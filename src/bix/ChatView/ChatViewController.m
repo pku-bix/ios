@@ -324,9 +324,13 @@ bool scrollNeeded;
     isAnimating = false;
 }
 
-// keyboard dismiss
+// 结束输入
+// 关闭软键盘，并执行发送
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
+    if (textField == self.textView) {
+        [textField resignFirstResponder];
+        [self Send:NULL];
+    }
     return YES;
 }
 

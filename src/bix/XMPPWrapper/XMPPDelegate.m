@@ -162,15 +162,12 @@
 
 // authentication succeed
 - (void) xmppStreamDidAuthenticate:(XMPPStream *)sender{
-/*    // update info
-    self.account.autoLogin = YES;
+}
+
+// 成功断开连接
+- (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
     
-    // go online
-    [sender goOnline];
-    
-    
-    //mark account as active
-    [[NSUserDefaults standardUserDefaults] setObject:sender.myJID.bare forKey:KEY_ACTIVE_JID];*/
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_DISCONNECTED object:self];
 }
 
 @end

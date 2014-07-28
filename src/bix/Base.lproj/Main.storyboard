@@ -35,19 +35,14 @@
                                 <items>
                                     <barButtonItem style="plain" id="JEf-Fx-EVn">
                                         <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入发送内容" minimumFontSize="17" clearButtonMode="whileEditing" id="A6D-6Y-92a">
-                                            <rect key="frame" x="16" y="7" width="234" height="30"/>
+                                            <rect key="frame" x="16" y="7" width="291" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
                                             <connections>
                                                 <outlet property="delegate" destination="MC3-cf-Ayd" id="84c-dD-L31"/>
                                             </connections>
                                         </textField>
-                                    </barButtonItem>
-                                    <barButtonItem title="发送" id="AzN-eo-a0e">
-                                        <connections>
-                                            <action selector="Send:" destination="MC3-cf-Ayd" id="imS-CI-UEY"/>
-                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -276,7 +271,7 @@
         <!--Login View Controller - 登录到 Bix-->
         <scene sceneID="c4v-0H-Wcf">
             <objects>
-                <viewController id="gwR-gu-Shx" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" id="gwR-gu-Shx" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DXy-Cf-RZb"/>
                         <viewControllerLayoutGuide type="bottom" id="BBa-6x-346"/>

@@ -25,6 +25,6 @@
 
 // account should be set before call this method
 -(void)setupAccount: (Account*)account;
-
+-(void) logOut;
 
 @end

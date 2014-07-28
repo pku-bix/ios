@@ -115,7 +115,8 @@ AppDelegate* appdelegate;
 }
 
 
-// close input
+// 结束输入。
+// 对于用户名：关闭软键盘；对于密码：执行登录。
 - (BOOL) textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     

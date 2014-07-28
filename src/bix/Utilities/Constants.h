@@ -43,6 +43,7 @@ static  NSString *const EVENT_BUDDY_PRESENCE=@"buddy_presence";
 static  NSString *const EVENT_MESSAGE_RECEIVED=@"message_received";
 static  NSString *const EVENT_MESSAGE_SENT=@"message_sent";
 static  NSString *const EVENT_CONTACT_ADDED=@"contact_added";
+static  NSString *const EVENT_DISCONNECTED=@"disconnected";
 
 
 /* reuse key
