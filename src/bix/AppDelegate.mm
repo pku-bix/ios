@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "XMPPStream+Wrapper.h"
 #import "MainTabBarController.h"
+#import "SettingViewController.h"
 
 @implementation AppDelegate
 
@@ -31,11 +32,6 @@
     self = [super init];
     if(self){
         // initialization
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(didLogOut:)
-                                                     name:EVENT_DISCONNECTED
-                                                   object:nil];
     }
     return self;
 }
@@ -57,19 +53,6 @@
 
 -(void) logOut{
     [self.xmppStream disconnectAfterSending];
-}
-
--(void) didLogOut: (NSNotification*) notification{
-    
-    //释放代理
-    [self.xmppStream removeDelegate:self.xmppDelegate];
-
-    account.autoLogin = false;
-    [account save];
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    UIViewController *lvc = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
-    [(UINavigationController*)self.window.rootViewController pushViewController:lvc animated:NO];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -110,9 +93,6 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:EVENT_DISCONNECTED
-                                                  object:nil];
     if (self.account.presence) {
         [self.account save];
     }

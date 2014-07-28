@@ -9,6 +9,7 @@
 #import "SettingViewController.h"
 #import "AppDelegate.h"
 #import "UIButton+Bootstrap.h"
+#import "Constants.h"
 
 @interface SettingViewController ()
 - (IBAction)Logout:(id)sender;
@@ -23,10 +24,6 @@
     NSString *aboutApp;
     
 }
-
-
-
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -95,6 +92,30 @@
     
     AppDelegate* appdelegate  = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [appdelegate logOut];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated{
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogOut:)
+                                             name:EVENT_DISCONNECTED object:nil];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void) didLogOut: (NSNotification*) notification{
+    
+    AppDelegate* appdelegate  = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    //释放代理
+    [appdelegate.xmppStream removeDelegate:appdelegate.xmppDelegate];
+    
+    //保存账号
+    appdelegate.account.autoLogin = false;
+    [appdelegate.account save];
+    
+    [self performSegueWithIdentifier:@"login" sender:self];
 }
 
 @end
