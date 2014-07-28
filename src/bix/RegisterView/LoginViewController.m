@@ -62,7 +62,7 @@ AppDelegate* appdelegate;
     [appdelegate.xmppStream removeDelegate:self];
     [appdelegate.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
     
-    // auto login
+    // 尝试加载用户
     account = [Account loadDefault];
     if (account != nil) {
         

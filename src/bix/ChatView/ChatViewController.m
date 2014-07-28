@@ -19,7 +19,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *textView;
 
-- (IBAction)Send:(id)sender;
 - (IBAction)Tap:(id)sender;
 
 @end
@@ -115,16 +114,6 @@ bool scrollNeeded;
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)Send:(id)sender {
-    NSString *message = self.textView.text;
-    if (message.length == 0) return;
-    
-    [appdelegate.xmppStream send:self.session.remoteJid Message:message];
-    
-    self.textView.text = @"";
-    [self.textView resignFirstResponder];
 }
 
 - (void) updateList: (NSNotification*) notification{
@@ -329,7 +318,14 @@ bool scrollNeeded;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == self.textView) {
         [textField resignFirstResponder];
-        [self Send:NULL];
+
+        NSString *message = self.textView.text;
+        if (message.length == 0) return YES;
+        
+        [appdelegate.xmppStream send:self.session.remoteJid Message:message];
+        
+        self.textView.text = @"";
+        [self.textView resignFirstResponder];
     }
     return YES;
 }

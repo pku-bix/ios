@@ -52,6 +52,7 @@
 }
 
 -(void) logOut{
+    [self.xmppStream goOffline];
     [self.xmppStream disconnectAfterSending];
 }
 
