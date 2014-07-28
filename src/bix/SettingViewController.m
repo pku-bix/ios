@@ -57,7 +57,7 @@
     [self.view addSubview:_textViewTitle];
     
     _textView = [[UITextView alloc]init];
-    _textView.frame = CGRectMake((rect.size.width-image.size.width)/2-10, 90+image.size.height+20+30, image.size.width+30, 150);
+    _textView.frame = CGRectMake((rect.size.width-image.size.width)/2-25, 90+image.size.height+20+30, image.size.width+60, 150);
     aboutApp = @"本软件是一款集地图、社交、共享于一体的app，旨在通过地图和社交元素帮助电动汽车共享充电桩、共享汽车，从而方便用户，建立圈子.";
     _textView.text = aboutApp;
     _textView.font = [UIFont systemFontOfSize:15];
