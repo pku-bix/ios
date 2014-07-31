@@ -76,7 +76,7 @@ AppDelegate* appdelegate;
     self.view.userInteractionEnabled = NO;
     [MessageBox Toast:@"正在连接服务器" Mode:MBProgressHUDModeIndeterminate In: self.view];
     
-    [appdelegate.xmppStream connect];
+    [appdelegate.xmppStream doConnect];
     
 }
 

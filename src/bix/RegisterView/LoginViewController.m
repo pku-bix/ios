@@ -110,7 +110,7 @@ AppDelegate* appdelegate;
     self.view.userInteractionEnabled = NO;
     
     [appdelegate setupAccount: account];
-    [appdelegate.xmppStream connect];
+    [appdelegate.xmppStream connectWithRetry:1];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -153,6 +153,9 @@ AppDelegate* appdelegate;
 - (void)authenticated:(NSNotification*)n{
     [hud hide:YES];
     self.view.userInteractionEnabled = YES;
+    
+    // 上线。登录时完成上线，隐藏tcp重连的细节。
+    [appdelegate.xmppStream goOnline];
     
     account.autoLogin = YES;
     [[NSUserDefaults standardUserDefaults] setObject:account.bareJid forKey:KEY_ACTIVE_JID];

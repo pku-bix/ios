@@ -13,13 +13,16 @@
 
 @implementation XMPPStream (Wrapper)
 
-
 Account* account;
-
+int nRetry;
 
 -(XMPPStream*)initWithAccount: (Account*)_account{
     self = [self init];
     account = _account;
+    
+    self.myJID = account.Jid;
+    self.hostName = SERVER;
+    
     return self;
 }
 
@@ -37,16 +40,25 @@ Account* account;
     
 }
 
--(BOOL)connect{
-    
-    self.myJID = account.Jid;
-    self.hostName = SERVER;
-    
-    //连接服务器
-    NSError *error = nil;
-    return [self connectWithTimeout:CONNECT_TIMEOUT error: &error];
+// 连接
+-(BOOL)connectWithRetry:(int)count{
+    nRetry = count;
+    return [self doConnect];
 }
 
+// 执行连接
+-(BOOL)doConnect{
+    if (nRetry > 0) {
+        nRetry -- ;
+        return [self connectWithTimeout:CONNECT_TIMEOUT error: nil];
+    }
+    else if (nRetry == -1){
+        return [self connectWithTimeout:CONNECT_TIMEOUT error: nil];
+    }
+    return false;
+}
+
+// 注册
 -(bool) registerAccount{
     NSError* error = nil;
     
@@ -59,18 +71,16 @@ Account* account;
     }
 }
 
+// 验证
 -(void) authenticate{
     NSError *error = nil;
     [self authenticateWithPassword:account.password error:&error];
 }
 
+// 发送聊天
 -(void)send: (XMPPJID*)remoteJid Message:(NSString*)body{
-    
     ChatMessage *msg = [[ChatMessage alloc] initWithBody:body From:self.myJID To:remoteJid];
-    
-    //发送消息
     [self sendElement:msg];
-    
 }
 
 @end

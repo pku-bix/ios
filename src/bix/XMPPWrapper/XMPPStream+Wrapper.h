@@ -13,8 +13,10 @@
 
 -(XMPPStream*)initWithAccount: (Account*)account;
 
+//执行连接
+-(BOOL)doConnect;
 //连接
--(BOOL)connect;
+-(BOOL)connectWithRetry:(int)count;
 //验证
 -(void)authenticate;
 //注册
@@ -25,5 +27,6 @@
 -(void)goOffline;
 //发送
 -(void)send: (XMPPJID*)remoteJid Message:(NSString*)msgtxt;
-
+//重发收件箱
+-(void) resendAll: (XMPPStream*)sender;
 @end

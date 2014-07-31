@@ -107,7 +107,7 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     if (!self.xmppStream.isConnecting && !self.xmppStream.isConnected) {
-        [self.xmppStream connect];
+        [self.xmppStream connectWithRetry:-1];
     }
 }
 

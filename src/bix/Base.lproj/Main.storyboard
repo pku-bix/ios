@@ -73,6 +73,7 @@
                     <connections>
                         <outlet property="tableView" destination="tXb-Jj-y3y" id="Scf-Dv-BgH"/>
                         <outlet property="textView" destination="A6D-6Y-92a" id="f4T-7n-VCJ"/>
+                        <outlet property="vsToolbar" destination="Tur-qa-FHF" id="fy1-jR-ahz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FER-HM-oVd" userLabel="First Responder" sceneMemberID="firstResponder"/>

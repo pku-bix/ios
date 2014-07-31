@@ -18,6 +18,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *textView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *vsToolbar;
 - (IBAction)Tap:(id)sender;
 
 @end
@@ -28,18 +29,10 @@
 // app scope object
 AppDelegate* appdelegate;
 
-// view is animating
-bool isAnimating;
-
-// view needs scroll
-bool scrollNeeded;
-
-
 - (id)init{
     self = [super init];
     if (self) {
         // Custom initialization
-        isAnimating = scrollNeeded = NO;
     }
     return self;
 }
@@ -66,11 +59,14 @@ bool scrollNeeded;
     
     [self updateList:nil];
     
-    // viewsize update event
-    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(KeyboardWillChangeFrame:)
-                                                 name:UIKeyboardWillChangeFrameNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(keyboardDidChangeFrame:)
-                                                 name:UIKeyboardDidChangeFrameNotification  object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(commitKeyboardAnimations:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(commitKeyboardAnimations:)
+                                                 name:UIKeyboardDidHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(updateList:)
                                                  name:EVENT_MESSAGE_RECEIVED    object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(updateList:)
@@ -79,9 +75,13 @@ bool scrollNeeded;
 
 - (void)viewWillDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillChangeFrameNotification  object:nil];
+                                                    name:UIKeyboardWillShowNotification  object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardDidChangeFrameNotification   object:nil];
+                                                    name:UIKeyboardWillHideNotification   object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardDidShowNotification  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardDidHideNotification   object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:EVENT_MESSAGE_RECEIVED object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -94,32 +94,16 @@ bool scrollNeeded;
 }
 
 - (void) updateList: (NSNotification*) notification{
-//    [UIView animateWithDuration:0 animations:^{
-//        [self.tableView reloadData];
-//    } completion:^(BOOL finished) {
-//        
-//        if (isAnimating) {
-//            scrollNeeded = YES;
-//        }
-//        else{
-//            [self ScrollToBottom];
-//        }
-//    }];
     [self.tableView reloadData];
     [self ScrollToBottom];
 }
 
 - (void) ScrollToBottom{
-    
-    if (self.tableView.contentSize.height > self.tableView.frame.size.height)
-    {
+    if (self.tableView.contentSize.height > self.tableView.frame.size.height){
         CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height);
-        
         [self.tableView setContentOffset:offset animated:YES];
-        scrollNeeded = false;
     }
 }
-
 
 #pragma mark - Table view data source
 
@@ -225,47 +209,39 @@ bool scrollNeeded;
 
 #pragma mark - Keyboard related
 
-// generate animation when keyboard will change
--(void)KeyboardWillChangeFrame: (NSNotification *)notification {
-    isAnimating = YES;
+- (void)keyboardWillShow:(NSNotification *)notification {
+    NSDictionary *info = [notification userInfo];
+    NSValue *kbFrame = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+    NSTimeInterval duration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    UIViewAnimationCurve curve = (UIViewAnimationCurve)[info objectForKey:UIKeyboardAnimationCurveUserInfoKey];
     
-    // Get the keyboard rect
-    CGRect kbBeginrect = [[[notification userInfo]
-                           objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    CGRect kbEndrect   = [[[notification userInfo]
-                           objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    NSTimeInterval duration = [[[notification userInfo]
-                                objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    UIViewAnimationCurve curve = (UIViewAnimationCurve)[[notification userInfo]
-                                                        objectForKey:UIKeyboardAnimationCurveUserInfoKey];
-
-    // set animation
-    [UIView beginAnimations:nil context:NULL];
+    [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:duration];
     [UIView setAnimationCurve:curve];
-    
-    // calculate frame rect
-    CGRect rect = self.view.frame;
-    double height_change = kbEndrect.origin.y - kbBeginrect.origin.y;
-    rect.size.height += height_change;
-    self.view.frame = rect;
-    
-    // scroll msgs when up or need scroll
-    //if (kbEndrect.origin.y < kbBeginrect.origin.y || scrollNeeded) {
-        [self.tableView layoutIfNeeded];    // important! recompute size of tableview
-        [self ScrollToBottom];
-    //}
+    self.vsToolbar.constant = kbFrame.CGRectValue.size.height;
+    [self.view layoutIfNeeded];
+    [self ScrollToBottom];
 }
 
-// commit animation & scroll tableview
--(void)keyboardDidChangeFrame:(NSNotification*)notification{
+- (void)keyboardWillHide:(NSNotification *)notification {
+    NSDictionary *info = [notification userInfo];
+    NSTimeInterval duration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    UIViewAnimationCurve curve = (UIViewAnimationCurve)[info objectForKey:UIKeyboardAnimationCurveUserInfoKey];
     
-    [UIView commitAnimations];  // commit animation
-    isAnimating = false;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:duration];
+    [UIView setAnimationCurve:curve];
+    self.vsToolbar.constant = 0;
+    [self.view layoutIfNeeded];
+    [self ScrollToBottom];
 }
 
-// 结束输入
-// 关闭软键盘，并执行发送
+- (void)commitKeyboardAnimations:(NSNotification *)notification {
+    [UIView commitAnimations];
+}
+
+
+// 结束输入，关闭软键盘，并执行发送
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == self.textView) {
         [textField resignFirstResponder];

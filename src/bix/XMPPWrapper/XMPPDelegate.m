@@ -19,10 +19,22 @@
 
 @implementation XMPPDelegate
 
+// 发件箱
+NSMutableArray *qsending;
+
 
 -(id)init{
     self = [super init];
+    qsending = [NSMutableArray new];
     return self;
+}
+
+// 重发
+-(void) resendAll: (XMPPStream*)sender{
+    while(qsending.count>0) {
+        [sender sendElement:qsending.firstObject];
+        [qsending removeObjectAtIndex:0];
+    }
 }
 
 // 连接成功
@@ -34,6 +46,10 @@
     if (!sender.isAuthenticated && !sender.isAuthenticating) {
         [sender authenticate];
     }
+    // 重发
+    if(sender.isAuthenticated){
+        [self resendAll:sender];
+    }
 }
 // 连接超时
 - (void)xmppStreamConnectDidTimeout:(XMPPStream *)sender{
@@ -41,6 +57,7 @@
     NSLog(@"xmppstream connect timeout");
 #endif
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_DISCONNECTED object:self];
+    [sender doConnect];
 }
 // 断开连接成功
 - (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
@@ -55,9 +72,8 @@
 #ifdef DEBUG
     NSLog(@"xmppstream authenticated");
 #endif
-    // 上线
-    [sender goOnline];
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_AUTHENTICATED object:self];
+    [self resendAll:sender];
 }
 // 验证失败
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error{
@@ -86,6 +102,13 @@
 #ifdef DEBUG
     NSLog(@"xmpp send presence failed, error: %@\npresence:\n%@\n\n",error,presence);
 #endif
+    if (error.code == XMPPStreamInvalidState && error.domain==XMPPStreamErrorDomain) {
+        [sender connectWithRetry:-1];
+        [qsending addObject:presence];
+#ifdef DEBUG
+        NSLog(@"state invalid, reconnecting...");
+#endif
+    }
 }
 //收到状态
 - (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence{
@@ -103,14 +126,10 @@
     remoteAccount.presence = [presenceType isEqual: @"available"];
     
     if (![remoteJid.bare isEqualToString:myJid.bare]) {
-        //发送通知
         
-        [[NSNotificationCenter defaultCenter]
-         postNotificationName:EVENT_BUDDY_PRESENCE
-         object:self
-         userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                   remoteAccount, @"account",
-                   nil ]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_BUDDY_PRESENCE object:self
+                                                          userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                    remoteAccount, @"account", nil ]];
     }
 }
 
@@ -134,6 +153,13 @@
 #ifdef DEBUG
     NSLog(@"xmpp send message failed: %@\nmessage:\n%@\n\n",error,message);
 #endif
+    if (error.code == XMPPStreamInvalidState && error.domain==XMPPStreamErrorDomain) {
+        [sender connectWithRetry:-1];
+        [qsending addObject:message];
+#ifdef DEBUG
+        NSLog(@"state invalid, reconnecting...");
+#endif
+    }
 }
 //收到聊天
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
@@ -174,6 +200,13 @@
 #ifdef DEBUG
     NSLog(@"xmpp send iq failed: %@\niq:\n%@\n\n",error,iq);
 #endif
+    if (error.code == XMPPStreamInvalidState && error.domain==XMPPStreamErrorDomain) {
+        [sender connectWithRetry:-1];
+        [qsending addObject:iq];
+#ifdef DEBUG
+        NSLog(@"state invalid, reconnecting...");
+#endif
+    }
 }
 
 
