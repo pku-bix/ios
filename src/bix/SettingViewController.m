@@ -96,12 +96,11 @@
 
 
 - (void)viewWillAppear:(BOOL)animated{
-
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogOut:)
                                              name:EVENT_DISCONNECTED object:nil];
 }
 - (void)viewWillDisappear:(BOOL)animated{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_DISCONNECTED object:NULL];
 }
 
 -(void) didLogOut: (NSNotification*) notification{
