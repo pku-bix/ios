@@ -132,7 +132,7 @@ MBProgressHUD* hud;
 - (void)registered:(NSNotification*)n{
     self.view.userInteractionEnabled = YES;
     [hud hide:YES];
-    [MessageBox Toast:@"注册成功！" In:self.view];
+    [MessageBox ShowMessage:@"注册成功！"];
     [self.navigationController popToRootViewControllerAnimated:true];
 }
 // register failed
