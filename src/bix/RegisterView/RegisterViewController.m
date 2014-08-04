@@ -12,7 +12,7 @@
 #import "Account.h"
 #import "AppDelegate.h"
 #import "XMPPStream+Wrapper.h"
-#import "MBProgressHUD.h"
+#import "Constants.h"
 
 @interface RegisterViewController ()
 - (IBAction)register:(id)sender;
@@ -26,6 +26,7 @@
 
 // Global App Class
 AppDelegate* appdelegate;
+MBProgressHUD* hud;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,6 +53,32 @@ AppDelegate* appdelegate;
     // Dispose of any resources that can be recreated.
 }
 
+- (void) viewWillAppear:(BOOL)animated{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(connected:)
+                                                 name:EVENT_CONNECTED   object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(connect_timeout:)
+                                                 name:EVENT_CONNECT_TIMEOUT   object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(connect_error:)
+                                                 name:EVENT_DISCONNECTED   object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(registered:)
+                                                 name:EVENT_REGISTERED   object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(register_failed:)
+                                                 name:EVENT_REGISTER_FAILED   object:nil];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:EVENT_CONNECTED  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:EVENT_CONNECT_TIMEOUT  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:EVENT_DISCONNECTED  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:EVENT_REGISTERED  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:EVENT_REGISTER_FAILED  object:nil];
+}
+
 - (IBAction)register:(id)sender {
     if(![self.username.text isValidUsername]){
         [MessageBox ShowMessage:@"用户名只能由字母与数字组成，以字母开头，并且不超过32个字符。"];
@@ -59,63 +86,67 @@ AppDelegate* appdelegate;
     }
     
     if(![self.pswd.text isEqualToString:self.pswd2.text]){
-        
         [MessageBox Toast:@"两次输入的密码不一致，请确认。" In: self.view];
         return;
     }
     
-    //do register
+    // setup account
     Account* account = [[Account alloc]
                         initWithUsername:self.username.text
                         Password:self.pswd.text];
-    
     [appdelegate setupAccount: account];
-    [appdelegate.xmppStream addDelegate: self delegateQueue:dispatch_get_main_queue()];
     
     // do wait
     self.view.userInteractionEnabled = NO;
-    [MessageBox Toast:@"正在连接服务器" Mode:MBProgressHUDModeIndeterminate In: self.view];
-    
-    [appdelegate.xmppStream doConnect];
+    hud = [MessageBox Toast:@"正在连接服务器" Mode:MBProgressHUDModeIndeterminate In: self.view];
+    [appdelegate.xmppStream connect:1];
     
 }
 
 // connect succeed
-- (void)xmppStreamDidConnect:(XMPPStream *)sender{
+- (void)connected:(NSNotification*)n{
+    [MessageBox hideTopToast:self.view];
     
     if(![appdelegate.xmppStream registerAccount]){
-        
         self.view.userInteractionEnabled = YES;
+        [hud hide:YES];
         [MessageBox Toast:@"未知错误，请联系管理员。" In: self.view];
     }
-    
+    else{
+        hud.labelText = @"正在注册";
+    }
 }
-- (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
-    
+// connect error
+- (void)connect_error:(NSNotification*)n{
     self.view.userInteractionEnabled = YES;
+    [hud hide:YES];
     [MessageBox Toast: @"连接服务器错误，请检查网络设置" In: self.view];
 }
-- (void)xmppStreamConnectDidTimeout:(XMPPStream *)sender{
-    
+// connect timeout
+- (void)connect_timeout:(NSNotification*)n{
     self.view.userInteractionEnabled = YES;
+    [hud hide:YES];
     [MessageBox Toast: @"连接服务器超时，请检查网络设置" In: self.view];
 }
-
-
 // register succeed
-- (void)xmppStreamDidRegister:(XMPPStream *)sender{
-    
+- (void)registered:(NSNotification*)n{
     self.view.userInteractionEnabled = YES;
-    
+    [hud hide:YES];
     [MessageBox Toast:@"注册成功！" In:self.view];
     [self.navigationController popToRootViewControllerAnimated:true];
 }
-
-- (void)xmppStream:(XMPPStream *)sender didNotRegister:(NSXMLElement *)error{
-    
+// register failed
+- (void)register_failed:(NSNotification*)n{
     self.view.userInteractionEnabled = YES;
-    [MessageBox Toast:@"注册失败，请联系管理员。" In: self.view];
-    NSLog(@"register error: %@", error);
+    [hud hide:YES];
+    
+    NSString *info=@"未知错误，请联系管理员。";
+    NSXMLElement *error = [[[n userInfo] objectForKey:@"error"] elementForName:@"error"];
+    if(error){
+        if([error elementForName:@"conflict"])
+            info = @"用户名已存在，请使用新的用户名";
+    }
+    [MessageBox ShowMessage:info];
 }
 
 @end

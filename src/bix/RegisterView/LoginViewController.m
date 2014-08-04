@@ -110,7 +110,7 @@ AppDelegate* appdelegate;
     self.view.userInteractionEnabled = NO;
     
     [appdelegate setupAccount: account];
-    [appdelegate.xmppStream connectWithRetry:1];
+    [appdelegate.xmppStream reconnect:1];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

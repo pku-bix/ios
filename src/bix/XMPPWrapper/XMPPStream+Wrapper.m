@@ -15,6 +15,14 @@
 
 Account* account;
 int nRetry;
+bool auto_auth;
+
+-(BOOL)getAuto_auth{
+    return auto_auth;
+}
+-(void)setAuto_auth:(BOOL)v{
+    auto_auth = v;
+}
 
 -(XMPPStream*)initWithAccount: (Account*)_account{
     self = [self init];
@@ -26,27 +34,34 @@ int nRetry;
     return self;
 }
 
-//发送在线状态
+-(Account*)getAccount{
+    return account;
+}
+
 -(void)goOnline{
     XMPPPresence *presence = [XMPPPresence presence];
     [self sendElement:presence];
     account.presence = true;
 }
 
-//发送下线状态
 -(void)goOffline{
     XMPPPresence *presence = [XMPPPresence presenceWithType:@"unavailable"];
     [self sendElement:presence];
-    
+    account.presence = false;
 }
 
-// 连接
--(BOOL)connectWithRetry:(int)count{
+-(BOOL)reconnect:(int)count{
     nRetry = count;
+    auto_auth = true;
     return [self doConnect];
 }
 
-// 执行连接
+-(BOOL)connect:(int)count{
+    nRetry = count;
+    auto_auth = false;
+    return [self doConnect];
+}
+
 -(BOOL)doConnect{
     if (nRetry > 0) {
         nRetry -- ;
@@ -58,10 +73,8 @@ int nRetry;
     return false;
 }
 
-// 注册
 -(bool) registerAccount{
     NSError* error = nil;
-    
     if([self registerWithPassword:account.password error:&error]){
         return true;
     }
@@ -71,13 +84,11 @@ int nRetry;
     }
 }
 
-// 验证
 -(void) authenticate{
     NSError *error = nil;
     [self authenticateWithPassword:account.password error:&error];
 }
 
-// 发送聊天
 -(void)send: (XMPPJID*)remoteJid Message:(NSString*)body{
     ChatMessage *msg = [[ChatMessage alloc] initWithBody:body From:self.myJID To:remoteJid];
     [self sendElement:msg];

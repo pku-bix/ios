@@ -22,7 +22,6 @@
 // 发件箱
 NSMutableArray *qsending;
 
-
 -(id)init{
     self = [super init];
     qsending = [NSMutableArray new];
@@ -40,21 +39,22 @@ NSMutableArray *qsending;
 // 连接成功
 - (void)xmppStreamDidConnect:(XMPPStream *)sender{
 #ifdef DEBUG
-    NSLog(@"xmppstream connected");
+    NSLog(@"xmpp connected");
 #endif
     // 验证
-    if (!sender.isAuthenticated && !sender.isAuthenticating) {
+    if ( [sender getAuto_auth] && !sender.isAuthenticated && !sender.isAuthenticating) {
         [sender authenticate];
     }
     // 重发
-    if(sender.isAuthenticated){
+    if([sender getAccount].presence && sender.isAuthenticated){
         [self resendAll:sender];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_CONNECTED object:self];
 }
 // 连接超时
 - (void)xmppStreamConnectDidTimeout:(XMPPStream *)sender{
 #ifdef DEBUG
-    NSLog(@"xmppstream connect timeout");
+    NSLog(@"xmpp connect timeout");
 #endif
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_DISCONNECTED object:self];
     [sender doConnect];
@@ -62,7 +62,7 @@ NSMutableArray *qsending;
 // 断开连接成功
 - (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
 #ifdef DEBUG
-    NSLog(@"xmppstream disconnect");
+    NSLog(@"xmpp disconnect");
 #endif
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_DISCONNECTED object:self];
 }
@@ -70,15 +70,17 @@ NSMutableArray *qsending;
 // 验证成功
 - (void) xmppStreamDidAuthenticate:(XMPPStream *)sender{
 #ifdef DEBUG
-    NSLog(@"xmppstream authenticated");
+    NSLog(@"xmpp authenticated");
 #endif
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_AUTHENTICATED object:self];
-    [self resendAll:sender];
+    if([sender getAccount].presence){
+        [self resendAll:sender];
+    }
 }
 // 验证失败
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error{
 #ifdef DEBUG
-    NSLog(@"xmppstream authenticate failed");
+    NSLog(@"xmpp authenticate failed");
 #endif    
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_AUTHENTICATE_FAILED object:self];
 }
@@ -103,10 +105,10 @@ NSMutableArray *qsending;
     NSLog(@"xmpp send presence failed, error: %@\npresence:\n%@\n\n",error,presence);
 #endif
     if (error.code == XMPPStreamInvalidState && error.domain==XMPPStreamErrorDomain) {
-        [sender connectWithRetry:-1];
+        [sender reconnect:-1];
         [qsending addObject:presence];
 #ifdef DEBUG
-        NSLog(@"state invalid, reconnecting...");
+        NSLog(@"xmpp state invalid, reconnecting...");
 #endif
     }
 }
@@ -154,10 +156,10 @@ NSMutableArray *qsending;
     NSLog(@"xmpp send message failed: %@\nmessage:\n%@\n\n",error,message);
 #endif
     if (error.code == XMPPStreamInvalidState && error.domain==XMPPStreamErrorDomain) {
-        [sender connectWithRetry:-1];
+        [sender reconnect:-1];
         [qsending addObject:message];
 #ifdef DEBUG
-        NSLog(@"state invalid, reconnecting...");
+        NSLog(@"xmpp state invalid, reconnecting...");
 #endif
     }
 }
@@ -201,17 +203,37 @@ NSMutableArray *qsending;
     NSLog(@"xmpp send iq failed: %@\niq:\n%@\n\n",error,iq);
 #endif
     if (error.code == XMPPStreamInvalidState && error.domain==XMPPStreamErrorDomain) {
-        [sender connectWithRetry:-1];
+        [sender reconnect:-1];
         [qsending addObject:iq];
 #ifdef DEBUG
-        NSLog(@"state invalid, reconnecting...");
+        NSLog(@"xmpp state invalid, reconnecting...");
 #endif
     }
 }
 
+// 注册成功
+- (void)xmppStreamDidRegister:(XMPPStream *)sender{
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_REGISTERED object:self ];
+#ifdef DEBUG
+    NSLog(@"xmpp registered");
+#endif
+}
+
+// 注册失败
+- (void)xmppStream:(XMPPStream *)sender didNotRegister:(NSXMLElement *)error{
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_REGISTER_FAILED object:self
+                                                      userInfo: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                                 error,@"error", nil]];
+#ifdef DEBUG
+    NSLog(@"xmpp register failed: \n%@\n\n", error);
+#endif
+}
 
 //收到错误信息
 - (void)xmppStream:(XMPPStream *)sender didReceiveError:(NSXMLElement *)error{
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_ERROR_RECEIVED object:self
+                                                      userInfo: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                                 error, @"error", nil]];
 #ifdef DEBUG
     NSLog(@"xmpp error received:\n%@\n\n",error);
 #endif

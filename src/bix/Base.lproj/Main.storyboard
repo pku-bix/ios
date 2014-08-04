@@ -262,7 +262,7 @@
                     <navigationItem key="navigationItem" title="设置" id="L5w-Lb-kQK"/>
                     <connections>
                         <outlet property="btnLogout" destination="gTo-lk-5I7" id="MKP-zf-mj2"/>
-                        <segue destination="gwR-gu-Shx" kind="modal" identifier="login" id="wRh-Nq-xXO"/>
+                        <segue destination="jJR-kc-dNW" kind="modal" identifier="login" id="phm-sE-ttq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Jj-xf-RIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -466,7 +466,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="wRh-Nq-xXO"/>
-    </inferredMetricsTieBreakers>
 </document>

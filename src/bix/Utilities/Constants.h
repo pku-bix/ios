@@ -48,8 +48,9 @@ static  NSString *const EVENT_CONNECTED=@"connected";
 static  NSString *const EVENT_CONNECT_TIMEOUT=@"connect_timeout";
 static  NSString *const EVENT_AUTHENTICATED=@"authenticated";
 static  NSString *const EVENT_AUTHENTICATE_FAILED=@"authenticate_failed";
-
-
+static  NSString *const EVENT_REGISTERED=@"registered";
+static  NSString *const EVENT_REGISTER_FAILED=@"register_failed";
+static  NSString *const EVENT_ERROR_RECEIVED=@"error_received";
 /* reuse key
  * used for reuse resource identity
  */
