@@ -126,4 +126,5 @@
     aboutBix.title = @"关于";
     
 }
+
 @end
