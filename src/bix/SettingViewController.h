@@ -10,4 +10,8 @@
 
 @interface SettingViewController : UIViewController<UIAlertViewDelegate> 
 
+
+
+- (IBAction)aboutBix:(id)sender;
+
 @end

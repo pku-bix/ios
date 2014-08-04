@@ -10,6 +10,8 @@
 #import "AppDelegate.h"
 #import "UIButton+Bootstrap.h"
 #import "Constants.h"
+#import "aboutViewController.h"
+
 
 @interface SettingViewController ()
 - (IBAction)Logout:(id)sender;
@@ -18,11 +20,11 @@
 
 @implementation SettingViewController
 {
-    CGRect rect;
+    /*CGRect rect;
     UITextView *_textView;
     UITextView *_textViewTitle;
     NSString *aboutApp;
-    
+    */
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -40,7 +42,8 @@
 	// Do any additional setup after loading the view.
 
     [self.btnLogout dangerStyle];
-    rect = [[UIScreen mainScreen] bounds];
+   
+    /*rect = [[UIScreen mainScreen] bounds];
     UIImage *image = [UIImage imageNamed:@"Tesla.png"];
     UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
     imageView.frame = CGRectMake((rect.size.width-image.size.width)/2, 90, image.size.width, image.size.height);
@@ -64,7 +67,7 @@
    //_textView.text = [_textView.text stringByAppendingString:aboutApp];
     
     _textView.editable = NO;
-    [self.view addSubview: _textView];
+    [self.view addSubview: _textView];*/
     //AppDelegate* appdelegate  = (AppDelegate *)[UIApplication sharedApplication].delegate;
     //[appdelegate.account save];
 }
@@ -117,4 +120,10 @@
     [self performSegueWithIdentifier:@"login" sender:self];
 }
 
+- (IBAction)aboutBix:(id)sender {
+    aboutViewController *aboutBix = [[aboutViewController alloc]init];
+    [self.navigationController pushViewController:aboutBix animated:YES];
+    aboutBix.title = @"关于";
+    
+}
 @end

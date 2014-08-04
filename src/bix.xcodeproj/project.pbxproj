@@ -16,6 +16,8 @@
 		E33FF0D6197E50ED007FE69F /* geo_fence-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D5197E50ED007FE69F /* geo_fence-64@2x.png */; };
 		E33FF0D8197E50FD007FE69F /* define_location-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */; };
 		E34419971980BAA400F03459 /* MapButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E34419961980BAA400F03459 /* MapButton.m */; };
+		E36C255B198F6A7700D129E9 /* aboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C2559198F6A7700D129E9 /* aboutViewController.m */; };
+		E36C255C198F6A7700D129E9 /* aboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E36C255A198F6A7700D129E9 /* aboutViewController.xib */; };
 		E374AA8018D9E22700EC575A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA7F18D9E22700EC575A /* CoreLocation.framework */; };
 		E374AA8218D9E23700EC575A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA8118D9E23700EC575A /* QuartzCore.framework */; };
 		E374AA8418D9E24200EC575A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA8318D9E24200EC575A /* OpenGLES.framework */; };
@@ -131,6 +133,9 @@
 		E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "define_location-64@2x.png"; sourceTree = "<group>"; };
 		E34419951980BAA400F03459 /* MapButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapButton.h; sourceTree = "<group>"; };
 		E34419961980BAA400F03459 /* MapButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapButton.m; sourceTree = "<group>"; };
+		E36C2558198F6A7700D129E9 /* aboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aboutViewController.h; path = bix/aboutViewController.h; sourceTree = "<group>"; };
+		E36C2559198F6A7700D129E9 /* aboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = aboutViewController.m; path = bix/aboutViewController.m; sourceTree = "<group>"; };
+		E36C255A198F6A7700D129E9 /* aboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = aboutViewController.xib; path = bix/aboutViewController.xib; sourceTree = "<group>"; };
 		E374AA7F18D9E22700EC575A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E374AA8118D9E23700EC575A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E374AA8318D9E24200EC575A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -369,6 +374,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E36C255D198F705100D129E9 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				E36C2558198F6A7700D129E9 /* aboutViewController.h */,
+				E36C2559198F6A7700D129E9 /* aboutViewController.m */,
+				E36C255A198F6A7700D129E9 /* aboutViewController.xib */,
+				EC10200C18C86FF100B3775E /* SettingViewController.h */,
+				EC10200D18C86FF100B3775E /* SettingViewController.m */,
+			);
+			name = Setting;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		EC05DD9918D0BE49000C9D89 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -850,13 +868,12 @@
 				ECED787A18CF80040041CCC7 /* Utilities */,
 				ECED787E18CF80040041CCC7 /* XMPPWrapper */,
 				ECED787618CF7FE30041CCC7 /* Account */,
-				ECF7E1DC18C0516D002BA385 /* AppDelegate.h */,
+				E36C255D198F705100D129E9 /* Setting */,
 				ECF7E1DD18C0516D002BA385 /* AppDelegate.mm */,
+				ECF7E1DC18C0516D002BA385 /* AppDelegate.h */,
 				ECF7E1DF18C0516D002BA385 /* Main.storyboard */,
 				EC10200918C85DF200B3775E /* MainTabBarController.h */,
 				EC10200A18C85DF200B3775E /* MainTabBarController.m */,
-				EC10200C18C86FF100B3775E /* SettingViewController.h */,
-				EC10200D18C86FF100B3775E /* SettingViewController.m */,
 				EC10200F18C8701400B3775E /* MapViewController.h */,
 				EC10201018C8701400B3775E /* MapViewController.m */,
 				E34419951980BAA400F03459 /* MapButton.h */,
@@ -999,6 +1016,7 @@
 				EC31663D1930BC18002E9609 /* msg_received-100.png in Resources */,
 				EC3166301930B595002E9609 /* map_marker-24@2x.png in Resources */,
 				ECF7E1E118C0516D002BA385 /* Main.storyboard in Resources */,
+				E36C255C198F6A7700D129E9 /* aboutViewController.xib in Resources */,
 				E3D8A8E619800B9B00E40C14 /* Default@2x.png in Resources */,
 				EC31663E1930BC18002E9609 /* msg_received-100@2x.png in Resources */,
 			);
@@ -1053,6 +1071,7 @@
 				ECC16B8518D97EB800C1A37E /* AddContactViewController.m in Sources */,
 				EC9908A418C33C9200798FAB /* GCDMulticastDelegate.m in Sources */,
 				EC99089C18C33C9200798FAB /* XMPPIQ.m in Sources */,
+				E36C255B198F6A7700D129E9 /* aboutViewController.m in Sources */,
 				ECF7E1DE18C0516D002BA385 /* AppDelegate.mm in Sources */,
 				EC316626193065AC002E9609 /* UIButton+Bootstrap.m in Sources */,
 				EC99084218C3397000798FAB /* DDAbstractDatabaseLogger.m in Sources */,
