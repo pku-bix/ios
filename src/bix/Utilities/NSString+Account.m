@@ -29,13 +29,6 @@
     return bareJid;
 }
 
-/*
-//username
--(NSString*)toJid:(NSString*)servername{
-    
-    return [self stringByAppendingFormat: @"@%@", servername];
-}
-
 -(NSString*)toUsername{
     //username
     if ([self rangeOfString:@"@"].location == NSNotFound )
@@ -43,6 +36,13 @@
     
     //Jid/addr
     return [[self componentsSeparatedByString:@"@"] objectAtIndex:0];
+}
+
+/*
+//username
+-(NSString*)toJid:(NSString*)servername{
+    
+    return [self stringByAppendingFormat: @"@%@", servername];
 }
 
 -(NSString*)toAddr:(NSString*)devicename{

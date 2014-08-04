@@ -20,12 +20,7 @@
 
 - (IBAction)Login:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UITextField *username;
-@property (weak, nonatomic) IBOutlet UITextField *password;
-@property (weak, nonatomic) IBOutlet UIButton *btnLogin;
-
 @end
-
 
 
 @implementation LoginViewController
@@ -55,62 +50,11 @@ AppDelegate* appdelegate;
     // retain xmppStream
     appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
-    // 尝试加载用户
-    account = [Account loadDefault];
-    if (account != nil) {
-        self.username.text = [account.Jid user];
-        self.password.text = account.password;
-        if(account.autoLogin)   [self doLogin];
+    // get active user
+    if (!self.username.text || [self.username.text isEqualToString:@""]) {
+        NSString *tmp = [Account getActiveJid];
+        self.username.text = tmp==nil ? @"" : [tmp toUsername];
     }
-    else    [self.username becomeFirstResponder];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)Login:(id)sender
-{
-    // already loaded, update pswd
-    if([account.bareJid isEqualToString: [self.username.text toJid]]){
-        account.password = self.password.text;
-    }
-    // new login user
-    else{
-        account = [Account loadAccount:[self.username.text toJid]];
-        
-        if(account == nil){
-            account = [[Account alloc] initWithUsername:self.username.text
-                       Password:self.password.text];
-        }
-        else    account.password = self.password.text;
-    }
-    [self doLogin];
-}
-
-// 结束输入。
-// 对于用户名：关闭软键盘；对于密码：执行登录。
-- (BOOL) textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    
-    if (textField==self.username) {
-        [self.password becomeFirstResponder];
-    }
-    else if(textField == self.password){
-        [self Login: textField];
-    }
-    return YES;
-}
-
-
-- (void) doLogin{
-    hud = [MessageBox Toasting:@"正在连接服务器" In:self.view];
-    self.view.userInteractionEnabled = NO;
-    
-    [appdelegate setupAccount: account];
-    [appdelegate.xmppStream reconnect:1];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -125,6 +69,15 @@ AppDelegate* appdelegate;
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(authenticate_failed:)
                                                  name:EVENT_AUTHENTICATE_FAILED   object:nil];
 }
+-(void)viewDidAppear:(BOOL)animated{
+    if (self.username && ![self.username.text isEqualToString:@""]) {
+        [self textFieldDidEndEditing:self.username];
+        [self.password becomeFirstResponder];
+    }
+    else{
+        [self.username becomeFirstResponder];
+    }
+}
 - (void)viewWillDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:EVENT_CONNECTED  object:nil];
@@ -137,6 +90,26 @@ AppDelegate* appdelegate;
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:EVENT_AUTHENTICATE_FAILED  object:nil];
 }
+
+- (IBAction)Login:(id)sender
+{
+    // loaded
+    if(account && [account.bareJid isEqualToString: [self.username.text toJid]]){
+        account.password = self.password.text;
+    }
+    // not loaded
+    else{
+        account = [[Account alloc] initWithUsername:self.username.text
+                                               Password:self.password.text];
+    }
+    // do login
+    hud = [MessageBox Toasting:@"正在连接服务器" In:self.view];
+    self.view.userInteractionEnabled = NO;
+    
+    [appdelegate setupAccount: account];
+    [appdelegate.xmppStream reconnect:1];
+}
+
 - (void)connected:(NSNotification*)n{
     hud.labelText = @"正在验证";
 }
@@ -176,6 +149,41 @@ AppDelegate* appdelegate;
 - (IBAction)Tap:(id)sender {
     [[UIApplication sharedApplication]
      sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+}
+
+// username end editing
+- (void) textFieldDidEndEditing:(UITextField *)textField{
+    if (textField==self.username) {
+        // valid username
+        if (self.username.text && ![self.username.text isEqualToString:@""]) {
+            
+            account = [Account loadAccount:[self.username.text toJid] ];
+            if (account) {  // loaded
+                self.password.text = account.password;      // fill passwd
+                if(account.autoLogin)   [self Login:self];
+            }
+            else{           // can't load
+                self.password.text = @"";
+                [self.password becomeFirstResponder];
+            }
+        }
+    }
+}
+
+// passwd return
+- (BOOL) textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    
+    if(textField == self.password){
+        [self Login: self];
+    }
+    return YES;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

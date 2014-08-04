@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "XMPPStream+Wrapper.h"
 #import "Constants.h"
+#import "LoginViewController.h"
 
 @interface RegisterViewController ()
 - (IBAction)register:(id)sender;
@@ -27,6 +28,7 @@
 // Global App Class
 AppDelegate* appdelegate;
 MBProgressHUD* hud;
+bool succeed;   // indicate whether register succeed
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,6 +47,7 @@ MBProgressHUD* hud;
     appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     [self.username becomeFirstResponder];
+    self.navigationController.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,7 +57,6 @@ MBProgressHUD* hud;
 }
 
 - (void) viewWillAppear:(BOOL)animated{
-    
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(connected:)
                                                  name:EVENT_CONNECTED   object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(connect_timeout:)
@@ -65,6 +67,7 @@ MBProgressHUD* hud;
                                                  name:EVENT_REGISTERED   object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(register_failed:)
                                                  name:EVENT_REGISTER_FAILED   object:nil];
+    succeed = false;
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -100,7 +103,6 @@ MBProgressHUD* hud;
     self.view.userInteractionEnabled = NO;
     hud = [MessageBox Toast:@"正在连接服务器" Mode:MBProgressHUDModeIndeterminate In: self.view];
     [appdelegate.xmppStream connect:1];
-    
 }
 
 // connect succeed
@@ -133,7 +135,15 @@ MBProgressHUD* hud;
     self.view.userInteractionEnabled = YES;
     [hud hide:YES];
     [MessageBox ShowMessage:@"注册成功！"];
+    succeed = true;
     [self.navigationController popToRootViewControllerAnimated:true];
+}
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    if ([viewController isKindOfClass:[LoginViewController class]] && succeed) {
+        
+        LoginViewController *v = (LoginViewController*) viewController;
+        v.username.text = self.username.text;
+    }
 }
 // register failed
 - (void)register_failed:(NSNotification*)n{

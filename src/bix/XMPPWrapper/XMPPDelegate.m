@@ -80,7 +80,7 @@ NSMutableArray *qsending;
 // 验证失败
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error{
 #ifdef DEBUG
-    NSLog(@"xmpp authenticate failed");
+    NSLog(@"xmpp authenticate failed:\n%@\n\n",error);
 #endif    
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_AUTHENTICATE_FAILED object:self];
 }

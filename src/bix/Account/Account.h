@@ -41,7 +41,6 @@
 - (void) save;
 - (void) clearAll;
 + (Account*) loadAccount: (NSString*)bareJid;
-+ (Account*) loadDefault;
-
++ (NSString*) getActiveJid;
 
 @end

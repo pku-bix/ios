@@ -18,12 +18,14 @@
 
 // Jid/addr
 -(NSString*)toJid;
+
+// username/Jid/addr
+-(NSString*)toUsername;
+
 /*
  // username
 -(NSString*)toJid:(NSString*)servername;
 
-// username/Jid/addr
--(NSString*)toUsername;
 
 // Jid/addr
 -(NSString*)toAddr:(NSString*)devicename;

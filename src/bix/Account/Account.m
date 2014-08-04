@@ -88,11 +88,9 @@
     return data == nil ? nil : [NSKeyedUnarchiver unarchiveObjectWithData: data];
 }
 
-+ (Account*) loadDefault{
++ (NSString*) getActiveJid{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString* activeJid = [defaults stringForKey: KEY_ACTIVE_JID];
-    
-    return activeJid == nil ? nil : [Account loadAccount:activeJid];
+    return [defaults stringForKey: KEY_ACTIVE_JID];
 }
 
 - (void) clearAll{
