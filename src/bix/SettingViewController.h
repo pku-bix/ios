@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingViewController : UIViewController<UIAlertViewDelegate> 
+@interface SettingViewController : UIViewController<UIAlertViewDelegate>
+{
+    
+}
 
 
 

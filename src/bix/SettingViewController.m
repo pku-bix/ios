@@ -16,6 +16,8 @@
 @interface SettingViewController ()
 - (IBAction)Logout:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogout;
+@property (strong, nonatomic) IBOutlet UIButton *btnAboutBix;
+
 @end
 
 @implementation SettingViewController
@@ -42,33 +44,9 @@
 	// Do any additional setup after loading the view.
 
     [self.btnLogout dangerStyle];
-   
-    /*rect = [[UIScreen mainScreen] bounds];
-    UIImage *image = [UIImage imageNamed:@"Tesla.png"];
-    UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-    imageView.frame = CGRectMake((rect.size.width-image.size.width)/2, 90, image.size.width, image.size.height);
-   // imageView.backgroundColor = [UIColor greenColor];
-    //imageView.contentMode = UIViewContentModeScaleAspectFill;
-    [self.view addSubview:imageView];
     
-    _textViewTitle = [[UITextView alloc] init];
-    _textViewTitle.frame = CGRectMake((rect.size.width-image.size.width)/2-10, 90+image.size.height+20, image.size.width+30, 50);
-    _textViewTitle.text = @"       关于Bix";
-    _textViewTitle.font = [UIFont boldSystemFontOfSize:16];
-    
-    _textViewTitle.editable = NO;
-    [self.view addSubview:_textViewTitle];
-    
-    _textView = [[UITextView alloc]init];
-    _textView.frame = CGRectMake((rect.size.width-image.size.width)/2-25, 90+image.size.height+20+30, image.size.width+60, 150);
-    aboutApp = @"本软件是一款集地图、社交、共享于一体的app，旨在通过地图和社交元素帮助电动汽车共享充电桩、共享汽车，从而方便用户，建立圈子.";
-    _textView.text = aboutApp;
-    _textView.font = [UIFont systemFontOfSize:15];
-   //_textView.text = [_textView.text stringByAppendingString:aboutApp];
-    
-    _textView.editable = NO;
-    [self.view addSubview: _textView];*/
-    //AppDelegate* appdelegate  = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [self.btnAboutBix primaryStyle];
+       //AppDelegate* appdelegate  = (AppDelegate *)[UIApplication sharedApplication].delegate;
     //[appdelegate.account save];
 }
 
