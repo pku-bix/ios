@@ -106,13 +106,13 @@
 
 -(void) enlargeButtonClicked:(id)sender
 {
-    if(_mapView.zoomLevel < 20)
+    if(_mapView.zoomLevel < 21)
     {
         _mapView.zoomLevel += 1;
     }
     else
     {
-        _mapView.zoomLevel = 20;
+        _mapView.zoomLevel = 21;
     }
 }
 
