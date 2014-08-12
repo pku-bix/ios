@@ -27,6 +27,7 @@
 		E3FC3EFD1999BB1400E0E784 /* personInfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FC3EF91999BB1400E0E784 /* personInfo@2x.png */; };
 		E3FC3EFE1999BB1400E0E784 /* reported@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FC3EFA1999BB1400E0E784 /* reported@2x.png */; };
 		E3FC3EFF1999BB1400E0E784 /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FC3EFB1999BB1400E0E784 /* share@2x.png */; };
+		E3FC3F05199A4CCB00E0E784 /* generalTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FC3F04199A4CCB00E0E784 /* generalTableView.m */; };
 		EC05DD9818D0B1B7000C9D89 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC05DD9718D0B1B7000C9D89 /* ChatViewController.m */; };
 		EC10200B18C85DF200B3775E /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200A18C85DF200B3775E /* MainTabBarController.m */; };
 		EC10200E18C86FF100B3775E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200D18C86FF100B3775E /* SettingViewController.m */; };
@@ -148,6 +149,8 @@
 		E3FC3EF91999BB1400E0E784 /* personInfo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "personInfo@2x.png"; sourceTree = "<group>"; };
 		E3FC3EFA1999BB1400E0E784 /* reported@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reported@2x.png"; sourceTree = "<group>"; };
 		E3FC3EFB1999BB1400E0E784 /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
+		E3FC3F03199A4CCB00E0E784 /* generalTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generalTableView.h; sourceTree = "<group>"; };
+		E3FC3F04199A4CCB00E0E784 /* generalTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = generalTableView.m; sourceTree = "<group>"; };
 		EC05DD9618D0B1B7000C9D89 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatViewController.h; path = ChatView/ChatViewController.h; sourceTree = "<group>"; };
 		EC05DD9718D0B1B7000C9D89 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatViewController.m; path = ChatView/ChatViewController.m; sourceTree = "<group>"; };
 		EC10200918C85DF200B3775E /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
@@ -387,6 +390,8 @@
 				E36C2559198F6A7700D129E9 /* aboutViewController.m */,
 				EC10200C18C86FF100B3775E /* SettingViewController.h */,
 				EC10200D18C86FF100B3775E /* SettingViewController.m */,
+				E3FC3F03199A4CCB00E0E784 /* generalTableView.h */,
+				E3FC3F04199A4CCB00E0E784 /* generalTableView.m */,
 			);
 			name = Setting;
 			path = ..;
@@ -1091,6 +1096,7 @@
 				ECC16B8518D97EB800C1A37E /* AddContactViewController.m in Sources */,
 				EC9908A418C33C9200798FAB /* GCDMulticastDelegate.m in Sources */,
 				EC99089C18C33C9200798FAB /* XMPPIQ.m in Sources */,
+				E3FC3F05199A4CCB00E0E784 /* generalTableView.m in Sources */,
 				E36C255B198F6A7700D129E9 /* aboutViewController.m in Sources */,
 				ECF7E1DE18C0516D002BA385 /* AppDelegate.mm in Sources */,
 				EC316626193065AC002E9609 /* UIButton+Bootstrap.m in Sources */,

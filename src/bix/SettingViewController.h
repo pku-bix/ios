@@ -12,8 +12,8 @@
 {
 
 }
-@property (strong, nonatomic) NSArray *list;
-@property (strong, nonatomic) NSArray *list2;
+//@property (strong, nonatomic) NSArray *list;
+//@property (strong, nonatomic) NSArray *list2;
 
 
 
