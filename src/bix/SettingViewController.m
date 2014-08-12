@@ -14,23 +14,20 @@
 
 
 @interface SettingViewController ()
-- (IBAction)Logout:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *btnLogout;
+//- (IBAction)Logout:(id)sender;
+//@property (weak, nonatomic) IBOutlet UIButton *btnLogout;
 //@property (strong, nonatomic) IBOutlet UIButton *btnAboutBix;
-@property (strong, nonatomic) IBOutlet UIButton *btnAboutBix;
 
 @end
 
 @implementation SettingViewController
-
 {
-    /*CGRect rect;
-    UITextView *_textView;
-    UITextView *_textViewTitle;
-    NSString *aboutApp;
-    */
+    CGRect rect;
+    UITableView *tableView0;
 }
+
 @synthesize list = _list;
+@synthesize list2 = _list2;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,19 +42,47 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    NSArray * array = [[NSArray alloc]initWithObjects:@"个人信息", @"上报充电桩",@"反馈与建议", @"邀请好友", nil];
-    self.list = array;
-
-    [self.btnLogout dangerStyle];
+    rect = [[UIScreen mainScreen]bounds];
     
-    [self.btnAboutBix primaryStyle];
-       //AppDelegate* appdelegate  = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSArray * array = [[NSArray alloc]initWithObjects:@"个人信息", @"上报充电桩",@"反馈与建议", @"邀请好友", nil];
+    NSArray * array2 = [[NSArray alloc]initWithObjects:@"关于Bix", @"支持我们", @"退出登录", nil];
+    
+    self.list = array;
+    self.list2 = array2;
+//    UITableView *tableView =[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    //用代码来创建 tableview
+     tableView0 =[[UITableView alloc]initWithFrame:CGRectMake(0, 50, rect.size.width, rect.size.height) style:UITableViewStyleGrouped];
+
+    //设置 dataSource 和 delegate 这两个代理
+    tableView0.dataSource = self;
+    tableView0.delegate = self;
+    
+    [self.view addSubview:tableView0];
+
+    //[self.btnLogout dangerStyle];
+    //[self.btnAboutBix primaryStyle];
+    
+    //AppDelegate* appdelegate  = (AppDelegate *)[UIApplication sharedApplication].delegate;
     //[appdelegate.account save];
+}
+
+//#pragma mark dataSource
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.list count];
+    if(section == 0)
+    {
+        return [self.list count];
+    }
+    else
+    {
+        return [self.list2 count];
+    }
+    
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -74,11 +99,16 @@
         
         NSUInteger row = [indexPath row];
         // NSUInteger section = [indexPath section];
+    if(indexPath.section == 0)
+    {
         cell.textLabel.text = [self.list objectAtIndex:row];
-        
+    }
+    else
+    {
+        cell.textLabel.text = [self.list2 objectAtIndex:row];
+    }
         //在cell每行右边显示的风格
         cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
-        
         //    四种UITableViewCellAccessoryType:
         //    UITableViewCellAccessoryNone,
         //    UITableViewCellAccessoryDisclosureIndicator,
@@ -86,19 +116,21 @@
         //    UITableViewCellAccessoryCheckmark,
         //    UITableViewCellAccessoryDetailButton
         
-        
         ////    cell.detailTextLabel.text = @"i am tian cai";
     UIImage *image0 = [UIImage imageNamed:@"personInfo"];
     UIImage *image1 = [UIImage imageNamed:@"share"];
     UIImage *image2 = [UIImage imageNamed:@"reported"];
     UIImage *image3 = [UIImage imageNamed:@"invite"];
-        //    //图片显示在cell的左边
+     //图片显示在cell的左边， 不同cell， 显示的图片不同；
+    
     switch (row) {
         case 0:
             cell.imageView.image = image0;
             break;
         case 1:
             cell.imageView.image = image1;
+            //设置tableview cell 的背景颜色；
+          //  cell.contentView.backgroundColor = [UIColor colorWithRed:0.1 green:0.8 blue:0.1 alpha:1];
             break;
         case 2:
             cell.imageView.image = image2;
@@ -112,52 +144,109 @@
     }
         //    UIImage *highLighedImage = [UIImage imageNamed:@"geo_fence-32"];
         //    cell.imageView.highlightedImage = highLighedImage;
-        //
-    cell.detailTextLabel.text = @"asdfasdf";
-        
+        //    cell.detailTextLabel.text = @"asdfasdf";
+    
+    //cell 被选中后颜色不变， 不会变暗！！
+    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    typedef enum : NSInteger {
+//        UITableViewCellSelectionStyleNone,
+//        UITableViewCellSelectionStyleBlue,
+//        UITableViewCellSelectionStyleGray,
+//        UITableViewCellSelectionStyleDefault
+//    } UITableViewCellSelectionStyle;
+    
+    
+    
     return cell;
 
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *rowString = [self.list objectAtIndex:[indexPath row]];
+    //NSString *rowString = [self.list objectAtIndex:[indexPath row]];
     //    id sectionNumber = [self.list objectAtIndex:[indexPath section]];
     //    rowString = rowString + [[indexPath section] ];
     //    rowString = @"rowString" + @"hhh";
     NSLog(@"你选中了第%d section 第 %d row", [indexPath section], indexPath.row);
-    if(indexPath.row == 0)
+   
+    if(indexPath.section == 0)
     {
-        aboutViewController * about = [[aboutViewController alloc]init];
-        [self.navigationController pushViewController:about animated:YES];
-        [about  viewDidLoad];
-        about.title = @"关于";
+        if(indexPath.row == 0)
+        {
+           
+        }
+        else if(indexPath.row == 3)
+        {
+            //  UIAlertView * alter = [[UIAlertView alloc] initWithTitle:@"选中的section和行信息" message:rowString delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            //        // NSLog(sectionNumber);
+            //        [alter show];
+            
+        }
     }
-    else
+    else  //section = 1;
     {
-        UIAlertView * alter = [[UIAlertView alloc] initWithTitle:@"选中的section和行信息" message:rowString delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        // NSLog(sectionNumber);
-        [alter show];
-        
+        if(indexPath.row == 0)
+        {
+            aboutViewController * about = [[aboutViewController alloc]init];
+            [self.navigationController pushViewController:about animated:YES];
+            [about  viewDidLoad];
+            about.title = @"关于";
+        }
+        else if(indexPath.row == 2)
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"确认"
+                                                            message:@"是否退出当前账号？"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"取消"
+                                                  otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
     }
+    //[self.ta]
+    
 
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if(section == 0)
+    {
+        return @"页眉0";
+    }
+    else
+    {
+        return @"页眉1";
+    }
+    
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    if(section == 0)
+    {
+        return @"页脚0";
+    }
+    else
+    {
+        return @"页脚1";
+    }
+
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (IBAction)Logout:(id)sender {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"确认"
-                                                    message:@"是否退出当前账号？"
-                                                   delegate:self
-                                          cancelButtonTitle:@"取消"
-                                          otherButtonTitles:@"确定", nil];
-    [alert show];
-
-}
+//
+//- (IBAction)Logout:(id)sender {
+//    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"确认"
+//                                                    message:@"是否退出当前账号？"
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"取消"
+//                                          otherButtonTitles:@"确定", nil];
+//    [alert show];
+//
+//}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -173,6 +262,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogOut:)
                                              name:EVENT_DISCONNECTED object:nil];
 }
+
 - (void)viewWillDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_DISCONNECTED object:NULL];
 }
@@ -191,13 +281,4 @@
     [self performSegueWithIdentifier:@"login" sender:self];
 }
 
-- (IBAction)aboutBix:(id)sender {
-    aboutViewController *aboutBix = [[aboutViewController alloc]init];
-    [self.navigationController pushViewController:aboutBix animated:YES];
-    aboutBix.title = @"关于";
-    
-}
-//
-//- (IBAction)aboutBix:(id)sender {
-//}
 @end

@@ -13,8 +13,8 @@
 
 }
 @property (strong, nonatomic) NSArray *list;
+@property (strong, nonatomic) NSArray *list2;
 
 
-- (IBAction)aboutBix:(id)sender;
 
 @end
