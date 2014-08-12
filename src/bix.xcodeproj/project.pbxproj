@@ -17,13 +17,16 @@
 		E33FF0D8197E50FD007FE69F /* define_location-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */; };
 		E34419971980BAA400F03459 /* MapButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E34419961980BAA400F03459 /* MapButton.m */; };
 		E36C255B198F6A7700D129E9 /* aboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C2559198F6A7700D129E9 /* aboutViewController.m */; };
-		E36C255C198F6A7700D129E9 /* aboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E36C255A198F6A7700D129E9 /* aboutViewController.xib */; };
 		E374AA8018D9E22700EC575A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA7F18D9E22700EC575A /* CoreLocation.framework */; };
 		E374AA8218D9E23700EC575A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA8118D9E23700EC575A /* QuartzCore.framework */; };
 		E374AA8418D9E24200EC575A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA8318D9E24200EC575A /* OpenGLES.framework */; };
 		E374AA8618D9E24C00EC575A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA8518D9E24C00EC575A /* SystemConfiguration.framework */; };
 		E3D8A8E519800B9B00E40C14 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D8A8E319800B9B00E40C14 /* Default.png */; };
 		E3D8A8E619800B9B00E40C14 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D8A8E419800B9B00E40C14 /* Default@2x.png */; };
+		E3FC3EFC1999BB1400E0E784 /* invite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FC3EF81999BB1400E0E784 /* invite@2x.png */; };
+		E3FC3EFD1999BB1400E0E784 /* personInfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FC3EF91999BB1400E0E784 /* personInfo@2x.png */; };
+		E3FC3EFE1999BB1400E0E784 /* reported@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FC3EFA1999BB1400E0E784 /* reported@2x.png */; };
+		E3FC3EFF1999BB1400E0E784 /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FC3EFB1999BB1400E0E784 /* share@2x.png */; };
 		EC05DD9818D0B1B7000C9D89 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC05DD9718D0B1B7000C9D89 /* ChatViewController.m */; };
 		EC10200B18C85DF200B3775E /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200A18C85DF200B3775E /* MainTabBarController.m */; };
 		EC10200E18C86FF100B3775E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200D18C86FF100B3775E /* SettingViewController.m */; };
@@ -135,13 +138,16 @@
 		E34419961980BAA400F03459 /* MapButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapButton.m; sourceTree = "<group>"; };
 		E36C2558198F6A7700D129E9 /* aboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aboutViewController.h; path = bix/aboutViewController.h; sourceTree = "<group>"; };
 		E36C2559198F6A7700D129E9 /* aboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = aboutViewController.m; path = bix/aboutViewController.m; sourceTree = "<group>"; };
-		E36C255A198F6A7700D129E9 /* aboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = aboutViewController.xib; path = bix/aboutViewController.xib; sourceTree = "<group>"; };
 		E374AA7F18D9E22700EC575A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E374AA8118D9E23700EC575A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E374AA8318D9E24200EC575A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E374AA8518D9E24C00EC575A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E3D8A8E319800B9B00E40C14 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E3D8A8E419800B9B00E40C14 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		E3FC3EF81999BB1400E0E784 /* invite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invite@2x.png"; sourceTree = "<group>"; };
+		E3FC3EF91999BB1400E0E784 /* personInfo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "personInfo@2x.png"; sourceTree = "<group>"; };
+		E3FC3EFA1999BB1400E0E784 /* reported@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reported@2x.png"; sourceTree = "<group>"; };
+		E3FC3EFB1999BB1400E0E784 /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
 		EC05DD9618D0B1B7000C9D89 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatViewController.h; path = ChatView/ChatViewController.h; sourceTree = "<group>"; };
 		EC05DD9718D0B1B7000C9D89 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatViewController.m; path = ChatView/ChatViewController.m; sourceTree = "<group>"; };
 		EC10200918C85DF200B3775E /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
@@ -379,7 +385,6 @@
 			children = (
 				E36C2558198F6A7700D129E9 /* aboutViewController.h */,
 				E36C2559198F6A7700D129E9 /* aboutViewController.m */,
-				E36C255A198F6A7700D129E9 /* aboutViewController.xib */,
 				EC10200C18C86FF100B3775E /* SettingViewController.h */,
 				EC10200D18C86FF100B3775E /* SettingViewController.m */,
 			);
@@ -387,9 +392,21 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		E3FC3EF71999B92300E0E784 /* settingImage */ = {
+			isa = PBXGroup;
+			children = (
+				E3FC3EF81999BB1400E0E784 /* invite@2x.png */,
+				E3FC3EF91999BB1400E0E784 /* personInfo@2x.png */,
+				E3FC3EFA1999BB1400E0E784 /* reported@2x.png */,
+				E3FC3EFB1999BB1400E0E784 /* share@2x.png */,
+			);
+			name = settingImage;
+			sourceTree = "<group>";
+		};
 		EC05DD9918D0BE49000C9D89 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E3FC3EF71999B92300E0E784 /* settingImage */,
 				EC05DD9A18D0BE49000C9D89 /* img */,
 			);
 			path = Resources;
@@ -398,13 +415,13 @@
 		EC05DD9A18D0BE49000C9D89 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				E3D8A8E319800B9B00E40C14 /* Default.png */,
+				E3D8A8E419800B9B00E40C14 /* Default@2x.png */,
+				EC3166391930BC18002E9609 /* msg_received-100.png */,
 				E33FF0CF197E4F37007FE69F /* compass-64@2x.png */,
 				E32C5FAF197FF23300E7CC61 /* Icon.png */,
 				E32C5FB0197FF23300E7CC61 /* Icon@2x.png */,
 				E33FF0D5197E50ED007FE69F /* geo_fence-64@2x.png */,
-				E3D8A8E319800B9B00E40C14 /* Default.png */,
-				E3D8A8E419800B9B00E40C14 /* Default@2x.png */,
-				EC3166391930BC18002E9609 /* msg_received-100.png */,
 				E33FF0D1197E50C3007FE69F /* plus2-64@2x.png */,
 				E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */,
 				E33A5BB7197F43220065F7C7 /* Tesla@2x.png */,
@@ -995,6 +1012,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E32C5FB2197FF23300E7CC61 /* Icon@2x.png in Resources */,
+				E3FC3EFC1999BB1400E0E784 /* invite@2x.png in Resources */,
 				EC3166351930B95E002E9609 /* settings-24@2x.png in Resources */,
 				EC3166381930BA6F002E9609 /* contacts-24@2x.png in Resources */,
 				E33FF0D0197E4F37007FE69F /* compass-64@2x.png in Resources */,
@@ -1005,18 +1023,20 @@
 				E33A5BB8197F43220065F7C7 /* Tesla@2x.png in Resources */,
 				E3D8A8E519800B9B00E40C14 /* Default.png in Resources */,
 				E33FF0D4197E50D7007FE69F /* minus2-64@2x.png in Resources */,
+				E3FC3EFF1999BB1400E0E784 /* share@2x.png in Resources */,
 				E32C5FB1197FF23300E7CC61 /* Icon.png in Resources */,
 				ECF7E1E918C0516D002BA385 /* Images.xcassets in Resources */,
 				EC31663F1930BC18002E9609 /* msg_sent-100.png in Resources */,
 				EC316621193065AC002E9609 /* FontAwesome.ttf in Resources */,
 				E33FF0D6197E50ED007FE69F /* geo_fence-64@2x.png in Resources */,
+				E3FC3EFD1999BB1400E0E784 /* personInfo@2x.png in Resources */,
+				E3FC3EFE1999BB1400E0E784 /* reported@2x.png in Resources */,
 				EC3166401930BC18002E9609 /* msg_sent-100@2x.png in Resources */,
 				ECF7E1D818C0516D002BA385 /* InfoPlist.strings in Resources */,
 				EC99084918C3397000798FAB /* README.txt in Resources */,
 				EC31663D1930BC18002E9609 /* msg_received-100.png in Resources */,
 				EC3166301930B595002E9609 /* map_marker-24@2x.png in Resources */,
 				ECF7E1E118C0516D002BA385 /* Main.storyboard in Resources */,
-				E36C255C198F6A7700D129E9 /* aboutViewController.xib in Resources */,
 				E3D8A8E619800B9B00E40C14 /* Default@2x.png in Resources */,
 				EC31663E1930BC18002E9609 /* msg_received-100@2x.png in Resources */,
 			);

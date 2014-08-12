@@ -39,7 +39,7 @@
         //        self.edgesForExtendedLayout=UIRectEdgeNone;
         self.navigationController.navigationBar.translucent = NO;
     }
-    _search = [[BMKSearch alloc]init];
+    _search = [[BMKSearch alloc]init ];
     rect = [[UIScreen mainScreen] bounds];
     //  CGSize size = rect.size;   CGFloat width = size.width;  CGFloat height = size.height;
     _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height-40)];

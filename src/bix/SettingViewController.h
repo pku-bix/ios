@@ -8,14 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingViewController : UIViewController<UIAlertViewDelegate>
+@interface SettingViewController : UIViewController<UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource>
 {
-    
-}
 
+}
+@property (strong, nonatomic) NSArray *list;
 
 
 - (IBAction)aboutBix:(id)sender;
-
 
 @end
