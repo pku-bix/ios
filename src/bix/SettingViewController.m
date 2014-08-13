@@ -16,7 +16,6 @@
 @interface SettingViewController ()
 //- (IBAction)Logout:(id)sender;
 //@property (weak, nonatomic) IBOutlet UIButton *btnLogout;
-//@property (strong, nonatomic) IBOutlet UIButton *btnAboutBix;
 
 @end
 
@@ -56,14 +55,8 @@
     generalTableView0.list = array;
     generalTableView0.list2 = array2;
     
-//    UITableView *tableView =[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     //用代码来创建 tableview
      tableView0 =[[UITableView alloc]initWithFrame:CGRectMake(0, 50, rect.size.width, rect.size.height) style:UITableViewStyleGrouped];
-
-    //设置 dataSource 和 delegate 这两个代理
-    tableView0.dataSource = self;
-    tableView0.delegate = self;
-    
     [self.view addSubview:tableView0];
 
     //[self.btnLogout dangerStyle];
@@ -105,42 +98,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"你选中了第%d section 第 %d row", [indexPath section], indexPath.row);
-   
-    if(indexPath.section == 0)
-    {
-        if(indexPath.row == 0)
-        {
-           
-        }
-        else if(indexPath.row == 3)
-        {
-            //  UIAlertView * alter = [[UIAlertView alloc] initWithTitle:@"选中的section和行信息" message:rowString delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            //        // NSLog(sectionNumber);
-            //        [alter show];
-            
-        }
-    }
-    else  //section = 1;
-    {
-        if(indexPath.row == 0)
-        {
-            aboutViewController * about = [[aboutViewController alloc]init];
-            
-            [self.navigationController pushViewController:about animated:YES];
-            
-            about.title = @"关于";
-        }
-        else if(indexPath.row == 2)
-        {
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"确认"
-                                                            message:@"是否退出当前账号？"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"取消"
-                                                  otherButtonTitles:@"确定", nil];
-            [alert show];
-        }
-    }
+    [generalTableView0 didSelectRowAtIndexPath:indexPath setingViewController:self];
 }
 
 
@@ -169,10 +127,16 @@
 - (void)viewWillAppear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogOut:)
                                              name:EVENT_DISCONNECTED object:nil];
+    //设置 dataSource 和 delegate 这两个代理
+    tableView0.delegate = self;
+    tableView0.dataSource = self;
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_DISCONNECTED object:NULL];
+    //不用时，置nil
+    tableView0.delegate = nil;
+    tableView0.dataSource = nil;
 }
 
 -(void) didLogOut: (NSNotification*) notification{

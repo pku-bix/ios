@@ -11,6 +11,7 @@
 
 @implementation MapViewController
 {
+    MapButton * mapButton;
     UIButton* enlargeButton;
     UIButton* shrinkButton;
     UIButton* locateButton;
@@ -39,18 +40,18 @@
         //        self.edgesForExtendedLayout=UIRectEdgeNone;
         self.navigationController.navigationBar.translucent = NO;
     }
+    mapButton = [[MapButton alloc]init];
     _search = [[BMKSearch alloc]init ];
     rect = [[UIScreen mainScreen] bounds];
     //  CGSize size = rect.size;   CGFloat width = size.width;  CGFloat height = size.height;
     _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height-40)];
+    
     _mapView.delegate = self;
     
     // once launch the baidu map, locate the position of user immediately
-    _mapView.showsUserLocation = NO;
-    _mapView.userTrackingMode = BMKUserTrackingModeFollow;
-    _mapView.showsUserLocation = YES;
-    _mapView.zoomLevel = 15;   // make the zoomLevel = 15 so that once the app launches the map will have a fitness interface
+    [mapButton launchMapView_locate:_mapView];
     
+    //[mapButton createButton:enlargeButton image:@"plus2-64" targerSelector:@"enlargeButtonClicked"];
     //放大按钮的代码实现
     image= [UIImage imageNamed:@"plus2-64.png"];
     enlargeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -93,6 +94,7 @@
     getCurrentLocationBtn.frame = CGRectMake(rect.size.width-55, 95, 32, 32);
     [getCurrentLocationBtn addTarget:self action:@selector(getCurrentButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     
+   
     
     
     [self.view addSubview: _mapView];
@@ -103,84 +105,46 @@
     [self.view addSubview:getCurrentLocationBtn];
 }
 
+#pragma mark five_mapButton_events
 
 -(void) enlargeButtonClicked:(id)sender
 {
-    
-    if(_mapView.zoomLevel < 21)
-    {
-        _mapView.zoomLevel += 1;
-    }
-    else
-    {
-        _mapView.zoomLevel = 21;
-    }
+    [mapButton enlargeButtonClicked:_mapView];
 }
 
 -(void)shrinkButtonClicked
 {
-    if(_mapView.zoomLevel > 3)
-    {
-        _mapView.zoomLevel -= 1;
-    }
-    else
-    {
-        _mapView.zoomLevel = 3;
-    }
+    [mapButton shrinkButtonClicked:_mapView];
 }
 
 -(void)locateButtonClicked
 {
-    _mapView.showsUserLocation = NO;
-    _mapView.userTrackingMode = BMKUserTrackingModeFollow;
-    _mapView.showsUserLocation = YES;
-    
-    //remove the annotation array of baidu mapview added
-    array = [NSArray arrayWithArray:_mapView.annotations];
-	[_mapView removeAnnotations:array];
-    
-    //remove the overlay infomation that baidu mapview has added, eg: navigation info.
-	array = [NSArray arrayWithArray:_mapView.overlays];
-	[_mapView removeOverlays:array];
+    [mapButton locateButtonClicked:_mapView];
 }
 
 -(void)compassButtonClicked
 {
-    // NSLog(@"进入罗盘态");
-    _mapView.showsUserLocation = NO;
-    _mapView.userTrackingMode = BMKUserTrackingModeFollowWithHeading;
-    _mapView.showsUserLocation = YES;
-    
-    //remove the annotation array of baidu mapview added
-    array = [NSArray arrayWithArray:_mapView.annotations];
-	[_mapView removeAnnotations:array];
-    
-    //remove the overlay infomation that baidu mapview has added, eg: navigation info.
-	array = [NSArray arrayWithArray:_mapView.overlays];
-	[_mapView removeOverlays:array];
+    [mapButton compassButtonClicked:_mapView];
 }
 
 -(void)getCurrentButtonClicked
 {
-    CLLocationCoordinate2D pt = {current_Location.location.coordinate.latitude,current_Location.location.coordinate.longitude};
-    BOOL flag = [_search reverseGeocode:pt];
-	if (flag) {
-		//NSLog(@"ReverseGeocode search success.");
-        
-	}
-    else{
-        //NSLog(@"ReverseGeocode search failed!");
-    }
+    [mapButton getCurrentButtonClicked:_search current_Location:current_Location];
 }
+
+- (void)onGetAddrResult:(BMKAddrInfo*)result errorCode:(int)error
+{
+    [mapButton onGetAddrResult:result errorCode:error BMapView:_mapView];
+}
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [_mapView viewWillAppear];
     _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
     _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
-    
-
 }
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [_mapView viewWillDisappear];
@@ -189,47 +153,12 @@
    // NSLog(@"map view disappear");
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)onGetAddrResult:(BMKAddrInfo*)result errorCode:(int)error
-{
-     array = [NSArray arrayWithArray:_mapView.annotations];
-	[_mapView removeAnnotations:array];
-	array = [NSArray arrayWithArray:_mapView.overlays];
-	[_mapView removeOverlays:array];
-	if (error == 0) {
-		BMKPointAnnotation* item = [[BMKPointAnnotation alloc]init];
-		item.coordinate = result.geoPt;
-		item.title = result.strAddr;
-		[_mapView addAnnotation:item];
-        _mapView.centerCoordinate = result.geoPt;
-        NSString* titleStr;
-        NSString* showmeg;
-        
-        /*if(isGeoSearch)
-         {
-         titleStr = @"正向地理编码";
-         showmeg = [NSString stringWithFormat:@"经度:%f,纬度:%f",item.coordinate.latitude,item.coordinate.longitude];
-         
-         }
-         else
-         {*/
-        titleStr = @"反向地理编码";
-        showmeg = [NSString stringWithFormat:@"%@",item.title];
-        //}
-        
-        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:titleStr message:showmeg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定",nil];
-        
-        [myAlertView show];
-        //[myAlertView release];
-        //		[item release];
-	}
-}
 
 /**
  *在地图View将要启动定位时，会调用此函数
@@ -245,15 +174,9 @@
  *@param mapView 地图View
  *@param userLocation 新的用户位置
  */
-
 - (void)mapView:(BMKMapView *)mapView didUpdateUserLocation:(BMKUserLocation *)userLocation
 {
-	if (userLocation != nil) {
-		//NSLog(@"%f %f", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
-	}
-	
-    //CLLocation *currlocation = [userLocation lastObject];
-    current_Location = userLocation;
+    current_Location = [mapButton didUpdateUserLocation:userLocation];
 }
 
 /**
@@ -264,7 +187,6 @@
 {
    // NSLog(@"stop locate");
 }
-
 
 /**
  *定位失败后，会调用此函数

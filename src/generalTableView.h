@@ -7,16 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SettingViewController.h"
 
 @interface generalTableView : NSObject
 {
-    
+    SettingViewController * settingViewController;
 }
 
 @property (strong, nonatomic) NSArray *list;
 @property (strong, nonatomic) NSArray *list2;
 
 -(id)init;
+//-(id)initWithSettingViewController:(SettingViewController*)settingViewController;
+
 //dataSource
 -(NSInteger)numberOfSectionsInTableView;
 -(NSInteger)numberOfRowsInSection:(NSInteger)section;
@@ -26,6 +29,7 @@
 
 
 //delegate
--(void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+-(void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath setingViewController:(SettingViewController*)setingViewController;
+//-(void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

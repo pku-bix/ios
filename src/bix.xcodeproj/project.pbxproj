@@ -137,6 +137,7 @@
 		E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "define_location-64@2x.png"; sourceTree = "<group>"; };
 		E34419951980BAA400F03459 /* MapButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapButton.h; sourceTree = "<group>"; };
 		E34419961980BAA400F03459 /* MapButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapButton.m; sourceTree = "<group>"; };
+		E34F44E1199B16E700BAB7D8 /* ButtonProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonProtocal.h; sourceTree = "<group>"; };
 		E36C2558198F6A7700D129E9 /* aboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aboutViewController.h; path = bix/aboutViewController.h; sourceTree = "<group>"; };
 		E36C2559198F6A7700D129E9 /* aboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = aboutViewController.m; path = bix/aboutViewController.m; sourceTree = "<group>"; };
 		E374AA7F18D9E22700EC575A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -383,6 +384,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E34F44E0199B013C00BAB7D8 /* BaiduMapView */ = {
+			isa = PBXGroup;
+			children = (
+				EC10200F18C8701400B3775E /* MapViewController.h */,
+				EC10201018C8701400B3775E /* MapViewController.m */,
+				E34419951980BAA400F03459 /* MapButton.h */,
+				E34419961980BAA400F03459 /* MapButton.m */,
+				E34F44E1199B16E700BAB7D8 /* ButtonProtocal.h */,
+			);
+			name = BaiduMapView;
+			sourceTree = "<group>";
+		};
 		E36C255D198F705100D129E9 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -891,15 +904,12 @@
 				ECED787E18CF80040041CCC7 /* XMPPWrapper */,
 				ECED787618CF7FE30041CCC7 /* Account */,
 				E36C255D198F705100D129E9 /* Setting */,
-				ECF7E1DD18C0516D002BA385 /* AppDelegate.mm */,
+				E34F44E0199B013C00BAB7D8 /* BaiduMapView */,
 				ECF7E1DC18C0516D002BA385 /* AppDelegate.h */,
+				ECF7E1DD18C0516D002BA385 /* AppDelegate.mm */,
 				ECF7E1DF18C0516D002BA385 /* Main.storyboard */,
 				EC10200918C85DF200B3775E /* MainTabBarController.h */,
 				EC10200A18C85DF200B3775E /* MainTabBarController.m */,
-				EC10200F18C8701400B3775E /* MapViewController.h */,
-				EC10201018C8701400B3775E /* MapViewController.m */,
-				E34419951980BAA400F03459 /* MapButton.h */,
-				E34419961980BAA400F03459 /* MapButton.m */,
 				ECF7E1E818C0516D002BA385 /* Images.xcassets */,
 				EC99085118C33C5D00798FAB /* XMPP */,
 				ECF7E1D418C0516D002BA385 /* Supporting Files */,

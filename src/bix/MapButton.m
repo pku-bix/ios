@@ -15,46 +15,6 @@
     UIImage *image;
 }
 
--(void)enLargeButton:(UIButton*)writeButton
-{
-    rect = [[UIScreen mainScreen]bounds];
-    //    设置按钮类型，此处为圆角按钮
-    image= [UIImage imageNamed:@"plus2-64.png"];
-    
-    //writeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-
-    [writeButton setBackgroundImage:image forState:UIControlStateNormal];
-
-    //    设置和大小
-    CGRect frame = CGRectMake(rect.size.width-35, rect.size.height-150, 32, 32);
-    //    将frame的位置大小复制给Button
-    writeButton.frame = frame;
-    
-    //-----------------------------------------------
-    //  给Button添加标题
-    //[writeButton setTitle:@"代码按钮" forState:UIControlStateNormal];
-    //   设置按钮背景颜色
-   // writeButton.backgroundColor = [UIColor clearColor];
-    //  设置按钮标题文字对齐方式，此处为左对齐
-    //writeButton.contentHorizontalAlignment =UIControlContentHorizontalAlignmentLeft;
-    //使文字距离做边框保持10个像素的距离。
-   // writeButton.contentEdgeInsets = UIEdgeInsetsMake(0,30, 0, 0);
-    //----------------------------------------------------
-    
-    /******************************************************
-     //此处类容目的掩饰代码代码操作按钮一些属性，如果设置按钮背景为图片可以将此处注释取消，注释掉上没横线范围类代码，进行测试
-     
-     //    设置按钮背景图片
-     UIImage *image= [UIImage imageNamed:@"background.png"];
-     
-     [writeButton setBackgroundImage:image forState:UIControlStateNormal];
-     //  按钮的相应事件
-     
-     *****************************************************/
-    [writeButton addTarget:self action:@selector(buttonClicked:)forControlEvents:UIControlEventTouchUpInside];
-    
-//    [self.view addSubview:writeButton];
-}
 
 //弹出一个警告，一般都这样写
 -(void) buttonClicked:(id)sender
@@ -63,5 +23,137 @@
     [alert show];
 }
 
+#pragma mark five_mapButton_events
+
+-(void) enlargeButtonClicked:(BMKMapView *)mapView
+{
+    if(mapView.zoomLevel < 21)
+    {
+        mapView.zoomLevel += 1;
+    }
+    else
+    {
+        mapView.zoomLevel = 21;
+    }
+}
+
+-(void) shrinkButtonClicked:(BMKMapView *)mapView
+{
+    if(mapView.zoomLevel > 3)
+    {
+        mapView.zoomLevel -= 1;
+    }
+    else
+    {
+        mapView.zoomLevel = 3;
+    }
+}
+
+-(void) locateButtonClicked:(BMKMapView *)mapView
+{
+    mapView.showsUserLocation = NO;
+    mapView.userTrackingMode = BMKUserTrackingModeFollow;
+    mapView.showsUserLocation = YES;
+    
+    //remove the annotation array of baidu mapview added
+    array = [NSArray arrayWithArray:mapView.annotations];
+	[mapView removeAnnotations:array];
+    
+    //remove the overlay infomation that baidu mapview has added, eg: navigation info.
+	array = [NSArray arrayWithArray:mapView.overlays];
+	[mapView removeOverlays:array];
+}
+
+-(void)compassButtonClicked:(BMKMapView *)mapView
+{
+    // NSLog(@"进入罗盘态");
+    mapView.showsUserLocation = NO;
+    mapView.userTrackingMode = BMKUserTrackingModeFollowWithHeading;
+    mapView.showsUserLocation = YES;
+    
+    //remove the annotation array of baidu mapview added
+    array = [NSArray arrayWithArray:mapView.annotations];
+	[mapView removeAnnotations:array];
+    
+    //remove the overlay infomation that baidu mapview has added, eg: navigation info.
+	array = [NSArray arrayWithArray:mapView.overlays];
+	[mapView removeOverlays:array];
+}
+
+-(void)getCurrentButtonClicked:(BMKSearch*)search current_Location:(BMKUserLocation*)currentLocation
+{
+    CLLocationCoordinate2D pt = {currentLocation.location.coordinate.latitude,currentLocation.location.coordinate.longitude};
+    BOOL flag = [search reverseGeocode:pt];
+	if (flag) {
+		//NSLog(@"ReverseGeocode search success.");
+        
+	}
+    else{
+        //NSLog(@"ReverseGeocode search failed!");
+    }
+}
+
+-(void)onGetAddrResult:(BMKAddrInfo*)result errorCode:(int)error BMapView:(BMKMapView*)mapView
+{
+    array = [NSArray arrayWithArray:mapView.annotations];
+	[mapView removeAnnotations:array];
+	array = [NSArray arrayWithArray:mapView.overlays];
+	[mapView removeOverlays:array];
+	if (error == 0) {
+		BMKPointAnnotation* item = [[BMKPointAnnotation alloc]init];
+		item.coordinate = result.geoPt;
+		item.title = result.strAddr;
+		[mapView addAnnotation:item];
+        mapView.centerCoordinate = result.geoPt;
+        NSString* titleStr;
+        NSString* showmeg;
+        /*if(isGeoSearch)
+         {
+         titleStr = @"正向地理编码";
+         showmeg = [NSString stringWithFormat:@"经度:%f,纬度:%f",item.coordinate.latitude,item.coordinate.longitude];
+         }
+         else
+         {*/
+        titleStr = @"反向地理编码";
+        showmeg = [NSString stringWithFormat:@"%@",item.title];
+        //}
+        
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:titleStr message:showmeg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定",nil];
+        
+        [myAlertView show];
+        //[myAlertView release];
+        //		[item release];
+    }
+}
+
+-(BMKUserLocation*)didUpdateUserLocation:(BMKUserLocation *)userLocation
+{
+    if (userLocation != nil) {
+		//NSLog(@"%f %f", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
+	}
+    //CLLocation *currlocation = [userLocation lastObject];
+    return userLocation;
+
+}
+// once launch the baidu map, locate the position of user immediately
+-(void)launchMapView_locate:(BMKMapView*)mapView
+{
+    mapView.showsUserLocation = NO;
+    mapView.userTrackingMode = BMKUserTrackingModeFollow;
+    mapView.showsUserLocation = YES;
+    // make the zoomLevel = 15 so that once the app launches the map will have a fitness interface
+    mapView.zoomLevel = 15; 
+}
+
+-(void)createButton:(UIButton*)button image:(NSString *)imageName targerSelector:(NSString*)selector
+{
+    //缩小按钮的代码实现
+    image = [UIImage imageNamed:imageName];
+    button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setBackgroundImage:image forState:UIControlStateNormal];
+    //设置位置和大小
+    button.frame = CGRectMake(rect.size.width-50, rect.size.height-110, 32, 32);
+    [button addTarget:self action:@selector(selector) forControlEvents:UIControlEventTouchUpInside];
+}
 
 @end

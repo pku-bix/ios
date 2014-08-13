@@ -23,6 +23,12 @@
     return self;
 }
 
+//-(SettingViewController*)initWithSettingViewController:(SettingViewController *)settingViewController
+//{
+//    self = settingViewController;
+//    return settingViewController;
+//}
+
 #pragma mark dataSource
 
 -(NSInteger)numberOfRowsInSection:(NSInteger)section
@@ -105,8 +111,7 @@
     //        UITableViewCellSelectionStyleBlue,
     //        UITableViewCellSelectionStyleGray,
     //        UITableViewCellSelectionStyleDefault
-    //    } UITableViewCellSelectionStyle;
-    
+    //    } UITableViewCellSelectionStyle;    
     return cell;
 }
 
@@ -141,9 +146,43 @@
 
 #pragma mark delegate
 
--(void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath setingViewController:(SettingViewController*)setingViewController;
 {
+    NSLog(@"你选中了第%d section 第 %d row", [indexPath section], indexPath.row);
     
+    if(indexPath.section == 0)
+    {
+        if(indexPath.row == 0)
+        {
+            
+        }
+        else if(indexPath.row == 3)
+        {
+            //  UIAlertView * alter = [[UIAlertView alloc] initWithTitle:@"选中的section和行信息" message:rowString delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            //        // NSLog(sectionNumber);
+            //        [alter show];
+            
+        }
+    }
+    else  //section = 1;
+    {
+        if(indexPath.row == 0)
+        {
+            aboutViewController * about = [[aboutViewController alloc]init];
+             //self => setingViewController
+            [setingViewController.navigationController pushViewController:about animated:YES];
+            about.title = @"关于";
+        }
+        else if(indexPath.row == 2)
+        {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"确认"
+                                                            message:@"是否退出当前账号？"
+                                                           delegate:setingViewController  //self => setingViewController
+                                                  cancelButtonTitle:@"取消"
+                                                  otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+    }
 }
 
 
