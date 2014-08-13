@@ -44,6 +44,13 @@
 
 }
 
+
+-(NSInteger)numberOfSectionsInTableView
+{
+    return 2;
+}
+
+
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *TableSampleIdentifier = @"TableSampleIdentifier";
@@ -115,10 +122,6 @@
     return cell;
 }
 
--(NSInteger)numberOfSectionsInTableView
-{
-    return 2;
-}
 
 -(NSString*)titleForHeaderInSection:(NSInteger)section
 {
@@ -184,7 +187,6 @@
         }
     }
 }
-
 
 
 @end

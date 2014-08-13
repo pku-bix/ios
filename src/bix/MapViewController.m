@@ -94,9 +94,6 @@
     getCurrentLocationBtn.frame = CGRectMake(rect.size.width-55, 95, 32, 32);
     [getCurrentLocationBtn addTarget:self action:@selector(getCurrentButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     
-   
-    
-    
     [self.view addSubview: _mapView];
     [self.view addSubview:enlargeButton];
     [self.view addSubview:shrinkButton];

@@ -10,6 +10,7 @@
 
 @protocol ButtonProtocal <NSObject>
 
+@required
 -(void)createButton:(UIButton*)button image:(NSString *)imageName targerSelector:(NSString*)selector;
 
 @end

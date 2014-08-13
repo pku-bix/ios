@@ -99,6 +99,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [generalTableView0 didSelectRowAtIndexPath:indexPath setingViewController:self];
+    
 }
 
 
