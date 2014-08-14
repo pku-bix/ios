@@ -35,7 +35,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-     rect = [[UIScreen mainScreen] bounds];
+    rect = [[UIScreen mainScreen] bounds];
      UIImage *image = [UIImage imageNamed:@"Tesla.png"];
      UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
      imageView.frame = CGRectMake((rect.size.width-image.size.width)/2, 90, image.size.width, image.size.height);

@@ -2,7 +2,7 @@
 //  SettingViewController.m
 //  bix
 //
-//  Created by harttle on 14-3-6.
+//  implemented by dsx
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
 
@@ -22,8 +22,8 @@
 @implementation SettingViewController
 {
     CGRect rect;
-    UITableView *tableView0;
-    generalTableView *generalTableView0;
+    UITableView *table_View;
+    generalTableView *general_TableView;
 }
 
 //@synthesize list = _list;
@@ -44,7 +44,7 @@
 	// Do any additional setup after loading the view.
     rect = [[UIScreen mainScreen]bounds];
     
-    generalTableView0 = [[generalTableView alloc]init];
+    general_TableView = [[generalTableView alloc]init];
     
     NSArray * array = [[NSArray alloc]initWithObjects:@"个人信息", @"上报充电桩",@"反馈与建议", @"邀请好友", nil];
     NSArray * array2 = [[NSArray alloc]initWithObjects:@"关于Bix", @"支持我们", @"退出登录", nil];
@@ -52,12 +52,12 @@
 //    self.list = array;
 //    self.list2 = array2;
     
-    generalTableView0.list = array;
-    generalTableView0.list2 = array2;
+    general_TableView.list = array;
+    general_TableView.list2 = array2;
     
     //用代码来创建 tableview
-     tableView0 =[[UITableView alloc]initWithFrame:CGRectMake(0, 50, rect.size.width, rect.size.height) style:UITableViewStyleGrouped];
-    [self.view addSubview:tableView0];
+     table_View =[[UITableView alloc]initWithFrame:CGRectMake(0, 50, rect.size.width, rect.size.height) style:UITableViewStyleGrouped];
+    [self.view addSubview:table_View];
 
     //[self.btnLogout dangerStyle];
     //[self.btnAboutBix primaryStyle];
@@ -70,27 +70,27 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [generalTableView0 numberOfSectionsInTableView];
+    return [general_TableView numberOfSectionsInTableView];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [generalTableView0 numberOfRowsInSection:section];
+    return [general_TableView numberOfRowsInSection:section];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [generalTableView0 tableView:tableView cellForRowAtIndexPath:indexPath];
+    return [general_TableView tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [generalTableView0 titleForHeaderInSection:section];
+    return [general_TableView titleForHeaderInSection:section];
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    return [generalTableView0 titleForFooterInSection:section];
+    return [general_TableView titleForFooterInSection:section];
 }
 
 
@@ -98,8 +98,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [generalTableView0 didSelectRowAtIndexPath:indexPath setingViewController:self];
-    
+    [general_TableView didSelectRowAtIndexPath:indexPath setingViewController:self];
 }
 
 
@@ -129,15 +128,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogOut:)
                                              name:EVENT_DISCONNECTED object:nil];
     //设置 dataSource 和 delegate 这两个代理
-    tableView0.delegate = self;
-    tableView0.dataSource = self;
+    table_View.delegate = self;
+    table_View.dataSource = self;
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_DISCONNECTED object:NULL];
     //不用时，置nil
-    tableView0.delegate = nil;
-    tableView0.dataSource = nil;
+    table_View.delegate = nil;
+    table_View.dataSource = nil;
 }
 
 -(void) didLogOut: (NSNotification*) notification{
