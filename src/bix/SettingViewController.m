@@ -93,12 +93,19 @@
     return [general_TableView titleForFooterInSection:section];
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [general_TableView tableView:tableView heightForRowAtIndexPath:indexPath];    
+}
+
 
 #pragma mark delegate
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [general_TableView didSelectRowAtIndexPath:indexPath setingViewController:self];
+    //选中后的反显颜色即刻消失,即选中cell后，cell的高亮立刻消失；
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

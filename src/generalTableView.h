@@ -26,6 +26,7 @@
 -(UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 -(NSString*)titleForHeaderInSection:(NSInteger)Section;
 -(NSString*)titleForFooterInSection:(NSInteger)section;
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 
 //delegate

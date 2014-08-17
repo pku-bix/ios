@@ -23,11 +23,6 @@
     return self;
 }
 
-//-(SettingViewController*)initWithSettingViewController:(SettingViewController *)settingViewController
-//{
-//    self = settingViewController;
-//    return settingViewController;
-//}
 
 #pragma mark dataSource
 
@@ -147,11 +142,25 @@
     }
 }
 
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section == 0 && indexPath.row == 0)
+    {
+        return 78;
+    }
+    else
+        return tableView.rowHeight;
+    
+}
+
+
 #pragma mark delegate
 
 -(void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath setingViewController:(SettingViewController*)setingViewController;
 {
     NSLog(@"你选中了第%d section 第 %d row", [indexPath section], indexPath.row);
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if(indexPath.section == 0)
     {

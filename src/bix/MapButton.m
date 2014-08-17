@@ -54,7 +54,7 @@
     mapView.showsUserLocation = NO;
     mapView.userTrackingMode = BMKUserTrackingModeFollow;
     mapView.showsUserLocation = YES;
-    
+  //  mapView.zoomLevel = 15;
     //remove the annotation array of baidu mapview added
     array = [NSArray arrayWithArray:mapView.annotations];
 	[mapView removeAnnotations:array];
