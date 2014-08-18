@@ -55,8 +55,10 @@
     general_TableView.list = array;
     general_TableView.list2 = array2;
     
-    //用代码来创建 tableview
-     table_View =[[UITableView alloc]initWithFrame:CGRectMake(0, 50, rect.size.width, rect.size.height) style:UITableViewStyleGrouped];
+    //用代码来创建 tableview, tableview的高度需要设置成rect.size.height-navigationbar的高度，才不会出现滚动到最下面的行又自动滚动回前面。
+     table_View =[[UITableView alloc]initWithFrame:CGRectMake(0, 50, rect.size.width, rect.size.height-100) style:UITableViewStyleGrouped];
+//    table_View.contentSize = CGSizeMake(320, 2000);
+    
     [self.view addSubview:table_View];
 
     //[self.btnLogout dangerStyle];
