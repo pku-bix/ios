@@ -161,7 +161,6 @@
 {
     NSLog(@"你选中了第%d section 第 %d row", [indexPath section], indexPath.row);
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     if(indexPath.section == 0)
     {
         if(indexPath.row == 0)

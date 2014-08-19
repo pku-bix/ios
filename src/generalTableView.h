@@ -11,9 +11,9 @@
 
 @interface generalTableView : NSObject
 {
-    SettingViewController * settingViewController;
+//    SettingViewController * settingViewController;
 }
-
+@property (weak, nonatomic) SettingViewController *settingViewController;
 @property (strong, nonatomic) NSArray *list;
 @property (strong, nonatomic) NSArray *list2;
 

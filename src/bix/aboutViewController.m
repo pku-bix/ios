@@ -36,8 +36,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     rect = [[UIScreen mainScreen] bounds];
-     UIImage *image = [UIImage imageNamed:@"Tesla.png"];
-     UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+    
+    //UIImage *image = [UIImage imageNamed:@"Tesla.png"];   //此方法加载图片会缓存，对不常用的图片不适合此方法
+    
+    NSString *TeslaFile = [NSString stringWithFormat:@"%@/%@.png", [[NSBundle mainBundle]resourcePath], @"Tesla"];
+//  UIImage *image = [[UIImage alloc]initWithContentsOfFile:TeslaFile]; //此方法不缓存，一般用在封面等图比较大的地方；
+    UIImage *image = [UIImage imageWithContentsOfFile:TeslaFile];
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
      imageView.frame = CGRectMake((rect.size.width-image.size.width)/2, 90, image.size.width, image.size.height);
      // imageView.backgroundColor = [UIColor greenColor];
      //imageView.contentMode = UIViewContentModeScaleAspectFill;

@@ -8,6 +8,7 @@
 
 #import "MapViewController.h"
 #import "MapButton.h"
+#import "Constants.h"
 
 @implementation MapViewController
 {
@@ -137,6 +138,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+   //  [_mapManager start:BAIDU_MAP_KEY  generalDelegate:self];
     [_mapView viewWillAppear];
     _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
     _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放

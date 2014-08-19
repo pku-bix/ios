@@ -16,7 +16,7 @@
     Account *_account;
     BMKMapManager* _mapManager;
 }
-
+//@property (weak, nonatomic) BMKMapManager *mapManager;
 @property (strong, nonatomic) UIWindow *window;
 
 @property (nonatomic, retain)XMPPDelegate* xmppDelegate;

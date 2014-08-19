@@ -15,5 +15,6 @@
     BMKSearch *_search;
     BMKUserLocation *current_Location;
     NSArray* array;
+    
 }
 @end

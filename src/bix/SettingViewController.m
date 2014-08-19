@@ -60,7 +60,7 @@
 //    table_View.contentSize = CGSizeMake(320, 2000);
     
     [self.view addSubview:table_View];
-
+    //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Tesla"]];
     //[self.btnLogout dangerStyle];
     //[self.btnAboutBix primaryStyle];
     

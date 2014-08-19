@@ -60,10 +60,8 @@
 {
     // Override point for customization after application launch.
     
-    
     // new a thread to make launch interface remain for 1 seconds
-    [NSThread sleepForTimeInterval:1];
-    
+    [NSThread sleepForTimeInterval:1];   
 
     // 要使用百度地图，请先启动BaiduMapManager
     _mapManager = [[BMKMapManager alloc]init];
@@ -80,7 +78,6 @@
     [_mapManager start:BAIDU_MAP_KEY  generalDelegate:self];
     
 //#endif
-    //NSLog(@"didFinishLaunchingWithOption");
     
     self.xmppDelegate = [XMPPDelegate new];
     return YES;
