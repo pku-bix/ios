@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "Constants.h"
-#import "XMPPStream+Wrapper.h"
 #import "MainTabBarController.h"
 #import "SettingViewController.h"
 
@@ -17,12 +16,10 @@
 ///////////////////////////////////////////////////////////////
 //properties
 
-@synthesize account;
-
-
-//MainTabBarController* mainTabBarController;
-
-
+-(void)setAccount:(Account *)account{
+    _account = account;
+    _chatter = [[Chatter alloc] initWithAccount: account];
+}
 
 ////////////////////////////////////////////////////////////////
 //methods
@@ -36,25 +33,6 @@
     return self;
 }
 
-
--(void)setupAccount: (Account*) ac{
-    
-    self.account = ac;
-    
-    self.xmppDelegate.account = ac;
-    
-    //释放原来的代理
-    [self.xmppStream removeDelegate:self.xmppDelegate];
-
-    //初始化XMPPStream
-    self.xmppStream = [[XMPPStream alloc] initWithAccount:self.account];
-    [self.xmppStream addDelegate:self.xmppDelegate delegateQueue:dispatch_get_main_queue()];
-}
-
--(void) logOut{
-    [self.xmppStream goOffline];
-    [self.xmppStream disconnectAfterSending];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -79,7 +57,6 @@
     
 //#endif
     
-    self.xmppDelegate = [XMPPDelegate new];
     return YES;
 }
 							
@@ -103,8 +80,8 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    if (self.account.presence && !self.xmppStream.isConnecting && !self.xmppStream.isConnected) {
-        [self.xmppStream reconnect:-1];
+    if (self.account.presence) {
+        [self.chatter keepConnected:-1];
     }
 }
 

@@ -11,7 +11,6 @@
 #import "MessageBox.h"
 #import "Account.h"
 #import "AppDelegate.h"
-#import "XMPPStream+Wrapper.h"
 #import "Constants.h"
 #import "LoginViewController.h"
 
@@ -97,19 +96,19 @@ bool succeed;   // indicate whether register succeed
     Account* account = [[Account alloc]
                         initWithUsername:self.username.text
                         Password:self.pswd.text];
-    [appdelegate setupAccount: account];
+    appdelegate.account = account;
     
     // do wait
     self.view.userInteractionEnabled = NO;
     hud = [MessageBox Toast:@"正在连接服务器" Mode:MBProgressHUDModeIndeterminate In: self.view];
-    [appdelegate.xmppStream connect:1];
+    [appdelegate.chatter keepConnected:1];
 }
 
 // connect succeed
 - (void)connected:(NSNotification*)n{
     [MessageBox hideTopToast:self.view];
     
-    if(![appdelegate.xmppStream registerAccount]){
+    if(![appdelegate.chatter registerAccount]){
         self.view.userInteractionEnabled = YES;
         [hud hide:YES];
         [MessageBox Toast:@"未知错误，请联系管理员。" In: self.view];

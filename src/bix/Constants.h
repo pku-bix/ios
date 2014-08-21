@@ -16,7 +16,6 @@
 static NSString *const KEY_ACTIVE_JID = @"active_jid";
 static NSString *const KEY_PASSWORD = @"password";
 static NSString *const KEY_AUTOLOGIN= @"autologin";
-//static NSString *const KEY_ACTIVE_TABINDEX=@"active_tabindex";
 static NSString *const KEY_CONTACT_LIST=@"contact_list";
 static NSString *const KEY_SESSION_LIST=@"session_list";
 static NSString *const KEY_MESSAGE_LIST=@"message_list";

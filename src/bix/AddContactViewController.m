@@ -65,7 +65,7 @@ AppDelegate* appdelegate;
         [MessageBox ShowMessage:@"不可添加当前用户"];
         return;
     }
-    [account getConcact:[XMPPJID jidWithString:bareJid]];
+    [appdelegate.chatter getConcact:[XMPPJID jidWithString:bareJid]];
     [account save];
     
     //NSLog(@"%d",account.contacts.count);
@@ -80,9 +80,7 @@ AppDelegate* appdelegate;
 - (BOOL) textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     
-//    if (textField==self.username) {
-//        
-//    }
+    [self Add:textField];
     return NO;
 }
 

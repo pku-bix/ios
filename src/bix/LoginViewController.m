@@ -9,8 +9,6 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "MessageBox.h"
-#import "XMPP.h"
-#import "XMPPStream+Wrapper.h"
 #import "NSString+Account.h"
 #import "Constants.h"
 #import "UIButton+Bootstrap.h"
@@ -106,8 +104,8 @@ AppDelegate* appdelegate;
     hud = [MessageBox Toasting:@"正在连接服务器" In:self.view];
     self.view.userInteractionEnabled = NO;
     
-    [appdelegate setupAccount: account];
-    [appdelegate.xmppStream reconnect:1];
+    appdelegate.account = account;
+    [appdelegate.chatter keepConnectedAndAuthenticated:1];
 }
 
 - (void)connected:(NSNotification*)n{
@@ -126,12 +124,6 @@ AppDelegate* appdelegate;
 - (void)authenticated:(NSNotification*)n{
     [hud hide:YES];
     self.view.userInteractionEnabled = YES;
-    
-    // 上线。登录时完成上线，隐藏tcp重连的细节。
-    [appdelegate.xmppStream goOnline];
-    
-    account.autoLogin = YES;
-    [[NSUserDefaults standardUserDefaults] setObject:account.bareJid forKey:KEY_ACTIVE_JID];
     [self performSegueWithIdentifier:@"main" sender:self];
 }
 - (void)authenticate_failed:(NSNotification*)n{

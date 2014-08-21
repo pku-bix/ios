@@ -6,35 +6,199 @@
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
 
-
-#import "XMPPDelegate.h"
-#import "Account.h"
+#import "Chatter.h"
 #import "NSDate+Wrapper.h"
 #import "Constants.h"
-#import "xmpp.h"
 #import "Session.h"
 #import "NSString+Account.h"
 #import "ChatMessage.h"
-#import "XMPPStream+Wrapper.h"
 
-@implementation XMPPDelegate
+@interface Chatter()
 
-// 发件箱
-NSMutableArray *qsending;
+-(void)goOnline;
+-(void)goOffline;
 
--(id)init{
+@end
+
+@implementation Chatter{
+    
+    // 连接时重试次数
+    int nRetry;
+}
+
+-(id)initWithAccount: (Account*)account{
+    
     self = [super init];
-    qsending = [NSMutableArray new];
+    
+    // 出于设计，构造函数内不要使用访问器
+    _account = account;
+    
+    self.qsending = [NSMutableArray new];
+    [self loadContactsAndSessions];
+    
+    self.xmppStream = [XMPPStream new];
+    self.xmppStream.hostName = SERVER;
+    self.xmppStream.myJID = account.Jid;
+    [self.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
+
     return self;
+}
+
+// 该访问器要自定义
+-(void)setAccount:(Account *)account{
+    _account = account;
+    self.xmppStream.myJID = account.Jid;
+}
+
+-(void)dealloc{
+    // 释放xmpp机制中的代理
+    [self.xmppStream removeDelegate:self];
+}
+
+#pragma mark - Sessions Contacts
+
+//query contact, add when needed
+-(Account*)getConcact: (XMPPJID*)Jid{
+    
+    // self query
+    if([self.account.bareJid isEqualToString: Jid.bare]) return self.account;
+    
+    NSArray* filteredContacts =[self.contacts
+                                filteredArrayUsingPredicate:
+                                [NSPredicate predicateWithFormat:@"bareJid == %@",Jid.bare]];
+    
+    Account* account;
+    if (filteredContacts.count == 0) {
+        account = [[Account alloc] initWithJid:Jid];
+        [self.contacts addObject:account];
+        
+        //notify
+        [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_CONTACT_ADDED object:self ];
+    }
+    else{
+        account = filteredContacts[0];
+    }
+    account.Jid = Jid; // update Jid, resource especially
+    return account;
+}
+
+
+//query session, add when needed
+-(Session*)getSession: (XMPPJID*)Jid{
+    
+    NSArray* filteredSessions =[self.sessions
+                                filteredArrayUsingPredicate:
+                                [NSPredicate predicateWithFormat:@"bareJid == %@",Jid.bare]];
+    
+    Session* session;
+    if (filteredSessions.count == 0) {
+        session = [[Session alloc] initWithRemoteJid:Jid];
+        [self.sessions addObject:session];
+    }
+    else{
+        session = filteredSessions[0];
+    }
+    session.remoteJid = Jid;
+    return session;
+}
+
+-(void) saveContactsAndSessions{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    // encoding
+    NSData *contact_data = [NSKeyedArchiver archivedDataWithRootObject:self.contacts];
+    [defaults setObject:contact_data forKey:[self.account.bareJid stringByAppendingFormat:KEY_CONTACT_LIST ]];
+    
+    NSData *session_data = [NSKeyedArchiver archivedDataWithRootObject:self.sessions];
+    [defaults setObject:session_data forKey:[self.account.bareJid stringByAppendingFormat:KEY_SESSION_LIST ]];
+
+    // flush
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(void) loadContactsAndSessions{
+//    NSString* s = [self.account.bareJid stringByAppendingFormat:KEY_CONTACT_LIST ];
+    NSData* contact_data = [[NSUserDefaults standardUserDefaults] objectForKey:[self.account.bareJid stringByAppendingFormat:KEY_CONTACT_LIST ]];
+    self.contacts = contact_data ? [NSKeyedUnarchiver unarchiveObjectWithData: contact_data] : [NSMutableArray array];
+    
+    NSData* session_data = [[NSUserDefaults standardUserDefaults] objectForKey:[self.account.bareJid stringByAppendingFormat:KEY_SESSION_LIST ]];
+    self.sessions = session_data ? [NSKeyedUnarchiver unarchiveObjectWithData: session_data] : [NSMutableArray array];
+}
+
+#pragma mark - XMPP utilities
+
+-(void)goOnline{
+    XMPPPresence *presence = [XMPPPresence presence];
+    [self.xmppStream sendElement:presence];
+    self.account.presence = true;
+}
+
+-(void)goOffline{
+    XMPPPresence *presence = [XMPPPresence presenceWithType:@"unavailable"];
+    [self.xmppStream sendElement:presence];
+    self.account.presence = false;
+}
+
+-(void) logOut{
+    [self.xmppStream disconnectAfterSending];
+    [self goOffline];
+    [self saveContactsAndSessions];
+}
+
+-(BOOL)keepConnectedAndAuthenticated:(int)count{
+    nRetry = count;
+    self.autoAuthentication = true;
+    return [self doConnect];
+}
+
+-(BOOL)keepConnected:(int)count{
+    nRetry = count;
+    self.autoAuthentication = false;
+    return [self doConnect];
+}
+
+-(BOOL)doConnect{
+    if(self.xmppStream.isConnected || self.xmppStream.isConnecting) return true;
+    if (nRetry > 0) {
+        nRetry -- ;
+        return [self.xmppStream connectWithTimeout:CONNECT_TIMEOUT error: nil];
+    }
+    else if (nRetry == -1){
+        return [self.xmppStream connectWithTimeout:CONNECT_TIMEOUT error: nil];
+    }
+    return false;
+}
+
+-(BOOL) registerAccount{
+    NSError* error = nil;
+    if([self.xmppStream registerWithPassword:self.account.password error:&error]){
+        return true;
+    }
+    else{
+        NSLog(@"register error: %@", error);
+        return false;
+    }
+}
+
+-(void) authenticate{
+    NSError *error = nil;
+    [self.xmppStream authenticateWithPassword:self.account.password error:&error];
+}
+
+-(void)send: (XMPPJID*)remoteJid Message:(NSString*)body{
+    ChatMessage *msg = [[ChatMessage alloc] initWithBody:body From:self.xmppStream.myJID To:remoteJid];
+    [self.xmppStream sendElement:msg];
 }
 
 // 重发
 -(void) resendAll: (XMPPStream*)sender{
-    while(qsending.count>0) {
-        [sender sendElement:qsending.firstObject];
-        [qsending removeObjectAtIndex:0];
+    while(self.qsending.count>0) {
+        [sender sendElement:self.qsending.firstObject];
+        [self.qsending removeObjectAtIndex:0];
     }
 }
+
+#pragma mark - XMPP Delegate
 
 // 连接成功
 - (void)xmppStreamDidConnect:(XMPPStream *)sender{
@@ -42,11 +206,11 @@ NSMutableArray *qsending;
     NSLog(@"xmpp connected");
 #endif
     // 验证
-    if ( [sender getAuto_auth] && !sender.isAuthenticated && !sender.isAuthenticating) {
-        [sender authenticate];
+    if ( self.autoAuthentication && !sender.isAuthenticated && !sender.isAuthenticating) {
+        [self authenticate];
     }
     // 重发
-    if([sender getAccount].presence && sender.isAuthenticated){
+    if(self.account.presence && sender.isAuthenticated){
         [self resendAll:sender];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_CONNECTED object:self];
@@ -57,7 +221,7 @@ NSMutableArray *qsending;
     NSLog(@"xmpp connect timeout");
 #endif
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_DISCONNECTED object:self];
-    [sender doConnect];
+    [self doConnect];
 }
 // 断开连接成功
 - (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error{
@@ -65,6 +229,9 @@ NSMutableArray *qsending;
     NSLog(@"xmpp disconnect");
 #endif
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_DISCONNECTED object:self];
+
+    //保存账号
+    [self.account save];
 }
 
 // 验证成功
@@ -73,9 +240,12 @@ NSMutableArray *qsending;
     NSLog(@"xmpp authenticated");
 #endif
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_AUTHENTICATED object:self];
-    if([sender getAccount].presence){
-        [self resendAll:sender];
-    }
+
+    self.account.autoLogin = YES;
+    [self.account saveAsActiveUser];
+    
+    [self goOnline];
+    [self resendAll:sender];
 }
 // 验证失败
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error{
@@ -84,8 +254,6 @@ NSMutableArray *qsending;
 #endif    
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_AUTHENTICATE_FAILED object:self];
 }
-
-
 //将要发送状态
 - (XMPPPresence *)xmppStream:(XMPPStream *)sender willSendPresence:(XMPPPresence *)presence{
 #ifdef DEBUG
@@ -105,8 +273,8 @@ NSMutableArray *qsending;
     NSLog(@"xmpp send presence failed, error: %@\npresence:\n%@\n\n",error,presence);
 #endif
     if (error.code == XMPPStreamInvalidState && error.domain==XMPPStreamErrorDomain) {
-        [sender reconnect:-1];
-        [qsending addObject:presence];
+        [self keepConnectedAndAuthenticated:-1];
+        [self.qsending addObject:presence];
 #ifdef DEBUG
         NSLog(@"xmpp state invalid, reconnecting...");
 #endif
@@ -124,7 +292,7 @@ NSMutableArray *qsending;
     //在线用户
     XMPPJID *remoteJid = [presence from];
     
-    Account* remoteAccount = [self.account getConcact:remoteJid];
+    Account* remoteAccount = [self getConcact:remoteJid];
     remoteAccount.presence = [presenceType isEqual: @"available"];
     
     if (![remoteJid.bare isEqualToString:myJid.bare]) {
@@ -134,10 +302,9 @@ NSMutableArray *qsending;
                                                                     remoteAccount, @"account", nil ]];
     }
 }
-
 //将要发送聊天
 - (XMPPMessage *)xmppStream:(XMPPStream *)sender willSendMessage:(XMPPMessage *)message{
-    Session* session = [self.account getSession:message.to];
+    Session* session = [self getSession:message.to];
     ChatMessage* chatMessage = [[ChatMessage alloc] initWithXMPPMessage:message];
     [session.msgs addObject:chatMessage];
     
@@ -156,8 +323,8 @@ NSMutableArray *qsending;
     NSLog(@"xmpp send message failed: %@\nmessage:\n%@\n\n",error,message);
 #endif
     if (error.code == XMPPStreamInvalidState && error.domain==XMPPStreamErrorDomain) {
-        [sender reconnect:-1];
-        [qsending addObject:message];
+        [self keepConnectedAndAuthenticated:-1];
+        [self.qsending addObject:message];
 #ifdef DEBUG
         NSLog(@"xmpp state invalid, reconnecting...");
 #endif
@@ -176,7 +343,7 @@ NSMutableArray *qsending;
     // generate chatMessage
     ChatMessage *chatMessage = [[ChatMessage alloc] initWithBody:message.body From:message.from To:message.to];
     
-    Session* session = [self.account getSession:chatMessage.from];
+    Session* session = [self getSession:chatMessage.from];
     [session.msgs addObject:chatMessage];
     
     //发送通知
@@ -203,8 +370,8 @@ NSMutableArray *qsending;
     NSLog(@"xmpp send iq failed: %@\niq:\n%@\n\n",error,iq);
 #endif
     if (error.code == XMPPStreamInvalidState && error.domain==XMPPStreamErrorDomain) {
-        [sender reconnect:-1];
-        [qsending addObject:iq];
+        [self keepConnectedAndAuthenticated:-1];
+        [self.qsending addObject:iq];
 #ifdef DEBUG
         NSLog(@"xmpp state invalid, reconnecting...");
 #endif

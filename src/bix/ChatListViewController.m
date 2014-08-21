@@ -82,7 +82,7 @@ Session* sessionToOpen;
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
   
-    return [appdelegate.xmppDelegate.account.sessions count];
+    return [appdelegate.chatter.sessions count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -97,7 +97,7 @@ Session* sessionToOpen;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:REUSE_CELLID_CHATLIST];
     }
-    Session *session = [appdelegate.xmppDelegate.account.sessions objectAtIndex:[indexPath row]];
+    Session *session = [appdelegate.chatter.sessions objectAtIndex:[indexPath row]];
     
     //文本
     cell.textLabel.text = session.remoteJid.user;
@@ -125,7 +125,7 @@ Session* sessionToOpen;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    Session* session = [appdelegate.xmppDelegate.account.sessions objectAtIndex:[indexPath row]];
+    Session* session = [appdelegate.chatter.sessions objectAtIndex:[indexPath row]];
     [self openSession:session];
 }
 
@@ -135,7 +135,7 @@ Session* sessionToOpen;
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         //add code here for when you hit delete
-        [appdelegate.xmppDelegate.account.sessions removeObjectAtIndex:indexPath.row];
+        [appdelegate.chatter.sessions removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }

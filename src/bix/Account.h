@@ -12,34 +12,25 @@
 
 @interface Account : NSObject<NSCoding>
 
-@property (nonatomic,retain) XMPPJID* Jid;
+@property (nonatomic) XMPPJID* Jid;
 @property (nonatomic, readonly) NSString* bareJid;
-@property (nonatomic,copy) NSString* password;
+@property (nonatomic) NSString* password;
 @property (nonatomic) BOOL autoLogin;
 @property (nonatomic) BOOL presence;
-
-@property (nonatomic, retain) NSMutableArray* contacts;
-@property (nonatomic, retain) NSMutableArray* sessions;
-
+@property (readonly,getter = isValid) BOOL valid;
 
 -(id) init;
 -(id) initWithJid: (XMPPJID*) jid;
 -(id) initWithJid: (XMPPJID*) jid Password:(NSString*) password;
 -(id) initWithUsername: (NSString*)username Password:(NSString*) password;
 
-
-/*
- * query
- */
 - (BOOL) isValid;
--(Account*)getConcact: (XMPPJID*)Jid;
--(Session*)getSession: (XMPPJID*)Jid;
 
 /*
  * local storage
  */
 - (void) save;
-- (void) clearAll;
+- (void) saveAsActiveUser;
 + (Account*) loadAccount: (NSString*)bareJid;
 + (NSString*) getActiveJid;
 

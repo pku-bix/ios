@@ -9,22 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "XMPP.h"
 #import "Account.h"
-#import "XMPPDelegate.h"
+#import "Chatter.h"
 #import "BMapKit.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, BMKGeneralDelegate>{
     Account *_account;
     BMKMapManager* _mapManager;
 }
-//@property (weak, nonatomic) BMKMapManager *mapManager;
+
 @property (strong, nonatomic) UIWindow *window;
-
-@property (nonatomic, retain)XMPPDelegate* xmppDelegate;
-@property (nonatomic, retain)XMPPStream* xmppStream;
-@property (nonatomic, retain)Account* account;
-
-// account should be set before call this method
--(void)setupAccount: (Account*)account;
--(void) logOut;
+@property (nonatomic)Chatter* chatter;
+@property (nonatomic)Account* account;
 
 @end

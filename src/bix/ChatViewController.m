@@ -11,7 +11,6 @@
 #import "Constants.h"
 #import "MessageCell.h"
 #import "NSDate+Wrapper.h"
-#import "XMPPStream+Wrapper.h"
 #import "ChatMessage.h"
 
 @interface ChatViewController ()
@@ -57,8 +56,6 @@ AppDelegate* appdelegate;
 - (void)viewWillAppear:(BOOL)animated{
     self.navigationItem.title = [NSString stringWithFormat: @"%@", self.session.remoteJid.user];
     
-    [self updateList:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(commitKeyboardAnimations:)
@@ -71,6 +68,10 @@ AppDelegate* appdelegate;
                                                  name:EVENT_MESSAGE_RECEIVED    object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(updateList:)
                                                  name:EVENT_MESSAGE_SENT    object:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [self updateList:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -244,15 +245,14 @@ AppDelegate* appdelegate;
 // 结束输入，关闭软键盘，并执行发送
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == self.textView) {
-        [textField resignFirstResponder];
-
+        
         NSString *message = self.textView.text;
         if (message.length == 0) return YES;
         
-        [appdelegate.xmppStream send:self.session.remoteJid Message:message];
+        [appdelegate.chatter send:self.session.remoteJid Message:message];
         
         self.textView.text = @"";
-        [self.textView resignFirstResponder];
+        //[self.textView resignFirstResponder];
     }
     return YES;
 }

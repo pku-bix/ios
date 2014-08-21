@@ -129,7 +129,8 @@
     if (buttonIndex == 0) return;
     
     AppDelegate* appdelegate  = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appdelegate logOut];
+    appdelegate.account.autoLogin = false;
+    [appdelegate.chatter logOut];
 }
 
 
@@ -149,15 +150,6 @@
 }
 
 -(void) didLogOut: (NSNotification*) notification{
-    
-    AppDelegate* appdelegate  = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
-    //释放代理
-    [appdelegate.xmppStream removeDelegate:appdelegate.xmppDelegate];
-    
-    //保存账号
-    appdelegate.account.autoLogin = false;
-    [appdelegate.account save];
     
     [self performSegueWithIdentifier:@"login" sender:self];
 }

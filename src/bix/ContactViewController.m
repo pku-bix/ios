@@ -64,7 +64,7 @@ AppDelegate* appdelegate;
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return [appdelegate.account.contacts count];
+    return [appdelegate.chatter.contacts count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -80,7 +80,7 @@ AppDelegate* appdelegate;
                                       reuseIdentifier:REUSE_CELLID_CONTACTLIST];
     }
     
-    Account *account = [appdelegate.account.contacts objectAtIndex:[indexPath row]];
+    Account *account = [appdelegate.chatter.contacts objectAtIndex:[indexPath row]];
     
     //文本
     cell.textLabel.text = account.Jid.user;
@@ -110,8 +110,8 @@ AppDelegate* appdelegate;
 // contact selected
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    Account* account = [appdelegate.account.contacts objectAtIndex:[indexPath row]];
-    Session* sessionToOpen = [appdelegate.account getSession:account.Jid];
+    Account* account = [appdelegate.chatter.contacts objectAtIndex:[indexPath row]];
+    Session* sessionToOpen = [appdelegate.chatter getSession:account.Jid];
     
     MainTabBarController* mainTabBarController = (MainTabBarController*)self.tabBarController;
     [mainTabBarController openSession: sessionToOpen];
@@ -123,7 +123,7 @@ AppDelegate* appdelegate;
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         //add code here for when you hit delete
-        [appdelegate.account.contacts removeObjectAtIndex:indexPath.row];
+        [appdelegate.chatter.contacts removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
