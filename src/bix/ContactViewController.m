@@ -111,7 +111,7 @@ AppDelegate* appdelegate;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     Account* account = [appdelegate.chatter.contacts objectAtIndex:[indexPath row]];
-    Session* sessionToOpen = [appdelegate.chatter getSession:account.Jid];
+    Session* sessionToOpen = [appdelegate.chatter getSession:account];
     
     MainTabBarController* mainTabBarController = (MainTabBarController*)self.tabBarController;
     [mainTabBarController openSession: sessionToOpen];

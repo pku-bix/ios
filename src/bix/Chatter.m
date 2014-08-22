@@ -58,47 +58,40 @@
 #pragma mark - Sessions Contacts
 
 //query contact, add when needed
--(Account*)getConcact: (XMPPJID*)Jid{
+-(Account*)getConcact: (NSString*)bareJid{
     
     // self query
-    if([self.account.bareJid isEqualToString: Jid.bare]) return self.account;
+    if([self.account.bareJid isEqualToString: bareJid]) return self.account;
     
     NSArray* filteredContacts =[self.contacts
                                 filteredArrayUsingPredicate:
-                                [NSPredicate predicateWithFormat:@"bareJid == %@",Jid.bare]];
+                                [NSPredicate predicateWithFormat:@"bareJid == %@",bareJid]];
     
-    Account* account;
-    if (filteredContacts.count == 0) {
-        account = [[Account alloc] initWithJid:Jid];
-        [self.contacts addObject:account];
-        
-        //notify
-        [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_CONTACT_ADDED object:self ];
-    }
-    else{
-        account = filteredContacts[0];
-    }
-    account.Jid = Jid; // update Jid, resource especially
+    if (filteredContacts.count > 0)
+        return filteredContacts[0];
+    
+    Account* account = [[Account alloc] initWithJid:[XMPPJID jidWithString:bareJid]];
+    [self.contacts addObject:account];
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_CONTACT_ADDED object:self ];
+    
     return account;
 }
 
 
 //query session, add when needed
--(Session*)getSession: (XMPPJID*)Jid{
+-(Session*)getSession: (Account*)remoteAccount{
     
     NSArray* filteredSessions =[self.sessions
                                 filteredArrayUsingPredicate:
-                                [NSPredicate predicateWithFormat:@"bareJid == %@",Jid.bare]];
+                                [NSPredicate predicateWithFormat:@"bareJid == %@",remoteAccount.bareJid]];
     
-    Session* session;
-    if (filteredSessions.count == 0) {
-        session = [[Session alloc] initWithRemoteJid:Jid];
-        [self.sessions addObject:session];
-    }
-    else{
-        session = filteredSessions[0];
-    }
-    session.remoteJid = Jid;
+    if (filteredSessions.count > 0)
+        return filteredSessions[0];
+
+    Session* session = [[Session alloc] initWithRemoteAccount:remoteAccount];
+    [self.sessions addObject:session];
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_SESSION_ADDED object:self ];
+    
     return session;
 }
 
@@ -130,7 +123,6 @@
 -(void)goOnline{
     XMPPPresence *presence = [XMPPPresence presence];
     [self.xmppStream sendElement:presence];
-    self.account.presence = true;
 }
 
 -(void)goOffline{
@@ -185,8 +177,8 @@
     [self.xmppStream authenticateWithPassword:self.account.password error:&error];
 }
 
--(void)send: (XMPPJID*)remoteJid Message:(NSString*)body{
-    ChatMessage *msg = [[ChatMessage alloc] initWithBody:body From:self.xmppStream.myJID To:remoteJid];
+-(void)send: (Account*)remoteAccount Message:(NSString*)body{
+    ChatMessage *msg = [[ChatMessage alloc] initWithBody:body From:self.xmppStream.myJID To:remoteAccount.Jid];
     [self.xmppStream sendElement:msg];
 }
 
@@ -292,7 +284,7 @@
     //在线用户
     XMPPJID *remoteJid = [presence from];
     
-    Account* remoteAccount = [self getConcact:remoteJid];
+    Account* remoteAccount = [self getConcact:remoteJid.bare];
     remoteAccount.presence = [presenceType isEqual: @"available"];
     
     if (![remoteJid.bare isEqualToString:myJid.bare]) {
@@ -304,7 +296,9 @@
 }
 //将要发送聊天
 - (XMPPMessage *)xmppStream:(XMPPStream *)sender willSendMessage:(XMPPMessage *)message{
-    Session* session = [self getSession:message.to];
+    Account* remoteAccount = [self getConcact:message.to.bare];
+    Session* session = [self getSession:remoteAccount];
+    
     ChatMessage* chatMessage = [[ChatMessage alloc] initWithXMPPMessage:message];
     [session.msgs addObject:chatMessage];
     
@@ -343,7 +337,8 @@
     // generate chatMessage
     ChatMessage *chatMessage = [[ChatMessage alloc] initWithBody:message.body From:message.from To:message.to];
     
-    Session* session = [self getSession:chatMessage.from];
+    Account* remoteAccount = [self getConcact:message.from.bare];
+    Session* session = [self getSession:remoteAccount];
     [session.msgs addObject:chatMessage];
     
     //发送通知

@@ -54,7 +54,7 @@ AppDelegate* appdelegate;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    self.navigationItem.title = [NSString stringWithFormat: @"%@", self.session.remoteJid.user];
+    self.navigationItem.title = [NSString stringWithFormat: @"%@", self.session.remoteAccount.Jid.user];
     
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification object:nil];
@@ -249,7 +249,7 @@ AppDelegate* appdelegate;
         NSString *message = self.textView.text;
         if (message.length == 0) return YES;
         
-        [appdelegate.chatter send:self.session.remoteJid Message:message];
+        [appdelegate.chatter send:self.session.remoteAccount Message:message];
         
         self.textView.text = @"";
         //[self.textView resignFirstResponder];

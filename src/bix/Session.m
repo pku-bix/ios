@@ -9,17 +9,18 @@
 #import "Session.h"
 #import "ChatMessage.h"
 #import "Constants.h"
+#import "AppDelegate.h"
 
 @implementation Session
 
 -(NSString *)bareJid{
-    return self.remoteJid.bare;
+    return self.remoteAccount.bareJid;
 }
 
--(id) initWithRemoteJid:(XMPPJID*) Jid{
+-(id) initWithRemoteAccount:(Account*) remoteAccount{
     self = [super init];
     if(self){
-        self.remoteJid = Jid;
+        self.remoteAccount = remoteAccount;
         self.msgs = [NSMutableArray array];
     }
     return self;
@@ -27,16 +28,14 @@
 
 - (id)initWithCoder:(NSCoder *)coder {
     
-    self = [self initWithRemoteJid:[XMPPJID jidWithString:
-                                     (NSString*)[coder decodeObjectForKey:KEY_JID]]
-            ];
+    AppDelegate* appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.remoteAccount = [appdelegate.chatter getConcact:
+                           (NSString*)[coder decodeObjectForKey:KEY_JID]];
             
     if (self) {
-        
         self.msgs = [coder decodeObjectForKey:KEY_MESSAGE_LIST];
-        if (self.msgs == nil) {
+        if (self.msgs == nil)
             self.msgs = [NSMutableArray array];
-        }
     }
     return self;
 }

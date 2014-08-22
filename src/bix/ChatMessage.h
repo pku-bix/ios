@@ -14,7 +14,7 @@
 @interface ChatMessage: XMPPMessage<NSCoding>
 
 @property (nonatomic) NSDate* date;
-@property (nonatomic,readonly) BOOL isMine;
+@property (nonatomic,readonly) bool isMine;
 
 -(id)initWithBody:(NSString *)body From:(XMPPJID*)from To:(XMPPJID*)to;
 -(id)initWithXMPPMessage:(XMPPMessage*)msg;

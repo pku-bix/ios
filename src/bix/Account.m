@@ -14,7 +14,7 @@
 @implementation Account
 
 // propperties
-- (BOOL) isValid{
+- (bool) isValid{
     return [[self.Jid bare] isValidJid] && [self.password isValidPassword];
 }
 

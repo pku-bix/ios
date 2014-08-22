@@ -8,23 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import "XMPP.h"
-#import "Session.h"
 
 @interface Account : NSObject<NSCoding>
 
 @property (nonatomic) XMPPJID* Jid;
 @property (nonatomic, readonly) NSString* bareJid;
 @property (nonatomic) NSString* password;
-@property (nonatomic) BOOL autoLogin;
-@property (nonatomic) BOOL presence;
-@property (readonly,getter = isValid) BOOL valid;
+@property (nonatomic) bool autoLogin;
+@property (nonatomic) bool presence;
+@property (readonly,getter = isValid) bool valid;
 
 -(id) init;
 -(id) initWithJid: (XMPPJID*) jid;
 -(id) initWithJid: (XMPPJID*) jid Password:(NSString*) password;
 -(id) initWithUsername: (NSString*)username Password:(NSString*) password;
 
-- (BOOL) isValid;
+- (bool) isValid;
 
 /*
  * local storage

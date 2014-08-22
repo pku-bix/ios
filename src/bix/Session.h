@@ -8,14 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "XMPPFramework.h"
+#import "Account.h"
 
 @interface Session : NSObject<NSCoding>
 
-@property (nonatomic,retain) XMPPJID* remoteJid;
-@property (nonatomic,readonly) NSString* bareJid;
+//@property (nonatomic) XMPPJID* remoteJid;
 
-@property (nonatomic,retain) NSMutableArray* msgs;
 
--(id) initWithRemoteJid:(XMPPJID*) Jid;
+@property (weak) Account* remoteAccount;
+@property (nonatomic, readonly) NSString* bareJid;
+@property (nonatomic) NSMutableArray* msgs;
+
+-(id) initWithRemoteAccount:(Account*) remoteAccount;
 -(bool) msgExpiredAt: (int) index;
 @end

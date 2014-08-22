@@ -7,6 +7,7 @@
 //
 
 #import "Account.h"
+#import "Session.h"
 
 @interface Chatter : NSObject
 
@@ -19,16 +20,16 @@
 // 自动验证
 @property bool autoAuthentication;
 // 联系人
-@property (nonatomic, retain) NSMutableArray* contacts;
+@property (nonatomic) NSMutableArray* contacts;
 // 会话
-@property (nonatomic, retain) NSMutableArray* sessions;
+@property (nonatomic) NSMutableArray* sessions;
 
 -(id)initWithAccount: (Account*)account;
 -(void) saveContactsAndSessions;
 -(void) loadContactsAndSessions;
 -(void) logOut;
--(Account*)getConcact: (XMPPJID*)Jid;
--(Session*)getSession: (XMPPJID*)Jid;
+-(Account*)getConcact: (NSString*)bareJid;
+-(Session*)getSession: (Account*)remoteAccount;
 
 //执行连接
 -(BOOL)doConnect;
@@ -41,7 +42,7 @@
 //注册
 -(BOOL) registerAccount;
 //发送
--(void)send: (XMPPJID*)remoteJid Message:(NSString*)msgtxt;
+-(void)send: (Account*)remoteAccount Message:(NSString*)body;
 //重发收件箱
 -(void) resendAll: (XMPPStream*)sender;
 

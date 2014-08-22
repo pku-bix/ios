@@ -100,7 +100,7 @@ Session* sessionToOpen;
     Session *session = [appdelegate.chatter.sessions objectAtIndex:[indexPath row]];
     
     //文本
-    cell.textLabel.text = session.remoteJid.user;
+    cell.textLabel.text = session.remoteAccount.Jid.user;
     //标记
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     

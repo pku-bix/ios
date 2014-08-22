@@ -65,10 +65,8 @@ AppDelegate* appdelegate;
         [MessageBox ShowMessage:@"不可添加当前用户"];
         return;
     }
-    [appdelegate.chatter getConcact:[XMPPJID jidWithString:bareJid]];
+    [appdelegate.chatter getConcact:bareJid];
     [account save];
-    
-    //NSLog(@"%d",account.contacts.count);
 
     [[self navigationController] popViewControllerAnimated:YES];
 }

@@ -813,9 +813,9 @@
 		ECED787618CF7FE30041CCC7 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				ECED788F18D00CAD0041CCC7 /* Session.h */,
-				ECED789018D00CAD0041CCC7 /* Account.m */,
 				ECED787718CF7FE30041CCC7 /* Account.h */,
+				ECED789018D00CAD0041CCC7 /* Account.m */,
+				ECED788F18D00CAD0041CCC7 /* Session.h */,
 				ECED787818CF7FE30041CCC7 /* Session.m */,
 			);
 			path = Account;
