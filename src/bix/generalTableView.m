@@ -56,16 +56,62 @@
                 initWithStyle:UITableViewCellStyleDefault  //cell的风格会决定下面cell.detailTextLabel.text是否有效，以及效果是怎么样的。
                 reuseIdentifier:TableSampleIdentifier];
     }
+    
+    ////    cell.detailTextLabel.text = @"i am tian cai";
+    UIImage *image0 = [UIImage imageNamed:@"personInfo"];
+    UIImage *image1 = [UIImage imageNamed:@"reported"];
+    UIImage *image2 = [UIImage imageNamed:@"feedback"];
+    UIImage *image3 = [UIImage imageNamed:@"inviteFriends"];
+    UIImage *image4 = [UIImage imageNamed:@"aboutBix"];
+    UIImage *image5 = [UIImage imageNamed:@"supportUs"];
+    UIImage *image6 = [UIImage imageNamed:@"logout"];
+    
     //  cell.showsReorderControl = YES;
     NSUInteger row = [indexPath row];
     // NSUInteger section = [indexPath section];
     if(indexPath.section == 0)
     {
         cell.textLabel.text = [self.list objectAtIndex:row];
+        //图片显示在cell的左边， 不同cell， 显示的图片不同；
+        
+        switch (row) {
+            case 0:
+                cell.imageView.image = image0;
+                break;
+            case 1:
+                cell.imageView.image = image1;
+                //设置tableview cell 的背景颜色；
+                //  cell.contentView.backgroundColor = [UIColor colorWithRed:0.1 green:0.8 blue:0.1 alpha:1];
+                break;
+            case 2:
+                cell.imageView.image = image2;
+                break;
+            case 3:
+                cell.imageView.image = image3;
+                break;
+                
+            default:
+                break;
+        }
+
     }
     else
     {
         cell.textLabel.text = [self.list2 objectAtIndex:row];
+        switch (row) {
+            case 0:
+                cell.imageView.image = image4;
+                break;
+            case 1:
+                cell.imageView.image = image5;
+                break;
+            case 2:
+                cell.imageView.image = image6;
+                break;
+                
+            default:
+                break;
+        }
     }
     //在cell每行右边显示的风格
     cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
@@ -76,33 +122,6 @@
     //    UITableViewCellAccessoryCheckmark,
     //    UITableViewCellAccessoryDetailButton
     
-    ////    cell.detailTextLabel.text = @"i am tian cai";
-    UIImage *image0 = [UIImage imageNamed:@"personInfo"];
-    UIImage *image1 = [UIImage imageNamed:@"share"];
-    UIImage *image2 = [UIImage imageNamed:@"reported"];
-    UIImage *image3 = [UIImage imageNamed:@"invite"];
-    //图片显示在cell的左边， 不同cell， 显示的图片不同；
-    
-    switch (row) {
-        case 0:
-            cell.imageView.image = image0;
-            break;
-        case 1:
-            cell.imageView.image = image1;
-            //设置tableview cell 的背景颜色；
-            //  cell.contentView.backgroundColor = [UIColor colorWithRed:0.1 green:0.8 blue:0.1 alpha:1];
-            break;
-        case 2:
-            cell.imageView.image = image2;
-            break;
-        case 3:
-            cell.imageView.image = image3;
-            break;
-            
-        default:
-            break;
-    }
-    //    UIImage *highLighedImage = [UIImage imageNamed:@"geo_fence-32"];
     //    cell.imageView.highlightedImage = highLighedImage;
     //    cell.detailTextLabel.text = @"asdfasdf";
     
