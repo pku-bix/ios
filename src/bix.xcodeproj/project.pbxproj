@@ -28,6 +28,7 @@
 		E3FC3EFE1999BB1400E0E784 /* reported@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FC3EFA1999BB1400E0E784 /* reported@2x.png */; };
 		E3FC3EFF1999BB1400E0E784 /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3FC3EFB1999BB1400E0E784 /* share@2x.png */; };
 		E3FC3F05199A4CCB00E0E784 /* generalTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FC3F04199A4CCB00E0E784 /* generalTableView.m */; };
+		EC0F2A3E19C5EEA800BE1F62 /* ChatNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0F2A3D19C5EEA800BE1F62 /* ChatNavigationController.m */; };
 		EC10200B18C85DF200B3775E /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200A18C85DF200B3775E /* MainTabBarController.m */; };
 		EC10200E18C86FF100B3775E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200D18C86FF100B3775E /* SettingViewController.m */; };
 		EC10201118C8701400B3775E /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10201018C8701400B3775E /* MapViewController.m */; };
@@ -151,6 +152,8 @@
 		E3FC3EFB1999BB1400E0E784 /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
 		E3FC3F03199A4CCB00E0E784 /* generalTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = generalTableView.h; path = bix/generalTableView.h; sourceTree = "<group>"; };
 		E3FC3F04199A4CCB00E0E784 /* generalTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = generalTableView.m; path = bix/generalTableView.m; sourceTree = "<group>"; };
+		EC0F2A3C19C5EEA800BE1F62 /* ChatNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatNavigationController.h; sourceTree = "<group>"; };
+		EC0F2A3D19C5EEA800BE1F62 /* ChatNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatNavigationController.m; sourceTree = "<group>"; };
 		EC10200918C85DF200B3775E /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
 		EC10200A18C85DF200B3775E /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
 		EC10200C18C86FF100B3775E /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingViewController.h; path = bix/SettingViewController.h; sourceTree = SOURCE_ROOT; };
@@ -844,6 +847,8 @@
 				EC57886B19A620710058837C /* ChatViewController.m */,
 				EC57886C19A620710058837C /* MessageCell.h */,
 				EC57886D19A620710058837C /* MessageCell.m */,
+				EC0F2A3C19C5EEA800BE1F62 /* ChatNavigationController.h */,
+				EC0F2A3D19C5EEA800BE1F62 /* ChatNavigationController.m */,
 			);
 			name = ChatView;
 			sourceTree = "<group>";
@@ -1086,6 +1091,7 @@
 				EC9908A218C33C9200798FAB /* XMPPStream.m in Sources */,
 				EC99083018C3391300798FAB /* DDXMLNode.m in Sources */,
 				ECED789118D00CAD0041CCC7 /* Account.m in Sources */,
+				EC0F2A3E19C5EEA800BE1F62 /* ChatNavigationController.m in Sources */,
 				EC99089218C33C9200798FAB /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				EC57888519A6215A0058837C /* NSDate+Wrapper.m in Sources */,
 				EC10200E18C86FF100B3775E /* SettingViewController.m in Sources */,

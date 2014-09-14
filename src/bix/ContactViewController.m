@@ -13,6 +13,7 @@
 #import "ChatViewController.h"
 #import "ChatListViewController.h"
 #import "MainTabBarController.h"
+#import "ChatNavigationController.h"
 
 @interface ContactViewController ()
 
@@ -113,8 +114,11 @@ AppDelegate* appdelegate;
     Account* account = [appdelegate.chatter.contacts objectAtIndex:[indexPath row]];
     Session* sessionToOpen = [appdelegate.chatter getSession:account];
     
-    MainTabBarController* mainTabBarController = (MainTabBarController*)self.tabBarController;
-    [mainTabBarController openSession: sessionToOpen];
+    //MainTabBarController* mainTabBarController = (MainTabBarController*)self.tabBarController;
+    
+    ChatNavigationController* chatNavigationController = (ChatNavigationController*)self.navigationController;
+    [chatNavigationController popToRootViewControllerAnimated:NO];
+    [chatNavigationController openSession: sessionToOpen];
 }
 
 // Override to support editing the table view.

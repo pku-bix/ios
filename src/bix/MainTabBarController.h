@@ -11,6 +11,5 @@
 
 @interface MainTabBarController : UITabBarController
 
--(void)openSession: (Session*)session;
 
 @end

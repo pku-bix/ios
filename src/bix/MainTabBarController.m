@@ -28,8 +28,10 @@ AppDelegate *appdelegate;
     return self;
 }
 
+// open session without changing push stack,
+// now obsolete
 -(void)openSession: (Session*)session{
-    [self setSelectedIndex:1];
+    //[self setSelectedIndex:1];
     
     UINavigationController* nav = (UINavigationController*)self.selectedViewController;
 

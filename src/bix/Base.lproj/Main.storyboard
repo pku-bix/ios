@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jJR-kc-dNW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jJR-kc-dNW">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -8,7 +8,26 @@
         <scene sceneID="W3I-pn-N6e">
             <objects>
                 <viewController title="First" id="CZ4-MO-1fc" customClass="ChatListViewController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="消息" id="ujS-vf-eKT"/>
+                    <navigationItem key="navigationItem" title="消息" id="ujS-vf-eKT">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="6zd-IY-xOa">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="MLb-jC-fv4">
+                                <rect key="frame" x="233" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="联系人">
+                                            <attributes>
+                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <segue destination="kuB-Kw-hoA" kind="push" identifier="contact" id="uvb-SM-TIE"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="MC3-cf-Ayd" kind="push" identifier="chat" id="R8c-Wm-4C9"/>
                     </connections>
@@ -120,10 +139,10 @@
             </objects>
             <point key="canvasLocation" x="1247" y="278"/>
         </scene>
-        <!--Navigation Controller - 消息-->
+        <!--Chat Navigation Controller - 消息-->
         <scene sceneID="xOX-DP-ODC">
             <objects>
-                <navigationController storyboardIdentifier="ChatListViewController" definesPresentationContext="YES" id="9s6-sq-Thm" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ChatListViewController" definesPresentationContext="YES" id="9s6-sq-Thm" customClass="ChatNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="消息" image="topic-24.png" id="cA3-dT-0rJ"/>
                     <navigationItem key="navigationItem" id="dAi-NV-QHz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OUs-Gy-Ehp">
@@ -214,21 +233,18 @@
             </objects>
             <point key="canvasLocation" x="1621" y="-399"/>
         </scene>
-        <!--Navigation Controller - 通讯录-->
+        <!--Navigation Controller - 车友圈-->
         <scene sceneID="iqf-aU-XbN">
             <objects>
                 <navigationController definesPresentationContext="YES" id="tdK-kr-nRn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="通讯录" image="contacts-24.png" id="jtb-Na-K2r"/>
+                    <tabBarItem key="tabBarItem" title="车友圈" image="contacts-24.png" id="jtb-Na-K2r"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jaa-Ze-j2s">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="kuB-Kw-hoA" kind="relationship" relationship="rootViewController" id="tS2-zz-wsp"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H0I-zt-LTC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="721" y="-399"/>
+            <point key="canvasLocation" x="685" y="-159"/>
         </scene>
         <!--Setting View Controller - 设置-->
         <scene sceneID="ePL-wr-2wg">
