@@ -19,7 +19,8 @@ static NSString *const KEY_AUTOLOGIN= @"autologin";
 static NSString *const KEY_CONTACT_LIST=@"contact_list";
 static NSString *const KEY_SESSION_LIST=@"session_list";
 static NSString *const KEY_MESSAGE_LIST=@"message_list";
-static NSString *const KEY_JID=@"jid";
+static NSString *const KEY_REMOTE_BAREJID=@"remote_barejid";
+static NSString *const KEY_BAREJID=@"barejid";
 
 //static NSString *SERVER_DOMAIN = @"orange.local";
 //static NSString *SERVER_DOMAIN = @"dsxdemacbook-pro.local";
@@ -51,6 +52,8 @@ static  NSString *const EVENT_AUTHENTICATE_FAILED=@"authenticate_failed";
 static  NSString *const EVENT_REGISTERED=@"registered";
 static  NSString *const EVENT_REGISTER_FAILED=@"register_failed";
 static  NSString *const EVENT_ERROR_RECEIVED=@"error_received";
+
+
 /* reuse key
  * used for reuse resource identity
  */

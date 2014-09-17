@@ -34,7 +34,6 @@
     _account = account;
     
     self.qsending = [NSMutableArray new];
-    [self loadContactsAndSessions];
     
     self.xmppStream = [XMPPStream new];
     self.xmppStream.hostName = SERVER;
@@ -42,6 +41,14 @@
     [self.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
 
     return self;
+}
+
+-(void)loadData{
+    [self loadContactsAndSessions];
+}
+
+-(void)saveData{
+    [self saveContactsAndSessions];
 }
 
 // 该访问器要自定义
@@ -100,22 +107,31 @@
     
     // encoding
     NSData *contact_data = [NSKeyedArchiver archivedDataWithRootObject:self.contacts];
-    [defaults setObject:contact_data forKey:[self.account.bareJid stringByAppendingFormat:KEY_CONTACT_LIST ]];
+    [defaults setObject:contact_data forKey:[self contacts_key]];
     
     NSData *session_data = [NSKeyedArchiver archivedDataWithRootObject:self.sessions];
-    [defaults setObject:session_data forKey:[self.account.bareJid stringByAppendingFormat:KEY_SESSION_LIST ]];
+    [defaults setObject:session_data forKey:[self sessions_key]];
 
     // flush
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [defaults synchronize];
 }
 
 -(void) loadContactsAndSessions{
-//    NSString* s = [self.account.bareJid stringByAppendingFormat:KEY_CONTACT_LIST ];
-    NSData* contact_data = [[NSUserDefaults standardUserDefaults] objectForKey:[self.account.bareJid stringByAppendingFormat:KEY_CONTACT_LIST ]];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSData* contact_data = [defaults objectForKey:[self contacts_key]];
     self.contacts = contact_data ? [NSKeyedUnarchiver unarchiveObjectWithData: contact_data] : [NSMutableArray array];
     
-    NSData* session_data = [[NSUserDefaults standardUserDefaults] objectForKey:[self.account.bareJid stringByAppendingFormat:KEY_SESSION_LIST ]];
+    // session init requires contact init
+    NSData* session_data = [defaults objectForKey:[self sessions_key]];
     self.sessions = session_data ? [NSKeyedUnarchiver unarchiveObjectWithData: session_data] : [NSMutableArray array];
+}
+
+-(NSString*) contacts_key{
+    return [self.account.bareJid stringByAppendingFormat:KEY_CONTACT_LIST ];
+}
+-(NSString*) sessions_key{
+    return [self.account.bareJid stringByAppendingFormat:KEY_SESSION_LIST ];
 }
 
 #pragma mark - XMPP utilities

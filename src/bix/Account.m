@@ -51,7 +51,7 @@
 - (id)initWithCoder:(NSCoder *)coder {
     
     self = [self initWithJid:[XMPPJID jidWithString:
-                              (NSString*)[coder decodeObjectForKey:KEY_JID]]
+                              (NSString*)[coder decodeObjectForKey:KEY_BAREJID]]
                     Password:(NSString*)[coder decodeObjectForKey:KEY_PASSWORD]];
     if (self) {
         self.autoLogin = [coder decodeBoolForKey:KEY_AUTOLOGIN];
@@ -75,7 +75,7 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeObject:self.Jid.bare forKey:KEY_JID];
+    [coder encodeObject:self.Jid.bare forKey:KEY_BAREJID];
     [coder encodeObject:self.password forKey:KEY_PASSWORD];
     [coder encodeBool:self.autoLogin forKey:KEY_AUTOLOGIN];
 }

@@ -9,7 +9,7 @@
             <objects>
                 <viewController title="First" id="CZ4-MO-1fc" customClass="ChatListViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="消息" id="ujS-vf-eKT">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="6zd-IY-xOa">
+                        <barButtonItem key="rightBarButtonItem" id="6zd-IY-xOa">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="MLb-jC-fv4">
                                 <rect key="frame" x="233" y="5" width="71" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -137,7 +137,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E7j-KQ-vTl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1247" y="278"/>
+            <point key="canvasLocation" x="721" y="278"/>
         </scene>
         <!--Chat Navigation Controller - 消息-->
         <scene sceneID="xOX-DP-ODC">
@@ -179,7 +179,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4j-fp-P08" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1173" y="-399"/>
+            <point key="canvasLocation" x="1621" y="-1754"/>
         </scene>
         <!--Add Contact View Controller - 添加-->
         <scene sceneID="t1C-yS-xiE">
@@ -231,7 +231,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1621" y="-399"/>
+            <point key="canvasLocation" x="2041" y="-1754"/>
         </scene>
         <!--Navigation Controller - 车友圈-->
         <scene sceneID="iqf-aU-XbN">
@@ -241,10 +241,32 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jaa-Ze-j2s">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="RAT-wc-dfZ" kind="relationship" relationship="rootViewController" id="VQZ-5u-Zfm"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H0I-zt-LTC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="685" y="-159"/>
+            <point key="canvasLocation" x="721" y="-407"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="atU-7Q-ptH">
+            <objects>
+                <viewController id="RAT-wc-dfZ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zcK-nA-auG"/>
+                        <viewControllerLayoutGuide type="bottom" id="oaR-SC-CHb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8t4-uS-e8y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5Yu-iz-SBQ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YAm-4Q-0QG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1173" y="-407"/>
         </scene>
         <!--Setting View Controller - 设置-->
         <scene sceneID="ePL-wr-2wg">
@@ -378,7 +400,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fhl-8e-ckT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-184" y="-399"/>
+            <point key="canvasLocation" x="-812" y="273"/>
         </scene>
         <!--Register View Controller - 新用户-->
         <scene sceneID="hp2-rv-I2E">
@@ -432,7 +454,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VN2-Ka-M1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-378" y="1034"/>
+            <point key="canvasLocation" x="78" y="-407"/>
         </scene>
         <!--Navigation Controller - 设置-->
         <scene sceneID="Lkl-VF-nmZ">

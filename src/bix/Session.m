@@ -29,8 +29,11 @@
 - (id)initWithCoder:(NSCoder *)coder {
     
     AppDelegate* appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    //NSString* remotestr = [coder decodeObjectForKey:KEY_REMOTE_BAREJID];
+    
     self.remoteAccount = [appdelegate.chatter getConcact:
-                           (NSString*)[coder decodeObjectForKey:KEY_JID]];
+                           (NSString*)[coder decodeObjectForKey:KEY_REMOTE_BAREJID]];
             
     if (self) {
         self.msgs = [coder decodeObjectForKey:KEY_MESSAGE_LIST];
@@ -42,7 +45,7 @@
 
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeObject:self.bareJid forKey:KEY_JID];
+    [coder encodeObject:self.bareJid forKey:KEY_REMOTE_BAREJID];
     [coder encodeObject:self.msgs forKey:KEY_MESSAGE_LIST];
 }
 

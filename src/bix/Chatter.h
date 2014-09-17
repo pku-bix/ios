@@ -24,7 +24,12 @@
 // 会话
 @property (nonatomic) NSMutableArray* sessions;
 
--(id)initWithAccount: (Account*)account;
+
+-(id) initWithAccount: (Account*)account;
+// be sure chatter inited and mounted when calling this
+-(void) loadData;
+-(void) saveData;
+
 -(void) saveContactsAndSessions;
 -(void) loadContactsAndSessions;
 -(void) logOut;

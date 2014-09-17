@@ -19,6 +19,7 @@
 -(void)setAccount:(Account *)account{
     _account = account;
     _chatter = [[Chatter alloc] initWithAccount: account];
+    [self.chatter loadData];
 }
 
 ////////////////////////////////////////////////////////////////
@@ -74,6 +75,7 @@
     
     if (self.account.presence) {
         [self.account save];
+        [self.chatter saveData];
     }
 }
 
