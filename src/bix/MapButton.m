@@ -56,14 +56,19 @@
     mapView.showsUserLocation = YES;
   //  mapView.zoomLevel = 15;
     //remove the annotation array of baidu mapview added
-    array = [NSArray arrayWithArray:mapView.annotations];
-	[mapView removeAnnotations:array];
-    
+//    array = [NSArray arrayWithArray:mapView.annotations];
+//	[mapView removeAnnotations:array];
+//    
     //remove the overlay infomation that baidu mapview has added, eg: navigation info.
 	array = [NSArray arrayWithArray:mapView.overlays];
 	[mapView removeOverlays:array];
 }
 
+
+/**
+ *在地图View将要启动定位时，会调用此函数
+ *@param mapView 地图View
+ */
 -(void)compassButtonClicked:(BMKMapView *)mapView
 {
     // NSLog(@"进入罗盘态");
@@ -72,14 +77,17 @@
     mapView.showsUserLocation = YES;
     
     //remove the annotation array of baidu mapview added
-    array = [NSArray arrayWithArray:mapView.annotations];
-	[mapView removeAnnotations:array];
-    
+//    array = [NSArray arrayWithArray:mapView.annotations];
+//	[mapView removeAnnotations:array];
+//    
     //remove the overlay infomation that baidu mapview has added, eg: navigation info.
 	array = [NSArray arrayWithArray:mapView.overlays];
 	[mapView removeOverlays:array];
 }
 
+/**
+ 
+ */
 -(void)getCurrentButtonClicked:(BMKSearch*)search current_Location:(BMKUserLocation*)currentLocation
 {
     CLLocationCoordinate2D pt = {currentLocation.location.coordinate.latitude,currentLocation.location.coordinate.longitude};
@@ -95,14 +103,20 @@
 
 -(void)onGetAddrResult:(BMKAddrInfo*)result errorCode:(int)error BMapView:(BMKMapView*)mapView
 {
-    array = [NSArray arrayWithArray:mapView.annotations];
-	[mapView removeAnnotations:array];
-	array = [NSArray arrayWithArray:mapView.overlays];
-	[mapView removeOverlays:array];
+//    array = [NSArray arrayWithArray:mapView.annotations];
+//	[mapView removeAnnotations:array];
+//	array = [NSArray arrayWithArray:mapView.overlays];
+//	[mapView removeOverlays:array];
 	if (error == 0) {
 		BMKPointAnnotation* item = [[BMKPointAnnotation alloc]init];
+//        ((BMKPinAnnotationView *)annotationView).pinColor = BMKPinAnnotationColorGreen;
+    
 		item.coordinate = result.geoPt;
-		item.title = result.strAddr;
+		item.title = result.strAddr ;
+        //气泡框左侧显示的View,可自定义
+        
+//        item.leftCalloutAccessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_location.png"]];
+        
 		[mapView addAnnotation:item];
         mapView.centerCoordinate = result.geoPt;
         NSString* titleStr;
@@ -118,11 +132,10 @@
         showmeg = [NSString stringWithFormat:@"%@",item.title];
         //}
         
-        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:titleStr message:showmeg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定",nil];
+//        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:titleStr message:showmeg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定",nil];
         
-        [myAlertView show];
-        //[myAlertView release];
-        //		[item release];
+       // [myAlertView show];
+    
     }
 }
 
