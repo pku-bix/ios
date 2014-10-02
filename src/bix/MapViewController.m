@@ -63,10 +63,7 @@
 //    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
 //
     [self sendRequest];
-
     [self initMapViewButton];
-    
-    
 //    [self initMapView];
 }
 
@@ -98,7 +95,6 @@
     [_mapView setRegion:region animated:NO];
     
     //    [mymapview setShowsUserLocation:YES];
-    
 }
 
 -(void)initMapViewButton
@@ -410,21 +406,41 @@ return nil;
 }
 
 
--(void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view{
+-(void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
+{
     NSLog(@"didSelectAnnotationView");
-//    _annotaion = view;
-//    _annotaion.canShowCallout = YES;
+    if(_annotaion.annotation == view.annotation)
+    {
+        NSLog(@"_annotaion.annotation == view.annotation");
+        return ;
+    }
+
+    if(_annotaion)
+    {
+//        [_annotaion setSelected:NO animated:NO];
+//        [_annotaion.annotation coordinate].longitude;
+//        _annotaion.annotation = view.annotation;
+//        NSLog(@"_annotation is exist");
+        
+        //将上次点击的annotation从地图清楚掉；
+        [mapView removeAnnotation:_annotaion.annotation];
+        NSLog(@"removeAnnotation");
+        //再将上次点击的(即上面删除的)annotation添加到地图上面，从而使上次点击的annotation的吹出框消失；
+        [mapView addAnnotation:_annotaion.annotation];
+        NSLog(@"addAnnotaion");
+//        _annotaion = nil;
+    }
+    
+      //保存本次点击的annotation
+       _annotaion = [[BMKAnnotationView alloc]initWithAnnotation:view.annotation reuseIdentifier:@"didSelectAnnotation"];
+        NSLog(@"alloc _annotation");
+    
+    
 }
 
 
 -(void)mapView:(BMKMapView *)mapView didDeselectAnnotationView:(BMKAnnotationView *)view{
     NSLog(@"didDeselectAnnotationView");
-//    view.canShowCallout = NO;
-//    _annotaion
-//    _annotaion.canShowCallout = NO;
-    
-//    [mapView removeAnnotation:view.annotation];
-    
 }
 
 
@@ -449,7 +465,7 @@ return nil;
         BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
 //        j.coordinate = CLLocationCoordinate2DMake(array2[k], array2[k+1]);
         j.coordinate = CLLocationCoordinate2DMake([[muArray objectAtIndex:k+1] doubleValue], [[muArray objectAtIndex:k+2] doubleValue]);
-        NSLog(@"%f, %f", [[muArray objectAtIndex:k+1] doubleValue], [[muArray objectAtIndex:k+2] doubleValue]);
+//        NSLog(@"%f, %f", [[muArray objectAtIndex:k+1] doubleValue], [[muArray objectAtIndex:k+2] doubleValue]);
         j.title = [muArray objectAtIndex:k];
         k = k+3;
         [_mapView addAnnotation:j];
@@ -519,8 +535,8 @@ return nil;
 //请求错误
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    //打印错误信息
-    NSLog(@"%@", [error localizedDescription]);
+    //打印错误信息: Could not connect to the server.
+    NSLog(@"请求错误:%@", [error localizedDescription]);
 }
 
 //解析从服务器获取的数据
@@ -531,43 +547,23 @@ return nil;
     NSLog(@"数组个数是%d", [arrayResult count]);
     chargePileNumber = [arrayResult count];
     
-    muArray = [NSMutableArray arrayWithCapacity:chargePileNumber*2];
+    muArray = [NSMutableArray arrayWithCapacity:chargePileNumber*3];
     
     for (id obj1 in arrayResult) {
         
-        NSDictionary *pile = [obj1 objectForKey:@"pile"];
+//        NSDictionary *pile = [obj1 objectForKey:@"pile"];
 //        NSLog(@"longitude is %@", [longitude objectForKey:@"longitude"]);
-        [muArray addObject:[pile objectForKey:@"location"]];
-        [muArray addObject:[pile objectForKey:@"latitude"]];
-        [muArray addObject:[pile objectForKey:@"longitude"]];
+        [muArray addObject:[obj1 objectForKey:@"detailedaddress"]];
+        [muArray addObject:[obj1 objectForKey:@"latitude"]];
+        [muArray addObject:[obj1 objectForKey:@"longitude"]];
     }
     for(id obj in muArray)
     {
         NSLog(@"muArray %@", obj);
     }
-    //        if(k == 0)
-    //        {
-    //            t1 = [temp doubleValue];
-    //            t2 = [[longitude objectForKey:@"latitude"] doubleValue];
-    //        }
-    //        else
-    //        {
-    //            t3 = [temp doubleValue];
-    //            t4 = [[longitude objectForKey:@"latitude"] doubleValue];
-    //        }
-    //        k++;
-    
-    ////    chargePileNumber = k;
     //    NSLog(@"%.8f, %.8f, %.8f, %.8f", t1, t2, t3, t4);
     //    NSDictionary * loc1 = [arrayResult objectAtIndex:0];
     //    NSLog(@"loc1 is %@", loc1);
-    //
-    //    NSDictionary *longitude = [loc1 objectForKey:@"pile"];
-    ////    NSMutableString *str1 = [NSMutableString string];
-    ////    NSDictionary *
-    ////    str1 = [loc1 objectForKey:@"longitude"];
-    //    NSLog(@"longitude is:%@", longitude);
-    //    NSLog(@"longitude is %@", [longitude objectForKey:@"longitude"]);
     //    NSRange range = [self.theResult rangeOfString:@"location"];
     //    if (range.location == NSNotFound) {
     //        NSLog(@"没找到");
@@ -576,8 +572,6 @@ return nil;
     //    {
     //        NSLog(@"找到的范围是:%@", NSStringFromRange(range));
     //    }
-    
-    
 }
 
 
