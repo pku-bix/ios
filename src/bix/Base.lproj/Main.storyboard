@@ -133,6 +133,7 @@
                     <tabBarItem key="tabBarItem" title="地图" image="map_marker-24.png" id="1Kn-20-5cf"/>
                     <connections>
                         <outlet property="_mapView" destination="2DP-xn-oHk" id="MYw-ax-bzU"/>
+                        <segue destination="cFP-pd-nzj" kind="modal" id="gjL-gY-Yn2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E7j-KQ-vTl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -267,6 +268,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YAm-4Q-0QG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1173" y="-407"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="yhr-EO-Prg">
+            <objects>
+                <viewController id="cFP-pd-nzj" customClass="detailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tKo-fj-QeR"/>
+                        <viewControllerLayoutGuide type="bottom" id="gWP-c8-MBT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="G60-wc-1rN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dYu-cG-zms" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1277" y="278"/>
         </scene>
         <!--Setting View Controller - 设置-->
         <scene sceneID="ePL-wr-2wg">

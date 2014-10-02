@@ -23,7 +23,13 @@
 -(void)enlargeButtonClicked:(BMKMapView *)mapView;
 -(void)shrinkButtonClicked:(BMKMapView *)mapView;
 -(void)locateButtonClicked:(BMKMapView *)mapView;
+
+/**
+ *在地图View将要启动定位时，会调用此函数
+ *@param mapView 地图View
+ */
 -(void)compassButtonClicked:(BMKMapView *)mapView;
+
 -(void)getCurrentButtonClicked:(BMKSearch*)search current_Location:(BMKUserLocation*)current_Location;
 -(void)onGetAddrResult:(BMKAddrInfo*)result errorCode:(int)error BMapView:(BMKMapView*)mapView;
 

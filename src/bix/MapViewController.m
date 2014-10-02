@@ -9,9 +9,23 @@
 #import "MapViewController.h"
 #import "MapButton.h"
 #import "Constants.h"
+#import "RequestAnnotationInfo.h"
+
+#import "CustomPointAnnotation.h"
+#import "CallOutAnnotationView.h"
+#import "BusPointCell.h"
+#import "CalloutMapAnnotation.h"
+
+@interface MapViewController()
+{
+    CalloutMapAnnotation *_calloutMapAnnotation;
+}
+
+@end
 
 @implementation MapViewController
 {
+    RequestAnnotationInfo *requestInfo;
     MapButton * mapButton;
     UIButton* enlargeButton;
     UIButton* shrinkButton;
@@ -20,6 +34,8 @@
     UIButton* getCurrentLocationBtn;
     UIImage *image;
     CGRect rect;
+    double array2[6];
+    BMKPointAnnotation * array7[3];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,6 +51,61 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    mapButton = [[MapButton alloc]init];
+    _search = [[BMKSearch alloc]init ];
+    
+    rect = [[UIScreen mainScreen] bounds];
+    //  CGSize size = rect.size;   CGFloat width = size.width;  CGFloat height = size.height;
+    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height-40)];
+
+    _mapView.delegate = self;
+    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
+    
+    [self initMapViewButton];
+    
+    [self initMapView];
+    
+    requestInfo = [[RequestAnnotationInfo alloc]init];
+    [requestInfo sendRequest];
+    
+    [self addBatteryChargeAnnotation];
+}
+
+-(void) initMapView{
+
+    //添加自定义Annotation
+    CLLocationCoordinate2D center = {39.91669,116.39716};
+    
+//    CLLocationCoordinate2D center2 = {39.93669,116.39516};
+    
+    CustomPointAnnotation *pointAnnotation = [[CustomPointAnnotation alloc] init];
+//    CustomPointAnnotation *pointAnnotation2 = [[CustomPointAnnotation alloc] init];
+    pointAnnotation.title = @"我是中国人";//因为继承了BMKPointAnnotation，所以这些title,subtitle都可以设置
+    pointAnnotation.subtitle = @"我爱自己的祖国";
+    
+//    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"拍照",@"alias",@"速度",@"speed",@"方位",@"degree",@"位置",@"name",nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"点击获取充电桩详情",@"alias",nil];
+    pointAnnotation.pointCalloutInfo =dict;
+//    pointAnnotation2.pointCalloutInfo = dict;
+    
+    pointAnnotation.coordinate = center;
+//    pointAnnotation2.coordinate = center2;
+//    [_mapView addAnnotation:pointAnnotation2];
+    [_mapView addAnnotation:pointAnnotation];
+//    [pointAnnotation release];
+    
+    BMKCoordinateSpan span = {0.04,0.03};
+    BMKCoordinateRegion region = {center,span};
+    [_mapView setRegion:region animated:NO];
+    
+    //    [mymapview setShowsUserLocation:YES];
+    
+}
+
+
+-(void)initMapViewButton
+{
+    
     //适配ios7
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0))
     {
@@ -42,24 +113,10 @@
         self.navigationController.navigationBar.translucent = NO;
     }
     
-    mapButton = [[MapButton alloc]init];
-    _search = [[BMKSearch alloc]init ];
-    
-    rect = [[UIScreen mainScreen] bounds];
-    //  CGSize size = rect.size;   CGFloat width = size.width;  CGFloat height = size.height;
-    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height-40)];
-    
-    _mapView.delegate = self;
     
     // once launch the baidu map, locate the position of user immediately
     [mapButton launchMapView_locate:_mapView];
-    [self initMapViewButton];
-    [self addBatteryChargeAnnotation];
     
-}
-
--(void)initMapViewButton
-{
     //放大按钮的代码实现
     image= [UIImage imageNamed:@"plus2-64.png"];
     enlargeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -148,8 +205,10 @@
 {
    //  [_mapManager start:BAIDU_MAP_KEY  generalDelegate:self];
     [_mapView viewWillAppear];
-    _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
-    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
+    
+    
+   // _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
+//    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -206,10 +265,118 @@
 }
 
 
+#pragma mark Annotation
+
+//#pragma mark - BMKMapview delegate
+//-(BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id<BMKAnnotation>)annotation{
+//    
+//    static NSString *annotationIdentifier = @"customAnnotation";
+//    if ([annotation isKindOfClass:[CustomPointAnnotation class]]) {
+//        
+//        BMKPinAnnotationView *annotationview = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
+//        
+//        annotationview.image = [UIImage imageNamed:@"icon_nav_start"];
+//        //        [annotationview setPinColor:BMKPinAnnotationColorGreen];
+//        //        [annotationview setAnimatesDrop:YES];
+//        annotationview.canShowCallout = NO;
+//        
+//        return annotationview;
+//        
+//    }
+//    else if ([annotation isKindOfClass:[CalloutMapAnnotation class]]){
+//        
+//        //此时annotation就是我们calloutview的annotation
+//        CalloutMapAnnotation *ann = (CalloutMapAnnotation*)annotation;
+//        
+//        //如果可以重用
+//        CallOutAnnotationView *calloutannotationview = (CallOutAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"calloutview"];
+//        
+//        //否则创建新的calloutView
+//        if (!calloutannotationview) {
+//            calloutannotationview = [[CallOutAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"calloutview"];
+//            
+//            BusPointCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"BusPointCell" owner:self options:nil] objectAtIndex:0];
+//            
+//            [calloutannotationview.contentView addSubview:cell];
+//            calloutannotationview.busInfoView = cell;
+//        }
+//        
+//        //开始设置添加marker时的赋值
+//        calloutannotationview.busInfoView.aliasLabel.text = [ann.locationInfo objectForKey:@"alias"];
+////        calloutannotationview.busInfoView.speedLabel.text = [ann.locationInfo objectForKey:@"speed"];
+////        calloutannotationview.busInfoView.degreeLabel.text =[ann.locationInfo objectForKey:@"degree"];
+////        calloutannotationview.busInfoView.nameLabel.text =  [ann.locationInfo objectForKey:@"name"];
+////        
+//        return calloutannotationview;
+//        
+//    }
+//    
+//    return nil;
+//    
+//}
+
+
+//-(void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view{
+//    
+//    NSLog(@"didSelectAnnotationView");
+//    //CustomPointAnnotation 是自定义的marker标注点，通过这个来得到添加marker时设置的pointCalloutInfo属性
+//    CustomPointAnnotation *annn = (CustomPointAnnotation*)view.annotation;
+//    
+//    
+//    if ([view.annotation isKindOfClass:[CustomPointAnnotation class]]) {
+//        
+//        //如果点到了这个marker点，什么也不做
+//        if (_calloutMapAnnotation.coordinate.latitude == view.annotation.coordinate.latitude&&
+//            _calloutMapAnnotation.coordinate.longitude == view.annotation.coordinate.longitude) {
+//            return;
+//        }
+//        //如果当前显示着calloutview，又触发了select方法，删除这个calloutview annotation
+//        if (_calloutMapAnnotation) {
+//            [mapView removeAnnotation:_calloutMapAnnotation];
+//            _calloutMapAnnotation=nil;
+//            
+//        }
+//        //创建搭载自定义calloutview的annotation
+////        _calloutMapAnnotation = []
+//        _calloutMapAnnotation = [[CalloutMapAnnotation alloc] initWithLatitude:view.annotation.coordinate.latitude andLongitude:view.annotation.coordinate.longitude];
+//        
+//        
+//        //把通过marker(ZNBCPointAnnotation)设置的pointCalloutInfo信息赋值给CalloutMapAnnotation
+//        _calloutMapAnnotation.locationInfo = annn.pointCalloutInfo;
+//        
+//        [mapView addAnnotation:_calloutMapAnnotation];
+//        
+//        
+//        
+////        [mapView setCenterCoordinate:view.annotation.coordinate animated:YES];
+//        
+//    }
+//    
+//    
+//}
+
+//
+//-(void)mapView:(BMKMapView *)mapView didDeselectAnnotationView:(BMKAnnotationView *)view{
+//    NSLog(@"didDeselectAnnotationView");
+//    
+//    if (_calloutMapAnnotation&&![view isKindOfClass:[CallOutAnnotationView class]]) {
+//        
+//        if (_calloutMapAnnotation.coordinate.latitude == view.annotation.coordinate.latitude&&
+//            _calloutMapAnnotation.coordinate.longitude == view.annotation.coordinate.longitude) {
+//            [mapView removeAnnotation:_calloutMapAnnotation];
+//            _calloutMapAnnotation = nil;
+//        }
+//        
+//        
+//    }
+//    
+//}
+//
+
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
 {
     if (([annotation isKindOfClass:[BMKPointAnnotation class]]) && [[annotation subtitle] isEqualToString :@"家庭充电桩"]){
-        
+      
         
         BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
         
@@ -220,40 +387,46 @@
         newAnnotationView.annotation=annotation;
         
         newAnnotationView.image = [UIImage imageNamed:@"icon_nav_end.png"];   //把大头针换成别的图片
+        //标注进入界面时就处于弹出气泡框的状态
+//        [newAnnotationView setSelected:YES animated:YES];
         
         return newAnnotationView;
-        
+
     }
     else
     {
         BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
-        
         newAnnotationView.pinColor = BMKPinAnnotationColorGreen;
-        
+
         //        newAnnotationView.animatesDrop = YES;// 设置该标注点动画显示
-        
+
         newAnnotationView.annotation=annotation;
-        
+
         newAnnotationView.image = [UIImage imageNamed:@"icon_nav_start.png"];   //把大头针换成别的图片
+
+        newAnnotationView.leftCalloutAccessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"shcellhead.png"]];
+        newAnnotationView.rightCalloutAccessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"marker.png"]];
+//        UIButton *selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [selectButton setFrame:(CGRect){260,0,50,40}];
+//        [selectButton setTitle:@"确定" forState:UIControlStateNormal];
+//        newAnnotationView.rightCalloutAccessoryView = selectButton;
+//        [selectButton setBackgroundColor:[UIColor redColor]];
         
         return newAnnotationView;
 
     }
-        
-    return nil;
-    
+
+return nil;
+
 }
 
 
 -(void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view{
-    
     NSLog(@"didSelectAnnotationView");
-    
 }
 
 
 -(void)mapView:(BMKMapView *)mapView didDeselectAnnotationView:(BMKAnnotationView *)view{
-    
     NSLog(@"didDeselectAnnotationView");
 }
 
@@ -262,37 +435,57 @@
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view
 {
     NSLog(@"点击annotation view弹出的泡泡, I like programming!");
-//    [view setSelected:YES animated:YES];
-    view.leftCalloutAccessoryView =
-    //气泡框左侧显示的View,可自定义
-    view.leftCalloutAccessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_nav_start.png"]];
 }
 
 -(void)addBatteryChargeAnnotation
 {
-    //添加自定义Annotation
-    CLLocationCoordinate2D annotation1 = {39.8253312,116.391234};
-    CLLocationCoordinate2D annotation2 = {39.81669,116.39716};
-    CLLocationCoordinate2D annotation3 = {39.83669,116.39516};
-    
-    BMKPointAnnotation* item = [[BMKPointAnnotation alloc]init];
-    item.coordinate = annotation1;
+    int chargePileNumber = requestInfo.chargePileNumber;
+    NSLog(@"chargePileNumber is %d", chargePileNumber);
+    NSMutableArray *muArray = [NSMutableArray arrayWithCapacity:3];
+//    NSMutableArray *parseArray = [NSMutableArray arrayWithArray:requestInfo.muArray];
+//    CLLocationCoordinate2D annotation1 = {39.8253312,116.391234};
+//    CLLocationCoordinate2D annotation2 = {39.81669,116.39716};
+//    CLLocationCoordinate2D annotation3 = {39.83669,116.39516};
+//    NSArray annotation = [NSArray arrayWithObjects:annotation1,annotation2,annotation3, nil];
+//    //添加自定义Annotation
+    array2[0] = 39.8253312;
+    array2[1] = 116.391234;
+    array2[2] = 39.81669;
+    array2[3] = 116.39716;
+    array2[4] = 39.83669;
+    array2[5] = 116.39516;
+    NSLog(@"requestInfo.chargePileNumber is %d", chargePileNumber);
+    int k = 0;
+    for(int i = 0; i < 3; i++)
+    {
+        BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
+        j.coordinate = CLLocationCoordinate2DMake(array2[k], array2[k+1]);
+//        j.coordinate = CLLocationCoordinate2DMake([[parseArray objectAtIndex:k] doubleValue], [[parseArray objectAtIndex:k+1] doubleValue]);
+        k = k+2;
+        [muArray addObject:j];
+    }
+    [_mapView addAnnotations:muArray];
+
+//    BMKPointAnnotation* item = [[BMKPointAnnotation alloc]init];
+//    item.coordinate = annotation1;
 //    item.title = @"超级充电桩1";
-    
-    BMKPointAnnotation* item2 = [[BMKPointAnnotation alloc]init];
-    item2.coordinate = annotation2;
-    item2.title = @"超级充电桩2";
-    item2.subtitle = @"家庭充电桩";
-
-    BMKPointAnnotation* item3 = [[BMKPointAnnotation alloc]init];
-    item3.coordinate = annotation3;
-    item3.title = @"点击获取超级充电桩详情";
-
-    
-    [_mapView addAnnotation:item];
-    [_mapView addAnnotation:item2];
-    [_mapView addAnnotation:item3];
-    
+////    [_mapView addAnnotation:item];
+////
+////    
+//    BMKPointAnnotation* item2 = [[BMKPointAnnotation alloc]init];
+//    item2.coordinate = annotation2;
+//    item2.title = @"超级充电桩2";
+//    item2.subtitle = @"家庭充电桩";
+////    [_mapView addAnnotation:item];
+////
+////
+//    BMKPointAnnotation* item5 = [[BMKPointAnnotation alloc]init];
+//    item5.coordinate = annotation3;
+//    item5.title = @"获取超级充电桩详情";
+////
+//    NSArray *annotation = [[NSArray alloc]initWithObjects:item,item2,item5,nil];
+//
+////    [_mapView addAnnotation:item];
 }
 
 @end

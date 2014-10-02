@@ -17,4 +17,5 @@
     NSArray* array;
     
 }
+-(void)addBatteryChargeAnnotation;
 @end
