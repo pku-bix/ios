@@ -18,14 +18,14 @@
 
 @interface MapViewController()
 {
-    CalloutMapAnnotation *_calloutMapAnnotation;
+//    CalloutMapAnnotation *_calloutMapAnnotation;
+    BMKAnnotationView * _annotaion;
 }
 
 @end
 
 @implementation MapViewController
 {
-    RequestAnnotationInfo *requestInfo;
     MapButton * mapButton;
     UIButton* enlargeButton;
     UIButton* shrinkButton;
@@ -34,9 +34,9 @@
     UIButton* getCurrentLocationBtn;
     UIImage *image;
     CGRect rect;
-    double array2[6];
-    BMKPointAnnotation * array7[3];
 }
+
+#pragma mark initialize
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,6 +49,7 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"viewDidLoad");
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     mapButton = [[MapButton alloc]init];
@@ -58,17 +59,15 @@
     //  CGSize size = rect.size;   CGFloat width = size.width;  CGFloat height = size.height;
     _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height-40)];
 
-    _mapView.delegate = self;
-    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
-    
+//    _mapView.delegate = self;
+//    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
+//
+    [self sendRequest];
+
     [self initMapViewButton];
     
-    [self initMapView];
     
-    requestInfo = [[RequestAnnotationInfo alloc]init];
-    [requestInfo sendRequest];
-    
-    [self addBatteryChargeAnnotation];
+//    [self initMapView];
 }
 
 -(void) initMapView{
@@ -102,7 +101,6 @@
     
 }
 
-
 -(void)initMapViewButton
 {
     
@@ -112,8 +110,6 @@
         //        self.edgesForExtendedLayout=UIRectEdgeNone;
         self.navigationController.navigationBar.translucent = NO;
     }
-    
-    
     // once launch the baidu map, locate the position of user immediately
     [mapButton launchMapView_locate:_mapView];
     
@@ -159,7 +155,6 @@
     getCurrentLocationBtn.frame = CGRectMake(rect.size.width-55, 95, 32, 32);
     [getCurrentLocationBtn addTarget:self action:@selector(getCurrentButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     //    self.view = _mapView;
-
     
     [self.view addSubview: _mapView];
     [self.view addSubview:enlargeButton];
@@ -201,18 +196,20 @@
    [mapButton onGetAddrResult:result errorCode:error BMapView:_mapView];
 }
 
+#pragma mark LifeCycle
+
 -(void)viewWillAppear:(BOOL)animated
 {
    //  [_mapManager start:BAIDU_MAP_KEY  generalDelegate:self];
+    NSLog(@"viewWillAppear");
     [_mapView viewWillAppear];
-    
-    
-   // _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
-//    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
+    _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
+    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    NSLog(@"viewWillDisappear");
     [_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
     _search.delegate = nil; // 不用时，置nil
@@ -224,7 +221,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 /**
  *在地图View将要启动定位时，会调用此函数
@@ -375,9 +371,8 @@
 
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
 {
-    if (([annotation isKindOfClass:[BMKPointAnnotation class]]) && [[annotation subtitle] isEqualToString :@"家庭充电桩"]){
-      
-        
+    if (([annotation isKindOfClass:[BMKPointAnnotation class]]) && [[annotation subtitle] isEqualToString :@"家庭充电桩"])
+    {
         BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
         
         newAnnotationView.pinColor = BMKPinAnnotationColorGreen;
@@ -389,17 +384,13 @@
         newAnnotationView.image = [UIImage imageNamed:@"icon_nav_end.png"];   //把大头针换成别的图片
         //标注进入界面时就处于弹出气泡框的状态
 //        [newAnnotationView setSelected:YES animated:YES];
-        
         return newAnnotationView;
-
     }
     else
     {
         BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
         newAnnotationView.pinColor = BMKPinAnnotationColorGreen;
-
         //        newAnnotationView.animatesDrop = YES;// 设置该标注点动画显示
-
         newAnnotationView.annotation=annotation;
 
         newAnnotationView.image = [UIImage imageNamed:@"icon_nav_start.png"];   //把大头针换成别的图片
@@ -411,9 +402,7 @@
 //        [selectButton setTitle:@"确定" forState:UIControlStateNormal];
 //        newAnnotationView.rightCalloutAccessoryView = selectButton;
 //        [selectButton setBackgroundColor:[UIColor redColor]];
-        
         return newAnnotationView;
-
     }
 
 return nil;
@@ -423,11 +412,19 @@ return nil;
 
 -(void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view{
     NSLog(@"didSelectAnnotationView");
+//    _annotaion = view;
+//    _annotaion.canShowCallout = YES;
 }
 
 
 -(void)mapView:(BMKMapView *)mapView didDeselectAnnotationView:(BMKAnnotationView *)view{
     NSLog(@"didDeselectAnnotationView");
+//    view.canShowCallout = NO;
+//    _annotaion
+//    _annotaion.canShowCallout = NO;
+    
+//    [mapView removeAnnotation:view.annotation];
+    
 }
 
 
@@ -439,32 +436,25 @@ return nil;
 
 -(void)addBatteryChargeAnnotation
 {
-    int chargePileNumber = requestInfo.chargePileNumber;
-    NSLog(@"chargePileNumber is %d", chargePileNumber);
-    NSMutableArray *muArray = [NSMutableArray arrayWithCapacity:3];
+   
+    NSLog(@"addBatteryChargeAnnotation chargePileNumber is %d", chargePileNumber);
 //    NSMutableArray *parseArray = [NSMutableArray arrayWithArray:requestInfo.muArray];
 //    CLLocationCoordinate2D annotation1 = {39.8253312,116.391234};
 //    CLLocationCoordinate2D annotation2 = {39.81669,116.39716};
 //    CLLocationCoordinate2D annotation3 = {39.83669,116.39516};
 //    NSArray annotation = [NSArray arrayWithObjects:annotation1,annotation2,annotation3, nil];
-//    //添加自定义Annotation
-    array2[0] = 39.8253312;
-    array2[1] = 116.391234;
-    array2[2] = 39.81669;
-    array2[3] = 116.39716;
-    array2[4] = 39.83669;
-    array2[5] = 116.39516;
-    NSLog(@"requestInfo.chargePileNumber is %d", chargePileNumber);
     int k = 0;
-    for(int i = 0; i < 3; i++)
+    for(int i = 0; i < chargePileNumber; i++)
     {
         BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
-        j.coordinate = CLLocationCoordinate2DMake(array2[k], array2[k+1]);
-//        j.coordinate = CLLocationCoordinate2DMake([[parseArray objectAtIndex:k] doubleValue], [[parseArray objectAtIndex:k+1] doubleValue]);
-        k = k+2;
-        [muArray addObject:j];
+//        j.coordinate = CLLocationCoordinate2DMake(array2[k], array2[k+1]);
+        j.coordinate = CLLocationCoordinate2DMake([[muArray objectAtIndex:k+1] doubleValue], [[muArray objectAtIndex:k+2] doubleValue]);
+        NSLog(@"%f, %f", [[muArray objectAtIndex:k+1] doubleValue], [[muArray objectAtIndex:k+2] doubleValue]);
+        j.title = [muArray objectAtIndex:k];
+        k = k+3;
+        [_mapView addAnnotation:j];
     }
-    [_mapView addAnnotations:muArray];
+//    [_mapView addAnnotations:chargeArray];
 
 //    BMKPointAnnotation* item = [[BMKPointAnnotation alloc]init];
 //    item.coordinate = annotation1;
@@ -488,4 +478,108 @@ return nil;
 ////    [_mapView addAnnotation:item];
 }
 
+#pragma mark asynchronousRequest
+
+//异步GET请求
+-(void)sendRequest
+{
+    NSString *addStr = [NSString stringWithFormat:LOCATION_INFO_IP];
+    NSURL *url = [NSURL URLWithString:addStr];
+    //创建请求
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
+    //创建连接
+    [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+
+//服务器开始响应请求
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    self.theResult = [NSMutableString string];
+    self.theResultData = [NSMutableData data];
+}
+
+//开始接受数据
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [self.theResultData appendData:data];
+}
+
+//数据接受完毕
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    //把返回的data型数据转化成NSString
+    self.theResult = [[NSMutableString alloc]initWithData:self.theResultData encoding:NSUTF8StringEncoding];
+    //打印服务器返回的数据
+    NSLog(@"result from server: %@", self.theResult);
+    [self parseResult];
+    [self addBatteryChargeAnnotation];
+}
+
+//请求错误
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    //打印错误信息
+    NSLog(@"%@", [error localizedDescription]);
+}
+
+//解析从服务器获取的数据
+-(void)parseResult
+{
+    NSDictionary *location = [NSJSONSerialization JSONObjectWithData:self.theResultData options:NSJSONReadingMutableLeaves error:nil];
+    NSArray *arrayResult = [location objectForKey:@"result"];
+    NSLog(@"数组个数是%d", [arrayResult count]);
+    chargePileNumber = [arrayResult count];
+    
+    muArray = [NSMutableArray arrayWithCapacity:chargePileNumber*2];
+    
+    for (id obj1 in arrayResult) {
+        
+        NSDictionary *pile = [obj1 objectForKey:@"pile"];
+//        NSLog(@"longitude is %@", [longitude objectForKey:@"longitude"]);
+        [muArray addObject:[pile objectForKey:@"location"]];
+        [muArray addObject:[pile objectForKey:@"latitude"]];
+        [muArray addObject:[pile objectForKey:@"longitude"]];
+    }
+    for(id obj in muArray)
+    {
+        NSLog(@"muArray %@", obj);
+    }
+    //        if(k == 0)
+    //        {
+    //            t1 = [temp doubleValue];
+    //            t2 = [[longitude objectForKey:@"latitude"] doubleValue];
+    //        }
+    //        else
+    //        {
+    //            t3 = [temp doubleValue];
+    //            t4 = [[longitude objectForKey:@"latitude"] doubleValue];
+    //        }
+    //        k++;
+    
+    ////    chargePileNumber = k;
+    //    NSLog(@"%.8f, %.8f, %.8f, %.8f", t1, t2, t3, t4);
+    //    NSDictionary * loc1 = [arrayResult objectAtIndex:0];
+    //    NSLog(@"loc1 is %@", loc1);
+    //
+    //    NSDictionary *longitude = [loc1 objectForKey:@"pile"];
+    ////    NSMutableString *str1 = [NSMutableString string];
+    ////    NSDictionary *
+    ////    str1 = [loc1 objectForKey:@"longitude"];
+    //    NSLog(@"longitude is:%@", longitude);
+    //    NSLog(@"longitude is %@", [longitude objectForKey:@"longitude"]);
+    //    NSRange range = [self.theResult rangeOfString:@"location"];
+    //    if (range.location == NSNotFound) {
+    //        NSLog(@"没找到");
+    //    }
+    //    else
+    //    {
+    //        NSLog(@"找到的范围是:%@", NSStringFromRange(range));
+    //    }
+    
+    
+}
+
+
 @end
+

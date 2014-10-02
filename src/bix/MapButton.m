@@ -151,7 +151,7 @@
     mapView.userTrackingMode = BMKUserTrackingModeFollow;
     mapView.showsUserLocation = YES;
     // make the zoomLevel = 15 so that once the app launches the map will have a fitness interface
-    mapView.zoomLevel = 15; 
+    mapView.zoomLevel = 12;
 }
 
 -(void)createButton:(UIButton*)button image:(NSString *)imageName targerSelector:(NSString*)selector

@@ -33,7 +33,10 @@ static NSString* const SERVER_DOMAIN = @"bix.org";
 static const NSTimeInterval CONNECT_TIMEOUT = 10;
 static NSString* const BAIDU_MAP_KEY = @"oCvXZCd41PsMzOw0disOu1QA";
 
-//int CHARGE_PILE_NUMBER = 0;
+/*
+ app打开时，请求服务器地图标注信息的ip+path；
+ */
+static NSString *const LOCATION_INFO_IP = @"http://121.40.72.197/api/piles";
 
 /* event strings
  * used for notification event identity.

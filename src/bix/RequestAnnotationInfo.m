@@ -7,11 +7,9 @@
 //
 
 #import "RequestAnnotationInfo.h"
-#import "MapViewController.h"
 
 @implementation RequestAnnotationInfo
 {
-//    MapViewController *mapViewController;
 }
 
 //异步GET请求

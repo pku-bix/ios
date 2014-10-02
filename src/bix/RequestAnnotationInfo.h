@@ -8,15 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "Constants.h"
+#import "MapViewController.h"
 
 @interface RequestAnnotationInfo : NSObject<NSURLConnectionDataDelegate>
 {
 //    int chargePileNumber;
+    MapViewController *mapViewController;
 //    NSMutableArray *muArray;
 }
 
 @property (retain, nonatomic) NSMutableString *theResult;
 @property (retain, nonatomic) NSMutableData  *theResultData;
+
 @property int chargePileNumber;
 @property NSMutableArray *muArray;
 
