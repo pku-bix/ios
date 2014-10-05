@@ -10,4 +10,10 @@
 
 @interface detailViewController : UIViewController
 
+@property NSString* szAddress;
+@property (strong, nonatomic) IBOutlet UILabel *address;
+
+//- (IBAction)back:(id)sender;
+- (IBAction)back:(id)sender;
+
 @end

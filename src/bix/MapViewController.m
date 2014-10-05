@@ -10,6 +10,7 @@
 #import "MapButton.h"
 #import "Constants.h"
 #import "RequestAnnotationInfo.h"
+#import "detailViewController.h"
 
 #import "CustomPointAnnotation.h"
 #import "CallOutAnnotationView.h"
@@ -34,6 +35,7 @@
     UIButton* getCurrentLocationBtn;
     UIImage *image;
     CGRect rect;
+    int isFinishLoading ;
 }
 
 #pragma mark initialize
@@ -64,6 +66,10 @@
 //
     [self sendRequest];
     [self initMapViewButton];
+
+    detailInfoArray = [NSMutableArray arrayWithCapacity:DETAIL_INFO_NUMBER];
+   
+    NSLog(@"end viewDidLoad");
 //    [self initMapView];
 }
 
@@ -158,6 +164,8 @@
     [self.view addSubview:locateButton];
     [self.view addSubview:compassButton];
     [self.view addSubview:getCurrentLocationBtn];
+    [self.view addSubview:superCharge];
+    [self.view addSubview:destinationCharge];
 }
 
 #pragma mark five_mapButton_events
@@ -389,10 +397,12 @@
         //        newAnnotationView.animatesDrop = YES;// 设置该标注点动画显示
         newAnnotationView.annotation=annotation;
 
-        newAnnotationView.image = [UIImage imageNamed:@"icon_nav_start.png"];   //把大头针换成别的图片
+        newAnnotationView.image = [UIImage imageNamed:@"super_charge"];   //把大头针换成别的图片
 
-        newAnnotationView.leftCalloutAccessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"shcellhead.png"]];
-        newAnnotationView.rightCalloutAccessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"marker.png"]];
+        newAnnotationView.leftCalloutAccessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"marker.png"]]; //shcellhead.png
+//        newAnnotationView
+        
+//        newAnnotationView.rightCalloutAccessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"marker.png"]];
 //        UIButton *selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //        [selectButton setFrame:(CGRect){260,0,50,40}];
 //        [selectButton setTitle:@"确定" forState:UIControlStateNormal];
@@ -435,7 +445,6 @@ return nil;
        _annotaion = [[BMKAnnotationView alloc]initWithAnnotation:view.annotation reuseIdentifier:@"didSelectAnnotation"];
         NSLog(@"alloc _annotation");
     
-    
 }
 
 
@@ -447,51 +456,66 @@ return nil;
 //当点击annotation view弹出的泡泡时，调用此接口
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view
 {
+//    NSLog(@" view.accessibilityValue is %@", view.reuseIdentifier);
     NSLog(@"点击annotation view弹出的泡泡, I like programming!");
+    NSLog(@"%@", view.annotation.title);
+
+    int k = 0;
+    for (int i = 0; i < chargePileNumber; i++) {
+        if([[muArray objectAtIndex:k+1] isEqual:view.annotation.title])
+        {
+            NSLog(@"类型:%@", [muArray objectAtIndex:k]);
+            NSLog(@"维度:%@", [muArray objectAtIndex:k+2]);
+            NSLog(@"经度:%@", [muArray objectAtIndex:k+3]);
+            [detailInfoArray addObject:[muArray objectAtIndex:k]];
+            [detailInfoArray addObject:[muArray objectAtIndex:k+1]];
+            [detailInfoArray addObject:[muArray objectAtIndex:k+2]];
+            [detailInfoArray addObject:[muArray objectAtIndex:k+3]];
+//            NSLog(@"循环次数%d",i);
+            break;   //找到立刻退出循环;
+        }
+        k = k+4;
+    }
+
+    [self performSegueWithIdentifier:@"detail" sender:self];
+    for (id obj in detailInfoArray) {
+        NSLog(@"detailInfoArray is %@", obj);
+    }
+
+//    detail.title = @"关于";
+    
+//    NSLog(@"k is %d", k);
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue identifier] isEqualToString:@"detail"]) {
+        
+        detailViewController *detail = [segue destinationViewController];
+        detail.szAddress = [detailInfoArray objectAtIndex:0];
+        //detail.session = sessionToOpen;
+    }
 }
 
 -(void)addBatteryChargeAnnotation
 {
-   
     NSLog(@"addBatteryChargeAnnotation chargePileNumber is %d", chargePileNumber);
-//    NSMutableArray *parseArray = [NSMutableArray arrayWithArray:requestInfo.muArray];
-//    CLLocationCoordinate2D annotation1 = {39.8253312,116.391234};
-//    CLLocationCoordinate2D annotation2 = {39.81669,116.39716};
 //    CLLocationCoordinate2D annotation3 = {39.83669,116.39516};
 //    NSArray annotation = [NSArray arrayWithObjects:annotation1,annotation2,annotation3, nil];
     int k = 0;
     for(int i = 0; i < chargePileNumber; i++)
     {
         BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
-//        j.coordinate = CLLocationCoordinate2DMake(array2[k], array2[k+1]);
-        j.coordinate = CLLocationCoordinate2DMake([[muArray objectAtIndex:k+1] doubleValue], [[muArray objectAtIndex:k+2] doubleValue]);
-//        NSLog(@"%f, %f", [[muArray objectAtIndex:k+1] doubleValue], [[muArray objectAtIndex:k+2] doubleValue]);
-        j.title = [muArray objectAtIndex:k];
-        k = k+3;
-        [_mapView addAnnotation:j];
+        if([[muArray objectAtIndex:k]  isEqual: @"superCharger"])
+        {
+            j.coordinate = CLLocationCoordinate2DMake([[muArray objectAtIndex:k+2] doubleValue], [[muArray objectAtIndex:k+3] doubleValue]);
+            //        NSLog(@"%f, %f", [[muArray objectAtIndex:k+1] doubleValue], [[muArray objectAtIndex:k+2] doubleValue]);
+            j.title = [muArray objectAtIndex:k+1];
+            [_mapView addAnnotation:j];
+        }
+        k = k+4;        
     }
 //    [_mapView addAnnotations:chargeArray];
-
-//    BMKPointAnnotation* item = [[BMKPointAnnotation alloc]init];
-//    item.coordinate = annotation1;
-//    item.title = @"超级充电桩1";
-////    [_mapView addAnnotation:item];
-////
-////    
-//    BMKPointAnnotation* item2 = [[BMKPointAnnotation alloc]init];
-//    item2.coordinate = annotation2;
-//    item2.title = @"超级充电桩2";
-//    item2.subtitle = @"家庭充电桩";
-////    [_mapView addAnnotation:item];
-////
-////
-//    BMKPointAnnotation* item5 = [[BMKPointAnnotation alloc]init];
-//    item5.coordinate = annotation3;
-//    item5.title = @"获取超级充电桩详情";
-////
-//    NSArray *annotation = [[NSArray alloc]initWithObjects:item,item2,item5,nil];
-//
-////    [_mapView addAnnotation:item];
 }
 
 #pragma mark asynchronousRequest
@@ -525,11 +549,13 @@ return nil;
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     //把返回的data型数据转化成NSString
+    NSLog(@"FinshLoading data from server");
     self.theResult = [[NSMutableString alloc]initWithData:self.theResultData encoding:NSUTF8StringEncoding];
     //打印服务器返回的数据
     NSLog(@"result from server: %@", self.theResult);
     [self parseResult];
-    [self addBatteryChargeAnnotation];
+    isFinishLoading = 1;
+//    [self addBatteryChargeAnnotation];
 }
 
 //请求错误
@@ -547,12 +573,10 @@ return nil;
     NSLog(@"数组个数是%d", [arrayResult count]);
     chargePileNumber = [arrayResult count];
     
-    muArray = [NSMutableArray arrayWithCapacity:chargePileNumber*3];
+    muArray = [NSMutableArray arrayWithCapacity:chargePileNumber*4];
     
     for (id obj1 in arrayResult) {
-        
-//        NSDictionary *pile = [obj1 objectForKey:@"pile"];
-//        NSLog(@"longitude is %@", [longitude objectForKey:@"longitude"]);
+        [muArray addObject:[obj1 objectForKey:@"type"]];
         [muArray addObject:[obj1 objectForKey:@"detailedaddress"]];
         [muArray addObject:[obj1 objectForKey:@"latitude"]];
         [muArray addObject:[obj1 objectForKey:@"longitude"]];
@@ -562,8 +586,6 @@ return nil;
         NSLog(@"muArray %@", obj);
     }
     //    NSLog(@"%.8f, %.8f, %.8f, %.8f", t1, t2, t3, t4);
-    //    NSDictionary * loc1 = [arrayResult objectAtIndex:0];
-    //    NSLog(@"loc1 is %@", loc1);
     //    NSRange range = [self.theResult rangeOfString:@"location"];
     //    if (range.location == NSNotFound) {
     //        NSLog(@"没找到");
@@ -575,5 +597,46 @@ return nil;
 }
 
 
+- (IBAction)addSuperCharge:(id)sender {
+    NSLog(@"fuck superCharge");
+    [_mapView removeAnnotations: [NSArray arrayWithArray:_mapView.annotations]];
+    NSLog(@"removeAnnotations");
+    int k = 0, sum = 0;
+    for(int i = 0; i < chargePileNumber; i++)
+    {
+        BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
+        if([[muArray objectAtIndex:k]  isEqual: @"superCharger"])
+        {
+            sum++;
+            j.coordinate = CLLocationCoordinate2DMake([[muArray objectAtIndex:k+2] doubleValue], [[muArray objectAtIndex:k+3] doubleValue]);
+            j.title = [muArray objectAtIndex:k+1];
+            [_mapView addAnnotation:j];
+        }
+        k = k+4;
+    }
+    NSLog(@"superCharge have %d", sum);
+}
+
+- (IBAction)addDestinationCharge:(id)sender {
+    NSLog(@"fuck destinationCharge");
+    
+    NSLog(@"addBatteryChargeAnnotation chargePileNumber is %d", chargePileNumber);
+    [_mapView removeAnnotations:[NSArray arrayWithArray:_mapView.annotations]];
+    NSLog(@"removeAnnotations");
+    int k = 0, sum = 0;
+    for(int i = 0; i < chargePileNumber; i++)
+    {
+        BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
+        if([[muArray objectAtIndex:k]  isEqual: @"destinationCharger"])
+        {
+            sum++;
+            j.coordinate = CLLocationCoordinate2DMake([[muArray objectAtIndex:k+2] doubleValue], [[muArray objectAtIndex:k+3] doubleValue]);
+            j.title = [muArray objectAtIndex:k+1];
+            [_mapView addAnnotation:j];
+        }
+        k = k+4;
+    }
+    NSLog(@"destinationCharger have %d", sum);
+}
 @end
 

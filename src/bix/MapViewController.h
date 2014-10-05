@@ -16,8 +16,13 @@
     BMKUserLocation *current_Location;
     NSArray* array;
     int chargePileNumber;
-    NSMutableArray *muArray;
+    NSMutableArray *muArray, *detailInfoArray;
+
+    IBOutlet UIButton *destinationCharge;
+    IBOutlet UIButton *superCharge;
 }
+- (IBAction)addSuperCharge:(id)sender;
+- (IBAction)addDestinationCharge:(id)sender;
 
 @property (retain, nonatomic) NSMutableString *theResult;
 @property (retain, nonatomic) NSMutableData  *theResultData;

@@ -38,6 +38,11 @@ static NSString* const BAIDU_MAP_KEY = @"oCvXZCd41PsMzOw0disOu1QA";
  */
 static NSString *const LOCATION_INFO_IP = @"http://121.40.72.197/api/piles";
 
+/*
+ 点击充电桩详情页面，展示的数据项数
+ */
+static const int DETAIL_INFO_NUMBER = 5;
+
 /* event strings
  * used for notification event identity.
  */

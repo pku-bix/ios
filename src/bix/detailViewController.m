@@ -13,6 +13,14 @@
 @end
 
 @implementation detailViewController
+{
+    CGRect rect;
+    UITextView *_textView;
+    UITextView *_textViewTitle;
+    UITextView *contactUsTitle;
+    UITextView *contactUs;
+    NSString *aboutApp;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,7 +34,55 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.address.text = self.szAddress;
+    
+//    self.view.backgroundColor = [UIColor whiteColor];
+//    // Do any additional setup after loading the view from its nib.
+//    rect = [[UIScreen mainScreen] bounds];
+//    
+//    //UIImage *image = [UIImage imageNamed:@"Tesla.png"];   //此方法加载图片会缓存，对不常用的图片不适合此方法
+//    
+//    NSString *TeslaFile = [NSString stringWithFormat:@"%@/%@.png", [[NSBundle mainBundle]resourcePath], @"Tesla"];
+//    //  UIImage *image = [[UIImage alloc]initWithContentsOfFile:TeslaFile]; //此方法不缓存，一般用在封面等图比较大的地方；
+//    UIImage *image = [UIImage imageWithContentsOfFile:TeslaFile];
+//    UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+//    imageView.frame = CGRectMake((rect.size.width-image.size.width)/2, 90, image.size.width, image.size.height);
+//    // imageView.backgroundColor = [UIColor greenColor];
+//    //imageView.contentMode = UIViewContentModeScaleAspectFill;
+//    [self.view addSubview:imageView];
+//    
+//    _textViewTitle = [[UITextView alloc] init];
+//    _textViewTitle.frame = CGRectMake((rect.size.width-image.size.width)/2-10, 90+image.size.height+20, image.size.width+30, 50);
+//    _textViewTitle.text = @"       关于Bix";
+//    _textViewTitle.font = [UIFont boldSystemFontOfSize:16];
+//    
+//    _textViewTitle.editable = NO;
+//    [self.view addSubview:_textViewTitle];
+//    
+//    _textView = [[UITextView alloc]init];
+//    _textView.frame = CGRectMake((rect.size.width-image.size.width)/2-25, 90+image.size.height+20+40, image.size.width+60, 150);
+//    aboutApp = @"本软件是一款集地图、社交、共享于一体的app，旨在通过地图和社交元素帮助电动汽车共享充电桩、共享汽车，从而方便用户，建立圈子.";
+//    _textView.text = aboutApp;
+//    _textView.font = [UIFont systemFontOfSize:15];
+//    //_textView.text = [_textView.text stringByAppendingString:aboutApp];
+//    
+//    _textView.editable = NO;
+//    [self.view addSubview: _textView];
+//    
+//    contactUsTitle = [[UITextView alloc]init];
+//    contactUsTitle.frame = CGRectMake((rect.size.width-image.size.width)/2-10, 90+image.size.height+20+30+150, image.size.width+30, 30);
+//    contactUsTitle.text = @"       联系我们";
+//    contactUsTitle.font = [UIFont boldSystemFontOfSize:16];
+//    contactUsTitle.editable = NO;
+//    [self.view addSubview:contactUsTitle];
+//    
+//    contactUs = [[UITextView alloc]init];
+//    contactUs.frame = CGRectMake((rect.size.width-image.size.width)/2-25, 90+image.size.height+20+30+180, image.size.width+60, 50);
+//    contactUs.text = @"    wolflzy@hotmail.com";
+//    contactUs.font = [UIFont boldSystemFontOfSize:16];
+//    contactUs.editable = NO;
+//    [self.view addSubview:contactUs];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,5 +101,7 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

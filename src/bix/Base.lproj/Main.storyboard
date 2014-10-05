@@ -119,7 +119,35 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DP-xn-oHk" customClass="BMKMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="432"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLh-wP-qRS">
+                                        <rect key="frame" x="265" y="210" width="30" height="38"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="icon_nav_start.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addSuperCharge:" destination="cgf-f9-7YI" eventType="touchUpInside" id="qxP-fH-sZm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHm-o0-22m">
+                                        <rect key="frame" x="20" y="210" width="30" height="38"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="icon_nav_end.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addDestinationCharge:" destination="cgf-f9-7YI" eventType="touchUpInside" id="O1y-Qq-PP2"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="HHm-o0-22m" firstAttribute="leading" secondItem="2DP-xn-oHk" secondAttribute="leading" constant="20" id="4nG-vg-AjE"/>
+                                    <constraint firstAttribute="trailing" secondItem="wLh-wP-qRS" secondAttribute="trailing" constant="25" id="fBy-gh-8Dl"/>
+                                    <constraint firstAttribute="bottom" secondItem="HHm-o0-22m" secondAttribute="bottom" constant="184" id="g4t-zm-YXA"/>
+                                    <constraint firstAttribute="bottom" secondItem="wLh-wP-qRS" secondAttribute="bottom" constant="184" id="z8i-w3-ERD"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -133,12 +161,66 @@
                     <tabBarItem key="tabBarItem" title="地图" image="map_marker-24.png" id="1Kn-20-5cf"/>
                     <connections>
                         <outlet property="_mapView" destination="2DP-xn-oHk" id="MYw-ax-bzU"/>
-                        <segue destination="cFP-pd-nzj" kind="modal" id="gjL-gY-Yn2"/>
+                        <outlet property="destinationCharge" destination="HHm-o0-22m" id="KQ0-zx-EOT"/>
+                        <outlet property="superCharge" destination="wLh-wP-qRS" id="cMd-sA-Ae2"/>
+                        <segue destination="zTK-3x-xS0" kind="modal" identifier="detail" modalTransitionStyle="flipHorizontal" id="8Bj-fI-a2f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E7j-KQ-vTl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="721" y="278"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="XDu-UQ-hMf">
+            <objects>
+                <viewController id="zTK-3x-xS0" customClass="detailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="da1-Yu-V9p"/>
+                        <viewControllerLayoutGuide type="bottom" id="VDt-aB-4zq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lX0-51-eBd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibe-Wu-8wE">
+                                <rect key="frame" x="145" y="31" width="113" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7vr-3I-5Zw">
+                                <rect key="frame" x="129" y="220" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Ok">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="back:" destination="zTK-3x-xS0" eventType="touchUpInside" id="UDb-zz-PXM"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="超级充电桩是。。。。。" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdc-Rv-piu">
+                                <rect key="frame" x="35" y="275" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="充电桩类型:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iG7-oy-2I3">
+                                <rect key="frame" x="42" y="36" width="95" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="address" destination="ibe-Wu-8wE" id="9mU-fH-XRm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tk1-3q-ikr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1179" y="279"/>
         </scene>
         <!--Chat Navigation Controller - 消息-->
         <scene sceneID="xOX-DP-ODC">
@@ -268,24 +350,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YAm-4Q-0QG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1173" y="-407"/>
-        </scene>
-        <!--Detail View Controller-->
-        <scene sceneID="yhr-EO-Prg">
-            <objects>
-                <viewController id="cFP-pd-nzj" customClass="detailViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="tKo-fj-QeR"/>
-                        <viewControllerLayoutGuide type="bottom" id="gWP-c8-MBT"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="G60-wc-1rN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dYu-cG-zms" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1277" y="278"/>
         </scene>
         <!--Setting View Controller - 设置-->
         <scene sceneID="ePL-wr-2wg">
@@ -497,6 +561,8 @@
     </scenes>
     <resources>
         <image name="contacts-24.png" width="24" height="24"/>
+        <image name="icon_nav_end.png" width="30" height="38"/>
+        <image name="icon_nav_start.png" width="30" height="38"/>
         <image name="map_marker-24.png" width="24" height="24"/>
         <image name="settings-24.png" width="24" height="24"/>
         <image name="topic-24.png" width="24" height="24"/>
