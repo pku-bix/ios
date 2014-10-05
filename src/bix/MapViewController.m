@@ -35,7 +35,7 @@
     UIButton* getCurrentLocationBtn;
     UIImage *image;
     CGRect rect;
-    int isFinishLoading ;
+    int isFinishLoading, isSimpleOrDetailRequest ;
 }
 
 #pragma mark initialize
@@ -67,8 +67,8 @@
     [self sendRequest];
     [self initMapViewButton];
 
-    detailInfoArray = [NSMutableArray arrayWithCapacity:DETAIL_INFO_NUMBER];
    
+    detailInfoArray = [NSMutableArray arrayWithCapacity:DETAIL_INFO_NUMBER];
     NSLog(@"end viewDidLoad");
 //    [self initMapView];
 }
@@ -427,11 +427,6 @@ return nil;
 
     if(_annotaion)
     {
-//        [_annotaion setSelected:NO animated:NO];
-//        [_annotaion.annotation coordinate].longitude;
-//        _annotaion.annotation = view.annotation;
-//        NSLog(@"_annotation is exist");
-        
         //将上次点击的annotation从地图清楚掉；
         [mapView removeAnnotation:_annotaion.annotation];
         NSLog(@"removeAnnotation");
@@ -440,7 +435,6 @@ return nil;
         NSLog(@"addAnnotaion");
 //        _annotaion = nil;
     }
-    
       //保存本次点击的annotation
        _annotaion = [[BMKAnnotationView alloc]initWithAnnotation:view.annotation reuseIdentifier:@"didSelectAnnotation"];
         NSLog(@"alloc _annotation");
@@ -459,40 +453,48 @@ return nil;
 //    NSLog(@" view.accessibilityValue is %@", view.reuseIdentifier);
     NSLog(@"点击annotation view弹出的泡泡, I like programming!");
     NSLog(@"%@", view.annotation.title);
-
+    NSString *strId;
+   
+//    detailInfoArray = [NSMutableArray arrayWithCapacity:DETAIL_INFO_NUMBER];
+    //先删除之前数组的数据，否则数据会不断累加，这是可变数组。
+    [detailInfoArray removeAllObjects];
     int k = 0;
     for (int i = 0; i < chargePileNumber; i++) {
         if([[muArray objectAtIndex:k+1] isEqual:view.annotation.title])
         {
             NSLog(@"类型:%@", [muArray objectAtIndex:k]);
             NSLog(@"维度:%@", [muArray objectAtIndex:k+2]);
-            NSLog(@"经度:%@", [muArray objectAtIndex:k+3]);
+            strId = [NSString stringWithString:[muArray objectAtIndex:k+4]];
+            NSLog(@"id is %@", strId);
+//            NSLog(@"经度:%@", [muArray objectAtIndex:k+3]);
             [detailInfoArray addObject:[muArray objectAtIndex:k]];
-            [detailInfoArray addObject:[muArray objectAtIndex:k+1]];
-            [detailInfoArray addObject:[muArray objectAtIndex:k+2]];
-            [detailInfoArray addObject:[muArray objectAtIndex:k+3]];
+//            [detailInfoArray addObject:[muArray objectAtIndex:k+1]];
+//            [detailInfoArray addObject:[muArray objectAtIndex:k+2]];
+//            [detailInfoArray addObject:[muArray objectAtIndex:k+3]];
+//            [detailInfoArray addObject:[muArray objectAtIndex:k+4]];
 //            NSLog(@"循环次数%d",i);
             break;   //找到立刻退出循环;
         }
-        k = k+4;
+        k = k+5;
     }
 
-    [self performSegueWithIdentifier:@"detail" sender:self];
-    for (id obj in detailInfoArray) {
-        NSLog(@"detailInfoArray is %@", obj);
-    }
-
-//    detail.title = @"关于";
+    [self sendRequestForDetailInfo:strId];
     
-//    NSLog(@"k is %d", k);
+    [self performSegueWithIdentifier:@"detail" sender:self];
+//    for (id obj in detailInfoArray) {
+//        NSLog(@"detailInfoArray is %@", obj);
+//    }
 }
 
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    NSLog(@"prepareForSegue begin");
+
     if ([[segue identifier] isEqualToString:@"detail"]) {
-        
+        NSLog(@"prepareForSegue ing.....");
+
         detailViewController *detail = [segue destinationViewController];
         detail.szAddress = [detailInfoArray objectAtIndex:0];
+        NSLog(@"detail.szAddress is %@", detail.szAddress);
         //detail.session = sessionToOpen;
     }
 }
@@ -520,9 +522,10 @@ return nil;
 
 #pragma mark asynchronousRequest
 
-//异步GET请求
+//异步GET请求,请求基本的地图标注信息；
 -(void)sendRequest
 {
+    isSimpleOrDetailRequest = 1;
     NSString *addStr = [NSString stringWithFormat:LOCATION_INFO_IP];
     NSURL *url = [NSURL URLWithString:addStr];
     //创建请求
@@ -531,10 +534,30 @@ return nil;
     [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
+//异步GET请求，请求地图标注的充电桩的详细信息；
+-(void)sendRequestForDetailInfo:(NSString*)_id
+{
+    NSLog(@"sendRequestForDetailInfo");
+    isSimpleOrDetailRequest = 2;
+    NSMutableString *path  = [[NSMutableString alloc]initWithCapacity:60];
+    [path setString:LOCATION_DETAIL_INFO_IP];
+    [path appendString:_id];
+//    NSString *addStr = [NSString stringWithFormat:path];
+    NSURL *url = [NSURL URLWithString:path];
+    
+    //创建请求
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
+    //创建连接
+    [NSURLConnection connectionWithRequest:request delegate:self];
+
+        NSLog(@"sendRequestForDetailInfo Success");
+}
+
 
 //服务器开始响应请求
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
+    NSLog(@"didReceiveResponse");
     self.theResult = [NSMutableString string];
     self.theResultData = [NSMutableData data];
 }
@@ -542,6 +565,7 @@ return nil;
 //开始接受数据
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
+    NSLog(@"didReceiveData");
     [self.theResultData appendData:data];
 }
 
@@ -553,8 +577,14 @@ return nil;
     self.theResult = [[NSMutableString alloc]initWithData:self.theResultData encoding:NSUTF8StringEncoding];
     //打印服务器返回的数据
     NSLog(@"result from server: %@", self.theResult);
-    [self parseResult];
-    isFinishLoading = 1;
+    if (isSimpleOrDetailRequest ==1) {
+        [self parseResult];
+    }
+    else
+        if (isSimpleOrDetailRequest == 2) {
+            
+        }
+//    isFinishLoading = 1;
 //    [self addBatteryChargeAnnotation];
 }
 
@@ -573,13 +603,14 @@ return nil;
     NSLog(@"数组个数是%d", [arrayResult count]);
     chargePileNumber = [arrayResult count];
     
-    muArray = [NSMutableArray arrayWithCapacity:chargePileNumber*4];
+    muArray = [NSMutableArray arrayWithCapacity:chargePileNumber*5];
     
     for (id obj1 in arrayResult) {
         [muArray addObject:[obj1 objectForKey:@"type"]];
         [muArray addObject:[obj1 objectForKey:@"detailedaddress"]];
         [muArray addObject:[obj1 objectForKey:@"latitude"]];
         [muArray addObject:[obj1 objectForKey:@"longitude"]];
+        [muArray addObject:[obj1 objectForKey:@"_id"]];
     }
     for(id obj in muArray)
     {
@@ -594,6 +625,30 @@ return nil;
     //    {
     //        NSLog(@"找到的范围是:%@", NSStringFromRange(range));
     //    }
+}
+
+-(void)parseDetailResult
+{
+    NSDictionary *location = [NSJSONSerialization JSONObjectWithData:self.theResultData options:NSJSONReadingMutableLeaves error:nil];
+    NSArray *arrayResult = [location objectForKey:@"result"];
+    NSLog(@"充电桩详情的个数是%d", [arrayResult count]);
+//    chargePileNumber = [arrayResult count];
+    
+//    muArray = [NSMutableArray arrayWithCapacity:chargePileNumber*5];
+    
+    for (id obj1 in arrayResult) {
+        [detailInfoArray addObject:[obj1 objectForKey:@"type"]];
+        [detailInfoArray addObject:[obj1 objectForKey:@"detailedaddress"]];
+        [detailInfoArray addObject:[obj1 objectForKey:@"parkingnum"]];
+        [detailInfoArray addObject:[obj1 objectForKey:@"longitude"]];
+        [detailInfoArray addObject:[obj1 objectForKey:@"_id"]];
+    }
+    for(id obj in detailInfoArray)
+    {
+        NSLog(@"muArray %@", obj);
+    }
+
+    
 }
 
 
@@ -612,7 +667,7 @@ return nil;
             j.title = [muArray objectAtIndex:k+1];
             [_mapView addAnnotation:j];
         }
-        k = k+4;
+        k = k+5;
     }
     NSLog(@"superCharge have %d", sum);
 }
@@ -634,7 +689,7 @@ return nil;
             j.title = [muArray objectAtIndex:k+1];
             [_mapView addAnnotation:j];
         }
-        k = k+4;
+        k = k+5;
     }
     NSLog(@"destinationCharger have %d", sum);
 }

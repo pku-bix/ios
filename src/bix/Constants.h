@@ -38,6 +38,9 @@ static NSString* const BAIDU_MAP_KEY = @"oCvXZCd41PsMzOw0disOu1QA";
  */
 static NSString *const LOCATION_INFO_IP = @"http://121.40.72.197/api/piles";
 
+//点击地图标注的吹出框，请求服务器对应的充电桩的详细信息
+static NSString *const LOCATION_DETAIL_INFO_IP = @"http://121.40.72.197/api/pile/";
+
 /*
  点击充电桩详情页面，展示的数据项数
  */

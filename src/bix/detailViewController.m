@@ -35,7 +35,7 @@
 {
     [super viewDidLoad];
     
-    self.address.text = self.szAddress;
+//    self.address.text = self.szAddress;
     
 //    self.view.backgroundColor = [UIColor whiteColor];
 //    // Do any additional setup after loading the view from its nib.
@@ -101,6 +101,11 @@
     // Pass the selected object to the new view controller.
 }
 */
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.address.text = self.szAddress;
+
+}
 - (IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
