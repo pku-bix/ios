@@ -10,10 +10,20 @@
 
 @interface detailViewController : UIViewController
 
-@property NSString* szAddress;
-@property (strong, nonatomic) IBOutlet UILabel *address;
+@property NSString* detailAddress;
+@property NSString* type;
+@property NSString* parkingnum;
+@property NSString* time;
+@property NSString* info;
 
-//- (IBAction)back:(id)sender;
+@property (strong, nonatomic) IBOutlet UILabel *chargerType;
+
+@property (strong, nonatomic) IBOutlet UITextView *chargerAddress;
+
+@property (strong, nonatomic) IBOutlet UILabel *chargerParkingnum;
+
+@property (strong, nonatomic) IBOutlet UILabel *chargerInfo;
+
 - (IBAction)back:(id)sender;
 
 @end

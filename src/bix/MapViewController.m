@@ -36,6 +36,7 @@
     UIImage *image;
     CGRect rect;
     int isFinishLoading, isSimpleOrDetailRequest ;
+    detailViewController *detail;
 }
 
 #pragma mark initialize
@@ -457,9 +458,10 @@ return nil;
    
 //    detailInfoArray = [NSMutableArray arrayWithCapacity:DETAIL_INFO_NUMBER];
     //先删除之前数组的数据，否则数据会不断累加，这是可变数组。
-    [detailInfoArray removeAllObjects];
+//    [detailInfoArray removeAllObjects];
     int k = 0;
     for (int i = 0; i < chargePileNumber; i++) {
+        //通过详细地址名来找到对应的id,从而构成请求的地址;
         if([[muArray objectAtIndex:k+1] isEqual:view.annotation.title])
         {
             NSLog(@"类型:%@", [muArray objectAtIndex:k]);
@@ -467,7 +469,7 @@ return nil;
             strId = [NSString stringWithString:[muArray objectAtIndex:k+4]];
             NSLog(@"id is %@", strId);
 //            NSLog(@"经度:%@", [muArray objectAtIndex:k+3]);
-            [detailInfoArray addObject:[muArray objectAtIndex:k]];
+//            [detailInfoArray addObject:[muArray objectAtIndex:k]];
 //            [detailInfoArray addObject:[muArray objectAtIndex:k+1]];
 //            [detailInfoArray addObject:[muArray objectAtIndex:k+2]];
 //            [detailInfoArray addObject:[muArray objectAtIndex:k+3]];
@@ -480,7 +482,7 @@ return nil;
 
     [self sendRequestForDetailInfo:strId];
     
-    [self performSegueWithIdentifier:@"detail" sender:self];
+//    [self performSegueWithIdentifier:@"detail" sender:self];
 //    for (id obj in detailInfoArray) {
 //        NSLog(@"detailInfoArray is %@", obj);
 //    }
@@ -490,11 +492,29 @@ return nil;
     NSLog(@"prepareForSegue begin");
 
     if ([[segue identifier] isEqualToString:@"detail"]) {
-        NSLog(@"prepareForSegue ing.....");
+        NSLog(@"prepareForSegue ing......");
 
-        detailViewController *detail = [segue destinationViewController];
-        detail.szAddress = [detailInfoArray objectAtIndex:0];
-        NSLog(@"detail.szAddress is %@", detail.szAddress);
+//        [NSThread sleepForTimeInterval:1];
+         detail = [segue destinationViewController];
+        
+    
+        if (([detailInfoArray count] != 0) && ([[detailInfoArray objectAtIndex:0] isEqualToString:@"superCharger"])) {
+            detail.type = [detailInfoArray objectAtIndex:0];
+            detail.detailAddress = [detailInfoArray objectAtIndex:1];
+            detail.parkingnum = [detailInfoArray objectAtIndex:2];
+            detail.info = [detailInfoArray objectAtIndex:3];
+        }
+        else if(([detailInfoArray count] != 0) && ([[detailInfoArray objectAtIndex:0] isEqualToString:@"destinationCharger"]))
+        {
+            detail.type = [detailInfoArray objectAtIndex:0];
+            detail.detailAddress = [detailInfoArray objectAtIndex:1];
+            detail.parkingnum = [detailInfoArray objectAtIndex:2];
+            detail.info = [detailInfoArray objectAtIndex:3];
+        }
+//
+        
+//        NSLog(@"detail.szAddress is %@", detail.szAddress);
+        NSLog(@"type is %@, detailAddress is %@, parkingnum is %@, time is %@, info is %@", detail.type, detail.detailAddress, detail.parkingnum, detail.time, detail.info);
         //detail.session = sessionToOpen;
     }
 }
@@ -582,6 +602,8 @@ return nil;
     }
     else
         if (isSimpleOrDetailRequest == 2) {
+            [self parseDetailResult];
+            [self performSegueWithIdentifier:@"detail" sender:self];
             
         }
 //    isFinishLoading = 1;
@@ -632,25 +654,39 @@ return nil;
     NSDictionary *location = [NSJSONSerialization JSONObjectWithData:self.theResultData options:NSJSONReadingMutableLeaves error:nil];
     NSArray *arrayResult = [location objectForKey:@"result"];
     NSLog(@"充电桩详情的个数是%d", [arrayResult count]);
+//    NSLog(@"arrayResult is %@", arrayResult);
 //    chargePileNumber = [arrayResult count];
     
 //    muArray = [NSMutableArray arrayWithCapacity:chargePileNumber*5];
+    [detailInfoArray removeAllObjects];
+    NSLog(@"type is %@", [(id)arrayResult objectForKey:@"type"]);
+    NSLog(@"detailedaddress is %@", [(id)arrayResult objectForKey:@"detailedaddress"]);
+    NSLog(@"parkingnum is %@", [(id)arrayResult objectForKey:@"parkingnum"]);
+//    NSLog(@"time is %@", [(id)arrayResult objectForKey:@"time"]);
     
-    for (id obj1 in arrayResult) {
-        [detailInfoArray addObject:[obj1 objectForKey:@"type"]];
-        [detailInfoArray addObject:[obj1 objectForKey:@"detailedaddress"]];
-        [detailInfoArray addObject:[obj1 objectForKey:@"parkingnum"]];
-        [detailInfoArray addObject:[obj1 objectForKey:@"longitude"]];
-        [detailInfoArray addObject:[obj1 objectForKey:@"_id"]];
+    if ([[(id)arrayResult objectForKey:@"type"] isEqualToString:@"superCharger"]) {
+        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"type"]];
+        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"detailedaddress"]];
+        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"parkingnum"]];
+        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"time"]];
     }
-    for(id obj in detailInfoArray)
+    else if([[(id)arrayResult objectForKey:@"type"] isEqualToString:@"destinationCharger"])
     {
-        NSLog(@"muArray %@", obj);
+        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"type"]];
+        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"detailedaddress"]];
+        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"parkingnum"]];
+        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"info"]];
     }
-
+    
+    for (id obj in detailInfoArray) {
+        NSLog(@"%@", obj);
+    }
+//     detail.szAddress = [detailInfoArray objectAtIndex:0];
+//    NSLog(@"detail.szAddress is %@", detail.szAddress);
+    
+//    [self performSegueWithIdentifier:@"detail" sender:self];
     
 }
-
 
 - (IBAction)addSuperCharge:(id)sender {
     NSLog(@"fuck superCharge");

@@ -34,6 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"viewDidLoad");
     
 //    self.address.text = self.szAddress;
     
@@ -101,9 +102,14 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.address.text = self.szAddress;
+    self.chargerAddress.text = self.detailAddress;
+    self.chargerType.text = self.type;
+    self.chargerParkingnum.text = self.parkingnum;
+    self.chargerInfo.text = self.info;
+    
 
 }
 - (IBAction)back:(id)sender {
