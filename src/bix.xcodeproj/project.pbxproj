@@ -25,13 +25,7 @@
 		E374AA8218D9E23700EC575A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA8118D9E23700EC575A /* QuartzCore.framework */; };
 		E374AA8418D9E24200EC575A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA8318D9E24200EC575A /* OpenGLES.framework */; };
 		E374AA8618D9E24C00EC575A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA8518D9E24C00EC575A /* SystemConfiguration.framework */; };
-		E37F2C4219DBEC880090AB24 /* RequestAnnotationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E37F2C4119DBEC880090AB24 /* RequestAnnotationInfo.m */; };
 		E37F2C4519DBFA5A0090AB24 /* detailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37F2C4419DBFA5A0090AB24 /* detailViewController.m */; };
-		E38E575619D06967007CAA4D /* BusPointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E38E574E19D06967007CAA4D /* BusPointCell.m */; };
-		E38E575719D06967007CAA4D /* BusPointCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E38E574F19D06967007CAA4D /* BusPointCell.xib */; };
-		E38E575819D06967007CAA4D /* CallOutAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E38E575119D06967007CAA4D /* CallOutAnnotationView.m */; };
-		E38E575919D06967007CAA4D /* CalloutMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E38E575319D06967007CAA4D /* CalloutMapAnnotation.m */; };
-		E38E575A19D06967007CAA4D /* CustomPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E38E575519D06967007CAA4D /* CustomPointAnnotation.m */; };
 		E38E575E19D06A44007CAA4D /* shcellhead@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E38E575C19D06A44007CAA4D /* shcellhead@2x.png */; };
 		E38E575F19D06A44007CAA4D /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E38E575D19D06A44007CAA4D /* marker@2x.png */; };
 		E3D8A8E519800B9B00E40C14 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D8A8E319800B9B00E40C14 /* Default.png */; };
@@ -47,6 +41,7 @@
 		E3E7AED119CEF812002CB978 /* reported@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E7AEC819CEF812002CB978 /* reported@2x.png */; };
 		E3E7AED219CEF812002CB978 /* Supercharge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E7AEC919CEF812002CB978 /* Supercharge@2x.png */; };
 		E3E7AED319CEF812002CB978 /* supportUs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E7AECA19CEF812002CB978 /* supportUs@2x.png */; };
+		E3F571BE19E5829000AA20E0 /* RequestInfoFromServer.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F571BD19E5829000AA20E0 /* RequestInfoFromServer.m */; };
 		E3FC3F05199A4CCB00E0E784 /* generalTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FC3F04199A4CCB00E0E784 /* generalTableView.m */; };
 		EC0F2A3E19C5EEA800BE1F62 /* ChatNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0F2A3D19C5EEA800BE1F62 /* ChatNavigationController.m */; };
 		EC10200B18C85DF200B3775E /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200A18C85DF200B3775E /* MainTabBarController.m */; };
@@ -168,19 +163,8 @@
 		E374AA8118D9E23700EC575A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E374AA8318D9E24200EC575A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E374AA8518D9E24C00EC575A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		E37F2C4019DBEC880090AB24 /* RequestAnnotationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestAnnotationInfo.h; sourceTree = "<group>"; };
-		E37F2C4119DBEC880090AB24 /* RequestAnnotationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestAnnotationInfo.m; sourceTree = "<group>"; };
 		E37F2C4319DBFA5A0090AB24 /* detailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = detailViewController.h; sourceTree = "<group>"; };
 		E37F2C4419DBFA5A0090AB24 /* detailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = detailViewController.m; sourceTree = "<group>"; };
-		E38E574D19D06967007CAA4D /* BusPointCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusPointCell.h; path = ../../../../Downloads/baiduMapDemo/baiduMapDemo/customCalloutView/BusPointCell.h; sourceTree = "<group>"; };
-		E38E574E19D06967007CAA4D /* BusPointCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusPointCell.m; path = ../../../../Downloads/baiduMapDemo/baiduMapDemo/customCalloutView/BusPointCell.m; sourceTree = "<group>"; };
-		E38E574F19D06967007CAA4D /* BusPointCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BusPointCell.xib; path = ../../../../Downloads/baiduMapDemo/baiduMapDemo/customCalloutView/BusPointCell.xib; sourceTree = "<group>"; };
-		E38E575019D06967007CAA4D /* CallOutAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CallOutAnnotationView.h; path = ../../../../Downloads/baiduMapDemo/baiduMapDemo/customCalloutView/CallOutAnnotationView.h; sourceTree = "<group>"; };
-		E38E575119D06967007CAA4D /* CallOutAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CallOutAnnotationView.m; path = ../../../../Downloads/baiduMapDemo/baiduMapDemo/customCalloutView/CallOutAnnotationView.m; sourceTree = "<group>"; };
-		E38E575219D06967007CAA4D /* CalloutMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalloutMapAnnotation.h; path = ../../../../Downloads/baiduMapDemo/baiduMapDemo/customCalloutView/CalloutMapAnnotation.h; sourceTree = "<group>"; };
-		E38E575319D06967007CAA4D /* CalloutMapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalloutMapAnnotation.m; path = ../../../../Downloads/baiduMapDemo/baiduMapDemo/customCalloutView/CalloutMapAnnotation.m; sourceTree = "<group>"; };
-		E38E575419D06967007CAA4D /* CustomPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomPointAnnotation.h; path = ../../../../Downloads/baiduMapDemo/baiduMapDemo/customCalloutView/CustomPointAnnotation.h; sourceTree = "<group>"; };
-		E38E575519D06967007CAA4D /* CustomPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomPointAnnotation.m; path = ../../../../Downloads/baiduMapDemo/baiduMapDemo/customCalloutView/CustomPointAnnotation.m; sourceTree = "<group>"; };
 		E38E575C19D06A44007CAA4D /* shcellhead@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "shcellhead@2x.png"; path = "../../../../../../Downloads/baiduMapDemo/shcellhead@2x.png"; sourceTree = "<group>"; };
 		E38E575D19D06A44007CAA4D /* marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marker@2x.png"; path = "../../../../../../Downloads/baiduMapDemo/marker@2x.png"; sourceTree = "<group>"; };
 		E3D8A8E319800B9B00E40C14 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -196,6 +180,8 @@
 		E3E7AEC819CEF812002CB978 /* reported@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reported@2x.png"; sourceTree = "<group>"; };
 		E3E7AEC919CEF812002CB978 /* Supercharge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Supercharge@2x.png"; sourceTree = "<group>"; };
 		E3E7AECA19CEF812002CB978 /* supportUs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "supportUs@2x.png"; sourceTree = "<group>"; };
+		E3F571BC19E5829000AA20E0 /* RequestInfoFromServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestInfoFromServer.h; sourceTree = "<group>"; };
+		E3F571BD19E5829000AA20E0 /* RequestInfoFromServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestInfoFromServer.m; sourceTree = "<group>"; };
 		E3FC3F03199A4CCB00E0E784 /* generalTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = generalTableView.h; path = bix/generalTableView.h; sourceTree = "<group>"; };
 		E3FC3F04199A4CCB00E0E784 /* generalTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = generalTableView.m; path = bix/generalTableView.m; sourceTree = "<group>"; };
 		EC0F2A3C19C5EEA800BE1F62 /* ChatNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatNavigationController.h; sourceTree = "<group>"; };
@@ -438,8 +424,6 @@
 				E34419951980BAA400F03459 /* MapButton.h */,
 				E34419961980BAA400F03459 /* MapButton.m */,
 				E34F44E1199B16E700BAB7D8 /* ButtonProtocal.h */,
-				E37F2C4019DBEC880090AB24 /* RequestAnnotationInfo.h */,
-				E37F2C4119DBEC880090AB24 /* RequestAnnotationInfo.m */,
 				E37F2C4319DBFA5A0090AB24 /* detailViewController.h */,
 				E37F2C4419DBFA5A0090AB24 /* detailViewController.m */,
 			);
@@ -460,20 +444,13 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		E38E575B19D06991007CAA4D /* CustomCallOutView */ = {
+		E3F571BB19E5823900AA20E0 /* RequestFromServer */ = {
 			isa = PBXGroup;
 			children = (
-				E38E574D19D06967007CAA4D /* BusPointCell.h */,
-				E38E574E19D06967007CAA4D /* BusPointCell.m */,
-				E38E574F19D06967007CAA4D /* BusPointCell.xib */,
-				E38E575019D06967007CAA4D /* CallOutAnnotationView.h */,
-				E38E575119D06967007CAA4D /* CallOutAnnotationView.m */,
-				E38E575219D06967007CAA4D /* CalloutMapAnnotation.h */,
-				E38E575319D06967007CAA4D /* CalloutMapAnnotation.m */,
-				E38E575419D06967007CAA4D /* CustomPointAnnotation.h */,
-				E38E575519D06967007CAA4D /* CustomPointAnnotation.m */,
+				E3F571BC19E5829000AA20E0 /* RequestInfoFromServer.h */,
+				E3F571BD19E5829000AA20E0 /* RequestInfoFromServer.m */,
 			);
-			name = CustomCallOutView;
+			name = RequestFromServer;
 			sourceTree = "<group>";
 		};
 		E3FC3EF71999B92300E0E784 /* settingImage */ = {
@@ -984,9 +961,9 @@
 				ECED787618CF7FE30041CCC7 /* Account */,
 				E36C255D198F705100D129E9 /* SettingView */,
 				E34F44E0199B013C00BAB7D8 /* BaiduMapView */,
-				E38E575B19D06991007CAA4D /* CustomCallOutView */,
 				ECF7E1DD18C0516D002BA385 /* AppDelegate.mm */,
 				ECF7E1DC18C0516D002BA385 /* AppDelegate.h */,
+				E3F571BB19E5823900AA20E0 /* RequestFromServer */,
 				ECF7E1DF18C0516D002BA385 /* Main.storyboard */,
 				EC10200918C85DF200B3775E /* MainTabBarController.h */,
 				EC10200A18C85DF200B3775E /* MainTabBarController.m */,
@@ -1112,7 +1089,6 @@
 				EC3166381930BA6F002E9609 /* contacts-24@2x.png in Resources */,
 				E35A14BC19CDCB4A00867D49 /* icon_nav_end.png in Resources */,
 				E33FF0D0197E4F37007FE69F /* compass-64@2x.png in Resources */,
-				E38E575719D06967007CAA4D /* BusPointCell.xib in Resources */,
 				ECD998E818DACE9F00F30FE3 /* mapapi.bundle in Resources */,
 				E3E7AED119CEF812002CB978 /* reported@2x.png in Resources */,
 				E3E7AECB19CEF812002CB978 /* aboutBix.png in Resources */,
@@ -1166,7 +1142,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E37F2C4219DBEC880090AB24 /* RequestAnnotationInfo.m in Sources */,
 				EC9908A518C33C9200798FAB /* RFImageToDataTransformer.m in Sources */,
 				EC10201118C8701400B3775E /* MapViewController.m in Sources */,
 				EC99089918C33C9200798FAB /* NSNumber+XMPP.m in Sources */,
@@ -1177,7 +1152,6 @@
 				EC57888419A6215A0058837C /* MessageBox.m in Sources */,
 				EC57887619A620C80058837C /* AddContactViewController.m in Sources */,
 				EC57886719A61F0C0058837C /* Chatter.m in Sources */,
-				E38E575919D06967007CAA4D /* CalloutMapAnnotation.m in Sources */,
 				EC99084418C3397000798FAB /* DDFileLogger.m in Sources */,
 				EC99089518C33C9200798FAB /* XMPPPlainAuthentication.m in Sources */,
 				EC9908A118C33C9200798FAB /* XMPPPresence.m in Sources */,
@@ -1186,8 +1160,6 @@
 				EC57887019A620710058837C /* MessageCell.m in Sources */,
 				EC9908A218C33C9200798FAB /* XMPPStream.m in Sources */,
 				EC99083018C3391300798FAB /* DDXMLNode.m in Sources */,
-				E38E575619D06967007CAA4D /* BusPointCell.m in Sources */,
-				E38E575A19D06967007CAA4D /* CustomPointAnnotation.m in Sources */,
 				ECED789118D00CAD0041CCC7 /* Account.m in Sources */,
 				EC0F2A3E19C5EEA800BE1F62 /* ChatNavigationController.m in Sources */,
 				EC99089218C33C9200798FAB /* XMPPDeprecatedDigestAuthentication.m in Sources */,
@@ -1197,7 +1169,6 @@
 				EC99089A18C33C9200798FAB /* NSXMLElement+XMPP.m in Sources */,
 				ECED787918CF7FE30041CCC7 /* Session.m in Sources */,
 				EC99084318C3397000798FAB /* DDASLLogger.m in Sources */,
-				E38E575819D06967007CAA4D /* CallOutAnnotationView.m in Sources */,
 				EC99084618C3397000798FAB /* DDTTYLogger.m in Sources */,
 				EC99089B18C33C9200798FAB /* XMPPElement.m in Sources */,
 				EC316623193065AC002E9609 /* NSString+FontAwesome.m in Sources */,
@@ -1233,6 +1204,7 @@
 				EC31662A19308978002E9609 /* MBProgressHUD.m in Sources */,
 				EC57886E19A620710058837C /* ChatListViewController.m in Sources */,
 				EC9908A818C33C9200798FAB /* XMPPStringPrep.m in Sources */,
+				E3F571BE19E5829000AA20E0 /* RequestInfoFromServer.m in Sources */,
 				EC99089118C33C9200798FAB /* XMPPAnonymousAuthentication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

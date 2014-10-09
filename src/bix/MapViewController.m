@@ -9,17 +9,17 @@
 #import "MapViewController.h"
 #import "MapButton.h"
 #import "Constants.h"
-#import "RequestAnnotationInfo.h"
+//#import "RequestAnnotationInfo.h"
 #import "detailViewController.h"
+#import "RequestInfoFromServer.h"
 
-#import "CustomPointAnnotation.h"
-#import "CallOutAnnotationView.h"
-#import "BusPointCell.h"
-#import "CalloutMapAnnotation.h"
+//#import "CustomPointAnnotation.h"
+//#import "CallOutAnnotationView.h"
+//#import "BusPointCell.h"
+//#import "CalloutMapAnnotation.h"
 
 @interface MapViewController()
 {
-//    CalloutMapAnnotation *_calloutMapAnnotation;
     BMKAnnotationView * _annotaion;
 }
 
@@ -27,6 +27,7 @@
 
 @implementation MapViewController
 {
+    RequestInfoFromServer* requestInfoFromServer;
     MapButton * mapButton;
     UIButton* enlargeButton;
     UIButton* shrinkButton;
@@ -52,6 +53,8 @@
 
 - (void)viewDidLoad
 {
+//    aaaaaa = 90;
+//    NSLog(@"aaaa is %d", aaaaaa);
     NSLog(@"viewDidLoad");
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -64,8 +67,13 @@
 
 //    _mapView.delegate = self;
 //    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
-//
-    [self sendRequest];
+//  [self sendRequest];
+    
+    requestInfoFromServer = [[RequestInfoFromServer alloc]init];
+    requestInfoFromServer.selectNotificationKind = 1;
+    [requestInfoFromServer sendRequest:LOCATION_INFO_IP];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseResult:) name:REQUEST_SIMPLE_INFO object:nil];
+    
     [self initMapViewButton];
 
    
@@ -73,36 +81,36 @@
     NSLog(@"end viewDidLoad");
 //    [self initMapView];
 }
-
--(void) initMapView{
-
-    //添加自定义Annotation
-    CLLocationCoordinate2D center = {39.91669,116.39716};
-    
-//    CLLocationCoordinate2D center2 = {39.93669,116.39516};
-    
-    CustomPointAnnotation *pointAnnotation = [[CustomPointAnnotation alloc] init];
-//    CustomPointAnnotation *pointAnnotation2 = [[CustomPointAnnotation alloc] init];
-    pointAnnotation.title = @"我是中国人";//因为继承了BMKPointAnnotation，所以这些title,subtitle都可以设置
-    pointAnnotation.subtitle = @"我爱自己的祖国";
-    
-//    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"拍照",@"alias",@"速度",@"speed",@"方位",@"degree",@"位置",@"name",nil];
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"点击获取充电桩详情",@"alias",nil];
-    pointAnnotation.pointCalloutInfo =dict;
-//    pointAnnotation2.pointCalloutInfo = dict;
-    
-    pointAnnotation.coordinate = center;
-//    pointAnnotation2.coordinate = center2;
-//    [_mapView addAnnotation:pointAnnotation2];
-    [_mapView addAnnotation:pointAnnotation];
-//    [pointAnnotation release];
-    
-    BMKCoordinateSpan span = {0.04,0.03};
-    BMKCoordinateRegion region = {center,span};
-    [_mapView setRegion:region animated:NO];
-    
-    //    [mymapview setShowsUserLocation:YES];
-}
+//
+//-(void) initMapView{
+//
+//    //添加自定义Annotation
+//    CLLocationCoordinate2D center = {39.91669,116.39716};
+//    
+////    CLLocationCoordinate2D center2 = {39.93669,116.39516};
+//    
+//    CustomPointAnnotation *pointAnnotation = [[CustomPointAnnotation alloc] init];
+////    CustomPointAnnotation *pointAnnotation2 = [[CustomPointAnnotation alloc] init];
+//    pointAnnotation.title = @"我是中国人";//因为继承了BMKPointAnnotation，所以这些title,subtitle都可以设置
+//    pointAnnotation.subtitle = @"我爱自己的祖国";
+//    
+////    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"拍照",@"alias",@"速度",@"speed",@"方位",@"degree",@"位置",@"name",nil];
+//    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"点击获取充电桩详情",@"alias",nil];
+//    pointAnnotation.pointCalloutInfo =dict;
+////    pointAnnotation2.pointCalloutInfo = dict;
+//    
+//    pointAnnotation.coordinate = center;
+////    pointAnnotation2.coordinate = center2;
+////    [_mapView addAnnotation:pointAnnotation2];
+//    [_mapView addAnnotation:pointAnnotation];
+////    [pointAnnotation release];
+//    
+//    BMKCoordinateSpan span = {0.04,0.03};
+//    BMKCoordinateRegion region = {center,span};
+//    [_mapView setRegion:region animated:NO];
+//    
+//    //    [mymapview setShowsUserLocation:YES];
+//}
 
 -(void)initMapViewButton
 {
@@ -112,6 +120,8 @@
     {
         //        self.edgesForExtendedLayout=UIRectEdgeNone;
         self.navigationController.navigationBar.translucent = NO;
+//        int a = 5;
+        NSLog(@"test");
     }
     // once launch the baidu map, locate the position of user immediately
     [mapButton launchMapView_locate:_mapView];
@@ -480,8 +490,14 @@ return nil;
         k = k+5;
     }
 
-    [self sendRequestForDetailInfo:strId];
-    
+//    [self sendRequestForDetailInfo:strId];
+    NSMutableString *path  = [[NSMutableString alloc]initWithCapacity:60];
+    [path setString:LOCATION_DETAIL_INFO_IP];
+    [path appendString:strId];
+
+    requestInfoFromServer.selectNotificationKind = 2;
+    [requestInfoFromServer sendRequest:path];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseDetailResult:) name:REQUEST_CHARGER_DETAIL_INFO object:nil];
 //    [self performSegueWithIdentifier:@"detail" sender:self];
 //    for (id obj in detailInfoArray) {
 //        NSLog(@"detailInfoArray is %@", obj);
@@ -540,8 +556,8 @@ return nil;
 //    [_mapView addAnnotations:chargeArray];
 }
 
-#pragma mark asynchronousRequest
-
+ #pragma mark asynchronousRequest
+/*
 //异步GET请求,请求基本的地图标注信息；
 -(void)sendRequest
 {
@@ -598,11 +614,11 @@ return nil;
     //打印服务器返回的数据
     NSLog(@"result from server: %@", self.theResult);
     if (isSimpleOrDetailRequest ==1) {
-        [self parseResult];
+//        [self parseResult];
     }
     else
         if (isSimpleOrDetailRequest == 2) {
-            [self parseDetailResult];
+//            [self parseDetailResult];
             [self performSegueWithIdentifier:@"detail" sender:self];
             
         }
@@ -616,10 +632,12 @@ return nil;
     //打印错误信息: Could not connect to the server.
     NSLog(@"请求错误:%@", [error localizedDescription]);
 }
-
+*/
 //解析从服务器获取的数据
--(void)parseResult
+-(void)parseResult:(NSNotification*)notification
 {
+    self.theResultData = notification.object;
+    NSLog(@"get the notification data, it is ");
     NSDictionary *location = [NSJSONSerialization JSONObjectWithData:self.theResultData options:NSJSONReadingMutableLeaves error:nil];
     NSArray *arrayResult = [location objectForKey:@"result"];
     NSLog(@"数组个数是%d", [arrayResult count]);
@@ -634,10 +652,10 @@ return nil;
         [muArray addObject:[obj1 objectForKey:@"longitude"]];
         [muArray addObject:[obj1 objectForKey:@"_id"]];
     }
-    for(id obj in muArray)
-    {
-        NSLog(@"muArray %@", obj);
-    }
+//    for(id obj in muArray)
+//    {
+//        NSLog(@"muArray %@", obj);
+//    }
     //    NSLog(@"%.8f, %.8f, %.8f, %.8f", t1, t2, t3, t4);
     //    NSRange range = [self.theResult rangeOfString:@"location"];
     //    if (range.location == NSNotFound) {
@@ -649,8 +667,9 @@ return nil;
     //    }
 }
 
--(void)parseDetailResult
+-(void)parseDetailResult:(NSNotification*)notification
 {
+    self.theResultData = notification.object;
     NSDictionary *location = [NSJSONSerialization JSONObjectWithData:self.theResultData options:NSJSONReadingMutableLeaves error:nil];
     NSArray *arrayResult = [location objectForKey:@"result"];
     NSLog(@"充电桩详情的个数是%d", [arrayResult count]);
@@ -681,10 +700,11 @@ return nil;
     for (id obj in detailInfoArray) {
         NSLog(@"%@", obj);
     }
+    
 //     detail.szAddress = [detailInfoArray objectAtIndex:0];
 //    NSLog(@"detail.szAddress is %@", detail.szAddress);
     
-//    [self performSegueWithIdentifier:@"detail" sender:self];
+    [self performSegueWithIdentifier:@"detail" sender:self];
     
 }
 

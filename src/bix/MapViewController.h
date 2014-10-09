@@ -16,7 +16,10 @@
     BMKUserLocation *current_Location;
     NSArray* array;
     int chargePileNumber;
-    NSMutableArray *muArray, *detailInfoArray;
+    //存储从服务器获取充电桩数据的数组
+    NSMutableArray *muArray;
+    //存储点击callout地图标注时具体充电桩数据的数组
+    NSMutableArray*detailInfoArray;
 
     IBOutlet UIButton *destinationCharge;
     IBOutlet UIButton *superCharge;
@@ -29,6 +32,8 @@
 
 -(void)addBatteryChargeAnnotation;
 
--(void)sendRequest;
--(void)parseResult;
+//-(void)sendRequest;
+-(void)parseResult:(NSNotification*)notification;
+-(void)parseDetailResult:(NSNotification*)notification;
+
 @end

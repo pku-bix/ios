@@ -22,6 +22,8 @@ static NSString *const KEY_MESSAGE_LIST=@"message_list";
 static NSString *const KEY_REMOTE_BAREJID=@"remote_barejid";
 static NSString *const KEY_BAREJID=@"barejid";
 
+//static int aaaaaa = 5;
+
 //static NSString *SERVER_DOMAIN = @"orange.local";
 //static NSString *SERVER_DOMAIN = @"dsxdemacbook-pro.local";
 
@@ -45,6 +47,12 @@ static NSString *const LOCATION_DETAIL_INFO_IP = @"http://121.40.72.197/api/pile
  点击充电桩详情页面，展示的数据项数
  */
 static const int DETAIL_INFO_NUMBER = 5;
+
+//请求完服务器数据时，发出的通知
+static NSString* const REQUEST_SIMPLE_INFO = @"request_simpe_info_from_server";
+
+//向服务器请求充电桩详情时，发出的通知
+static NSString* const REQUEST_CHARGER_DETAIL_INFO = @"request_charger_detail_info";
 
 /* event strings
  * used for notification event identity.
