@@ -1,20 +1,18 @@
 //
-//  detailViewController.m
+//  FeedBackViewController.m
 //  bix
 //
-//  Created by dsx on 14-10-1.
+//  Created by dsx on 14-10-9.
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
 
-#import "detailViewController.h"
-#import "Constants.h"
+#import "FeedBackViewController.h"
 
-@interface detailViewController ()
+@interface FeedBackViewController ()
 
 @end
 
-@implementation detailViewController
-
+@implementation FeedBackViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,7 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"viewDidLoad");
+    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,16 +47,4 @@
 }
 */
 
--(void)viewWillAppear:(BOOL)animated
-{
-    self.chargerAddress.text = self.detailAddress;
-    self.chargerType.text = self.type;
-    self.chargerParkingnum.text = self.parkingnum;
-    self.chargerInfo.text = self.info;
-    
-
-}
-- (IBAction)back:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 @end

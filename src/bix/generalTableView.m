@@ -8,6 +8,7 @@
 
 #import "generalTableView.h"
 #import "aboutViewController.h"
+#import "FeedBackViewController.h"
 
 @implementation generalTableView
 @synthesize list = _list;
@@ -185,6 +186,14 @@
         if(indexPath.row == 0)
         {
             
+        }
+        //反馈与建议
+        else if(indexPath.row == 2)
+        {
+            FeedBackViewController *feedBack = [[FeedBackViewController alloc]init];
+            [setingViewController.navigationController pushViewController:feedBack animated:YES];
+//            [self performSeg]
+//            [self performSegueWithIdentifier:@"detail" sender:self];
         }
         else if(indexPath.row == 3)
         {

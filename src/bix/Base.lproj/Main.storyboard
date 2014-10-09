@@ -408,11 +408,33 @@
                     <navigationItem key="navigationItem" title="设置" id="L5w-Lb-kQK"/>
                     <connections>
                         <segue destination="jJR-kc-dNW" kind="modal" identifier="login" id="phm-sE-ttq"/>
+                        <segue destination="pRg-eT-En0" kind="push" identifier="feedback" id="JZR-n1-hVE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Jj-xf-RIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1247" y="926"/>
+        </scene>
+        <!--Feed Back View Controller - 意见反馈-->
+        <scene sceneID="Lr0-co-bkW">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="pRg-eT-En0" customClass="FeedBackViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dcY-4W-8oX"/>
+                        <viewControllerLayoutGuide type="bottom" id="OCb-OC-a1g"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vUr-cC-STl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="意见反馈" id="H9c-wP-aCG">
+                        <barButtonItem key="backBarButtonItem" title="back" id="BXU-iC-kob"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mqS-hr-4yZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1831" y="917"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="c4v-0H-Wcf">
