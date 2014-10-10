@@ -12,6 +12,11 @@
 		E3041FDE19E6A6F70016B7FD /* super_charge.png in Resources */ = {isa = PBXBuildFile; fileRef = E3041FDC19E6A6F70016B7FD /* super_charge.png */; };
 		E32C5FB1197FF23300E7CC61 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E32C5FAF197FF23300E7CC61 /* Icon.png */; };
 		E32C5FB2197FF23300E7CC61 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E32C5FB0197FF23300E7CC61 /* Icon@2x.png */; };
+		E337E3DE19E7F66300C989A7 /* loginBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E337E3DD19E7F66300C989A7 /* loginBackground@2x.png */; };
+		E337E3E219E7FACC00C989A7 /* destinationCharger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E337E3DF19E7FACC00C989A7 /* destinationCharger@2x.png */; };
+		E337E3E719E7FBD700C989A7 /* newHomeCharger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E337E3E519E7FBD700C989A7 /* newHomeCharger@2x.png */; };
+		E337E3E819E7FBD700C989A7 /* newSuperCharger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E337E3E619E7FBD700C989A7 /* newSuperCharger@2x.png */; };
+		E337E3EA19E7FD7200C989A7 /* detailInfoTest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E337E3E919E7FD7200C989A7 /* detailInfoTest@2x.png */; };
 		E33A5BB8197F43220065F7C7 /* Tesla@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33A5BB7197F43220065F7C7 /* Tesla@2x.png */; };
 		E33DDF4819E6D6F500981FD7 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33DDF4719E6D6F500981FD7 /* FeedBackViewController.m */; };
 		E33DDF4B19E6E4AB00981FD7 /* aboutBix@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33DDF4919E6E4AB00981FD7 /* aboutBix@2x.png */; };
@@ -147,6 +152,11 @@
 		E3041FDC19E6A6F70016B7FD /* super_charge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = super_charge.png; sourceTree = "<group>"; };
 		E32C5FAF197FF23300E7CC61 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		E32C5FB0197FF23300E7CC61 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		E337E3DD19E7F66300C989A7 /* loginBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginBackground@2x.png"; sourceTree = "<group>"; };
+		E337E3DF19E7FACC00C989A7 /* destinationCharger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "destinationCharger@2x.png"; sourceTree = "<group>"; };
+		E337E3E519E7FBD700C989A7 /* newHomeCharger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newHomeCharger@2x.png"; sourceTree = "<group>"; };
+		E337E3E619E7FBD700C989A7 /* newSuperCharger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newSuperCharger@2x.png"; sourceTree = "<group>"; };
+		E337E3E919E7FD7200C989A7 /* detailInfoTest@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detailInfoTest@2x.png"; sourceTree = "<group>"; };
 		E33A5BB7197F43220065F7C7 /* Tesla@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tesla@2x.png"; sourceTree = "<group>"; };
 		E33DDF4619E6D6F500981FD7 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
 		E33DDF4719E6D6F500981FD7 /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
@@ -497,13 +507,18 @@
 				E32C5FAF197FF23300E7CC61 /* Icon.png */,
 				E32C5FB0197FF23300E7CC61 /* Icon@2x.png */,
 				E3041FD919E6A66F0016B7FD /* marker@2x.png */,
+				E337E3DD19E7F66300C989A7 /* loginBackground@2x.png */,
 				E33FF0D5197E50ED007FE69F /* geo_fence-64@2x.png */,
+				E337E3DF19E7FACC00C989A7 /* destinationCharger@2x.png */,
 				E33FF0D1197E50C3007FE69F /* plus2-64@2x.png */,
 				E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */,
 				E33A5BB7197F43220065F7C7 /* Tesla@2x.png */,
 				EC31663A1930BC18002E9609 /* msg_received-100@2x.png */,
 				EC31663B1930BC18002E9609 /* msg_sent-100.png */,
 				EC31663C1930BC18002E9609 /* msg_sent-100@2x.png */,
+				E337E3E519E7FBD700C989A7 /* newHomeCharger@2x.png */,
+				E337E3E619E7FBD700C989A7 /* newSuperCharger@2x.png */,
+				E337E3E919E7FD7200C989A7 /* detailInfoTest@2x.png */,
 				E33FF0D3197E50D7007FE69F /* minus2-64@2x.png */,
 				EC3166371930BA6F002E9609 /* contacts-24@2x.png */,
 				EC3166321930B95E002E9609 /* settings-24@2x.png */,
@@ -1085,12 +1100,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E337E3E819E7FBD700C989A7 /* newSuperCharger@2x.png in Resources */,
 				E32C5FB2197FF23300E7CC61 /* Icon@2x.png in Resources */,
 				EC3166351930B95E002E9609 /* settings-24@2x.png in Resources */,
 				EC3166381930BA6F002E9609 /* contacts-24@2x.png in Resources */,
 				E35A14BC19CDCB4A00867D49 /* icon_nav_end.png in Resources */,
 				E33FF0D0197E4F37007FE69F /* compass-64@2x.png in Resources */,
 				ECD998E818DACE9F00F30FE3 /* mapapi.bundle in Resources */,
+				E337E3E719E7FBD700C989A7 /* newHomeCharger@2x.png in Resources */,
 				E3E7AED119CEF812002CB978 /* reported@2x.png in Resources */,
 				E3E7AED219CEF812002CB978 /* Supercharge@2x.png in Resources */,
 				E33FF0D8197E50FD007FE69F /* define_location-64@2x.png in Resources */,
@@ -1110,6 +1127,8 @@
 				E32C5FB1197FF23300E7CC61 /* Icon.png in Resources */,
 				E3E7AECC19CEF812002CB978 /* feedback@2x.png in Resources */,
 				ECF7E1E918C0516D002BA385 /* Images.xcassets in Resources */,
+				E337E3DE19E7F66300C989A7 /* loginBackground@2x.png in Resources */,
+				E337E3E219E7FACC00C989A7 /* destinationCharger@2x.png in Resources */,
 				E33DDF4C19E6E4AB00981FD7 /* personInfo@2x.png in Resources */,
 				EC31663F1930BC18002E9609 /* msg_sent-100.png in Resources */,
 				EC316621193065AC002E9609 /* FontAwesome.ttf in Resources */,
@@ -1117,6 +1136,7 @@
 				EC3166401930BC18002E9609 /* msg_sent-100@2x.png in Resources */,
 				ECF7E1D818C0516D002BA385 /* InfoPlist.strings in Resources */,
 				EC99084918C3397000798FAB /* README.txt in Resources */,
+				E337E3EA19E7FD7200C989A7 /* detailInfoTest@2x.png in Resources */,
 				E33DDF4B19E6E4AB00981FD7 /* aboutBix@2x.png in Resources */,
 				EC31663D1930BC18002E9609 /* msg_received-100.png in Resources */,
 				E3E7AECD19CEF812002CB978 /* Homecharge@2x.png in Resources */,

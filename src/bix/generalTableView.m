@@ -190,10 +190,9 @@
         //反馈与建议
         else if(indexPath.row == 2)
         {
-            FeedBackViewController *feedBack = [[FeedBackViewController alloc]init];
-            [setingViewController.navigationController pushViewController:feedBack animated:YES];
-//            [self performSeg]
-//            [self performSegueWithIdentifier:@"detail" sender:self];
+//            FeedBackViewController *feedBack = [[FeedBackViewController alloc]init];
+//            [setingViewController.navigationController pushViewController:feedBack animated:YES];
+            [setingViewController performSegueWithIdentifier:@"feedBack" sender:self];
         }
         else if(indexPath.row == 3)
         {

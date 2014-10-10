@@ -7,6 +7,7 @@
 //
 
 #import "FeedBackViewController.h"
+#import "UIButton+Bootstrap.h"
 
 @interface FeedBackViewController ()
 
@@ -26,8 +27,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.sendBtn primaryStyle];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
+//    self.view.backgroundColor = [UIColor whiteColor];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,4 +50,7 @@
 }
 */
 
+- (IBAction)sendAndBack:(id)sender {
+//    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

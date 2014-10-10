@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface FeedBackViewController : UIViewController
+- (IBAction)sendAndBack:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *sendBtn;
 
 @end

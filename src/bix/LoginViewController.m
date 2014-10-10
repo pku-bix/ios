@@ -44,7 +44,10 @@ AppDelegate* appdelegate;
     [super viewDidLoad];
 	// UI enhancement
     [self.btnLogin primaryStyle];
-    
+//    [self.navigationItem ];
+//    self.hidesBottomBarWhenPushed = YES;
+    //设置navigationBar隐藏，背景图片顶部才能显示出来。
+    [self.navigationController.navigationBar setHidden:YES];
     // retain xmppStream
     appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
