@@ -210,6 +210,8 @@
              //self => setingViewController
             [setingViewController.navigationController pushViewController:about animated:YES];
             about.title = @"关于";
+
+//            [setingViewController performSegueWithIdentifier:@"aboutBix" sender:self];
         }
         else if(indexPath.row == 2)
         {

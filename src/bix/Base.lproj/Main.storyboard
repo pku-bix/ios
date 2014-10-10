@@ -413,6 +413,7 @@
                     <connections>
                         <segue destination="jJR-kc-dNW" kind="modal" identifier="login" id="phm-sE-ttq"/>
                         <segue destination="pRg-eT-En0" kind="push" identifier="feedBack" id="5me-je-8Ne"/>
+                        <segue destination="bWp-0K-nfV" kind="push" identifier="aboutBix" id="ULP-xE-8ax"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Jj-xf-RIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -460,7 +461,52 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqS-hr-4yZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1831" y="917"/>
+            <point key="canvasLocation" x="2011" y="657"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="lve-fh-xSQ">
+            <objects>
+                <viewController id="bWp-0K-nfV" customClass="aboutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Muu-We-qbe"/>
+                        <viewControllerLayoutGuide type="bottom" id="r7Q-tz-OHR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kl6-9w-unX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Tesla.png" translatesAutoresizingMaskIntoConstraints="NO" id="lce-fR-2Nh">
+                                <rect key="frame" x="95" y="84" width="121" height="85"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="本软件是一款集地图、社交、共享元素于一体的app，旨在通过地图和社交元素帮助电动汽车共享充电桩、共享汽车，从而方便用户，建立圈子。" translatesAutoresizingMaskIntoConstraints="NO" id="o1Z-Yu-Pyq">
+                                <rect key="frame" x="40" y="187" width="235" height="112"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="联系我们" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yrf-ew-8P1">
+                                <rect key="frame" x="89" y="322" width="120" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="wolflzy@hotmail.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MgF-Zw-5YK">
+                                <rect key="frame" x="64" y="367" width="183" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="UMJ-f6-8y3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lh9-eb-qhM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1705" y="1285"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="c4v-0H-Wcf">
@@ -653,6 +699,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Tesla.png" width="115" height="75"/>
         <image name="contacts-24.png" width="24" height="24"/>
         <image name="detailInfoTest.png" width="320" height="568"/>
         <image name="loginBackground.png" width="320" height="568"/>
