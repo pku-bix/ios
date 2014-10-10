@@ -27,6 +27,8 @@
 		E33FF0D6197E50ED007FE69F /* geo_fence-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D5197E50ED007FE69F /* geo_fence-64@2x.png */; };
 		E33FF0D8197E50FD007FE69F /* define_location-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */; };
 		E34419971980BAA400F03459 /* MapButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E34419961980BAA400F03459 /* MapButton.m */; };
+		E35878A719E83363008FBD1C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E35878A619E83363008FBD1C /* MobileCoreServices.framework */; };
+		E35878A919E839AA008FBD1C /* test@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E35878A819E839AA008FBD1C /* test@2x.png */; };
 		E35A14BC19CDCB4A00867D49 /* icon_nav_end.png in Resources */ = {isa = PBXBuildFile; fileRef = E35A14BA19CDCB4A00867D49 /* icon_nav_end.png */; };
 		E35A14BD19CDCB4A00867D49 /* icon_nav_end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E35A14BB19CDCB4A00867D49 /* icon_nav_end@2x.png */; };
 		E36C255B198F6A7700D129E9 /* aboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C2559198F6A7700D129E9 /* aboutViewController.m */; };
@@ -170,6 +172,8 @@
 		E34419951980BAA400F03459 /* MapButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapButton.h; sourceTree = "<group>"; };
 		E34419961980BAA400F03459 /* MapButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapButton.m; sourceTree = "<group>"; };
 		E34F44E1199B16E700BAB7D8 /* ButtonProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonProtocal.h; sourceTree = "<group>"; };
+		E35878A619E83363008FBD1C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		E35878A819E839AA008FBD1C /* test@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "test@2x.png"; path = "../../../../../Desktop/test@2x.png"; sourceTree = "<group>"; };
 		E35A14BA19CDCB4A00867D49 /* icon_nav_end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_nav_end.png; sourceTree = "<group>"; };
 		E35A14BB19CDCB4A00867D49 /* icon_nav_end@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_nav_end@2x.png"; sourceTree = "<group>"; };
 		E36C2558198F6A7700D129E9 /* aboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aboutViewController.h; path = bix/aboutViewController.h; sourceTree = "<group>"; };
@@ -399,6 +403,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E35878A719E83363008FBD1C /* MobileCoreServices.framework in Frameworks */,
 				ECF7E1D018C0516D002BA385 /* CoreGraphics.framework in Frameworks */,
 				E374AA8618D9E24C00EC575A /* SystemConfiguration.framework in Frameworks */,
 				E374AA8418D9E24200EC575A /* OpenGLES.framework in Frameworks */,
@@ -477,6 +482,7 @@
 				E3E7AEC619CEF812002CB978 /* logout@2x.png */,
 				E3E7AEC819CEF812002CB978 /* reported@2x.png */,
 				E3041FDB19E6A6F60016B7FD /* home_charge.png */,
+				E35878A819E839AA008FBD1C /* test@2x.png */,
 				E33DDF4919E6E4AB00981FD7 /* aboutBix@2x.png */,
 				E33DDF4A19E6E4AB00981FD7 /* personInfo@2x.png */,
 				E3041FDC19E6A6F70016B7FD /* super_charge.png */,
@@ -948,6 +954,7 @@
 		ECF7E1CC18C0516D002BA385 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E35878A619E83363008FBD1C /* MobileCoreServices.framework */,
 				E374AA8518D9E24C00EC575A /* SystemConfiguration.framework */,
 				E374AA8318D9E24200EC575A /* OpenGLES.framework */,
 				E374AA8118D9E23700EC575A /* QuartzCore.framework */,
@@ -1136,6 +1143,7 @@
 				EC3166401930BC18002E9609 /* msg_sent-100@2x.png in Resources */,
 				ECF7E1D818C0516D002BA385 /* InfoPlist.strings in Resources */,
 				EC99084918C3397000798FAB /* README.txt in Resources */,
+				E35878A919E839AA008FBD1C /* test@2x.png in Resources */,
 				E337E3EA19E7FD7200C989A7 /* detailInfoTest@2x.png in Resources */,
 				E33DDF4B19E6E4AB00981FD7 /* aboutBix@2x.png in Resources */,
 				EC31663D1930BC18002E9609 /* msg_received-100.png in Resources */,

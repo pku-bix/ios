@@ -78,6 +78,7 @@
         switch (row) {
             case 0:
                 cell.imageView.image = image0;
+//                cell.imageView.image = [UIImage imageNamed:@"test"];
                 break;
             case 1:
                 cell.imageView.image = image1;
