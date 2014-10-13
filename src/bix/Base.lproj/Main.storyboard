@@ -412,56 +412,14 @@
                     <navigationItem key="navigationItem" title="设置" id="L5w-Lb-kQK"/>
                     <connections>
                         <segue destination="jJR-kc-dNW" kind="modal" identifier="login" id="phm-sE-ttq"/>
-                        <segue destination="pRg-eT-En0" kind="push" identifier="feedBack" id="5me-je-8Ne"/>
                         <segue destination="bWp-0K-nfV" kind="push" identifier="aboutBix" id="ULP-xE-8ax"/>
+                        <segue destination="jqC-9z-dlB" kind="push" identifier="feedBack" id="Lwm-qc-VlT"/>
+                        <segue destination="Rn6-PE-tOj" kind="push" identifier="personInfo" id="uLg-Jp-l8o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Jj-xf-RIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1247" y="926"/>
-        </scene>
-        <!--Feed Back View Controller - 意见反馈-->
-        <scene sceneID="Lr0-co-bkW">
-            <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="pRg-eT-En0" customClass="FeedBackViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dcY-4W-8oX"/>
-                        <viewControllerLayoutGuide type="bottom" id="OCb-OC-a1g"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="vUr-cC-STl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Few-aN-73Z">
-                                <rect key="frame" x="40" y="250" width="240" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="发送">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendAndBack:" destination="pRg-eT-En0" eventType="touchUpInside" id="maP-cc-4cB"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="您好" translatesAutoresizingMaskIntoConstraints="NO" id="mWu-o5-qgv">
-                                <rect key="frame" x="40" y="104" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="意见反馈" id="H9c-wP-aCG">
-                        <barButtonItem key="backBarButtonItem" title="back" id="BXU-iC-kob"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="sendBtn" destination="Few-aN-73Z" id="MIR-fo-UB8"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mqS-hr-4yZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2011" y="657"/>
+            <point key="canvasLocation" x="1319" y="946"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="lve-fh-xSQ">
@@ -506,7 +464,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lh9-eb-qhM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1705" y="1285"/>
+            <point key="canvasLocation" x="2101" y="1313"/>
+        </scene>
+        <!--Person Info View Controller - 个人信息-->
+        <scene sceneID="gv4-jl-qxp">
+            <objects>
+                <viewController id="Rn6-PE-tOj" customClass="personInfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Sw1-7I-FJV"/>
+                        <viewControllerLayoutGuide type="bottom" id="ekb-M7-e7O"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bwk-hP-bLS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="个人信息" id="IEK-bW-13Y"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IYh-lD-ENs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2109" y="117"/>
+        </scene>
+        <!--Feed Back View Controller - 反馈与建议-->
+        <scene sceneID="UXt-4B-582">
+            <objects>
+                <viewController id="jqC-9z-dlB" customClass="FeedBackViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fU5-iy-1Lf"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tuc-sg-gvP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="G3w-iG-bAt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="反馈与建议" id="Kkf-S8-Xhe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vST-Fm-P1C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2109" y="693"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="c4v-0H-Wcf">
@@ -520,7 +516,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loginBackground.png" translatesAutoresizingMaskIntoConstraints="NO" id="Chp-On-vss">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loginbg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Chp-On-vss">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -702,7 +698,7 @@
         <image name="Tesla.png" width="115" height="75"/>
         <image name="contacts-24.png" width="24" height="24"/>
         <image name="detailInfoTest.png" width="320" height="568"/>
-        <image name="loginBackground.png" width="320" height="568"/>
+        <image name="loginbg.png" width="640" height="1136"/>
         <image name="map_marker-24.png" width="24" height="24"/>
         <image name="newHomeCharger.png" width="35" height="35"/>
         <image name="newSuperCharger.png" width="35" height="35"/>

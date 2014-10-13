@@ -60,8 +60,8 @@
 //	[mapView removeAnnotations:array];
 //    
     //remove the overlay infomation that baidu mapview has added, eg: navigation info.
-	array = [NSArray arrayWithArray:mapView.overlays];
-	[mapView removeOverlays:array];
+//	array = [NSArray arrayWithArray:mapView.overlays];
+//	[mapView removeOverlays:array];
 }
 
 

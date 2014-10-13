@@ -13,11 +13,6 @@
 #import "detailViewController.h"
 #import "RequestInfoFromServer.h"
 
-//#import "CustomPointAnnotation.h"
-//#import "CallOutAnnotationView.h"
-//#import "BusPointCell.h"
-//#import "CalloutMapAnnotation.h"
-
 @interface MapViewController()
 {
     BMKAnnotationView * _annotaion;
@@ -470,6 +465,9 @@ return nil;
     //先删除之前数组的数据，否则数据会不断累加，这是可变数组。
 //    [detailInfoArray removeAllObjects];
     int k = 0;
+    if ([(view.annotation.title) isEqualToString:@"我的位置"]) {
+        return ;
+    }
     for (int i = 0; i < chargePileNumber; i++) {
         //通过详细地址名来找到对应的id,从而构成请求的地址;
         if([[muArray objectAtIndex:k+1] isEqual:view.annotation.title])
@@ -557,82 +555,7 @@ return nil;
 }
 
  #pragma mark asynchronousRequest
-/*
-//异步GET请求,请求基本的地图标注信息；
--(void)sendRequest
-{
-    isSimpleOrDetailRequest = 1;
-    NSString *addStr = [NSString stringWithFormat:LOCATION_INFO_IP];
-    NSURL *url = [NSURL URLWithString:addStr];
-    //创建请求
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
-    //创建连接
-    [NSURLConnection connectionWithRequest:request delegate:self];
-}
 
-//异步GET请求，请求地图标注的充电桩的详细信息；
--(void)sendRequestForDetailInfo:(NSString*)_id
-{
-    NSLog(@"sendRequestForDetailInfo");
-    isSimpleOrDetailRequest = 2;
-    NSMutableString *path  = [[NSMutableString alloc]initWithCapacity:60];
-    [path setString:LOCATION_DETAIL_INFO_IP];
-    [path appendString:_id];
-//    NSString *addStr = [NSString stringWithFormat:path];
-    NSURL *url = [NSURL URLWithString:path];
-    
-    //创建请求
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
-    //创建连接
-    [NSURLConnection connectionWithRequest:request delegate:self];
-
-        NSLog(@"sendRequestForDetailInfo Success");
-}
-
-
-//服务器开始响应请求
--(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    NSLog(@"didReceiveResponse");
-    self.theResult = [NSMutableString string];
-    self.theResultData = [NSMutableData data];
-}
-
-//开始接受数据
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    NSLog(@"didReceiveData");
-    [self.theResultData appendData:data];
-}
-
-//数据接受完毕
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    //把返回的data型数据转化成NSString
-    NSLog(@"FinshLoading data from server");
-    self.theResult = [[NSMutableString alloc]initWithData:self.theResultData encoding:NSUTF8StringEncoding];
-    //打印服务器返回的数据
-    NSLog(@"result from server: %@", self.theResult);
-    if (isSimpleOrDetailRequest ==1) {
-//        [self parseResult];
-    }
-    else
-        if (isSimpleOrDetailRequest == 2) {
-//            [self parseDetailResult];
-            [self performSegueWithIdentifier:@"detail" sender:self];
-            
-        }
-//    isFinishLoading = 1;
-//    [self addBatteryChargeAnnotation];
-}
-
-//请求错误
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    //打印错误信息: Could not connect to the server.
-    NSLog(@"请求错误:%@", [error localizedDescription]);
-}
-*/
 //解析从服务器获取的数据
 -(void)parseResult:(NSNotification*)notification
 {

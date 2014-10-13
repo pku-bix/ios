@@ -186,7 +186,7 @@
     {
         if(indexPath.row == 0)
         {
-            
+            [setingViewController performSegueWithIdentifier:@"personInfo" sender:self];
         }
         //反馈与建议
         else if(indexPath.row == 2)
@@ -207,12 +207,12 @@
     {
         if(indexPath.row == 0)
         {
-            aboutViewController * about = [[aboutViewController alloc]init];
-             //self => setingViewController
-            [setingViewController.navigationController pushViewController:about animated:YES];
-            about.title = @"关于";
+//            aboutViewController * about = [[aboutViewController alloc]init];
+//             //self => setingViewController
+//            [setingViewController.navigationController pushViewController:about animated:YES];
+//            about.title = @"关于";
 
-//            [setingViewController performSegueWithIdentifier:@"aboutBix" sender:self];
+            [setingViewController performSegueWithIdentifier:@"aboutBix" sender:self];
         }
         else if(indexPath.row == 2)
         {
