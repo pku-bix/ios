@@ -29,6 +29,7 @@
 {
     [super viewDidLoad];
     NSLog(@"viewDidLoad");
+//     _textView.font = [UIFont systemFontOfSize:15];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,6 +52,11 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     self.chargerAddress.text = self.detailAddress;
+    self.chargerAddress.font = [UIFont systemFontOfSize:16];
+    self.chargerAddress.selectable = NO;
+    self.chargerAddress.editable = NO;
+    self.chargerAddress.scrollEnabled = NO;
+    
     self.chargerType.text = self.type;
     self.chargerParkingnum.text = self.parkingnum;
     self.chargerInfo.text = self.info;

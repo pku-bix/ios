@@ -193,7 +193,7 @@ CGSize CGSizeAbsolute(CGSize size) {
 - (void)setRotation:(NSInteger)theRotation animated:(BOOL)animated
 {
     rotation = theRotation;
-    if (rotation < -4)
+    if (rotation < -4) 
         rotation = 4 - abs(rotation);
     if (rotation > 4)
         rotation = rotation - 4;

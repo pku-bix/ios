@@ -60,8 +60,8 @@
     
     //通过代理回传给上一个界面显示
     [self.delegate passImage:resultImage];
-    
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+//  [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning

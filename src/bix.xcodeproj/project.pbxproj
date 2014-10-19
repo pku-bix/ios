@@ -489,20 +489,15 @@
 		E36C255D198F705100D129E9 /* SettingView */ = {
 			isa = PBXGroup;
 			children = (
-				E38169B719EC250B00E16E23 /* AGSimpleImageEditorView */,
-				E38169BF19EC252200E16E23 /* CaptureViewController.h */,
-				E38169C019EC252200E16E23 /* CaptureViewController.m */,
+				E3CB2E1719ED75C800EC61C5 /* personInfo */,
 				E36C2558198F6A7700D129E9 /* aboutViewController.h */,
 				E36C2559198F6A7700D129E9 /* aboutViewController.m */,
 				EC10200C18C86FF100B3775E /* SettingViewController.h */,
-				E38169C219EC258700E16E23 /* PassImageDelegate.h */,
 				EC10200D18C86FF100B3775E /* SettingViewController.m */,
 				E3FC3F03199A4CCB00E0E784 /* generalTableView.h */,
 				E3FC3F04199A4CCB00E0E784 /* generalTableView.m */,
 				E33DDF4619E6D6F500981FD7 /* FeedBackViewController.h */,
 				E33DDF4719E6D6F500981FD7 /* FeedBackViewController.m */,
-				E361337F19EC00FD00017871 /* personInfoViewController.h */,
-				E361338019EC00FD00017871 /* personInfoViewController.m */,
 			);
 			name = SettingView;
 			path = ..;
@@ -517,6 +512,19 @@
 				E38169BB19EC250B00E16E23 /* transparencyPattern.png */,
 			);
 			path = AGSimpleImageEditorView;
+			sourceTree = "<group>";
+		};
+		E3CB2E1719ED75C800EC61C5 /* personInfo */ = {
+			isa = PBXGroup;
+			children = (
+				E38169B719EC250B00E16E23 /* AGSimpleImageEditorView */,
+				E38169C219EC258700E16E23 /* PassImageDelegate.h */,
+				E38169BF19EC252200E16E23 /* CaptureViewController.h */,
+				E38169C019EC252200E16E23 /* CaptureViewController.m */,
+				E361337F19EC00FD00017871 /* personInfoViewController.h */,
+				E361338019EC00FD00017871 /* personInfoViewController.m */,
+			);
+			name = personInfo;
 			sourceTree = "<group>";
 		};
 		E3F571BB19E5823900AA20E0 /* RequestFromServer */ = {
@@ -1063,9 +1071,9 @@
 				ECED787618CF7FE30041CCC7 /* Account */,
 				E36C255D198F705100D129E9 /* SettingView */,
 				E34F44E0199B013C00BAB7D8 /* BaiduMapView */,
-				ECF7E1DD18C0516D002BA385 /* AppDelegate.mm */,
-				ECF7E1DC18C0516D002BA385 /* AppDelegate.h */,
 				E3F571BB19E5823900AA20E0 /* RequestFromServer */,
+				ECF7E1DC18C0516D002BA385 /* AppDelegate.h */,
+				ECF7E1DD18C0516D002BA385 /* AppDelegate.mm */,
 				ECF7E1DF18C0516D002BA385 /* Main.storyboard */,
 				EC10200918C85DF200B3775E /* MainTabBarController.h */,
 				EC10200A18C85DF200B3775E /* MainTabBarController.m */,

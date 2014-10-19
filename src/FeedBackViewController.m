@@ -28,6 +28,7 @@
 {
     [super viewDidLoad];
     [self.sendBtn primaryStyle];
+//    [self.navigationController.navigationBar setHidden:YES];
     // Do any additional setup after loading the view.
 //    self.view.backgroundColor = [UIColor whiteColor];
     
