@@ -16,6 +16,7 @@
 
 @implementation personInfoViewController
 {
+    NSString * name;
     UIImageView *imageView;
     CGRect rect;
     UITableView *_tableView;
@@ -62,8 +63,16 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     //设置 dataSource 和 delegate 这两个代理
+    NSLog(@"personInfoViewController will appear");
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getName:) name:@"nameChange" object:nil];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+}
+
+-(void)getName:(NSNotification*)notification
+{
+    name = notification.object;
+    NSLog(@"%@", name);
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -100,7 +109,7 @@
                              TableSampleIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc]
-                initWithStyle:UITableViewCellStyleDefault  //cell的风格会决定下面cell.detailTextLabel.text是否有效，以及效果是怎么样的。
+                initWithStyle:UITableViewCellStyleValue1  //cell的风格会决定下面cell.detailTextLabel.text是否有效，以及效果是怎么样的。
                 reuseIdentifier:TableSampleIdentifier];
     }
     
@@ -121,6 +130,7 @@
         }
         if(row == 1)
         {
+            cell.detailTextLabel.text = name;
 //            cell.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"personInfo"]];
 //            cell.detailTextLabel.text = @"nihao";
         }
@@ -170,6 +180,9 @@
         UIActionSheet *chooseImageSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从手机相册选择", nil];
         [chooseImageSheet showInView:self.view];
  
+    }
+    if ((indexPath.section == 0) && (indexPath.row == 1)) {
+        [self performSegueWithIdentifier:@"name" sender:self];
     }
 }
 

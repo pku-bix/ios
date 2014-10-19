@@ -459,7 +459,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lh9-eb-qhM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2101" y="1313"/>
+            <point key="canvasLocation" x="1995" y="1313"/>
         </scene>
         <!--Person Info View Controller - 个人信息-->
         <scene sceneID="gv4-jl-qxp">
@@ -475,10 +475,59 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="个人信息" id="IEK-bW-13Y"/>
+                    <connections>
+                        <segue destination="v3V-BG-YXV" kind="modal" identifier="name" modalTransitionStyle="crossDissolve" id="AsE-ga-hlX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IYh-lD-ENs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2109" y="117"/>
+            <point key="canvasLocation" x="1987" y="133"/>
+        </scene>
+        <!--Name View Controller-->
+        <scene sceneID="vhM-GR-kQd">
+            <objects>
+                <viewController id="v3V-BG-YXV" customClass="nameViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oBQ-Sa-SlE"/>
+                        <viewControllerLayoutGuide type="bottom" id="FoW-Aw-tpo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sgR-KJ-Cge">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ykC-Nq-Rck">
+                                <rect key="frame" x="27" y="43" width="266" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Goi-Ul-40u">
+                                <rect key="frame" x="255" y="111" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="保存">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveAndReturn:" destination="v3V-BG-YXV" eventType="touchUpInside" id="YCb-wl-sup"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ykC-Nq-Rck" secondAttribute="trailing" constant="27" id="01d-pn-Ugt"/>
+                            <constraint firstItem="ykC-Nq-Rck" firstAttribute="top" secondItem="oBQ-Sa-SlE" secondAttribute="bottom" constant="23" id="SWC-gW-rMB"/>
+                            <constraint firstItem="ykC-Nq-Rck" firstAttribute="leading" secondItem="sgR-KJ-Cge" secondAttribute="leading" constant="27" id="ao9-sd-Dv2"/>
+                            <constraint firstAttribute="trailing" secondItem="Goi-Ul-40u" secondAttribute="trailing" constant="35" id="nsj-QC-Tec"/>
+                            <constraint firstItem="Goi-Ul-40u" firstAttribute="top" secondItem="ykC-Nq-Rck" secondAttribute="bottom" constant="38" id="nvX-EY-Mh7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="nameTextField" destination="ykC-Nq-Rck" id="5AL-5E-cEc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8On-5p-91T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2689" y="113"/>
         </scene>
         <!--Feed Back View Controller - 反馈与建议-->
         <scene sceneID="UXt-4B-582">
@@ -519,7 +568,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vST-Fm-P1C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2159" y="741"/>
+            <point key="canvasLocation" x="1995" y="741"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="c4v-0H-Wcf">

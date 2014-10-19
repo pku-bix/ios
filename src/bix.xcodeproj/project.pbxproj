@@ -27,6 +27,8 @@
 		E33FF0D6197E50ED007FE69F /* geo_fence-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D5197E50ED007FE69F /* geo_fence-64@2x.png */; };
 		E33FF0D8197E50FD007FE69F /* define_location-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */; };
 		E34419971980BAA400F03459 /* MapButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E34419961980BAA400F03459 /* MapButton.m */; };
+		E34B59D019F40D930072E8E6 /* nameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E34B59CF19F40D930072E8E6 /* nameViewController.m */; };
+		E34B59D419F41B400072E8E6 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E34B59D319F41B400072E8E6 /* FileManager.m */; };
 		E35878A719E83363008FBD1C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E35878A619E83363008FBD1C /* MobileCoreServices.framework */; };
 		E35A14BC19CDCB4A00867D49 /* icon_nav_end.png in Resources */ = {isa = PBXBuildFile; fileRef = E35A14BA19CDCB4A00867D49 /* icon_nav_end.png */; };
 		E35A14BD19CDCB4A00867D49 /* icon_nav_end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E35A14BB19CDCB4A00867D49 /* icon_nav_end@2x.png */; };
@@ -189,6 +191,10 @@
 		E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "define_location-64@2x.png"; sourceTree = "<group>"; };
 		E34419951980BAA400F03459 /* MapButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapButton.h; sourceTree = "<group>"; };
 		E34419961980BAA400F03459 /* MapButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapButton.m; sourceTree = "<group>"; };
+		E34B59CE19F40D930072E8E6 /* nameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameViewController.h; sourceTree = "<group>"; };
+		E34B59CF19F40D930072E8E6 /* nameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nameViewController.m; sourceTree = "<group>"; };
+		E34B59D219F41B400072E8E6 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
+		E34B59D319F41B400072E8E6 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		E34F44E1199B16E700BAB7D8 /* ButtonProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonProtocal.h; sourceTree = "<group>"; };
 		E35878A619E83363008FBD1C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E35A14BA19CDCB4A00867D49 /* icon_nav_end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_nav_end.png; sourceTree = "<group>"; };
@@ -472,6 +478,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E34B59D119F41ADD0072E8E6 /* FileManager */ = {
+			isa = PBXGroup;
+			children = (
+				E34B59D219F41B400072E8E6 /* FileManager.h */,
+				E34B59D319F41B400072E8E6 /* FileManager.m */,
+			);
+			name = FileManager;
+			sourceTree = "<group>";
+		};
 		E34F44E0199B013C00BAB7D8 /* BaiduMapView */ = {
 			isa = PBXGroup;
 			children = (
@@ -523,6 +538,8 @@
 				E38169C019EC252200E16E23 /* CaptureViewController.m */,
 				E361337F19EC00FD00017871 /* personInfoViewController.h */,
 				E361338019EC00FD00017871 /* personInfoViewController.m */,
+				E34B59CE19F40D930072E8E6 /* nameViewController.h */,
+				E34B59CF19F40D930072E8E6 /* nameViewController.m */,
 			);
 			name = personInfo;
 			sourceTree = "<group>";
@@ -1072,10 +1089,11 @@
 				E36C255D198F705100D129E9 /* SettingView */,
 				E34F44E0199B013C00BAB7D8 /* BaiduMapView */,
 				E3F571BB19E5823900AA20E0 /* RequestFromServer */,
-				ECF7E1DC18C0516D002BA385 /* AppDelegate.h */,
-				ECF7E1DD18C0516D002BA385 /* AppDelegate.mm */,
+				E34B59D119F41ADD0072E8E6 /* FileManager */,
 				ECF7E1DF18C0516D002BA385 /* Main.storyboard */,
 				EC10200918C85DF200B3775E /* MainTabBarController.h */,
+				ECF7E1DD18C0516D002BA385 /* AppDelegate.mm */,
+				ECF7E1DC18C0516D002BA385 /* AppDelegate.h */,
 				EC10200A18C85DF200B3775E /* MainTabBarController.m */,
 				ECF7E1E818C0516D002BA385 /* Images.xcassets */,
 				EC99085118C33C5D00798FAB /* XMPP */,
@@ -1305,7 +1323,9 @@
 				EC99089B18C33C9200798FAB /* XMPPElement.m in Sources */,
 				EC316623193065AC002E9609 /* NSString+FontAwesome.m in Sources */,
 				EC9908A418C33C9200798FAB /* GCDMulticastDelegate.m in Sources */,
+				E34B59D419F41B400072E8E6 /* FileManager.m in Sources */,
 				EC99089C18C33C9200798FAB /* XMPPIQ.m in Sources */,
+				E34B59D019F40D930072E8E6 /* nameViewController.m in Sources */,
 				E3FC3F05199A4CCB00E0E784 /* generalTableView.m in Sources */,
 				EC57887B19A620FA0058837C /* LoginViewController.m in Sources */,
 				E36C255B198F6A7700D129E9 /* aboutViewController.m in Sources */,
