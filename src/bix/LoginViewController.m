@@ -16,7 +16,6 @@
 
 @interface LoginViewController ()
 
-- (IBAction)Login:(id)sender;
 
 @end
 
@@ -46,8 +45,6 @@ AppDelegate* appdelegate;
     [self.btnLogin primaryStyle];
 //    [self.navigationItem ];
 //    self.hidesBottomBarWhenPushed = YES;
-    //设置navigationBar隐藏，背景图片顶部才能显示出来。
-    [self.navigationController.navigationBar setHidden:YES];
     // retain xmppStream
     appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
@@ -59,6 +56,10 @@ AppDelegate* appdelegate;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    
+    //设置navigationBar隐藏，背景图片顶部才能显示出来。
+    [self.navigationController.navigationBar setHidden:YES];
+
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(connected:)
                                                  name:EVENT_CONNECTED   object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(connect_timeout:)
@@ -180,5 +181,11 @@ AppDelegate* appdelegate;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+//
+//- (IBAction)registerNewUser:(id)sender {
+//    [self performSegueWithIdentifier:@"register" sender:self];
+//}
+- (IBAction)registerNewUsername:(id)sender {
+    [self performSegueWithIdentifier:@"register" sender:self];
+}
 @end

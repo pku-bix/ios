@@ -23,8 +23,15 @@
 
 -(NSString *)bareJid{
     return self.Jid.bare;
+//    self.Jid.username;
+//    self.Jid.user
 }
-
+-(NSString*)username
+{
+    NSLog(@"user is %@", self.Jid.user);
+    return self.Jid.user;
+    
+}
 -(id) init {
     return [self initWithJid:nil];
 }
@@ -55,6 +62,12 @@
                     Password:(NSString*)[coder decodeObjectForKey:KEY_PASSWORD]];
     if (self) {
         self.autoLogin = [coder decodeBoolForKey:KEY_AUTOLOGIN];
+            //设置界面 ==> 个人信息页面， 姓名字段 
+        self.setName = [coder decodeObjectForKey:@"setName"];
+        self.setSignature = [coder decodeObjectForKey:@"setSignature"];
+        self.setID = [coder decodeObjectForKey:@"setID"];
+        self.setWechatID = [coder decodeObjectForKey:@"setWechatID"];
+        self.setTeslaType = [coder decodeObjectForKey:@"setTeslaType"];
     }
     return self;
 }
@@ -78,6 +91,12 @@
     [coder encodeObject:self.Jid.bare forKey:KEY_BAREJID];
     [coder encodeObject:self.password forKey:KEY_PASSWORD];
     [coder encodeBool:self.autoLogin forKey:KEY_AUTOLOGIN];
+    //设置界面 ==> 个人信息页面， 姓名字段
+    [coder encodeObject:self.setName forKey:@"setName"];
+    [coder encodeObject:self.setSignature forKey:@"setSignature"];
+    [coder encodeObject:self.setID forKey:@"setID"];
+    [coder encodeObject:self.setWechatID forKey:@"setWechatID"];
+    [coder encodeObject:self.setTeslaType forKey:@"setTeslaType"];
 }
 
 + (Account*) loadAccount: (NSString*)bareJid{

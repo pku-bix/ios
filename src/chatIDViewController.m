@@ -1,22 +1,19 @@
 //
-//  nameViewController.m
+//  chatIDViewController.m
 //  bix
 //
-//  Created by dsx on 14-10-19.
+//  Created by dsx on 14-10-20.
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
 
-#import "nameViewController.h"
+#import "chatIDViewController.h"
 #import "AppDelegate.h"
 
-@interface nameViewController ()
+@interface chatIDViewController ()
 
 @end
 
-@implementation nameViewController
-{
-    AppDelegate * appDelegate;
-}
+@implementation chatIDViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,8 +28,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-//    appDelegate.account.setName
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,16 +47,14 @@
 }
 */
 
-- (IBAction)saveAndReturn:(id)sender {
-//     self.nameTextField
-    NSLog(@"%@", self.nameTextField.text);
-    Account* account = [(AppDelegate *)[UIApplication sharedApplication].delegate account];
-    //将设置的名字字段保存在account.setName中;
-//    appDelegate.account.setName = self.nameTextField.text;
-    account.setName = self.nameTextField.text;
+- (IBAction)saveID:(id)sender {
+    NSLog(@"IDChange is %@", self.IDChange.text);
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"IDChange" object:self.IDChange.text];
+    Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
+    account.setID = self.IDChange.text;
     [account save];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"nameChange" object:self.nameTextField.text];
-    [self dismissViewControllerAnimated:YES completion:nil];
     
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 @end

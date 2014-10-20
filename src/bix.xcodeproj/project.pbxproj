@@ -29,6 +29,10 @@
 		E34419971980BAA400F03459 /* MapButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E34419961980BAA400F03459 /* MapButton.m */; };
 		E34B59D019F40D930072E8E6 /* nameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E34B59CF19F40D930072E8E6 /* nameViewController.m */; };
 		E34B59D419F41B400072E8E6 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E34B59D319F41B400072E8E6 /* FileManager.m */; };
+		E3554EF619F5315E001C0D1E /* signatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3554EF519F5315E001C0D1E /* signatureViewController.m */; };
+		E3554EFC19F54087001C0D1E /* weChatIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3554EFB19F54087001C0D1E /* weChatIDViewController.m */; };
+		E3554EFF19F540A6001C0D1E /* teslaTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3554EFE19F540A6001C0D1E /* teslaTypeViewController.m */; };
+		E3554F0219F54660001C0D1E /* chatIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3554F0119F54660001C0D1E /* chatIDViewController.m */; };
 		E35878A719E83363008FBD1C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E35878A619E83363008FBD1C /* MobileCoreServices.framework */; };
 		E35A14BC19CDCB4A00867D49 /* icon_nav_end.png in Resources */ = {isa = PBXBuildFile; fileRef = E35A14BA19CDCB4A00867D49 /* icon_nav_end.png */; };
 		E35A14BD19CDCB4A00867D49 /* icon_nav_end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E35A14BB19CDCB4A00867D49 /* icon_nav_end@2x.png */; };
@@ -196,6 +200,14 @@
 		E34B59D219F41B400072E8E6 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		E34B59D319F41B400072E8E6 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		E34F44E1199B16E700BAB7D8 /* ButtonProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonProtocal.h; sourceTree = "<group>"; };
+		E3554EF419F5315E001C0D1E /* signatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = signatureViewController.h; sourceTree = "<group>"; };
+		E3554EF519F5315E001C0D1E /* signatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = signatureViewController.m; sourceTree = "<group>"; };
+		E3554EFA19F54087001C0D1E /* weChatIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = weChatIDViewController.h; sourceTree = "<group>"; };
+		E3554EFB19F54087001C0D1E /* weChatIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = weChatIDViewController.m; sourceTree = "<group>"; };
+		E3554EFD19F540A6001C0D1E /* teslaTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = teslaTypeViewController.h; sourceTree = "<group>"; };
+		E3554EFE19F540A6001C0D1E /* teslaTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = teslaTypeViewController.m; sourceTree = "<group>"; };
+		E3554F0019F54660001C0D1E /* chatIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chatIDViewController.h; sourceTree = "<group>"; };
+		E3554F0119F54660001C0D1E /* chatIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = chatIDViewController.m; sourceTree = "<group>"; };
 		E35878A619E83363008FBD1C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E35A14BA19CDCB4A00867D49 /* icon_nav_end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_nav_end.png; sourceTree = "<group>"; };
 		E35A14BB19CDCB4A00867D49 /* icon_nav_end@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_nav_end@2x.png"; sourceTree = "<group>"; };
@@ -504,11 +516,11 @@
 		E36C255D198F705100D129E9 /* SettingView */ = {
 			isa = PBXGroup;
 			children = (
+				EC10200C18C86FF100B3775E /* SettingViewController.h */,
+				EC10200D18C86FF100B3775E /* SettingViewController.m */,
 				E3CB2E1719ED75C800EC61C5 /* personInfo */,
 				E36C2558198F6A7700D129E9 /* aboutViewController.h */,
 				E36C2559198F6A7700D129E9 /* aboutViewController.m */,
-				EC10200C18C86FF100B3775E /* SettingViewController.h */,
-				EC10200D18C86FF100B3775E /* SettingViewController.m */,
 				E3FC3F03199A4CCB00E0E784 /* generalTableView.h */,
 				E3FC3F04199A4CCB00E0E784 /* generalTableView.m */,
 				E33DDF4619E6D6F500981FD7 /* FeedBackViewController.h */,
@@ -532,14 +544,22 @@
 		E3CB2E1719ED75C800EC61C5 /* personInfo */ = {
 			isa = PBXGroup;
 			children = (
+				E361337F19EC00FD00017871 /* personInfoViewController.h */,
+				E361338019EC00FD00017871 /* personInfoViewController.m */,
 				E38169B719EC250B00E16E23 /* AGSimpleImageEditorView */,
 				E38169C219EC258700E16E23 /* PassImageDelegate.h */,
 				E38169BF19EC252200E16E23 /* CaptureViewController.h */,
 				E38169C019EC252200E16E23 /* CaptureViewController.m */,
-				E361337F19EC00FD00017871 /* personInfoViewController.h */,
-				E361338019EC00FD00017871 /* personInfoViewController.m */,
+				E3554EF419F5315E001C0D1E /* signatureViewController.h */,
+				E3554EF519F5315E001C0D1E /* signatureViewController.m */,
 				E34B59CE19F40D930072E8E6 /* nameViewController.h */,
 				E34B59CF19F40D930072E8E6 /* nameViewController.m */,
+				E3554F0019F54660001C0D1E /* chatIDViewController.h */,
+				E3554F0119F54660001C0D1E /* chatIDViewController.m */,
+				E3554EFA19F54087001C0D1E /* weChatIDViewController.h */,
+				E3554EFB19F54087001C0D1E /* weChatIDViewController.m */,
+				E3554EFD19F540A6001C0D1E /* teslaTypeViewController.h */,
+				E3554EFE19F540A6001C0D1E /* teslaTypeViewController.m */,
 			);
 			name = personInfo;
 			sourceTree = "<group>";
@@ -1337,6 +1357,7 @@
 				EC57888619A6215A0058837C /* NSString+Account.m in Sources */,
 				EC99089F18C33C9200798FAB /* XMPPModule.m in Sources */,
 				E37F2C4519DBFA5A0090AB24 /* detailViewController.m in Sources */,
+				E3554EFC19F54087001C0D1E /* weChatIDViewController.m in Sources */,
 				EC99089D18C33C9200798FAB /* XMPPJID.m in Sources */,
 				EC99089E18C33C9200798FAB /* XMPPMessage.m in Sources */,
 				EC99089318C33C9200798FAB /* XMPPDeprecatedPlainAuthentication.m in Sources */,
@@ -1345,7 +1366,9 @@
 				EC57886F19A620710058837C /* ChatViewController.m in Sources */,
 				EC99084518C3397000798FAB /* DDLog.m in Sources */,
 				EC99082F18C3391300798FAB /* DDXMLElement.m in Sources */,
+				E3554EFF19F540A6001C0D1E /* teslaTypeViewController.m in Sources */,
 				EC57887319A620BB0058837C /* ContactViewController.m in Sources */,
+				E3554EF619F5315E001C0D1E /* signatureViewController.m in Sources */,
 				EC99082D18C3391300798FAB /* NSString+DDXML.m in Sources */,
 				EC9908A018C33C9200798FAB /* XMPPParser.m in Sources */,
 				EC99089818C33C9200798FAB /* NSData+XMPP.m in Sources */,
@@ -1360,6 +1383,7 @@
 				EC9908A818C33C9200798FAB /* XMPPStringPrep.m in Sources */,
 				E3F571BE19E5829000AA20E0 /* RequestInfoFromServer.m in Sources */,
 				EC99089118C33C9200798FAB /* XMPPAnonymousAuthentication.m in Sources */,
+				E3554F0219F54660001C0D1E /* chatIDViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

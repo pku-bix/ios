@@ -1,22 +1,19 @@
 //
-//  nameViewController.m
+//  weChatIDViewController.m
 //  bix
 //
-//  Created by dsx on 14-10-19.
+//  Created by dsx on 14-10-20.
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
 
-#import "nameViewController.h"
+#import "weChatIDViewController.h"
 #import "AppDelegate.h"
 
-@interface nameViewController ()
+@interface weChatIDViewController ()
 
 @end
 
-@implementation nameViewController
-{
-    AppDelegate * appDelegate;
-}
+@implementation weChatIDViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,8 +28,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-//    appDelegate.account.setName
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,16 +47,13 @@
 }
 */
 
-- (IBAction)saveAndReturn:(id)sender {
-//     self.nameTextField
-    NSLog(@"%@", self.nameTextField.text);
-    Account* account = [(AppDelegate *)[UIApplication sharedApplication].delegate account];
-    //将设置的名字字段保存在account.setName中;
-//    appDelegate.account.setName = self.nameTextField.text;
-    account.setName = self.nameTextField.text;
+- (IBAction)weChatID:(id)sender {
+    NSLog(@"weChatIDChange is %@", self.weChatID.text);
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"WechatID" object:self.weChatID.text];
+    Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
+    account.setWechatID = self.weChatID.text;
     [account save];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"nameChange" object:self.nameTextField.text];
-    [self dismissViewControllerAnimated:YES completion:nil];
     
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

@@ -45,6 +45,7 @@ bool succeed;   // indicate whether register succeed
     
     appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
+    
     [self.username becomeFirstResponder];
     self.navigationController.delegate = self;
 }
@@ -56,6 +57,8 @@ bool succeed;   // indicate whether register succeed
 }
 
 - (void) viewWillAppear:(BOOL)animated{
+    [self.navigationController.navigationBar setHidden:NO];
+
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(connected:)
                                                  name:EVENT_CONNECTED   object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(connect_timeout:)

@@ -9,6 +9,7 @@
 #import "personInfoViewController.h"
 #import "CaptureViewController.h"
 #import "generalTableView.h"
+#import "AppDelegate.h"
 
 @interface personInfoViewController ()
 
@@ -16,10 +17,17 @@
 
 @implementation personInfoViewController
 {
+    //个人信息页面的5个字段;
     NSString * name;
+    NSString* signature;
+    NSString* ID;
+    NSString* WechatID;
+    NSString* TeslaType;
+    
     UIImageView *imageView;
     CGRect rect;
     UITableView *_tableView;
+    AppDelegate* appDelegate;
 //    generalTableView *personInfo_generalTableView;
 }
 
@@ -36,6 +44,16 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //加载之前保存的名字字段;
+    appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    name = appDelegate.account.setName;
+    signature = appDelegate.account.setSignature;
+    ID = appDelegate.account.setID;
+    WechatID = appDelegate.account.setWechatID;
+    TeslaType = appDelegate.account.setTeslaType;
+    
+    NSLog(@"last name is %@", name);
+    
     rect = [[UIScreen mainScreen]bounds];
     
 //    personInfo_generalTableView = [[generalTableView alloc]init];
@@ -64,7 +82,19 @@
 - (void)viewWillAppear:(BOOL)animated{
     //设置 dataSource 和 delegate 这两个代理
     NSLog(@"personInfoViewController will appear");
+    
+//    appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+//    name = appDelegate.account.setName;
+//    siganature = appDelegate.account.setSignature;
+//    
+    NSLog(@"last name is %@", name);
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getName:) name:@"nameChange" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getSignature:) name:@"signatureChange" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getID:) name:@"IDChange" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getWechatID:) name:@"WechatID" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getTeslaType:) name:@"TeslaType" object:nil];
+    
     _tableView.delegate = self;
     _tableView.dataSource = self;
 }
@@ -74,6 +104,31 @@
     name = notification.object;
     NSLog(@"%@", name);
 }
+
+-(void)getSignature:(NSNotification*)notification
+{
+    signature = notification.object;
+    NSLog(@"%@",signature);
+}
+
+-(void)getID:(NSNotification*)notification
+{
+    ID = notification.object;
+    NSLog(@"%@",ID);
+}
+
+-(void)getWechatID:(NSNotification*)notification
+{
+    WechatID = notification.object;
+    NSLog(@"%@",WechatID);
+}
+
+-(void)getTeslaType:(NSNotification*)notification
+{
+    TeslaType = notification.object;
+    NSLog(@"%@",TeslaType);
+}
+
 
 - (void)viewWillDisappear:(BOOL)animated{
     //不用时，置nil
@@ -128,16 +183,33 @@
 //            cell.accessoryView = image0;
             cell.accessoryView = button;
         }
-        if(row == 1)
+        else if(row == 1)
         {
             cell.detailTextLabel.text = name;
 //            cell.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"personInfo"]];
 //            cell.detailTextLabel.text = @"nihao";
         }
+        else if (row == 2)
+        {
+            cell.detailTextLabel.text = signature;
+        }
     }
     else if(indexPath.section == 1)
     {
         cell.textLabel.text = [self.list2 objectAtIndex:row];
+        if (row == 0) {
+//            cell.detailTextLabel.text = ID;
+            //获取用户的聊天ID
+            cell.detailTextLabel.text = appDelegate.account.username;
+        }
+        else if (row == 1)
+        {
+            cell.detailTextLabel.text = WechatID;
+        }
+        else if (row == 2)
+        {
+            cell.detailTextLabel.text = TeslaType;
+        }
     }
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -176,13 +248,35 @@
     //选中后的反显颜色即刻消失,即选中cell后，cell的高亮立刻消失；
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 //    [general_TableView didSelectRowAtIndexPath:indexPath setingViewController:self];
-    if ((indexPath.section == 0)&&(indexPath.row == 0)) {
-        UIActionSheet *chooseImageSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从手机相册选择", nil];
-        [chooseImageSheet showInView:self.view];
- 
+    if (indexPath.section == 0){
+        if (indexPath.row == 0) {
+            UIActionSheet *chooseImageSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从手机相册选择", nil];
+            [chooseImageSheet showInView:self.view];
+        }
+        else if (indexPath.row == 1)
+        {
+             [self performSegueWithIdentifier:@"name" sender:self];
+        }
+        else if (indexPath.row == 2)
+        {
+            [self performSegueWithIdentifier:@"signature" sender:self];
+        }
     }
-    if ((indexPath.section == 0) && (indexPath.row == 1)) {
-        [self performSegueWithIdentifier:@"name" sender:self];
+    
+    else if (indexPath.section == 1)
+    {
+        if (indexPath.row == 0) {
+            [self performSegueWithIdentifier:@"ID" sender:self];
+        }
+        else if (indexPath.row == 1)
+        {
+            [self performSegueWithIdentifier:@"WechatID" sender:self];
+        }
+        else if (indexPath.row == 2)
+        {
+            [self performSegueWithIdentifier:@"TeslaType" sender:self];
+        }
+        
     }
 }
 

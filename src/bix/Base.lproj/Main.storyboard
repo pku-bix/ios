@@ -477,6 +477,10 @@
                     <navigationItem key="navigationItem" title="个人信息" id="IEK-bW-13Y"/>
                     <connections>
                         <segue destination="v3V-BG-YXV" kind="modal" identifier="name" modalTransitionStyle="crossDissolve" id="AsE-ga-hlX"/>
+                        <segue destination="CF3-DW-HOS" kind="modal" identifier="signature" id="Kr7-GK-ek5"/>
+                        <segue destination="Fck-Hl-lIJ" kind="modal" identifier="ID" modalTransitionStyle="coverVertical" id="njl-Qa-o4L"/>
+                        <segue destination="1oy-EQ-DfX" kind="modal" identifier="WechatID" id="zF3-mH-07C"/>
+                        <segue destination="2Z1-k9-Fdp" kind="modal" identifier="TeslaType" id="PbJ-Gz-mim"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IYh-lD-ENs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -527,7 +531,181 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8On-5p-91T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2689" y="113"/>
+            <point key="canvasLocation" x="2721" y="-903"/>
+        </scene>
+        <!--Signature View Controller-->
+        <scene sceneID="VLR-De-ybe">
+            <objects>
+                <viewController id="CF3-DW-HOS" customClass="signatureViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sKV-XC-a5g"/>
+                        <viewControllerLayoutGuide type="bottom" id="8wW-AC-By0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5J0-fV-PgM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eEy-wH-tbu">
+                                <rect key="frame" x="20" y="41" width="280" height="137"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" hint="个性签名"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCJ-F3-RYT">
+                                <rect key="frame" x="228" y="195" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="保存">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveSignature:" destination="CF3-DW-HOS" eventType="touchUpInside" id="9U0-VI-boi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="signature" destination="eEy-wH-tbu" id="U6m-lj-dxf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XR7-Gt-Wlu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2721" y="-319"/>
+        </scene>
+        <!--ChatID View Controller-->
+        <scene sceneID="Jui-ML-HRi">
+            <objects>
+                <viewController id="Fck-Hl-lIJ" customClass="chatIDViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SKB-HP-izX"/>
+                        <viewControllerLayoutGuide type="bottom" id="FY7-Xb-RzK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GfT-1L-iBA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SK4-9I-iIZ">
+                                <rect key="frame" x="30" y="50" width="260" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dIz-lp-FwM">
+                                <rect key="frame" x="246" y="126" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="保存">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveID:" destination="Fck-Hl-lIJ" eventType="touchUpInside" id="phY-sY-lIo"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="SK4-9I-iIZ" secondAttribute="trailing" constant="30" id="DaN-2u-MV6"/>
+                            <constraint firstItem="SK4-9I-iIZ" firstAttribute="leading" secondItem="GfT-1L-iBA" secondAttribute="leading" constant="30" id="aIl-Pv-3KB"/>
+                            <constraint firstItem="SK4-9I-iIZ" firstAttribute="top" secondItem="SKB-HP-izX" secondAttribute="bottom" constant="30" id="sKF-bH-TWu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="IDChange" destination="SK4-9I-iIZ" id="Sjw-9k-I6n"/>
+                        <outlet property="saveID" destination="dIz-lp-FwM" id="tXF-X0-x3W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JVE-gd-Lzs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2721" y="265"/>
+        </scene>
+        <!--We ChatID View Controller-->
+        <scene sceneID="TZN-12-BOu">
+            <objects>
+                <viewController id="1oy-EQ-DfX" customClass="weChatIDViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6rB-Zb-8On"/>
+                        <viewControllerLayoutGuide type="bottom" id="QBW-sq-NO5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mkB-tA-s4q">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uof-Nk-e2j">
+                                <rect key="frame" x="29" y="50" width="261" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kc4-Wb-i87">
+                                <rect key="frame" x="236" y="120" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="保存">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="weChatID:" destination="1oy-EQ-DfX" eventType="touchUpInside" id="p6Q-U1-dtN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Uof-Nk-e2j" firstAttribute="top" secondItem="6rB-Zb-8On" secondAttribute="bottom" constant="30" id="Bol-Xs-HUn"/>
+                            <constraint firstAttribute="trailing" secondItem="Uof-Nk-e2j" secondAttribute="trailing" constant="30" id="KX7-e7-62V"/>
+                            <constraint firstItem="Uof-Nk-e2j" firstAttribute="leading" secondItem="mkB-tA-s4q" secondAttribute="leading" constant="29" id="zLE-Rf-8Gp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="weChatID" destination="Uof-Nk-e2j" id="cti-kC-fob"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YXC-iH-Fvr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2721" y="853"/>
+        </scene>
+        <!--Tesla Type View Controller-->
+        <scene sceneID="urU-Qe-RVe">
+            <objects>
+                <viewController id="2Z1-k9-Fdp" customClass="teslaTypeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="til-tu-UvT"/>
+                        <viewControllerLayoutGuide type="bottom" id="MU1-97-Qz3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="brq-bK-CDS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t2Q-lA-kBU">
+                                <rect key="frame" x="30" y="50" width="260" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O49-Sh-Oby">
+                                <rect key="frame" x="245" y="113" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="保存">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveTeslaType:" destination="2Z1-k9-Fdp" eventType="touchUpInside" id="DkS-Qu-2j5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="t2Q-lA-kBU" firstAttribute="leading" secondItem="brq-bK-CDS" secondAttribute="leading" constant="30" id="KCR-XY-Yql"/>
+                            <constraint firstItem="t2Q-lA-kBU" firstAttribute="top" secondItem="til-tu-UvT" secondAttribute="bottom" constant="30" id="O7o-6a-cDP"/>
+                            <constraint firstAttribute="trailing" secondItem="t2Q-lA-kBU" secondAttribute="trailing" constant="30" id="yxd-ZG-YIa"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="teslaType" destination="t2Q-lA-kBU" id="m0R-dq-8KS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u1s-fg-Dkl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2721" y="1465"/>
         </scene>
         <!--Feed Back View Controller - 反馈与建议-->
         <scene sceneID="UXt-4B-582">
@@ -570,10 +748,10 @@
             </objects>
             <point key="canvasLocation" x="1995" y="741"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Login View Controller - 登录-->
         <scene sceneID="c4v-0H-Wcf">
             <objects>
-                <viewController storyboardIdentifier="login" id="gwR-gu-Shx" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login" title="登录" id="gwR-gu-Shx" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DXy-Cf-RZb"/>
                         <viewControllerLayoutGuide type="bottom" id="BBa-6x-346"/>
@@ -615,13 +793,14 @@
                                     <action selector="Login:" destination="gwR-gu-Shx" eventType="touchUpInside" id="yk5-vc-8Rl"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VYJ-sL-U1f">
-                                <rect key="frame" x="259" y="327" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTa-VS-2oD">
+                                <rect key="frame" x="254" y="322" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="注册"/>
+                                <state key="normal" title="注册">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <segue destination="qpI-RJ-gCb" kind="push" id="7uC-GT-49a"/>
+                                    <action selector="registerNewUsername:" destination="gwR-gu-Shx" eventType="touchUpInside" id="hKG-jk-h7Z"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -639,6 +818,7 @@
                         <outlet property="password" destination="OaS-Id-Aga" id="2p0-qc-9Mw"/>
                         <outlet property="username" destination="0bP-6N-AeW" id="1Ey-pM-LwT"/>
                         <segue destination="8YX-ce-x5E" kind="modal" identifier="main" id="2W1-mH-yDc"/>
+                        <segue destination="qpI-RJ-gCb" kind="push" identifier="register" id="vUw-kg-bPj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eDe-0Z-Skt" userLabel="First Responder" sceneMemberID="firstResponder"/>
