@@ -54,7 +54,10 @@
 //        NSLog(@"manager start failed!");
 //    }
 //#else
+    
     [_mapManager start:BAIDU_MAP_KEY  generalDelegate:self];
+    
+    
     
 //#endif
     

@@ -266,7 +266,7 @@
     else if (indexPath.section == 1)
     {
         if (indexPath.row == 0) {
-            [self performSegueWithIdentifier:@"ID" sender:self];
+//            [self performSegueWithIdentifier:@"ID" sender:self];
         }
         else if (indexPath.row == 1)
         {

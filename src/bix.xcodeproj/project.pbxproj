@@ -47,6 +47,7 @@
 		E38169BD19EC250B00E16E23 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E38169BA19EC250B00E16E23 /* LICENSE */; };
 		E38169BE19EC250B00E16E23 /* transparencyPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = E38169BB19EC250B00E16E23 /* transparencyPattern.png */; };
 		E38169C119EC252200E16E23 /* CaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E38169C019EC252200E16E23 /* CaptureViewController.m */; };
+		E3D127F519F6992A0018900B /* reportMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D127F419F6992A0018900B /* reportMapViewController.m */; };
 		E3D8A8E519800B9B00E40C14 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D8A8E319800B9B00E40C14 /* Default.png */; };
 		E3D8A8E619800B9B00E40C14 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D8A8E419800B9B00E40C14 /* Default@2x.png */; };
 		E3E7AEAE19CED0FC002CB978 /* icon_nav_start.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E7AEAC19CED0FC002CB978 /* icon_nav_start.png */; };
@@ -228,6 +229,8 @@
 		E38169BF19EC252200E16E23 /* CaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureViewController.h; sourceTree = "<group>"; };
 		E38169C019EC252200E16E23 /* CaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureViewController.m; sourceTree = "<group>"; };
 		E38169C219EC258700E16E23 /* PassImageDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PassImageDelegate.h; sourceTree = "<group>"; };
+		E3D127F319F6992A0018900B /* reportMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reportMapViewController.h; sourceTree = "<group>"; };
+		E3D127F419F6992A0018900B /* reportMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = reportMapViewController.m; sourceTree = "<group>"; };
 		E3D8A8E319800B9B00E40C14 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E3D8A8E419800B9B00E40C14 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E3E7AEAC19CED0FC002CB978 /* icon_nav_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_nav_start.png; sourceTree = "<group>"; };
@@ -518,13 +521,12 @@
 			children = (
 				EC10200C18C86FF100B3775E /* SettingViewController.h */,
 				EC10200D18C86FF100B3775E /* SettingViewController.m */,
-				E3CB2E1719ED75C800EC61C5 /* personInfo */,
-				E36C2558198F6A7700D129E9 /* aboutViewController.h */,
-				E36C2559198F6A7700D129E9 /* aboutViewController.m */,
 				E3FC3F03199A4CCB00E0E784 /* generalTableView.h */,
 				E3FC3F04199A4CCB00E0E784 /* generalTableView.m */,
-				E33DDF4619E6D6F500981FD7 /* FeedBackViewController.h */,
-				E33DDF4719E6D6F500981FD7 /* FeedBackViewController.m */,
+				E3D127F219F6989F0018900B /* reportCharger */,
+				E3D127F119F6987B0018900B /* feedBack */,
+				E3D127F019F698570018900B /* aboutBix */,
+				E3CB2E1719ED75C800EC61C5 /* personInfo */,
 			);
 			name = SettingView;
 			path = ..;
@@ -562,6 +564,33 @@
 				E3554EFE19F540A6001C0D1E /* teslaTypeViewController.m */,
 			);
 			name = personInfo;
+			sourceTree = "<group>";
+		};
+		E3D127F019F698570018900B /* aboutBix */ = {
+			isa = PBXGroup;
+			children = (
+				E36C2558198F6A7700D129E9 /* aboutViewController.h */,
+				E36C2559198F6A7700D129E9 /* aboutViewController.m */,
+			);
+			name = aboutBix;
+			sourceTree = "<group>";
+		};
+		E3D127F119F6987B0018900B /* feedBack */ = {
+			isa = PBXGroup;
+			children = (
+				E33DDF4619E6D6F500981FD7 /* FeedBackViewController.h */,
+				E33DDF4719E6D6F500981FD7 /* FeedBackViewController.m */,
+			);
+			name = feedBack;
+			sourceTree = "<group>";
+		};
+		E3D127F219F6989F0018900B /* reportCharger */ = {
+			isa = PBXGroup;
+			children = (
+				E3D127F319F6992A0018900B /* reportMapViewController.h */,
+				E3D127F419F6992A0018900B /* reportMapViewController.m */,
+			);
+			name = reportCharger;
 			sourceTree = "<group>";
 		};
 		E3F571BB19E5823900AA20E0 /* RequestFromServer */ = {
@@ -1339,6 +1368,7 @@
 				EC99089A18C33C9200798FAB /* NSXMLElement+XMPP.m in Sources */,
 				ECED787918CF7FE30041CCC7 /* Session.m in Sources */,
 				EC99084318C3397000798FAB /* DDASLLogger.m in Sources */,
+				E3D127F519F6992A0018900B /* reportMapViewController.m in Sources */,
 				EC99084618C3397000798FAB /* DDTTYLogger.m in Sources */,
 				EC99089B18C33C9200798FAB /* XMPPElement.m in Sources */,
 				EC316623193065AC002E9609 /* NSString+FontAwesome.m in Sources */,

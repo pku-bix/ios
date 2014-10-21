@@ -410,6 +410,7 @@
                         <segue destination="bWp-0K-nfV" kind="push" identifier="aboutBix" id="ULP-xE-8ax"/>
                         <segue destination="jqC-9z-dlB" kind="push" identifier="feedBack" id="Lwm-qc-VlT"/>
                         <segue destination="Rn6-PE-tOj" kind="push" identifier="personInfo" id="uLg-Jp-l8o"/>
+                        <segue destination="fYr-A5-RDc" kind="push" identifier="reportMap" id="VBg-uU-6gf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Jj-xf-RIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -459,7 +460,50 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lh9-eb-qhM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1995" y="1313"/>
+            <point key="canvasLocation" x="2027" y="946"/>
+        </scene>
+        <!--Report Map View Controller - 充电桩位置-->
+        <scene sceneID="3eH-lz-CmE">
+            <objects>
+                <viewController id="fYr-A5-RDc" customClass="reportMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="g3v-qW-hgG"/>
+                        <viewControllerLayoutGuide type="bottom" id="doW-vQ-XL4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ILv-PV-Shu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0SW-xN-ay3" customClass="BMKMapView">
+                                <rect key="frame" x="0.0" y="24" width="320" height="432"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRz-ek-cxl">
+                                        <rect key="frame" x="246" y="75" width="45" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="下一步">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="nextStep:" destination="fYr-A5-RDc" eventType="touchUpInside" id="Euk-hN-pbm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="充电桩位置" id="SHi-qz-M7F"/>
+                    <connections>
+                        <outlet property="btnReportCharger" destination="wRz-ek-cxl" id="Bbq-X0-6El"/>
+                        <outlet property="reportMapView" destination="0SW-xN-ay3" id="bWr-uN-hOH"/>
+                        <segue destination="hlB-Rf-wAR" kind="push" identifier="reportCharger" id="Q32-gz-yb6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZDv-d8-SYh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2027" y="1565"/>
         </scene>
         <!--Person Info View Controller - 个人信息-->
         <scene sceneID="gv4-jl-qxp">
@@ -485,7 +529,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IYh-lD-ENs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1987" y="133"/>
+            <point key="canvasLocation" x="2011" y="-387"/>
         </scene>
         <!--Name View Controller-->
         <scene sceneID="vhM-GR-kQd">
@@ -707,6 +751,33 @@
             </objects>
             <point key="canvasLocation" x="2721" y="1465"/>
         </scene>
+        <!--View Controller - 详情-->
+        <scene sceneID="YgI-bL-YKa">
+            <objects>
+                <viewController id="hlB-Rf-wAR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="p9Q-bw-Mmj"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ynd-eF-YrP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hK4-uP-aXr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hAL-d7-xNt">
+                                <rect key="frame" x="65" y="96" width="175" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="详情" id="wVf-zr-3ve"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pcP-zq-6NZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2713" y="2185"/>
+        </scene>
         <!--Feed Back View Controller - 反馈与建议-->
         <scene sceneID="UXt-4B-582">
             <objects>
@@ -746,7 +817,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vST-Fm-P1C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1995" y="741"/>
+            <point key="canvasLocation" x="2027" y="273"/>
         </scene>
         <!--Login View Controller - 登录-->
         <scene sceneID="c4v-0H-Wcf">

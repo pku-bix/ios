@@ -188,6 +188,11 @@
         {
             [setingViewController performSegueWithIdentifier:@"personInfo" sender:self];
         }
+        //上报充电桩
+        else if (indexPath.row == 1)
+        {
+            [setingViewController performSegueWithIdentifier:@"reportMap" sender:self];
+        }
         //反馈与建议
         else if(indexPath.row == 2)
         {

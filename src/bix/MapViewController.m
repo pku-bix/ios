@@ -48,8 +48,6 @@
 
 - (void)viewDidLoad
 {
-//    aaaaaa = 90;
-//    NSLog(@"aaaa is %d", aaaaaa);
     NSLog(@"viewDidLoad");
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -223,6 +221,7 @@
     [_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
     _search.delegate = nil; // 不用时，置nil
+//    [self.view ]
    // NSLog(@"map view disappear");
 }
 
