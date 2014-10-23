@@ -488,6 +488,16 @@
                                             <action selector="nextStep:" destination="fYr-A5-RDc" eventType="touchUpInside" id="Euk-hN-pbm"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NbY-hy-LiO">
+                                        <rect key="frame" x="238" y="156" width="60" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="当前位置">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="currentLocation:" destination="fYr-A5-RDc" eventType="touchUpInside" id="1Vu-g3-idd"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -496,9 +506,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="充电桩位置" id="SHi-qz-M7F"/>
                     <connections>
+                        <outlet property="btnCurrentLocation" destination="NbY-hy-LiO" id="dng-F1-P7s"/>
                         <outlet property="btnReportCharger" destination="wRz-ek-cxl" id="Bbq-X0-6El"/>
                         <outlet property="reportMapView" destination="0SW-xN-ay3" id="bWr-uN-hOH"/>
-                        <segue destination="hlB-Rf-wAR" kind="push" identifier="reportCharger" id="Q32-gz-yb6"/>
+                        <segue destination="hlB-Rf-wAR" kind="push" identifier="report" id="Q32-gz-yb6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZDv-d8-SYh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -751,10 +762,10 @@
             </objects>
             <point key="canvasLocation" x="2721" y="1465"/>
         </scene>
-        <!--View Controller - 详情-->
+        <!--Charger Info View Controller - 分享详情-->
         <scene sceneID="YgI-bL-YKa">
             <objects>
-                <viewController id="hlB-Rf-wAR" sceneMemberID="viewController">
+                <viewController id="hlB-Rf-wAR" customClass="chargerInfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="p9Q-bw-Mmj"/>
                         <viewControllerLayoutGuide type="bottom" id="Ynd-eF-YrP"/>
@@ -763,20 +774,77 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hAL-d7-xNt">
-                                <rect key="frame" x="65" y="96" width="175" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="个人ID" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hAL-d7-xNt">
+                                <rect key="frame" x="10" y="83" width="300" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="" label=""/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="电话" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EuY-BY-tp0">
+                                <rect key="frame" x="10" y="121" width="300" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="邮箱" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="akX-M6-yYY">
+                                <rect key="frame" x="10" y="164" width="300" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="详细地址" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iqK-tT-g6g">
+                                <rect key="frame" x="10" y="207" width="300" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="充电桩数量" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HgH-W5-kwT">
+                                <rect key="frame" x="10" y="250" width="300" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="经纬度" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ace-Oa-y7E">
+                                <rect key="frame" x="10" y="296" width="300" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="备注" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZeI-lU-fPN">
+                                <rect key="frame" x="10" y="339" width="300" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1cQ-4j-Neh">
+                                <rect key="frame" x="10" y="386" width="300" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="上报">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration" hint="地址">
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
                     </view>
-                    <navigationItem key="navigationItem" title="详情" id="wVf-zr-3ve"/>
+                    <navigationItem key="navigationItem" title="分享详情" id="wVf-zr-3ve"/>
+                    <connections>
+                        <outlet property="btnSubmitReport" destination="1cQ-4j-Neh" id="IYc-DT-OF8"/>
+                        <outlet property="coordinate" destination="Ace-Oa-y7E" id="mkQ-PB-i6K"/>
+                        <outlet property="detailAddr" destination="iqK-tT-g6g" id="uX8-bx-Qrj"/>
+                        <outlet property="email" destination="akX-M6-yYY" id="3lZ-VB-Qzf"/>
+                        <outlet property="parkingNum" destination="HgH-W5-kwT" id="d9X-bE-qkY"/>
+                        <outlet property="personID" destination="hAL-d7-xNt" id="EBS-5z-1Rt"/>
+                        <outlet property="remarks" destination="ZeI-lU-fPN" id="7Dx-pS-HKH"/>
+                        <outlet property="telephone" destination="EuY-BY-tp0" id="Ej8-F7-T7S"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pcP-zq-6NZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2713" y="2185"/>
+            <point key="canvasLocation" x="2721" y="2033"/>
         </scene>
         <!--Feed Back View Controller - 反馈与建议-->
         <scene sceneID="UXt-4B-582">

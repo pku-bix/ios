@@ -36,6 +36,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseTest:) name:@"nameChange" object:nil];
+}
+
+
+-(void)parseTest:(NSNotification*)notification
+{
+    NSString *test1 = notification.object;
+    NSLog(@"test is %@", test1);
+}
+
+
 /*
 #pragma mark - Navigation
 

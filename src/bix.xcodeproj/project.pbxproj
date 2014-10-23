@@ -75,6 +75,7 @@
 		E3F76AC319EADE15008E718C /* Viewfeedback_960@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F76AC119EADE15008E718C /* Viewfeedback_960@2x.png */; };
 		E3F76AC419EADE15008E718C /* Viewfeedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F76AC219EADE15008E718C /* Viewfeedback@2x.png */; };
 		E3FC3F05199A4CCB00E0E784 /* generalTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FC3F04199A4CCB00E0E784 /* generalTableView.m */; };
+		E3FD226719F959EE00D33935 /* chargerInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FD226619F959EE00D33935 /* chargerInfoViewController.m */; };
 		EC0F2A3E19C5EEA800BE1F62 /* ChatNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0F2A3D19C5EEA800BE1F62 /* ChatNavigationController.m */; };
 		EC10200B18C85DF200B3775E /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200A18C85DF200B3775E /* MainTabBarController.m */; };
 		EC10200E18C86FF100B3775E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200D18C86FF100B3775E /* SettingViewController.m */; };
@@ -260,6 +261,8 @@
 		E3F76AC219EADE15008E718C /* Viewfeedback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Viewfeedback@2x.png"; sourceTree = "<group>"; };
 		E3FC3F03199A4CCB00E0E784 /* generalTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = generalTableView.h; path = bix/generalTableView.h; sourceTree = "<group>"; };
 		E3FC3F04199A4CCB00E0E784 /* generalTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = generalTableView.m; path = bix/generalTableView.m; sourceTree = "<group>"; };
+		E3FD226519F959EE00D33935 /* chargerInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chargerInfoViewController.h; sourceTree = "<group>"; };
+		E3FD226619F959EE00D33935 /* chargerInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = chargerInfoViewController.m; sourceTree = "<group>"; };
 		EC0F2A3C19C5EEA800BE1F62 /* ChatNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatNavigationController.h; sourceTree = "<group>"; };
 		EC0F2A3D19C5EEA800BE1F62 /* ChatNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatNavigationController.m; sourceTree = "<group>"; };
 		EC10200918C85DF200B3775E /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
@@ -589,6 +592,8 @@
 			children = (
 				E3D127F319F6992A0018900B /* reportMapViewController.h */,
 				E3D127F419F6992A0018900B /* reportMapViewController.m */,
+				E3FD226519F959EE00D33935 /* chargerInfoViewController.h */,
+				E3FD226619F959EE00D33935 /* chargerInfoViewController.m */,
 			);
 			name = reportCharger;
 			sourceTree = "<group>";
@@ -1340,6 +1345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC9908A518C33C9200798FAB /* RFImageToDataTransformer.m in Sources */,
+				E3FD226719F959EE00D33935 /* chargerInfoViewController.m in Sources */,
 				EC10201118C8701400B3775E /* MapViewController.m in Sources */,
 				EC99089918C33C9200798FAB /* NSNumber+XMPP.m in Sources */,
 				EC99080A18C3356300798FAB /* GCDAsyncSocket.m in Sources */,

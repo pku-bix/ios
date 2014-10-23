@@ -9,15 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "BMapKit.h"
 
-@interface reportMapViewController : UIViewController<BMKMapViewDelegate>
+@interface reportMapViewController : UIViewController<BMKMapViewDelegate, BMKSearchDelegate>
 {
 //    BMKMapView * reportMapView;
     
     IBOutlet UIButton *btnReportCharger;
     IBOutlet BMKMapView *reportMapView;
+    
+    IBOutlet UIButton *btnCurrentLocation;
+    BMKSearch *_search;
+    BMKUserLocation *current_Location;
 //    IBOutlet BMKMapView *reportMap;
     
 }
+- (IBAction)currentLocation:(id)sender;
 
 - (IBAction)nextStep:(id)sender;
 @end

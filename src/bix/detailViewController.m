@@ -60,8 +60,6 @@
     self.chargerType.text = self.type;
     self.chargerParkingnum.text = self.parkingnum;
     self.chargerInfo.text = self.info;
-    
-
 }
 - (IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

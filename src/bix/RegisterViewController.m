@@ -44,8 +44,6 @@ bool succeed;   // indicate whether register succeed
 	// Do any additional setup after loading the view.
     
     appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
-    
     [self.username becomeFirstResponder];
     self.navigationController.delegate = self;
 }
@@ -140,6 +138,7 @@ bool succeed;   // indicate whether register succeed
     succeed = true;
     [self.navigationController popToRootViewControllerAnimated:true];
 }
+
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
     if ([viewController isKindOfClass:[LoginViewController class]] && succeed) {
         

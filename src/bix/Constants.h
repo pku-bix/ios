@@ -54,6 +54,9 @@ static NSString* const REQUEST_SIMPLE_INFO = @"request_simpe_info_from_server";
 //向服务器请求充电桩详情时，发出的通知
 static NSString* const REQUEST_CHARGER_DETAIL_INFO = @"request_charger_detail_info";
 
+//传递分享充电桩时，传递经纬度发出的通知
+static NSString* const SEND_COORDINATE = @"send_latitude_longitude";
+
 /* event strings
  * used for notification event identity.
  */

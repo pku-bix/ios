@@ -105,7 +105,7 @@
 //	[mapView removeOverlays:array];
 	if (error == 0) {
 		BMKPointAnnotation* item = [[BMKPointAnnotation alloc]init];
-//        ((BMKPinAnnotationView *)annotationView).pinColor = BMKPinAnnotationColorGreen;
+//     ((BMKPinAnnotationView *)annotationView).pinColor = BMKPinAnnotationColorGreen;
     
 		item.coordinate = result.geoPt;
 		item.title = result.strAddr ;

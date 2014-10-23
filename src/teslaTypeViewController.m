@@ -49,7 +49,9 @@
 
 - (IBAction)saveTeslaType:(id)sender {
     NSLog(@"teslaType is %@", self.teslaType.text);
+    
     [[NSNotificationCenter defaultCenter]postNotificationName:@"TeslaType" object:self.teslaType.text];
+    
     Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
     account.setTeslaType = self.teslaType.text;
     [account save];

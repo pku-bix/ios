@@ -154,6 +154,7 @@
     [compassButton addTarget:self action:@selector(compassButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     
     //方向地理位置编码按钮的代码实现
+   /*
     image = [UIImage imageNamed:@"geo_fence-64.png"];
     getCurrentLocationBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [getCurrentLocationBtn setBackgroundImage:image forState:UIControlStateNormal];
@@ -161,6 +162,7 @@
     getCurrentLocationBtn.frame = CGRectMake(rect.size.width-55, 95, 32, 32);
     [getCurrentLocationBtn addTarget:self action:@selector(getCurrentButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     //    self.view = _mapView;
+    */
     
     [self.view addSubview: _mapView];
     [self.view addSubview:enlargeButton];
@@ -494,7 +496,7 @@ return nil;
 
     requestInfoFromServer.selectNotificationKind = 2;
     [requestInfoFromServer sendRequest:path];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseDetailResult:) name:REQUEST_CHARGER_DETAIL_INFO object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseDetailResult:) name:REQUEST_CHARGER_DETAIL_INFO object:nil]; 
 //    [self performSegueWithIdentifier:@"detail" sender:self];
 //    for (id obj in detailInfoArray) {
 //        NSLog(@"detailInfoArray is %@", obj);

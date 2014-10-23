@@ -259,6 +259,10 @@
         }
         else if (indexPath.row == 2)
         {
+            NSString *noti = @"test the problem signature";
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"nameChange" object:noti];
+            
+
             [self performSegueWithIdentifier:@"signature" sender:self];
         }
     }
