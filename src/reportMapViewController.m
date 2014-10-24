@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "UIButton+Bootstrap.h"
 
+
 @interface reportMapViewController ()
 
 @end
@@ -18,7 +19,7 @@
 {
     CGRect rect;
     BMKPointAnnotation* item_Annotation ;
-    NSString *latitude, *longitude;
+    NSString *strLatitude, *strLongitude;
     NSDictionary *coordinateDic;
 }
 
@@ -55,7 +56,7 @@
 -(void)parseAgain:(NSNotification*)notification
 {
     NSLog(@"返回来发送通知");
-    coordinateDic = [NSDictionary dictionaryWithObjectsAndKeys:latitude, @"latitude", longitude, @"longitude", nil];
+    coordinateDic = [NSDictionary dictionaryWithObjectsAndKeys:strLatitude, @"latitude", strLongitude, @"longitude", nil];
 //    NSString *noti = @"test the problem signature";
 //    [[NSNotificationCenter defaultCenter]postNotificationName:SEND_COORDINATE object:strLatitude];
      [[NSNotificationCenter defaultCenter]postNotificationName:SEND_COORDINATE object:nil userInfo:coordinateDic];
@@ -66,8 +67,6 @@
     reportMapView.showsUserLocation = NO;
     reportMapView.userTrackingMode = BMKUserTrackingModeFollow;
     reportMapView.showsUserLocation = YES;
-    
-//    [reportMapView removeAnnotations:reportMapView.annotations];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,9 +81,7 @@
     [reportMapView viewWillAppear];
     reportMapView.delegate = self;
     _search.delegate = self;
-    
     [self locateCurrentPosition];
-    //    [self getCurrentButtonClicked:_search current_Location:current_Location];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -120,9 +117,9 @@
         item_Annotation.title = @"大头针可拖动";
         item_Annotation.subtitle = @"拖动大头针到上报位置";
         [reportMapView addAnnotation:item_Annotation];
-        latitude = [NSString stringWithFormat:@"%f", result.geoPt.latitude];
-        longitude = [NSString stringWithFormat:@"%f", result.geoPt.longitude ];
-        NSLog(@"按下 当前位置 按钮时 的纬度:%@, 经度:%@", latitude, longitude);
+        strLatitude = [NSString stringWithFormat:@"%f", result.geoPt.latitude];
+        strLongitude = [NSString stringWithFormat:@"%f", result.geoPt.longitude ];
+        NSLog(@"按下 当前位置 按钮时 的纬度:%@, 经度:%@", strLatitude, strLongitude);
 //        current_Location = (BMKUserLocation)result.geoPt;
 //        [item setCoordinate:result.geoPt];
     }
@@ -192,6 +189,35 @@
     [self performSegueWithIdentifier:@"report" sender:self];
 }
 
+
+//-(IBAction)onClickReverseGeocode
+//{
+////    isGeoSearch = false;
+//	CLLocationCoordinate2D pt = (CLLocationCoordinate2D){0, 0};
+////	if (_coordinateXText.text != nil && _coordinateYText.text != nil) {
+////		pt = (CLLocationCoordinate2D){[_coordinateYText.text floatValue], [_coordinateXText.text floatValue]};
+////	}
+//    BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
+//    reverseGeocodeSearchOption.reverseGeoPoint = pt;
+//    BOOL flag = [_geocodesearch reverseGeoCode:reverseGeocodeSearchOption];
+////    [reverseGeocodeSearchOption release];
+//    if(flag)
+//    {
+//        NSLog(@"反geo检索发送成功");
+//    }
+//    else
+//    {
+//        NSLog(@"反geo检索发送失败");
+//    }
+//    
+//}
+//
+//-(void)getCurrentAddr
+//{
+//    CLLocationCoordinate2D pt = (CLLocationCoordinate2D){[strLatitude doubleValue], [strLongitude doubleValue]};
+//}
+//
+
 /*
  enum {
  BMKAnnotationViewDragStateNone = 0,      ///< 静止状态.
@@ -213,12 +239,8 @@
         case BMKAnnotationViewDragStateEnding:
         {
             NSLog(@"放下时的坐标是:%f, %f", view.annotation.coordinate.latitude, view.annotation.coordinate.longitude);
-           latitude = [NSString stringWithFormat:@"%f", view.annotation.coordinate.latitude ];
-           longitude = [NSString stringWithFormat:@"%f", view.annotation.coordinate.longitude];
-//            NSDictionary *coordinateDic = [NSDictionary dictionaryWithObject:@"sendValue" forKey:@"latitude"];
-//            NSLog(@"dictionary latitude is %@, longitude is %@", [coordinateDic valueForKey:@"latitude"], [coordinateDic valueForKey:@"longitude"]);
-//            [[NSNotificationCenter defaultCenter]postNotificationName:@"coordinate" object:nil userInfo:coordinateDic];
-//            [[NSNotificationCenter defaultCenter]postNotificationName:@"test" object:latitude];
+           strLatitude = [NSString stringWithFormat:@"%f", view.annotation.coordinate.latitude ];
+           strLongitude = [NSString stringWithFormat:@"%f", view.annotation.coordinate.longitude];
         }
             break;
             
@@ -246,8 +268,6 @@
             newAnnotationView.draggable = YES;
 //            NSLog(@"维度: %@, 经度:", item_Annotation.coordinate);
 //            current_Location = newAnnotationView.annotation;
-//            []
-        
             return newAnnotationView;
         }
     return nil;

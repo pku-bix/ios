@@ -73,7 +73,6 @@
     if (longitude != NULL) {
         [t1 appendString:longitude];
     }
-    
     self.coordinate.text = t1;
 }
 /*

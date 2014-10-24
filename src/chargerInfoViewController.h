@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface chargerInfoViewController : UIViewController
+
 @property (strong, nonatomic) IBOutlet UITextField *coordinate;
 @property (strong, nonatomic) IBOutlet UITextField *personID;
 @property (strong, nonatomic) IBOutlet UITextField *detailAddr;

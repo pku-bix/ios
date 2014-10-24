@@ -9,7 +9,6 @@
 #import "MapViewController.h"
 #import "MapButton.h"
 #import "Constants.h"
-//#import "RequestAnnotationInfo.h"
 #import "detailViewController.h"
 #import "RequestInfoFromServer.h"
 
@@ -563,14 +562,17 @@ return nil;
     self.theResultData = notification.object;
     NSLog(@"get the notification data, it is ");
     NSDictionary *location = [NSJSONSerialization JSONObjectWithData:self.theResultData options:NSJSONReadingMutableLeaves error:nil];
-    NSArray *arrayResult = [location objectForKey:@"result"];
+//    NSArray *arrayResult = [location objectForKey:@"result"];
+    
+    NSArray *arrayResult = [location objectForKey:@"chargers"];
     NSLog(@"数组个数是%d", [arrayResult count]);
     chargePileNumber = [arrayResult count];
-    
+
+    //muArray存储充电桩的5条信息;
     muArray = [NSMutableArray arrayWithCapacity:chargePileNumber*5];
     
     for (id obj1 in arrayResult) {
-        [muArray addObject:[obj1 objectForKey:@"type"]];
+        [muArray addObject:[obj1 objectForKey:@"__t"]];
         [muArray addObject:[obj1 objectForKey:@"detailedaddress"]];
         [muArray addObject:[obj1 objectForKey:@"latitude"]];
         [muArray addObject:[obj1 objectForKey:@"longitude"]];
@@ -602,20 +604,20 @@ return nil;
     
 //    muArray = [NSMutableArray arrayWithCapacity:chargePileNumber*5];
     [detailInfoArray removeAllObjects];
-    NSLog(@"type is %@", [(id)arrayResult objectForKey:@"type"]);
+    NSLog(@"type is %@", [(id)arrayResult objectForKey:@"__t"]);
     NSLog(@"detailedaddress is %@", [(id)arrayResult objectForKey:@"detailedaddress"]);
     NSLog(@"parkingnum is %@", [(id)arrayResult objectForKey:@"parkingnum"]);
 //    NSLog(@"time is %@", [(id)arrayResult objectForKey:@"time"]);
     
-    if ([[(id)arrayResult objectForKey:@"type"] isEqualToString:@"superCharger"]) {
-        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"type"]];
+    if ([[(id)arrayResult objectForKey:@"__t"] isEqualToString:@"superCharger"]) {
+        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"__t"]];
         [detailInfoArray addObject:[(id)arrayResult objectForKey:@"detailedaddress"]];
         [detailInfoArray addObject:[(id)arrayResult objectForKey:@"parkingnum"]];
         [detailInfoArray addObject:[(id)arrayResult objectForKey:@"time"]];
     }
-    else if([[(id)arrayResult objectForKey:@"type"] isEqualToString:@"destinationCharger"])
+    else if([[(id)arrayResult objectForKey:@"__t"] isEqualToString:@"destinationCharger"])
     {
-        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"type"]];
+        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"__t"]];
         [detailInfoArray addObject:[(id)arrayResult objectForKey:@"detailedaddress"]];
         [detailInfoArray addObject:[(id)arrayResult objectForKey:@"parkingnum"]];
         [detailInfoArray addObject:[(id)arrayResult objectForKey:@"info"]];
