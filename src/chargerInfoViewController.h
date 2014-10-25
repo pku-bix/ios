@@ -21,5 +21,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *remarks;
 @property (strong, nonatomic) IBOutlet UITextField *parkingNum;
 
+@property NSString* longitude;
+@property NSString* latitude;
 
 @end

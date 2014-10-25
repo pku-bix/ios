@@ -9,6 +9,7 @@
 #import "reportMapViewController.h"
 #import "Constants.h"
 #import "UIButton+Bootstrap.h"
+#import "chargerInfoViewController.h"
 
 
 @interface reportMapViewController ()
@@ -19,7 +20,7 @@
 {
     CGRect rect;
     BMKPointAnnotation* item_Annotation ;
-    NSString *strLatitude, *strLongitude;
+ 
     NSDictionary *coordinateDic;
 }
 
@@ -47,20 +48,20 @@
     [self.view addSubview:btnReportCharger];
     [self.view addSubview:btnCurrentLocation];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseAgain:) name:@"chargerInfoViewController" object:nil];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseAgain:) name:@"chargerInfoViewController" object:nil];
 //    [self getCurrentButtonClicked:_search current_Location:current_Location];
 }
 
 // 得知 chargerInfoViewController注册了通知， 此时再发通知，通知得先注册，再post发送，观察者才能收到;
-//即chargerInfoViewController得先注册通知， reportMapViewController再发送通知，chargerInfoViewController才能收到通知，
--(void)parseAgain:(NSNotification*)notification
-{
-    NSLog(@"返回来发送通知");
-    coordinateDic = [NSDictionary dictionaryWithObjectsAndKeys:strLatitude, @"latitude", strLongitude, @"longitude", nil];
-//    NSString *noti = @"test the problem signature";
-//    [[NSNotificationCenter defaultCenter]postNotificationName:SEND_COORDINATE object:strLatitude];
-     [[NSNotificationCenter defaultCenter]postNotificationName:SEND_COORDINATE object:nil userInfo:coordinateDic];
-}
+////即chargerInfoViewController得先注册通知， reportMapViewController再发送通知，chargerInfoViewController才能收到通知，
+//-(void)parseAgain:(NSNotification*)notification
+//{
+//    NSLog(@"返回来发送通知");
+//    coordinateDic = [NSDictionary dictionaryWithObjectsAndKeys:_strLatitude, @"latitude", _strLongitude, @"longitude", nil];
+////    NSString *noti = @"test the problem signature";
+////    [[NSNotificationCenter defaultCenter]postNotificationName:SEND_COORDINATE object:strLatitude];
+//     [[NSNotificationCenter defaultCenter]postNotificationName:SEND_COORDINATE object:nil userInfo:coordinateDic];
+//}
 
 -(void)locateCurrentPosition
 {
@@ -117,9 +118,9 @@
         item_Annotation.title = @"大头针可拖动";
         item_Annotation.subtitle = @"拖动大头针到上报位置";
         [reportMapView addAnnotation:item_Annotation];
-        strLatitude = [NSString stringWithFormat:@"%f", result.geoPt.latitude];
-        strLongitude = [NSString stringWithFormat:@"%f", result.geoPt.longitude ];
-        NSLog(@"按下 当前位置 按钮时 的纬度:%@, 经度:%@", strLatitude, strLongitude);
+        _strLatitude = [NSString stringWithFormat:@"%f", result.geoPt.latitude];
+        _strLongitude = [NSString stringWithFormat:@"%f", result.geoPt.longitude ];
+        NSLog(@"按下 当前位置 按钮时 的纬度:%@, 经度:%@", _strLatitude, _strLongitude);
 //        current_Location = (BMKUserLocation)result.geoPt;
 //        [item setCoordinate:result.geoPt];
     }
@@ -179,14 +180,14 @@
 }
 
 - (IBAction)nextStep:(id)sender {
-//    NSString *noti = @"test the problem signature";
-//    [[NSNotificationCenter defaultCenter]postNotificationName:@"nameOK" object:strLatitude];
-//    NSString *noti = @"test the problem signature";
-//    [[NSNotificationCenter defaultCenter]postNotificationName:SEND_COORDINATE object:noti];
-    
-//    NSLog(@"要传送的latitude是:%@",strLatitude);
-    
     [self performSegueWithIdentifier:@"report" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender{
+    chargerInfoViewController *c = (chargerInfoViewController*)segue.destinationViewController;
+    c.latitude = self.strLatitude;
+    c.longitude = self.strLongitude;
 }
 
 
@@ -239,8 +240,8 @@
         case BMKAnnotationViewDragStateEnding:
         {
             NSLog(@"放下时的坐标是:%f, %f", view.annotation.coordinate.latitude, view.annotation.coordinate.longitude);
-           strLatitude = [NSString stringWithFormat:@"%f", view.annotation.coordinate.latitude ];
-           strLongitude = [NSString stringWithFormat:@"%f", view.annotation.coordinate.longitude];
+           _strLatitude = [NSString stringWithFormat:@"%f", view.annotation.coordinate.latitude ];
+           _strLongitude = [NSString stringWithFormat:@"%f", view.annotation.coordinate.longitude];
         }
             break;
             

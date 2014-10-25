@@ -18,10 +18,15 @@
     
     IBOutlet UIButton *btnCurrentLocation;
     BMKSearch *_search;
-    BMKUserLocation *current_Location;
+    BMKUserLocation *current_Location;    
+//       NSString *strLatitude, *strLongitude;
 //    IBOutlet BMKMapView *reportMap;
     
 }
+
+@property NSString *strLatitude;
+@property NSString *strLongitude;
+
 - (IBAction)currentLocation:(id)sender;
 
 - (IBAction)nextStep:(id)sender;
