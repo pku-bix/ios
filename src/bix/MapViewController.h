@@ -30,7 +30,7 @@
 @property (retain, nonatomic) NSMutableString *theResult;
 @property (retain, nonatomic) NSMutableData  *theResultData;
 
--(void)addBatteryChargeAnnotation;
+//-(void)addBatteryChargeAnnotation;
 
 //-(void)sendRequest;
 -(void)parseResult:(NSNotification*)notification;

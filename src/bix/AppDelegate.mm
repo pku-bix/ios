@@ -58,7 +58,6 @@
     [_mapManager start:BAIDU_MAP_KEY  generalDelegate:self];
     
     
-    
 //#endif
     
     return YES;

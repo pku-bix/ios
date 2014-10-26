@@ -48,6 +48,7 @@ static NSString *const LOCATION_DETAIL_INFO_IP = @"http://121.40.72.197/api/char
 /*
  点击充电桩详情页面，展示的数据项数
  */
+
 static const int DETAIL_INFO_NUMBER = 5;
 
 //请求完服务器数据时，发出的通知
