@@ -26,6 +26,9 @@
 @property (nonatomic) NSString* setWechatID;
 @property (nonatomic) NSString* setTeslaType;
 
+//头像保存
+@property (nonatomic)UIImage * getHeadImage;
+
 -(id) init;
 -(id) initWithJid: (XMPPJID*) jid;
 -(id) initWithJid: (XMPPJID*) jid Password:(NSString*) password;

@@ -14,8 +14,10 @@
 //    SettingViewController * settingViewController;
 }
 @property (weak, nonatomic) SettingViewController *settingViewController;
-@property (strong, nonatomic) NSArray *list;
+
+@property (strong, nonatomic) NSArray *list1;
 @property (strong, nonatomic) NSArray *list2;
+@property (strong, nonatomic) NSArray *list3;
 
 -(id)init;
 //-(id)initWithSettingViewController:(SettingViewController*)settingViewController;
