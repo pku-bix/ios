@@ -9,10 +9,12 @@
 #import "generalTableView.h"
 #import "aboutViewController.h"
 #import "FeedBackViewController.h"
+#import "AppDelegate.h"
 
 @implementation generalTableView
-@synthesize list = _list;
+@synthesize list1 = _list1;
 @synthesize list2 = _list2;
+@synthesize list3 = _list3;
 
 -(id)init
 {
@@ -31,19 +33,23 @@
 {
     if(section == 0)
     {
-        return [self.list count];
+        return [self.list1 count];
+    }
+    else if(section == 1)
+    {
+        return [self.list2 count];
     }
     else
     {
-        return [self.list2 count];
+        return [self.list3 count];
     }
 
 }
 
-
+//3个 区域;
 -(NSInteger)numberOfSectionsInTableView
 {
-    return 2;
+    return 3;
 }
 
 
@@ -57,12 +63,13 @@
                 initWithStyle:UITableViewCellStyleDefault  //cell的风格会决定下面cell.detailTextLabel.text是否有效，以及效果是怎么样的。
                 reuseIdentifier:TableSampleIdentifier];
     }
-    
+
     ////    cell.detailTextLabel.text = @"i am tian cai";
-    UIImage *image0 = [UIImage imageNamed:@"personInfo"];
+//    UIImage *image0 = [UIImage imageNamed:@"personInfo"];
+        UIImage *image0 = [(AppDelegate*)[UIApplication sharedApplication].delegate account].getHeadImage;
     UIImage *image1 = [UIImage imageNamed:@"reported"];
     UIImage *image2 = [UIImage imageNamed:@"feedback"];
-    UIImage *image3 = [UIImage imageNamed:@"inviteFriends"];
+//    UIImage *image3 = [UIImage imageNamed:@"inviteFriends"];
     UIImage *image4 = [UIImage imageNamed:@"aboutBix"];
     UIImage *image5 = [UIImage imageNamed:@"supportUs"];
     UIImage *image6 = [UIImage imageNamed:@"logout"];
@@ -72,34 +79,39 @@
     // NSUInteger section = [indexPath section];
     if(indexPath.section == 0)
     {
-        cell.textLabel.text = [self.list objectAtIndex:row];
+        cell.textLabel.text = [self.list1 objectAtIndex:row];
         //图片显示在cell的左边， 不同cell， 显示的图片不同；
         
         switch (row) {
             case 0:
                 cell.imageView.image = image0;
-//                cell.imageView.image = [UIImage imageNamed:@"test"];
                 break;
-            case 1:
-                cell.imageView.image = image1;
-                //设置tableview cell 的背景颜色；
-                //  cell.contentView.backgroundColor = [UIColor colorWithRed:0.1 green:0.8 blue:0.1 alpha:1];
-                break;
-            case 2:
-                cell.imageView.image = image2;
-                break;
-            case 3:
-                cell.imageView.image = image3;
-                break;
-                
             default:
                 break;
         }
 
     }
-    else
+    else if(indexPath.section == 1)
     {
         cell.textLabel.text = [self.list2 objectAtIndex:row];
+        
+        switch (row) {
+            case 0:
+                cell.imageView.image = image1;
+                break;
+            case 1:
+                cell.imageView.image = image2;
+                //设置tableview cell 的背景颜色；
+                //  cell.contentView.backgroundColor = [UIColor colorWithRed:0.1 green:0.8 blue:0.1 alpha:1];
+                break;
+                
+            default:
+                break;
+        }
+    }
+    else
+    {
+        cell.textLabel.text = [self.list3 objectAtIndex:row];
         switch (row) {
             case 0:
                 cell.imageView.image = image4;
@@ -141,26 +153,38 @@
 
 -(NSString*)titleForHeaderInSection:(NSInteger)section
 {
-    if(section == 0)
-    {
-        return @"页眉0";
-    }
-    else
+//    if(section == 0)
+//    {
+//        return @"页眉0";
+//    }
+   if(section == 1)
     {
         return @"页眉1";
     }
+    else if(section == 2)
+    {
+        return @"页眉2";
+    }
+    else
+        return @"";
 }
 
 -(NSString*)titleForFooterInSection:(NSInteger)section
 {
-    if(section == 0)
-    {
-        return @"页脚0";
-    }
-    else
+//    if(section == 0)
+//    {
+//        return @"页脚0";
+//    }
+    if(section == 1)
     {
         return @"页脚1";
     }
+    else if(section == 2)
+    {
+        return @"页脚2";
+    }
+    else
+        return @"";
 }
 
 

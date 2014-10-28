@@ -68,6 +68,8 @@
         self.setID = [coder decodeObjectForKey:@"setID"];
         self.setWechatID = [coder decodeObjectForKey:@"setWechatID"];
         self.setTeslaType = [coder decodeObjectForKey:@"setTeslaType"];
+        //个人头像
+        self.getHeadImage = [coder decodeObjectForKey:@"getHeadImage"];
     }
     return self;
 }
@@ -97,6 +99,8 @@
     [coder encodeObject:self.setID forKey:@"setID"];
     [coder encodeObject:self.setWechatID forKey:@"setWechatID"];
     [coder encodeObject:self.setTeslaType forKey:@"setTeslaType"];
+    //个人头像
+    [coder encodeObject:self.getHeadImage forKey:@"getHeadImage"];
 }
 
 + (Account*) loadAccount: (NSString*)bareJid{

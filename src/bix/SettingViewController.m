@@ -47,14 +47,16 @@
     general_TableView = [[generalTableView alloc]init];
     
 //    NSArray * array = [[NSArray alloc]initWithObjects:@"个人信息", @"上报充电桩",@"反馈与建议",@"邀请好友", nil];
-    NSArray * array = [[NSArray alloc]initWithObjects:@"个人信息", @"上报充电桩",@"反馈与建议", nil];
-    NSArray * array2 = [[NSArray alloc]initWithObjects:@"关于Bix", @"支持我们", @"退出登录", nil];
+    NSArray * array1 = [[NSArray alloc]initWithObjects:@"个人信息", nil];
+    NSArray * array2 = [[NSArray alloc]initWithObjects:@"上报充电桩",@"反馈与建议", nil];
+    NSArray * array3 = [[NSArray alloc]initWithObjects:@"关于Bix", @"支持我们", @"退出登录", nil];
     
 //    self.list = array;
 //    self.list2 = array2;
     
-    general_TableView.list = array;
+    general_TableView.list1 = array1;
     general_TableView.list2 = array2;
+    general_TableView.list3 = array3;
     
     //用代码来创建 tableview, tableview的高度需要设置成rect.size.height-navigationbar的高度，才不会出现滚动到最下面的行又自动滚动回前面。
      table_View =[[UITableView alloc]initWithFrame:CGRectMake(0, 50, rect.size.width, rect.size.height-100) style:UITableViewStyleGrouped];

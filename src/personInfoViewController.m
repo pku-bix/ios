@@ -25,6 +25,8 @@
     NSString* TeslaType;
     
     UIImageView *imageView;
+    UIImage * headImage;
+    
     CGRect rect;
     UITableView *_tableView;
     AppDelegate* appDelegate;
@@ -51,6 +53,8 @@
     ID = appDelegate.account.setID;
     WechatID = appDelegate.account.setWechatID;
     TeslaType = appDelegate.account.setTeslaType;
+    //加载之前保存的头像；
+    headImage = appDelegate.account.getHeadImage;
     
     NSLog(@"last name is %@", name);
     
@@ -97,6 +101,8 @@
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    
+
 }
 
 -(void)getName:(NSNotification*)notification
@@ -168,11 +174,11 @@
                 reuseIdentifier:TableSampleIdentifier];
     }
     
-    UIImage *image = [UIImage imageNamed:@"superChargerPile_90"];
+//    UIImage *image = [UIImage imageNamed:@"superChargerPile_90"];
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect frame = CGRectMake(0.0,0.0,image.size.width,image.size.height);
+    CGRect frame = CGRectMake(0.0,0.0,headImage.size.width,headImage.size.height);
     button.frame = frame;
-    [button setBackgroundImage:image forState:UIControlStateNormal];
+    [button setBackgroundImage:headImage forState:UIControlStateNormal];
     button.backgroundColor = [UIColor clearColor];
 
 //    UIImage *image0 = [UIImage imageNamed:@"personInfo"];
@@ -186,8 +192,6 @@
         else if(row == 1)
         {
             cell.detailTextLabel.text = name;
-//            cell.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"personInfo"]];
-//            cell.detailTextLabel.text = @"nihao";
         }
         else if (row == 2)
         {
@@ -211,7 +215,6 @@
             cell.detailTextLabel.text = TeslaType;
         }
     }
-    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //    NSLog(@"tableView.rowHeight is %f", tableView.rowHeight);
     return cell;
@@ -356,17 +359,38 @@
 -(void)passImage:(UIImage *)image
 {
     imageView.image = image;
+    //设置头像缩放成 60*60 的
+    headImage = [self scaleFromImage:image];
+
+    //保存裁剪后的头像;
+    Account * accout = [appDelegate account];
+    accout.getHeadImage = headImage;
+    [accout save];
 }
 
 #pragma mark- 缩放图片
 -(UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize
 {
     UIGraphicsBeginImageContext(CGSizeMake(image.size.width*scaleSize,image.size.height*scaleSize));
-    [image drawInRect:CGRectMake(0, 0, image.size.width * scaleSize, image.size.height *scaleSize)];
+//    UIGraphicsBeginImageContext(CGSizeMake(60, 60));
+    [image drawInRect:CGRectMake(0, 0, image.size.width * scaleSize , image.size.height * scaleSize)];
+//    [image drawInRect:CGRectMake(0, 0, 60, 60)];
     UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return scaledImage;
 }
+
+
+ // 改变图像的尺寸，方便上传服务器
+ - (UIImage *) scaleFromImage: (UIImage *) image
+ {
+ UIGraphicsBeginImageContext(CGSizeMake(60, 60));
+ [image drawInRect:CGRectMake(0, 0, 60 , 60)];
+ UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+ UIGraphicsEndImageContext();
+ return newImage;
+ }
+
 
 
 /*
