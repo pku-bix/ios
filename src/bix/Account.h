@@ -29,14 +29,12 @@
 @property (nonatomic) NSString* setWechatID;
 @property (nonatomic) NSString* setTeslaType;
 
-<<<<<<< HEAD
+//头像保存
+@property (nonatomic)UIImage * getHeadImage;
+
 // TODO: 上述属性为用户的内涵属性，需要重命名，替代以下属性：
 @property (nonatomic) NSString* nickname;
 @property (nonatomic) NSURL* avatarUrl;
-=======
-//头像保存
-@property (nonatomic)UIImage * getHeadImage;
->>>>>>> dfde3413cc1ae43f60c2b8f0bf0c05b6f8be74a9
 
 -(id) init;
 -(id) initWithJid: (XMPPJID*) jid;
