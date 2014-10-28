@@ -20,12 +20,34 @@
     NSURL *url = [NSURL URLWithString:strAddress];
     //创建请求
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
+    [request setHTTPMethod:@"GET"];
     //创建连接
     [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
+//异步POST请求
+-(void)sendAsynchronousPostRequest:(NSString*)strAddress
+{
+    //第一步，创建url
+//    NSURL *url = [NSURL URLWithString:@"http://api.hudong.com/iphonexml.do"];
+    NSURL *url = [NSURL URLWithString:strAddress];
+    
+    //第二步，创建请求
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    
+    [request setHTTPMethod:@"POST"];
+    NSString *str = @"type=focus-c";
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:data];
 
-//服务器开始响应请求
+    //第三步，连接服务器
+//    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    
+}
+
+
+//服务器开始响应请求,异步请求的代理方法;
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     self.theResult = [NSMutableString string];
