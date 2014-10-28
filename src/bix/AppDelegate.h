@@ -11,6 +11,7 @@
 #import "Account.h"
 #import "Chatter.h"
 #import "BMapKit.h"
+#import "bixMomentDataSource.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, BMKGeneralDelegate>{
 }
@@ -19,5 +20,6 @@
 @property (nonatomic)BMKMapManager* mapManager;
 @property (nonatomic, readonly)Chatter* chatter;
 @property (nonatomic)Account* account;
+@property bixMomentDataSource* momentDataSrouce;
 
 @end

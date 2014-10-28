@@ -15,9 +15,9 @@
 @synthesize msgTextView;
 @synthesize bgImageView;
 
--(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)MessageCellReuseID{
     
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self = [super initWithStyle:style reuseIdentifier:MessageCellReuseID];
     if (self) {
         //时间标签
         timeInfo = [[UILabel alloc] initWithFrame:

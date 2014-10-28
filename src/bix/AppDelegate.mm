@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "MainTabBarController.h"
 #import "SettingViewController.h"
+#import "bixMomentDataItem.h"
 
 @implementation AppDelegate
 
@@ -30,6 +31,7 @@
     self = [super init];
     if(self){
         // initialization
+        _momentDataSrouce = [bixMomentDataSource new];
     }
     return self;
 }
@@ -38,6 +40,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
     
     // new a thread to make launch interface remain for 1 seconds
     [NSThread sleepForTimeInterval:1];   

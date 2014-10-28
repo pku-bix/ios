@@ -83,7 +83,8 @@ static  NSString *const EVENT_ERROR_RECEIVED=@"error_received";
 static  NSString *const REUSE_CELLID_CHATLIST=@"reuse_cellid_chatlist";
 static  NSString *const REUSE_CELLID_MSGLIST=@"reuse_cellid_msglist";
 static  NSString *const REUSE_CELLID_CONTACTLIST=@"reuse_cellid_contactlist";
-
+static  NSString *const REUSE_CELLID_MOMENTLIST=@"reuse_cellid_momentlist";
+static  NSString *const REUSE_CELLID_MOMENTREPLYLIST=@"reuse_cellid_momentreplylist";
 
 /* msg in session
  * used for graphic drawing
