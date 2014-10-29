@@ -24,9 +24,9 @@
 
 -(void)sendRequest:(NSString*)strAddress;
 
--(void)parseResult;
+//-(void)parseResult;
 
--(void)parseDetailResult;
+//-(void)parseDetailResult;
 
 
 

@@ -96,7 +96,7 @@
     NSLog(@"%@", [error localizedDescription]);
 }
 
-
+/*
 //解析从服务器获取的数据
 -(void)parseResult
 {
@@ -162,7 +162,7 @@
         NSLog(@"%@", obj);
     }
 }
-
+*/
 
 
 @end

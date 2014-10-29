@@ -66,7 +66,7 @@
 
     ////    cell.detailTextLabel.text = @"i am tian cai";
 //    UIImage *image0 = [UIImage imageNamed:@"personInfo"];
-        UIImage *image0 = [(AppDelegate*)[UIApplication sharedApplication].delegate account].getHeadImage;
+    UIImage *image0 = [(AppDelegate*)[UIApplication sharedApplication].delegate account].getHeadImage;
     UIImage *image1 = [UIImage imageNamed:@"reported"];
     UIImage *image2 = [UIImage imageNamed:@"feedback"];
 //    UIImage *image3 = [UIImage imageNamed:@"inviteFriends"];
@@ -153,11 +153,7 @@
 
 -(NSString*)titleForHeaderInSection:(NSInteger)section
 {
-//    if(section == 0)
-//    {
-//        return @"页眉0";
-//    }
-   if(section == 1)
+    if(section == 1)
     {
         return @"页眉1";
     }
@@ -171,10 +167,6 @@
 
 -(NSString*)titleForFooterInSection:(NSInteger)section
 {
-//    if(section == 0)
-//    {
-//        return @"页脚0";
-//    }
     if(section == 1)
     {
         return @"页脚1";
@@ -212,25 +204,28 @@
         {
             [setingViewController performSegueWithIdentifier:@"personInfo" sender:self];
         }
+    }
+    else if(indexPath.section == 1)
+    {
         //上报充电桩
-        else if (indexPath.row == 1)
+        if (indexPath.row == 0)
         {
             [setingViewController performSegueWithIdentifier:@"reportMap" sender:self];
         }
         //反馈与建议
-        else if(indexPath.row == 2)
+        else if(indexPath.row == 1)
         {
-//            FeedBackViewController *feedBack = [[FeedBackViewController alloc]init];
-//            [setingViewController.navigationController pushViewController:feedBack animated:YES];
+            //            FeedBackViewController *feedBack = [[FeedBackViewController alloc]init];
+            //            [setingViewController.navigationController pushViewController:feedBack animated:YES];
             [setingViewController performSegueWithIdentifier:@"feedBack" sender:self];
         }
-        else if(indexPath.row == 3)
-        {
-            //  UIAlertView * alter = [[UIAlertView alloc] initWithTitle:@"选中的section和行信息" message:rowString delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            //        // NSLog(sectionNumber);
-            //        [alter show];
-            
-        }
+//        else if(indexPath.row == 3)
+//        {
+//            //  UIAlertView * alter = [[UIAlertView alloc] initWithTitle:@"选中的section和行信息" message:rowString delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//            //        // NSLog(sectionNumber);
+//            //        [alter show];
+//            
+//        }
     }
     else  //section = 1;
     {
@@ -240,7 +235,6 @@
 //             //self => setingViewController
 //            [setingViewController.navigationController pushViewController:about animated:YES];
 //            about.title = @"关于";
-
             [setingViewController performSegueWithIdentifier:@"aboutBix" sender:self];
         }
         else if(indexPath.row == 2)
