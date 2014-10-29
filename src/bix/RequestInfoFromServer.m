@@ -25,7 +25,7 @@
     [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
-//异步POST请求
+//异步POST请求 yibu 
 -(void)sendAsynchronousPostRequest:(NSString*)strAddress
 {
     //第一步，创建url
