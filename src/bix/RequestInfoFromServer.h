@@ -23,7 +23,7 @@
 //@property NSMutableArray *muArray;
 
 -(void)sendRequest:(NSString*)strAddress;
-
+-(void)sendAsynchronousPostRequest;
 //-(void)parseResult;
 
 //-(void)parseDetailResult;

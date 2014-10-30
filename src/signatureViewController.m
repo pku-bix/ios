@@ -8,12 +8,17 @@
 
 #import "signatureViewController.h"
 #import "AppDelegate.h"
+#import "RequestInfoFromServer.h"
+#import "Constants.h"
 
 @interface signatureViewController ()
 
 @end
 
 @implementation signatureViewController
+{
+    RequestInfoFromServer *request;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,6 +44,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
      [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseTest:) name:@"nameChange" object:nil];
+    request = [[RequestInfoFromServer alloc]init];
 }
 
 
@@ -66,6 +72,12 @@
     Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
     account.setSignature = self.signature.text;
     [account save];
+//    
+//    NSMutableString *url = [NSMutableString stringWithString:POST_IMAGE_TEXT_INFO_IP];
+//    [url appendString:account.username];
+//    NSLog(@"url is %@", url);
+
+    [request sendAsynchronousPostRequest];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

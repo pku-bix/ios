@@ -8,6 +8,7 @@
 
 #import "RequestInfoFromServer.h"
 #import "Constants.h"
+#import "AppDelegate.h"
 
 @implementation RequestInfoFromServer
 
@@ -25,31 +26,144 @@
     [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
-//异步POST请求 yibu 
--(void)sendAsynchronousPostRequest:(NSString*)strAddress
+//异步POST请求,POST图片、文字
+-(void)sendAsynchronousPostRequest
 {
-    //第一步，创建url
-//    NSURL *url = [NSURL URLWithString:@"http://api.hudong.com/iphonexml.do"];
-    NSURL *url = [NSURL URLWithString:strAddress];
+    _selectNotificationKind = 3;//第三种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
     
-    //第二步，创建请求
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
+    NSMutableString *url = [NSMutableString stringWithString:POST_IMAGE_TEXT_INFO_IP];
+    [url appendString:account.username];
+    NSLog(@"url is %@", url);
     
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                                       timeoutInterval:10];
     [request setHTTPMethod:@"POST"];
-    NSString *str = @"type=focus-c";
-    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
-    [request setHTTPBody:data];
+    
+    NSString *boundary = @"PkuBixMustSuccess"; //分界线
+    NSMutableData *body = [NSMutableData data]; //http body
+    
+    //image
+    UIImage *image = [UIImage imageNamed:@"Tesla.png"];
+    NSData *imageData = UIImagePNGRepresentation(image);
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[@"Content-Disposition: form-data; name=\"avatar\"; filename=\"boris.png\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"Content-Type: image/png\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[NSData dataWithData:imageData]];
+    
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // Text parameter1
+    NSString *param1 = @"test1, i am dsx";
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"nickname\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithString:param1] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // Another text parameter
+    NSString *param2 = @"test2 my weChatID is dudududududu";
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"wechat_id\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithString:param2] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // close form
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
 
-    //第三步，连接服务器
-//    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-    [NSURLConnection connectionWithRequest:request delegate:self];
+    //设置HTTPHeader中Content-Type的值
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
+    
+    //设置Content-Length
+    [request setValue:[NSString stringWithFormat:@"%d", [body length]] forHTTPHeaderField:@"Content-Length"];
+    
+    //设置http body
+    [request setHTTPBody:body];
+    
+    
+    //建立连接，设置代理
+    [NSURLConnection  connectionWithRequest:request delegate:self];
+    
+//    NSString *picType
+//    [body appendData: [NSString stringWithString:@"Content-Disposition: form-data; name=\"pic\"; filename=\"boris.png\"\r\n"] ];
+//    ////添加分界线，换行
+//    [body appendFormat:@"%@\r\n",MPboundary];
+//    //声明pic字段，文件名为boris.png
+//    [body appendFormat:@"Content-Disposition: form-data; name=\"pic\"; filename=\"boris.png\"\r\n"];
+//    //声明上传文件的格式
+//    [body appendFormat:@"Content-Type: image/png\r\n\r\n"];
+//    
+//    //声明结束符：--AaB03x--
+//    NSString *end=[[NSString alloc]initWithFormat:@"\r\n%@",endMPboundary];
     
 }
-
+/*
+ - (void) upload {
+ NSString *urlString = @"http://www.examplescript.com";
+ NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+ [request setURL:[NSURL URLWithString:urlString]];
+ [request setHTTPMethod:@"POST"];
+ 
+ NSMutableData *body = [NSMutableData data];
+ 
+ 
+ NSString *boundary = [NSString stringWithString:@"---------------------------14737809831466499882746641449"];
+ NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+ [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+ 
+ // file
+ NSData *imageData = UIImageJPEGRepresentation(imageView.image, 90);
+ 
+ [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+ [body appendData:[[NSString stringWithString:@"Content-Disposition: attachment; name=\"userfile\"; filename=\".jpg\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+ [body appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+ [body appendData:[NSData dataWithData:imageData]];
+ [body appendData:[[NSString stringWithString:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+ 
+ // Text parameter1
+ NSString *param1 = @"parameter text";
+ [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+ [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"parameter1\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+ [body appendData:[[NSString stringWithString:param1] dataUsingEncoding:NSUTF8StringEncoding]];
+ [body appendData:[[NSString stringWithString:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+ 
+ // Another text parameter
+ NSString *param2 = @"Parameter 2 text";
+ [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+ [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"parameter2\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+ [body appendData:[[NSString stringWithString:param2] dataUsingEncoding:NSUTF8StringEncoding]];
+ [body appendData:[[NSString stringWithString:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+ 
+ // close form
+ [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+ 
+ // set request body
+ [request setHTTPBody:body];
+ 
+ //return and test
+ NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+ NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+ 
+ NSLog(@"%@", returnString);
+ }
+ */
 
 //服务器开始响应请求,异步请求的代理方法;
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
+//    [response ]
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+    if ([response respondsToSelector:@selector(allHeaderFields)]) {
+//        NSDictionary *dictionary = [httpResponse allHeaderFields];
+//        NSLog([dictionary description]);
+//        [dictionary objectForKey:statusCode];
+        NSLog(@"http 状态码是 %d",[httpResponse statusCode]);
+    }
+    NSLog(@"服务器开始响应请求");
+    
     self.theResult = [NSMutableString string];
     self.theResultData = [NSMutableData data];
 }

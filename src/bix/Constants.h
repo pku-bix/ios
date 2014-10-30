@@ -45,6 +45,9 @@ static NSString *const LOCATION_INFO_IP = @"http://121.40.72.197/api/chargers";
 //static NSString *const LOCATION_DETAIL_INFO_IP = @"http://121.40.72.197/api/pile/";
 static NSString *const LOCATION_DETAIL_INFO_IP = @"http://121.40.72.197/api/charger/";
 
+//POST设置界面的头像、姓名、用户id、个性签名、微信号、Tesla车型的ip
+static NSString *const POST_IMAGE_TEXT_INFO_IP = @"http://121.40.72.197/api/user/";
+
 /*
  点击充电桩详情页面，展示的数据项数
  */
