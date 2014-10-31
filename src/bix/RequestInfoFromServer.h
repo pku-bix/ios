@@ -24,6 +24,12 @@
 
 -(void)sendRequest:(NSString*)strAddress;
 -(void)sendAsynchronousPostRequest;
+
+//单独异步POST图片给服务器;
+-(void)sendAsynchronousPostImageRequest:(UIImage*)image;
+
+//单独POST 设置界面-》个人信息-》 名字、个性签名、微信号、Tesla车型字段，以及反馈与建议文字;
+-(void)sendAsynchronousPostTextRequest:(NSString*)text type:(int)type;
 //-(void)parseResult;
 
 //-(void)parseDetailResult;

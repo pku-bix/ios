@@ -8,6 +8,8 @@
 
 #import "nameViewController.h"
 #import "AppDelegate.h"
+#import "RequestInfoFromServer.h"
+#import "Constants.h"
 
 @interface nameViewController ()
 
@@ -16,6 +18,7 @@
 @implementation nameViewController
 {
     AppDelegate * appDelegate;
+    RequestInfoFromServer *request;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -56,6 +59,10 @@
 //     self.nameTextField
     NSLog(@"%@", self.nameTextField.text);
     Account* account = [(AppDelegate *)[UIApplication sharedApplication].delegate account];
+    //上传修改的名字字段;
+    request = [[RequestInfoFromServer alloc]init];
+    [request sendAsynchronousPostTextRequest:self.nameTextField.text type:NAME_TYPE];
+    
     //将设置的名字字段保存在account.setName中;
 //    appDelegate.account.setName = self.nameTextField.text;
     account.setName = self.nameTextField.text;

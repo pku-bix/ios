@@ -10,6 +10,7 @@
 #import "CaptureViewController.h"
 #import "generalTableView.h"
 #import "AppDelegate.h"
+#import "RequestInfoFromServer.h"
 
 @interface personInfoViewController ()
 
@@ -30,6 +31,8 @@
     CGRect rect;
     UITableView *_tableView;
     AppDelegate* appDelegate;
+    RequestInfoFromServer* request;
+    
 //    generalTableView *personInfo_generalTableView;
 }
 
@@ -361,7 +364,11 @@
     imageView.image = image;
     //设置头像缩放成 60*60 的
     headImage = [self scaleFromImage:image];
-
+    
+    //上传头像 数据到服务器, PNG格式;
+    request = [[RequestInfoFromServer alloc]init];
+    [request sendAsynchronousPostImageRequest:headImage];
+    
     //保存裁剪后的头像;
     Account * accout = [appDelegate account];
     accout.getHeadImage = headImage;
@@ -379,7 +386,6 @@
     UIGraphicsEndImageContext();
     return scaledImage;
 }
-
 
  // 改变图像的尺寸，方便上传服务器
  - (UIImage *) scaleFromImage: (UIImage *) image

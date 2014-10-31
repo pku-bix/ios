@@ -48,10 +48,17 @@ static NSString *const LOCATION_DETAIL_INFO_IP = @"http://121.40.72.197/api/char
 //POST设置界面的头像、姓名、用户id、个性签名、微信号、Tesla车型的ip
 static NSString *const POST_IMAGE_TEXT_INFO_IP = @"http://121.40.72.197/api/user/";
 
+//设置界面 -》个人信息 -》名字 字段类型
+static const int NAME_TYPE = 1;
+static const int SIGNATURE_TYPE = 2;    //个性签名
+static const int WE_CHAT_ID_TYPE = 3;   //微信号
+static const int TESLA_MODEL_TYPE = 4;  //Tesla车型
+static const int FEED_BACK_TYPE = 5;    //反馈与建议
+
+
 /*
  点击充电桩详情页面，展示的数据项数
  */
-
 static const int DETAIL_INFO_NUMBER = 5;
 
 //请求完服务器数据时，发出的通知
