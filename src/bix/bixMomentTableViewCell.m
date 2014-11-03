@@ -79,6 +79,7 @@
     UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:REUSE_CELLID_MOMENTREPLYLIST];
     
     // Configure Cell
+    
     bixMomentReplyItem* reply = [self.momentDataItem.replies objectAtIndex: indexPath.row];
     
     UIImageView *avatar = (UIImageView*)[cell.contentView viewWithTag:41];

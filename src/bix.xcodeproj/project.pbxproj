@@ -18,7 +18,6 @@
 		E337E3E819E7FBD700C989A7 /* newSuperCharger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E337E3E619E7FBD700C989A7 /* newSuperCharger@2x.png */; };
 		E337E3EA19E7FD7200C989A7 /* detailInfoTest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E337E3E919E7FD7200C989A7 /* detailInfoTest@2x.png */; };
 		E33A5BB8197F43220065F7C7 /* Tesla@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33A5BB7197F43220065F7C7 /* Tesla@2x.png */; };
-		E33DDF4819E6D6F500981FD7 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E33DDF4719E6D6F500981FD7 /* FeedBackViewController.m */; };
 		E33DDF4B19E6E4AB00981FD7 /* aboutBix@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33DDF4919E6E4AB00981FD7 /* aboutBix@2x.png */; };
 		E33DDF4C19E6E4AB00981FD7 /* personInfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33DDF4A19E6E4AB00981FD7 /* personInfo@2x.png */; };
 		E33FF0D0197E4F37007FE69F /* compass-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0CF197E4F37007FE69F /* compass-64@2x.png */; };
@@ -27,32 +26,33 @@
 		E33FF0D6197E50ED007FE69F /* geo_fence-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D5197E50ED007FE69F /* geo_fence-64@2x.png */; };
 		E33FF0D8197E50FD007FE69F /* define_location-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */; };
 		E34419971980BAA400F03459 /* MapButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E34419961980BAA400F03459 /* MapButton.m */; };
-		E34B59D019F40D930072E8E6 /* nameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E34B59CF19F40D930072E8E6 /* nameViewController.m */; };
-		E3554EF619F5315E001C0D1E /* signatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3554EF519F5315E001C0D1E /* signatureViewController.m */; };
-		E3554EFC19F54087001C0D1E /* weChatIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3554EFB19F54087001C0D1E /* weChatIDViewController.m */; };
-		E3554EFF19F540A6001C0D1E /* teslaTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3554EFE19F540A6001C0D1E /* teslaTypeViewController.m */; };
-		E3554F0219F54660001C0D1E /* chatIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3554F0119F54660001C0D1E /* chatIDViewController.m */; };
 		E35878A719E83363008FBD1C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E35878A619E83363008FBD1C /* MobileCoreServices.framework */; };
 		E35A14BC19CDCB4A00867D49 /* icon_nav_end.png in Resources */ = {isa = PBXBuildFile; fileRef = E35A14BA19CDCB4A00867D49 /* icon_nav_end.png */; };
 		E35A14BD19CDCB4A00867D49 /* icon_nav_end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E35A14BB19CDCB4A00867D49 /* icon_nav_end@2x.png */; };
-		E361338119EC00FD00017871 /* personInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E361338019EC00FD00017871 /* personInfoViewController.m */; };
 		E36C255B198F6A7700D129E9 /* aboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C2559198F6A7700D129E9 /* aboutViewController.m */; };
 		E374AA8018D9E22700EC575A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA7F18D9E22700EC575A /* CoreLocation.framework */; };
 		E374AA8218D9E23700EC575A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA8118D9E23700EC575A /* QuartzCore.framework */; };
 		E374AA8418D9E24200EC575A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA8318D9E24200EC575A /* OpenGLES.framework */; };
 		E374AA8618D9E24C00EC575A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA8518D9E24C00EC575A /* SystemConfiguration.framework */; };
 		E37F2C4519DBFA5A0090AB24 /* detailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37F2C4419DBFA5A0090AB24 /* detailViewController.m */; };
-		E38169BC19EC250B00E16E23 /* AGSimpleImageEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E38169B919EC250B00E16E23 /* AGSimpleImageEditorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		E38169BD19EC250B00E16E23 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E38169BA19EC250B00E16E23 /* LICENSE */; };
-		E38169BE19EC250B00E16E23 /* transparencyPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = E38169BB19EC250B00E16E23 /* transparencyPattern.png */; };
-		E38169C119EC252200E16E23 /* CaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E38169C019EC252200E16E23 /* CaptureViewController.m */; };
-		E3D127F519F6992A0018900B /* reportMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D127F419F6992A0018900B /* reportMapViewController.m */; };
 		E3D5406519FD4A6300FDC819 /* destCharger.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D5406219FD4A6300FDC819 /* destCharger.png */; };
 		E3D5406619FD4A6300FDC819 /* homeCharger.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D5406319FD4A6300FDC819 /* homeCharger.png */; };
 		E3D5406719FD4A6300FDC819 /* superCharger.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D5406419FD4A6300FDC819 /* superCharger.png */; };
 		E3D5406D19FD4F2300FDC819 /* CustomBMKPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D5406C19FD4F2300FDC819 /* CustomBMKPointAnnotation.m */; };
 		E3D8A8E519800B9B00E40C14 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D8A8E319800B9B00E40C14 /* Default.png */; };
 		E3D8A8E619800B9B00E40C14 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D8A8E419800B9B00E40C14 /* Default@2x.png */; };
+		E3E59A1D1A07D93600B0DA76 /* bixCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A1C1A07D93600B0DA76 /* bixCaptureViewController.m */; };
+		E3E59A231A07DAAD00B0DA76 /* signatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A221A07DAAD00B0DA76 /* signatureViewController.m */; };
+		E3E59A261A07DAC900B0DA76 /* nameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A251A07DAC900B0DA76 /* nameViewController.m */; };
+		E3E59A291A07DAE400B0DA76 /* chatIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A281A07DAE400B0DA76 /* chatIDViewController.m */; };
+		E3E59A2C1A07DBB500B0DA76 /* weChatIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A2B1A07DBB500B0DA76 /* weChatIDViewController.m */; };
+		E3E59A2F1A07DBFD00B0DA76 /* teslaTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A2E1A07DBFD00B0DA76 /* teslaTypeViewController.m */; };
+		E3E59A321A07DC2D00B0DA76 /* personInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A311A07DC2D00B0DA76 /* personInfoViewController.m */; };
+		E3E59A351A07DC9000B0DA76 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A341A07DC9000B0DA76 /* FeedBackViewController.m */; };
+		E3E59A381A07DCFE00B0DA76 /* reportMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A371A07DCFE00B0DA76 /* reportMapViewController.m */; };
+		E3E59A3B1A07DD3300B0DA76 /* chargerInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A3A1A07DD3300B0DA76 /* chargerInfoViewController.m */; };
+		E3E59A3E1A07DF1D00B0DA76 /* AGSimpleImageEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A3D1A07DF1D00B0DA76 /* AGSimpleImageEditorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E3E59A421A07DF8F00B0DA76 /* transparencyPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E59A411A07DF8F00B0DA76 /* transparencyPattern.png */; };
 		E3E7AEAE19CED0FC002CB978 /* icon_nav_start.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E7AEAC19CED0FC002CB978 /* icon_nav_start.png */; };
 		E3E7AEAF19CED0FC002CB978 /* icon_nav_start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E7AEAD19CED0FC002CB978 /* icon_nav_start@2x.png */; };
 		E3E7AECC19CEF812002CB978 /* feedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E7AEC319CEF812002CB978 /* feedback@2x.png */; };
@@ -74,7 +74,6 @@
 		E3F76AC319EADE15008E718C /* Viewfeedback_960@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F76AC119EADE15008E718C /* Viewfeedback_960@2x.png */; };
 		E3F76AC419EADE15008E718C /* Viewfeedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F76AC219EADE15008E718C /* Viewfeedback@2x.png */; };
 		E3FC3F05199A4CCB00E0E784 /* generalTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FC3F04199A4CCB00E0E784 /* generalTableView.m */; };
-		E3FD226719F959EE00D33935 /* chargerInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FD226619F959EE00D33935 /* chargerInfoViewController.m */; };
 		EC0F2A3E19C5EEA800BE1F62 /* ChatNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0F2A3D19C5EEA800BE1F62 /* ChatNavigationController.m */; };
 		EC10200B18C85DF200B3775E /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200A18C85DF200B3775E /* MainTabBarController.m */; };
 		EC10200E18C86FF100B3775E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10200D18C86FF100B3775E /* SettingViewController.m */; };
@@ -207,8 +206,6 @@
 		E337E3E619E7FBD700C989A7 /* newSuperCharger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newSuperCharger@2x.png"; sourceTree = "<group>"; };
 		E337E3E919E7FD7200C989A7 /* detailInfoTest@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detailInfoTest@2x.png"; sourceTree = "<group>"; };
 		E33A5BB7197F43220065F7C7 /* Tesla@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tesla@2x.png"; sourceTree = "<group>"; };
-		E33DDF4619E6D6F500981FD7 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
-		E33DDF4719E6D6F500981FD7 /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
 		E33DDF4919E6E4AB00981FD7 /* aboutBix@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aboutBix@2x.png"; sourceTree = "<group>"; };
 		E33DDF4A19E6E4AB00981FD7 /* personInfo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "personInfo@2x.png"; sourceTree = "<group>"; };
 		E33FF0CF197E4F37007FE69F /* compass-64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-64@2x.png"; sourceTree = "<group>"; };
@@ -218,22 +215,10 @@
 		E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "define_location-64@2x.png"; sourceTree = "<group>"; };
 		E34419951980BAA400F03459 /* MapButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapButton.h; sourceTree = "<group>"; };
 		E34419961980BAA400F03459 /* MapButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapButton.m; sourceTree = "<group>"; };
-		E34B59CE19F40D930072E8E6 /* nameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameViewController.h; sourceTree = "<group>"; };
-		E34B59CF19F40D930072E8E6 /* nameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nameViewController.m; sourceTree = "<group>"; };
 		E34F44E1199B16E700BAB7D8 /* ButtonProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonProtocal.h; sourceTree = "<group>"; };
-		E3554EF419F5315E001C0D1E /* signatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = signatureViewController.h; sourceTree = "<group>"; };
-		E3554EF519F5315E001C0D1E /* signatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = signatureViewController.m; sourceTree = "<group>"; };
-		E3554EFA19F54087001C0D1E /* weChatIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = weChatIDViewController.h; sourceTree = "<group>"; };
-		E3554EFB19F54087001C0D1E /* weChatIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = weChatIDViewController.m; sourceTree = "<group>"; };
-		E3554EFD19F540A6001C0D1E /* teslaTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = teslaTypeViewController.h; sourceTree = "<group>"; };
-		E3554EFE19F540A6001C0D1E /* teslaTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = teslaTypeViewController.m; sourceTree = "<group>"; };
-		E3554F0019F54660001C0D1E /* chatIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chatIDViewController.h; sourceTree = "<group>"; };
-		E3554F0119F54660001C0D1E /* chatIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = chatIDViewController.m; sourceTree = "<group>"; };
 		E35878A619E83363008FBD1C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E35A14BA19CDCB4A00867D49 /* icon_nav_end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_nav_end.png; sourceTree = "<group>"; };
 		E35A14BB19CDCB4A00867D49 /* icon_nav_end@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_nav_end@2x.png"; sourceTree = "<group>"; };
-		E361337F19EC00FD00017871 /* personInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = personInfoViewController.h; sourceTree = "<group>"; };
-		E361338019EC00FD00017871 /* personInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = personInfoViewController.m; sourceTree = "<group>"; };
 		E36C2558198F6A7700D129E9 /* aboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aboutViewController.h; path = bix/aboutViewController.h; sourceTree = "<group>"; };
 		E36C2559198F6A7700D129E9 /* aboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = aboutViewController.m; path = bix/aboutViewController.m; sourceTree = "<group>"; };
 		E374AA7F18D9E22700EC575A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -242,15 +227,6 @@
 		E374AA8518D9E24C00EC575A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E37F2C4319DBFA5A0090AB24 /* detailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = detailViewController.h; sourceTree = "<group>"; };
 		E37F2C4419DBFA5A0090AB24 /* detailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = detailViewController.m; sourceTree = "<group>"; };
-		E38169B819EC250B00E16E23 /* AGSimpleImageEditorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGSimpleImageEditorView.h; sourceTree = "<group>"; };
-		E38169B919EC250B00E16E23 /* AGSimpleImageEditorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSimpleImageEditorView.m; sourceTree = "<group>"; };
-		E38169BA19EC250B00E16E23 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		E38169BB19EC250B00E16E23 /* transparencyPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparencyPattern.png; sourceTree = "<group>"; };
-		E38169BF19EC252200E16E23 /* CaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureViewController.h; sourceTree = "<group>"; };
-		E38169C019EC252200E16E23 /* CaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureViewController.m; sourceTree = "<group>"; };
-		E38169C219EC258700E16E23 /* PassImageDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PassImageDelegate.h; sourceTree = "<group>"; };
-		E3D127F319F6992A0018900B /* reportMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reportMapViewController.h; sourceTree = "<group>"; };
-		E3D127F419F6992A0018900B /* reportMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = reportMapViewController.m; sourceTree = "<group>"; };
 		E3D5406219FD4A6300FDC819 /* destCharger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = destCharger.png; sourceTree = "<group>"; };
 		E3D5406319FD4A6300FDC819 /* homeCharger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeCharger.png; sourceTree = "<group>"; };
 		E3D5406419FD4A6300FDC819 /* superCharger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = superCharger.png; sourceTree = "<group>"; };
@@ -258,6 +234,30 @@
 		E3D5406C19FD4F2300FDC819 /* CustomBMKPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBMKPointAnnotation.m; sourceTree = "<group>"; };
 		E3D8A8E319800B9B00E40C14 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E3D8A8E419800B9B00E40C14 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		E3E59A1B1A07D93600B0DA76 /* bixCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bixCaptureViewController.h; path = bix/bixCaptureViewController.h; sourceTree = "<group>"; };
+		E3E59A1C1A07D93600B0DA76 /* bixCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = bixCaptureViewController.m; path = bix/bixCaptureViewController.m; sourceTree = "<group>"; };
+		E3E59A1E1A07DA3700B0DA76 /* PassImageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PassImageDelegate.h; path = bix/PassImageDelegate.h; sourceTree = "<group>"; };
+		E3E59A211A07DAAD00B0DA76 /* signatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = signatureViewController.h; path = bix/signatureViewController.h; sourceTree = "<group>"; };
+		E3E59A221A07DAAD00B0DA76 /* signatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = signatureViewController.m; path = bix/signatureViewController.m; sourceTree = "<group>"; };
+		E3E59A241A07DAC900B0DA76 /* nameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = nameViewController.h; path = bix/nameViewController.h; sourceTree = "<group>"; };
+		E3E59A251A07DAC900B0DA76 /* nameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = nameViewController.m; path = bix/nameViewController.m; sourceTree = "<group>"; };
+		E3E59A271A07DAE400B0DA76 /* chatIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chatIDViewController.h; path = bix/chatIDViewController.h; sourceTree = "<group>"; };
+		E3E59A281A07DAE400B0DA76 /* chatIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = chatIDViewController.m; path = bix/chatIDViewController.m; sourceTree = "<group>"; };
+		E3E59A2A1A07DBB500B0DA76 /* weChatIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = weChatIDViewController.h; path = bix/weChatIDViewController.h; sourceTree = "<group>"; };
+		E3E59A2B1A07DBB500B0DA76 /* weChatIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = weChatIDViewController.m; path = bix/weChatIDViewController.m; sourceTree = "<group>"; };
+		E3E59A2D1A07DBFD00B0DA76 /* teslaTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = teslaTypeViewController.h; path = bix/teslaTypeViewController.h; sourceTree = "<group>"; };
+		E3E59A2E1A07DBFD00B0DA76 /* teslaTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = teslaTypeViewController.m; path = bix/teslaTypeViewController.m; sourceTree = "<group>"; };
+		E3E59A301A07DC2D00B0DA76 /* personInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = personInfoViewController.h; path = bix/personInfoViewController.h; sourceTree = "<group>"; };
+		E3E59A311A07DC2D00B0DA76 /* personInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = personInfoViewController.m; path = bix/personInfoViewController.m; sourceTree = "<group>"; };
+		E3E59A331A07DC9000B0DA76 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedBackViewController.h; path = bix/FeedBackViewController.h; sourceTree = "<group>"; };
+		E3E59A341A07DC9000B0DA76 /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedBackViewController.m; path = bix/FeedBackViewController.m; sourceTree = "<group>"; };
+		E3E59A361A07DCFE00B0DA76 /* reportMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = reportMapViewController.h; path = bix/reportMapViewController.h; sourceTree = "<group>"; };
+		E3E59A371A07DCFE00B0DA76 /* reportMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = reportMapViewController.m; path = bix/reportMapViewController.m; sourceTree = "<group>"; };
+		E3E59A391A07DD3300B0DA76 /* chargerInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chargerInfoViewController.h; path = bix/chargerInfoViewController.h; sourceTree = "<group>"; };
+		E3E59A3A1A07DD3300B0DA76 /* chargerInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = chargerInfoViewController.m; path = bix/chargerInfoViewController.m; sourceTree = "<group>"; };
+		E3E59A3C1A07DF1D00B0DA76 /* AGSimpleImageEditorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGSimpleImageEditorView.h; path = bix/AGSimpleImageEditorView.h; sourceTree = "<group>"; };
+		E3E59A3D1A07DF1D00B0DA76 /* AGSimpleImageEditorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGSimpleImageEditorView.m; path = bix/AGSimpleImageEditorView.m; sourceTree = "<group>"; };
+		E3E59A411A07DF8F00B0DA76 /* transparencyPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparencyPattern.png; sourceTree = "<group>"; };
 		E3E7AEAC19CED0FC002CB978 /* icon_nav_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_nav_start.png; sourceTree = "<group>"; };
 		E3E7AEAD19CED0FC002CB978 /* icon_nav_start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_nav_start@2x.png"; sourceTree = "<group>"; };
 		E3E7AEC319CEF812002CB978 /* feedback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback@2x.png"; sourceTree = "<group>"; };
@@ -281,8 +281,6 @@
 		E3F76AC219EADE15008E718C /* Viewfeedback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Viewfeedback@2x.png"; sourceTree = "<group>"; };
 		E3FC3F03199A4CCB00E0E784 /* generalTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = generalTableView.h; path = bix/generalTableView.h; sourceTree = "<group>"; };
 		E3FC3F04199A4CCB00E0E784 /* generalTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = generalTableView.m; path = bix/generalTableView.m; sourceTree = "<group>"; };
-		E3FD226519F959EE00D33935 /* chargerInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chargerInfoViewController.h; sourceTree = "<group>"; };
-		E3FD226619F959EE00D33935 /* chargerInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = chargerInfoViewController.m; sourceTree = "<group>"; };
 		EC0F2A3C19C5EEA800BE1F62 /* ChatNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatNavigationController.h; sourceTree = "<group>"; };
 		EC0F2A3D19C5EEA800BE1F62 /* ChatNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatNavigationController.m; sourceTree = "<group>"; };
 		EC10200918C85DF200B3775E /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
@@ -591,36 +589,34 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		E38169B719EC250B00E16E23 /* AGSimpleImageEditorView */ = {
+		E381F0B51A07E07B0030939E /* AGSimpleImageEditorView */ = {
 			isa = PBXGroup;
 			children = (
-				E38169B819EC250B00E16E23 /* AGSimpleImageEditorView.h */,
-				E38169B919EC250B00E16E23 /* AGSimpleImageEditorView.m */,
-				E38169BA19EC250B00E16E23 /* LICENSE */,
-				E38169BB19EC250B00E16E23 /* transparencyPattern.png */,
+				E3E59A3C1A07DF1D00B0DA76 /* AGSimpleImageEditorView.h */,
+				E3E59A3D1A07DF1D00B0DA76 /* AGSimpleImageEditorView.m */,
 			);
-			path = AGSimpleImageEditorView;
+			name = AGSimpleImageEditorView;
 			sourceTree = "<group>";
 		};
 		E3CB2E1719ED75C800EC61C5 /* personInfo */ = {
 			isa = PBXGroup;
 			children = (
-				E361337F19EC00FD00017871 /* personInfoViewController.h */,
-				E361338019EC00FD00017871 /* personInfoViewController.m */,
-				E38169B719EC250B00E16E23 /* AGSimpleImageEditorView */,
-				E38169C219EC258700E16E23 /* PassImageDelegate.h */,
-				E38169BF19EC252200E16E23 /* CaptureViewController.h */,
-				E38169C019EC252200E16E23 /* CaptureViewController.m */,
-				E3554EF419F5315E001C0D1E /* signatureViewController.h */,
-				E3554EF519F5315E001C0D1E /* signatureViewController.m */,
-				E34B59CE19F40D930072E8E6 /* nameViewController.h */,
-				E34B59CF19F40D930072E8E6 /* nameViewController.m */,
-				E3554F0019F54660001C0D1E /* chatIDViewController.h */,
-				E3554F0119F54660001C0D1E /* chatIDViewController.m */,
-				E3554EFA19F54087001C0D1E /* weChatIDViewController.h */,
-				E3554EFB19F54087001C0D1E /* weChatIDViewController.m */,
-				E3554EFD19F540A6001C0D1E /* teslaTypeViewController.h */,
-				E3554EFE19F540A6001C0D1E /* teslaTypeViewController.m */,
+				E381F0B51A07E07B0030939E /* AGSimpleImageEditorView */,
+				E3E59A1B1A07D93600B0DA76 /* bixCaptureViewController.h */,
+				E3E59A1C1A07D93600B0DA76 /* bixCaptureViewController.m */,
+				E3E59A1E1A07DA3700B0DA76 /* PassImageDelegate.h */,
+				E3E59A211A07DAAD00B0DA76 /* signatureViewController.h */,
+				E3E59A221A07DAAD00B0DA76 /* signatureViewController.m */,
+				E3E59A241A07DAC900B0DA76 /* nameViewController.h */,
+				E3E59A251A07DAC900B0DA76 /* nameViewController.m */,
+				E3E59A271A07DAE400B0DA76 /* chatIDViewController.h */,
+				E3E59A281A07DAE400B0DA76 /* chatIDViewController.m */,
+				E3E59A2A1A07DBB500B0DA76 /* weChatIDViewController.h */,
+				E3E59A2B1A07DBB500B0DA76 /* weChatIDViewController.m */,
+				E3E59A2D1A07DBFD00B0DA76 /* teslaTypeViewController.h */,
+				E3E59A2E1A07DBFD00B0DA76 /* teslaTypeViewController.m */,
+				E3E59A301A07DC2D00B0DA76 /* personInfoViewController.h */,
+				E3E59A311A07DC2D00B0DA76 /* personInfoViewController.m */,
 			);
 			name = personInfo;
 			sourceTree = "<group>";
@@ -637,8 +633,8 @@
 		E3D127F119F6987B0018900B /* feedBack */ = {
 			isa = PBXGroup;
 			children = (
-				E33DDF4619E6D6F500981FD7 /* FeedBackViewController.h */,
-				E33DDF4719E6D6F500981FD7 /* FeedBackViewController.m */,
+				E3E59A331A07DC9000B0DA76 /* FeedBackViewController.h */,
+				E3E59A341A07DC9000B0DA76 /* FeedBackViewController.m */,
 			);
 			name = feedBack;
 			sourceTree = "<group>";
@@ -646,10 +642,10 @@
 		E3D127F219F6989F0018900B /* reportCharger */ = {
 			isa = PBXGroup;
 			children = (
-				E3D127F319F6992A0018900B /* reportMapViewController.h */,
-				E3D127F419F6992A0018900B /* reportMapViewController.m */,
-				E3FD226519F959EE00D33935 /* chargerInfoViewController.h */,
-				E3FD226619F959EE00D33935 /* chargerInfoViewController.m */,
+				E3E59A361A07DCFE00B0DA76 /* reportMapViewController.h */,
+				E3E59A371A07DCFE00B0DA76 /* reportMapViewController.m */,
+				E3E59A391A07DD3300B0DA76 /* chargerInfoViewController.h */,
+				E3E59A3A1A07DD3300B0DA76 /* chargerInfoViewController.m */,
 			);
 			name = reportCharger;
 			sourceTree = "<group>";
@@ -697,6 +693,7 @@
 				E3E7AEAD19CED0FC002CB978 /* icon_nav_start@2x.png */,
 				E3E7AEC319CEF812002CB978 /* feedback@2x.png */,
 				E3E7AEC419CEF812002CB978 /* Homecharge@2x.png */,
+				E3E59A411A07DF8F00B0DA76 /* transparencyPattern.png */,
 				E3E7AEC519CEF812002CB978 /* inviteFriends@2x.png */,
 				E3E7AEC619CEF812002CB978 /* logout@2x.png */,
 				E3E7AEC819CEF812002CB978 /* reported@2x.png */,
@@ -1404,7 +1401,6 @@
 				E3E7AED219CEF812002CB978 /* Supercharge@2x.png in Resources */,
 				E3F76AB819EADBE1008E718C /* loginbg.png in Resources */,
 				E33FF0D8197E50FD007FE69F /* define_location-64@2x.png in Resources */,
-				E38169BE19EC250B00E16E23 /* transparencyPattern.png in Resources */,
 				EC3166361930B95E002E9609 /* topic-24@2x.png in Resources */,
 				E3041FDE19E6A6F70016B7FD /* super_charge.png in Resources */,
 				E35A14BD19CDCB4A00867D49 /* icon_nav_end@2x.png in Resources */,
@@ -1445,7 +1441,7 @@
 				E3F76AB319EADBE1008E718C /* homeChargerbg_960.png in Resources */,
 				E3E7AECD19CEF812002CB978 /* Homecharge@2x.png in Resources */,
 				EC3166301930B595002E9609 /* map_marker-24@2x.png in Resources */,
-				E38169BD19EC250B00E16E23 /* LICENSE in Resources */,
+				E3E59A421A07DF8F00B0DA76 /* transparencyPattern.png in Resources */,
 				E3041FDD19E6A6F70016B7FD /* home_charge.png in Resources */,
 				ECF7E1E118C0516D002BA385 /* Main.storyboard in Resources */,
 				E3D8A8E619800B9B00E40C14 /* Default@2x.png in Resources */,
@@ -1470,7 +1466,6 @@
 			files = (
 				EC9908A518C33C9200798FAB /* RFImageToDataTransformer.m in Sources */,
 				EC4613FA19FFC55F0046FFAE /* bixMomentDataItem.m in Sources */,
-				E3FD226719F959EE00D33935 /* chargerInfoViewController.m in Sources */,
 				EC10201118C8701400B3775E /* MapViewController.m in Sources */,
 				EC99089918C33C9200798FAB /* NSNumber+XMPP.m in Sources */,
 				EC99080A18C3356300798FAB /* GCDAsyncSocket.m in Sources */,
@@ -1480,6 +1475,7 @@
 				E34419971980BAA400F03459 /* MapButton.m in Sources */,
 				EC4613E119FFC4E80046FFAE /* SDImageCache.m in Sources */,
 				EC57888419A6215A0058837C /* MessageBox.m in Sources */,
+				E3E59A3E1A07DF1D00B0DA76 /* AGSimpleImageEditorView.m in Sources */,
 				EC57887619A620C80058837C /* AddContactViewController.m in Sources */,
 				EC57886719A61F0C0058837C /* Chatter.m in Sources */,
 				EC99084418C3397000798FAB /* DDFileLogger.m in Sources */,
@@ -1491,30 +1487,31 @@
 				EC4613EC19FFC4E80046FFAE /* UIImageView+HighlightedWebCache.m in Sources */,
 				EC57887019A620710058837C /* MessageCell.m in Sources */,
 				EC9908A218C33C9200798FAB /* XMPPStream.m in Sources */,
+				E3E59A1D1A07D93600B0DA76 /* bixCaptureViewController.m in Sources */,
 				EC99083018C3391300798FAB /* DDXMLNode.m in Sources */,
 				ECED789118D00CAD0041CCC7 /* Account.m in Sources */,
 				EC0F2A3E19C5EEA800BE1F62 /* ChatNavigationController.m in Sources */,
+				E3E59A291A07DAE400B0DA76 /* chatIDViewController.m in Sources */,
 				EC4613EB19FFC4E80046FFAE /* UIImage+WebP.m in Sources */,
 				EC99089218C33C9200798FAB /* XMPPDeprecatedDigestAuthentication.m in Sources */,
-				E38169C119EC252200E16E23 /* CaptureViewController.m in Sources */,
 				EC57888519A6215A0058837C /* NSDate+Wrapper.m in Sources */,
 				E3D5406D19FD4F2300FDC819 /* CustomBMKPointAnnotation.m in Sources */,
+				E3E59A261A07DAC900B0DA76 /* nameViewController.m in Sources */,
 				EC10200E18C86FF100B3775E /* SettingViewController.m in Sources */,
 				EC10200B18C85DF200B3775E /* MainTabBarController.m in Sources */,
-				E38169BC19EC250B00E16E23 /* AGSimpleImageEditorView.m in Sources */,
 				EC99089A18C33C9200798FAB /* NSXMLElement+XMPP.m in Sources */,
 				ECED787918CF7FE30041CCC7 /* Session.m in Sources */,
 				EC4613EA19FFC4E80046FFAE /* UIImage+MultiFormat.m in Sources */,
 				EC99084318C3397000798FAB /* DDASLLogger.m in Sources */,
-				E3D127F519F6992A0018900B /* reportMapViewController.m in Sources */,
 				EC4613E319FFC4E80046FFAE /* SDWebImageDecoder.m in Sources */,
 				EC99084618C3397000798FAB /* DDTTYLogger.m in Sources */,
 				EC99089B18C33C9200798FAB /* XMPPElement.m in Sources */,
 				EC4613FD19FFC55F0046FFAE /* bixMomentTableViewCell.m in Sources */,
+				E3E59A2C1A07DBB500B0DA76 /* weChatIDViewController.m in Sources */,
 				EC316623193065AC002E9609 /* NSString+FontAwesome.m in Sources */,
 				EC9908A418C33C9200798FAB /* GCDMulticastDelegate.m in Sources */,
+				E3E59A2F1A07DBFD00B0DA76 /* teslaTypeViewController.m in Sources */,
 				EC99089C18C33C9200798FAB /* XMPPIQ.m in Sources */,
-				E34B59D019F40D930072E8E6 /* nameViewController.m in Sources */,
 				EC4613E719FFC4E80046FFAE /* SDWebImagePrefetcher.m in Sources */,
 				EC4613E919FFC4E80046FFAE /* UIImage+GIF.m in Sources */,
 				E3FC3F05199A4CCB00E0E784 /* generalTableView.m in Sources */,
@@ -1524,25 +1521,23 @@
 				EC316626193065AC002E9609 /* UIButton+Bootstrap.m in Sources */,
 				EC99084218C3397000798FAB /* DDAbstractDatabaseLogger.m in Sources */,
 				EC57886619A61F0C0058837C /* ChatMessage.m in Sources */,
+				E3E59A3B1A07DD3300B0DA76 /* chargerInfoViewController.m in Sources */,
 				EC4613ED19FFC4E80046FFAE /* UIImageView+WebCache.m in Sources */,
 				EC9908A318C33C9200798FAB /* DDList.m in Sources */,
 				EC57888619A6215A0058837C /* NSString+Account.m in Sources */,
 				EC99089F18C33C9200798FAB /* XMPPModule.m in Sources */,
+				E3E59A321A07DC2D00B0DA76 /* personInfoViewController.m in Sources */,
 				E37F2C4519DBFA5A0090AB24 /* detailViewController.m in Sources */,
-				E3554EFC19F54087001C0D1E /* weChatIDViewController.m in Sources */,
 				EC99089D18C33C9200798FAB /* XMPPJID.m in Sources */,
 				EC99089E18C33C9200798FAB /* XMPPMessage.m in Sources */,
 				EC99089318C33C9200798FAB /* XMPPDeprecatedPlainAuthentication.m in Sources */,
-				E33DDF4819E6D6F500981FD7 /* FeedBackViewController.m in Sources */,
 				EC4613E619FFC4E80046FFAE /* SDWebImageManager.m in Sources */,
 				EC99084718C3397000798FAB /* ContextFilterLogFormatter.m in Sources */,
 				EC4613E219FFC4E80046FFAE /* SDWebImageCompat.m in Sources */,
 				EC57886F19A620710058837C /* ChatViewController.m in Sources */,
 				EC99084518C3397000798FAB /* DDLog.m in Sources */,
 				EC99082F18C3391300798FAB /* DDXMLElement.m in Sources */,
-				E3554EFF19F540A6001C0D1E /* teslaTypeViewController.m in Sources */,
 				EC57887319A620BB0058837C /* ContactViewController.m in Sources */,
-				E3554EF619F5315E001C0D1E /* signatureViewController.m in Sources */,
 				EC4613E519FFC4E80046FFAE /* SDWebImageDownloaderOperation.m in Sources */,
 				EC99082D18C3391300798FAB /* NSString+DDXML.m in Sources */,
 				EC9908A018C33C9200798FAB /* XMPPParser.m in Sources */,
@@ -1551,10 +1546,10 @@
 				ECF7E1DA18C0516D002BA385 /* main.m in Sources */,
 				EC57887C19A620FA0058837C /* RegisterViewController.m in Sources */,
 				EC4613FE19FFC55F0046FFAE /* bixMomentViewController.m in Sources */,
-				E361338119EC00FD00017871 /* personInfoViewController.m in Sources */,
 				EC4613DF19FFC4E80046FFAE /* MKAnnotationView+WebCache.m in Sources */,
 				EC9908A618C33C9200798FAB /* XMPPIDTracker.m in Sources */,
 				EC99082E18C3391300798FAB /* DDXMLDocument.m in Sources */,
+				E3E59A351A07DC9000B0DA76 /* FeedBackViewController.m in Sources */,
 				EC4613E419FFC4E80046FFAE /* SDWebImageDownloader.m in Sources */,
 				EC99089618C33C9200798FAB /* XMPPXFacebookPlatformAuthentication.m in Sources */,
 				EC4613E819FFC4E80046FFAE /* UIButton+WebCache.m in Sources */,
@@ -1562,10 +1557,11 @@
 				EC4613FC19FFC55F0046FFAE /* bixMomentReplyItem.m in Sources */,
 				EC57886E19A620710058837C /* ChatListViewController.m in Sources */,
 				EC9908A818C33C9200798FAB /* XMPPStringPrep.m in Sources */,
+				E3E59A231A07DAAD00B0DA76 /* signatureViewController.m in Sources */,
 				E3F571BE19E5829000AA20E0 /* RequestInfoFromServer.m in Sources */,
 				EC99089118C33C9200798FAB /* XMPPAnonymousAuthentication.m in Sources */,
 				EC4613FB19FFC55F0046FFAE /* bixMomentDataSource.m in Sources */,
-				E3554F0219F54660001C0D1E /* chatIDViewController.m in Sources */,
+				E3E59A381A07DCFE00B0DA76 /* reportMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

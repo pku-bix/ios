@@ -6,15 +6,15 @@
 //  Copyright (c) 2013年 Ericsson Labs. All rights reserved.
 //
 
-#import "CaptureViewController.h"
+#import "bixCaptureViewController.h"
 
-@interface CaptureViewController ()
+@interface bixCaptureViewController ()
 {
     AGSimpleImageEditorView *editorView;
 }
 @end
 
-@implementation CaptureViewController
+@implementation bixCaptureViewController
 @synthesize delegate;
 @synthesize image;
 
@@ -61,7 +61,7 @@
     //通过代理回传给上一个界面显示
     [self.delegate passImage:resultImage];
     [self dismissViewControllerAnimated:YES completion:nil];
-//  [self dismissModalViewControllerAnimated:YES];
+    //  [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning

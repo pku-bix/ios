@@ -372,7 +372,7 @@
             </objects>
             <point key="canvasLocation" x="721" y="-407"/>
         </scene>
-        <!--Bix Moment View Controller-->
+        <!--Bix Moment View Controller - 车友圈-->
         <scene sceneID="atU-7Q-ptH">
             <objects>
                 <viewController id="RAT-wc-dfZ" customClass="bixMomentViewController" sceneMemberID="viewController">
@@ -458,7 +458,7 @@
                             <constraint firstAttribute="trailing" secondItem="eti-6L-iT8" secondAttribute="trailing" id="f69-l8-Mqn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="5Yu-iz-SBQ"/>
+                    <navigationItem key="navigationItem" title="车友圈" id="5Yu-iz-SBQ"/>
                     <connections>
                         <outlet property="tableView" destination="eti-6L-iT8" id="Kba-yi-DcM"/>
                     </connections>

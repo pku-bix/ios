@@ -10,13 +10,12 @@
 #import "AGSimpleImageEditorView.h"
 #import "PassImageDelegate.h"
 
-@interface CaptureViewController : UIViewController
+@interface bixCaptureViewController : UIViewController
 {
     UIImage *image;
 }
 
 @property(nonatomic,strong) UIImage *image;
-
 @property(strong,nonatomic) NSObject<PassImageDelegate> *delegate;
 
 @end

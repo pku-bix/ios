@@ -7,7 +7,7 @@
 //
 
 #import "personInfoViewController.h"
-#import "CaptureViewController.h"
+#import "bixCaptureViewController.h"
 #import "generalTableView.h"
 #import "AppDelegate.h"
 #import "RequestInfoFromServer.h"
@@ -33,7 +33,7 @@
     AppDelegate* appDelegate;
     RequestInfoFromServer* request;
     
-//    generalTableView *personInfo_generalTableView;
+    //    generalTableView *personInfo_generalTableView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -63,7 +63,7 @@
     
     rect = [[UIScreen mainScreen]bounds];
     
-//    personInfo_generalTableView = [[generalTableView alloc]init];
+    //    personInfo_generalTableView = [[generalTableView alloc]init];
     
     NSArray * array = [[NSArray alloc]initWithObjects:@"头像", @"名字",@"个性签名", nil];
     NSArray * array2 = [[NSArray alloc]initWithObjects:@"个人ID", @"微信号", @"Tesla车型", nil];
@@ -75,8 +75,8 @@
     _tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, 50, rect.size.width, rect.size.height-100) style:UITableViewStyleGrouped];
     //    table_View.contentSize = CGSizeMake(320, 2000);
     //设置tableview的背景；
-//    UIImageView *tableBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Tesla"]];
-//    [_tableView setBackgroundView:tableBg];
+    //    UIImageView *tableBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Tesla"]];
+    //    [_tableView setBackgroundView:tableBg];
     [self.view addSubview:_tableView];
 }
 
@@ -90,10 +90,10 @@
     //设置 dataSource 和 delegate 这两个代理
     NSLog(@"personInfoViewController will appear");
     
-//    appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-//    name = appDelegate.account.setName;
-//    siganature = appDelegate.account.setSignature;
-//    
+    //    appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    //    name = appDelegate.account.setName;
+    //    siganature = appDelegate.account.setSignature;
+    //
     NSLog(@"last name is %@", name);
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getName:) name:@"nameChange" object:nil];
@@ -105,7 +105,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
-
+    
 }
 
 -(void)getName:(NSNotification*)notification
@@ -167,7 +167,7 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    return [general_TableView tableView:tableView cellForRowAtIndexPath:indexPath];
+    //    return [general_TableView tableView:tableView cellForRowAtIndexPath:indexPath];
     static NSString *TableSampleIdentifier = @"TableSampleIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:
                              TableSampleIdentifier];
@@ -177,19 +177,19 @@
                 reuseIdentifier:TableSampleIdentifier];
     }
     
-//    UIImage *image = [UIImage imageNamed:@"superChargerPile_90"];
+    //    UIImage *image = [UIImage imageNamed:@"superChargerPile_90"];
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
     CGRect frame = CGRectMake(0.0,0.0,headImage.size.width,headImage.size.height);
     button.frame = frame;
     [button setBackgroundImage:headImage forState:UIControlStateNormal];
     button.backgroundColor = [UIColor clearColor];
-
-//    UIImage *image0 = [UIImage imageNamed:@"personInfo"];
+    
+    //    UIImage *image0 = [UIImage imageNamed:@"personInfo"];
     NSUInteger row = [indexPath row];
     if (indexPath.section == 0) {
         cell.textLabel.text = [self.list objectAtIndex:row];
         if (row == 0) {
-//            cell.accessoryView = image0;
+            //            cell.accessoryView = image0;
             cell.accessoryView = button;
         }
         else if(row == 1)
@@ -205,7 +205,7 @@
     {
         cell.textLabel.text = [self.list2 objectAtIndex:row];
         if (row == 0) {
-//            cell.detailTextLabel.text = ID;
+            //            cell.detailTextLabel.text = ID;
             //获取用户的聊天ID
             cell.detailTextLabel.text = appDelegate.account.username;
         }
@@ -219,14 +219,14 @@
         }
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    NSLog(@"tableView.rowHeight is %f", tableView.rowHeight);
+    //    NSLog(@"tableView.rowHeight is %f", tableView.rowHeight);
     return cell;
 }
 //
 //-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 //{
 ////    return [general_TableView titleForHeaderInSection:section];
-//    
+//
 //}
 //
 //-(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
@@ -236,14 +236,14 @@
 //
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    return [general_TableView tableView:tableView heightForRowAtIndexPath:indexPath];
+    //    return [general_TableView tableView:tableView heightForRowAtIndexPath:indexPath];
     if(indexPath.section == 0 && indexPath.row == 0)
     {
         return tableView.rowHeight+35;
     }
     else
         return tableView.rowHeight;
-
+    
 }
 
 
@@ -253,7 +253,7 @@
 {
     //选中后的反显颜色即刻消失,即选中cell后，cell的高亮立刻消失；
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    [general_TableView didSelectRowAtIndexPath:indexPath setingViewController:self];
+    //    [general_TableView didSelectRowAtIndexPath:indexPath setingViewController:self];
     if (indexPath.section == 0){
         if (indexPath.row == 0) {
             UIActionSheet *chooseImageSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从手机相册选择", nil];
@@ -261,14 +261,14 @@
         }
         else if (indexPath.row == 1)
         {
-             [self performSegueWithIdentifier:@"name" sender:self];
+            [self performSegueWithIdentifier:@"name" sender:self];
         }
         else if (indexPath.row == 2)
         {
             NSString *noti = @"test the problem signature";
             [[NSNotificationCenter defaultCenter]postNotificationName:@"nameChange" object:noti];
             
-
+            
             [self performSegueWithIdentifier:@"signature" sender:self];
         }
     }
@@ -276,7 +276,7 @@
     else if (indexPath.section == 1)
     {
         if (indexPath.row == 0) {
-//            [self performSegueWithIdentifier:@"ID" sender:self];
+            //            [self performSegueWithIdentifier:@"ID" sender:self];
         }
         else if (indexPath.row == 1)
         {
@@ -311,7 +311,7 @@
                 NSLog(@"模拟器无法打开相机");
             }
             [self presentViewController:picker animated:YES completion:nil];
-//            [self presentModalViewController:picker animated:YES];  此函数ios6之后已经废弃不用！
+            //            [self presentModalViewController:picker animated:YES];  此函数ios6之后已经废弃不用！
             break;
             
         case 1://From album
@@ -349,7 +349,7 @@
         UIImage *image = [UIImage imageWithData:data];
         
         //将图片传递给截取界面进行截取并设置回调方法（协议）
-        CaptureViewController *captureView = [[CaptureViewController alloc] init];
+        bixCaptureViewController *captureView = [[bixCaptureViewController alloc] init];
         captureView.delegate = self;
         captureView.image = image;
         //隐藏UIImagePickerController本身的导航栏
@@ -379,35 +379,35 @@
 -(UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize
 {
     UIGraphicsBeginImageContext(CGSizeMake(image.size.width*scaleSize,image.size.height*scaleSize));
-//    UIGraphicsBeginImageContext(CGSizeMake(60, 60));
+    //    UIGraphicsBeginImageContext(CGSizeMake(60, 60));
     [image drawInRect:CGRectMake(0, 0, image.size.width * scaleSize , image.size.height * scaleSize)];
-//    [image drawInRect:CGRectMake(0, 0, 60, 60)];
+    //    [image drawInRect:CGRectMake(0, 0, 60, 60)];
     UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return scaledImage;
 }
 
- // 改变图像的尺寸，方便上传服务器
- - (UIImage *) scaleFromImage: (UIImage *) image
- {
- UIGraphicsBeginImageContext(CGSizeMake(60, 60));
- [image drawInRect:CGRectMake(0, 0, 60 , 60)];
- UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
- UIGraphicsEndImageContext();
- return newImage;
- }
+// 改变图像的尺寸，方便上传服务器
+- (UIImage *) scaleFromImage: (UIImage *) image
+{
+    UIGraphicsBeginImageContext(CGSizeMake(60, 60));
+    [image drawInRect:CGRectMake(0, 0, 60 , 60)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

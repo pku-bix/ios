@@ -11,16 +11,16 @@
 
 @interface reportMapViewController : UIViewController<BMKMapViewDelegate, BMKSearchDelegate>
 {
-//    BMKMapView * reportMapView;
+    //    BMKMapView * reportMapView;
     
     IBOutlet UIButton *btnReportCharger;
     IBOutlet BMKMapView *reportMapView;
     
     IBOutlet UIButton *btnCurrentLocation;
     BMKSearch *_search;
-    BMKUserLocation *current_Location;    
-//       NSString *strLatitude, *strLongitude;
-//    IBOutlet BMKMapView *reportMap;
+    BMKUserLocation *current_Location;
+    //       NSString *strLatitude, *strLongitude;
+    //    IBOutlet BMKMapView *reportMap;
     
 }
 

@@ -25,9 +25,11 @@
 -(NSURL*) avatarUrl{
     return self.sender.avatarUrl;
 }
+
 -(NSString*) nickname{
     return self.sender.nickname;
 }
+
 -(NSString*) passage{
     return @"这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容。";
 }
@@ -41,9 +43,11 @@
         _replies = [NSMutableArray new];
         
         // TODO: 使用HTTP层代替以下的静态测试数据
+        
         [_pictureUrls addObject: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];
         [_pictureUrls addObject: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];
         [_pictureUrls addObject: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];
+        
         [_replies addObject:[[bixMomentReplyItem alloc] initWithSender:sender andReplyText:@"呵呵呵"]];
         [_replies addObject:[[bixMomentReplyItem alloc] initWithSender:sender andReplyText:@"哈哈哈"]];
     }

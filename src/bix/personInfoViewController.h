@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CaptureViewController.h"
+#import "bixCaptureViewController.h"
 #import "PassImageDelegate.h"
 
 @interface personInfoViewController : UIViewController<UITableViewDelegate, UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PassImageDelegate>

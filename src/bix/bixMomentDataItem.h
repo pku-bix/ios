@@ -17,7 +17,7 @@
 
 // 头像
 @property (readonly,nonatomic) NSURL* avatarUrl;
-// 昵称
+// 昵称, 用户名;
 @property (readonly,nonatomic) NSString* nickname;
 // 分享文章
 @property (nonatomic) NSString* passage;

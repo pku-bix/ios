@@ -20,7 +20,7 @@
 {
     CGRect rect;
     BMKPointAnnotation* item_Annotation ;
- 
+    
     NSDictionary *coordinateDic;
 }
 
@@ -40,7 +40,7 @@
     // Do any additional setup after loading the view.
     rect = [[UIScreen mainScreen]bounds];
     reportMapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height)];
-//
+    //
     _search = [[BMKSearch alloc]init ];
     item_Annotation = [[BMKPointAnnotation alloc]init];
     
@@ -48,8 +48,8 @@
     [self.view addSubview:btnReportCharger];
     [self.view addSubview:btnCurrentLocation];
     
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseAgain:) name:@"chargerInfoViewController" object:nil];
-//    [self getCurrentButtonClicked:_search current_Location:current_Location];
+    //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseAgain:) name:@"chargerInfoViewController" object:nil];
+    //    [self getCurrentButtonClicked:_search current_Location:current_Location];
 }
 
 // 得知 chargerInfoViewController注册了通知， 此时再发通知，通知得先注册，再post发送，观察者才能收到;
@@ -111,9 +111,9 @@
 {
     if (error == 0) {
         //		BMKPointAnnotation* item = [[BMKPointAnnotation alloc]init];
-//        ((BMKPinAnnotationView *)annotationView).pinColor = BMKPinAnnotationColorGreen;
+        //        ((BMKPinAnnotationView *)annotationView).pinColor = BMKPinAnnotationColorGreen;
 		item_Annotation.coordinate = result.geoPt;
-//		item_Annotation.title = result.strAddr ;
+        //		item_Annotation.title = result.strAddr ;
         
         item_Annotation.title = @"大头针可拖动";
         item_Annotation.subtitle = @"拖动大头针到上报位置";
@@ -121,8 +121,8 @@
         _strLatitude = [NSString stringWithFormat:@"%f", result.geoPt.latitude];
         _strLongitude = [NSString stringWithFormat:@"%f", result.geoPt.longitude ];
         NSLog(@"按下 当前位置 按钮时 的纬度:%@, 经度:%@", _strLatitude, _strLongitude);
-//        current_Location = (BMKUserLocation)result.geoPt;
-//        [item setCoordinate:result.geoPt];
+        //        current_Location = (BMKUserLocation)result.geoPt;
+        //        [item setCoordinate:result.geoPt];
     }
 }
 
@@ -130,19 +130,19 @@
  *用户位置更新后，会调用此函数
  *@param mapView 地图View
  *@param userLocation 新的用户位置
-// */
+ // */
 - (void)mapView:(BMKMapView *)mapView didUpdateUserLocation:(BMKUserLocation *)userLocation
 {
-//    NSLog(@"didUpdateUserLocation");
+    //    NSLog(@"didUpdateUserLocation");
     if (userLocation != nil) {
-//		NSLog(@"维度是:%f 经度是:%f", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
+        //		NSLog(@"维度是:%f 经度是:%f", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
 	}
     current_Location = userLocation;
-
-//    item_Annotation setCoordinate:
-//    [reportMapView removeAnnotation:item];
-//    [reportMapView removeAnnotations:reportMapView.annotations];
-//    [self getCurrentButtonClicked:_search current_Location:current_Location];
+    
+    //    item_Annotation setCoordinate:
+    //    [reportMapView removeAnnotation:item];
+    //    [reportMapView removeAnnotations:reportMapView.annotations];
+    //    [self getCurrentButtonClicked:_search current_Location:current_Location];
 }
 
 /**
@@ -165,15 +165,15 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (IBAction)currentLocation:(id)sender {
     [self getCurrentButtonClicked:_search current_Location:current_Location];
@@ -210,7 +210,7 @@
 //    {
 //        NSLog(@"反geo检索发送失败");
 //    }
-//    
+//
 //}
 //
 //-(void)getCurrentAddr
@@ -240,8 +240,8 @@
         case BMKAnnotationViewDragStateEnding:
         {
             NSLog(@"放下时的坐标是:%f, %f", view.annotation.coordinate.latitude, view.annotation.coordinate.longitude);
-           _strLatitude = [NSString stringWithFormat:@"%f", view.annotation.coordinate.latitude ];
-           _strLongitude = [NSString stringWithFormat:@"%f", view.annotation.coordinate.longitude];
+            _strLatitude = [NSString stringWithFormat:@"%f", view.annotation.coordinate.latitude ];
+            _strLongitude = [NSString stringWithFormat:@"%f", view.annotation.coordinate.longitude];
         }
             break;
             
@@ -253,24 +253,24 @@
 - (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate
 {
     NSLog(@"坐标是:%f, %f", newCoordinate.latitude, newCoordinate.longitude);
-//    NSLog(@"新的坐标是: %f", newCoordinate);
+    //    NSLog(@"新的坐标是: %f", newCoordinate);
 }
 
 
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
 {
     if ([annotation isKindOfClass:[BMKPointAnnotation class]])
-        {
+    {
         BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
-            newAnnotationView.pinColor = BMKPinAnnotationColorGreen;
-//        newAnnotationView.animatesDrop = YES;// 设置该标注点动画显示
-            newAnnotationView.annotation=annotation;
-//            [newAnnotationView setSelected:YES animated:YES];
-            newAnnotationView.draggable = YES;
-//            NSLog(@"维度: %@, 经度:", item_Annotation.coordinate);
-//            current_Location = newAnnotationView.annotation;
-            return newAnnotationView;
-        }
+        newAnnotationView.pinColor = BMKPinAnnotationColorGreen;
+        //        newAnnotationView.animatesDrop = YES;// 设置该标注点动画显示
+        newAnnotationView.annotation=annotation;
+        //            [newAnnotationView setSelected:YES animated:YES];
+        newAnnotationView.draggable = YES;
+        //            NSLog(@"维度: %@, 经度:", item_Annotation.coordinate);
+        //            current_Location = newAnnotationView.annotation;
+        return newAnnotationView;
+    }
     return nil;
 }
 

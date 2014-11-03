@@ -34,8 +34,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-//    appDelegate.account.setName
+    //    appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    //    appDelegate.account.setName
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,18 +45,18 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (IBAction)saveAndReturn:(id)sender {
-//     self.nameTextField
+    //     self.nameTextField
     NSLog(@"%@", self.nameTextField.text);
     Account* account = [(AppDelegate *)[UIApplication sharedApplication].delegate account];
     //上传修改的名字字段;
@@ -64,7 +64,7 @@
     [request sendAsynchronousPostTextRequest:self.nameTextField.text type:NAME_TYPE];
     
     //将设置的名字字段保存在account.setName中;
-//    appDelegate.account.setName = self.nameTextField.text;
+    //    appDelegate.account.setName = self.nameTextField.text;
     account.setName = self.nameTextField.text;
     [account save];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"nameChange" object:self.nameTextField.text];
