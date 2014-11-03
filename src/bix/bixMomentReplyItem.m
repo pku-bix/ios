@@ -35,6 +35,7 @@
 -(NSString*) nickname{
     return self.sender.nickname;
 }
+
 -(NSURL*) avatarUrl{
     return self.sender.avatarUrl;
 }

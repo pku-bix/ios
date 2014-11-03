@@ -65,6 +65,9 @@
     [cell loadFromMomentDataItem:
         [appdelegate.momentDataSrouce getOneMoment]];
     
+    //点击cell的时候，不会变暗，不会有反应;
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     return cell;
 }
 
@@ -75,6 +78,14 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
 }
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //选中后的反显颜色即刻消失,即选中cell后，cell的高亮立刻消失；
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 /*
  #pragma mark - Navigation

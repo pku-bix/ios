@@ -72,12 +72,8 @@
     Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
     account.setSignature = self.signature.text;
     [account save];
-//    
-//    NSMutableString *url = [NSMutableString stringWithString:POST_IMAGE_TEXT_INFO_IP];
-//    [url appendString:account.username];
-//    NSLog(@"url is %@", url);
-
-    [request sendAsynchronousPostRequest];
+    //发送图片、文字的异步信息;
+//    [request sendAsynchronousPostRequest];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
