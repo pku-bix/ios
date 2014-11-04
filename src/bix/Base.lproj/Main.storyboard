@@ -446,6 +446,9 @@
                                                 </tableView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="sWC-Sv-xmA" kind="modal" identifier="sendMood" id="tYt-bh-GIs"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -458,14 +461,95 @@
                             <constraint firstAttribute="trailing" secondItem="eti-6L-iT8" secondAttribute="trailing" id="f69-l8-Mqn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="车友圈" id="5Yu-iz-SBQ"/>
+                    <navigationItem key="navigationItem" title="车友圈" id="5Yu-iz-SBQ">
+                        <barButtonItem key="rightBarButtonItem" id="mdH-dZ-hmr">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Bw2-ix-NQI">
+                                <rect key="frame" x="233" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="发心情">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendMood:" destination="RAT-wc-dfZ" eventType="touchUpInside" id="gg9-bL-5rB"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="btnSendMood" destination="Bw2-ix-NQI" id="YeG-ok-Y7a"/>
                         <outlet property="tableView" destination="eti-6L-iT8" id="Kba-yi-DcM"/>
+                        <segue destination="aOG-92-vkB" kind="modal" identifier="test" id="r6Z-ji-GgV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YAm-4Q-0QG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1173" y="-407"/>
+        </scene>
+        <!--Bix Send Mood Data-->
+        <scene sceneID="P6X-T4-kTi">
+            <objects>
+                <viewController id="sWC-Sv-xmA" customClass="bixSendMoodData" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BQK-hb-Z38"/>
+                        <viewControllerLayoutGuide type="bottom" id="sc8-2F-aOX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="q1x-yT-Ldd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60A-BP-NZ2">
+                                <rect key="frame" x="20" y="14" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="取消">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancleSendMood:" destination="sWC-Sv-xmA" eventType="touchUpInside" id="jpY-w2-qga"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMn-mE-KvJ">
+                                <rect key="frame" x="254" y="20" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="发送">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendMoodData:" destination="sWC-Sv-xmA" eventType="touchUpInside" id="BQz-fd-1BC"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="65u-9R-H9p">
+                                <rect key="frame" x="20" y="64" width="264" height="144"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aam-8r-A15" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1621" y="105"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2rG-ae-G2t">
+            <objects>
+                <viewController id="aOG-92-vkB" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QEn-Kg-p5d"/>
+                        <viewControllerLayoutGuide type="bottom" id="AYc-XM-Ase"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vJK-gO-PO1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SxS-D9-hl9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1621" y="-491"/>
         </scene>
         <!--Setting View Controller - 设置-->
         <scene sceneID="ePL-wr-2wg">
@@ -536,7 +620,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lh9-eb-qhM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2027" y="946"/>
+            <point key="canvasLocation" x="2083" y="1250"/>
         </scene>
         <!--Report Map View Controller - 充电桩位置-->
         <scene sceneID="3eH-lz-CmE">
@@ -590,7 +674,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZDv-d8-SYh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2027" y="1565"/>
+            <point key="canvasLocation" x="2091" y="1845"/>
         </scene>
         <!--Person Info View Controller - 个人信息-->
         <scene sceneID="gv4-jl-qxp">
@@ -616,7 +700,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IYh-lD-ENs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2011" y="-387"/>
+            <point key="canvasLocation" x="2083" y="45"/>
         </scene>
         <!--Name View Controller-->
         <scene sceneID="vhM-GR-kQd">
@@ -961,7 +1045,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vST-Fm-P1C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2027" y="273"/>
+            <point key="canvasLocation" x="2083" y="633"/>
         </scene>
         <!--Login View Controller - 登录-->
         <scene sceneID="c4v-0H-Wcf">

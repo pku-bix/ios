@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface bixMomentViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface bixMomentViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+{
+    IBOutlet UIButton *btnSendMood;
+}
+
+- (IBAction)sendMood:(id)sender;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  CaptureViewController.h
+//  bixCaptureViewController.h
 //  ImagePickerDemo
 //
 //  Created by Ryan Tang on 13-1-5.
