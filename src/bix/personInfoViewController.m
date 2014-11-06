@@ -11,6 +11,8 @@
 #import "generalTableView.h"
 #import "AppDelegate.h"
 #import "RequestInfoFromServer.h"
+#import "MessageBox.h"
+#import "MBProgressHUD.h"
 
 @interface personInfoViewController ()
 
@@ -32,6 +34,8 @@
     UITableView *_tableView;
     AppDelegate* appDelegate;
     RequestInfoFromServer* request;
+    
+    MBProgressHUD *hud;
     
     //    generalTableView *personInfo_generalTableView;
 }
@@ -325,19 +329,28 @@
     }
 }
 
-#pragma 拍照选择照片协议方法
+#pragma 拍照选择照片协议方法;
+//当进入拍照模式拍照 并且点击Use photo后 或者 从本地图库选择图片后 会调用此方法;
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [UIApplication sharedApplication].statusBarHidden = NO;
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    
+    //拍照和从本地图片库选择 mediaType都是    public.image
+    NSLog(@"mediaType is %@", mediaType);
+    
     NSData *data;
     if ([mediaType isEqualToString:@"public.image"]){
         
         //切忌不可直接使用originImage，因为这是没有经过格式化的图片数据，可能会导致选择的图片颠倒或是失真等现象的发生，从UIImagePickerControllerOriginalImage中的Origin可以看出，很原始，哈哈
+        //读出拍的照片或者从本地图库选择的照片， 是原始的
         UIImage *originImage = [info objectForKey:UIImagePickerControllerOriginalImage];
         //图片压缩，因为原图都是很大的，不必要传原图
         UIImage *scaleImage = [self scaleImage:originImage toScale:0.3];
         //以下这两步都是比较耗时的操作，最好开一个HUD提示用户，这样体验会好些，不至于阻塞界面
+        
+        hud = [MessageBox Toasting:@"正在处理" In:self.view];
+        
         if (UIImagePNGRepresentation(scaleImage) == nil) {
             //将图片转换为JPG格式的二进制数据
             data = UIImageJPEGRepresentation(scaleImage, 1);
@@ -345,6 +358,7 @@
             //将图片转换为PNG格式的二进制数据
             data = UIImagePNGRepresentation(scaleImage);
         }
+        [hud hide:YES];
         //将二进制数据生成UIImage
         UIImage *image = [UIImage imageWithData:data];
         

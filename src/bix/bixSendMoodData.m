@@ -13,6 +13,9 @@
 @end
 
 @implementation bixSendMoodData
+{
+    UIImage *pickImage;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +30,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.image1.image = self.image;
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,12 +54,19 @@
 }
 */
 
+#pragma PassImageDelegate
+-(void)passImage:(UIImage *)image
+{
+    pickImage = image;
+}
+
+
 - (IBAction)cancleSendMood:(id)sender {
-    
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)sendMoodData:(id)sender {
+- (IBAction)sendMood:(id)sender {
     
 }
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PassImageDelegate.h"
 
 @interface bixMomentViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {

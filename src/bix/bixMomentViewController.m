@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "AppDelegate.h"
 #import "bixCaptureViewController.h"
+#import "bixSendMoodData.h"
 
 @interface bixMomentViewController ()
 
@@ -21,6 +22,9 @@
 
 
 @implementation bixMomentViewController
+{
+    UIImage *image_send_mood_data;
+}
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -105,8 +109,8 @@
  */
 
 - (IBAction)sendMood:(id)sender {
-//    UIActionSheet *chooseImageSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从手机相册选择", nil];
-//    [chooseImageSheet showInView:self.view];
+    UIActionSheet *chooseImageSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从手机相册选择", nil];
+    [chooseImageSheet showInView:self.view];
     
 //    [self performSegueWithIdentifier:@"sendMood" sender:self];
 }
@@ -121,16 +125,18 @@
     switch (buttonIndex) {
         case 0://Take picture
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                //当设备带有照相功能,则进入照相模式;
                 picker.sourceType = UIImagePickerControllerSourceTypeCamera;
                 
             }else{
                 NSLog(@"模拟器无法打开相机");
             }
             [self presentViewController:picker animated:YES completion:nil];
-            //            [self presentModalViewController:picker animated:YES];  此函数ios6之后已经废弃不用！
+            //[self presentModalViewController:picker animated:YES];  此函数ios6之后已经废弃不用！
             break;
             
         case 1://From album
+            //进入设备的图片库;
             picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             [self presentViewController:picker animated:YES completion:nil];
             break;
@@ -141,13 +147,18 @@
     }
 }
 
-/*
-#pragma 拍照选择照片协议方法
+
+#pragma mark 拍照选择照片协议方法
+//当进入拍照模式拍照 并且点击Use photo后 或者 从本地图库选择图片后 会调用此方法;
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [UIApplication sharedApplication].statusBarHidden = NO;
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    
+    NSLog(@"mediaType is %@", mediaType);
+    
     NSData *data;
+    
     if ([mediaType isEqualToString:@"public.image"]){
         
         //切忌不可直接使用originImage，因为这是没有经过格式化的图片数据，可能会导致选择的图片颠倒或是失真等现象的发生，从UIImagePickerControllerOriginalImage中的Origin可以看出，很原始，哈哈
@@ -163,18 +174,39 @@
             data = UIImagePNGRepresentation(scaleImage);
         }
         //将二进制数据生成UIImage
-        UIImage *image = [UIImage imageWithData:data];
+       image_send_mood_data = [UIImage imageWithData:data];
         
+//        bixSendMoodData *sendMoodData = [[bixSendMoodData alloc]init];
+//        sendMoodData.delegate = self;
+//        sendMoodData.image = image;
         //将图片传递给截取界面进行截取并设置回调方法（协议）
-        bixCaptureViewController *captureView = [[bixCaptureViewController alloc] init];
-        captureView.delegate = self;
-        captureView.image = image;
+//        bixCaptureViewController *captureView = [[bixCaptureViewController alloc] init];
+//        captureView.delegate = self;
+//        captureView.image = image;
         //隐藏UIImagePickerController本身的导航栏
         picker.navigationBar.hidden = YES;
-        [picker pushViewController:captureView animated:YES];
+        
+        NSLog(@"end picker image");
+        
+//        [picker pushViewController:sendMoodData animated:YES];
+        [picker dismissViewControllerAnimated:YES completion:nil];
+//        [self presentViewController:sendMoodData animated:YES completion:nil];
+        [self performSegueWithIdentifier:@"sendMood" sender:self];
     }
 }
-*/
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    bixSendMoodData * sendMood = (bixSendMoodData*)segue.destinationViewController;
+    sendMood.image = image_send_mood_data;
+//    chargerInfoViewController *c = (chargerInfoViewController*)segue.destinationViewController;
+//    c.latitude = self.strLatitude;
+//    c.longitude = self.strLongitude;
+
+}
+
 
 //
 //#pragma mark - 图片回传协议方法

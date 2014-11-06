@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PassImageDelegate.h"
 
-@interface bixSendMoodData : UIViewController
+@interface bixSendMoodData : UIViewController<PassImageDelegate>
 
+@property(strong,nonatomic) NSObject<PassImageDelegate> *delegate;
+@property(nonatomic,strong) UIImage *image;
 
 - (IBAction)cancleSendMood:(id)sender;
-- (IBAction)sendMoodData:(id)sender;
+
+- (IBAction)sendMood:(id)sender;
+@property (strong, nonatomic) IBOutlet UIImageView *image1;
 
 @end
