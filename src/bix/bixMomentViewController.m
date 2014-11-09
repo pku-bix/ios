@@ -142,7 +142,6 @@
             break;
             
         default:
-            
             break;
     }
 }
@@ -183,6 +182,7 @@
 //        bixCaptureViewController *captureView = [[bixCaptureViewController alloc] init];
 //        captureView.delegate = self;
 //        captureView.image = image;
+        
         //隐藏UIImagePickerController本身的导航栏
         picker.navigationBar.hidden = YES;
         
@@ -201,10 +201,6 @@
     // Pass the selected object to the new view controller.
     bixSendMoodData * sendMood = (bixSendMoodData*)segue.destinationViewController;
     sendMood.image = image_send_mood_data;
-//    chargerInfoViewController *c = (chargerInfoViewController*)segue.destinationViewController;
-//    c.latitude = self.strLatitude;
-//    c.longitude = self.strLongitude;
-
 }
 
 

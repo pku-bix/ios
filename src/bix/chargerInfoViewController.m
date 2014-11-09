@@ -10,6 +10,8 @@
 #import "Constants.h"
 #import "AppDelegate.h"
 #import "UIButton+Bootstrap.h"
+#import "MessageBox.h"
+#import "RequestInfoFromServer.h"
 
 @interface chargerInfoViewController ()
 
@@ -18,6 +20,7 @@
 @implementation chargerInfoViewController
 {
     AppDelegate * appDelegate;
+    RequestInfoFromServer *request;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,6 +37,34 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.btnSubmitReport primaryStyle];
+    
+   //设置各个属性的代理， 回调textFieldShouldReturn
+    self.coordinate.delegate = self;
+    self.personID.delegate = self;
+    self.detailAddr.delegate = self;
+    self.telephone.delegate = self;
+    self.remarks.delegate = self;
+    self.email.delegate = self;
+    self.parkingNum.delegate = self;
+    
+    //设置不可编辑， 也可从storyboard设置;
+    self.coordinate.enabled = NO;
+    self.personID.enabled = NO;
+
+    //当输入框没有内容，水印提示, 可在storyboard设置
+//    self.coordinate.placeholder = @"经纬度";
+//    self.detailAddr.placeholder = @"详细地址";
+//    self.personID.placeholder = @"用户名";
+//    self.telephone.placeholder = @"电话号码";
+//    self.email.placeholder = @"邮箱地址";
+//    self.remarks.placeholder = @"备注";
+//    self.parkingNum.placeholder = @"充电桩数量";
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,6 +78,7 @@
     //获取用户登入的账户ID;
     appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     self.personID.text = appDelegate.account.username;
+    //解析上报地址的经纬度
     [self parseTest];
     
     //    NSLog(@"chargerInfoViewController");
@@ -78,6 +110,7 @@
         [t1 appendString:_longitude];
     }
     self.coordinate.text = t1;
+
 }
 /*
  #pragma mark - Navigation
@@ -89,5 +122,44 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+- (IBAction)Tap:(id)sender {
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+}
+//点击上报按钮触发的事件;
+
+- (IBAction)reportDetailChargerInfo:(id)sender {
+//    NSLog(@"点击上报按钮");
+
+    if ([self.telephone.text isEqualToString:@""]) {
+        [MessageBox Toast:@"电话号码不能为空" In: self.view];
+        NSLog(@"电话号码为空");
+        return ;
+    }
+    if ([self.coordinate.text isEqualToString:@"纬度:   经度:"]) {
+        [MessageBox Toast:@"经纬度不能为空，点击上报位置" In: self.view];
+        NSLog(@"经纬度为空");
+        return ;
+    }
+    if ([self.detailAddr.text isEqualToString:@""]) {
+        [MessageBox Toast:@"充电桩详细地址不能为空" In: self.view];
+        return ;
+    }
+    
+    self.mutableArray = [[NSMutableArray alloc]initWithCapacity:5];
+    
+    [self.mutableArray addObject:self.personID.text];
+    NSLog(@"personID is %@", self.personID.text);
+    
+    [self.mutableArray addObject:self.longitude];
+    NSLog(@"longitude is %@", self.longitude);
+    
+    [self.mutableArray addObject:self.latitude];
+    NSLog(@"latitude is %@", self.latitude);
+    
+    request = [[RequestInfoFromServer alloc]init];
+    [request sendAsynchronousPostReportChargerRequest:self.mutableArray];
+    
+}
 
 @end

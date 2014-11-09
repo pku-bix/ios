@@ -16,6 +16,9 @@
     IBOutlet UIButton *btnReportCharger;
     IBOutlet BMKMapView *reportMapView;
     
+    IBOutlet UIButton *btnShrink;
+    IBOutlet UIButton *btnMagnify;
+    
     IBOutlet UIButton *btnCurrentLocation;
     BMKSearch *_search;
     BMKUserLocation *current_Location;
@@ -26,6 +29,11 @@
 
 @property NSString *strLatitude;
 @property NSString *strLongitude;
+
+//放大
+- (IBAction)zoomIn:(id)sender;
+//缩小
+- (IBAction)zoomOut:(id)sender;
 
 - (IBAction)currentLocation:(id)sender;
 

@@ -47,6 +47,8 @@
     [self.view addSubview:reportMapView];
     [self.view addSubview:btnReportCharger];
     [self.view addSubview:btnCurrentLocation];
+    [self.view addSubview:btnMagnify];
+    [self.view addSubview:btnShrink];
     
     //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseAgain:) name:@"chargerInfoViewController" object:nil];
     //    [self getCurrentButtonClicked:_search current_Location:current_Location];
@@ -174,6 +176,32 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+
+- (IBAction)zoomOut:(id)sender {
+    if(reportMapView.zoomLevel > 3)
+    {
+        reportMapView.zoomLevel -= 1;
+    }
+    else
+    {
+        reportMapView.zoomLevel = 3;
+    }
+    
+}
+
+- (IBAction)zoomIn:(id)sender {
+    
+    if(reportMapView.zoomLevel < 21)
+    {
+        reportMapView.zoomLevel += 1;
+    }
+    else
+    {
+        reportMapView.zoomLevel = 21;
+    }
+
+}
 
 - (IBAction)currentLocation:(id)sender {
     [self getCurrentButtonClicked:_search current_Location:current_Location];

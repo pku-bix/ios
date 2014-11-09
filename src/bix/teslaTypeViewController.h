@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface teslaTypeViewController : UIViewController
+@interface teslaTypeViewController : UIViewController<UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *teslaType;
 - (IBAction)saveTeslaType:(id)sender;
+- (IBAction)Tap:(id)sender;
 
 @end

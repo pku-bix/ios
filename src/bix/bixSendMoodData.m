@@ -29,6 +29,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+//    [UIApplication sharedApplication].statusBarHidden = NO;
+//    self.navigationController.navigationBar.hidden = YES;
     // Do any additional setup after loading the view.
 }
 
@@ -55,6 +58,7 @@
 */
 
 #pragma PassImageDelegate
+
 -(void)passImage:(UIImage *)image
 {
     pickImage = image;

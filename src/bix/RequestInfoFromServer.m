@@ -119,6 +119,65 @@
     [NSURLConnection  connectionWithRequest:request delegate:self];    
 }
 
+
+-(void)sendAsynchronousPostReportChargerRequest:(NSMutableArray *)mutableArray
+{
+    //dictionary 对象下标从小到大顺序为:用户ID、经度、维度、电话号码、详细地址、邮箱地址、充电桩数量、备注信息;后三个字段是用户上报时的选填字段，不是必填字段;
+    
+    _selectNotificationKind = 3;//第三种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
+    
+    //    Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
+    
+    NSMutableString *url = [NSMutableString stringWithString:REPORT_CHARGER_INFO_IP];
+    //    [url appendString:account.username];
+    NSLog(@"url is %@", url);
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                                       timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];
+    
+    NSString *boundary = @"PkuBixMustSuccess"; //分界线
+    NSMutableData *body = [NSMutableData data]; //http body
+
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"username\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //用户ID
+    [body appendData:[[NSString stringWithString:[mutableArray objectAtIndex:0]] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"longitude\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        //经度
+    [body appendData:[[NSString stringWithString:[mutableArray objectAtIndex:1]] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"latitude\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    //维度
+    [body appendData:[[NSString stringWithString:[mutableArray objectAtIndex:2]] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    
+    // close form
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //设置HTTPHeader中Content-Type的值
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
+    
+    //设置Content-Length
+    [request setValue:[NSString stringWithFormat:@"%d", [body length]] forHTTPHeaderField:@"Content-Length"];
+    
+    //设置http body
+    [request setHTTPBody:body];
+    
+    //建立连接，设置代理
+    [NSURLConnection  connectionWithRequest:request delegate:self];
+}
+
 //异步POST请求,POST图片、文字
 -(void)sendAsynchronousPostRequest
 {
@@ -193,7 +252,6 @@
 //    NSString *end=[[NSString alloc]initWithFormat:@"\r\n%@",endMPboundary];
     
 }
-
 
 //服务器开始响应请求,异步请求的代理方法;
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response

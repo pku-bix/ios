@@ -30,6 +30,11 @@
 
 //单独POST 设置界面-》个人信息-》 名字、个性签名、微信号、Tesla车型字段，以及反馈与建议文字;
 -(void)sendAsynchronousPostTextRequest:(NSString*)text type:(int)type;
+
+//上报充电桩，Post用户名、电话、详细地址、经纬度，这四个必填字段，邮箱、充电桩数量、备注选填;
+-(void)sendAsynchronousPostReportChargerRequest:(NSMutableArray*)mutableArray;
+
+
 //-(void)parseResult;
 
 //-(void)parseDetailResult;

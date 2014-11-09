@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FeedBackViewController : UIViewController
-- (IBAction)sendAndBack:(id)sender;
-@property (strong, nonatomic) IBOutlet UIButton *sendBtn;
+@interface FeedBackViewController : UIViewController<UITextViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UITextView *feedBackTextView;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnFeedBack;
+
+- (IBAction)feedBackAction:(id)sender;
+- (IBAction)Tap:(id)sender;
 
 @end
  

@@ -27,11 +27,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.sendBtn primaryStyle];
+    [self.btnFeedBack primaryStyle];
+    
+    self.feedBackTextView.delegate = self;
     //    [self.navigationController.navigationBar setHidden:YES];
     // Do any additional setup after loading the view.
     //    self.view.backgroundColor = [UIColor whiteColor];
     
+}
+
+//-(BOOL)text
+
+-(BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    [textView resignFirstResponder];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,6 +49,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 /*
  #pragma mark - Navigation
@@ -51,7 +63,10 @@
  }
  */
 
-- (IBAction)sendAndBack:(id)sender {
-    //    [self dismissViewControllerAnimated:YES completion:nil];
+- (IBAction)feedBackAction:(id)sender {
+}
+
+- (IBAction)Tap:(id)sender {
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
 @end
