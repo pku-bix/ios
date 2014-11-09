@@ -47,7 +47,7 @@
      imageView.frame = CGRectMake((rect.size.width-image.size.width)/2, 90, image.size.width, image.size.height);
      // imageView.backgroundColor = [UIColor greenColor];
      //imageView.contentMode = UIViewContentModeScaleAspectFill;
-     [self.view addSubview:imageView];
+//     [self.view addSubview:imageView];
      
      _textViewTitle = [[UITextView alloc] init];
      _textViewTitle.frame = CGRectMake((rect.size.width-image.size.width)/2-10, 90+image.size.height+20, image.size.width+30, 50);
@@ -55,7 +55,7 @@
      _textViewTitle.font = [UIFont boldSystemFontOfSize:16];
      
      _textViewTitle.editable = NO;
-     [self.view addSubview:_textViewTitle];
+//     [self.view addSubview:_textViewTitle];
      
      _textView = [[UITextView alloc]init];
      _textView.frame = CGRectMake((rect.size.width-image.size.width)/2-25, 90+image.size.height+20+40, image.size.width+60, 150);
@@ -65,21 +65,21 @@
      //_textView.text = [_textView.text stringByAppendingString:aboutApp];
      
      _textView.editable = NO;
-     [self.view addSubview: _textView];
+//     [self.view addSubview: _textView];
     
     contactUsTitle = [[UITextView alloc]init];
     contactUsTitle.frame = CGRectMake((rect.size.width-image.size.width)/2-10, 90+image.size.height+20+30+150, image.size.width+30, 30);
     contactUsTitle.text = @"       联系我们";
     contactUsTitle.font = [UIFont boldSystemFontOfSize:16];
     contactUsTitle.editable = NO;
-    [self.view addSubview:contactUsTitle];
+//    [self.view addSubview:contactUsTitle];
     
     contactUs = [[UITextView alloc]init];
     contactUs.frame = CGRectMake((rect.size.width-image.size.width)/2-25, 90+image.size.height+20+30+180, image.size.width+60, 50);
     contactUs.text = @"    wolflzy@hotmail.com";
     contactUs.font = [UIFont boldSystemFontOfSize:16];
     contactUs.editable = NO;
-    [self.view addSubview:contactUs];
+//    [self.view addSubview:contactUs];
 
 }
 

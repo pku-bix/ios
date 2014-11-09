@@ -8,6 +8,7 @@
 
 #import "signatureViewController.h"
 #import "AppDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface signatureViewController ()
 
@@ -28,6 +29,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.signature.layer.borderColor = [UIColor grayColor].CGColor;
+    self.signature.layer.borderWidth = 1.0;
+    self.signature.layer.cornerRadius = 5.0;
 }
 
 - (void)didReceiveMemoryWarning
