@@ -9,14 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "PassImageDelegate.h"
 
-@interface bixSendMoodData : UIViewController<PassImageDelegate>
+@interface bixSendMoodData : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PassImageDelegate>
 
 @property(strong,nonatomic) NSObject<PassImageDelegate> *delegate;
 @property(nonatomic,strong) UIImage *image;
+@property(nonatomic,strong) UIImage *image3;
 
 - (IBAction)cancleSendMood:(id)sender;
 
-- (IBAction)sendMood:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *image1;
+- (IBAction)addPicture:(id)sender;
+@property (strong, nonatomic) IBOutlet UIImageView *image2;
+- (IBAction)Tap:(id)sender;
 
 @end

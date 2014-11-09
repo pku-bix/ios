@@ -505,16 +505,6 @@
                                     <action selector="cancleSendMood:" destination="aOG-92-vkB" eventType="touchUpInside" id="toN-6I-c6y"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7j7-f0-mIe">
-                                <rect key="frame" x="264" y="20" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="发送">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendMood:" destination="aOG-92-vkB" eventType="touchUpInside" id="w2I-g8-F4O"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="此刻心情。。。" translatesAutoresizingMaskIntoConstraints="NO" id="50Z-o5-GfY">
                                 <rect key="frame" x="12" y="69" width="296" height="97"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -560,6 +550,9 @@
                                 <state key="normal" title="添加图片">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addPicture:" destination="aOG-92-vkB" eventType="touchUpInside" id="8Sp-G1-BvQ"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="01F-0H-a51">
                                 <rect key="frame" x="12" y="358" width="70" height="70"/>
@@ -575,12 +568,22 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="LBp-gv-b36" appends="YES" id="Eoj-i9-ipM"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="image1" destination="9xt-3r-6Eo" id="Fup-OZ-VYc"/>
+                        <outlet property="image2" destination="goq-d2-Uzq" id="w7l-hB-pJN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SxS-D9-hl9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="LBp-gv-b36">
+                    <connections>
+                        <action selector="Tap:" destination="aOG-92-vkB" id="OuA-ar-96R"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1621" y="-491"/>
         </scene>

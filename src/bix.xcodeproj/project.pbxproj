@@ -36,6 +36,7 @@
 		E374AA8618D9E24C00EC575A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E374AA8518D9E24C00EC575A /* SystemConfiguration.framework */; };
 		E37F2C4519DBFA5A0090AB24 /* detailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37F2C4419DBFA5A0090AB24 /* detailViewController.m */; };
 		E3BE73C11A091FE2001DB041 /* bixSendMoodData.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BE73C01A091FE2001DB041 /* bixSendMoodData.m */; };
+		E3CED99F1A0FCAF000863A59 /* addbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = E3CED99E1A0FCAF000863A59 /* addbutton.png */; };
 		E3D5406519FD4A6300FDC819 /* destCharger.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D5406219FD4A6300FDC819 /* destCharger.png */; };
 		E3D5406619FD4A6300FDC819 /* homeCharger.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D5406319FD4A6300FDC819 /* homeCharger.png */; };
 		E3D5406719FD4A6300FDC819 /* superCharger.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D5406419FD4A6300FDC819 /* superCharger.png */; };
@@ -230,6 +231,7 @@
 		E37F2C4419DBFA5A0090AB24 /* detailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = detailViewController.m; sourceTree = "<group>"; };
 		E3BE73BF1A091FE2001DB041 /* bixSendMoodData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixSendMoodData.h; sourceTree = "<group>"; };
 		E3BE73C01A091FE2001DB041 /* bixSendMoodData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixSendMoodData.m; sourceTree = "<group>"; };
+		E3CED99E1A0FCAF000863A59 /* addbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addbutton.png; sourceTree = "<group>"; };
 		E3D5406219FD4A6300FDC819 /* destCharger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = destCharger.png; sourceTree = "<group>"; };
 		E3D5406319FD4A6300FDC819 /* homeCharger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeCharger.png; sourceTree = "<group>"; };
 		E3D5406419FD4A6300FDC819 /* superCharger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = superCharger.png; sourceTree = "<group>"; };
@@ -631,6 +633,14 @@
 			name = personInfo;
 			sourceTree = "<group>";
 		};
+		E3CED99D1A0FCADA00863A59 /* moment */ = {
+			isa = PBXGroup;
+			children = (
+				E3CED99E1A0FCAF000863A59 /* addbutton.png */,
+			);
+			name = moment;
+			sourceTree = "<group>";
+		};
 		E3D127F019F698570018900B /* aboutBix */ = {
 			isa = PBXGroup;
 			children = (
@@ -724,6 +734,7 @@
 		EC05DD9918D0BE49000C9D89 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E3CED99D1A0FCADA00863A59 /* moment */,
 				E3F76A8C19EADA32008E718C /* chargerPile */,
 				E3FC3EF71999B92300E0E784 /* settingImage */,
 				EC05DD9A18D0BE49000C9D89 /* img */,
@@ -1405,6 +1416,7 @@
 				E32C5FB2197FF23300E7CC61 /* Icon@2x.png in Resources */,
 				EC3166351930B95E002E9609 /* settings-24@2x.png in Resources */,
 				EC3166381930BA6F002E9609 /* contacts-24@2x.png in Resources */,
+				E3CED99F1A0FCAF000863A59 /* addbutton.png in Resources */,
 				E35A14BC19CDCB4A00867D49 /* icon_nav_end.png in Resources */,
 				E33FF0D0197E4F37007FE69F /* compass-64@2x.png in Resources */,
 				ECD998E818DACE9F00F30FE3 /* mapapi.bundle in Resources */,

@@ -7,6 +7,13 @@
 //
 
 #import "bixSendMoodData.h"
+#import "bixCaptureViewController.h"
+#import "generalTableView.h"
+#import "AppDelegate.h"
+#import "RequestInfoFromServer.h"
+#import "MessageBox.h"
+#import "MBProgressHUD.h"
+
 
 @interface bixSendMoodData ()
 
@@ -15,6 +22,12 @@
 @implementation bixSendMoodData
 {
     UIImage *pickImage;
+    
+    AppDelegate* appDelegate;
+    RequestInfoFromServer* request;
+    
+    MBProgressHUD *hud;
+
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -70,7 +83,132 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)sendMood:(id)sender {
+#pragma mark UIActionSheetDelegate Method
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
     
+    switch (buttonIndex) {
+        case 0://Take picture
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                //当设备带有照相功能,则进入照相模式;
+                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                
+            }else{
+                NSLog(@"模拟器无法打开相机");
+            }
+            [self presentViewController:picker animated:YES completion:nil];
+            //[self presentModalViewController:picker animated:YES];  此函数ios6之后已经废弃不用！
+            break;
+            
+        case 1://From album
+            //进入设备的图片库;
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:picker animated:YES completion:nil];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+#pragma mark 拍照选择照片协议方法
+//当进入拍照模式拍照 并且点击Use photo后 或者 从本地图库选择图片后 会调用此方法;
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    
+    NSLog(@"mediaType is %@", mediaType);
+    
+    NSData *data;
+    
+    if ([mediaType isEqualToString:@"public.image"]){
+        
+        //切忌不可直接使用originImage，因为这是没有经过格式化的图片数据，可能会导致选择的图片颠倒或是失真等现象的发生，从UIImagePickerControllerOriginalImage中的Origin可以看出，很原始，哈哈
+        UIImage *originImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+        //图片压缩，因为原图都是很大的，不必要传原图
+        UIImage *scaleImage = [self scaleImage:originImage toScale:0.3];
+        //以下这两步都是比较耗时的操作，最好开一个HUD提示用户，这样体验会好些，不至于阻塞界面
+        if (UIImagePNGRepresentation(scaleImage) == nil) {
+            //将图片转换为JPG格式的二进制数据
+            data = UIImageJPEGRepresentation(scaleImage, 1);
+        } else {
+            //将图片转换为PNG格式的二进制数据
+            data = UIImagePNGRepresentation(scaleImage);
+        }
+        //将二进制数据生成UIImage
+        self.image3 = [UIImage imageWithData:data];
+        self.image2.image = self.image3;
+        
+        //        bixSendMoodData *sendMoodData = [[bixSendMoodData alloc]init];
+        //        sendMoodData.delegate = self;
+        //        sendMoodData.image = image;
+        //将图片传递给截取界面进行截取并设置回调方法（协议）
+        //        bixCaptureViewController *captureView = [[bixCaptureViewController alloc] init];
+        //        captureView.delegate = self;
+        //        captureView.image = image;
+        
+        //隐藏UIImagePickerController本身的导航栏
+        picker.navigationBar.hidden = YES;
+        
+        NSLog(@"end picker image");
+        
+        //        [picker pushViewController:sendMoodData animated:YES];
+        [picker dismissViewControllerAnimated:YES completion:nil];
+        //        [self presentViewController:sendMoodData animated:YES completion:nil];
+//        [self performSegueWithIdentifier:@"sendMood" sender:self];
+    }
+}
+//
+//#pragma mark - 图片回传协议方法
+//-(void)passImage:(UIImage *)image
+//{
+//    imageView.image = image;
+//    //设置头像缩放成 60*60 的
+//    headImage = [self scaleFromImage:image];
+//    
+//    //上传头像 数据到服务器, PNG格式;
+//    request = [[RequestInfoFromServer alloc]init];
+//    [request sendAsynchronousPostImageRequest:headImage];
+//    
+//    //保存裁剪后的头像;
+//    Account * accout = [appDelegate account];
+//    accout.getHeadImage = headImage;
+//    [accout save];
+//}
+
+#pragma mark- 缩放图片
+-(UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize
+{
+    UIGraphicsBeginImageContext(CGSizeMake(image.size.width*scaleSize,image.size.height*scaleSize));
+    //    UIGraphicsBeginImageContext(CGSizeMake(60, 60));
+    [image drawInRect:CGRectMake(0, 0, image.size.width * scaleSize , image.size.height * scaleSize)];
+    //    [image drawInRect:CGRectMake(0, 0, 60, 60)];
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return scaledImage;
+}
+
+// 改变图像的尺寸，方便上传服务器
+- (UIImage *) scaleFromImage: (UIImage *) image
+{
+    UIGraphicsBeginImageContext(CGSizeMake(60, 60));
+    [image drawInRect:CGRectMake(0, 0, 60 , 60)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+
+
+- (IBAction)addPicture:(id)sender {
+    UIActionSheet *chooseImageSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从手机相册选择", nil];
+    [chooseImageSheet showInView:self.view];
+}
+- (IBAction)Tap:(id)sender {
+    [[UIApplication sharedApplication]sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
 @end
