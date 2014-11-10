@@ -84,6 +84,10 @@
         
         switch (row) {
             case 0:
+                if (image0 == NULL) {  //初始化头像
+                    NSLog(@"image0 is null");
+                    image0 = [UIImage imageNamed:@"default_headshow.png"];
+                }
                 cell.imageView.image = image0;
                 break;
             default:

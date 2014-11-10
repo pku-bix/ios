@@ -181,6 +181,8 @@
 //发送  分享圈  的文字和图片给服务器
 -(void)sendAsynchronousPostMomentData:(NSMutableArray *)mutableArray
 {
+    _selectNotificationKind = 5;//第5种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
+    
     Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
     NSLog(@"author name is %@", account.username);
     //分享圈输入的发送 文字;
@@ -215,19 +217,64 @@
     //image 参数传进来的image数据
     int pictureNumber = [mutableArray count] - 1; // 用户添加的图片个数 = 数组元素个数 减去 一个text元素;
     
+    for (int k = 0; k < pictureNumber; k++) {
+        
+        NSData *imageData = UIImagePNGRepresentation([mutableArray objectAtIndex:k]);
+        
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        switch (k) {
+            case 0:
+                [body appendData:[@"Content-Disposition: form-data; name=\"img0\"; filename=\"boris.png\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+                break;
+            case 1:
+                [body appendData:[@"Content-Disposition: form-data; name=\"img1\"; filename=\"boris.png\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+                break;
+            case 2:
+                [body appendData:[@"Content-Disposition: form-data; name=\"img2\"; filename=\"boris.png\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+                break;
+            case 3:
+                [body appendData:[@"Content-Disposition: form-data; name=\"img3\"; filename=\"boris.png\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+                break;
+            case 4:
+                [body appendData:[@"Content-Disposition: form-data; name=\"img4\"; filename=\"boris.png\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+                break;
+            case 5:
+                [body appendData:[@"Content-Disposition: form-data; name=\"img5\"; filename=\"boris.png\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+                break;
+            case 6:
+                [body appendData:[@"Content-Disposition: form-data; name=\"img6\"; filename=\"boris.png\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+                break;
+            case 7:
+                [body appendData:[@"Content-Disposition: form-data; name=\"img7\"; filename=\"boris.png\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+                break;
+            case 8:
+                [body appendData:[@"Content-Disposition: form-data; name=\"img8\"; filename=\"boris.png\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+                break;
+
+            default:
+                break;
+        }
+        
+        [body appendData:[@"Content-Type: image/png\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[NSData dataWithData:imageData]];
+        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    }
     
-//    NSData *imageData = UIImagePNGRepresentation(image);
+    // close form
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    //设置HTTPHeader中Content-Type的值
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
     
-    [body appendData:[@"Content-Disposition: form-data; name=\"avatar\"; filename=\"boris.png\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[@"Content-Type: image/png\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    //设置Content-Length
+    [request setValue:[NSString stringWithFormat:@"%d", [body length]] forHTTPHeaderField:@"Content-Length"];
     
-//    [body appendData:[NSData dataWithData:imageData]];
+    //设置http body
+    [request setHTTPBody:body];
     
-    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
+    //建立连接，设置代理
+    [NSURLConnection  connectionWithRequest:request delegate:self];
     
 }
 
@@ -363,10 +410,7 @@
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     //打印错误信息
-    NSLog(@"%@", [error localizedDescription]);
+    NSLog(@"错误信息是%@", [error localizedDescription]);
 }
-
-
-
 
 @end

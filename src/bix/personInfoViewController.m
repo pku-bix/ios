@@ -53,6 +53,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     //加载之前保存的名字字段;
     appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     name = appDelegate.account.setName;
@@ -60,8 +61,14 @@
     ID = appDelegate.account.setID;
     WechatID = appDelegate.account.setWechatID;
     TeslaType = appDelegate.account.setTeslaType;
+    
     //加载之前保存的头像；
     headImage = appDelegate.account.getHeadImage;
+    NSLog(@"headImage is ...  %@", headImage);
+    
+    if (headImage == NULL) {
+        headImage = [UIImage imageNamed:@"default_headshow.png"];
+    }
     
     NSLog(@"last name is %@", name);
     

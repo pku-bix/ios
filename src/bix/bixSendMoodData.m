@@ -15,6 +15,7 @@
 #import "MBProgressHUD.h"
 
 
+
 @interface bixSendMoodData ()
 
 @end
@@ -303,7 +304,10 @@
     }
     NSLog(@"HEHE");
     [self.mutableArray addObject:self.textView.text];
-    NSLog(@"text is %@", [self.mutableArray objectAtIndex:([self.mutableArray count]-1)]);    
+    NSLog(@"text is %@", [self.mutableArray objectAtIndex:([self.mutableArray count]-1)]);
+
+    request = [[RequestInfoFromServer alloc]init];
+    [request sendAsynchronousPostMomentData:self.mutableArray];
     
 }
 
