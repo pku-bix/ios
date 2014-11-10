@@ -42,7 +42,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.pictureNumber = 1;
+    self.imageView1.image = self.image1;
     
+    self.mutableArray = [NSMutableArray arrayWithCapacity:9];//最多添加9张图片;
+    [self.mutableArray addObject:self.image1];
+//    self.textView
 //    [UIApplication sharedApplication].statusBarHidden = NO;
 //    self.navigationController.navigationBar.hidden = YES;
     // Do any additional setup after loading the view.
@@ -50,7 +55,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.image1.image = self.image;
+
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -118,6 +124,8 @@
 //当进入拍照模式拍照 并且点击Use photo后 或者 从本地图库选择图片后 会调用此方法;
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    [MessageBox Toast:@"处理中..." In: self.view];
+    
     [UIApplication sharedApplication].statusBarHidden = NO;
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     
@@ -130,7 +138,7 @@
         //切忌不可直接使用originImage，因为这是没有经过格式化的图片数据，可能会导致选择的图片颠倒或是失真等现象的发生，从UIImagePickerControllerOriginalImage中的Origin可以看出，很原始，哈哈
         UIImage *originImage = [info objectForKey:UIImagePickerControllerOriginalImage];
         //图片压缩，因为原图都是很大的，不必要传原图
-        UIImage *scaleImage = [self scaleImage:originImage toScale:0.3];
+        UIImage *scaleImage = [self scaleImage:originImage toScale:0.5];
         //以下这两步都是比较耗时的操作，最好开一个HUD提示用户，这样体验会好些，不至于阻塞界面
         if (UIImagePNGRepresentation(scaleImage) == nil) {
             //将图片转换为JPG格式的二进制数据
@@ -139,9 +147,80 @@
             //将图片转换为PNG格式的二进制数据
             data = UIImagePNGRepresentation(scaleImage);
         }
+        
+        switch (self.pictureNumber) {
+            case 2:
+            {
+                self.image2 = [UIImage imageWithData:data];
+                self.imageView2.image = self.image2;
+                
+                [self.mutableArray addObject:self.image2];
+            }
+                break;
+            case 3:
+            {
+                self.image3 = [UIImage imageWithData:data];
+                self.imageView3.image = self.image3;
+                
+                [self.mutableArray addObject:self.image3];
+            }
+                break;
+            case 4:
+            {
+                self.image4 = [UIImage imageWithData:data];
+                self.imageView4.image = self.image4;
+                
+                [self.mutableArray addObject:self.image4];
+            }
+                break;
+            case 5:
+            {
+                self.image5 = [UIImage imageWithData:data];
+                self.imageView5.image = self.image5;
+                
+                [self.mutableArray addObject:self.image5];
+            }
+                break;
+            case 6:
+            {
+                self.image6 = [UIImage imageWithData:data];
+                self.imageView6.image = self.image6;
+                
+                [self.mutableArray addObject:self.image6];
+            }
+                break;
+            case 7:
+            {
+                self.image7 = [UIImage imageWithData:data];
+                self.imageView7.image = self.image7;
+                
+                [self.mutableArray addObject:self.image7];
+            }
+                break;
+            case 8:
+            {
+                self.image8 = [UIImage imageWithData:data];
+                self.imageView8.image = self.image8;
+                
+                [self.mutableArray addObject:self.image8];
+            }
+                break;
+            case 9:
+            {
+                self.image9 = [UIImage imageWithData:data];
+                self.imageView9.image = self.image9;
+                
+                [self.mutableArray addObject:self.image9];
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+
+        
         //将二进制数据生成UIImage
-        self.image3 = [UIImage imageWithData:data];
-        self.image2.image = self.image3;
         
         //        bixSendMoodData *sendMoodData = [[bixSendMoodData alloc]init];
         //        sendMoodData.delegate = self;
@@ -155,6 +234,7 @@
         picker.navigationBar.hidden = YES;
         
         NSLog(@"end picker image");
+        
         
         //        [picker pushViewController:sendMoodData animated:YES];
         [picker dismissViewControllerAnimated:YES completion:nil];
@@ -203,11 +283,30 @@
 }
 
 
-
 - (IBAction)addPicture:(id)sender {
+    self.pictureNumber++;//添加的图片数目加1;
+    if (self.pictureNumber >= 10) {
+        [MessageBox Toast:@"最多只能添加9张图片哦!!" In: self.view];
+        return ;
+    }
+    
     UIActionSheet *chooseImageSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从手机相册选择", nil];
     [chooseImageSheet showInView:self.view];
 }
+
+- (IBAction)sendTextAndPicture:(id)sender {
+    NSLog(@"图片数组个数是 %d", [self.mutableArray count]);
+    NSLog(@"输入的文字是 %@", self.textView.text);
+    if ([self.textView.text isEqualToString:@""]) {
+        [MessageBox Toast:@"输入点文字呀..." In: self.view];
+        return ;
+    }
+    NSLog(@"HEHE");
+    [self.mutableArray addObject:self.textView.text];
+    NSLog(@"text is %@", [self.mutableArray objectAtIndex:([self.mutableArray count]-1)]);    
+    
+}
+
 - (IBAction)Tap:(id)sender {
     [[UIApplication sharedApplication]sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }

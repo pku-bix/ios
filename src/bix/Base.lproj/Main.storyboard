@@ -505,7 +505,7 @@
                                     <action selector="cancleSendMood:" destination="aOG-92-vkB" eventType="touchUpInside" id="toN-6I-c6y"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="此刻心情。。。" translatesAutoresizingMaskIntoConstraints="NO" id="50Z-o5-GfY">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="50Z-o5-GfY">
                                 <rect key="frame" x="12" y="69" width="296" height="97"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -543,6 +543,9 @@
                                 <state key="normal" title="发送">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="sendTextAndPicture:" destination="aOG-92-vkB" eventType="touchUpInside" id="mFn-ey-XRK"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2F-mu-UFA">
                                 <rect key="frame" x="156" y="169" width="60" height="30"/>
@@ -574,8 +577,16 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="image1" destination="9xt-3r-6Eo" id="Fup-OZ-VYc"/>
-                        <outlet property="image2" destination="goq-d2-Uzq" id="w7l-hB-pJN"/>
+                        <outlet property="imageView1" destination="9xt-3r-6Eo" id="BPJ-1W-iUu"/>
+                        <outlet property="imageView2" destination="goq-d2-Uzq" id="jKB-yn-Iub"/>
+                        <outlet property="imageView3" destination="q3b-q7-D74" id="ExY-mj-mAO"/>
+                        <outlet property="imageView4" destination="3YE-CW-Il2" id="ihd-MP-XDo"/>
+                        <outlet property="imageView5" destination="SBg-AT-2c0" id="NBa-WN-7q3"/>
+                        <outlet property="imageView6" destination="Vqc-QL-kiG" id="mET-Kb-IUQ"/>
+                        <outlet property="imageView7" destination="01F-0H-a51" id="IMv-ah-Xff"/>
+                        <outlet property="imageView8" destination="JEB-Dd-dJE" id="uzQ-oK-ox4"/>
+                        <outlet property="imageView9" destination="qvH-kq-Ftt" id="Pw4-OV-TaZ"/>
+                        <outlet property="textView" destination="50Z-o5-GfY" id="yja-7h-lKD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SxS-D9-hl9" userLabel="First Responder" sceneMemberID="firstResponder"/>

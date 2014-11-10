@@ -34,6 +34,8 @@
 //上报充电桩，Post用户名、电话、详细地址、经纬度，这四个必填字段，邮箱、充电桩数量、备注选填;
 -(void)sendAsynchronousPostReportChargerRequest:(NSMutableArray*)mutableArray;
 
+//发送分享圈的文字和图片给服务器;
+-(void)sendAsynchronousPostMomentData:(NSMutableArray*)mutableArray;
 
 //-(void)parseResult;
 

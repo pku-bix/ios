@@ -200,7 +200,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     bixSendMoodData * sendMood = (bixSendMoodData*)segue.destinationViewController;
-    sendMood.image = image_send_mood_data;
+    sendMood.image1 = image_send_mood_data;
 }
 
 

@@ -14,7 +14,7 @@
 
 
 
-//异步GET请求
+//异步GET请求 获取 所有充电桩数据;
 -(void)sendRequest:(NSString*)strAddress
 {
 //    NSString *addStr = [NSString stringWithFormat:@"http://121.40.72.197/api/piles"];
@@ -26,7 +26,7 @@
     [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
-//单独异步POST图片给服务器;
+//单独异步POST图片给服务器; 用于发送头像给服务器;
 -(void)sendAsynchronousPostImageRequest:(UIImage*)image
 {
     _selectNotificationKind = 3;//第三种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
@@ -119,7 +119,7 @@
     [NSURLConnection  connectionWithRequest:request delegate:self];    
 }
 
-
+//上报充电桩数据;
 -(void)sendAsynchronousPostReportChargerRequest:(NSMutableArray *)mutableArray
 {
     //dictionary 对象下标从小到大顺序为:用户ID、经度、维度、电话号码、详细地址、邮箱地址、充电桩数量、备注信息;后三个字段是用户上报时的选填字段，不是必填字段;
@@ -176,6 +176,59 @@
     
     //建立连接，设置代理
     [NSURLConnection  connectionWithRequest:request delegate:self];
+}
+
+//发送  分享圈  的文字和图片给服务器
+-(void)sendAsynchronousPostMomentData:(NSMutableArray *)mutableArray
+{
+    Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
+    NSLog(@"author name is %@", account.username);
+    //分享圈输入的发送 文字;
+    NSString *momentText = [mutableArray objectAtIndex:([mutableArray count]-1)];
+    
+    NSMutableString *url = [NSMutableString stringWithString:POST_MOMENT_IP];
+    //    [url appendString:account.username];
+    NSLog(@"url is %@", url);
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                                       timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];
+    
+    NSString *boundary = @"PkuBixMustSuccess"; //分界线
+    NSMutableData *body = [NSMutableData data]; //http body
+    
+    
+    //发送 author 字段
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"author\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithString:account.username] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    //发送 输入的text字段
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"text\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithString:momentText] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //发送 用户添加的 图片
+    //image 参数传进来的image数据
+    int pictureNumber = [mutableArray count] - 1; // 用户添加的图片个数 = 数组元素个数 减去 一个text元素;
+    
+    
+//    NSData *imageData = UIImagePNGRepresentation(image);
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[@"Content-Disposition: form-data; name=\"avatar\"; filename=\"boris.png\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"Content-Type: image/png\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+//    [body appendData:[NSData dataWithData:imageData]];
+    
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    
 }
 
 //异步POST请求,POST图片、文字
@@ -294,6 +347,7 @@
     //    mapViewController = [[MapViewController alloc]init];
     //    [mapViewController addBatteryChargeAnnotation];
 }
+
 -(void)selectNotification:(int) kind
 {
     if (kind == 1) {
@@ -312,73 +366,7 @@
     NSLog(@"%@", [error localizedDescription]);
 }
 
-/*
-//解析从服务器获取的数据
--(void)parseResult
-{
-    NSDictionary *location = [NSJSONSerialization JSONObjectWithData:self.theResultData options:NSJSONReadingMutableLeaves error:nil];
-    NSArray *arrayResult = [location objectForKey:@"result"];
-    NSLog(@"数组个数是%d", [arrayResult count]);
-    chargePileNumber = [arrayResult count];
-    
-    muArray = [NSMutableArray arrayWithCapacity:chargePileNumber*5];
-    
-    for (id obj1 in arrayResult) {
-        [muArray addObject:[obj1 objectForKey:@"type"]];
-        [muArray addObject:[obj1 objectForKey:@"detailedaddress"]];
-        [muArray addObject:[obj1 objectForKey:@"latitude"]];
-        [muArray addObject:[obj1 objectForKey:@"longitude"]];
-        [muArray addObject:[obj1 objectForKey:@"_id"]];
-    }
-    for(id obj in muArray)
-    {
-        NSLog(@"muArray %@", obj);
-    }
-    //    NSLog(@"%.8f, %.8f, %.8f, %.8f", t1, t2, t3, t4);
-    //    NSRange range = [self.theResult rangeOfString:@"location"];
-    //    if (range.location == NSNotFound) {
-    //        NSLog(@"没找到");
-    //    }
-    //    else
-    //    {
-    //        NSLog(@"找到的范围是:%@", NSStringFromRange(range));
-    //    }
-}
 
--(void)parseDetailResult
-{
-    NSDictionary *location = [NSJSONSerialization JSONObjectWithData:self.theResultData options:NSJSONReadingMutableLeaves error:nil];
-    NSArray *arrayResult = [location objectForKey:@"result"];
-    NSLog(@"充电桩详情的个数是%d", [arrayResult count]);
-    //    NSLog(@"arrayResult is %@", arrayResult);
-    //    chargePileNumber = [arrayResult count];
-    
-    //    muArray = [NSMutableArray arrayWithCapacity:chargePileNumber*5];
-    [detailInfoArray removeAllObjects];
-    NSLog(@"type is %@", [(id)arrayResult objectForKey:@"type"]);
-    NSLog(@"detailedaddress is %@", [(id)arrayResult objectForKey:@"detailedaddress"]);
-    NSLog(@"parkingnum is %@", [(id)arrayResult objectForKey:@"parkingnum"]);
-    //    NSLog(@"time is %@", [(id)arrayResult objectForKey:@"time"]);
-    
-    if ([[(id)arrayResult objectForKey:@"type"] isEqualToString:@"superCharger"]) {
-        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"type"]];
-        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"detailedaddress"]];
-        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"parkingnum"]];
-        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"time"]];
-    }
-    else if([[(id)arrayResult objectForKey:@"type"] isEqualToString:@"destinationCharger"])
-    {
-        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"type"]];
-        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"detailedaddress"]];
-        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"parkingnum"]];
-        [detailInfoArray addObject:[(id)arrayResult objectForKey:@"info"]];
-    }
-    
-    for (id obj in detailInfoArray) {
-        NSLog(@"%@", obj);
-    }
-}
-*/
 
 
 @end
