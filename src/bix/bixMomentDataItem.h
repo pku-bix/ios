@@ -10,6 +10,9 @@
 #import "Account.h"
 
 @interface bixMomentDataItem : NSObject
+{
+    int test;
+}
 
 // 用发送者初始化
 - (id) initWithSender: (Account*) user;

@@ -22,8 +22,10 @@
 -(bixMomentDataItem*) getOneMoment{
     appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     account = [appDelegate account];
+    
 //    account = [Account new];
 //    account.nickname = @"杜实现";
+    
     account.nickname = account.username;
     
     account.avatarUrl = [NSURL URLWithString: @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg"];

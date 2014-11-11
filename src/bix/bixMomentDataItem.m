@@ -19,10 +19,18 @@
 
 
 @implementation bixMomentDataItem
+{
+    int test5;
+}
+
+int uio;
 
 // TODO: 借助用HTTP层，从 user 动态获取以下属性
 
 -(NSURL*) avatarUrl{
+    test = 5;
+    test5 = 8;
+    uio = 9;
     return self.sender.avatarUrl;
 }
 

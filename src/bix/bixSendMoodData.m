@@ -23,12 +23,9 @@
 @implementation bixSendMoodData
 {
     UIImage *pickImage;
-    
     AppDelegate* appDelegate;
     RequestInfoFromServer* request;
-    
     MBProgressHUD *hud;
-
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -302,6 +299,7 @@
         [MessageBox Toast:@"输入点文字呀..." In: self.view];
         return ;
     }
+    
     NSLog(@"HEHE");
     [self.mutableArray addObject:self.textView.text];
     NSLog(@"text is %@", [self.mutableArray objectAtIndex:([self.mutableArray count]-1)]);
