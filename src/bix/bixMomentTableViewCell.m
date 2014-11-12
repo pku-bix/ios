@@ -30,12 +30,16 @@
     if (self) {
         // Initialization code
     }
+    self.momentText = [NSMutableArray arrayWithCapacity:1];
+    
+    [self.momentText addObject:@"这是第一条分享圈的消息"];
+
     flag_notification = 0;
     return self;
 }
 
 //设置头像、名字昵称、发送的文字以及回复构成的一条 分享字段;
-- (void) loadFromMomentDataItem:(bixMomentDataItem*)item{
+- (void) loadFromMomentDataItem:(bixMomentDataItem*)item andIndex:(int)k{
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment:) name:@"sendOneMomentDataItem" object:nil];
     NSLog(@"loading moment...\n%@",item);
     
@@ -47,12 +51,15 @@
     UITextView *text = (UITextView*)[self.contentView viewWithTag:20];
     if (flag_notification == 1) {
         NSLog(@"receive notification in momentTableViewCell");
-        [text setText:message];
+//        [text setText:message];
+        [text setText:[self.momentText objectAtIndex:k+1]];
+        NSLog(@"[text setText:[self.momentText objectAtIndex:k+1]] is %@", [self.momentText objectAtIndex:k+1]);
     }
     else
     {
         [text setText:item.passage];
     }
+
     
     UIImageView *avatar = (UIImageView*)[self.contentView viewWithTag:30];
     [avatar sd_setImageWithURL:item.avatarUrl];
@@ -64,8 +71,12 @@
 
 -(void)parseMoment:(NSNotification*)notification
 {
+    NSLog(@"bixMomentTableViewCell.h notification");
     message = notification.object;
     flag_notification = 1; //表明有通知发送出来
+    [self.momentText addObject:message];
+    NSLog(@"message is %@", message);
+    
 }
 
 
@@ -97,7 +108,6 @@
     UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:REUSE_CELLID_MOMENTREPLYLIST];
     
     // Configure Cell
-    
     bixMomentReplyItem* reply = [self.momentDataItem.replies objectAtIndex: indexPath.row];
     
     UIImageView *avatar = (UIImageView*)[cell.contentView viewWithTag:41];

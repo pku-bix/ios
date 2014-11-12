@@ -41,22 +41,28 @@
 {
     [super viewDidLoad];
     numberOFMomentCell = 1;
+    
+    self.momentText = [NSMutableArray arrayWithCapacity:numberOFMomentCell];
+    [self.momentText addObject:@"这是分享圈的第一条信息"];
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment:) name:@"sendOneMomentDataItem" object:nil];
     
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment:) name:@"sendOneMomentDataItem" object:nil];
+//     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment:) name:@"sendOneMomentDataItem" object:nil];
+    [ self.tableView reloadData ];
 }
 
 -(void)parseMoment:(NSNotification*)notification
 {
     NSLog(@"发送了一条新的状态，心情");
     numberOFMomentCell++; //多一条 状态说说;
-    NSLog(@"moment number is %d", numberOFMomentCell);
+    NSLog(@"bixViewController.m  moment number is %d", numberOFMomentCell);
+    [self.momentText addObject:notification.object];
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,10 +89,10 @@
     // Configure Cell
     AppDelegate* appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
-//    NSUInteger row = [indexPath row];
-    
-    [cell loadFromMomentDataItem:
-        [appdelegate.momentDataSrouce getOneMoment]];
+    NSUInteger row = [indexPath row];
+    NSLog(@"row is %d", row);
+    [cell loadFromMomentDataItem:[appdelegate.momentDataSrouce getOneMoment] andIndex:row];
+//    [cell loadFromMomentDataItem:[appdelegate.momentDataSrouce getOneMoment]];
     
     //点击cell的时候，不会变暗，不会有反应;
 //    cell.selectionStyle = UITableViewCellSelectionStyleNone;

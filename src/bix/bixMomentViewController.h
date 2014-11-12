@@ -12,8 +12,9 @@
 @interface bixMomentViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     IBOutlet UIButton *btnSendMood;
-}
 
+}
+@property(nonatomic)NSMutableArray * momentText; //保存每条状态的文字信息;
 - (IBAction)sendMood:(id)sender;
 
 @end

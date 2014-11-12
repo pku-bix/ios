@@ -18,16 +18,18 @@
 
 }
 
-
+//设置account的nickname和avatarUrl两个属性;
 -(bixMomentDataItem*) getOneMoment{
     appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     account = [appDelegate account];
     
 //    account = [Account new];
 //    account.nickname = @"杜实现";
+    NSLog(@"bixMomentDataSource.h, account.setName is %@", account.setName);
     
     if ([account.setName isEqualToString:@""]) { //如果用户没有在设置界面设置   名字   字段，则显示用户名;
         account.nickname = account.username;
+        NSLog(@"bixMomentDataSource.h, account.username is %@", account.username);
     }
     else
     {

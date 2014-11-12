@@ -11,6 +11,7 @@
 
 @interface bixMomentTableViewCell : UITableViewCell<UITableViewDataSource,UITableViewDelegate>
 
-- (void) loadFromMomentDataItem:(bixMomentDataItem*)item;
+- (void) loadFromMomentDataItem:(bixMomentDataItem*)item andIndex:(int)k;
 
+@property(nonatomic)NSMutableArray * momentText; //保存每条状态的文字信息;
 @end
