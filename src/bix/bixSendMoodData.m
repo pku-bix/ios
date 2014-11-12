@@ -15,7 +15,6 @@
 #import "MBProgressHUD.h"
 
 
-
 @interface bixSendMoodData ()
 
 @end
@@ -307,6 +306,8 @@
     request = [[RequestInfoFromServer alloc]init];
     [request sendAsynchronousPostMomentData:self.mutableArray];
 //    [self dismissViewControllerAnimated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"sendOneMomentDataItem" object:self.textView.text];
+    
     [[self navigationController] popViewControllerAnimated:YES];
     
 }

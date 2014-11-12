@@ -23,6 +23,7 @@
 
 @implementation bixMomentViewController
 {
+    int numberOFMomentCell;
     UIImage *image_send_mood_data;
 }
 
@@ -39,10 +40,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    numberOFMomentCell = 1;
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment:) name:@"sendOneMomentDataItem" object:nil];
+}
+
+-(void)parseMoment:(NSNotification*)notification
+{
+    NSLog(@"发送了一条新的状态，心情");
+    numberOFMomentCell++; //多一条 状态说说;
+    NSLog(@"moment number is %d", numberOFMomentCell);
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,12 +67,14 @@
 
 #pragma mark - TableViewSource
 
+//一个section区域
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+   
+    return numberOFMomentCell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -66,6 +82,8 @@
     
     // Configure Cell
     AppDelegate* appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+//    NSUInteger row = [indexPath row];
     
     [cell loadFromMomentDataItem:
         [appdelegate.momentDataSrouce getOneMoment]];

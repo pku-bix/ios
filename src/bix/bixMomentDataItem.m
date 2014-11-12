@@ -20,17 +20,17 @@
 
 @implementation bixMomentDataItem
 {
-    int test5;
+//    int test5;
 }
 
-int uio;
+//int uio;
 
 // TODO: 借助用HTTP层，从 user 动态获取以下属性
 
 -(NSURL*) avatarUrl{
-    test = 5;
-    test5 = 8;
-    uio = 9;
+//    test = 5;
+//    test5 = 8;
+//    uio = 9;
     return self.sender.avatarUrl;
 }
 
@@ -51,7 +51,7 @@ int uio;
         _replies = [NSMutableArray new];
         
         // TODO: 使用HTTP层代替以下的静态测试数据
-        
+        [_pictureUrls addObject:sender.avatarUrl];
         [_pictureUrls addObject: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];
         [_pictureUrls addObject: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];
         [_pictureUrls addObject: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];

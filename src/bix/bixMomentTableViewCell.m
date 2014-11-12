@@ -19,6 +19,10 @@
 @end
 
 @implementation bixMomentTableViewCell
+{
+    NSString *message;
+    int flag_notification;
+}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -26,11 +30,13 @@
     if (self) {
         // Initialization code
     }
+    flag_notification = 0;
     return self;
 }
 
+//设置头像、名字昵称、发送的文字以及回复构成的一条 分享字段;
 - (void) loadFromMomentDataItem:(bixMomentDataItem*)item{
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment:) name:@"sendOneMomentDataItem" object:nil];
     NSLog(@"loading moment...\n%@",item);
     
     self.momentDataItem = item;
@@ -39,7 +45,14 @@
     [label setText:item.nickname];
     
     UITextView *text = (UITextView*)[self.contentView viewWithTag:20];
-    [text setText:item.passage];
+    if (flag_notification == 1) {
+        NSLog(@"receive notification in momentTableViewCell");
+        [text setText:message];
+    }
+    else
+    {
+        [text setText:item.passage];
+    }
     
     UIImageView *avatar = (UIImageView*)[self.contentView viewWithTag:30];
     [avatar sd_setImageWithURL:item.avatarUrl];
@@ -49,6 +62,11 @@
     replies.delegate   = self;
 }
 
+-(void)parseMoment:(NSNotification*)notification
+{
+    message = notification.object;
+    flag_notification = 1; //表明有通知发送出来
+}
 
 
 - (void)awakeFromNib

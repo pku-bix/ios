@@ -26,7 +26,14 @@
 //    account = [Account new];
 //    account.nickname = @"杜实现";
     
-    account.nickname = account.username;
+    if ([account.setName isEqualToString:@""]) { //如果用户没有在设置界面设置   名字   字段，则显示用户名;
+        account.nickname = account.username;
+    }
+    else
+    {
+        account.nickname = account.setName ;  //否则显示设置的    名字
+    }
+
     
     account.avatarUrl = [NSURL URLWithString: @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg"];
 
