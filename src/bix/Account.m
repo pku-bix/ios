@@ -29,6 +29,7 @@
     self = [self init];
     if(self){
         self.Jid = jid;
+        self.presence = NO;
     }
     return self;
 }
@@ -47,6 +48,8 @@
         self.setTeslaType = [coder decodeObjectForKey:@"setTeslaType"];
         //个人头像
         self.getHeadImage = [coder decodeObjectForKey:@"getHeadImage"];
+
+        self.presence = NO;
     }
     return self;
 }

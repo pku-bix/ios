@@ -8,17 +8,21 @@
 
 #import "bixLocalAccount.h"
 #import "Constants.h"
+#import "AppDelegate.h"
 #import "NSString+Account.h"
 
 @implementation bixLocalAccount
 
+- (id) init{
+    self = [super init];
+    return self;
+}
 
 -(id) initWithJid: (XMPPJID*) jid Password:(NSString*) password{
     self = [super initWithJid:jid];
     
     if(self)   {
         self.password = password;
-        self.presence = NO;
     }
     return self;
 }
@@ -37,6 +41,7 @@
         _autoLogin   = [coder decodeBoolForKey:   KEY_AUTOLOGIN];
         _deviceToken = [coder decodeObjectForKey: KEY_DEVICE_TOKEN];
     }
+    
     return self;
 }
 - (void)encodeWithCoder:(NSCoder *)coder {
@@ -51,12 +56,10 @@
 - (void) save{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    // encoding
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self];
     [defaults setObject:data forKey: [@"local_account" stringByAppendingString: self.Jid.bare]];
     
-    // flush
-    [defaults synchronize];
+    [defaults synchronize]; // flush
 }
 + (bixLocalAccount*) load: (NSString*)bareJid{
     
@@ -73,7 +76,7 @@
     return [[NSUserDefaults standardUserDefaults] stringForKey: KEY_ACTIVE_JID];
 }
 
-// TODO: @杜实现 POST该Token至 /api/user/<username>
+// TODO: @杜实现 在该方法中POST该Token至 /api/user/<username>
 - (void) setDeviceToken:(NSData *)deviceToken{
     _deviceToken = deviceToken;
     

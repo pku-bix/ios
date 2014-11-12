@@ -19,8 +19,10 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic)BMKMapManager* mapManager;
-@property (nonatomic, readonly)Chatter* chatter;
+@property (nonatomic)Chatter* chatter;
 @property (nonatomic)bixLocalAccount* account;
 @property bixMomentDataSource* momentDataSrouce;
+
++ (AppDelegate*) get;
 
 @end
