@@ -11,13 +11,14 @@
 #import "MainTabBarController.h"
 #import "SettingViewController.h"
 #import "bixMomentDataItem.h"
+#import <UIKit/UIKit.h>
 
 @implementation AppDelegate
 
 ///////////////////////////////////////////////////////////////
 //properties
 
--(void)setAccount:(Account *)account{
+-(void)setAccount:(bixLocalAccount *)account{
     _account = account;
     _chatter = [[Chatter alloc] initWithAccount: account];
     [self.chatter loadData];
@@ -60,8 +61,9 @@
     
     [_mapManager start:BAIDU_MAP_KEY  generalDelegate:self];
     
-    
 //#endif
+    
+    [self registerRemoteNotifications];
     
     return YES;
 }
@@ -103,6 +105,29 @@
     
     // not guaranteed to be called!
     // use applicationDidEnterBackground to save data.
+}
+
+- (void) registerRemoteNotifications{
+    UIRemoteNotificationType types = UIRemoteNotificationTypeBadge |
+        UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert;
+    
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
+}
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+
+#ifdef DEBUG
+    NSLog(@"device token received: %@", deviceToken);
+#endif
+}
+
+- (void)application:(UIApplication *)application
+didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    
+#ifdef DEBUG
+    NSLog(@"failed get device token: %@", error);
+#endif
 }
 
 @end

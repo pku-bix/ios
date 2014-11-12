@@ -13,6 +13,7 @@
 #import "Constants.h"
 #import "UIButton+Bootstrap.h"
 #import "MBProgressHUD.h"
+#import "bixLocalAccount.h"
 
 @interface LoginViewController ()
 
@@ -23,7 +24,7 @@
 @implementation LoginViewController
 
 MBProgressHUD* hud;
-Account* account;
+bixLocalAccount* account;
 
 // Global App Class
 AppDelegate* appdelegate;
@@ -50,7 +51,7 @@ AppDelegate* appdelegate;
     
     // get active user
     if (!self.username.text || [self.username.text isEqualToString:@""]) {
-        NSString *tmp = [Account getActiveJid];
+        NSString *tmp = [bixLocalAccount getActiveJid];
         self.username.text = tmp==nil ? @"" : [tmp toUsername];
     }
 }
@@ -101,7 +102,7 @@ AppDelegate* appdelegate;
     }
     // not loaded
     else{
-        account = [[Account alloc] initWithUsername:self.username.text
+        account = [[bixLocalAccount alloc] initWithUsername:self.username.text
                                                Password:self.password.text];
     }
     // do login
@@ -153,7 +154,7 @@ AppDelegate* appdelegate;
         // valid username
         if (self.username.text && ![self.username.text isEqualToString:@""]) {
             
-            account = [Account loadAccount:[self.username.text toJid] ];
+            account = [bixLocalAccount load:[self.username.text toJid] ];
             if (account) {  // loaded
                 self.password.text = account.password;      // fill passwd
                 if(account.autoLogin)   [self Login:self];

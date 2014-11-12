@@ -7,7 +7,82 @@
 //
 
 #import "bixLocalAccount.h"
+#import "Constants.h"
+#import "NSString+Account.h"
 
 @implementation bixLocalAccount
+
+
+-(id) initWithJid: (XMPPJID*) jid Password:(NSString*) password{
+    self = [super initWithJid:jid];
+    
+    if(self)   {
+        self.password = password;
+        self.presence = NO;
+    }
+    return self;
+}
+
+
+-(id) initWithUsername:(NSString *)username Password:(NSString *)password{
+    return [self initWithJid: [XMPPJID jidWithString: [username toJid]] Password:password];
+}
+
+
+- (id)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    
+    if (self) {
+        _password    = [coder decodeObjectForKey: KEY_PASSWORD];
+        _autoLogin   = [coder decodeBoolForKey:   KEY_AUTOLOGIN];
+        _deviceToken = [coder decodeObjectForKey: KEY_DEVICE_TOKEN];
+    }
+    return self;
+}
+- (void)encodeWithCoder:(NSCoder *)coder {
+    
+    [super encodeWithCoder: coder];
+    [coder encodeObject:self.password forKey:KEY_PASSWORD];
+    [coder encodeBool:self.autoLogin forKey:KEY_AUTOLOGIN];
+    [coder encodeObject:self.deviceToken forKey:KEY_DEVICE_TOKEN];
+}
+
+
+- (void) save{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    // encoding
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self];
+    [defaults setObject:data forKey: [@"local_account" stringByAppendingString: self.Jid.bare]];
+    
+    // flush
+    [defaults synchronize];
+}
++ (bixLocalAccount*) load: (NSString*)bareJid{
+    
+    NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:
+                    [@"local_account" stringByAppendingString: bareJid]];
+    return data == nil ? nil : [NSKeyedUnarchiver unarchiveObjectWithData: data];
+}
+
+
+- (void) saveAsActiveUser{
+    [[NSUserDefaults standardUserDefaults] setObject:self.bareJid forKey:KEY_ACTIVE_JID];
+}
++ (NSString*) getActiveJid{
+    return [[NSUserDefaults standardUserDefaults] stringForKey: KEY_ACTIVE_JID];
+}
+
+// TODO: @杜实现 POST该Token至 /api/user/<username>
+- (void) setDeviceToken:(NSData *)deviceToken{
+    _deviceToken = deviceToken;
+    
+}
+
+
+// propperties
+- (bool) getIsValid{
+    return [[self.Jid bare] isValidJid] && [self.password isValidPassword];
+}
 
 @end

@@ -489,7 +489,7 @@ static void QueryRecordCallback(DNSServiceRef       sdRef,
 		sdFd = DNSServiceRefSockFD(sdRef);
 		if (sdFd < 0)
 		{
-			// Todo...
+			// to do...
 		}
 		
 		// Create GCD read source for sd file descriptor

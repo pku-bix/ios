@@ -26,7 +26,7 @@
     int nRetry;
 }
 
--(id)initWithAccount: (Account*)account{
+-(id)initWithAccount: (bixLocalAccount*)account{
     
     self = [super init];
     
@@ -52,8 +52,8 @@
     [self saveContactsAndSessions];
 }
 
-// 该访问器要自定义
--(void)setAccount:(Account *)account{
+// 自定义访问器
+-(void)setAccount:(bixLocalAccount *)account{
     _account = account;
     self.xmppStream.myJID = account.Jid;
 }

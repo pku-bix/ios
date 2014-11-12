@@ -94,7 +94,7 @@ bool succeed;   // indicate whether register succeed
     }
     
     // setup account
-    Account* account = [[Account alloc]
+    bixLocalAccount* account = [[bixLocalAccount alloc]
                         initWithUsername:self.username.text
                         Password:self.pswd.text];
     appdelegate.account = account;

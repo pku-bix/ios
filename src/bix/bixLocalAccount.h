@@ -10,6 +10,28 @@
 
 #import "Account.h"
 
+
+// TODO: @杨珺 把account逐步迁移到localaccount
+
 @interface bixLocalAccount : Account
+
+
+@property (nonatomic) NSString* password;
+@property (nonatomic) bool autoLogin;
+// used for remote push service
+@property (nonatomic) NSData* deviceToken;
+// register validation
+@property (readonly) bool isValid;
+
+
+
+- (id) initWithUsername: (NSString*)username Password:(NSString*) password;
+- (void) save;
+- (void) saveAsActiveUser;
+
++ (bixLocalAccount*) load: (NSString*)bareJid;
++ (NSString*) getActiveJid;
+
+
 
 @end

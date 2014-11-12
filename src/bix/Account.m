@@ -13,14 +13,6 @@
 
 @implementation Account
 
-// propperties
-- (bool) isValid{
-    return [[self.Jid bare] isValidJid] && [self.password isValidPassword];
-}
-
-
-// methods
-
 -(NSString *)bareJid{
     return self.Jid.bare;
 //    self.Jid.username;
@@ -32,36 +24,21 @@
     return self.Jid.user;
     
 }
--(id) init {
-    return [self initWithJid:nil];
-}
 
 -(id) initWithJid: (XMPPJID*) jid{
-    return [self initWithJid:jid Password:@""];
-}
-
--(id) initWithJid: (XMPPJID*) jid Password:(NSString*) password{
-    self = [super init];
-    if(self)   {
+    self = [self init];
+    if(self){
         self.Jid = jid;
-        self.password = password;
-        
-        // pre-init
-        self.presence = NO;
     }
     return self;
-}
--(id) initWithUsername:(NSString *)username Password:(NSString *)password{
-    return [self initWithJid: [XMPPJID jidWithString: [username toJid]] Password:password];
 }
 
 - (id)initWithCoder:(NSCoder *)coder {
     
     self = [self initWithJid:[XMPPJID jidWithString:
-                              (NSString*)[coder decodeObjectForKey:KEY_BAREJID]]
-                    Password:(NSString*)[coder decodeObjectForKey:KEY_PASSWORD]];
+                              (NSString*)[coder decodeObjectForKey:KEY_BAREJID]]];
+    
     if (self) {
-        self.autoLogin = [coder decodeBoolForKey:KEY_AUTOLOGIN];
             //设置界面 ==> 个人信息页面， 姓名字段 
         self.setName = [coder decodeObjectForKey:@"setName"];
         self.setSignature = [coder decodeObjectForKey:@"setSignature"];
@@ -83,7 +60,7 @@
 
     // encoding
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self];
-    [defaults setObject:data forKey:self.Jid.bare];
+    [defaults setObject:data forKey: [@"account" stringByAppendingString: self.Jid.bare]];
     
     // flush
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -91,8 +68,6 @@
 
 - (void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.Jid.bare forKey:KEY_BAREJID];
-    [coder encodeObject:self.password forKey:KEY_PASSWORD];
-    [coder encodeBool:self.autoLogin forKey:KEY_AUTOLOGIN];
     //设置界面 ==> 个人信息页面， 姓名字段
     [coder encodeObject:self.setName forKey:@"setName"];
     [coder encodeObject:self.setSignature forKey:@"setSignature"];
@@ -103,15 +78,12 @@
     [coder encodeObject:self.getHeadImage forKey:@"getHeadImage"];
 }
 
-+ (Account*) loadAccount: (NSString*)bareJid{
+// remote account also need this, with cache considered
++ (Account*) load: (NSString*)bareJid{
     
-    NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:bareJid];
+    NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:
+                    [@"account" stringByAppendingString: bareJid]];
     return data == nil ? nil : [NSKeyedUnarchiver unarchiveObjectWithData: data];
 }
-
-+ (NSString*) getActiveJid{
-    return [[NSUserDefaults standardUserDefaults] stringForKey: KEY_ACTIVE_JID];
-}
-
 
 @end

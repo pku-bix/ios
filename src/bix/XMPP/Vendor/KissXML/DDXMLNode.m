@@ -178,7 +178,7 @@ static void MarkDeath(void *xmlPtr, DDXMLNode *wrapper);
 	}
 	else if (kindPtr->type == XML_NAMESPACE_DECL)
 	{
-		// Todo: This may be a problem...
+		// This may be a problem...
 		
 		return [DDXMLNamespaceNode nodeWithNsPrimitive:(xmlNsPtr)kindPtr nsParent:NULL owner:owner];
 	}

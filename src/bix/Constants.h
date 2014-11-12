@@ -6,6 +6,11 @@
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
 
+// TODO: @杨珺 并非所有字面字符串都需要定义为常量。常量带来的好处在于减少拼写错误，对于只在同一文件中引用的字面字符串而言，该做法徒增工作量。
+// 逐步迁移：
+// 1. 只在一个文件中使用的取消其常量定义。如：本地文件存储的key、tableviewCell的reuse Key
+// 2. 在多个文件用到的字面字符串，应添加到该文件中。如：通知的Key。
+
 #ifndef Bix_Constants_h
 #define Bix_Constants_h
 
@@ -21,6 +26,7 @@ static NSString *const KEY_SESSION_LIST=@"session_list";
 static NSString *const KEY_MESSAGE_LIST=@"message_list";
 static NSString *const KEY_REMOTE_BAREJID=@"remote_barejid";
 static NSString *const KEY_BAREJID=@"barejid";
+static NSString *const KEY_DEVICE_TOKEN=@"device_token";
 
 //static int aaaaaa = 5;
 

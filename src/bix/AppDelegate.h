@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "XMPP.h"
 #import "Account.h"
+#import "bixLocalAccount.h"
 #import "Chatter.h"
 #import "BMapKit.h"
 #import "bixMomentDataSource.h"
@@ -19,7 +20,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic)BMKMapManager* mapManager;
 @property (nonatomic, readonly)Chatter* chatter;
-@property (nonatomic)Account* account;
+@property (nonatomic)bixLocalAccount* account;
 @property bixMomentDataSource* momentDataSrouce;
 
 @end

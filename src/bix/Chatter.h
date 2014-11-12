@@ -6,13 +6,13 @@
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
 
-#import "Account.h"
+#import "bixLocalAccount.h"
 #import "Session.h"
 
 @interface Chatter : NSObject
 
 // 账号
-@property (readonly, weak) Account* account;
+@property (readonly, weak) bixLocalAccount* account;
 // xmpp服务
 @property XMPPStream *xmppStream;
 // 发件箱
@@ -25,7 +25,7 @@
 @property (nonatomic) NSMutableArray* sessions;
 
 
--(id) initWithAccount: (Account*)account;
+-(id) initWithAccount: (bixLocalAccount*)account;
 // be sure chatter inited and mounted when calling this
 -(void) loadData;
 -(void) saveData;
