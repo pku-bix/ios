@@ -60,6 +60,10 @@ static NSString *const POST_IMAGE_TEXT_INFO_IP = @"http://121.40.72.197/api/user
 //分享圈 发送文字和图片 的ip
 static NSString *const POST_MOMENT_IP = @"http://121.40.72.197/api/posts";
 
+//通知需要设备的deviceToken, 将每个用户的deviceToken post到服务器的 ip 地址
+// TODO: @杜实现 在该方法中POST该Token至 /api/user/<username>
+static NSString *const POST_DEVICE_TOKEN_IP = @"http://121.40.72.197/api/user/";
+
 //设置界面 -》个人信息 -》名字 字段类型
 static const int NAME_TYPE = 1;
 static const int SIGNATURE_TYPE = 2;    //个性签名

@@ -37,6 +37,9 @@
 //发送分享圈的文字和图片给服务器;
 -(void)sendAsynchronousPostMomentData:(NSMutableArray*)mutableArray;
 
+//向用户推送通知时，需要知道用户的deviceToken，向用户post此deviceToken;
+-(void)sendAsynchronousPostDeviceToken:(NSData *)deviceToken;
+
 //-(void)parseResult;
 
 //-(void)parseDetailResult;

@@ -10,8 +10,12 @@
 #import "Constants.h"
 #import "AppDelegate.h"
 #import "NSString+Account.h"
+#import "RequestInfoFromServer.h"
 
 @implementation bixLocalAccount
+{
+    RequestInfoFromServer *request;
+}
 
 - (id) init{
     self = [super init];
@@ -79,6 +83,10 @@
 // TODO: @杜实现 在该方法中POST该Token至 /api/user/<username>
 - (void) setDeviceToken:(NSData *)deviceToken{
     _deviceToken = deviceToken;
+    
+    request = [[RequestInfoFromServer alloc]init];
+    
+    [request sendAsynchronousPostDeviceToken:_deviceToken];
     
 }
 

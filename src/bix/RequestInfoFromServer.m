@@ -353,6 +353,51 @@
     
 }
 
+
+//向用户推送通知时，需要知道用户的deviceToken，向用户post此deviceToken;
+-(void)sendAsynchronousPostDeviceToken:(NSData *)deviceToken
+{
+    _selectNotificationKind = 3;//第三种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
+    
+    Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
+    NSMutableString *url = [NSMutableString stringWithString:POST_DEVICE_TOKEN_IP];
+    [url appendString:account.username];
+    NSLog(@"url is %@", url);
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                                       timeoutInterval:10];
+    [request setHTTPMethod:@"POST"];
+    
+    NSString *boundary = @"PkuBixMustSuccess"; //分界线
+    NSMutableData *body = [NSMutableData data]; //http body
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"deviceToken\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+//    [body appendData:[[NSString stringWithString:momentText] dataUsingEncoding:NSUTF8StringEncoding]];
+    //将deviceToken 从NSData转化成 NSString;
+    NSString * temp = [[NSString alloc]initWithData:deviceToken encoding:NSUTF8StringEncoding];
+    
+    [body appendData:[[NSString stringWithString:temp] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // close form
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //设置HTTPHeader中Content-Type的值
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
+    
+    //设置Content-Length
+    [request setValue:[NSString stringWithFormat:@"%d", [body length]] forHTTPHeaderField:@"Content-Length"];
+    
+    //设置http body
+    [request setHTTPBody:body];
+    
+    //建立连接，设置代理
+    [NSURLConnection  connectionWithRequest:request delegate:self];
+}
+
 //服务器开始响应请求,异步请求的代理方法;
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
