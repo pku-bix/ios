@@ -808,10 +808,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title=" 姓名" id="WR3-HA-Lhz">
-                        <barButtonItem key="rightBarButtonItem" title="保存" id="MYW-L1-H3s"/>
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="MYW-L1-H3s">
+                            <connections>
+                                <action selector="saveName:" destination="v3V-BG-YXV" id="hQY-7L-2dS"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="nameTextField" destination="ykC-Nq-Rck" id="5AL-5E-cEc"/>
+                        <outlet property="save" destination="MYW-L1-H3s" id="bLM-Dz-OXi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8On-5p-91T" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -838,16 +843,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCJ-F3-RYT">
-                                <rect key="frame" x="243" y="232" width="57" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="保存">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="saveSignature:" destination="CF3-DW-HOS" eventType="touchUpInside" id="9U0-VI-boi"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -919,7 +914,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uof-Nk-e2j">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uof-Nk-e2j">
                                 <rect key="frame" x="30" y="82" width="261" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -937,10 +932,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Uof-Nk-e2j" secondAttribute="trailing" constant="29" id="KX7-e7-62V"/>
-                            <constraint firstItem="Uof-Nk-e2j" firstAttribute="leading" secondItem="mkB-tA-s4q" secondAttribute="leading" constant="30" id="zLE-Rf-8Gp"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="微信号" id="WMX-rp-jui">
                         <barButtonItem key="rightBarButtonItem" title="保存" id="zca-Yi-eKR"/>

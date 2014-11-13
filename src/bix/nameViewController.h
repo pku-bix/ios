@@ -10,6 +10,11 @@
 
 @interface nameViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UITextField *nameTextField;
+
 - (IBAction)saveAndReturn:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *save;
+
+- (IBAction)saveName:(id)sender;
 
 @end

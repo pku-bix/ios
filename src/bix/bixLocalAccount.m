@@ -76,6 +76,7 @@
 - (void) saveAsActiveUser{
     [[NSUserDefaults standardUserDefaults] setObject:self.bareJid forKey:KEY_ACTIVE_JID];
 }
+
 + (NSString*) getActiveJid{
     return [[NSUserDefaults standardUserDefaults] stringForKey: KEY_ACTIVE_JID];
 }

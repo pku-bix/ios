@@ -68,7 +68,10 @@
     account.setName = self.nameTextField.text;
     [account save];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"nameChange" object:self.nameTextField.text];
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
     
+}
+- (IBAction)saveName:(id)sender {
 }
 @end
