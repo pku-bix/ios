@@ -22,11 +22,11 @@
 -(bixMomentDataItem*) getOneMoment{
     appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     account = [appDelegate account];
-    
 //    account = [Account new];
 //    account.nickname = @"杜实现";
-    NSLog(@"bixMomentDataSource.h, account.setName is %@", account.setName);
     
+    NSLog(@"bixMomentDataSource.h, account.setName is %@", account.setName);
+    //如果用户在设置界面没有设置名字字段，则显示用户名，否则显示用户设置的名字字段---昵称;
     if ([account.setName isEqualToString:@""]) { //如果用户没有在设置界面设置   名字   字段，则显示用户名;
         account.nickname = account.username;
         NSLog(@"bixMomentDataSource.h, account.username is %@", account.username);
@@ -34,6 +34,7 @@
     else
     {
         account.nickname = account.setName ;  //否则显示设置的    名字
+        NSLog(@"bixMomentDataSource.h, account.setName is %@", account.setName);
     }
 
     
