@@ -51,9 +51,6 @@
     NSArray * array2 = [[NSArray alloc]initWithObjects:@"上报充电桩",@"反馈与建议", nil];
     NSArray * array3 = [[NSArray alloc]initWithObjects:@"关于Bix", @"支持我们", @"退出登录", nil];
     
-//    self.list = array;
-//    self.list2 = array2;
-    
     general_TableView.list1 = array1;
     general_TableView.list2 = array2;
     general_TableView.list3 = array3;
@@ -101,6 +98,11 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [general_TableView tableView:tableView heightForRowAtIndexPath:indexPath];    
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
 }
 
 

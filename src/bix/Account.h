@@ -20,7 +20,7 @@
 @property (nonatomic) bool presence;
 
 //设置界面 ==> 个人信息页面
-@property (nonatomic) NSString* setName;
+@property (nonatomic) NSString* setName;  //用户自己设置的  名字  字段；
 @property (nonatomic) NSString* setSignature;
 @property (nonatomic) NSString* setID;
 @property (nonatomic) NSString* setWechatID;

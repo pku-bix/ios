@@ -1,19 +1,19 @@
 //
-//  teslaTypeViewController.m
+//  chatIDViewController.m
 //  bix
 //
 //  Created by dsx on 14-10-20.
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
 
-#import "teslaTypeViewController.h"
+#import "chatIDViewController.h"
 #import "AppDelegate.h"
 
-@interface teslaTypeViewController ()
+@interface chatIDViewController ()
 
 @end
 
-@implementation teslaTypeViewController
+@implementation chatIDViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,25 +37,24 @@
 }
 
 /*
-#pragma mark - Navigation
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-- (IBAction)saveTeslaType:(id)sender {
-    NSLog(@"teslaType is %@", self.teslaType.text);
-    
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"TeslaType" object:self.teslaType.text];
-    
+- (IBAction)saveID:(id)sender {
+    NSLog(@"IDChange is %@", self.IDChange.text);
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"IDChange" object:self.IDChange.text];
     Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
-    account.setTeslaType = self.teslaType.text;
+    account.setID = self.IDChange.text;
     [account save];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 @end

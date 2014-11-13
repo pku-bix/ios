@@ -11,21 +11,29 @@
 
 @interface reportMapViewController : UIViewController<BMKMapViewDelegate, BMKSearchDelegate>
 {
-//    BMKMapView * reportMapView;
+    //    BMKMapView * reportMapView;
     
     IBOutlet UIButton *btnReportCharger;
     IBOutlet BMKMapView *reportMapView;
     
+    IBOutlet UIButton *btnShrink;
+    IBOutlet UIButton *btnMagnify;
+    
     IBOutlet UIButton *btnCurrentLocation;
     BMKSearch *_search;
-    BMKUserLocation *current_Location;    
-//       NSString *strLatitude, *strLongitude;
-//    IBOutlet BMKMapView *reportMap;
+    BMKUserLocation *current_Location;
+    //       NSString *strLatitude, *strLongitude;
+    //    IBOutlet BMKMapView *reportMap;
     
 }
 
 @property NSString *strLatitude;
 @property NSString *strLongitude;
+
+//放大
+- (IBAction)zoomIn:(id)sender;
+//缩小
+- (IBAction)zoomOut:(id)sender;
 
 - (IBAction)currentLocation:(id)sender;
 

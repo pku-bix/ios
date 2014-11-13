@@ -1,5 +1,5 @@
 //
-//  CaptureViewController.h
+//  bixCaptureViewController.h
 //  ImagePickerDemo
 //
 //  Created by Ryan Tang on 13-1-5.
@@ -10,13 +10,12 @@
 #import "AGSimpleImageEditorView.h"
 #import "PassImageDelegate.h"
 
-@interface CaptureViewController : UIViewController
+@interface bixCaptureViewController : UIViewController
 {
     UIImage *image;
 }
 
 @property(nonatomic,strong) UIImage *image;
-
 @property(strong,nonatomic) NSObject<PassImageDelegate> *delegate;
 
 @end

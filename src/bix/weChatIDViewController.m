@@ -8,12 +8,17 @@
 
 #import "weChatIDViewController.h"
 #import "AppDelegate.h"
+#import "RequestInfoFromServer.h"
+#import "Constants.h"
 
 @interface weChatIDViewController ()
 
 @end
 
 @implementation weChatIDViewController
+{
+    RequestInfoFromServer *request;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,19 +42,24 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (IBAction)weChatID:(id)sender {
     NSLog(@"weChatIDChange is %@", self.weChatID.text);
     [[NSNotificationCenter defaultCenter]postNotificationName:@"WechatID" object:self.weChatID.text];
+    
+    request = [[RequestInfoFromServer alloc]init];
+    //上传修改的微信号
+    [request sendAsynchronousPostTextRequest: self.weChatID.text type:WE_CHAT_ID_TYPE];
+    
     Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
     account.setWechatID = self.weChatID.text;
     [account save];

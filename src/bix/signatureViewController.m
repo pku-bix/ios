@@ -8,6 +8,8 @@
 
 #import "signatureViewController.h"
 #import "AppDelegate.h"
+#import "RequestInfoFromServer.h"
+#import "Constants.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface signatureViewController ()
@@ -15,6 +17,9 @@
 @end
 
 @implementation signatureViewController
+{
+    RequestInfoFromServer *request;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,7 +47,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseTest:) name:@"nameChange" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseTest:) name:@"nameChange" object:nil];
+    request = [[RequestInfoFromServer alloc]init];
 }
 
 
@@ -54,15 +60,15 @@
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (IBAction)saveSignature:(id)sender {
     NSLog(@"signature is %@", self.signature.text);
@@ -70,6 +76,8 @@
     Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
     account.setSignature = self.signature.text;
     [account save];
+    //发送图片、文字的异步信息;
+    //    [request sendAsynchronousPostRequest];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

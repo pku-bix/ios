@@ -4,10 +4,10 @@
 //
 //  Created by Artur Grigor on 28.02.2012.
 //  Copyright (c) 2012 Artur Grigor. All rights reserved.
-//  
+//
 //  For the full copyright and license information, please view the LICENSE
 //  file that was distributed with this source code.
-//  
+//
 
 #import "AGSimpleImageEditorView.h"
 
@@ -38,9 +38,9 @@ CGSize CGSizeAbsolute(CGSize size) {
 - (id)initWithAsset:(ALAsset *)theAsset image:(UIImage *)theImage andFrame:(CGRect)frame;
 - (id)initWithAsset:(ALAsset *)theAsset andImage:(UIImage *)theImage;
 
-//  
+//
 //  Gestures
-//  
+//
 - (void)panGesture:(UIPanGestureRecognizer *)recognizer;
 
 //
@@ -193,7 +193,7 @@ CGSize CGSizeAbsolute(CGSize size) {
 - (void)setRotation:(NSInteger)theRotation animated:(BOOL)animated
 {
     rotation = theRotation;
-    if (rotation < -4) 
+    if (rotation < -4)
         rotation = 4 - abs(rotation);
     if (rotation > 4)
         rotation = rotation - 4;
@@ -202,10 +202,10 @@ CGSize CGSizeAbsolute(CGSize size) {
     {
         self.ratioControlsView.alpha = 0;
         
-        [UIView animateWithDuration:self.animationDuration animations:^{        
+        [UIView animateWithDuration:self.animationDuration animations:^{
             CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(rotation * M_PI / 2);
             self.imageView.transform = rotationTransform;
-
+            
             // Reposition the image view
             [self repositionImageView];
         } completion:^(BOOL finished) {
@@ -221,7 +221,7 @@ CGSize CGSizeAbsolute(CGSize size) {
                 
                 [UIView animateWithDuration:self.animationDuration animations:^{
                     self.ratioControlsView.alpha = 1.f;
-                }];   
+                }];
             }
         }];
     } else
@@ -242,7 +242,7 @@ CGSize CGSizeAbsolute(CGSize size) {
 }
 
 - (UIImage *)output
-{    
+{
     UIImage *rotatedImage = [self rotatedImage:self.imageView.image];
     UIImage *croppedImage = [self croppedImage:rotatedImage];
     
@@ -288,7 +288,7 @@ CGSize CGSizeAbsolute(CGSize size) {
     imageView.layer.anchorPoint = CGPointMake(0.5f, 0.5f);
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     imageView.autoresizesSubviews = YES;
-    imageView.autoresizingMask = 
+    imageView.autoresizingMask =
     UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self addSubview:imageView];
     
@@ -460,9 +460,9 @@ CGSize CGSizeAbsolute(CGSize size) {
 - (void)repositionImageView
 {
     [self.imageView setFrame:CGRectMake(
-                                        borderWidth, 
-                                        borderWidth, 
-                                        self.frame.size.width - (borderWidth * 2), 
+                                        borderWidth,
+                                        borderWidth,
+                                        self.frame.size.width - (borderWidth * 2),
                                         self.frame.size.height - (borderWidth * 2))];
 }
 
@@ -500,25 +500,25 @@ CGSize CGSizeAbsolute(CGSize size) {
     CGMutablePathRef path = CGPathCreateMutable();
     
     // Left side of the ratio view
-    CGPathAddRect(path, nil, CGRectMake(0, 
-                                        0, 
-                                        self.ratioView.frame.origin.x, 
+    CGPathAddRect(path, nil, CGRectMake(0,
+                                        0,
+                                        self.ratioView.frame.origin.x,
                                         self.overlayView.frame.size.height));
     // Right side of the ratio view
     CGPathAddRect(path, nil, CGRectMake(
-                                        self.ratioView.frame.origin.x + self.ratioView.frame.size.width, 
-                                        0, 
-                                        self.overlayView.frame.size.width - self.ratioView.frame.origin.x - self.ratioView.frame.size.width, 
+                                        self.ratioView.frame.origin.x + self.ratioView.frame.size.width,
+                                        0,
+                                        self.overlayView.frame.size.width - self.ratioView.frame.origin.x - self.ratioView.frame.size.width,
                                         self.overlayView.frame.size.height));
     // Top side of the ratio view
-    CGPathAddRect(path, nil, CGRectMake(0, 
-                                        0, 
-                                        self.overlayView.frame.size.width, 
+    CGPathAddRect(path, nil, CGRectMake(0,
+                                        0,
+                                        self.overlayView.frame.size.width,
                                         self.ratioView.frame.origin.y));
     // Bottom side of the ratio view
-    CGPathAddRect(path, nil, CGRectMake(0, 
-                                        self.ratioView.frame.origin.y + self.ratioView.frame.size.height, 
-                                        self.overlayView.frame.size.width, 
+    CGPathAddRect(path, nil, CGRectMake(0,
+                                        self.ratioView.frame.origin.y + self.ratioView.frame.size.height,
+                                        self.overlayView.frame.size.width,
                                         self.overlayView.frame.size.height - self.ratioView.frame.origin.y + self.ratioView.frame.size.height));
     maskLayer.path = path;
     
@@ -542,7 +542,7 @@ CGSize CGSizeAbsolute(CGSize size) {
     
     if (imageRatio < viewRatio)
     {
-        float scale = self.frame.size.height / imageSize.height; 
+        float scale = self.frame.size.height / imageSize.height;
         float width = scale * imageSize.width;
         float topLeftX = .5 * (self.frame.size.width - width);
         return CGRectMake(topLeftX, 0, width, self.frame.size.height);
@@ -612,9 +612,9 @@ CGSize CGSizeAbsolute(CGSize size) {
     
     CGRect currentCropRect = self.ratioView.frame;
     CGRect actualCropRect = CGRectMake(
-                                       roundf(currentCropRect.origin.x / widthFactor), 
-                                       roundf(currentCropRect.origin.y / heightFactor), 
-                                       roundf(currentCropRect.size.width / widthFactor), 
+                                       roundf(currentCropRect.origin.x / widthFactor),
+                                       roundf(currentCropRect.origin.y / heightFactor),
+                                       roundf(currentCropRect.size.width / widthFactor),
                                        roundf(currentCropRect.size.height / heightFactor)
                                        );
     UIImage *outputImage = nil;
