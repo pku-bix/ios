@@ -36,7 +36,7 @@
         account.nickname = account.setName ;  //否则显示设置的    名字
         NSLog(@"bixMomentDataSource.h, account.setName is %@", account.setName);
     }
-
+ 
     
     account.avatarUrl = [NSURL URLWithString: @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg"];
 
