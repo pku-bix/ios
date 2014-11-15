@@ -64,6 +64,7 @@
     account.setWechatID = self.weChatID.text;
     [account save];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

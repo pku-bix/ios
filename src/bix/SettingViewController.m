@@ -87,12 +87,14 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [general_TableView titleForHeaderInSection:section];
+ //   return [general_TableView titleForHeaderInSection:section];
+    return NULL;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    return [general_TableView titleForFooterInSection:section];
+//    return [general_TableView titleForFooterInSection:section];
+    return NULL;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

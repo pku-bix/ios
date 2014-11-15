@@ -79,6 +79,7 @@
     //发送图片、文字的异步信息;
     //    [request sendAsynchronousPostRequest];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end
