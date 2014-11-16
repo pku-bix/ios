@@ -302,12 +302,14 @@
     NSLog(@"HEHE");
     [self.mutableArray addObject:self.textView.text];
     NSLog(@"text is %@", [self.mutableArray objectAtIndex:([self.mutableArray count]-1)]);
-
+//
     request = [[RequestInfoFromServer alloc]init];
     [request sendAsynchronousPostMomentData:self.mutableArray];
 //    [self dismissViewControllerAnimated:YES completion:nil];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"sendOneMomentDataItem" object:self.textView.text];
+    NSLog(@"the textView.text is %@", self.textView.text);
     
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"sendOneMomentDataItem" object:self.textView.text];
+    [self.mutableArray removeAllObjects];
     [[self navigationController] popViewControllerAnimated:YES];
     
 }

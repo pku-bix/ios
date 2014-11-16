@@ -20,7 +20,7 @@
 
 @implementation bixMomentDataItem
 {
-//    int test5;
+    NSString *momentPassage;
 }
 
 //int uio;
@@ -39,12 +39,23 @@
 }
 
 -(NSString*) passage{
-    return @"这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容，这是一个分享的内容。";
+    return momentPassage;
 }
 
 //
 -(id) initWithSender:(Account *)sender{
     self = [super init];
+   
+    if (sender.momentText == nil) {
+         momentPassage = @"这是一个分享的内容，这是一个分享的内容，这是一个分享的内容。";
+    }
+    else
+    {
+        momentPassage = sender.momentText;
+    }
+    
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment:) name:@"sendNewMomentText" object:nil];
+    
     if(self){
         _sender = sender;
         _pictureUrls = [NSMutableArray new];
@@ -56,11 +67,18 @@
         [_pictureUrls addObject: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];
         [_pictureUrls addObject: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];
         
-        [_replies addObject:[[bixMomentReplyItem alloc] initWithSender:sender andReplyText:@"呵呵呵"]];
-        [_replies addObject:[[bixMomentReplyItem alloc] initWithSender:sender andReplyText:@"哈哈哈"]];
+        [_replies addObject:[[bixMomentReplyItem alloc] initWithSender:sender andReplyText:@"成功显示"]];
+        [_replies addObject:[[bixMomentReplyItem alloc] initWithSender:sender andReplyText:@"棒啊"]];
     }
+//    [self.momentText addObject: @"这是一个分享的内容，这是一个分享的内容，这是一个分享的内容。"];
     
     return self;
+}
+
+-(void)parseMoment:(NSNotification*)notification
+{
+    momentPassage = notification.object;
+    NSLog(@"parseMoment in bixMomentDataItem.h is %@", momentPassage);
 }
 
 -(NSString *)description{

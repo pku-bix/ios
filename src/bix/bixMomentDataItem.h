@@ -29,5 +29,7 @@
 // 回复
 @property (nonatomic) NSMutableArray* replies;
 
+//保存每条状态的文字信息;
+@property(nonatomic)NSMutableArray * momentText;
 
 @end

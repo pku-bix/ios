@@ -25,6 +25,7 @@
 {
     int numberOFMomentCell;
     UIImage *image_send_mood_data;
+    NSString *newMomentText;
 }
 
 
@@ -47,7 +48,8 @@
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment:) name:@"sendOneMomentDataItem" object:nil];
+    newMomentText = @"这是分享圈的第一条信息";
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment2:) name:@"sendOneMomentDataItem" object:nil];
     
 }
 
@@ -57,11 +59,14 @@
     [ self.tableView reloadData ];
 }
 
--(void)parseMoment:(NSNotification*)notification
+-(void)parseMoment2:(NSNotification*)notification
 {
     NSLog(@"发送了一条新的状态，心情");
     numberOFMomentCell++; //多一条 状态说说;
     NSLog(@"bixViewController.m  moment number is %d", numberOFMomentCell);
+    NSLog(@"the text send from bixSendMoodData.m is %@", notification.object);
+    newMomentText = notification.object;
+    
     [self.momentText addObject:notification.object];
 }
 
@@ -91,7 +96,11 @@
     
     NSUInteger row = [indexPath row];
     NSLog(@"row is %d", row);
-    [cell loadFromMomentDataItem:[appdelegate.momentDataSrouce getOneMoment] andIndex:row];
+    if (row == (numberOFMomentCell-1)) {
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"sendNewMomentText" object:newMomentText];
+    }
+
+    [cell loadFromMomentDataItem:[appdelegate.momentDataSrouce getOneMoment:[self.momentText objectAtIndex:(self.momentText.count-row-1)]]];
 //    [cell loadFromMomentDataItem:[appdelegate.momentDataSrouce getOneMoment]];
     
     //点击cell的时候，不会变暗，不会有反应;

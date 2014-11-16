@@ -470,15 +470,15 @@ return nil;
     self.theResultData = notification.object;
     NSDictionary *location = [NSJSONSerialization JSONObjectWithData:self.theResultData options:NSJSONReadingMutableLeaves error:nil];
     NSArray *arrayResult = [location objectForKey:@"charger"];
-    NSLog(@"充电桩详情的个数是%d", [arrayResult count]);
+//    NSLog(@"充电桩详情的个数是%d", [arrayResult count]);
 //    NSLog(@"arrayResult is %@", arrayResult);
 //    chargePileNumber = [arrayResult count];
     
 //    muArray = [NSMutableArray arrayWithCapacity:chargePileNumber*5];
     [detailInfoArray removeAllObjects];
-    NSLog(@"type is %@", [(id)arrayResult objectForKey:@"__t"]);
-    NSLog(@"detailedaddress is %@", [(id)arrayResult objectForKey:@"detailedaddress"]);
-    NSLog(@"parkingnum is %@", [(id)arrayResult objectForKey:@"parkingnum"]);
+//    NSLog(@"type is %@", [(id)arrayResult objectForKey:@"__t"]);
+//    NSLog(@"detailedaddress is %@", [(id)arrayResult objectForKey:@"detailedaddress"]);
+//    NSLog(@"parkingnum is %@", [(id)arrayResult objectForKey:@"parkingnum"]);
 //    NSLog(@"time is %@", [(id)arrayResult objectForKey:@"time"]);
     
     if ([[(id)arrayResult objectForKey:@"__t"] isEqualToString:@"SuperCharger"]) {
@@ -495,9 +495,9 @@ return nil;
         [detailInfoArray addObject:[(id)arrayResult objectForKey:@"info"]];
     }
     
-    for (id obj in detailInfoArray) {
-        NSLog(@"%@", obj);
-    }
+//    for (id obj in detailInfoArray) {
+//        NSLog(@"%@", obj);
+//    }
     
     [self performSegueWithIdentifier:@"detail" sender:self];
     

@@ -37,6 +37,9 @@ static NSString *const KEY_DEVICE_TOKEN=@"device_token";
  * used for server config
  */
 static NSString* const SERVER = @"121.40.72.197";
+
+static NSString* const NODE_SERVER = @"192.168.1.105:3000";
+
 static NSString* const SERVER_DOMAIN = @"bix.org";
 static const NSTimeInterval CONNECT_TIMEOUT = 10;
 static NSString* const BAIDU_MAP_KEY = @"oCvXZCd41PsMzOw0disOu1QA";
@@ -45,24 +48,31 @@ static NSString* const BAIDU_MAP_KEY = @"oCvXZCd41PsMzOw0disOu1QA";
  app打开时，请求服务器地图标注信息的ip+path；
  */
 //static NSString *const LOCATION_INFO_IP = @"http://121.40.72.197/api/piles";
-static NSString *const LOCATION_INFO_IP = @"http://121.40.72.197/api/chargers";
+//static NSString *const LOCATION_INFO_IP = @"http://121.40.72.197/api/chargers";
+
+static NSString *const LOCATION_INFO_IP = @"http://192.168.1.105:3000/api/chargers";
 
 //点击地图标注的吹出框，请求服务器对应的充电桩的详细信息
 //static NSString *const LOCATION_DETAIL_INFO_IP = @"http://121.40.72.197/api/pile/";
-static NSString *const LOCATION_DETAIL_INFO_IP = @"http://121.40.72.197/api/charger/";
+//static NSString *const LOCATION_DETAIL_INFO_IP = @"http://121.40.72.197/api/charger/";
+static NSString *const LOCATION_DETAIL_INFO_IP = @"http://192.168.1.105:3000/api/charger/";
 
 //上报充电桩详细信息的IP
-static NSString *const REPORT_CHARGER_INFO_IP = @"http://121.40.72.197/api/charger";
+//static NSString *const REPORT_CHARGER_INFO_IP = @"http://121.40.72.197/api/charger";
+static NSString *const REPORT_CHARGER_INFO_IP = @"http://192.168.1.105:3000/api/charger";
 
 //POST设置界面的头像、姓名、用户id、个性签名、微信号、Tesla车型的ip
-static NSString *const POST_IMAGE_TEXT_INFO_IP = @"http://121.40.72.197/api/user/";
-
+//static NSString *const POST_IMAGE_TEXT_INFO_IP = @"http://121.40.72.197/api/user/";
+static NSString *const POST_IMAGE_TEXT_INFO_IP = @"http://192.168.1.105:3000//api/user/";
 //分享圈 发送文字和图片 的ip
-static NSString *const POST_MOMENT_IP = @"http://121.40.72.197/api/posts";
+//static NSString *const POST_MOMENT_IP = @"http://121.40.72.197/api/posts";
+static NSString *const POST_MOMENT_IP = @"http:/192.168.1.105:3000/api/posts";
 
 //通知需要设备的deviceToken, 将每个用户的deviceToken post到服务器的 ip 地址
 // TODO: @杜实现 在该方法中POST该Token至 /api/user/<username>
-static NSString *const POST_DEVICE_TOKEN_IP = @"http://121.40.72.197/api/user/";
+
+//static NSString *const POST_DEVICE_TOKEN_IP = @"http://121.40.72.197/api/user/";
+static NSString *const POST_DEVICE_TOKEN_IP = @"http://192.168.1.105:3000/api/user/";
 
 //设置界面 -》个人信息 -》名字 字段类型
 static const int NAME_TYPE = 1;

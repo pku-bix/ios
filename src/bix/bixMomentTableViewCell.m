@@ -39,8 +39,8 @@
 }
 
 //设置头像、名字昵称、发送的文字以及回复构成的一条 分享字段;
-- (void) loadFromMomentDataItem:(bixMomentDataItem*)item andIndex:(int)k{
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment:) name:@"sendOneMomentDataItem" object:nil];
+- (void) loadFromMomentDataItem:(bixMomentDataItem*)item {
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment1:) name:@"sendOneMomentDataItem" object:nil];
     NSLog(@"loading moment...\n%@",item);
     
     self.momentDataItem = item;
@@ -49,16 +49,9 @@
     [label setText:item.nickname];
     
     UITextView *text = (UITextView*)[self.contentView viewWithTag:20];
-    if (flag_notification == 1) {
-        NSLog(@"receive notification in momentTableViewCell");
-//        [text setText:message];
-        [text setText:[self.momentText objectAtIndex:k+1]];
-        NSLog(@"[text setText:[self.momentText objectAtIndex:k+1]] is %@", [self.momentText objectAtIndex:k+1]);
-    }
-    else
-    {
+
         [text setText:item.passage];
-    }
+
 
     
     UIImageView *avatar = (UIImageView*)[self.contentView viewWithTag:30];
@@ -68,16 +61,16 @@
     replies.dataSource = self;
     replies.delegate   = self;
 }
-
--(void)parseMoment:(NSNotification*)notification
-{
-    NSLog(@"bixMomentTableViewCell.h notification");
-    message = notification.object;
-    flag_notification = 1; //表明有通知发送出来
-    [self.momentText addObject:message];
-    NSLog(@"message is %@", message);
-    
-}
+//
+//-(void)parseMoment1:(NSNotification*)notification
+//{
+//    NSLog(@"bixMomentTableViewCell.h notification");
+//    message = notification.object;
+//    flag_notification = 1; //表明有通知发送出来
+//    [self.momentText addObject:message];
+//    NSLog(@"message is %@", message);
+//    
+//}
 
 
 - (void)awakeFromNib

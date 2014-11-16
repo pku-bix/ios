@@ -427,7 +427,7 @@
     //把返回的data型数据转化成NSString
     self.theResult = [[NSMutableString alloc]initWithData:self.theResultData encoding:NSUTF8StringEncoding];
     //打印服务器返回的数据
-    NSLog(@"result from server: %@", self.theResult);
+//    NSLog(@"result from server: %@", self.theResult);
     if (_selectNotificationKind == 1) {
          [[NSNotificationCenter defaultCenter]postNotificationName:REQUEST_SIMPLE_INFO object:self.theResultData];
     }
