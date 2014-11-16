@@ -12,9 +12,11 @@
 @interface bixSendMoodData : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PassImageDelegate>
 {
 //    int pictureNumber ;
+
 }
 
 @property(nonatomic)int pictureNumber; //添加的图片数量;
+
 @property(nonatomic) NSMutableArray *mutableArray;
 
 @property(strong,nonatomic) NSObject<PassImageDelegate> *delegate;

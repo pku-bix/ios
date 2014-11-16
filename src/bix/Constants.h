@@ -63,7 +63,7 @@ static NSString *const REPORT_CHARGER_INFO_IP = @"http://192.168.1.105:3000/api/
 
 //POST设置界面的头像、姓名、用户id、个性签名、微信号、Tesla车型的ip
 //static NSString *const POST_IMAGE_TEXT_INFO_IP = @"http://121.40.72.197/api/user/";
-static NSString *const POST_IMAGE_TEXT_INFO_IP = @"http://192.168.1.105:3000//api/user/";
+static NSString *const POST_IMAGE_TEXT_INFO_IP = @"http://192.168.1.105:3000/api/user/";
 //分享圈 发送文字和图片 的ip
 //static NSString *const POST_MOMENT_IP = @"http://121.40.72.197/api/posts";
 static NSString *const POST_MOMENT_IP = @"http:/192.168.1.105:3000/api/posts";

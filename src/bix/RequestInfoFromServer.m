@@ -14,7 +14,7 @@
 
 
 
-//异步GET请求 获取 所有充电桩数据;
+//异步GET请求 获取 所有充电桩数据, 以及获取某个充电桩的详情, 这两种情况只是请求的参数不同而已;
 -(void)sendRequest:(NSString*)strAddress
 {
 //    NSString *addStr = [NSString stringWithFormat:@"http://121.40.72.197/api/piles"];
@@ -75,7 +75,7 @@
 //单独POST 设置界面-》个人信息-》 名字、个性签名、微信号、Tesla车型字段，以及反馈与建议文字;
 -(void)sendAsynchronousPostTextRequest:(NSString*)text type:(int)type
 {
-    _selectNotificationKind = 3;//第三种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
+    _selectNotificationKind = 4;//第三种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
     
     Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
     NSMutableString *url = [NSMutableString stringWithString:POST_IMAGE_TEXT_INFO_IP];
@@ -124,7 +124,7 @@
 {
     //dictionary 对象下标从小到大顺序为:用户ID、经度、维度、电话号码、详细地址、邮箱地址、充电桩数量、备注信息;后三个字段是用户上报时的选填字段，不是必填字段;
     
-    _selectNotificationKind = 3;//第三种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
+    _selectNotificationKind = 6;//第三种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
     
     //    Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
     
@@ -281,7 +281,7 @@
 //异步POST请求,POST图片、文字
 -(void)sendAsynchronousPostRequest
 {
-    _selectNotificationKind = 3;//第三种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
+    _selectNotificationKind = 7;//第三种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
     
     Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
     NSMutableString *url = [NSMutableString stringWithString:POST_IMAGE_TEXT_INFO_IP];
@@ -357,7 +357,7 @@
 //向用户推送通知时，需要知道用户的deviceToken，向用户post此deviceToken;
 -(void)sendAsynchronousPostDeviceToken:(NSData *)deviceToken
 {
-    _selectNotificationKind = 3;//第三种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
+    _selectNotificationKind = 8;//第三种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
     
     Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
     NSMutableString *url = [NSMutableString stringWithString:POST_DEVICE_TOKEN_IP];
@@ -408,6 +408,16 @@
 //        NSLog([dictionary description]);
 //        [dictionary objectForKey:statusCode];
         NSLog(@"http statusCode is %d",[httpResponse statusCode]);
+        if (_selectNotificationKind == 5) {
+            if ([httpResponse statusCode] == 200) {
+                NSLog(@"http statusCode is %d", [httpResponse statusCode]);
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"sendMomentDataSuccessOrNot" object:@"success"];
+            }
+//            else
+//            {
+//                [[NSNotificationCenter defaultCenter]postNotificationName:@"sendMomentDataSuccessOrNot" object:@"fail"];
+//            }
+        }
     }
     NSLog(@"服务器开始响应请求");
     
@@ -427,7 +437,7 @@
     //把返回的data型数据转化成NSString
     self.theResult = [[NSMutableString alloc]initWithData:self.theResultData encoding:NSUTF8StringEncoding];
     //打印服务器返回的数据
-//    NSLog(@"result from server: %@", self.theResult);
+    NSLog(@"result from server: %@", self.theResult);
     if (_selectNotificationKind == 1) {
          [[NSNotificationCenter defaultCenter]postNotificationName:REQUEST_SIMPLE_INFO object:self.theResultData];
     }
@@ -456,6 +466,7 @@
 {
     //打印错误信息
     NSLog(@"错误信息是%@", [error localizedDescription]);
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"sendMomentDataSuccessOrNot" object:@"networkLost"];
 }
 
 @end

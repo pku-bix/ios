@@ -21,10 +21,13 @@
 
 @implementation bixSendMoodData
 {
+    int timeOfNotification;
     UIImage *pickImage;
     AppDelegate* appDelegate;
     RequestInfoFromServer* request;
     MBProgressHUD *hud;
+    //用这个变量来标记发送是否成功，对应在点击发送按钮触发的事件;
+//    int flag;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -40,6 +43,9 @@
 {
     [super viewDidLoad];
     self.pictureNumber = 1;
+    timeOfNotification = 0;
+    
+//    flag = 0;  //
     self.imageView1.image = self.image1;
     
     self.mutableArray = [NSMutableArray arrayWithCapacity:9];//最多添加9张图片;
@@ -52,8 +58,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-
-
+    NSLog(@"viewWillAppear");
 }
 
 - (void)didReceiveMemoryWarning
@@ -215,8 +220,6 @@
                 break;
         }
         
-
-        
         //将二进制数据生成UIImage
         
         //        bixSendMoodData *sendMoodData = [[bixSendMoodData alloc]init];
@@ -292,6 +295,7 @@
 }
 
 - (IBAction)sendTextAndPicture:(id)sender {
+   
     NSLog(@"图片数组个数是 %d", [self.mutableArray count]);
     NSLog(@"输入的文字是 %@", self.textView.text);
     if ([self.textView.text isEqualToString:@""]) {
@@ -300,18 +304,63 @@
     }
     
     NSLog(@"HEHE");
-    [self.mutableArray addObject:self.textView.text];
+    if ((self.pictureNumber) == [self.mutableArray count]) {
+        [self.mutableArray addObject:self.textView.text];
+    }
+    else if((self.pictureNumber+1) == [self.mutableArray count])
+    {
+        [self.mutableArray removeLastObject];
+        [self.mutableArray addObject:self.textView.text];
+    }
+//    [self.mutableArray]
     NSLog(@"text is %@", [self.mutableArray objectAtIndex:([self.mutableArray count]-1)]);
 //
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseSuccessOrNot:) name:@"sendMomentDataSuccessOrNot" object:nil];
+    hud = [MessageBox Toasting:@"正在发送" In:self.view];
     request = [[RequestInfoFromServer alloc]init];
     [request sendAsynchronousPostMomentData:self.mutableArray];
+    
 //    [self dismissViewControllerAnimated:YES completion:nil];
     NSLog(@"the textView.text is %@", self.textView.text);
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"sendOneMomentDataItem" object:self.textView.text];
-    [self.mutableArray removeAllObjects];
-    [[self navigationController] popViewControllerAnimated:YES];
-    
+//    [[NSNotificationCenter defaultCenter]postNotificationName:@"sendOneMomentDataItem" object:self.textView.text];
+//    [self.mutableArray removeAllObjects];
+//    [[self navigationController] popViewControllerAnimated:YES];
+}
+
+-(void)parseSuccessOrNot:(NSNotification *)notification
+{
+    if ([notification.object isEqualToString:@"success"]) {
+        //发送成功才能给bixMomentViewController.m 发送通知，从而使 cell个数加1;
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"sendOneMomentDataItem" object:self.textView.text];
+        [hud hide:YES];
+        [MessageBox Toasting:@"发送成功！" In:self.view];
+        self.view.userInteractionEnabled = YES;
+        
+        [self.mutableArray removeAllObjects];
+        
+        [[self navigationController] popViewControllerAnimated:YES];
+    }
+    else
+    {
+//        [hud hide:YES];
+//        [MessageBox Toasting:@"发送失败！" In:self.view];
+//        flag = 1;  //标记发送失败;
+        [hud hide:YES];
+        [MessageBox Toast:@"发送失败！" In:self.view];
+        self.view.userInteractionEnabled = YES;
+        
+//        [self.mutableArray removeAllObjects];
+//        [self.mutableArray removeObjectAtIndex:([self.mutableArray count]-1)];
+
+        timeOfNotification++;
+        NSLog(@"timeOfNotification is %d", timeOfNotification);
+        NSLog(@"mutableArray number is %d", [self.mutableArray count]);
+        for (id obj in self.mutableArray) {
+            NSLog(@"mutableArray is %@", obj);
+        }
+    }
+
 }
 
 - (IBAction)Tap:(id)sender {

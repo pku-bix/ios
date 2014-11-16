@@ -96,9 +96,6 @@
     
     NSUInteger row = [indexPath row];
     NSLog(@"row is %d", row);
-    if (row == (numberOFMomentCell-1)) {
-//        [[NSNotificationCenter defaultCenter]postNotificationName:@"sendNewMomentText" object:newMomentText];
-    }
 
     [cell loadFromMomentDataItem:[appdelegate.momentDataSrouce getOneMoment:[self.momentText objectAtIndex:(self.momentText.count-row-1)]]];
 //    [cell loadFromMomentDataItem:[appdelegate.momentDataSrouce getOneMoment]];

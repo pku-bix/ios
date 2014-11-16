@@ -89,6 +89,7 @@
                     image0 = [UIImage imageNamed:@"default_headshow.png"];
                 }
                 cell.imageView.image = image0;
+//                cell.detailTextLabel.text= @"     dsx";
                 break;
             default:
                 break;

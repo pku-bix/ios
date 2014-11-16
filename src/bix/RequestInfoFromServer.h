@@ -14,6 +14,7 @@
     NSMutableArray *muArray, *detailInfoArray;
 }
 
+//用于区分是哪种请求，以便发出相应的通知;
 @property int selectNotificationKind;
 
 @property (retain, nonatomic) NSMutableString *theResult;

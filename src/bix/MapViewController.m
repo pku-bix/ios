@@ -434,8 +434,11 @@ return nil;
     NSDictionary *location = [NSJSONSerialization JSONObjectWithData:self.theResultData options:NSJSONReadingMutableLeaves error:nil];
 //    NSArray *arrayResult = [location objectForKey:@"result"];
     
-    NSArray *arrayResult = [location objectForKey:@"chargers"];
+//    NSArray *arrayResult = [location objectForKey:@"chargers"];
+    
+    NSArray *arrayResult = (NSArray*)location;
     NSLog(@"数组个数是%d", [arrayResult count]);
+    
     chargePileNumber = [arrayResult count];
 
     //muArray存储充电桩的5条信息;
@@ -450,9 +453,9 @@ return nil;
         [muArray addObject:[obj1 objectForKey:@"_id"]];
         k++; //for test!!
         
-        if (k%50 == 0) {
-            NSLog(@"type is %@, addr is %@",[obj1 objectForKey:@"__t"], [obj1 objectForKey:@"detailedaddress"]);
-        }
+//        if (k%50 == 0) {
+//            NSLog(@"type is %@, addr is %@",[obj1 objectForKey:@"__t"], [obj1 objectForKey:@"detailedaddress"]);
+//        }
     }
     //    NSLog(@"%.8f, %.8f, %.8f, %.8f", t1, t2, t3, t4);
     //    NSRange range = [self.theResult rangeOfString:@"location"];
@@ -469,17 +472,18 @@ return nil;
 {
     self.theResultData = notification.object;
     NSDictionary *location = [NSJSONSerialization JSONObjectWithData:self.theResultData options:NSJSONReadingMutableLeaves error:nil];
-    NSArray *arrayResult = [location objectForKey:@"charger"];
+//    NSArray *arrayResult = [location objectForKey:@"charger"];
+    NSArray *arrayResult = (NSArray*)location;
 //    NSLog(@"充电桩详情的个数是%d", [arrayResult count]);
 //    NSLog(@"arrayResult is %@", arrayResult);
 //    chargePileNumber = [arrayResult count];
     
 //    muArray = [NSMutableArray arrayWithCapacity:chargePileNumber*5];
     [detailInfoArray removeAllObjects];
-//    NSLog(@"type is %@", [(id)arrayResult objectForKey:@"__t"]);
-//    NSLog(@"detailedaddress is %@", [(id)arrayResult objectForKey:@"detailedaddress"]);
-//    NSLog(@"parkingnum is %@", [(id)arrayResult objectForKey:@"parkingnum"]);
-//    NSLog(@"time is %@", [(id)arrayResult objectForKey:@"time"]);
+    NSLog(@"type is %@", [(id)arrayResult objectForKey:@"__t"]);
+    NSLog(@"detailedaddress is %@", [(id)arrayResult objectForKey:@"detailedaddress"]);
+    NSLog(@"parkingnum is %@", [(id)arrayResult objectForKey:@"parkingnum"]);
+    NSLog(@"time is %@", [(id)arrayResult objectForKey:@"time"]);
     
     if ([[(id)arrayResult objectForKey:@"__t"] isEqualToString:@"SuperCharger"]) {
         [detailInfoArray addObject:[(id)arrayResult objectForKey:@"__t"]];
