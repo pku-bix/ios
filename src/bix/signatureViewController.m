@@ -51,6 +51,10 @@
     request = [[RequestInfoFromServer alloc]init];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"nameChange" object:nil];
+}
 
 -(void)parseTest:(NSNotification*)notification
 {

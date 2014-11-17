@@ -65,8 +65,6 @@
     requestInfoFromServer = [[RequestInfoFromServer alloc]init];
     requestInfoFromServer.selectNotificationKind = 1;
     [requestInfoFromServer sendRequest:LOCATION_INFO_IP];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseResult:) name:REQUEST_SIMPLE_INFO object:nil];
-    
     [self initMapViewButton];
 
    
@@ -180,6 +178,10 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseResult:) name:REQUEST_SIMPLE_INFO object:nil];
+    //注册获取某个具体充电桩详细信息的通知;
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseDetailResult:) name:REQUEST_CHARGER_DETAIL_INFO object:nil];
+
    //  [_mapManager start:BAIDU_MAP_KEY  generalDelegate:self];
     NSLog(@"viewWillAppear");
     [_mapView viewWillAppear];
@@ -193,7 +195,8 @@
     [_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
     _search.delegate = nil; // 不用时，置nil
-//    [self.view ]
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:REQUEST_SIMPLE_INFO object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:REQUEST_CHARGER_DETAIL_INFO object:nil];
    // NSLog(@"map view disappear");
 }
 
@@ -363,7 +366,8 @@ return nil;
 
     requestInfoFromServer.selectNotificationKind = 2;
     [requestInfoFromServer sendRequest:path];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseDetailResult:) name:REQUEST_CHARGER_DETAIL_INFO object:nil]; 
+    //不可以在此注册通知！！！
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseDetailResult:) name:REQUEST_CHARGER_DETAIL_INFO object:nil]; 
 //    [self performSegueWithIdentifier:@"detail" sender:self];
 //    for (id obj in detailInfoArray) {
 //        NSLog(@"detailInfoArray is %@", obj);
@@ -400,29 +404,7 @@ return nil;
         //detail.session = sessionToOpen;
     }
 }
-//
-//-(void)addBatteryChargeAnnotation
-//{
-//    NSLog(@"addBatteryChargeAnnotation chargePileNumber is %d", chargePileNumber);
-////    CLLocationCoordinate2D annotation3 = {39.83669,116.39516};
-////    NSArray annotation = [NSArray arrayWithObjects:annotation1,annotation2,annotation3, nil];
-//    int k = 0;
-//    for(int i = 0; i < chargePileNumber; i++)
-//    {
-////        BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
-//        CustomBMKPointAnnotation *j = [CustomBMKPointAnnotation new];
-//        if([[muArray objectAtIndex:k]  isEqual: @"SuperCharger"])
-//        {
-//            j.coordinate = CLLocationCoordinate2DMake([[muArray objectAtIndex:k+2] doubleValue], [[muArray objectAtIndex:k+3] doubleValue]);
-//            //        NSLog(@"%f, %f", [[muArray objectAtIndex:k+1] doubleValue], [[muArray objectAtIndex:k+2] doubleValue]);
-//            j.title = [muArray objectAtIndex:k+1];
-//            j.type = 0; // type = 0 表示 超级充电桩;
-//            [_mapView addAnnotation:j];
-//        }
-//        k = k+4;        
-//    }
-////    [_mapView addAnnotations:chargeArray];
-//}
+
 
  #pragma mark asynchronousRequest
 

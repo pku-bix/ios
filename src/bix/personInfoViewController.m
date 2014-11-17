@@ -115,9 +115,11 @@
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    
-    
 }
+
+//-(void)viewWillDisappear:(BOOL)animated
+//{
+//    }
 
 -(void)getName:(NSNotification*)notification
 {
@@ -151,6 +153,12 @@
 
 
 - (void)viewWillDisappear:(BOOL)animated{
+
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"nameChange" object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"signatureChange" object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"IDChange" object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"WechatID" object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"TeslaType" object:nil];
     //不用时，置nil
     _tableView.delegate = nil;
     _tableView.dataSource = nil;

@@ -59,6 +59,13 @@
     [ self.tableView reloadData ];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"sendOneMomentDataItem" object:nil];
+
+}
+
 -(void)parseMoment2:(NSNotification*)notification
 {
     NSLog(@"发送了一条新的状态，心情");

@@ -62,6 +62,11 @@
     NSLog(@"viewWillAppear");
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"sendMomentDataSuccessOrNot" object:nil];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
