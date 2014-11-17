@@ -32,6 +32,10 @@
     _selectNotificationKind = 3;//第三种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
     
     Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
+    //static NSString *const POST_IMAGE_TEXT_INFO_IP = @"http://121.40.72.197/api/user/";
+//    NSMutableString *post_image_text_info_ip;
+//    [post_image_text_info_ip setString:NODE_SERVER_OR_LAN_SERVER];
+//    [post_image_text_info_ip appendString:<#(NSString *)#>]
     NSMutableString *url = [NSMutableString stringWithString:POST_IMAGE_TEXT_INFO_IP];
     [url appendString:account.username];
     NSLog(@"url is %@", url);

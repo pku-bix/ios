@@ -104,7 +104,6 @@
     //    appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     //    name = appDelegate.account.setName;
     //    siganature = appDelegate.account.setSignature;
-    //
     NSLog(@"last name is %@", name);
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getName:) name:@"nameChange" object:nil];
@@ -154,11 +153,11 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
 
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"nameChange" object:nil];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"signatureChange" object:nil];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"IDChange" object:nil];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"WechatID" object:nil];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"TeslaType" object:nil];
+//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"nameChange" object:nil];
+//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"signatureChange" object:nil];
+//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"IDChange" object:nil];
+//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"WechatID" object:nil];
+//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"TeslaType" object:nil];
     //不用时，置nil
     _tableView.delegate = nil;
     _tableView.dataSource = nil;
