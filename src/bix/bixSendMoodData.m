@@ -14,7 +14,6 @@
 #import "MessageBox.h"
 #import "MBProgressHUD.h"
 
-
 @interface bixSendMoodData ()
 
 @end
@@ -133,7 +132,7 @@
 //当进入拍照模式拍照 并且点击Use photo后 或者 从本地图库选择图片后 会调用此方法;
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [MessageBox Toast:@"处理中..." In: self.view];
+
     
     [UIApplication sharedApplication].statusBarHidden = NO;
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
@@ -141,7 +140,7 @@
     NSLog(@"mediaType is %@", mediaType);
     
     NSData *data;
-    
+    hud = [MessageBox Toast:@"处理中..." In: self.view];
     if ([mediaType isEqualToString:@"public.image"]){
         
         //切忌不可直接使用originImage，因为这是没有经过格式化的图片数据，可能会导致选择的图片颠倒或是失真等现象的发生，从UIImagePickerControllerOriginalImage中的Origin可以看出，很原始，哈哈
@@ -226,7 +225,9 @@
             default:
                 break;
         }
-        
+       
+        [hud hide:YES];
+        self.view.userInteractionEnabled = YES;
         //将二进制数据生成UIImage
         
         //        bixSendMoodData *sendMoodData = [[bixSendMoodData alloc]init];

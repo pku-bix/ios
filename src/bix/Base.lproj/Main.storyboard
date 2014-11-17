@@ -647,7 +647,7 @@
                                 <rect key="frame" x="100" y="129" width="121" height="75"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="本软件是一款集地图、社交、共享元素于一体的app，旨在通过地图和社交元素帮助电动汽车共享充电桩、共享汽车，从而方便用户，建立圈子。" translatesAutoresizingMaskIntoConstraints="NO" id="o1Z-Yu-Pyq">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="本软件是一款集地图、社交、共享元素于一体的app，旨在通过地图和社交元素帮助电动汽车共享充电桩、共享汽车，从而方便用户，建立圈子。" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o1Z-Yu-Pyq">
                                 <rect key="frame" x="43" y="238" width="235" height="112"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

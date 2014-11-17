@@ -409,14 +409,15 @@
 //        [dictionary objectForKey:statusCode];
         NSLog(@"http statusCode is %d",[httpResponse statusCode]);
         if (_selectNotificationKind == 5) {
-            if ([httpResponse statusCode] == 200) {
+//            if ([httpResponse statusCode] == 200) {
+            
                 NSLog(@"http statusCode is %d", [httpResponse statusCode]);
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"sendMomentDataSuccessOrNot" object:@"success"];
-            }
-            else
-            {
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"sendMomentDataSuccessOrNot" object:@"serverProblem"];
-            }
+//            }
+//            else
+//            {
+//                [[NSNotificationCenter defaultCenter]postNotificationName:@"sendMomentDataSuccessOrNot" object:@"serverProblem"];
+//            }
         }
     }
     NSLog(@"服务器开始响应请求");
