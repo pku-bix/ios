@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "bixMomentDataItem.h"
 
-@interface bixMomentTableViewCell : UITableViewCell<UITableViewDataSource,UITableViewDelegate>
+@interface bixMomentTableViewCell : UITableViewCell<UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 - (void) loadFromMomentDataItem:(bixMomentDataItem*)item;
 
-@property(nonatomic)NSMutableArray * momentText; //保存每条状态的文字信息;
 @end

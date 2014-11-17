@@ -12,7 +12,22 @@
 #import "Constants.h"
 #import "bixMomentReplyItem.h"
 
+// 分享列表Cell的控制器
+// 用以控制分享列表Cell的所有子视图，并实现图片组和回复列表的数据源与事件代理。
+// 如果子视图变得复杂，可以考虑分离出去。
 @interface bixMomentTableViewCell()
+
+
+// 用户头像
+@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+// 用户显示名
+@property (weak, nonatomic) IBOutlet UILabel *userLabel;
+// 分享文本内容
+@property (weak, nonatomic) IBOutlet UITextView *contentTextView;
+// 分享图片组
+@property (weak, nonatomic) IBOutlet UICollectionView *imgCollectionView;
+// 回复列表
+@property (weak, nonatomic) IBOutlet UITableView *replyTableView;
 
 @property (nonatomic) bixMomentDataItem *momentDataItem;
 
@@ -24,42 +39,52 @@
     int flag_notification;
 }
 
+// load from reuse key
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
     }
-    self.momentText = [NSMutableArray arrayWithCapacity:1];
-    
-    [self.momentText addObject:@"这是第一条分享圈的消息"];
+    return self;
+}
 
-    flag_notification = 0;
+// load from nib or storyboard
+-(id)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        // Initialization code
+    }
     return self;
 }
 
 //设置头像、名字昵称、发送的文字以及回复构成的一条 分享字段;
+// obsolete
 - (void) loadFromMomentDataItem:(bixMomentDataItem*)item {
 //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment1:) name:@"sendOneMomentDataItem" object:nil];
     NSLog(@"loading moment...\n%@",item);
     
     self.momentDataItem = item;
     
-    UILabel *label = (UILabel *)[self.contentView viewWithTag:10];
-    [label setText:item.nickname];
+    //UILabel *label = (UILabel *)[self.contentView viewWithTag:10];
+    [self.userLabel setText:item.nickname];
     
-    UITextView *text = (UITextView*)[self.contentView viewWithTag:20];
+    //UITextView *text = (UITextView*)[self.contentView viewWithTag:20];
 
-        [text setText:item.passage];
+    [self.contentTextView setText:item.textContent];
 
-
+    //UIImageView *avatar = (UIImageView*)[self.contentView viewWithTag:30];
+    [self.userImageView sd_setImageWithURL:item.avatarUrl];
     
-    UIImageView *avatar = (UIImageView*)[self.contentView viewWithTag:30];
-    [avatar sd_setImageWithURL:item.avatarUrl];
+    //UITableView *replies = (UITableView*)[self.contentView viewWithTag:40];
     
-    UITableView *replies = (UITableView*)[self.contentView viewWithTag:40];
-    replies.dataSource = self;
-    replies.delegate   = self;
+    self.imgCollectionView.dataSource = self;
+    self.imgCollectionView.delegate = self;
+    
+    self.replyTableView.dataSource = self;
+    self.replyTableView.delegate   = self;
+
 }
 //
 //-(void)parseMoment1:(NSNotification*)notification
@@ -87,7 +112,9 @@
 
 
 
-#pragma mark - TableViewSource
+#pragma mark - replyTableView
+// 回复列表数据提供者
+// 未设计回复列表Cell的Controller类，但我们可以通过tag获得子视图
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -120,5 +147,22 @@
     return NO;
 }
 
+
+#pragma mark - imgCollectionView
+
+-(UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"moment-image"
+                                              forIndexPath:indexPath];
+    
+    UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:111];
+    [imageView sd_setImageWithURL:self.momentDataItem.imgUrls[indexPath.row]];
+
+//    cell.contentView
+    return cell;
+}
+
+-(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return self.momentDataItem.replies.count;
+}
 
 @end
