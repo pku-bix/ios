@@ -50,7 +50,7 @@
     
     self.mutableArray = [NSMutableArray arrayWithCapacity:9];//最多添加9张图片;
     [self.mutableArray addObject:self.image1];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseSuccessOrNot:) name:@"sendMomentDataSuccessOrNot" object:nil];
+   
 //    self.textView
 //    [UIApplication sharedApplication].statusBarHidden = NO;
 //    self.navigationController.navigationBar.hidden = YES;
@@ -59,6 +59,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseSuccessOrNot:) name:@"sendMomentDataSuccessOrNot" object:nil];
     NSLog(@"viewWillAppear");
 }
 

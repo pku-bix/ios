@@ -49,12 +49,14 @@
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
     newMomentText = @"这是分享圈的第一条信息";
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment2:) name:@"sendOneMomentDataItem" object:nil];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment2:) name:@"sendOneMomentDataItem" object:nil];
     
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment2:) name:@"sendOneMomentDataItem" object:nil];
+
 //     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment:) name:@"sendOneMomentDataItem" object:nil];
     [ self.tableView reloadData ];
 }
@@ -63,7 +65,6 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:@"sendOneMomentDataItem" object:nil];
-
 }
 
 -(void)parseMoment2:(NSNotification*)notification
