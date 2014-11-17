@@ -50,6 +50,7 @@
     
     self.mutableArray = [NSMutableArray arrayWithCapacity:9];//最多添加9张图片;
     [self.mutableArray addObject:self.image1];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseSuccessOrNot:) name:@"sendMomentDataSuccessOrNot" object:nil];
 //    self.textView
 //    [UIApplication sharedApplication].statusBarHidden = NO;
 //    self.navigationController.navigationBar.hidden = YES;
@@ -303,7 +304,6 @@
         return ;
     }
     
-    NSLog(@"HEHE");
     if ((self.pictureNumber) == [self.mutableArray count]) {
         [self.mutableArray addObject:self.textView.text];
     }
@@ -312,24 +312,24 @@
         [self.mutableArray removeLastObject];
         [self.mutableArray addObject:self.textView.text];
     }
-//    [self.mutableArray]
     NSLog(@"text is %@", [self.mutableArray objectAtIndex:([self.mutableArray count]-1)]);
 //
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseSuccessOrNot:) name:@"sendMomentDataSuccessOrNot" object:nil];
+    //切记不可在这个函数注册通知，否则没点击一次按钮就会注册一个相同的通知，最后会收到多个相同的数据;
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseSuccessOrNot:) name:@"sendMomentDataSuccessOrNot" object:nil];
     hud = [MessageBox Toasting:@"正在发送" In:self.view];
+    
     request = [[RequestInfoFromServer alloc]init];
     [request sendAsynchronousPostMomentData:self.mutableArray];
     
 //    [self dismissViewControllerAnimated:YES completion:nil];
     NSLog(@"the textView.text is %@", self.textView.text);
     
-//    [[NSNotificationCenter defaultCenter]postNotificationName:@"sendOneMomentDataItem" object:self.textView.text];
-//    [self.mutableArray removeAllObjects];
 //    [[self navigationController] popViewControllerAnimated:YES];
 }
 
 -(void)parseSuccessOrNot:(NSNotification *)notification
 {
+    NSLog(@"parseSuccessOrNot");
     if ([notification.object isEqualToString:@"success"]) {
         //发送成功才能给bixMomentViewController.m 发送通知，从而使 cell个数加1;
         [[NSNotificationCenter defaultCenter]postNotificationName:@"sendOneMomentDataItem" object:self.textView.text];
@@ -341,17 +341,12 @@
         
         [[self navigationController] popViewControllerAnimated:YES];
     }
-    else
+    else if([notification.object isEqualToString:@"networkLost"])
     {
-//        [hud hide:YES];
-//        [MessageBox Toasting:@"发送失败！" In:self.view];
-//        flag = 1;  //标记发送失败;
+        NSLog(@"发送失败");
         [hud hide:YES];
-        [MessageBox Toast:@"发送失败！" In:self.view];
+        [MessageBox Toast:@"发送失败，请检查网络设置！" In:self.view];
         self.view.userInteractionEnabled = YES;
-        
-//        [self.mutableArray removeAllObjects];
-//        [self.mutableArray removeObjectAtIndex:([self.mutableArray count]-1)];
 
         timeOfNotification++;
         NSLog(@"timeOfNotification is %d", timeOfNotification);
@@ -359,6 +354,12 @@
         for (id obj in self.mutableArray) {
             NSLog(@"mutableArray is %@", obj);
         }
+    }
+    else
+    {
+        [hud hide:YES];
+        [MessageBox Toast:@"发送失败，服务器出错！" In:self.view];
+        self.view.userInteractionEnabled = YES;
     }
 
 }

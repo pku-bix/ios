@@ -413,10 +413,10 @@
                 NSLog(@"http statusCode is %d", [httpResponse statusCode]);
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"sendMomentDataSuccessOrNot" object:@"success"];
             }
-//            else
-//            {
-//                [[NSNotificationCenter defaultCenter]postNotificationName:@"sendMomentDataSuccessOrNot" object:@"fail"];
-//            }
+            else
+            {
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"sendMomentDataSuccessOrNot" object:@"serverProblem"];
+            }
         }
     }
     NSLog(@"服务器开始响应请求");
