@@ -34,7 +34,12 @@ static NSString *const KEY_DEVICE_TOKEN=@"device_token";
 /* server spec
  * used for server config
  */
-static NSString* const SERVER = @"121.40.72.197";
+
+// XMPP 服务器
+static NSString* const XMPP_SERVER = @"121.40.72.197";
+
+// API 服务器
+static NSString* const API_SERVER = @"192.168.1.105:3000";
 
 static NSString* const NODE_SERVER = @"192.168.1.105:3000";
 

@@ -37,7 +37,7 @@
     
     self.xmppStream = [XMPPStream new];
     // self.xmppStream.enableBackgroundingOnSocket = true; // this trick will be rejected by appstore
-    self.xmppStream.hostName = SERVER;
+    self.xmppStream.hostName = XMPP_SERVER;
     self.xmppStream.myJID = account.Jid;
     [self.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
 

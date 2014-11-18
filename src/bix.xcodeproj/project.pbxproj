@@ -174,6 +174,7 @@
 		EC9908A718C33C9200798FAB /* XMPPSRVResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = EC99088E18C33C9200798FAB /* XMPPSRVResolver.m */; };
 		EC9908A818C33C9200798FAB /* XMPPStringPrep.m in Sources */ = {isa = PBXBuildFile; fileRef = EC99089018C33C9200798FAB /* XMPPStringPrep.m */; };
 		EC9908AA18C33CEE00798FAB /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC9908A918C33CEE00798FAB /* libresolv.dylib */; };
+		EC9EA8571A1AD18E000306C8 /* bixRemoteSync.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9EA8561A1AD18E000306C8 /* bixRemoteSync.m */; };
 		ECD998E818DACE9F00F30FE3 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ECD998E618DACE9F00F30FE3 /* mapapi.bundle */; };
 		ECD998EE18DAD7DE00F30FE3 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD998ED18DAD7DE00F30FE3 /* libbaidumapapi.a */; };
 		ECED787918CF7FE30041CCC7 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED787818CF7FE30041CCC7 /* Session.m */; };
@@ -478,6 +479,10 @@
 		EC99088F18C33C9200798FAB /* XMPPStringPrep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPStringPrep.h; sourceTree = "<group>"; };
 		EC99089018C33C9200798FAB /* XMPPStringPrep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPStringPrep.m; sourceTree = "<group>"; };
 		EC9908A918C33CEE00798FAB /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		EC9EA8541A1AD13F000306C8 /* bixRemoteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bixRemoteModel.h; sourceTree = "<group>"; };
+		EC9EA8551A1AD18E000306C8 /* bixRemoteSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixRemoteSync.h; sourceTree = "<group>"; };
+		EC9EA8561A1AD18E000306C8 /* bixRemoteSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixRemoteSync.m; sourceTree = "<group>"; };
+		EC9EA8581A1AD1B6000306C8 /* bixRemoteModelObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bixRemoteModelObserver.h; sourceTree = "<group>"; };
 		ECD998BD18DACE9F00F30FE3 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		ECD998BE18DACE9F00F30FE3 /* BMKActionPaopaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKActionPaopaoView.h; sourceTree = "<group>"; };
 		ECD998BF18DACE9F00F30FE3 /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
@@ -1143,6 +1148,17 @@
 			path = XMPP/Utilities;
 			sourceTree = "<group>";
 		};
+		EC9EA8501A1AD042000306C8 /* RemoteModel */ = {
+			isa = PBXGroup;
+			children = (
+				EC9EA8541A1AD13F000306C8 /* bixRemoteModel.h */,
+				EC9EA8551A1AD18E000306C8 /* bixRemoteSync.h */,
+				EC9EA8561A1AD18E000306C8 /* bixRemoteSync.m */,
+				EC9EA8581A1AD1B6000306C8 /* bixRemoteModelObserver.h */,
+			);
+			name = RemoteModel;
+			sourceTree = "<group>";
+		};
 		ECC16B8618D97EC300C1A37E /* ContactView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1294,6 +1310,7 @@
 		ECF7E1D318C0516D002BA385 /* bix */ = {
 			isa = PBXGroup;
 			children = (
+				EC9EA8501A1AD042000306C8 /* RemoteModel */,
 				E3BE73C21A092994001DB041 /* protocol */,
 				EC4613EF19FFC4F30046FFAE /* MomentView */,
 				EC4613BD19FFC4E80046FFAE /* SDWebImage */,
@@ -1579,6 +1596,7 @@
 				EC9908A318C33C9200798FAB /* DDList.m in Sources */,
 				EC57888619A6215A0058837C /* NSString+Account.m in Sources */,
 				EC99089F18C33C9200798FAB /* XMPPModule.m in Sources */,
+				EC9EA8571A1AD18E000306C8 /* bixRemoteSync.m in Sources */,
 				E3E59A321A07DC2D00B0DA76 /* personInfoViewController.m in Sources */,
 				E37F2C4519DBFA5A0090AB24 /* detailViewController.m in Sources */,
 				EC99089D18C33C9200798FAB /* XMPPJID.m in Sources */,
