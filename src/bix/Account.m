@@ -20,7 +20,7 @@
 }
 -(NSString*)username
 {
-    NSLog(@"user is %@", self.Jid.user);
+//    NSLog(@"user is %@", self.Jid.user);
     return self.Jid.user;
     
 }
@@ -41,13 +41,13 @@
     
     if (self) {
             //设置界面 ==> 个人信息页面， 姓名字段 
-        self.setName = [coder decodeObjectForKey:@"setName"];
-        self.setSignature = [coder decodeObjectForKey:@"setSignature"];
-        self.setID = [coder decodeObjectForKey:@"setID"];
-        self.setWechatID = [coder decodeObjectForKey:@"setWechatID"];
-        self.setTeslaType = [coder decodeObjectForKey:@"setTeslaType"];
+        self.name = [coder decodeObjectForKey:@"name"];
+        self.signature = [coder decodeObjectForKey:@"signature"];
+        self.loginID = [coder decodeObjectForKey:@"loginID"];
+        self.wechatID = [coder decodeObjectForKey:@"wechatID"];
+        self.teslaType = [coder decodeObjectForKey:@"teslaType"];
         //个人头像
-        self.getHeadImage = [coder decodeObjectForKey:@"getHeadImage"];
+//        self.getHeadImage = [coder decodeObjectForKey:@"getHeadImage"];
 
         self.presence = NO;
     }
@@ -72,13 +72,13 @@
 - (void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.Jid.bare forKey:KEY_BAREJID];
     //设置界面 ==> 个人信息页面， 姓名字段
-    [coder encodeObject:self.setName forKey:@"setName"];
-    [coder encodeObject:self.setSignature forKey:@"setSignature"];
-    [coder encodeObject:self.setID forKey:@"setID"];
-    [coder encodeObject:self.setWechatID forKey:@"setWechatID"];
-    [coder encodeObject:self.setTeslaType forKey:@"setTeslaType"];
+    [coder encodeObject:self.name forKey:@"name"];
+    [coder encodeObject:self.signature forKey:@"signature"];
+    [coder encodeObject:self.loginID forKey:@"loginID"];
+    [coder encodeObject:self.wechatID forKey:@"wechatID"];
+    [coder encodeObject:self.teslaType forKey:@"teslaType"];
     //个人头像
-    [coder encodeObject:self.getHeadImage forKey:@"getHeadImage"];
+//    [coder encodeObject:self.getHeadImage forKey:@"getHeadImage"];
 }
 
 // remote account also need this, with cache considered

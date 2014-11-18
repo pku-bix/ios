@@ -51,19 +51,27 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"personInfoViewController.h viewDidLoad");
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     //加载之前保存的名字字段;
     appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    name = appDelegate.account.setName;
-    signature = appDelegate.account.setSignature;
-    ID = appDelegate.account.setID;
-    WechatID = appDelegate.account.setWechatID;
-    TeslaType = appDelegate.account.setTeslaType;
+    name = appDelegate.account.name;
+    signature = appDelegate.account.signature;
+    ID = appDelegate.account.loginID;
+    WechatID = appDelegate.account.wechatID;
+    TeslaType = appDelegate.account.teslaType;
+
+    //这些通知 只要注册一次就可以了
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getName:) name:@"nameChange" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getSignature:) name:@"signatureChange" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getID:) name:@"IDChange" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getWechatID:) name:@"WechatID" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getTeslaType:) name:@"TeslaType" object:nil];
     
     //加载之前保存的头像；
-    headImage = appDelegate.account.getHeadImage;
+    headImage = appDelegate.account.avatar;
     NSLog(@"headImage is ...  %@", headImage);
     
     if (headImage == NULL) {
@@ -98,56 +106,41 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    //设置 dataSource 和 delegate 这两个代理
     NSLog(@"personInfoViewController will appear");
     
-    //    appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    //    name = appDelegate.account.setName;
-    //    siganature = appDelegate.account.setSignature;
-    NSLog(@"last name is %@", name);
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getName:) name:@"nameChange" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getSignature:) name:@"signatureChange" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getID:) name:@"IDChange" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getWechatID:) name:@"WechatID" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getTeslaType:) name:@"TeslaType" object:nil];
-    
+    //设置 dataSource 和 delegate 这两个代理
     _tableView.delegate = self;
     _tableView.dataSource = self;
 }
 
-//-(void)viewWillDisappear:(BOOL)animated
-//{
-//    }
-
 -(void)getName:(NSNotification*)notification
 {
     name = notification.object;
-    NSLog(@"%@", name);
+    NSLog(@"name from notification is %@", name);
 }
 
 -(void)getSignature:(NSNotification*)notification
 {
     signature = notification.object;
-    NSLog(@"%@",signature);
+    NSLog(@"signature from notification is %@",signature);
 }
 
 -(void)getID:(NSNotification*)notification
 {
     ID = notification.object;
-    NSLog(@"%@",ID);
+    NSLog(@"ID from notification is %@",ID);
 }
 
 -(void)getWechatID:(NSNotification*)notification
 {
     WechatID = notification.object;
-    NSLog(@"%@",WechatID);
+    NSLog(@"weChatID from notification is %@",WechatID);
 }
 
 -(void)getTeslaType:(NSNotification*)notification
 {
     TeslaType = notification.object;
-    NSLog(@"%@",TeslaType);
+    NSLog(@"teslaType from notification is %@",TeslaType);
 }
 
 
@@ -283,10 +276,8 @@
         }
         else if (indexPath.row == 2)
         {
-            NSString *noti = @"test the problem signature";
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"nameChange" object:noti];
-            
-            
+//            NSString *noti = @"test the problem signature";
+//            [[NSNotificationCenter defaultCenter]postNotificationName:@"nameChange" object:noti];
             [self performSegueWithIdentifier:@"signature" sender:self];
         }
     }
@@ -398,9 +389,12 @@
     [request sendAsynchronousPostImageRequest:headImage];
     
     //保存裁剪后的头像;
-    Account * accout = [appDelegate account];
-    accout.getHeadImage = headImage;
-    [accout save];
+//    Account * accout = [appDelegate account];
+//    accout.avatar = headImage;
+    
+    bixLocalAccount *account = [[AppDelegate get] account];
+    account.avatar = headImage;
+    [account save];
 }
 
 #pragma mark- 缩放图片

@@ -20,14 +20,14 @@
 @property (nonatomic) bool presence;
 
 //设置界面 ==> 个人信息页面
-@property (nonatomic) NSString* setName;  //用户自己设置的  名字  字段；
-@property (nonatomic) NSString* setSignature;
-@property (nonatomic) NSString* setID;
-@property (nonatomic) NSString* setWechatID;
-@property (nonatomic) NSString* setTeslaType;
+@property (nonatomic) NSString* name;  //用户自己设置的  名字  字段；
+@property (nonatomic) NSString* signature;
+@property (nonatomic) NSString* loginID;
+@property (nonatomic) NSString* wechatID;
+@property (nonatomic) NSString* teslaType;
 
 //头像保存
-@property (nonatomic)UIImage * getHeadImage;
+//@property (nonatomic)UIImage* getHeadImage;
 
 //传递用户发送的消息text
 @property (nonatomic)NSString *momentText;

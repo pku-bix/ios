@@ -51,7 +51,7 @@
     NSLog(@"IDChange is %@", self.IDChange.text);
     [[NSNotificationCenter defaultCenter]postNotificationName:@"IDChange" object:self.IDChange.text];
     Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
-    account.setID = self.IDChange.text;
+    account.loginID = self.IDChange.text;
     [account save];
     
     [self dismissViewControllerAnimated:YES completion:nil];

@@ -22,7 +22,8 @@
 @property (nonatomic) NSData* deviceToken;
 // register validation
 @property (readonly) bool isValid;
-
+//用户本地头像
+@property (nonatomic) UIImage* avatar;
 
 
 - (id) initWithUsername: (NSString*)username Password:(NSString*) password;

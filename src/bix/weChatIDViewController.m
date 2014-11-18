@@ -61,7 +61,7 @@
     [request sendAsynchronousPostTextRequest: self.weChatID.text type:WE_CHAT_ID_TYPE];
     
     Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
-    account.setWechatID = self.weChatID.text;
+    account.wechatID = self.weChatID.text;
     [account save];
     
     //[self dismissViewControllerAnimated:YES completion:nil];

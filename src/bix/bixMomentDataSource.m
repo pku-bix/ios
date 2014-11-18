@@ -26,10 +26,10 @@
 //    account.nickname = @"杜实现";
     account.momentText = text;
     
-    NSLog(@"bixMomentDataSource.h, account.setName is %@", account.setName);
+    NSLog(@"bixMomentDataSource.h, account.setName is %@", account.name);
     //如果用户在设置界面没有设置名字字段，则显示用户名，否则显示用户设置的名字字段---昵称;
     //判断字符串是否为空 string == nil;
-    if (account.setName == nil) { //如果用户没有在设置界面设置   名字   字段，则显示用户名;
+    if (account.name == nil) { //如果用户没有在设置界面设置   名字   字段，则显示用户名;
         account.nickname = account.username;
         NSLog(@"bixMomentDataSource.h, account.username is %@", account.username);
     }
@@ -37,7 +37,7 @@
     {
 //        account.nickname = account.setName ;  //否则显示设置的    名字
         account.nickname = account.username;
-        NSLog(@"bixMomentDataSource.h, account.setName is %@", account.setName);
+        NSLog(@"bixMomentDataSource.h, account.setName is %@", account.name);
     }
  
     

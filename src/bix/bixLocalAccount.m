@@ -44,8 +44,9 @@
         _password    = [coder decodeObjectForKey: KEY_PASSWORD];
         _autoLogin   = [coder decodeBoolForKey:   KEY_AUTOLOGIN];
         _deviceToken = [coder decodeObjectForKey: KEY_DEVICE_TOKEN];
+        _avatar = [coder decodeObjectForKey:@"avatar"];
     }
-    
+
     return self;
 }
 - (void)encodeWithCoder:(NSCoder *)coder {
@@ -54,6 +55,8 @@
     [coder encodeObject:self.password forKey:KEY_PASSWORD];
     [coder encodeBool:self.autoLogin forKey:KEY_AUTOLOGIN];
     [coder encodeObject:self.deviceToken forKey:KEY_DEVICE_TOKEN];
+    //序列化本地头像
+    [coder encodeObject:self.avatar forKey:@"avatar"];
 }
 
 
@@ -90,7 +93,6 @@
     [request sendAsynchronousPostDeviceToken:_deviceToken];
     
 }
-
 
 // propperties
 - (bool) getIsValid{

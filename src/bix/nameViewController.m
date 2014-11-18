@@ -44,6 +44,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"nameViewController.h viewWillAppear");
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"nameViewController.h viewWillDisappear");
+}
+
 /*
  #pragma mark - Navigation
  
@@ -57,21 +67,19 @@
 
 - (IBAction)saveAndReturn:(id)sender {
     //     self.nameTextField
-    NSLog(@"%@", self.nameTextField.text);
-    Account* account = [(AppDelegate *)[UIApplication sharedApplication].delegate account];
+    NSLog(@" self.nameTextField.text is %@", self.nameTextField.text);
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"nameChange" object:self.nameTextField.text];
+
     //上传修改的名字字段;
     request = [[RequestInfoFromServer alloc]init];
     [request sendAsynchronousPostTextRequest:self.nameTextField.text type:NAME_TYPE];
     
-    //将设置的名字字段保存在account.setName中;
-    //    appDelegate.account.setName = self.nameTextField.text;
-    account.setName = self.nameTextField.text;
+    Account* account = [(AppDelegate *)[UIApplication sharedApplication].delegate account];
+    account.name = self.nameTextField.text;
     [account save];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"nameChange" object:self.nameTextField.text];
-//    [self dismissViewControllerAnimated:YES completion:nil];
+
     [self.navigationController popViewControllerAnimated:YES];
     
 }
-- (IBAction)saveName:(id)sender {
-}
+
 @end

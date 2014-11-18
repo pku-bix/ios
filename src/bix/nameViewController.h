@@ -15,6 +15,4 @@
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *save;
 
-- (IBAction)saveName:(id)sender;
-
 @end

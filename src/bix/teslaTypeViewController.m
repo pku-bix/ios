@@ -141,7 +141,7 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:@"TeslaType" object:self.teslaType.text];
     
     Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
-    account.setTeslaType = self.teslaType.text;
+    account.teslaType = self.teslaType.text;
     [account save];
     
     [self dismissViewControllerAnimated:YES completion:nil];

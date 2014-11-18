@@ -827,7 +827,7 @@
                     <navigationItem key="navigationItem" title=" 姓名" id="WR3-HA-Lhz">
                         <barButtonItem key="rightBarButtonItem" title="保存" id="MYW-L1-H3s">
                             <connections>
-                                <action selector="saveAndReturn:" destination="v3V-BG-YXV" id="qfL-In-ty7"/>
+                                <action selector="saveAndReturn:" destination="v3V-BG-YXV" id="0BC-9L-tpL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

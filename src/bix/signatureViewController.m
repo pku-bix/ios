@@ -78,7 +78,7 @@
     NSLog(@"signature is %@", self.signature.text);
     [[NSNotificationCenter defaultCenter]postNotificationName:@"signatureChange" object:self.signature.text];
     Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
-    account.setSignature = self.signature.text;
+    account.signature = self.signature.text;
     [account save];
     //发送图片、文字的异步信息;
     //    [request sendAsynchronousPostRequest];
