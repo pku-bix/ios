@@ -5,7 +5,6 @@
 //  Created by dsx on 14-10-23.
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
-
 #import "chargerInfoViewController.h"
 #import "Constants.h"
 #import "AppDelegate.h"

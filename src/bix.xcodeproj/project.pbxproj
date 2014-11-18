@@ -660,6 +660,19 @@
 			name = moment;
 			sourceTree = "<group>";
 		};
+		E3D037831A1AEB290034D4DA /* MomentModel */ = {
+			isa = PBXGroup;
+			children = (
+				EC4613F019FFC55F0046FFAE /* bixMomentDataItem.h */,
+				EC4613F119FFC55F0046FFAE /* bixMomentDataItem.m */,
+				EC4613F219FFC55F0046FFAE /* bixMomentDataSource.h */,
+				EC4613F319FFC55F0046FFAE /* bixMomentDataSource.m */,
+				EC4613F419FFC55F0046FFAE /* bixMomentReplyItem.h */,
+				EC4613F519FFC55F0046FFAE /* bixMomentReplyItem.m */,
+			);
+			name = MomentModel;
+			sourceTree = "<group>";
+		};
 		E3D127F019F698570018900B /* aboutBix */ = {
 			isa = PBXGroup;
 			children = (
@@ -874,12 +887,6 @@
 		EC4613EF19FFC4F30046FFAE /* MomentView */ = {
 			isa = PBXGroup;
 			children = (
-				EC4613F019FFC55F0046FFAE /* bixMomentDataItem.h */,
-				EC4613F119FFC55F0046FFAE /* bixMomentDataItem.m */,
-				EC4613F219FFC55F0046FFAE /* bixMomentDataSource.h */,
-				EC4613F319FFC55F0046FFAE /* bixMomentDataSource.m */,
-				EC4613F419FFC55F0046FFAE /* bixMomentReplyItem.h */,
-				EC4613F519FFC55F0046FFAE /* bixMomentReplyItem.m */,
 				EC4613F619FFC55F0046FFAE /* bixMomentTableViewCell.h */,
 				EC4613F719FFC55F0046FFAE /* bixMomentTableViewCell.m */,
 				EC4613F819FFC55F0046FFAE /* bixMomentViewController.h */,
@@ -1151,10 +1158,10 @@
 		EC9EA8501A1AD042000306C8 /* RemoteModel */ = {
 			isa = PBXGroup;
 			children = (
-				EC9EA8541A1AD13F000306C8 /* bixRemoteModel.h */,
 				EC9EA8551A1AD18E000306C8 /* bixRemoteSync.h */,
 				EC9EA8561A1AD18E000306C8 /* bixRemoteSync.m */,
 				EC9EA8581A1AD1B6000306C8 /* bixRemoteModelObserver.h */,
+				EC9EA8541A1AD13F000306C8 /* bixRemoteModel.h */,
 			);
 			name = RemoteModel;
 			sourceTree = "<group>";
@@ -1310,6 +1317,7 @@
 		ECF7E1D318C0516D002BA385 /* bix */ = {
 			isa = PBXGroup;
 			children = (
+				E3D037831A1AEB290034D4DA /* MomentModel */,
 				EC9EA8501A1AD042000306C8 /* RemoteModel */,
 				E3BE73C21A092994001DB041 /* protocol */,
 				EC4613EF19FFC4F30046FFAE /* MomentView */,

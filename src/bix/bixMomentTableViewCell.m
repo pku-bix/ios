@@ -29,6 +29,7 @@
 // 回复列表
 @property (weak, nonatomic) IBOutlet UITableView *replyTableView;
 
+//作为全局的一个momentDataItem变量, 整个.m文件几个地方需要用到;
 @property (nonatomic) bixMomentDataItem *momentDataItem;
 
 @end
@@ -75,6 +76,7 @@
     [self.contentTextView setText:item.textContent];
 
     //UIImageView *avatar = (UIImageView*)[self.contentView viewWithTag:30];
+    //item.avatarUrl 是NSURL类型， 不是ImageData类型
     [self.userImageView sd_setImageWithURL:item.avatarUrl];
     
     //UITableView *replies = (UITableView*)[self.contentView viewWithTag:40];
@@ -134,7 +136,7 @@
     [avatar sd_setImageWithURL:reply.avatarUrl];
     
     UITextView *text = (UITextView*)[cell.contentView viewWithTag:42];
-    [text setText: [NSString stringWithFormat:@"%@ 回复：%@", reply.nickname, reply.text]];
+    [text setText: [NSString stringWithFormat:@"%@ 评论:%@", reply.nickname, reply.text]];
    
     return cell;
 }
@@ -156,6 +158,7 @@
     
     UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:111];
     [imageView sd_setImageWithURL:self.momentDataItem.imgUrls[indexPath.row]];
+//    imageView.image = [UIImage imageWithData:self.momentDataItem.imgUrls[indexPath.row]];
 
 //    cell.contentView
     return cell;

@@ -13,6 +13,7 @@
 #import "RequestInfoFromServer.h"
 #import "MessageBox.h"
 #import "MBProgressHUD.h"
+#import "bixMomentDataItem.h"
 
 @interface bixSendMoodData ()
 
@@ -25,6 +26,9 @@
     AppDelegate* appDelegate;
     RequestInfoFromServer* request;
     MBProgressHUD *hud;
+    
+    NSMutableArray *testImagesArray;
+//    bixMomentDataItem *item;
     //用这个变量来标记发送是否成功，对应在点击发送按钮触发的事件;
 //    int flag;
 }
@@ -43,17 +47,18 @@
     [super viewDidLoad];
     self.pictureNumber = 1;
     timeOfNotification = 0;
+    //点击发送按钮，软键盘会自动取消，设置代理;
+    self.textView.delegate = self;
+    
+    testImagesArray = [NSMutableArray arrayWithCapacity:2];
+    [testImagesArray addObject:[NSURL URLWithString: @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg"]];
+    [testImagesArray addObject:[NSURL URLWithString: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"]];
     
 //    flag = 0;  //
     self.imageView1.image = self.image1;
     
     self.mutableArray = [NSMutableArray arrayWithCapacity:9];//最多添加9张图片;
     [self.mutableArray addObject:self.image1];
-   
-//    self.textView
-//    [UIApplication sharedApplication].statusBarHidden = NO;
-//    self.navigationController.navigationBar.hidden = YES;
-    // Do any additional setup after loading the view.
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -61,6 +66,8 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseSuccessOrNot:) name:@"sendMomentDataSuccessOrNot" object:nil];
     NSLog(@"viewWillAppear");
 }
+
+//-(BOOL)textViewShouldEndEditing:(UITextView *)textView
 
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -132,8 +139,6 @@
 //当进入拍照模式拍照 并且点击Use photo后 或者 从本地图库选择图片后 会调用此方法;
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-
-    
     [UIApplication sharedApplication].statusBarHidden = NO;
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     
@@ -228,15 +233,6 @@
        
         [hud hide:YES];
         self.view.userInteractionEnabled = YES;
-        //将二进制数据生成UIImage
-        
-        //        bixSendMoodData *sendMoodData = [[bixSendMoodData alloc]init];
-        //        sendMoodData.delegate = self;
-        //        sendMoodData.image = image;
-        //将图片传递给截取界面进行截取并设置回调方法（协议）
-        //        bixCaptureViewController *captureView = [[bixCaptureViewController alloc] init];
-        //        captureView.delegate = self;
-        //        captureView.image = image;
         
         //隐藏UIImagePickerController本身的导航栏
         picker.navigationBar.hidden = YES;
@@ -250,23 +246,6 @@
 //        [self performSegueWithIdentifier:@"sendMood" sender:self];
     }
 }
-//
-//#pragma mark - 图片回传协议方法
-//-(void)passImage:(UIImage *)image
-//{
-//    imageView.image = image;
-//    //设置头像缩放成 60*60 的
-//    headImage = [self scaleFromImage:image];
-//    
-//    //上传头像 数据到服务器, PNG格式;
-//    request = [[RequestInfoFromServer alloc]init];
-//    [request sendAsynchronousPostImageRequest:headImage];
-//    
-//    //保存裁剪后的头像;
-//    Account * accout = [appDelegate account];
-//    accout.getHeadImage = headImage;
-//    [accout save];
-//}
 
 #pragma mark- 缩放图片
 -(UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize
@@ -303,13 +282,28 @@
 }
 
 - (IBAction)sendTextAndPicture:(id)sender {
-   
+    //取消软键盘，让软键盘退下去;
+    [self.textView resignFirstResponder];
+    
     NSLog(@"图片数组个数是 %d", [self.mutableArray count]);
     NSLog(@"输入的文字是 %@", self.textView.text);
     if ([self.textView.text isEqualToString:@""]) {
         [MessageBox Toast:@"输入点文字呀..." In: self.view];
         return ;
     }
+    
+    // create MomentDataItem item
+    // add item to MomentDataSource
+    Account *account = [[AppDelegate get] account];
+    account.avatarUrl = [NSURL URLWithString: @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg"];
+    account.nickname = account.username;
+    
+    bixMomentDataItem *item = [[bixMomentDataItem alloc]initWithSender:account];
+    //    item.imgUrls = [NSMutableArray arrayWithArray:self.mutableArray];
+    item.imgUrls = [NSMutableArray arrayWithArray:testImagesArray];
+    item.textContent = self.textView.text;
+    [[bixMomentDataSource defaultSource]addMomentDataItem:item];
+    NSLog(@"momentDataItem number is %d", [[bixMomentDataSource defaultSource]numberOfMomentDataItem]);
     
     if ((self.pictureNumber) == [self.mutableArray count]) {
         [self.mutableArray addObject:self.textView.text];
@@ -320,18 +314,12 @@
         [self.mutableArray addObject:self.textView.text];
     }
     NSLog(@"text is %@", [self.mutableArray objectAtIndex:([self.mutableArray count]-1)]);
-//
-    //切记不可在这个函数注册通知，否则没点击一次按钮就会注册一个相同的通知，最后会收到多个相同的数据;
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseSuccessOrNot:) name:@"sendMomentDataSuccessOrNot" object:nil];
+
     hud = [MessageBox Toasting:@"正在发送" In:self.view];
     
     request = [[RequestInfoFromServer alloc]init];
     [request sendAsynchronousPostMomentData:self.mutableArray];
-    
-//    [self dismissViewControllerAnimated:YES completion:nil];
     NSLog(@"the textView.text is %@", self.textView.text);
-    
-//    [[self navigationController] popViewControllerAnimated:YES];
 }
 
 -(void)parseSuccessOrNot:(NSNotification *)notification
@@ -368,7 +356,6 @@
         [MessageBox Toast:@"发送失败，服务器出错！" In:self.view];
         self.view.userInteractionEnabled = YES;
     }
-
 }
 
 - (IBAction)Tap:(id)sender {

@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "PassImageDelegate.h"
+#import "bixRemoteModelObserver.h"
 
-@interface bixMomentViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface bixMomentViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, bixRemoteModelObserver>
 {
     IBOutlet UIButton *btnSendMood;
-
 }
 
-@property(nonatomic)NSMutableArray * momentText; //保存每条状态的文字信息;
+//@property(nonatomic)NSMutableArray * momentText; //保存每条状态的文字信息;
 
 - (IBAction)sendMood:(id)sender;
 

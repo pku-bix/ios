@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PassImageDelegate.h"
 
-@interface bixSendMoodData : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PassImageDelegate>
+@interface bixSendMoodData : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PassImageDelegate,UITextViewDelegate>
 {
 //    int pictureNumber ;
 

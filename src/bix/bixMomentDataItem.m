@@ -20,14 +20,21 @@
 
 @implementation bixMomentDataItem
 
-//int uio;
+
+- (bool) post{
+    // sync = [[bixRemoteSync alloc] init];
+    // sync.model = self;
+    // [sync push];
+    return true;
+}
+
+-(NSString*) modelPath{
+    return @"chargers/";
+}
 
 // TODO: 借助用HTTP层，从 user 动态获取以下属性
 
 -(NSURL*) avatarUrl{
-//    test = 5;
-//    test5 = 8;
-//    uio = 9;
     return self.sender.avatarUrl;
 }
 
@@ -35,7 +42,7 @@
     return self.sender.nickname;
 }
 
-//
+//传进去的sender要设置好avatarUrl和nickname两个属性字段;
 -(id) initWithSender:(Account *)sender{
     self = [super init];
     
@@ -43,15 +50,15 @@
     
     if(self){
         _sender = sender;
-        _imgUrls = [NSMutableArray new];
+//        _imgUrls = [NSMutableArray new];
         _replies = [NSMutableArray new];
         
         // TODO: 使用HTTP层代替以下的静态测试数据
-        [_imgUrls addObject:sender.avatarUrl];
-        [_imgUrls addObject: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];
-        [_imgUrls addObject: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];
-        [_imgUrls addObject: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];
-        
+//        [_imgUrls addObject:sender.avatarUrl];
+//        [_imgUrls addObject: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];
+//        [_imgUrls addObject: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];
+//        [_imgUrls addObject: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];
+//        
         [_replies addObject:[[bixMomentReplyItem alloc] initWithSender:sender andReplyText:@"成功显示"]];
         [_replies addObject:[[bixMomentReplyItem alloc] initWithSender:sender andReplyText:@"棒啊"]];
     }

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "bixRemoteModelObserver.h"
-#import "bixRemoteSync.h"
+//#import "bixRemoteSync.h"
 
 @protocol bixRemoteModel <NSObject>
 
@@ -16,6 +16,9 @@
 @property id<bixRemoteModelObserver> observer;
 
 // remotemodel delegate
+
+//现在没有实现以下函数， 为了不产生warning, 先把以下函数设置为optional;
+@optional
 
 // 数据响应成功
 -(void) SucceedWithStatus: (NSInteger) code andJSONResult: (NSObject*) result;
@@ -26,11 +29,6 @@
 // 失败
 -(void) failedWithError: (NSError*)err;
 
-// 连接错误
--(void) connectionFailedWithError: (NSError*)err;
-
-
-
 // remotemodel source
 
 // 在API服务器模型的路径，eg：charger/ef131ab3f34133ab
@@ -38,5 +36,11 @@
 
 // PUSH请求的request body
 -(NSData*) modelBody;
+
+
+
+// 连接错误
+-(void) connectionFailedWithError: (NSError*)err;
+
 
 @end

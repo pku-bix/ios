@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "bixRemoteModel.h"
+//#import "bixRemoteModel.h"
 
 @protocol bixRemoteModelObserver <NSObject>
 

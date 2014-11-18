@@ -19,11 +19,9 @@
 
 @end
 
-
-
 @implementation bixMomentViewController
 {
-    int numberOFMomentCell;
+    int numberOFMomentDataItem;
     UIImage *image_send_mood_data;
     NSString *newMomentText;
 }
@@ -41,33 +39,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    numberOFMomentCell = 1;
-    
-    self.momentText = [NSMutableArray arrayWithCapacity:numberOFMomentCell];
-    [self.momentText addObject:@"这是分享圈的第一条信息"];
-    // Do any additional setup after loading the view.
+    numberOFMomentDataItem = 1;
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
-    newMomentText = @"这是分享圈的第一条信息";
+    [[bixMomentDataSource defaultSource]initMomentDataItemsArray];
+    
+//    self.momentText = [NSMutableArray arrayWithCapacity:numberOFMomentCell];
+//    [self.momentText addObject:@"这是分享圈的第一条信息"];
+    // Do any additional setup after loading the view.
+
+//    newMomentText = @"这是分享圈的第一条信息";
 //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment2:) name:@"sendOneMomentDataItem" object:nil];
-    
-    
+    //为momentDataItemsArray数组初始化;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment2:) name:@"sendOneMomentDataItem" object:nil];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment2:) name:@"sendOneMomentDataItem" object:nil];
 
 //     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment:) name:@"sendOneMomentDataItem" object:nil];
+    
     [ self.tableView reloadData ];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:@"sendOneMomentDataItem" object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self                                                    name:@"sendOneMomentDataItem" object:nil];
 }
-
+/*
 -(void)parseMoment2:(NSNotification*)notification
 {
     NSLog(@"发送了一条新的状态，心情");
@@ -76,8 +75,9 @@
     NSLog(@"the text send from bixSendMoodData.m is %@", notification.object);
     newMomentText = notification.object;
     
-    [self.momentText addObject:notification.object];
+//    [self.momentText addObject:notification.object];
 }
+*/
 
 - (void)didReceiveMemoryWarning
 {
@@ -92,29 +92,37 @@
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   
-    return numberOFMomentCell;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    numberOFMomentDataItem = [[bixMomentDataSource defaultSource] numberOfMomentDataItem];
+    NSLog(@"bixMomentViewController.m numberOfRows is %d", [[bixMomentDataSource defaultSource]numberOfMomentDataItem]);
+    return numberOFMomentDataItem;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    bixMomentDataItem* item = [[bixMomentDataSource defaultSource] getMomentAtIndex:(numberOFMomentDataItem-indexPath.row-1)];
     
     // reuse key must be identical to that set on storyboard
     bixMomentTableViewCell *cell = (bixMomentTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"moment-item" forIndexPath:indexPath];
-    
-    // Configure Cell
-    AppDelegate* appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
-    NSUInteger row = [indexPath row];
-    NSLog(@"row is %d", row);
-
-    [cell loadFromMomentDataItem:[appdelegate.momentDataSrouce getOneMoment:[self.momentText objectAtIndex:(self.momentText.count-row-1)]]];
-//    [cell loadFromMomentDataItem:[appdelegate.momentDataSrouce getOneMoment]];
-    
-    //点击cell的时候，不会变暗，不会有反应;
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell loadFromMomentDataItem:item];
     
     return cell;
+//    // Configure Cell
+//    AppDelegate* appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    
+//    NSUInteger row = [indexPath row];
+//    NSLog(@"row is %d", row);
+//
+//    [cell loadFromMomentDataItem:[appdelegate.momentDataSrouce getOneMoment:[self.momentText objectAtIndex:(self.momentText.count-row-1)]]];
+////    [cell loadFromMomentDataItem:[appdelegate.momentDataSrouce getOneMoment]];
+//    
+//    //点击cell的时候，不会变暗，不会有反应;
+////    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+//    [cell loadFromMomentDataItem:item];
+
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -151,10 +159,7 @@
 - (IBAction)sendMood:(id)sender {
     UIActionSheet *chooseImageSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从手机相册选择", nil];
     [chooseImageSheet showInView:self.view];
-    
-//    [self performSegueWithIdentifier:@"sendMood" sender:self];
 }
-
 
 #pragma mark UIActionSheetDelegate Method
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -180,12 +185,11 @@
             picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             [self presentViewController:picker animated:YES completion:nil];
             break;
-            
+
         default:
             break;
     }
 }
-
 
 #pragma mark 拍照选择照片协议方法
 //当进入拍照模式拍照 并且点击Use photo后 或者 从本地图库选择图片后 会调用此方法;
@@ -215,14 +219,6 @@
         //将二进制数据生成UIImage
        image_send_mood_data = [UIImage imageWithData:data];
         
-//        bixSendMoodData *sendMoodData = [[bixSendMoodData alloc]init];
-//        sendMoodData.delegate = self;
-//        sendMoodData.image = image;
-        //将图片传递给截取界面进行截取并设置回调方法（协议）
-//        bixCaptureViewController *captureView = [[bixCaptureViewController alloc] init];
-//        captureView.delegate = self;
-//        captureView.image = image;
-        
         //隐藏UIImagePickerController本身的导航栏
         picker.navigationBar.hidden = YES;
         
@@ -242,25 +238,6 @@
     bixSendMoodData * sendMood = (bixSendMoodData*)segue.destinationViewController;
     sendMood.image1 = image_send_mood_data;
 }
-
-
-//
-//#pragma mark - 图片回传协议方法
-//-(void)passImage:(UIImage *)image
-//{
-//    imageView.image = image;
-//    //设置头像缩放成 60*60 的
-//    headImage = [self scaleFromImage:image];
-//    
-//    //上传头像 数据到服务器, PNG格式;
-//    request = [[RequestInfoFromServer alloc]init];
-//    [request sendAsynchronousPostImageRequest:headImage];
-//    
-//    //保存裁剪后的头像;
-//    Account * accout = [appDelegate account];
-//    accout.getHeadImage = headImage;
-//    [accout save];
-//}
 
 #pragma mark- 缩放图片
 -(UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize
@@ -284,6 +261,9 @@
     return newImage;
 }
 
-
+- (void) modelUpdated:(id)model{
+    
+    [self.tableView reloadData];
+}
 
 @end
