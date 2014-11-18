@@ -39,13 +39,14 @@
         account.nickname = account.username;
         NSLog(@"bixMomentDataSource.h, account.setName is %@", account.name);
     }
- 
     
     account.avatarUrl = [NSURL URLWithString: @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg"];
 
 //    account.avatarUrl = [NSURL URLWithString: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];
     
-    return [[bixMomentDataItem alloc] initWithSender:account];
+    bixMomentDataItem *item = [[bixMomentDataItem alloc] initWithSender:account];
+    item.textContent = @"hehehehehehehehehfdsafdsaf";
+    return item;
 }
 
 @end

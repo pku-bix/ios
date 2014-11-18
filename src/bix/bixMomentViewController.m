@@ -51,6 +51,7 @@
     newMomentText = @"这是分享圈的第一条信息";
 //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment2:) name:@"sendOneMomentDataItem" object:nil];
     
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -97,7 +98,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    bixMomentTableViewCell *cell = (bixMomentTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:REUSE_CELLID_MOMENTLIST];
+    
+    // reuse key must be identical to that set on storyboard
+    bixMomentTableViewCell *cell = (bixMomentTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"moment-item" forIndexPath:indexPath];
     
     // Configure Cell
     AppDelegate* appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
