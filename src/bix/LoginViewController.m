@@ -21,13 +21,11 @@
 @end
 
 
-@implementation LoginViewController
+@implementation LoginViewController{
+    MBProgressHUD* hud;
+}
 
-MBProgressHUD* hud;
 bixLocalAccount* account;
-
-// Global App Class
-AppDelegate* appdelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,15 +42,14 @@ AppDelegate* appdelegate;
     [super viewDidLoad];
 	// UI enhancement
     [self.btnLogin primaryStyle];
-//    [self.navigationItem ];
-//    self.hidesBottomBarWhenPushed = YES;
-    // retain xmppStream
-    appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+
+    // 获取上次登录的用户
+    account = [bixLocalAccount restore];
     
-    // get active user
-    if (!self.username.text || [self.username.text isEqualToString:@""]) {
-        NSString *tmp = [bixLocalAccount getActiveJid];
-        self.username.text = tmp==nil ? @"" : [tmp toUsername];
+    if (account!=nil) {
+        self.username.text = account.username;
+        self.password.text = account.password;
+        if (account.autoLogin) [self doLogin];
     }
 }
 
@@ -74,7 +71,7 @@ AppDelegate* appdelegate;
 }
 -(void)viewDidAppear:(BOOL)animated{
     if (self.username && ![self.username.text isEqualToString:@""]) {
-        [self textFieldDidEndEditing:self.username];
+        //[self textFieldDidEndEditing:self.username];
         [self.password becomeFirstResponder];
     }
     else{
@@ -94,23 +91,33 @@ AppDelegate* appdelegate;
                                                     name:EVENT_AUTHENTICATE_FAILED  object:nil];
 }
 
-- (IBAction)Login:(id)sender
-{
-    // loaded
-    if(account && [account.bareJid isEqualToString: [self.username.text toJid]]){
-        account.password = self.password.text;
-    }
-    // not loaded
-    else{
-        account = [[bixLocalAccount alloc] initWithUsername:self.username.text
-                                               Password:self.password.text];
-    }
-    // do login
+-(void) doLogin{
     hud = [MessageBox Toasting:@"正在连接服务器" In:self.view];
     self.view.userInteractionEnabled = NO;
     
-    appdelegate.account = account;
-    [appdelegate.chatter keepConnectedAndAuthenticated:1];
+    [bixChatProvider setLocalAccount:account];
+    [[bixChatProvider defaultChatProvider] keepConnectedAndAuthenticated:3];
+}
+
+- (IBAction)Login:(id)sender
+{
+    // validate
+    if (!self.username.text.isValidUsername || !self.password.text.isValidPassword) {
+        [MessageBox Toast:@"用户名或密码格式错误" In:self.view];
+        self.view.userInteractionEnabled = YES;
+        return;
+    }
+    
+    // account not valid
+    if (account == nil || ![account.username isEqualToString:self.username.text]) {
+        account = [bixLocalAccount loadOrCreate: self.username.text Password: self.password.text];
+    }
+    // account valid
+    else{
+        account.password = self.password.text;
+    }
+    
+    [self doLogin];
 }
 
 - (void)connected:(NSNotification*)n{
@@ -129,6 +136,9 @@ AppDelegate* appdelegate;
 - (void)authenticated:(NSNotification*)n{
     [hud hide:YES];
     self.view.userInteractionEnabled = YES;
+    
+    [[AppDelegate instance] registerAPN];
+    
     [self performSegueWithIdentifier:@"main" sender:self];
 }
 - (void)authenticate_failed:(NSNotification*)n{
@@ -151,10 +161,9 @@ AppDelegate* appdelegate;
 // username end editing
 - (void) textFieldDidEndEditing:(UITextField *)textField{
     if (textField==self.username) {
-        // valid username
-        if (self.username.text && ![self.username.text isEqualToString:@""]) {
-            
-            account = [bixLocalAccount load:[self.username.text toJid] ];
+
+        if (self.username.text.isValidUsername) {
+            account = [bixLocalAccount loadByUsername:self.username.text];
             if (account) {  // loaded
                 self.password.text = account.password;      // fill passwd
                 if(account.autoLogin)   [self Login:self];
@@ -167,12 +176,15 @@ AppDelegate* appdelegate;
     }
 }
 
-// passwd return
+// textfiled return
 - (BOOL) textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     
     if(textField == self.password){
         [self Login: self];
+    }
+    else if (textField == self.username){
+        [self.password becomeFirstResponder];
     }
     return YES;
 }
@@ -182,10 +194,7 @@ AppDelegate* appdelegate;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-//
-//- (IBAction)registerNewUser:(id)sender {
-//    [self performSegueWithIdentifier:@"register" sender:self];
-//}
+
 - (IBAction)registerNewUsername:(id)sender {
     [self performSegueWithIdentifier:@"register" sender:self];
 }

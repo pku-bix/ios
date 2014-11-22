@@ -31,7 +31,7 @@
 {
     _selectNotificationKind = 3;//第三种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
     
-    Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
+    Account *account = [bixLocalAccount instance];
     //static NSString *const POST_IMAGE_TEXT_INFO_IP = @"http://121.40.72.197/api/user/";
 //    NSMutableString *post_image_text_info_ip;
 //    [post_image_text_info_ip setString:NODE_SERVER_OR_LAN_SERVER];
@@ -81,7 +81,7 @@
 {
     _selectNotificationKind = 4;//第三种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
     
-    Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
+    Account *account = [bixLocalAccount instance];
     NSMutableString *url = [NSMutableString stringWithString:POST_IMAGE_TEXT_INFO_IP];
     [url appendString:account.username];
     NSLog(@"url is %@", url);
@@ -187,7 +187,7 @@
 {
     _selectNotificationKind = 5;//第5种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
     
-    Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
+    Account *account = [bixLocalAccount instance];
     NSLog(@"author name is %@", account.username);
     //分享圈输入的发送 文字;
     NSString *momentText = [mutableArray objectAtIndex:([mutableArray count]-1)];
@@ -287,7 +287,7 @@
 {
     _selectNotificationKind = 7;//第三种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
     
-    Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
+    Account *account = [bixLocalAccount instance];
     NSMutableString *url = [NSMutableString stringWithString:POST_IMAGE_TEXT_INFO_IP];
     [url appendString:account.username];
     NSLog(@"url is %@", url);
@@ -363,7 +363,7 @@
 {
     _selectNotificationKind = 8;//第三种请求方式,区别于充电桩数据和单个充电桩详情的数据请求;
     
-    Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
+    Account *account = [bixLocalAccount instance];
     NSMutableString *url = [NSMutableString stringWithString:POST_DEVICE_TOKEN_IP];
     [url appendString:account.username];
     NSLog(@"url is %@", url);

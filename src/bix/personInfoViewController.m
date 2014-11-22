@@ -55,13 +55,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    bixLocalAccount* account = [bixLocalAccount instance];
+    
     //加载之前保存的名字字段;
-    appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    name = appDelegate.account.name;
-    signature = appDelegate.account.signature;
-    ID = appDelegate.account.loginID;
-    WechatID = appDelegate.account.wechatID;
-    TeslaType = appDelegate.account.teslaType;
+    name = account.nickname;
+    signature = account.signature;
+    ID = account.username;
+    WechatID = account.wechatID;
+    TeslaType = account.teslaType;
 
     //这些通知 只要注册一次就可以了
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getName:) name:@"nameChange" object:nil];
@@ -71,7 +72,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getTeslaType:) name:@"TeslaType" object:nil];
     
     //加载之前保存的头像；
-    headImage = appDelegate.account.avatar;
+    headImage = account.avatar;
     NSLog(@"headImage is ...  %@", headImage);
     
     if (headImage == NULL) {
@@ -218,7 +219,7 @@
         if (row == 0) {
             //            cell.detailTextLabel.text = ID;
             //获取用户的聊天ID
-            cell.detailTextLabel.text = appDelegate.account.username;
+            cell.detailTextLabel.text = [bixLocalAccount instance].username;
         }
         else if (row == 1)
         {
@@ -392,7 +393,7 @@
 //    Account * accout = [appDelegate account];
 //    accout.avatar = headImage;
     
-    bixLocalAccount *account = [[AppDelegate get] account];
+    bixLocalAccount *account = [bixLocalAccount instance];
     account.avatar = headImage;
     [account save];
 }

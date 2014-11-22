@@ -15,8 +15,8 @@
 //@property (nonatomic) XMPPJID* remoteJid;
 
 
-@property (weak) Account* remoteAccount;
-@property (nonatomic, readonly) NSString* bareJid;
+@property (weak) Account* peerAccount;
+@property (nonatomic, readonly) NSString* peername;
 @property (nonatomic) NSMutableArray* msgs;
 
 -(id) initWithRemoteAccount:(Account*) remoteAccount;

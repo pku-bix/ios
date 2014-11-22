@@ -13,9 +13,8 @@
 
 // isMine property
 -(bool) isMine{
-    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     
-    return [appdelegate.account.Jid.bare isEqualToString: self.from.bare];
+    return [[bixLocalAccount instance].username isEqualToString: self.from.user];
 }
 
 // constructor

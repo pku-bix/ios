@@ -77,7 +77,7 @@
 - (IBAction)saveSignature:(id)sender {
     NSLog(@"signature is %@", self.signature.text);
     [[NSNotificationCenter defaultCenter]postNotificationName:@"signatureChange" object:self.signature.text];
-    Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
+    Account *account = [bixLocalAccount instance];
     account.signature = self.signature.text;
     [account save];
     //发送图片、文字的异步信息;

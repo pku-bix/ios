@@ -65,7 +65,7 @@ AppDelegate* appdelegate;
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return [appdelegate.chatter.contacts count];
+    return [[bixChatProvider defaultChatProvider].contacts count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -81,10 +81,10 @@ AppDelegate* appdelegate;
                                       reuseIdentifier:REUSE_CELLID_CONTACTLIST];
     }
     
-    Account *account = [appdelegate.chatter.contacts objectAtIndex:[indexPath row]];
+    Account *account = [[bixChatProvider defaultChatProvider].contacts objectAtIndex:[indexPath row]];
     
     //文本
-    cell.textLabel.text = account.Jid.user;
+    cell.textLabel.text = account.username;
     
     //标记
     cell.accessoryType = UITableViewCellAccessoryNone;
@@ -111,8 +111,8 @@ AppDelegate* appdelegate;
 // contact selected
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    Account* account = [appdelegate.chatter.contacts objectAtIndex:[indexPath row]];
-    Session* sessionToOpen = [appdelegate.chatter getSession:account];
+    Account* account = [[bixChatProvider defaultChatProvider].contacts objectAtIndex:[indexPath row]];
+    Session* sessionToOpen = [[bixChatProvider defaultChatProvider] getSession:account];
     
     //MainTabBarController* mainTabBarController = (MainTabBarController*)self.tabBarController;
     
@@ -127,7 +127,7 @@ AppDelegate* appdelegate;
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         //add code here for when you hit delete
-        [appdelegate.chatter.contacts removeObjectAtIndex:indexPath.row];
+        [[bixChatProvider defaultChatProvider].contacts removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }

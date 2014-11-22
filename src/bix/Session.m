@@ -13,30 +13,25 @@
 
 @implementation Session
 
--(NSString *)bareJid{
-    return self.remoteAccount.bareJid;
+-(NSString*)peername{
+    return self.peerAccount.username;
 }
 
 -(id) initWithRemoteAccount:(Account*) remoteAccount{
     self = [super init];
     if(self){
-        self.remoteAccount = remoteAccount;
+        self.peerAccount = remoteAccount;
         self.msgs = [NSMutableArray array];
     }
     return self;
 }
 
 - (id)initWithCoder:(NSCoder *)coder {
-    
-    AppDelegate* appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
-    //NSString* remotestr = [coder decodeObjectForKey:KEY_REMOTE_BAREJID];
-    
-    self.remoteAccount = [appdelegate.chatter getConcact:
-                           (NSString*)[coder decodeObjectForKey:KEY_REMOTE_BAREJID]];
+    self.peerAccount = [[bixChatProvider defaultChatProvider] getConcactByUsername:
+                           (NSString*)[coder decodeObjectForKey:@"peer_username"]];
             
     if (self) {
-        self.msgs = [coder decodeObjectForKey:KEY_MESSAGE_LIST];
+        self.msgs = [coder decodeObjectForKey:@"messages"];
         if (self.msgs == nil)
             self.msgs = [NSMutableArray array];
     }
@@ -45,8 +40,8 @@
 
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeObject:self.bareJid forKey:KEY_REMOTE_BAREJID];
-    [coder encodeObject:self.msgs forKey:KEY_MESSAGE_LIST];
+    [coder encodeObject:self.peername forKey:@"peer_username"];
+    [coder encodeObject:self.msgs forKey:@"messages"];
 }
 
 - (bool)msgExpiredAt:(int)index{

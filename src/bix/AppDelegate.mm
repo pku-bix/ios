@@ -15,33 +15,20 @@
 
 @implementation AppDelegate
 
-///////////////////////////////////////////////////////////////
-//properties
-
--(void)setAccount:(bixLocalAccount *)account{
-    _account = account;
-    
-    self.chatter = [[ChatProvider alloc] initWithAccount: account];
-    [self.chatter loadData];
-    
-    if(!account.deviceToken){
-        
-        UIRemoteNotificationType types = UIRemoteNotificationTypeBadge |
-        UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert;
-        
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
-    }
-}
-
 ////////////////////////////////////////////////////////////////
 //methods
 
+-(void)registerAPN{
+    UIRemoteNotificationType types = UIRemoteNotificationTypeBadge |
+    UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert;
+    
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
+}
 
 -(id)init{
     self = [super init];
     if(self){
         // initialization
-        _momentDataSrouce = [bixMomentDataSource new];
     }
     return self;
 }
@@ -87,18 +74,14 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
-    if (self.account.presence) {
-        [self.account save];
-        [self.chatter saveData];
-    }
+    [bixLocalAccount save];
+    [bixChatProvider save];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    if (self.account.presence) {
-        [self.chatter keepConnected:-1];
-    }
+    [bixChatProvider reconnect];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -121,7 +104,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
 #ifdef DEBUG
     NSLog(@"device token received: %@", deviceToken);
 #endif
-    self.account.deviceToken = deviceToken;
+    bixLocalAccount* ac = [bixLocalAccount instance];
+    if(ac!=nil)
+        ac.deviceToken = deviceToken;
 }
 
 - (void)application:(UIApplication *)application
@@ -132,7 +117,7 @@ didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
 #endif
 }
 
-+ (AppDelegate*)get{
++ (AppDelegate*)instance{
     return (AppDelegate*)[UIApplication sharedApplication].delegate;
 }
 

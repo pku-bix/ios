@@ -55,17 +55,16 @@ AppDelegate* appdelegate;
     if (!self.username.text.isValidUsername)
         return;
     
-    Account* account = [(AppDelegate *)[UIApplication sharedApplication].delegate account];
+    Account* account = [bixLocalAccount instance];
     
-    NSString* user = [self.username.text
+    NSString* username = [self.username.text
                       stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString* bareJid = [user stringByAppendingFormat:@"@%@",SERVER_DOMAIN];
     
-    if( [appdelegate.account.bareJid isEqualToString: bareJid] ){
+    if( [account.username isEqualToString: username] ){
         [MessageBox ShowMessage:@"不可添加当前用户"];
         return;
     }
-    [appdelegate.chatter getConcact:bareJid];
+    [[bixChatProvider defaultChatProvider] getConcactByUsername:username];
     [account save];
 
     [[self navigationController] popViewControllerAnimated:YES];

@@ -94,22 +94,20 @@ bool succeed;   // indicate whether register succeed
     }
     
     // setup account
-    bixLocalAccount* account = [[bixLocalAccount alloc]
-                        initWithUsername:self.username.text
-                        Password:self.pswd.text];
-    appdelegate.account = account;
+    bixLocalAccount* account = [bixLocalAccount loadOrCreate:self.username.text Password:self.pswd.text];
+    [bixChatProvider setLocalAccount:account];
     
     // do wait
     self.view.userInteractionEnabled = NO;
     hud = [MessageBox Toast:@"正在连接服务器" Mode:MBProgressHUDModeIndeterminate In: self.view];
-    [appdelegate.chatter keepConnected:1];
+    [[bixChatProvider defaultChatProvider] keepConnected:1];
 }
 
 // connect succeed
 - (void)connected:(NSNotification*)n{
     [MessageBox hideTopToast:self.view];
     
-    if(![appdelegate.chatter registerAccount]){
+    if(![[bixChatProvider defaultChatProvider] registerAccount]){
         self.view.userInteractionEnabled = YES;
         [hud hide:YES];
         [MessageBox Toast:@"未知错误，请联系管理员。" In: self.view];

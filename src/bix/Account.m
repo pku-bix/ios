@@ -13,22 +13,10 @@
 
 @implementation Account
 
--(NSString *)bareJid{
-    return self.Jid.bare;
-//    self.Jid.username;
-//    self.Jid.user
-}
--(NSString*)username
-{
-//    NSLog(@"user is %@", self.Jid.user);
-    return self.Jid.user;
-    
-}
-
--(id) initWithJid: (XMPPJID*) jid{
-    self = [self init];
+-(id)initWithUsername:(NSString *)username{
+    self = [super init];
     if(self){
-        self.Jid = jid;
+        self.username = username;
         self.presence = NO;
     }
     return self;
@@ -36,26 +24,24 @@
 
 - (id)initWithCoder:(NSCoder *)coder {
     
-    self = [self initWithJid:[XMPPJID jidWithString:
-                              (NSString*)[coder decodeObjectForKey:KEY_BAREJID]]];
+    self = [self initWithUsername: (NSString*)[coder decodeObjectForKey:@"username"]];
     
     if (self) {
-            //设置界面 ==> 个人信息页面， 姓名字段 
-        self.name = [coder decodeObjectForKey:@"name"];
+        self.nickname = [coder decodeObjectForKey:@"nickname"];
         self.signature = [coder decodeObjectForKey:@"signature"];
-        self.loginID = [coder decodeObjectForKey:@"loginID"];
         self.wechatID = [coder decodeObjectForKey:@"wechatID"];
         self.teslaType = [coder decodeObjectForKey:@"teslaType"];
-        //个人头像
-//        self.getHeadImage = [coder decodeObjectForKey:@"getHeadImage"];
-
         self.presence = NO;
     }
     return self;
 }
 
-- (void) saveAsActiveUser{
-    [[NSUserDefaults standardUserDefaults] setObject:self.bareJid forKey:KEY_ACTIVE_JID];
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.username forKey:@"username"];
+    [coder encodeObject:self.nickname forKey:@"nickname"];
+    [coder encodeObject:self.signature forKey:@"signature"];
+    [coder encodeObject:self.wechatID forKey:@"wechatID"];
+    [coder encodeObject:self.teslaType forKey:@"teslaType"];
 }
 
 - (void) save{
@@ -63,29 +49,15 @@
 
     // encoding
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self];
-    [defaults setObject:data forKey: [@"account" stringByAppendingString: self.Jid.bare]];
+    [defaults setObject:data forKey: [@"account_" stringByAppendingString: self.username]];
     
     // flush
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeObject:self.Jid.bare forKey:KEY_BAREJID];
-    //设置界面 ==> 个人信息页面， 姓名字段
-    [coder encodeObject:self.name forKey:@"name"];
-    [coder encodeObject:self.signature forKey:@"signature"];
-    [coder encodeObject:self.loginID forKey:@"loginID"];
-    [coder encodeObject:self.wechatID forKey:@"wechatID"];
-    [coder encodeObject:self.teslaType forKey:@"teslaType"];
-    //个人头像
-//    [coder encodeObject:self.getHeadImage forKey:@"getHeadImage"];
-}
-
-// remote account also need this, with cache considered
-+ (Account*) load: (NSString*)bareJid{
-    
++ (Account*) loadByUsername: (NSString*)username{
     NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:
-                    [@"account" stringByAppendingString: bareJid]];
+                    [@"account_" stringByAppendingString: username]];
     return data == nil ? nil : [NSKeyedUnarchiver unarchiveObjectWithData: data];
 }
 

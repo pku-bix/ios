@@ -53,7 +53,6 @@
 		E3E59A1D1A07D93600B0DA76 /* bixCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A1C1A07D93600B0DA76 /* bixCaptureViewController.m */; };
 		E3E59A231A07DAAD00B0DA76 /* signatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A221A07DAAD00B0DA76 /* signatureViewController.m */; };
 		E3E59A261A07DAC900B0DA76 /* nameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A251A07DAC900B0DA76 /* nameViewController.m */; };
-		E3E59A291A07DAE400B0DA76 /* chatIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A281A07DAE400B0DA76 /* chatIDViewController.m */; };
 		E3E59A2C1A07DBB500B0DA76 /* weChatIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A2B1A07DBB500B0DA76 /* weChatIDViewController.m */; };
 		E3E59A2F1A07DBFD00B0DA76 /* teslaTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A2E1A07DBFD00B0DA76 /* teslaTypeViewController.m */; };
 		E3E59A321A07DC2D00B0DA76 /* personInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E59A311A07DC2D00B0DA76 /* personInfoViewController.m */; };
@@ -122,7 +121,7 @@
 		EC4613FE19FFC55F0046FFAE /* bixMomentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4613F919FFC55F0046FFAE /* bixMomentViewController.m */; };
 		EC46140119FFC5820046FFAE /* bixLocalAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46140019FFC5820046FFAE /* bixLocalAccount.m */; };
 		EC57886619A61F0C0058837C /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = EC57886119A61F0C0058837C /* ChatMessage.m */; };
-		EC57886719A61F0C0058837C /* ChatProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EC57886319A61F0C0058837C /* ChatProvider.m */; };
+		EC57886719A61F0C0058837C /* bixChatProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EC57886319A61F0C0058837C /* bixChatProvider.m */; };
 		EC57886E19A620710058837C /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC57886919A620710058837C /* ChatListViewController.m */; };
 		EC57886F19A620710058837C /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC57886B19A620710058837C /* ChatViewController.m */; };
 		EC57887019A620710058837C /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC57886D19A620710058837C /* MessageCell.m */; };
@@ -261,8 +260,6 @@
 		E3E59A221A07DAAD00B0DA76 /* signatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = signatureViewController.m; path = bix/signatureViewController.m; sourceTree = "<group>"; };
 		E3E59A241A07DAC900B0DA76 /* nameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = nameViewController.h; path = bix/nameViewController.h; sourceTree = "<group>"; };
 		E3E59A251A07DAC900B0DA76 /* nameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = nameViewController.m; path = bix/nameViewController.m; sourceTree = "<group>"; };
-		E3E59A271A07DAE400B0DA76 /* chatIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chatIDViewController.h; path = bix/chatIDViewController.h; sourceTree = "<group>"; };
-		E3E59A281A07DAE400B0DA76 /* chatIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = chatIDViewController.m; path = bix/chatIDViewController.m; sourceTree = "<group>"; };
 		E3E59A2A1A07DBB500B0DA76 /* weChatIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = weChatIDViewController.h; path = bix/weChatIDViewController.h; sourceTree = "<group>"; };
 		E3E59A2B1A07DBB500B0DA76 /* weChatIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = weChatIDViewController.m; path = bix/weChatIDViewController.m; sourceTree = "<group>"; };
 		E3E59A2D1A07DBFD00B0DA76 /* teslaTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = teslaTypeViewController.h; path = bix/teslaTypeViewController.h; sourceTree = "<group>"; };
@@ -371,8 +368,8 @@
 		EC4613FF19FFC5820046FFAE /* bixLocalAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bixLocalAccount.h; path = bix/bixLocalAccount.h; sourceTree = SOURCE_ROOT; };
 		EC46140019FFC5820046FFAE /* bixLocalAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = bixLocalAccount.m; path = bix/bixLocalAccount.m; sourceTree = SOURCE_ROOT; };
 		EC57886119A61F0C0058837C /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
-		EC57886219A61F0C0058837C /* ChatProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatProvider.h; sourceTree = "<group>"; };
-		EC57886319A61F0C0058837C /* ChatProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatProvider.m; sourceTree = "<group>"; };
+		EC57886219A61F0C0058837C /* bixChatProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixChatProvider.h; sourceTree = "<group>"; };
+		EC57886319A61F0C0058837C /* bixChatProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixChatProvider.m; sourceTree = "<group>"; };
 		EC57886919A620710058837C /* ChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListViewController.m; sourceTree = "<group>"; };
 		EC57886A19A620710058837C /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		EC57886B19A620710058837C /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
@@ -627,14 +624,12 @@
 				E3E59A301A07DC2D00B0DA76 /* personInfoViewController.h */,
 				E3E59A311A07DC2D00B0DA76 /* personInfoViewController.m */,
 				E3E59A1B1A07D93600B0DA76 /* bixCaptureViewController.h */,
-				E3E59A271A07DAE400B0DA76 /* chatIDViewController.h */,
 				E3E59A1C1A07D93600B0DA76 /* bixCaptureViewController.m */,
 				E3E59A211A07DAAD00B0DA76 /* signatureViewController.h */,
 				E3E59A221A07DAAD00B0DA76 /* signatureViewController.m */,
 				E3E59A241A07DAC900B0DA76 /* nameViewController.h */,
 				E3E59A2B1A07DBB500B0DA76 /* weChatIDViewController.m */,
 				E3E59A251A07DAC900B0DA76 /* nameViewController.m */,
-				E3E59A281A07DAE400B0DA76 /* chatIDViewController.m */,
 				E3E59A2A1A07DBB500B0DA76 /* weChatIDViewController.h */,
 				E3E59A2D1A07DBFD00B0DA76 /* teslaTypeViewController.h */,
 				E3E59A2E1A07DBFD00B0DA76 /* teslaTypeViewController.m */,
@@ -650,7 +645,7 @@
 			name = moment;
 			sourceTree = "<group>";
 		};
-		E3D037831A1AEB290034D4DA /* MomentModel */ = {
+		E3D037831A1AEB290034D4DA /* MomentProvider */ = {
 			isa = PBXGroup;
 			children = (
 				EC4613F019FFC55F0046FFAE /* bixMomentDataItem.h */,
@@ -660,7 +655,7 @@
 				EC4613F419FFC55F0046FFAE /* bixMomentReplyItem.h */,
 				EC4613F519FFC55F0046FFAE /* bixMomentReplyItem.m */,
 			);
-			name = MomentModel;
+			name = MomentProvider;
 			sourceTree = "<group>";
 		};
 		E3D127F019F698570018900B /* aboutBix */ = {
@@ -886,8 +881,8 @@
 			children = (
 				EC93762618D3438C00D23984 /* ChatMessage.h */,
 				EC57886119A61F0C0058837C /* ChatMessage.m */,
-				EC57886219A61F0C0058837C /* ChatProvider.h */,
-				EC57886319A61F0C0058837C /* ChatProvider.m */,
+				EC57886219A61F0C0058837C /* bixChatProvider.h */,
+				EC57886319A61F0C0058837C /* bixChatProvider.m */,
 			);
 			name = ChatProvider;
 			sourceTree = "<group>";
@@ -1332,7 +1327,7 @@
 				ECED787618CF7FE30041CCC7 /* AccountProvider */,
 				EC57886019A61E7A0058837C /* ChatProvider */,
 				E3D5406E19FD550500FDC819 /* MapProvider */,
-				E3D037831A1AEB290034D4DA /* MomentModel */,
+				E3D037831A1AEB290034D4DA /* MomentProvider */,
 				ECED787A18CF80040041CCC7 /* Utilities */,
 				EC05DD9918D0BE49000C9D89 /* Resources */,
 				EC4613EF19FFC4F30046FFAE /* MomentView */,
@@ -1557,7 +1552,7 @@
 				EC57888419A6215A0058837C /* MessageBox.m in Sources */,
 				E3E59A3E1A07DF1D00B0DA76 /* AGSimpleImageEditorView.m in Sources */,
 				EC57887619A620C80058837C /* AddContactViewController.m in Sources */,
-				EC57886719A61F0C0058837C /* ChatProvider.m in Sources */,
+				EC57886719A61F0C0058837C /* bixChatProvider.m in Sources */,
 				EC99084418C3397000798FAB /* DDFileLogger.m in Sources */,
 				EC99089518C33C9200798FAB /* XMPPPlainAuthentication.m in Sources */,
 				EC9908A118C33C9200798FAB /* XMPPPresence.m in Sources */,
@@ -1571,7 +1566,6 @@
 				EC99083018C3391300798FAB /* DDXMLNode.m in Sources */,
 				ECED789118D00CAD0041CCC7 /* Account.m in Sources */,
 				EC0F2A3E19C5EEA800BE1F62 /* ChatNavigationController.m in Sources */,
-				E3E59A291A07DAE400B0DA76 /* chatIDViewController.m in Sources */,
 				EC4613EB19FFC4E80046FFAE /* UIImage+WebP.m in Sources */,
 				EC99089218C33C9200798FAB /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				EC57888519A6215A0058837C /* NSDate+Wrapper.m in Sources */,

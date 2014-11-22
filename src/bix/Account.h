@@ -14,30 +14,18 @@
 
 @interface Account : NSObject<NSCoding>
 
-@property (nonatomic) XMPPJID* Jid;
-@property (nonatomic, readonly, weak) NSString* bareJid;
-@property (nonatomic, readonly, weak) NSString* username;
 @property (nonatomic) bool presence;
 
-//设置界面 ==> 个人信息页面
-@property (nonatomic) NSString* name;  //用户自己设置的  名字  字段；
+@property (nonatomic) NSString* username;
 @property (nonatomic) NSString* signature;
-@property (nonatomic) NSString* loginID;
 @property (nonatomic) NSString* wechatID;
 @property (nonatomic) NSString* teslaType;
-
-//头像保存
-//@property (nonatomic)UIImage* getHeadImage;
-
-//传递用户发送的消息text
-//@property (nonatomic)NSString *momentText;
-
-// TODO: @杜实现 上述属性为用户的内涵属性，需要重命名，替代以下属性：
 @property (nonatomic) NSString* nickname;
 @property (nonatomic) NSURL* avatarUrl;
 
-- (id) initWithJid: (XMPPJID*) jid;
+- (id) initWithUsername: (NSString*)username;
 - (void) save;
-+ (Account*) load: (NSString*)bareJid;
+
++ (Account*) loadByUsername: (NSString*)username;
 
 @end

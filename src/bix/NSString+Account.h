@@ -7,35 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XMPPFramework.h"
 
 @interface NSString (Account)
 
 -(BOOL)isValidUsername;
 -(BOOL)isValidEmail;
 -(BOOL)isValidPassword;
--(BOOL)isValidJid;
+-(BOOL)isValidJidStr;
 
 
-// Jid/addr
--(NSString*)toJid;
-
-// username/Jid/addr
+-(NSString*) toJidStr;
+-(XMPPJID*)toJid;
 -(NSString*)toUsername;
 
-/*
- // username
--(NSString*)toJid:(NSString*)servername;
-
-
-// Jid/addr
--(NSString*)toAddr:(NSString*)devicename;
-// username
--(NSString*)toAddr:(NSString*)servername Devicename:(NSString*)devicename;
-
-// Jid/addr
--(NSString*)toServername;
-
-// addr
--(NSString*)toDevicename;
- */
 @end

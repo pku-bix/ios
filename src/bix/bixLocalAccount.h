@@ -11,8 +11,6 @@
 #import "Account.h"
 
 
-// TODO: @杨珺 把account逐步迁移到localaccount
-
 @interface bixLocalAccount : Account
 
 
@@ -26,13 +24,20 @@
 @property (nonatomic) UIImage* avatar;
 
 
-- (id) initWithUsername: (NSString*)username Password:(NSString*) password;
+//- (id) initWithUsername: (NSString*)username Password:(NSString*) password;
 - (void) save;
-- (void) saveAsActiveUser;
+- (void) saveForRestore;
 
-+ (bixLocalAccount*) load: (NSString*)bareJid;
-+ (NSString*) getActiveJid;
+// try save instance
++ (void)save;
+// get the instance
++ (bixLocalAccount*) instance;
 
-
+// 从文件载入用户
++(bixLocalAccount*)loadByUsername: (NSString*)username;
+// restore from file
++(bixLocalAccount*)restore;
+// always returns a valid account
++(bixLocalAccount*)loadOrCreate: (NSString*)username Password: (NSString*)password;
 
 @end

@@ -135,9 +135,10 @@
     // cancel
     if (buttonIndex == 0) return;
     
-    AppDelegate* appdelegate  = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    appdelegate.account.autoLogin = false;
-    [appdelegate.chatter logOut];
+    bixLocalAccount* localAccount;
+    
+    localAccount.autoLogin = false;
+    [[bixChatProvider defaultChatProvider] logOut];
 }
 
 

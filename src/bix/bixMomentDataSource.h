@@ -24,9 +24,6 @@
 
 -(void)initMomentDataItemsArray;
 
-// 测试方法， 负责给bixMomentDataItem 传送account的 名字、头像字段
--(bixMomentDataItem*) getOneMoment:(NSString *)text;
-
 -(bixMomentDataItem*) getMomentAtIndex: (NSInteger) index;
 // todo:  provide number
 

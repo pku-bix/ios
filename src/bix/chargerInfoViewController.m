@@ -75,8 +75,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     //获取用户登入的账户ID;
-    appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    self.personID.text = appDelegate.account.username;
+    self.personID.text = [bixLocalAccount instance].username;
     //解析上报地址的经纬度
     [self parseTest];
     

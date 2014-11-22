@@ -6,28 +6,53 @@
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
 
-#import "ChatProvider.h"
+#import "bixChatProvider.h"
 #import "NSDate+Wrapper.h"
 #import "Constants.h"
 #import "Session.h"
 #import "NSString+Account.h"
 #import "ChatMessage.h"
 
-@interface ChatProvider()
+@interface bixChatProvider()
 
 -(void)goOnline;
 -(void)goOffline;
+-(id) initWithAccount: (bixLocalAccount*)account;
 
 @end
 
-@implementation ChatProvider{
-    
-    // 连接时重试次数
+
+@implementation bixChatProvider{
+    // retry chances remained
     int nRetry;
 }
 
--(id)initWithAccount: (bixLocalAccount*)account{
+
+static bixLocalAccount* localAccount;
+static bixChatProvider *instance = nil;
+
+// singleton settings
++(void)setLocalAccount:(bixLocalAccount*) account{
+    localAccount = account;
+    instance = [[bixChatProvider alloc] initWithAccount:localAccount];
     
+    NSLog(@"%@",localAccount);
+    
+    [instance load];
+}
+
+
+// singleton instance
++(bixChatProvider*)defaultChatProvider{
+#ifdef DEBUG
+    if (localAccount==nil)
+        NSLog(@"Error instantiate chatprovider: account not set");
+#endif
+    return instance;
+}
+
+
+-(id)initWithAccount: (bixLocalAccount*)account{
     self = [super init];
     
     // 出于设计，构造函数内不要使用访问器
@@ -38,47 +63,55 @@
     self.xmppStream = [XMPPStream new];
     // self.xmppStream.enableBackgroundingOnSocket = true; // this trick will be rejected by appstore
     self.xmppStream.hostName = XMPP_SERVER;
-    self.xmppStream.myJID = account.Jid;
+    self.xmppStream.myJID = account.username.toJid;
     [self.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
 
     return self;
 }
 
--(void)loadData{
-    [self loadContactsAndSessions];
-}
-
--(void)saveData{
-    [self saveContactsAndSessions];
-}
-
 // 自定义访问器
 -(void)setAccount:(bixLocalAccount *)account{
     _account = account;
-    self.xmppStream.myJID = account.Jid;
+    self.xmppStream.myJID = account.username.toJid;
 }
 
 -(void)dealloc{
-    // 释放xmpp机制中的代理
     [self.xmppStream removeDelegate:self];
 }
+
++(void)save{
+    bixChatProvider* cp = [bixChatProvider defaultChatProvider];
+    if (cp!=nil) {
+        [cp save];
+    }
+}
+
++(void)reconnect{
+    bixChatProvider* cp = [bixChatProvider defaultChatProvider];
+    bixLocalAccount* ac = [bixLocalAccount instance];
+    
+    if (cp!=nil && ac!=nil && ac.presence) {
+        [cp keepConnected:-1];
+    }
+}
+
 
 #pragma mark - Sessions Contacts
 
 //query contact, add when needed
--(Account*)getConcact: (NSString*)bareJid{
+-(Account*)getConcactByUsername: (NSString*)username{
     
     // self query
-    if([self.account.bareJid isEqualToString: bareJid]) return self.account;
+    if([self.account.username isEqualToString: username]) return self.account;
     
     NSArray* filteredContacts =[self.contacts
                                 filteredArrayUsingPredicate:
-                                [NSPredicate predicateWithFormat:@"bareJid == %@",bareJid]];
+                                [NSPredicate predicateWithFormat:@"username == %@",username]];
     
     if (filteredContacts.count > 0)
         return filteredContacts[0];
     
-    Account* account = [[Account alloc] initWithJid:[XMPPJID jidWithString:bareJid]];
+    Account* account = [[Account alloc] initWithUsername:username];
     [self.contacts addObject:account];
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_CONTACT_ADDED object:self ];
     
@@ -91,7 +124,7 @@
     
     NSArray* filteredSessions =[self.sessions
                                 filteredArrayUsingPredicate:
-                                [NSPredicate predicateWithFormat:@"bareJid == %@",remoteAccount.bareJid]];
+                                [NSPredicate predicateWithFormat:@"peername == %@",remoteAccount.username]];
     
     if (filteredSessions.count > 0)
         return filteredSessions[0];
@@ -103,7 +136,7 @@
     return session;
 }
 
--(void) saveContactsAndSessions{
+-(void) save{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     // encoding
@@ -117,7 +150,7 @@
     [defaults synchronize];
 }
 
--(void) loadContactsAndSessions{
+-(void) load{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSData* contact_data = [defaults objectForKey:[self contacts_key]];
@@ -129,10 +162,10 @@
 }
 
 -(NSString*) contacts_key{
-    return [self.account.bareJid stringByAppendingFormat:KEY_CONTACT_LIST ];
+    return [self.account.username stringByAppendingFormat:@"_contacts" ];
 }
 -(NSString*) sessions_key{
-    return [self.account.bareJid stringByAppendingFormat:KEY_SESSION_LIST ];
+    return [self.account.username stringByAppendingFormat:@"_sessions" ];
 }
 
 #pragma mark - XMPP utilities
@@ -151,7 +184,7 @@
 -(void) logOut{
     [self.xmppStream disconnectAfterSending];
     [self goOffline];
-    [self saveContactsAndSessions];
+    [self save];
 }
 
 -(BOOL)keepConnectedAndAuthenticated:(int)count{
@@ -170,10 +203,10 @@
     if(self.xmppStream.isConnected || self.xmppStream.isConnecting) return true;
     if (nRetry > 0) {
         nRetry -- ;
-        return [self.xmppStream connectWithTimeout:CONNECT_TIMEOUT error: nil];
+        return [self.xmppStream connectWithTimeout:XMPP_CONNECT_TIMEOUT error: nil];
     }
     else if (nRetry == -1){
-        return [self.xmppStream connectWithTimeout:CONNECT_TIMEOUT error: nil];
+        return [self.xmppStream connectWithTimeout:XMPP_CONNECT_TIMEOUT error: nil];
     }
     return false;
 }
@@ -195,7 +228,7 @@
 }
 
 -(void)send: (Account*)remoteAccount Message:(NSString*)body{
-    ChatMessage *msg = [[ChatMessage alloc] initWithBody:body From:self.xmppStream.myJID To:remoteAccount.Jid];
+    ChatMessage *msg = [[ChatMessage alloc] initWithBody:body From:self.xmppStream.myJID To:remoteAccount.username.toJid];
     [self.xmppStream sendElement:msg];
 }
 
@@ -251,7 +284,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_AUTHENTICATED object:self];
 
     self.account.autoLogin = YES;
-    [self.account saveAsActiveUser];
+    [self.account saveForRestore];
     
     [self goOnline];
     [self resendAll:sender];
@@ -301,7 +334,7 @@
     //在线用户
     XMPPJID *remoteJid = [presence from];
     
-    Account* remoteAccount = [self getConcact:remoteJid.bare];
+    Account* remoteAccount = [self getConcactByUsername:remoteJid.user];
     remoteAccount.presence = [presenceType isEqual: @"available"];
     
     if (![remoteJid.bare isEqualToString:myJid.bare]) {
@@ -313,7 +346,7 @@
 }
 //将要发送聊天
 - (XMPPMessage *)xmppStream:(XMPPStream *)sender willSendMessage:(XMPPMessage *)message{
-    Account* remoteAccount = [self getConcact:message.to.bare];
+    Account* remoteAccount = [self getConcactByUsername:message.to.user];
     Session* session = [self getSession:remoteAccount];
     
     ChatMessage* chatMessage = [[ChatMessage alloc] initWithXMPPMessage:message];
@@ -354,7 +387,7 @@
     // generate chatMessage
     ChatMessage *chatMessage = [[ChatMessage alloc] initWithBody:message.body From:message.from To:message.to];
     
-    Account* remoteAccount = [self getConcact:message.from.bare];
+    Account* remoteAccount = [self getConcactByUsername:message.from.user];
     Session* session = [self getSession:remoteAccount];
     [session.msgs addObject:chatMessage];
     

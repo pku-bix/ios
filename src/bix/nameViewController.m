@@ -75,8 +75,8 @@
     request = [[RequestInfoFromServer alloc]init];
     [request sendAsynchronousPostTextRequest:self.nameTextField.text type:NAME_TYPE];
     
-    Account* account = [(AppDelegate *)[UIApplication sharedApplication].delegate account];
-    account.name = self.nameTextField.text;
+    Account* account = [bixLocalAccount instance];
+    account.nickname = self.nameTextField.text;
     [account save];
 
     [self.navigationController popViewControllerAnimated:YES];

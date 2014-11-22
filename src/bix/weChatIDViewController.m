@@ -60,7 +60,7 @@
     //上传修改的微信号
     [request sendAsynchronousPostTextRequest: self.weChatID.text type:WE_CHAT_ID_TYPE];
     
-    Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
+    Account *account = [bixLocalAccount instance];
     account.wechatID = self.weChatID.text;
     [account save];
     

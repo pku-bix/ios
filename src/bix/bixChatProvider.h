@@ -9,7 +9,7 @@
 #import "bixLocalAccount.h"
 #import "Session.h"
 
-@interface ChatProvider : NSObject
+@interface bixChatProvider : NSObject
 
 // 账号
 @property (readonly, weak) bixLocalAccount* account;
@@ -25,19 +25,20 @@
 @property (nonatomic) NSMutableArray* sessions;
 
 
--(id) initWithAccount: (bixLocalAccount*)account;
-// be sure chatter inited and mounted when calling this
--(void) loadData;
--(void) saveData;
++(bixChatProvider*)defaultChatProvider;
++(void)setLocalAccount:(bixLocalAccount*) account;
++ (void) save;
++ (void) reconnect;
 
--(void) saveContactsAndSessions;
--(void) loadContactsAndSessions;
--(void) logOut;
--(Account*)getConcact: (NSString*)bareJid;
+-(Account*)getConcactByUsername: (NSString*)username;
 -(Session*)getSession: (Account*)remoteAccount;
+-(void) save;
+-(void) load;
 
 //执行连接
 -(BOOL)doConnect;
+//退出登录
+-(void) logOut;
 //重连，用于断线，连接后自动验证
 -(BOOL)keepConnectedAndAuthenticated:(int)count;
 //连接，用于注册，连接后不自动验证

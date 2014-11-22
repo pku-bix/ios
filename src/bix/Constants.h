@@ -15,50 +15,17 @@
 #define Bix_Constants_h
 
 
-/* local storage string
- * used for local storage identity
- */
-static NSString *const KEY_ACTIVE_JID = @"active_jid";
-static NSString *const KEY_PASSWORD = @"password";
-static NSString *const KEY_AUTOLOGIN= @"autologin";
-static NSString *const KEY_CONTACT_LIST=@"contact_list";
-static NSString *const KEY_SESSION_LIST=@"session_list";
-static NSString *const KEY_MESSAGE_LIST=@"message_list";
-static NSString *const KEY_REMOTE_BAREJID=@"remote_barejid";
-static NSString *const KEY_BAREJID=@"barejid";
-static NSString *const KEY_DEVICE_TOKEN=@"device_token";
-
-//static NSString *SERVER_DOMAIN = @"orange.local";
-//static NSString *SERVER_DOMAIN = @"dsxdemacbook-pro.local";
-
-/* server spec
- * used for server config
- */
-
 // XMPP 服务器
 static NSString* const XMPP_SERVER = @"121.40.72.197";
+static NSString* const XMPP_SERVER_DOMAIN = @"bix.org";
+static const NSTimeInterval XMPP_CONNECT_TIMEOUT = 10;
 
 // API 服务器
 static NSString* const API_SERVER = @"192.168.1.105:3000";
 
-static NSString* const NODE_SERVER = @"192.168.1.105:3000";
-
-static NSString* const SERVER_DOMAIN = @"bix.org";
-static const NSTimeInterval CONNECT_TIMEOUT = 10;
+// 百度地图
 static NSString* const BAIDU_MAP_KEY = @"oCvXZCd41PsMzOw0disOu1QA";
 
-/*
- 局域网测试时对应的ip地址
- */
-
-/*
-static NSString *const LOCATION_INFO_IP = @"http://192.168.1.105:3000/api/chargers"; 
-static NSString *const LOCATION_DETAIL_INFO_IP = @"http://192.168.1.105:3000/api/charger/";
-static NSString *const REPORT_CHARGER_INFO_IP = @"http://192.168.1.105:3000/api/charger";
-static NSString *const POST_IMAGE_TEXT_INFO_IP = @"http://192.168.1.105:3000/api/user/";
-static NSString *const POST_MOMENT_IP = @"http://192.168.1.105:3000/api/posts";
-static NSString *const POST_DEVICE_TOKEN_IP = @"http://192.168.1.105:3000/api/user/";
- */
 
 
 /*

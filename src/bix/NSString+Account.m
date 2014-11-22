@@ -9,24 +9,30 @@
 
 #import <Foundation/Foundation.h>
 #import "Constants.h"
+#import "XMPPFramework.h"
 
 @implementation NSString(Account)
 
-
--(NSString*)toJid{
+-(NSString*) toJidStr{
     //addr
-    if ([self rangeOfString:@"/"].location != NSNotFound )
-        return [[self componentsSeparatedByString:@"/"] objectAtIndex:0];
-    
+    if ([self rangeOfString:@"/"].location != NSNotFound ){
+        NSString* bareJid = (NSString*)[[self componentsSeparatedByString:@"/"] objectAtIndex:0];
+        return bareJid;
+    }
     //Jid
-    if ([self rangeOfString:@"@"].location != NSNotFound )
+    if ([self rangeOfString:@"@"].location != NSNotFound ){
         return self;
+    }
     
     //username
     NSString* username = [self
-                      stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString* bareJid = [username stringByAppendingFormat:@"@%@",SERVER_DOMAIN];
+                          stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString* bareJid = [username stringByAppendingFormat:@"@%@",XMPP_SERVER_DOMAIN];
     return bareJid;
+}
+
+-(XMPPJID*) toJid{
+    return [XMPPJID jidWithString: self.toJidStr];
 }
 
 -(NSString*)toUsername{
@@ -38,51 +44,6 @@
     return [[self componentsSeparatedByString:@"@"] objectAtIndex:0];
 }
 
-/*
-//username
--(NSString*)toJid:(NSString*)servername{
-    
-    return [self stringByAppendingFormat: @"@%@", servername];
-}
-
--(NSString*)toAddr:(NSString*)devicename{
-    //addr
-    if ([self rangeOfString:@"/"].location != NSNotFound )
-        return self;
-    
-    //Jid
-    //if ([self rangeOfString:@"@"].location != NSNotFound )
-    return [self stringByAppendingFormat: @"/%@", devicename];
-}
-
-//username
--(NSString*)toAddr:(NSString*)servername Devicename:(NSString*)devicename{
-    
-    return [self stringByAppendingFormat:@"@%@/%@",servername, devicename];
-}
-
--(NSString*)toServername{
-    NSString* res = nil;
-    
-    //Jid/addr
-    if ([self rangeOfString:@"@"].location != NSNotFound )
-        res =[[self componentsSeparatedByString:@"@"] objectAtIndex:1];
-    
-    //addr
-    if ([res rangeOfString:@"/"].location != NSNotFound )
-        res =[[self componentsSeparatedByString:@"/"] objectAtIndex:0];
-    
-    return res;
-}
-
--(NSString*)toDevicename{
-    
-    if ([self rangeOfString:@"/"].location == NSNotFound )
-        return Nil;
-    //addr
-    return [[self componentsSeparatedByString:@"/"] objectAtIndex:1];
-}
- */
 
 -(BOOL)isValidUsername{
     
@@ -110,7 +71,7 @@
     return [emailTest evaluateWithObject:self];
 }
 
--(BOOL)isValidJid{
+-(BOOL)isValidJidStr{
     NSString *jidRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+";
     NSPredicate *jidTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", jidRegex];
     

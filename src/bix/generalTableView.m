@@ -66,7 +66,7 @@
 
     ////    cell.detailTextLabel.text = @"i am tian cai";
 //    UIImage *image0 = [UIImage imageNamed:@"personInfo"];
-    UIImage *image0 = [(AppDelegate*)[UIApplication sharedApplication].delegate account].avatar;
+    UIImage *image0 = [bixLocalAccount instance].avatar;
     UIImage *image1 = [UIImage imageNamed:@"reported"];
     UIImage *image2 = [UIImage imageNamed:@"feedback"];
 //    UIImage *image3 = [UIImage imageNamed:@"inviteFriends"];

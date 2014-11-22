@@ -10,7 +10,7 @@
 #import "XMPP.h"
 #import "Account.h"
 #import "bixLocalAccount.h"
-#import "ChatProvider.h"
+#import "bixChatProvider.h"
 #import "BMapKit.h"
 #import "bixMomentDataSource.h"
 
@@ -19,10 +19,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic)BMKMapManager* mapManager;
-@property (nonatomic)ChatProvider* chatter;
-@property (nonatomic)bixLocalAccount* account;
-@property bixMomentDataSource* momentDataSrouce;
 
-+ (AppDelegate*) get;
++ (AppDelegate*) instance;
+-(void)registerAPN;
 
 @end
