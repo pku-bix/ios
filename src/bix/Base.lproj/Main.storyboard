@@ -1014,21 +1014,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="NpT-1v-bvC" appends="YES" id="wTb-c2-nbF"/>
-                            <outletCollection property="gestureRecognizers" destination="NpT-1v-bvC" appends="YES" id="w6h-K3-ip7"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Tesla型号" id="g1n-hu-iHs">
                         <barButtonItem key="rightBarButtonItem" title="保存" id="KHL-mW-BMG"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u1s-fg-Dkl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="NpT-1v-bvC">
-                    <connections>
-                        <action selector="Tap:" destination="2Z1-k9-Fdp" id="rdz-Q9-kie"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <tapGestureRecognizer id="NpT-1v-bvC"/>
             </objects>
             <point key="canvasLocation" x="2721" y="1897"/>
         </scene>
