@@ -48,7 +48,7 @@
     
     if(self){
         _sender = sender;
-        _imgUrls = [NSMutableArray new];
+//        _imgUrls = [NSMutableArray new];
         _replies = [NSMutableArray new];
         _uiImageData = [NSMutableArray arrayWithCapacity:2];
         
