@@ -6,21 +6,21 @@
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
 
-#import "Chatter.h"
+#import "ChatProvider.h"
 #import "NSDate+Wrapper.h"
 #import "Constants.h"
 #import "Session.h"
 #import "NSString+Account.h"
 #import "ChatMessage.h"
 
-@interface Chatter()
+@interface ChatProvider()
 
 -(void)goOnline;
 -(void)goOffline;
 
 @end
 
-@implementation Chatter{
+@implementation ChatProvider{
     
     // 连接时重试次数
     int nRetry;
