@@ -11,43 +11,43 @@
 
 @implementation MessageCell
 
-@synthesize timeInfo;
-@synthesize msgTextView;
-@synthesize bgImageView;
-
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)MessageCellReuseID{
     
     self = [super initWithStyle:style reuseIdentifier:MessageCellReuseID];
     if (self) {
         //时间标签
-        timeInfo = [[UILabel alloc] initWithFrame:
+        _timeInfo = [[UILabel alloc] initWithFrame:
                               CGRectMake(0,
                                          0,
                                          [UIScreen mainScreen].currentMode.size.width,
                                          TIMEINFO_HEIGHT)];
-        timeInfo.font = [UIFont systemFontOfSize:11.0];
-        timeInfo.textColor = [UIColor lightGrayColor];
+        _timeInfo.font = [UIFont systemFontOfSize:11.0];
+        _timeInfo.textColor = [UIColor lightGrayColor];
         //timeInfo.adjustsFontSizeToFitWidth = false;
-        timeInfo.textAlignment =  NSTextAlignmentCenter;
+        _timeInfo.textAlignment =  NSTextAlignmentCenter;
         //self.timeHidden = false;
-        [self.contentView addSubview:timeInfo];
+        [self.contentView addSubview:_timeInfo];
         
         //背景
-        bgImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        [self.contentView addSubview:bgImageView];
+        _bgImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        [self.contentView addSubview:_bgImageView];
+        
+        //聊天头像
+        _chatHeadShow = [[UIImageView alloc] initWithFrame:CGRectZero];
+        [self.contentView addSubview:_chatHeadShow];
         
         //聊天信息
-        msgTextView = [[UITextView alloc] init];
-        msgTextView.backgroundColor = [UIColor clearColor];
-        msgTextView.editable = NO;
-        msgTextView.scrollEnabled = NO;
+        _msgTextView = [[UITextView alloc] init];
+        _msgTextView.backgroundColor = [UIColor clearColor];
+        _msgTextView.editable = NO;
+        _msgTextView.scrollEnabled = NO;
         
         //0 padding
-        msgTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        msgTextView.textContainer.lineFragmentPadding = 0;
+        _msgTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        _msgTextView.textContainer.lineFragmentPadding = 0;
         
-        [msgTextView setFont:[UIFont systemFontOfSize:13]];
-        [self.contentView addSubview:msgTextView];
+        [_msgTextView setFont:[UIFont systemFontOfSize:13]];
+        [self.contentView addSubview:_msgTextView];
 
     }
     

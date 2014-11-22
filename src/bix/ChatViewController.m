@@ -158,9 +158,9 @@ AppDelegate* appdelegate;
                     margin_msg_top + PADDING_MSG_TOP,
                     size.width,
                     size.height)];
-        
+
         [cell.bgImageView setFrame:
-         CGRectMake(self.view.frame.size.width - size.width - MARGIN_MSG_SENDER - PADDING_MSG_SENDER - PADDING_MSG_RECEIVER,
+         CGRectMake(self.view.frame.size.width - size.width - MARGIN_MSG_SENDER -      - PADDING_MSG_RECEIVER,
                     margin_msg_top,
                     size.width + PADDING_MSG_RECEIVER + PADDING_MSG_SENDER,
                     size.height + PADDING_MSG_TOP + PADDING_MSG_BOTTOM)];

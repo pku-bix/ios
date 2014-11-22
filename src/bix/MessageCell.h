@@ -14,5 +14,6 @@
 @property(nonatomic, retain) UILabel *timeInfo;
 @property(nonatomic, retain) UITextView *msgTextView;
 @property(nonatomic, retain) UIImageView *bgImageView;
+@property(nonatomic, retain) UIImageView *chatHeadShow;
 
 @end
