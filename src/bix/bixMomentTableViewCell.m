@@ -83,10 +83,11 @@
     
     self.imgCollectionView.dataSource = self;
     self.imgCollectionView.delegate = self;
+    [self.imgCollectionView reloadData];
     
     self.replyTableView.dataSource = self;
     self.replyTableView.delegate   = self;
-
+    [self.replyTableView reloadData];
 }
 //
 //-(void)parseMoment1:(NSNotification*)notification
@@ -138,6 +139,8 @@
     UITextView *text = (UITextView*)[cell.contentView viewWithTag:42];
     [text setText: [NSString stringWithFormat:@"%@ 评论:%@", reply.nickname, reply.text]];
    
+    //cell 被选中后颜色不变， 不会变暗！！
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -155,7 +158,7 @@
 -(UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"moment-image"
                                               forIndexPath:indexPath];
-    
+
     UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:111];
 //    [imageView sd_setImageWithURL:self.momentDataItem.imgUrls[indexPath.row]];
     NSLog(@"bixMomentTableViewCell.m self.momentDataItem.uiImageData count is %d", [self.momentDataItem.uiImageData count]);
@@ -163,11 +166,11 @@
     imageView.image = [self.momentDataItem.uiImageData objectAtIndex:indexPath.row];
 //    imageView.image = [UIImage imageWithData:self.momentDataItem.imgUrls[indexPath.row]];
 
-//    cell.contentView
     return cell;
 }
 
 -(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+//    NSLog(@"")
     return self.momentDataItem.uiImageData.count;
 }
 

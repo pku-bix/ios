@@ -232,6 +232,7 @@
     [_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
     _search.delegate = nil; // 不用时，置nil
+    
     [[NSNotificationCenter defaultCenter]removeObserver:self name:REQUEST_SIMPLE_INFO object:nil];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:REQUEST_CHARGER_DETAIL_INFO object:nil];
    // NSLog(@"map view disappear");

@@ -103,10 +103,13 @@
 {
 
     bixMomentDataItem* item = [[bixMomentDataSource defaultSource] getMomentAtIndex:(numberOFMomentDataItem-indexPath.row-1)];
+    NSLog(@"第%d个item，momentViewController.m", (numberOFMomentDataItem-indexPath.row-1));
     
     // reuse key must be identical to that set on storyboard
     bixMomentTableViewCell *cell = (bixMomentTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"moment-item" forIndexPath:indexPath];
     [cell loadFromMomentDataItem:item];
+    //cell 被选中后颜色不变， 不会变暗！！
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 //    // Configure Cell
@@ -262,7 +265,7 @@
 }
 
 - (void) modelUpdated:(id)model{
-    
+//    NSLog(@"")
     [self.tableView reloadData];
 }
 
