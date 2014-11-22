@@ -48,6 +48,9 @@
 		E37F2C4519DBFA5A0090AB24 /* detailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37F2C4419DBFA5A0090AB24 /* detailViewController.m */; };
 		E3BE73C11A091FE2001DB041 /* bixSendMoodData.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BE73C01A091FE2001DB041 /* bixSendMoodData.m */; };
 		E3CED99F1A0FCAF000863A59 /* addbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = E3CED99E1A0FCAF000863A59 /* addbutton.png */; };
+		E3CF760C1A206D3200268631 /* bixCharger.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CF760B1A206D3200268631 /* bixCharger.m */; };
+		E3CF760F1A20702100268631 /* bixChargerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CF760E1A20702100268631 /* bixChargerDataSource.m */; };
+		E3CF76121A2070FA00268631 /* bixRemoteModelBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CF76111A2070FA00268631 /* bixRemoteModelBase.m */; };
 		E3D5406519FD4A6300FDC819 /* destCharger.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D5406219FD4A6300FDC819 /* destCharger.png */; };
 		E3D5406619FD4A6300FDC819 /* homeCharger.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D5406319FD4A6300FDC819 /* homeCharger.png */; };
 		E3D5406719FD4A6300FDC819 /* superCharger.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D5406419FD4A6300FDC819 /* superCharger.png */; };
@@ -259,6 +262,12 @@
 		E3BE73BF1A091FE2001DB041 /* bixSendMoodData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixSendMoodData.h; sourceTree = "<group>"; };
 		E3BE73C01A091FE2001DB041 /* bixSendMoodData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixSendMoodData.m; sourceTree = "<group>"; };
 		E3CED99E1A0FCAF000863A59 /* addbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addbutton.png; sourceTree = "<group>"; };
+		E3CF760A1A206D3200268631 /* bixCharger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixCharger.h; sourceTree = "<group>"; };
+		E3CF760B1A206D3200268631 /* bixCharger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixCharger.m; sourceTree = "<group>"; };
+		E3CF760D1A20702100268631 /* bixChargerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixChargerDataSource.h; sourceTree = "<group>"; };
+		E3CF760E1A20702100268631 /* bixChargerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixChargerDataSource.m; sourceTree = "<group>"; };
+		E3CF76101A2070FA00268631 /* bixRemoteModelBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixRemoteModelBase.h; sourceTree = "<group>"; };
+		E3CF76111A2070FA00268631 /* bixRemoteModelBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixRemoteModelBase.m; sourceTree = "<group>"; };
 		E3D5406219FD4A6300FDC819 /* destCharger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = destCharger.png; sourceTree = "<group>"; };
 		E3D5406319FD4A6300FDC819 /* homeCharger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeCharger.png; sourceTree = "<group>"; };
 		E3D5406419FD4A6300FDC819 /* superCharger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = superCharger.png; sourceTree = "<group>"; };
@@ -676,6 +685,17 @@
 				E3CED99E1A0FCAF000863A59 /* addbutton.png */,
 			);
 			name = moment;
+			sourceTree = "<group>";
+		};
+		E3CF76091A206CF400268631 /* ChargerProvider */ = {
+			isa = PBXGroup;
+			children = (
+				E3CF760A1A206D3200268631 /* bixCharger.h */,
+				E3CF760B1A206D3200268631 /* bixCharger.m */,
+				E3CF760D1A20702100268631 /* bixChargerDataSource.h */,
+				E3CF760E1A20702100268631 /* bixChargerDataSource.m */,
+			);
+			name = ChargerProvider;
 			sourceTree = "<group>";
 		};
 		E3D037831A1AEB290034D4DA /* MomentModel */ = {
@@ -1176,11 +1196,13 @@
 				EC9EA8561A1AD18E000306C8 /* bixAPIProvider.m */,
 				EC9EA8581A1AD1B6000306C8 /* bixRemoteModelObserver.h */,
 				EC9EA8541A1AD13F000306C8 /* bixRemoteModel.h */,
+				E3CF76101A2070FA00268631 /* bixRemoteModelBase.h */,
+				E3CF76111A2070FA00268631 /* bixRemoteModelBase.m */,
 			);
 			name = APIProvider;
 			sourceTree = "<group>";
 		};
-		ECB402231A202DF100616235 /* vendor */ = {
+		ECB402231A202DF100616235 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
 				84758ED01A2047C400845672 /* UzysMenu */,
@@ -1191,7 +1213,7 @@
 				EC316616193065AC002E9609 /* UIButton-Bootstrap */,
 				EC99085118C33C5D00798FAB /* XMPP */,
 			);
-			name = vendor;
+			name = Vendor;
 			sourceTree = "<group>";
 		};
 		ECB402241A20302100616235 /* MainTabBarView */ = {
@@ -1356,7 +1378,8 @@
 		ECF7E1D318C0516D002BA385 /* bix */ = {
 			isa = PBXGroup;
 			children = (
-				ECB402231A202DF100616235 /* vendor */,
+				E3CF76091A206CF400268631 /* ChargerProvider */,
+				ECB402231A202DF100616235 /* Vendor */,
 				EC9EA8501A1AD042000306C8 /* APIProvider */,
 				ECED787618CF7FE30041CCC7 /* AccountProvider */,
 				EC57886019A61E7A0058837C /* ChatProvider */,
@@ -1588,6 +1611,7 @@
 				E3E59A3E1A07DF1D00B0DA76 /* AGSimpleImageEditorView.m in Sources */,
 				84758EDA1A2047C400845672 /* UzysSMMenuItem.m in Sources */,
 				84758EDB1A2047C400845672 /* UzysSMMenuItemView.m in Sources */,
+				E3CF760C1A206D3200268631 /* bixCharger.m in Sources */,
 				EC57887619A620C80058837C /* AddContactViewController.m in Sources */,
 				EC57886719A61F0C0058837C /* ChatProvider.m in Sources */,
 				EC99084418C3397000798FAB /* DDFileLogger.m in Sources */,
@@ -1609,6 +1633,7 @@
 				EC99089218C33C9200798FAB /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				EC57888519A6215A0058837C /* NSDate+Wrapper.m in Sources */,
 				E3D5406D19FD4F2300FDC819 /* CustomBMKPointAnnotation.m in Sources */,
+				E3CF760F1A20702100268631 /* bixChargerDataSource.m in Sources */,
 				E3E59A261A07DAC900B0DA76 /* nameViewController.m in Sources */,
 				EC10200E18C86FF100B3775E /* SettingViewController.m in Sources */,
 				EC10200B18C85DF200B3775E /* MainTabBarController.m in Sources */,
@@ -1666,6 +1691,7 @@
 				EC99082E18C3391300798FAB /* DDXMLDocument.m in Sources */,
 				E3E59A351A07DC9000B0DA76 /* FeedBackViewController.m in Sources */,
 				EC4613E419FFC4E80046FFAE /* SDWebImageDownloader.m in Sources */,
+				E3CF76121A2070FA00268631 /* bixRemoteModelBase.m in Sources */,
 				EC99089618C33C9200798FAB /* XMPPXFacebookPlatformAuthentication.m in Sources */,
 				EC4613E819FFC4E80046FFAE /* UIButton+WebCache.m in Sources */,
 				EC31662A19308978002E9609 /* MBProgressHUD.m in Sources */,

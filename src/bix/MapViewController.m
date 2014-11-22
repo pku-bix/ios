@@ -63,6 +63,7 @@
 //    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
 //  [self sendRequest];
     
+    
     requestInfoFromServer = [[RequestInfoFromServer alloc]init];
     requestInfoFromServer.selectNotificationKind = 1;
     [requestInfoFromServer sendRequest:LOCATION_INFO_IP];
@@ -400,6 +401,8 @@ return nil;
     [path setString:LOCATION_DETAIL_INFO_IP];
     [path appendString:strId];
 
+    
+//    [[bixChargerDataSource instance] getChargerById:strId];
     requestInfoFromServer.selectNotificationKind = 2;
     [requestInfoFromServer sendRequest:path];
     //不可以在此注册通知！！！
