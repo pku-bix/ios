@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "bixRemoteModel.h"
 
-@interface bixRemoteSync : NSObject<NSURLConnectionDataDelegate>
+@interface bixAPIProvider : NSObject<NSURLConnectionDataDelegate>
 
 // 远程模型
 @property (nonatomic) id<bixRemoteModel> model;

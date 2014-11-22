@@ -174,7 +174,7 @@
 		EC9908A718C33C9200798FAB /* XMPPSRVResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = EC99088E18C33C9200798FAB /* XMPPSRVResolver.m */; };
 		EC9908A818C33C9200798FAB /* XMPPStringPrep.m in Sources */ = {isa = PBXBuildFile; fileRef = EC99089018C33C9200798FAB /* XMPPStringPrep.m */; };
 		EC9908AA18C33CEE00798FAB /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC9908A918C33CEE00798FAB /* libresolv.dylib */; };
-		EC9EA8571A1AD18E000306C8 /* bixRemoteSync.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9EA8561A1AD18E000306C8 /* bixRemoteSync.m */; };
+		EC9EA8571A1AD18E000306C8 /* bixAPIProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9EA8561A1AD18E000306C8 /* bixAPIProvider.m */; };
 		ECD998E818DACE9F00F30FE3 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ECD998E618DACE9F00F30FE3 /* mapapi.bundle */; };
 		ECD998EE18DAD7DE00F30FE3 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD998ED18DAD7DE00F30FE3 /* libbaidumapapi.a */; };
 		ECED787918CF7FE30041CCC7 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED787818CF7FE30041CCC7 /* Session.m */; };
@@ -256,7 +256,7 @@
 		E3D8A8E419800B9B00E40C14 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E3E59A1B1A07D93600B0DA76 /* bixCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bixCaptureViewController.h; path = bix/bixCaptureViewController.h; sourceTree = "<group>"; };
 		E3E59A1C1A07D93600B0DA76 /* bixCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = bixCaptureViewController.m; path = bix/bixCaptureViewController.m; sourceTree = "<group>"; };
-		E3E59A1E1A07DA3700B0DA76 /* PassImageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassImageDelegate.h; sourceTree = "<group>"; };
+		E3E59A1E1A07DA3700B0DA76 /* PassImageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PassImageDelegate.h; path = bix/PassImageDelegate.h; sourceTree = "<group>"; };
 		E3E59A211A07DAAD00B0DA76 /* signatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = signatureViewController.h; path = bix/signatureViewController.h; sourceTree = "<group>"; };
 		E3E59A221A07DAAD00B0DA76 /* signatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = signatureViewController.m; path = bix/signatureViewController.m; sourceTree = "<group>"; };
 		E3E59A241A07DAC900B0DA76 /* nameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = nameViewController.h; path = bix/nameViewController.h; sourceTree = "<group>"; };
@@ -480,8 +480,8 @@
 		EC99089018C33C9200798FAB /* XMPPStringPrep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPStringPrep.m; sourceTree = "<group>"; };
 		EC9908A918C33CEE00798FAB /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		EC9EA8541A1AD13F000306C8 /* bixRemoteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bixRemoteModel.h; sourceTree = "<group>"; };
-		EC9EA8551A1AD18E000306C8 /* bixRemoteSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixRemoteSync.h; sourceTree = "<group>"; };
-		EC9EA8561A1AD18E000306C8 /* bixRemoteSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixRemoteSync.m; sourceTree = "<group>"; };
+		EC9EA8551A1AD18E000306C8 /* bixAPIProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixAPIProvider.h; sourceTree = "<group>"; };
+		EC9EA8561A1AD18E000306C8 /* bixAPIProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixAPIProvider.m; sourceTree = "<group>"; };
 		EC9EA8581A1AD1B6000306C8 /* bixRemoteModelObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bixRemoteModelObserver.h; sourceTree = "<group>"; };
 		ECD998BD18DACE9F00F30FE3 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		ECD998BE18DACE9F00F30FE3 /* BMKActionPaopaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKActionPaopaoView.h; sourceTree = "<group>"; };
@@ -588,9 +588,6 @@
 			children = (
 				EC10200F18C8701400B3775E /* MapViewController.h */,
 				EC10201018C8701400B3775E /* MapViewController.m */,
-				E34419951980BAA400F03459 /* MapButton.h */,
-				E34419961980BAA400F03459 /* MapButton.m */,
-				E34F44E1199B16E700BAB7D8 /* ButtonProtocal.h */,
 				E37F2C4319DBFA5A0090AB24 /* detailViewController.h */,
 				E37F2C4419DBFA5A0090AB24 /* detailViewController.m */,
 			);
@@ -620,22 +617,15 @@
 				E3E59A3D1A07DF1D00B0DA76 /* AGSimpleImageEditorView.m */,
 			);
 			name = AGSimpleImageEditorView;
-			sourceTree = "<group>";
-		};
-		E3BE73C21A092994001DB041 /* protocol */ = {
-			isa = PBXGroup;
-			children = (
-				E3E59A1E1A07DA3700B0DA76 /* PassImageDelegate.h */,
-			);
-			name = protocol;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		E3CB2E1719ED75C800EC61C5 /* personInfo */ = {
 			isa = PBXGroup;
 			children = (
+				E3E59A1E1A07DA3700B0DA76 /* PassImageDelegate.h */,
 				E3E59A301A07DC2D00B0DA76 /* personInfoViewController.h */,
 				E3E59A311A07DC2D00B0DA76 /* personInfoViewController.m */,
-				E381F0B51A07E07B0030939E /* AGSimpleImageEditorView */,
 				E3E59A1B1A07D93600B0DA76 /* bixCaptureViewController.h */,
 				E3E59A271A07DAE400B0DA76 /* chatIDViewController.h */,
 				E3E59A1C1A07D93600B0DA76 /* bixCaptureViewController.m */,
@@ -702,22 +692,16 @@
 			name = reportCharger;
 			sourceTree = "<group>";
 		};
-		E3D5406E19FD550500FDC819 /* CustomBMKPointAnnotation */ = {
+		E3D5406E19FD550500FDC819 /* MapProvider */ = {
 			isa = PBXGroup;
 			children = (
+				E34419951980BAA400F03459 /* MapButton.h */,
+				E34419961980BAA400F03459 /* MapButton.m */,
+				E34F44E1199B16E700BAB7D8 /* ButtonProtocal.h */,
 				E3D5406B19FD4F2300FDC819 /* CustomBMKPointAnnotation.h */,
 				E3D5406C19FD4F2300FDC819 /* CustomBMKPointAnnotation.m */,
 			);
-			name = CustomBMKPointAnnotation;
-			sourceTree = "<group>";
-		};
-		E3F571BB19E5823900AA20E0 /* RequestFromServer */ = {
-			isa = PBXGroup;
-			children = (
-				E3F571BC19E5829000AA20E0 /* RequestInfoFromServer.h */,
-				E3F571BD19E5829000AA20E0 /* RequestInfoFromServer.m */,
-			);
-			name = RequestFromServer;
+			name = MapProvider;
 			sourceTree = "<group>";
 		};
 		E3F76A8C19EADA32008E718C /* chargerPile */ = {
@@ -897,7 +881,7 @@
 			name = MomentView;
 			sourceTree = "<group>";
 		};
-		EC57886019A61E7A0058837C /* Chatter */ = {
+		EC57886019A61E7A0058837C /* ChatProvider */ = {
 			isa = PBXGroup;
 			children = (
 				EC93762618D3438C00D23984 /* ChatMessage.h */,
@@ -905,7 +889,7 @@
 				EC57886219A61F0C0058837C /* Chatter.h */,
 				EC57886319A61F0C0058837C /* Chatter.m */,
 			);
-			name = Chatter;
+			name = ChatProvider;
 			sourceTree = "<group>";
 		};
 		EC99080618C3335600798FAB /* Vendor */ = {
@@ -1155,15 +1139,39 @@
 			path = XMPP/Utilities;
 			sourceTree = "<group>";
 		};
-		EC9EA8501A1AD042000306C8 /* RemoteModel */ = {
+		EC9EA8501A1AD042000306C8 /* APIProvider */ = {
 			isa = PBXGroup;
 			children = (
-				EC9EA8551A1AD18E000306C8 /* bixRemoteSync.h */,
-				EC9EA8561A1AD18E000306C8 /* bixRemoteSync.m */,
+				E3F571BC19E5829000AA20E0 /* RequestInfoFromServer.h */,
+				E3F571BD19E5829000AA20E0 /* RequestInfoFromServer.m */,
+				EC9EA8551A1AD18E000306C8 /* bixAPIProvider.h */,
+				EC9EA8561A1AD18E000306C8 /* bixAPIProvider.m */,
 				EC9EA8581A1AD1B6000306C8 /* bixRemoteModelObserver.h */,
 				EC9EA8541A1AD13F000306C8 /* bixRemoteModel.h */,
 			);
-			name = RemoteModel;
+			name = APIProvider;
+			sourceTree = "<group>";
+		};
+		ECB402231A202DF100616235 /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				E381F0B51A07E07B0030939E /* AGSimpleImageEditorView */,
+				ECD998BB18DACE9F00F30FE3 /* BaiduMap */,
+				EC3166271930895E002E9609 /* MBProgressHUD */,
+				EC4613BD19FFC4E80046FFAE /* SDWebImage */,
+				EC316616193065AC002E9609 /* UIButton-Bootstrap */,
+				EC99085118C33C5D00798FAB /* XMPP */,
+			);
+			name = vendor;
+			sourceTree = "<group>";
+		};
+		ECB402241A20302100616235 /* MainTabBarView */ = {
+			isa = PBXGroup;
+			children = (
+				EC10200918C85DF200B3775E /* MainTabBarController.h */,
+				EC10200A18C85DF200B3775E /* MainTabBarController.m */,
+			);
+			name = MainTabBarView;
 			sourceTree = "<group>";
 		};
 		ECC16B8618D97EC300C1A37E /* ContactView */ = {
@@ -1234,7 +1242,7 @@
 			path = inc;
 			sourceTree = "<group>";
 		};
-		ECED787618CF7FE30041CCC7 /* Account */ = {
+		ECED787618CF7FE30041CCC7 /* AccountProvider */ = {
 			isa = PBXGroup;
 			children = (
 				EC4613FF19FFC5820046FFAE /* bixLocalAccount.h */,
@@ -1244,6 +1252,7 @@
 				ECED788F18D00CAD0041CCC7 /* Session.h */,
 				ECED787818CF7FE30041CCC7 /* Session.m */,
 			);
+			name = AccountProvider;
 			path = Account;
 			sourceTree = "<group>";
 		};
@@ -1264,6 +1273,7 @@
 		ECED789518D08F980041CCC7 /* ChatView */ = {
 			isa = PBXGroup;
 			children = (
+				ECC16B8618D97EC300C1A37E /* ContactView */,
 				ECF7E1E218C0516D002BA385 /* ChatListViewController.h */,
 				EC57886919A620710058837C /* ChatListViewController.m */,
 				EC57886A19A620710058837C /* ChatViewController.h */,
@@ -1317,32 +1327,24 @@
 		ECF7E1D318C0516D002BA385 /* bix */ = {
 			isa = PBXGroup;
 			children = (
+				ECB402231A202DF100616235 /* vendor */,
+				EC9EA8501A1AD042000306C8 /* APIProvider */,
+				ECED787618CF7FE30041CCC7 /* AccountProvider */,
+				EC57886019A61E7A0058837C /* ChatProvider */,
+				E3D5406E19FD550500FDC819 /* MapProvider */,
 				E3D037831A1AEB290034D4DA /* MomentModel */,
-				EC9EA8501A1AD042000306C8 /* RemoteModel */,
-				E3BE73C21A092994001DB041 /* protocol */,
-				EC4613EF19FFC4F30046FFAE /* MomentView */,
-				EC4613BD19FFC4E80046FFAE /* SDWebImage */,
-				EC3166271930895E002E9609 /* MBProgressHUD */,
-				EC316616193065AC002E9609 /* UIButton-Bootstrap */,
-				EC4174991910E952009E5157 /* RegisterView */,
-				ECD998BB18DACE9F00F30FE3 /* BaiduMap */,
-				EC05DD9918D0BE49000C9D89 /* Resources */,
-				ECED789518D08F980041CCC7 /* ChatView */,
-				ECC16B8618D97EC300C1A37E /* ContactView */,
 				ECED787A18CF80040041CCC7 /* Utilities */,
-				EC57886019A61E7A0058837C /* Chatter */,
-				ECED787618CF7FE30041CCC7 /* Account */,
+				EC05DD9918D0BE49000C9D89 /* Resources */,
+				EC4613EF19FFC4F30046FFAE /* MomentView */,
+				EC4174991910E952009E5157 /* RegisterView */,
+				ECED789518D08F980041CCC7 /* ChatView */,
 				E36C255D198F705100D129E9 /* SettingView */,
 				E34F44E0199B013C00BAB7D8 /* BaiduMapView */,
-				E3F571BB19E5823900AA20E0 /* RequestFromServer */,
-				E3D5406E19FD550500FDC819 /* CustomBMKPointAnnotation */,
-				EC10200918C85DF200B3775E /* MainTabBarController.h */,
+				ECB402241A20302100616235 /* MainTabBarView */,
 				ECF7E1DF18C0516D002BA385 /* Main.storyboard */,
 				ECF7E1DD18C0516D002BA385 /* AppDelegate.mm */,
 				ECF7E1DC18C0516D002BA385 /* AppDelegate.h */,
-				EC10200A18C85DF200B3775E /* MainTabBarController.m */,
 				ECF7E1E818C0516D002BA385 /* Images.xcassets */,
-				EC99085118C33C5D00798FAB /* XMPP */,
 				ECF7E1D418C0516D002BA385 /* Supporting Files */,
 			);
 			path = bix;
@@ -1604,7 +1606,7 @@
 				EC9908A318C33C9200798FAB /* DDList.m in Sources */,
 				EC57888619A6215A0058837C /* NSString+Account.m in Sources */,
 				EC99089F18C33C9200798FAB /* XMPPModule.m in Sources */,
-				EC9EA8571A1AD18E000306C8 /* bixRemoteSync.m in Sources */,
+				EC9EA8571A1AD18E000306C8 /* bixAPIProvider.m in Sources */,
 				E3E59A321A07DC2D00B0DA76 /* personInfoViewController.m in Sources */,
 				E37F2C4519DBFA5A0090AB24 /* detailViewController.m in Sources */,
 				EC99089D18C33C9200798FAB /* XMPPJID.m in Sources */,

@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 bix. All rights reserved.
 //
 
-#import "bixRemoteSync.h"
+#import "bixAPIProvider.h"
 #import "Constants.h"
 
-@interface bixRemoteSync()
+@interface bixAPIProvider()
 
 // 操作类型
 typedef enum {
@@ -26,7 +26,7 @@ typedef enum {
 @end
 
 
-@implementation bixRemoteSync
+@implementation bixAPIProvider
 
 static NSString* errDomain = @"remotesync";
 static NSString* apiPath   = @"api";
