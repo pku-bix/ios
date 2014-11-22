@@ -155,7 +155,7 @@
                                             <constraint firstAttribute="width" constant="40" id="QVK-bP-P4b"/>
                                             <constraint firstAttribute="height" constant="40" id="S3M-6V-HbN"/>
                                         </constraints>
-                                        <state key="normal" image="6AD68E0E-4C04-4F16-9920-F4F83A443567">
+                                        <state key="normal" image="E5F0C015-FE37-4D51-BE36-798505241944">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1218,7 +1218,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.5499999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0bP-6N-AeW">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.5499999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0bP-6N-AeW">
                                 <rect key="frame" x="20" y="188" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1227,7 +1227,7 @@
                                     <outlet property="delegate" destination="gwR-gu-Shx" id="1vJ-zV-7ky"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.5499999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OaS-Id-Aga">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.5499999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OaS-Id-Aga">
                                 <rect key="frame" x="20" y="226" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -1399,7 +1399,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="6AD68E0E-4C04-4F16-9920-F4F83A443567" width="90" height="90">
+        <image name="E5F0C015-FE37-4D51-BE36-798505241944" width="90" height="90">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGQkNYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsMDQ6PlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
