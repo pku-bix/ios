@@ -23,6 +23,9 @@
 
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 
+//post分享圈的文字、图片后， 服务器会返回一些数据, 以notification的方式通知给本类，存在此字段;
+@property (retain, nonatomic) NSMutableData  *theResultData;
+
 @property(nonatomic,strong) UIImage *image1;
 @property(nonatomic,strong) UIImage *image2;
 @property(nonatomic,strong) UIImage *image3;

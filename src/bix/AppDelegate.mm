@@ -21,7 +21,7 @@
 -(void)setAccount:(bixLocalAccount *)account{
     _account = account;
     
-    self.chatter = [[Chatter alloc] initWithAccount: account];
+    self.chatter = [[ChatProvider alloc] initWithAccount: account];
     [self.chatter loadData];
     
     if(!account.deviceToken){

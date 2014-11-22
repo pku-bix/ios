@@ -157,7 +157,10 @@
                                               forIndexPath:indexPath];
     
     UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:111];
-    [imageView sd_setImageWithURL:self.momentDataItem.imgUrls[indexPath.row]];
+//    [imageView sd_setImageWithURL:self.momentDataItem.imgUrls[indexPath.row]];
+    NSLog(@"bixMomentTableViewCell.m self.momentDataItem.uiImageData count is %d", [self.momentDataItem.uiImageData count]);
+    NSLog(@"indexPath.row is %d",indexPath.row);
+    imageView.image = [self.momentDataItem.uiImageData objectAtIndex:indexPath.row];
 //    imageView.image = [UIImage imageWithData:self.momentDataItem.imgUrls[indexPath.row]];
 
 //    cell.contentView
@@ -165,7 +168,7 @@
 }
 
 -(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.momentDataItem.replies.count;
+    return self.momentDataItem.uiImageData.count;
 }
 
 @end

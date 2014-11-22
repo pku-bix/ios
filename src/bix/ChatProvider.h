@@ -9,7 +9,7 @@
 #import "bixLocalAccount.h"
 #import "Session.h"
 
-@interface Chatter : NSObject
+@interface ChatProvider : NSObject
 
 // 账号
 @property (readonly, weak) bixLocalAccount* account;
