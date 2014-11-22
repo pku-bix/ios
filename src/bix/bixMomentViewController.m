@@ -1,5 +1,5 @@
 //
-//  bixViewController.m
+//  bixMomentViewController.m
 //  bix
 //
 //  Created by harttle on 10/28/14.
