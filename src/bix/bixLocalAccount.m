@@ -126,9 +126,9 @@ static bixLocalAccount *instance = nil;
 - (void) setDeviceToken:(NSData *)deviceToken{
     _deviceToken = deviceToken;
     
-    request = [[RequestInfoFromServer alloc]init];
+//    request = [[RequestInfoFromServer alloc]init];
     
-    [request sendAsynchronousPostDeviceToken:_deviceToken];
+//    [request sendAsynchronousPostDeviceToken:_deviceToken];
     
 }
 

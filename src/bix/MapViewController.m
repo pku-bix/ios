@@ -32,6 +32,7 @@
     UIImage *image;
     CGRect rect;
     int isFinishLoading, isSimpleOrDetailRequest ;
+    NSInteger selectCharger;
     detailViewController *detail;
 }
 
@@ -43,6 +44,7 @@
     if (self) {
         // Custom initialization
     }
+    
     return self;
 }
 
@@ -54,13 +56,17 @@
     mapButton = [[MapButton alloc]init];
     _search = [[BMKSearch alloc]init ];
     
+    selectCharger = -1;
+    
     rect = [[UIScreen mainScreen] bounds];
+    GLfloat _mapY = self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y;
     //  CGSize size = rect.size;   CGFloat width = size.width;  CGFloat height = size.height;
-    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height-40)];
+    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, _mapY, rect.size.width, rect.size.height-40)];
 
 //    _mapView.delegate = self;
 //    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
 //  [self sendRequest];
+    
     
     requestInfoFromServer = [[RequestInfoFromServer alloc]init];
     requestInfoFromServer.selectNotificationKind = 1;
@@ -71,6 +77,43 @@
     detailInfoArray = [NSMutableArray arrayWithCapacity:DETAIL_INFO_NUMBER];
     NSLog(@"end viewDidLoad");
 //    [self initMapView];
+    
+    __block typeof(self) blockSelf = self;
+    UzysSMMenuItem *item0 = [[UzysSMMenuItem alloc] initWithTitle:@"超级充电桩" image:[UIImage imageNamed:@"charge_super_label.png"] action:^(UzysSMMenuItem *item) {
+        NSLog(@"Item: %@", item);
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            blockSelf.chargerItem.frame = CGRectMake(10, 200, blockSelf.chargerItem.bounds.size.width, blockSelf.chargerItem.bounds.size.height);
+        }];
+        
+        [self addSuperCharger:item.tag];
+    }];
+    
+    UzysSMMenuItem *item1 = [[UzysSMMenuItem alloc] initWithTitle:@"目的充电桩" image:[UIImage imageNamed:@"charge_des_label.png"] action:^(UzysSMMenuItem *item) {
+        NSLog(@"Item: %@", item);
+        [UIView animateWithDuration:0.2 animations:^{
+            blockSelf.chargerItem.frame = CGRectMake(10, 150, blockSelf.chargerItem.bounds.size.width, blockSelf.chargerItem.bounds.size.height);
+        }];
+        
+        [self addDestinationCHarger:item.tag];
+        
+    }];
+    UzysSMMenuItem *item2 = [[UzysSMMenuItem alloc] initWithTitle:@"家庭充电桩" image:[UIImage imageNamed:@"charge_home_label.png"] action:^(UzysSMMenuItem *item) {
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            blockSelf.chargerItem.frame = CGRectMake(10, 250, blockSelf.chargerItem.bounds.size.width, blockSelf.chargerItem.bounds.size.height);
+        }];
+        NSLog(@"Item: %@", item);
+    }];
+    
+    item0.tag = 0;
+    item1.tag = 1;
+    item2.tag = 2;
+    
+    //Items must contain ImageView(icon).
+    self.chargerMenu = [[UzysSlideMenu alloc] initWithItems:@[item0,item1,item2]];
+    self.chargerMenu.frame = CGRectMake(self.chargerMenu.frame.origin.x, 20, self.chargerMenu.frame.size.width, self.chargerMenu.frame.size.width);
+    [self.view addSubview:self.chargerMenu];
 }
 
 -(void)initMapViewButton
@@ -140,6 +183,7 @@
     [self.view addSubview:getCurrentLocationBtn];
     [self.view addSubview:superCharge];
     [self.view addSubview:destinationCharge];
+    [self.view addSubview:self.chargerItem];
 }
 
 #pragma mark five_mapButton_events
@@ -195,6 +239,7 @@
     [_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
     _search.delegate = nil; // 不用时，置nil
+    
     [[NSNotificationCenter defaultCenter]removeObserver:self name:REQUEST_SIMPLE_INFO object:nil];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:REQUEST_CHARGER_DETAIL_INFO object:nil];
    // NSLog(@"map view disappear");
@@ -364,6 +409,8 @@ return nil;
     [path setString:LOCATION_DETAIL_INFO_IP];
     [path appendString:strId];
 
+    
+//    [[bixChargerDataSource instance] getChargerById:strId];
     requestInfoFromServer.selectNotificationKind = 2;
     [requestInfoFromServer sendRequest:path];
     //不可以在此注册通知！！！
@@ -489,6 +536,65 @@ return nil;
     
 }
 
+- (void)addSuperCharger:(NSInteger) selectTag
+{
+    if (selectCharger >= 0) {
+        selectCharger = -1;
+        NSLog(@"fuck superCharge");
+        [_mapView removeAnnotations: [NSArray arrayWithArray:_mapView.annotations]];
+        NSLog(@"removeAnnotations");
+        int k = 0, sum = 0;
+        for(int i = 0; i < chargePileNumber; i++)
+        {
+            
+            //        BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
+            CustomBMKPointAnnotation *j = [CustomBMKPointAnnotation new];
+            if([[muArray objectAtIndex:k]  isEqual: @"SuperCharger"])
+            {
+                sum++;
+                j.coordinate = CLLocationCoordinate2DMake([[muArray objectAtIndex:k+2] doubleValue], [[muArray objectAtIndex:k+3] doubleValue]);
+                j.title = [muArray objectAtIndex:k+1];
+                j.type = 0; // type = 0 表示超级充电桩;
+                [_mapView addAnnotation:j];
+            }
+            k = k+5;
+        }
+        NSLog(@"superCharge have %d", sum);
+    }
+    else
+        selectCharger = selectTag;
+}
+
+- (void)addDestinationCHarger:(NSInteger)selectTag
+{
+    if (selectCharger >= 0) {
+        
+        NSLog(@"fuck destinationCharge");
+        
+        NSLog(@"addBatteryChargeAnnotation chargePileNumber is %d", chargePileNumber);
+        [_mapView removeAnnotations:[NSArray arrayWithArray:_mapView.annotations]];
+        NSLog(@"removeAnnotations");
+        int k = 0, sum = 0;
+        for(int i = 0; i < chargePileNumber; i++)
+        {
+            //        BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
+            CustomBMKPointAnnotation *j = [CustomBMKPointAnnotation new];
+            if([[muArray objectAtIndex:k]  isEqual: @"DestCharger"])
+            {
+                sum++;
+                j.coordinate = CLLocationCoordinate2DMake([[muArray objectAtIndex:k+2] doubleValue], [[muArray objectAtIndex:k+3] doubleValue]);
+                j.title = [muArray objectAtIndex:k+1];
+                j.type = 1; // type = 1; 表示目的充电桩;
+                [_mapView addAnnotation:j];
+            }
+            k = k+5;
+        }
+        NSLog(@"destinationCharger have %d", sum);
+    }
+    else
+        selectCharger = selectTag;
+}
+
 - (IBAction)addSuperCharge:(id)sender {
     NSLog(@"fuck superCharge");
     [_mapView removeAnnotations: [NSArray arrayWithArray:_mapView.annotations]];
@@ -534,6 +640,9 @@ return nil;
         k = k+5;
     }
     NSLog(@"destinationCharger have %d", sum);
+}
+
+- (IBAction)chargerSelect:(id)sender {
 }
 
 

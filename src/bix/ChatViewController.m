@@ -154,28 +154,44 @@ AppDelegate* appdelegate;
 
     if (msg.isMine) {
         [cell.msgTextView setFrame:
-         CGRectMake(self.view.frame.size.width - size.width - PADDING_MSG_SENDER - MARGIN_MSG_SENDER,
+         CGRectMake(self.view.frame.size.width - size.width - PADDING_MSG_SENDER - MARGIN_MSG_SENDER - CHAT_HEAD_SHOW_SIZE - CHAT_HEAD_SHOW_PADDING_LEFT - CHAT_HEAD_SHOW_PADDING_RIGHT,
                     margin_msg_top + PADDING_MSG_TOP,
                     size.width,
                     size.height)];
-        
+
         [cell.bgImageView setFrame:
-         CGRectMake(self.view.frame.size.width - size.width - MARGIN_MSG_SENDER - PADDING_MSG_SENDER - PADDING_MSG_RECEIVER,
+         CGRectMake(self.view.frame.size.width - size.width - MARGIN_MSG_SENDER - PADDING_MSG_SENDER - PADDING_MSG_RECEIVER - CHAT_HEAD_SHOW_SIZE - CHAT_HEAD_SHOW_PADDING_LEFT - CHAT_HEAD_SHOW_PADDING_RIGHT,
                     margin_msg_top,
                     size.width + PADDING_MSG_RECEIVER + PADDING_MSG_SENDER,
                     size.height + PADDING_MSG_TOP + PADDING_MSG_BOTTOM)];
+        
+        [cell.chatHeadShow setFrame:
+         CGRectMake(self.view.frame.size.width - MARGIN_MSG_SENDER - CHAT_HEAD_SHOW_SIZE - CHAT_HEAD_SHOW_PADDING_LEFT - CHAT_HEAD_SHOW_PADDING_RIGHT,
+                    //self.view.frame.size.width - CHAT_HEAD_SHOW_SIZE - CHAT_HEAD_SHOW_PADDING_LEFT - CHAT_HEAD_SHOW_PADDING_RIGHT,
+                    margin_msg_top,
+                    CHAT_HEAD_SHOW_SIZE,
+                    CHAT_HEAD_SHOW_SIZE)];
+        cell.chatHeadShow.image = [UIImage imageNamed:@"default_headshow.png"];
         
         bgImage = [[UIImage imageNamed:@"msg_sent-100.png"]
                    resizableImageWithCapInsets:UIEdgeInsetsMake(6, 6, 10, 24)
                    resizingMode:UIImageResizingModeStretch];
 
     }else {
-        [cell.msgTextView setFrame:CGRectMake(PADDING_MSG_SENDER + MARGIN_MSG_SENDER,
+        [cell.msgTextView setFrame:CGRectMake(PADDING_MSG_SENDER + MARGIN_MSG_SENDER + CHAT_HEAD_SHOW_PADDING_LEFT + CHAT_HEAD_SHOW_SIZE + CHAT_HEAD_SHOW_PADDING_RIGHT,
                                               margin_msg_top + PADDING_MSG_TOP,
                                               size.width,   size.height)];
-        [cell.bgImageView setFrame:CGRectMake(MARGIN_MSG_SENDER,    margin_msg_top,
+        [cell.bgImageView setFrame:CGRectMake(MARGIN_MSG_SENDER + CHAT_HEAD_SHOW_PADDING_LEFT + CHAT_HEAD_SHOW_SIZE + CHAT_HEAD_SHOW_PADDING_RIGHT,
+                                              margin_msg_top,
                                               size.width + PADDING_MSG_RECEIVER + PADDING_MSG_SENDER,
                                               size.height + PADDING_MSG_TOP + PADDING_MSG_BOTTOM)];
+        
+        [cell.chatHeadShow setFrame:
+         CGRectMake(MARGIN_MSG_SENDER + CHAT_HEAD_SHOW_PADDING_LEFT + CHAT_HEAD_SHOW_PADDING_LEFT,
+                    margin_msg_top,
+                    CHAT_HEAD_SHOW_SIZE,
+                    CHAT_HEAD_SHOW_SIZE)];
+        cell.chatHeadShow.image = [UIImage imageNamed:@"default_headshow.png"];
         
         bgImage = [[UIImage imageNamed:@"msg_received-100.png"]
                    resizableImageWithCapInsets:UIEdgeInsetsMake(6, 24, 10, 6)
@@ -197,7 +213,7 @@ AppDelegate* appdelegate;
 -(CGSize) getDisplaySize:(NSString*) str{
     
     CGSize textSize = {self.view.frame.size.width
-        - PADDING_MSG_RECEIVER - PADDING_MSG_SENDER - MARGIN_MSG_RECEIVER- MARGIN_MSG_SENDER,   INTMAX_MAX};
+        - PADDING_MSG_RECEIVER - PADDING_MSG_SENDER - MARGIN_MSG_RECEIVER- MARGIN_MSG_SENDER - CHAT_HEAD_SHOW_SIZE - CHAT_HEAD_SHOW_PADDING_LEFT - CHAT_HEAD_SHOW_PADDING_RIGHT,   INTMAX_MAX};
     
     CGSize size = [str boundingRectWithSize:textSize
                                     options:NSStringDrawingUsesLineFragmentOrigin

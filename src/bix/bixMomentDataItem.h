@@ -27,9 +27,10 @@
 @property (readonly,nonatomic) NSString* nickname;
 // 分享文章、说说
 @property (nonatomic) NSString* textContent;
-// 分享图片, 做成NSUrl的类型，用户发送和从服务器拉取 统一成 NSUrl格式;
+//   // 分享图片, 做成NSUrl的类型，用户发送和从服务器拉取 统一成 NSUrl格式
 @property (nonatomic) NSMutableArray* imgUrls;
-//用户发送的分享图片是image格式，不是NSURL格式
+
+//用户发送的分享图片是image格式，不是NSURL格式, 否则发送后，前台显示会有延迟
 @property (nonatomic) NSMutableArray* uiImageData;
 // 回复
 @property (nonatomic) NSMutableArray* replies;
