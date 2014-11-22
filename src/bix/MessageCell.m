@@ -42,6 +42,7 @@
         _msgTextView.editable = NO;
         _msgTextView.scrollEnabled = NO;
         
+        
         //0 padding
         _msgTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
         _msgTextView.textContainer.lineFragmentPadding = 0;
