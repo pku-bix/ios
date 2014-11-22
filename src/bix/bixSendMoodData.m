@@ -27,7 +27,11 @@
     RequestInfoFromServer* request;
     MBProgressHUD *hud;
     
-    NSMutableArray *testImagesArray;
+    NSMutableArray *testURLArray;
+
+//本来是设计用来存发送图片的NSURL， 但发送到前台不能实时响应，故取消这种设计，直接传数据给前台实时显示;
+//    NSMutableArray *ImageURLArray;
+    
 //    bixMomentDataItem *item;
     //用这个变量来标记发送是否成功，对应在点击发送按钮触发的事件;
 //    int flag;
@@ -50,9 +54,11 @@
     //点击发送按钮，软键盘会自动取消，设置代理;
     self.textView.delegate = self;
     
-    testImagesArray = [NSMutableArray arrayWithCapacity:2];
-    [testImagesArray addObject:[NSURL URLWithString: @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg"]];
-    [testImagesArray addObject:[NSURL URLWithString: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"]];
+    testURLArray = [NSMutableArray arrayWithCapacity:2];
+//    ImageURLArray = [NSMutableArray arrayWithCapacity:2];
+    
+    [testURLArray addObject:[NSURL URLWithString: @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg"]];
+    [testURLArray addObject:[NSURL URLWithString: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"]];
     
 //    flag = 0;  //
     self.imageView1.image = self.image1;
@@ -64,6 +70,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseSuccessOrNot:) name:@"sendMomentDataSuccessOrNot" object:nil];
+    
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseDataItem:) name:@"returnMomentData" object:nil];
+    
     NSLog(@"viewWillAppear");
 }
 
@@ -72,6 +81,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"sendMomentDataSuccessOrNot" object:nil];
+//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"returnMomentData" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -284,6 +294,7 @@
 - (IBAction)sendTextAndPicture:(id)sender {
     //取消软键盘，让软键盘退下去;
     [self.textView resignFirstResponder];
+    hud = [MessageBox Toasting:@"正在发送" In:self.view];
     
     NSLog(@"图片数组个数是 %d", [self.mutableArray count]);
     NSLog(@"输入的文字是 %@", self.textView.text);
@@ -291,7 +302,7 @@
         [MessageBox Toast:@"输入点文字呀..." In: self.view];
         return ;
     }
-    
+
     // create MomentDataItem item
     // add item to MomentDataSource
     Account *account = [[AppDelegate get] account];
@@ -300,10 +311,18 @@
     
     bixMomentDataItem *item = [[bixMomentDataItem alloc]initWithSender:account];
     //    item.imgUrls = [NSMutableArray arrayWithArray:self.mutableArray];
-    item.imgUrls = [NSMutableArray arrayWithArray:testImagesArray];
+    //    item.imgUrls = [NSMutableArray arrayWithArray:ImageURLArray];
+    //    item.imgUrls = [NSMutableArray arrayWithArray:testURLArray];
+//    item.uiImageData = [NSMutableArray arrayWithArray:self.mutableArray];
+    for (id obj in self.mutableArray) {
+        [item.uiImageData addObject:obj];
+    }
+    NSLog(@"item.uiImageData count is %d, self.mutableArray count is %d", [item.uiImageData count], [self.mutableArray count]);
+    NSLog(@"bixSendMoodData.m item.uiImageData count is %d", [item.uiImageData count]);
     item.textContent = self.textView.text;
     [[bixMomentDataSource defaultSource]addMomentDataItem:item];
-    NSLog(@"momentDataItem number is %d", [[bixMomentDataSource defaultSource]numberOfMomentDataItem]);
+    
+    NSLog(@"bixSendMoodData.m momentDataItem number is %d", [[bixMomentDataSource defaultSource]numberOfMomentDataItem]);
     
     if ((self.pictureNumber) == [self.mutableArray count]) {
         [self.mutableArray addObject:self.textView.text];
@@ -315,12 +334,45 @@
     }
     NSLog(@"text is %@", [self.mutableArray objectAtIndex:([self.mutableArray count]-1)]);
 
-    hud = [MessageBox Toasting:@"正在发送" In:self.view];
-    
+
     request = [[RequestInfoFromServer alloc]init];
     [request sendAsynchronousPostMomentData:self.mutableArray];
     NSLog(@"the textView.text is %@", self.textView.text);
+    
+    //退出时，得清空之前的数组元素， 否则下次进来会一直叠加元素;
+    [self.mutableArray removeAllObjects];
+
 }
+/*
+-(void)parseDataItem:(NSNotification *)notification
+{
+    self.theResultData = notification.object;
+    NSDictionary *result = [NSJSONSerialization JSONObjectWithData:self.theResultData options:NSJSONReadingMutableLeaves error:nil];
+   
+    NSArray *imageUrl = [result objectForKey:@"imgs"];
+    
+    for (id obj in imageUrl) {
+        NSLog(@"image URL is %@", obj);
+        [ImageURLArray addObject:[NSURL URLWithString:obj]];
+        NSLog(@"NSURL is %@", [NSURL URLWithString:obj]);
+    }
+    
+    // create MomentDataItem item
+    // add item to MomentDataSource
+    Account *account = [[AppDelegate get] account];
+    account.avatarUrl = [NSURL URLWithString: @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg"];
+    account.nickname = account.username;
+    
+    bixMomentDataItem *item = [[bixMomentDataItem alloc]initWithSender:account];
+    //    item.imgUrls = [NSMutableArray arrayWithArray:self.mutableArray];
+    item.imgUrls = [NSMutableArray arrayWithArray:ImageURLArray];
+//    item.imgUrls = [NSMutableArray arrayWithArray:testURLArray];
+    item.textContent = self.textView.text;
+    [[bixMomentDataSource defaultSource]addMomentDataItem:item];
+    NSLog(@"momentDataItem number is %d", [[bixMomentDataSource defaultSource]numberOfMomentDataItem]);
+    [ImageURLArray removeAllObjects];
+}
+*/
 
 -(void)parseSuccessOrNot:(NSNotification *)notification
 {
@@ -331,8 +383,6 @@
         [hud hide:YES];
         [MessageBox Toasting:@"发送成功！" In:self.view];
         self.view.userInteractionEnabled = YES;
-        
-        [self.mutableArray removeAllObjects];
         
         [[self navigationController] popViewControllerAnimated:YES];
     }

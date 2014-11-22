@@ -415,7 +415,7 @@
         if (_selectNotificationKind == 5) {
 //            if ([httpResponse statusCode] == 200) {
             
-                NSLog(@"http statusCode is %d", [httpResponse statusCode]);
+//                NSLog(@"http statusCode is %d", [httpResponse statusCode]);
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"sendMomentDataSuccessOrNot" object:@"success"];
 //            }
 //            else
@@ -446,10 +446,16 @@
     if (_selectNotificationKind == 1) {
          [[NSNotificationCenter defaultCenter]postNotificationName:REQUEST_SIMPLE_INFO object:self.theResultData];
     }
-    else if (_selectNotificationKind ==2)
+    else if (_selectNotificationKind == 2)
     {
         [[NSNotificationCenter defaultCenter]postNotificationName:REQUEST_CHARGER_DETAIL_INFO object:self.theResultData];
     }
+    else if(_selectNotificationKind == 5) //发送分享圈的响应数据;
+    {
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"returnMomentData" object:self.theResultData];
+    }
+    
+    
     //    [self parseResult];
     //    mapViewController = [[MapViewController alloc]init];
     //    [mapViewController addBatteryChargeAnnotation];

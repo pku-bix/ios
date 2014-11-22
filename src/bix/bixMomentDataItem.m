@@ -16,8 +16,6 @@
 
 @end
 
-
-
 @implementation bixMomentDataItem
 
 
@@ -50,8 +48,9 @@
     
     if(self){
         _sender = sender;
-//        _imgUrls = [NSMutableArray new];
+        _imgUrls = [NSMutableArray new];
         _replies = [NSMutableArray new];
+        _uiImageData = [NSMutableArray arrayWithCapacity:2];
         
         // TODO: 使用HTTP层代替以下的静态测试数据
 //        [_imgUrls addObject:sender.avatarUrl];
