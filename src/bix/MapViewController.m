@@ -32,6 +32,7 @@
     UIImage *image;
     CGRect rect;
     int isFinishLoading, isSimpleOrDetailRequest ;
+    NSInteger selectCharger;
     detailViewController *detail;
 }
 
@@ -43,6 +44,7 @@
     if (self) {
         // Custom initialization
     }
+    
     return self;
 }
 
@@ -53,6 +55,8 @@
 	// Do any additional setup after loading the view.
     mapButton = [[MapButton alloc]init];
     _search = [[BMKSearch alloc]init ];
+    
+    selectCharger = -1;
     
     rect = [[UIScreen mainScreen] bounds];
     GLfloat _mapY = self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y;
@@ -81,6 +85,8 @@
         [UIView animateWithDuration:0.2 animations:^{
             blockSelf.chargerItem.frame = CGRectMake(10, 200, blockSelf.chargerItem.bounds.size.width, blockSelf.chargerItem.bounds.size.height);
         }];
+        
+        [self addSuperCharger:item.tag];
     }];
     
     UzysSMMenuItem *item1 = [[UzysSMMenuItem alloc] initWithTitle:@"目的充电桩" image:[UIImage imageNamed:@"charge_des_label.png"] action:^(UzysSMMenuItem *item) {
@@ -89,6 +95,7 @@
             blockSelf.chargerItem.frame = CGRectMake(10, 150, blockSelf.chargerItem.bounds.size.width, blockSelf.chargerItem.bounds.size.height);
         }];
         
+        [self addDestinationCHarger:item.tag];
         
     }];
     UzysSMMenuItem *item2 = [[UzysSMMenuItem alloc] initWithTitle:@"家庭充电桩" image:[UIImage imageNamed:@"charge_home_label.png"] action:^(UzysSMMenuItem *item) {
@@ -527,6 +534,65 @@ return nil;
     
     [self performSegueWithIdentifier:@"detail" sender:self];
     
+}
+
+- (void)addSuperCharger:(NSInteger) selectTag
+{
+    if (selectCharger >= 0) {
+        selectCharger = -1;
+        NSLog(@"fuck superCharge");
+        [_mapView removeAnnotations: [NSArray arrayWithArray:_mapView.annotations]];
+        NSLog(@"removeAnnotations");
+        int k = 0, sum = 0;
+        for(int i = 0; i < chargePileNumber; i++)
+        {
+            
+            //        BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
+            CustomBMKPointAnnotation *j = [CustomBMKPointAnnotation new];
+            if([[muArray objectAtIndex:k]  isEqual: @"SuperCharger"])
+            {
+                sum++;
+                j.coordinate = CLLocationCoordinate2DMake([[muArray objectAtIndex:k+2] doubleValue], [[muArray objectAtIndex:k+3] doubleValue]);
+                j.title = [muArray objectAtIndex:k+1];
+                j.type = 0; // type = 0 表示超级充电桩;
+                [_mapView addAnnotation:j];
+            }
+            k = k+5;
+        }
+        NSLog(@"superCharge have %d", sum);
+    }
+    else
+        selectCharger = selectTag;
+}
+
+- (void)addDestinationCHarger:(NSInteger)selectTag
+{
+    if (selectCharger >= 0) {
+        
+        NSLog(@"fuck destinationCharge");
+        
+        NSLog(@"addBatteryChargeAnnotation chargePileNumber is %d", chargePileNumber);
+        [_mapView removeAnnotations:[NSArray arrayWithArray:_mapView.annotations]];
+        NSLog(@"removeAnnotations");
+        int k = 0, sum = 0;
+        for(int i = 0; i < chargePileNumber; i++)
+        {
+            //        BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
+            CustomBMKPointAnnotation *j = [CustomBMKPointAnnotation new];
+            if([[muArray objectAtIndex:k]  isEqual: @"DestCharger"])
+            {
+                sum++;
+                j.coordinate = CLLocationCoordinate2DMake([[muArray objectAtIndex:k+2] doubleValue], [[muArray objectAtIndex:k+3] doubleValue]);
+                j.title = [muArray objectAtIndex:k+1];
+                j.type = 1; // type = 1; 表示目的充电桩;
+                [_mapView addAnnotation:j];
+            }
+            k = k+5;
+        }
+        NSLog(@"destinationCharger have %d", sum);
+    }
+    else
+        selectCharger = selectTag;
 }
 
 - (IBAction)addSuperCharge:(id)sender {

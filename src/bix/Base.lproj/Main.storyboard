@@ -120,34 +120,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="520"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLh-wP-qRS">
-                                        <rect key="frame" x="262" y="291" width="38" height="38"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="38" id="Lmd-fo-KEs"/>
-                                            <constraint firstAttribute="width" constant="38" id="jvF-QH-ct2"/>
-                                        </constraints>
-                                        <state key="normal" image="charge_super_label.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="addSuperCharge:" destination="cgf-f9-7YI" eventType="touchUpInside" id="qxP-fH-sZm"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHm-o0-22m">
-                                        <rect key="frame" x="20" y="291" width="38" height="38"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="38" id="MhF-sl-DUi"/>
-                                            <constraint firstAttribute="height" constant="38" id="jYx-Sr-KpL"/>
-                                        </constraints>
-                                        <state key="normal" image="charge_des_label.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="addDestinationCharge:" destination="cgf-f9-7YI" eventType="touchUpInside" id="O1y-Qq-PP2"/>
-                                        </connections>
-                                    </button>
                                     <button appearanceType="aqua" opaque="NO" alpha="0.0" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Tu-zZ-iq8">
                                         <rect key="frame" x="261" y="227" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -155,7 +127,7 @@
                                             <constraint firstAttribute="width" constant="40" id="QVK-bP-P4b"/>
                                             <constraint firstAttribute="height" constant="40" id="S3M-6V-HbN"/>
                                         </constraints>
-                                        <state key="normal" image="2CB48445-E79D-4A10-AD6E-E8AB20320999">
+                                        <state key="normal" image="B0697374-0BD3-44BD-AA49-2BD8AD1A1D90">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -165,12 +137,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="HHm-o0-22m" secondAttribute="bottom" constant="191" id="d3Y-EL-4Z5"/>
-                                    <constraint firstAttribute="trailing" secondItem="wLh-wP-qRS" secondAttribute="trailing" constant="20" id="fBy-gh-8Dl"/>
                                     <constraint firstAttribute="trailing" secondItem="2Tu-zZ-iq8" secondAttribute="trailing" constant="19" id="faW-yF-EDZ"/>
-                                    <constraint firstItem="HHm-o0-22m" firstAttribute="leading" secondItem="2DP-xn-oHk" secondAttribute="leading" constant="20" id="itE-3q-LoA"/>
                                     <constraint firstItem="2Tu-zZ-iq8" firstAttribute="top" secondItem="2DP-xn-oHk" secondAttribute="top" constant="227" id="xUD-Ub-O15"/>
-                                    <constraint firstAttribute="bottom" secondItem="wLh-wP-qRS" secondAttribute="bottom" constant="191" id="z8i-w3-ERD"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -186,8 +154,6 @@
                     <connections>
                         <outlet property="_mapView" destination="2DP-xn-oHk" id="MYw-ax-bzU"/>
                         <outlet property="chargerItem" destination="2Tu-zZ-iq8" id="uTi-sT-gHs"/>
-                        <outlet property="destinationCharge" destination="HHm-o0-22m" id="KQ0-zx-EOT"/>
-                        <outlet property="superCharge" destination="wLh-wP-qRS" id="cMd-sA-Ae2"/>
                         <segue destination="zTK-3x-xS0" kind="modal" identifier="detail" modalTransitionStyle="flipHorizontal" id="8Bj-fI-a2f"/>
                     </connections>
                 </viewController>
@@ -329,7 +295,7 @@
             </objects>
             <point key="canvasLocation" x="1621" y="-1754"/>
         </scene>
-        <!--Add Contact View Controller - 添加-->
+        <!--Add Contact View Controller - 新联系人-->
         <scene sceneID="t1C-yS-xiE">
             <objects>
                 <viewController id="dMD-x6-rKK" customClass="AddContactViewController" sceneMemberID="viewController">
@@ -367,7 +333,7 @@
                             <outletCollection property="gestureRecognizers" destination="bO2-io-Ph8" appends="YES" id="ImM-Pr-KTD"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="添加" id="OeH-Dh-Ib9"/>
+                    <navigationItem key="navigationItem" title="新联系人" id="OeH-Dh-Ib9"/>
                     <connections>
                         <outlet property="username" destination="ie5-8f-YC8" id="e3u-qI-WwV"/>
                     </connections>
@@ -1399,7 +1365,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="2CB48445-E79D-4A10-AD6E-E8AB20320999" width="90" height="90">
+        <image name="B0697374-0BD3-44BD-AA49-2BD8AD1A1D90" width="90" height="90">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGQkNYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsMDQ6PlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -1992,8 +1958,6 @@ oIijiKuIsIi4iLuIw4jViNiI3QAAAAAAAAIBAAAAAAAAAEYAAAAAAAAAAAAAAAAAAIjfA
         </image>
         <image name="Tesla.png" width="115" height="75"/>
         <image name="Viewfeedback.png" width="320" height="568"/>
-        <image name="charge_des_label.png" width="90" height="90"/>
-        <image name="charge_super_label.png" width="90" height="90"/>
         <image name="contacts-24.png" width="24" height="24"/>
         <image name="destination_960.png" width="640" height="960"/>
         <image name="locate_charger.png" width="90" height="91"/>
