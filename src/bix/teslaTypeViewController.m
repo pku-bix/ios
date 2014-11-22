@@ -14,6 +14,9 @@
 @end
 
 @implementation teslaTypeViewController
+{
+    UITableView *myTableView;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,12 +31,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.teslaType.delegate = self;
+    //self.teslaType.delegate = self;
     
-    UITableView *myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
+    myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
     
     myTableView.delegate = self;
     myTableView.dataSource = self;
+    myTableView.allowsSelection = YES;
+    
     
     [self.view addSubview:myTableView];
     
@@ -69,14 +74,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *titileString = [NSString stringWithFormat: @"section: %d, row: %d", indexPath.section, indexPath.row];
-//    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示"message:titileString delegate:selfcancelButtonTitle:@"OK"otherButtonTitles:nil];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"AlertViewTest"
-                                                    message:titileString
-                                                   delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:@"OtherBtn",nil];
-    [alert show];
+    NSLog(@"Tap TableView");
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -109,7 +107,15 @@
             break;
     }
     
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *titileString = [NSString stringWithFormat: @"section: %d, row: %d", indexPath.section, indexPath.row];
+    NSLog(titileString, nil);
 }
 
 - (void)didReceiveMemoryWarning
