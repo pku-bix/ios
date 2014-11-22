@@ -35,14 +35,24 @@
     
     myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
     
+//    myTableView.allowsSelection = YES;
+    [self.view addSubview:myTableView];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
     myTableView.delegate = self;
     myTableView.dataSource = self;
-    myTableView.allowsSelection = YES;
-    
-    
-    [self.view addSubview:myTableView];
-    
+
 }
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    myTableView.delegate = nil;
+    myTableView.dataSource = nil;
+}
+
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -72,10 +82,6 @@
     }
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"Tap TableView");
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -107,27 +113,31 @@
             break;
     }
     
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//    cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"hehe nimei");
     NSString *titileString = [NSString stringWithFormat: @"section: %d, row: %d", indexPath.section, indexPath.row];
     NSLog(titileString, nil);
 }
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Tap TableView");
+    NSString *titileString = [NSString stringWithFormat: @"section: %d, row: %d", indexPath.section, indexPath.row];
+    NSLog(titileString, nil);
+}
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
 }
 
 /*
@@ -141,19 +151,4 @@
  }
  */
 
-- (IBAction)saveTeslaType:(id)sender {
-    NSLog(@"teslaType is %@", self.teslaType.text);
-    
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"TeslaType" object:self.teslaType.text];
-    
-    Account *account = [(AppDelegate*)[UIApplication sharedApplication].delegate account];
-    account.teslaType = self.teslaType.text;
-    [account save];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)Tap:(id)sender {
-    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
-}
-@end
+ @end

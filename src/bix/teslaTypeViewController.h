@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface teslaTypeViewController : UIViewController< UITableViewDelegate, UITableViewDataSource >
-@property (strong, nonatomic) IBOutlet UITextField *teslaType;
-- (IBAction)saveTeslaType:(id)sender;
-- (IBAction)Tap:(id)sender;
+@interface teslaTypeViewController : UIViewController< UITableViewDelegate, UITableViewDataSource,UINavigationControllerDelegate >
+//@property (strong, nonatomic) IBOutlet UITextField *teslaType;
+//- (IBAction)saveTeslaType:(id)sender;
+//- (IBAction)Tap:(id)sender;
 
 @end
