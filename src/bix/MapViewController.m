@@ -55,8 +55,9 @@
     _search = [[BMKSearch alloc]init ];
     
     rect = [[UIScreen mainScreen] bounds];
+    GLfloat _mapY = self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y;
     //  CGSize size = rect.size;   CGFloat width = size.width;  CGFloat height = size.height;
-    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height-40)];
+    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, _mapY, rect.size.width, rect.size.height-40)];
 
 //    _mapView.delegate = self;
 //    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放

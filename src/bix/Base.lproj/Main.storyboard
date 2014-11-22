@@ -121,7 +121,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLh-wP-qRS">
-                                        <rect key="frame" x="262" y="292" width="38" height="38"/>
+                                        <rect key="frame" x="262" y="291" width="38" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="38" id="Lmd-fo-KEs"/>
@@ -135,7 +135,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHm-o0-22m">
-                                        <rect key="frame" x="20" y="292" width="38" height="38"/>
+                                        <rect key="frame" x="20" y="291" width="38" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="38" id="MhF-sl-DUi"/>
@@ -151,10 +151,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="HHm-o0-22m" secondAttribute="bottom" constant="190" id="d3Y-EL-4Z5"/>
+                                    <constraint firstAttribute="bottom" secondItem="HHm-o0-22m" secondAttribute="bottom" constant="191" id="d3Y-EL-4Z5"/>
                                     <constraint firstAttribute="trailing" secondItem="wLh-wP-qRS" secondAttribute="trailing" constant="20" id="fBy-gh-8Dl"/>
                                     <constraint firstItem="HHm-o0-22m" firstAttribute="leading" secondItem="2DP-xn-oHk" secondAttribute="leading" constant="20" id="itE-3q-LoA"/>
-                                    <constraint firstAttribute="bottom" secondItem="wLh-wP-qRS" secondAttribute="bottom" constant="190" id="z8i-w3-ERD"/>
+                                    <constraint firstAttribute="bottom" secondItem="wLh-wP-qRS" secondAttribute="bottom" constant="191" id="z8i-w3-ERD"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1014,10 +1014,6 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="NpT-1v-bvC" appends="YES" id="wTb-c2-nbF"/>
-                            <outletCollection property="gestureRecognizers" destination="NpT-1v-bvC" appends="YES" id="w6h-K3-ip7"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Tesla型号" id="g1n-hu-iHs">
                         <barButtonItem key="rightBarButtonItem" title="保存" id="KHL-mW-BMG"/>
