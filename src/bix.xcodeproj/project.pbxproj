@@ -13,6 +13,10 @@
 		8443EDA81A17815500A6B35C /* locate_charger.png in Resources */ = {isa = PBXBuildFile; fileRef = 8443EDA51A17815500A6B35C /* locate_charger.png */; };
 		8443EDA91A17815500A6B35C /* report_charger.png in Resources */ = {isa = PBXBuildFile; fileRef = 8443EDA61A17815500A6B35C /* report_charger.png */; };
 		8443EDAC1A17953E00A6B35C /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8443EDAB1A17953E00A6B35C /* share@2x.png */; };
+		84758ED91A2047C400845672 /* UzysSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 84758ED31A2047C400845672 /* UzysSlideMenu.m */; };
+		84758EDA1A2047C400845672 /* UzysSMMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 84758ED51A2047C400845672 /* UzysSMMenuItem.m */; };
+		84758EDB1A2047C400845672 /* UzysSMMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84758ED71A2047C400845672 /* UzysSMMenuItemView.m */; };
+		84758EDC1A2047C400845672 /* UzysSMMenuItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84758ED81A2047C400845672 /* UzysSMMenuItemView.xib */; };
 		E3041FDA19E6A66F0016B7FD /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3041FD919E6A66F0016B7FD /* marker@2x.png */; };
 		E3041FDD19E6A6F70016B7FD /* home_charge.png in Resources */ = {isa = PBXBuildFile; fileRef = E3041FDB19E6A6F60016B7FD /* home_charge.png */; };
 		E3041FDE19E6A6F70016B7FD /* super_charge.png in Resources */ = {isa = PBXBuildFile; fileRef = E3041FDC19E6A6F70016B7FD /* super_charge.png */; };
@@ -211,6 +215,14 @@
 		8443EDA51A17815500A6B35C /* locate_charger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locate_charger.png; sourceTree = "<group>"; };
 		8443EDA61A17815500A6B35C /* report_charger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = report_charger.png; sourceTree = "<group>"; };
 		8443EDAB1A17953E00A6B35C /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
+		84758ED11A2047C400845672 /* ARCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCHelper.h; sourceTree = "<group>"; };
+		84758ED21A2047C400845672 /* UzysSlideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysSlideMenu.h; sourceTree = "<group>"; };
+		84758ED31A2047C400845672 /* UzysSlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysSlideMenu.m; sourceTree = "<group>"; };
+		84758ED41A2047C400845672 /* UzysSMMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysSMMenuItem.h; sourceTree = "<group>"; };
+		84758ED51A2047C400845672 /* UzysSMMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysSMMenuItem.m; sourceTree = "<group>"; };
+		84758ED61A2047C400845672 /* UzysSMMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysSMMenuItemView.h; sourceTree = "<group>"; };
+		84758ED71A2047C400845672 /* UzysSMMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysSMMenuItemView.m; sourceTree = "<group>"; };
+		84758ED81A2047C400845672 /* UzysSMMenuItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UzysSMMenuItemView.xib; sourceTree = "<group>"; };
 		E3041FD919E6A66F0016B7FD /* marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker@2x.png"; sourceTree = "<group>"; };
 		E3041FDB19E6A6F60016B7FD /* home_charge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_charge.png; sourceTree = "<group>"; };
 		E3041FDC19E6A6F70016B7FD /* super_charge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = super_charge.png; sourceTree = "<group>"; };
@@ -583,6 +595,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84758ED01A2047C400845672 /* UzysMenu */ = {
+			isa = PBXGroup;
+			children = (
+				84758ED11A2047C400845672 /* ARCHelper.h */,
+				84758ED21A2047C400845672 /* UzysSlideMenu.h */,
+				84758ED31A2047C400845672 /* UzysSlideMenu.m */,
+				84758ED41A2047C400845672 /* UzysSMMenuItem.h */,
+				84758ED51A2047C400845672 /* UzysSMMenuItem.m */,
+				84758ED61A2047C400845672 /* UzysSMMenuItemView.h */,
+				84758ED71A2047C400845672 /* UzysSMMenuItemView.m */,
+				84758ED81A2047C400845672 /* UzysSMMenuItemView.xib */,
+			);
+			name = UzysMenu;
+			path = Library;
+			sourceTree = "<group>";
+		};
 		E34F44E0199B013C00BAB7D8 /* BaiduMapView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1155,6 +1183,7 @@
 		ECB402231A202DF100616235 /* vendor */ = {
 			isa = PBXGroup;
 			children = (
+				84758ED01A2047C400845672 /* UzysMenu */,
 				E381F0B51A07E07B0030939E /* AGSimpleImageEditorView */,
 				ECD998BB18DACE9F00F30FE3 /* BaiduMap */,
 				EC3166271930895E002E9609 /* MBProgressHUD */,
@@ -1508,6 +1537,7 @@
 				E3F76AC419EADE15008E718C /* Viewfeedback@2x.png in Resources */,
 				E337E3E219E7FACC00C989A7 /* destinationCharger@2x.png in Resources */,
 				E33DDF4C19E6E4AB00981FD7 /* personInfo@2x.png in Resources */,
+				84758EDC1A2047C400845672 /* UzysSMMenuItemView.xib in Resources */,
 				EC31663F1930BC18002E9609 /* msg_sent-100.png in Resources */,
 				EC316621193065AC002E9609 /* FontAwesome.ttf in Resources */,
 				E33FF0D6197E50ED007FE69F /* geo_fence-64@2x.png in Resources */,
@@ -1556,11 +1586,14 @@
 				EC4613E119FFC4E80046FFAE /* SDImageCache.m in Sources */,
 				EC57888419A6215A0058837C /* MessageBox.m in Sources */,
 				E3E59A3E1A07DF1D00B0DA76 /* AGSimpleImageEditorView.m in Sources */,
+				84758EDA1A2047C400845672 /* UzysSMMenuItem.m in Sources */,
+				84758EDB1A2047C400845672 /* UzysSMMenuItemView.m in Sources */,
 				EC57887619A620C80058837C /* AddContactViewController.m in Sources */,
 				EC57886719A61F0C0058837C /* ChatProvider.m in Sources */,
 				EC99084418C3397000798FAB /* DDFileLogger.m in Sources */,
 				EC99089518C33C9200798FAB /* XMPPPlainAuthentication.m in Sources */,
 				EC9908A118C33C9200798FAB /* XMPPPresence.m in Sources */,
+				84758ED91A2047C400845672 /* UzysSlideMenu.m in Sources */,
 				EC99089718C33C9200798FAB /* XMPPXOAuth2Google.m in Sources */,
 				EC99089418C33C9200798FAB /* XMPPDigestMD5Authentication.m in Sources */,
 				EC4613E019FFC4E80046FFAE /* NSData+ImageContentType.m in Sources */,

@@ -72,6 +72,40 @@
     detailInfoArray = [NSMutableArray arrayWithCapacity:DETAIL_INFO_NUMBER];
     NSLog(@"end viewDidLoad");
 //    [self initMapView];
+    
+    __block typeof(self) blockSelf = self;
+    UzysSMMenuItem *item0 = [[UzysSMMenuItem alloc] initWithTitle:@"超级充电桩" image:[UIImage imageNamed:@"charge_super_label.png"] action:^(UzysSMMenuItem *item) {
+        NSLog(@"Item: %@", item);
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            blockSelf.chargerItem.frame = CGRectMake(10, 200, blockSelf.chargerItem.bounds.size.width, blockSelf.chargerItem.bounds.size.height);
+        }];
+    }];
+    
+    UzysSMMenuItem *item1 = [[UzysSMMenuItem alloc] initWithTitle:@"目的充电桩" image:[UIImage imageNamed:@"charge_des_label.png"] action:^(UzysSMMenuItem *item) {
+        NSLog(@"Item: %@", item);
+        [UIView animateWithDuration:0.2 animations:^{
+            blockSelf.chargerItem.frame = CGRectMake(10, 150, blockSelf.chargerItem.bounds.size.width, blockSelf.chargerItem.bounds.size.height);
+        }];
+        
+        
+    }];
+    UzysSMMenuItem *item2 = [[UzysSMMenuItem alloc] initWithTitle:@"家庭充电桩" image:[UIImage imageNamed:@"charge_home_label.png"] action:^(UzysSMMenuItem *item) {
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            blockSelf.chargerItem.frame = CGRectMake(10, 250, blockSelf.chargerItem.bounds.size.width, blockSelf.chargerItem.bounds.size.height);
+        }];
+        NSLog(@"Item: %@", item);
+    }];
+    
+    item0.tag = 0;
+    item1.tag = 1;
+    item2.tag = 2;
+    
+    //Items must contain ImageView(icon).
+    self.chargerMenu = [[UzysSlideMenu alloc] initWithItems:@[item0,item1,item2]];
+    self.chargerMenu.frame = CGRectMake(self.chargerMenu.frame.origin.x, 20, self.chargerMenu.frame.size.width, self.chargerMenu.frame.size.width);
+    [self.view addSubview:self.chargerMenu];
 }
 
 -(void)initMapViewButton
@@ -141,6 +175,7 @@
     [self.view addSubview:getCurrentLocationBtn];
     [self.view addSubview:superCharge];
     [self.view addSubview:destinationCharge];
+    [self.view addSubview:self.chargerItem];
 }
 
 #pragma mark five_mapButton_events
@@ -535,6 +570,9 @@ return nil;
         k = k+5;
     }
     NSLog(@"destinationCharger have %d", sum);
+}
+
+- (IBAction)chargerSelect:(id)sender {
 }
 
 

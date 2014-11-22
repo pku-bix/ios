@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BMapKit.h"
+#import "UzysSlideMenu.h"
 
 @interface MapViewController : UIViewController<BMKMapViewDelegate,BMKSearchDelegate,NSURLConnectionDataDelegate>
 {    
@@ -26,7 +27,10 @@
 }
 - (IBAction)addSuperCharge:(id)sender;
 - (IBAction)addDestinationCharge:(id)sender;
+- (IBAction)chargerSelect:(id)sender;
 
+@property (nonatomic,strong) UzysSlideMenu *chargerMenu;
+@property (weak, nonatomic) IBOutlet UIButton *chargerItem;
 @property (retain, nonatomic) NSMutableString *theResult;
 @property (retain, nonatomic) NSMutableData  *theResultData;
 
