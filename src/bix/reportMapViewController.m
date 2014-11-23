@@ -49,6 +49,7 @@
     [self.view addSubview:btnCurrentLocation];
     [self.view addSubview:btnMagnify];
     [self.view addSubview:btnShrink];
+    [self.view addSubview:btnBack];
     
     //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseAgain:) name:@"chargerInfoViewController" object:nil];
     //    [self getCurrentButtonClicked:_search current_Location:current_Location];
@@ -93,6 +94,7 @@
     [reportMapView viewWillDisappear];
     reportMapView.delegate = nil;
     _search.delegate = nil;
+    reportMapView.showsUserLocation = NO;
 }
 
 
@@ -303,4 +305,7 @@
 }
 
 
+- (IBAction)backSettingView:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

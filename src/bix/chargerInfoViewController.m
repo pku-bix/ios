@@ -160,4 +160,8 @@
     
 }
 
+- (IBAction)backReportMapView:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end

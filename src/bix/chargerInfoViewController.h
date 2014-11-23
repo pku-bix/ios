@@ -37,6 +37,7 @@
 
 //用户点击 上报 按钮， 提交上报的数据给后台
 - (IBAction)reportDetailChargerInfo:(id)sender;
+- (IBAction)backReportMapView:(id)sender;
 
 
 @end
