@@ -87,6 +87,7 @@
         }];
         
         [self addSuperCharger:item.tag];
+
     }];
     
     UzysSMMenuItem *item1 = [[UzysSMMenuItem alloc] initWithTitle:@"目的充电桩" image:[UIImage imageNamed:@"charge_des_label.png"] action:^(UzysSMMenuItem *item) {
@@ -103,6 +104,8 @@
         [UIView animateWithDuration:0.2 animations:^{
             blockSelf.chargerItem.frame = CGRectMake(10, 250, blockSelf.chargerItem.bounds.size.width, blockSelf.chargerItem.bounds.size.height);
         }];
+        
+        [self removeAllAnnotations];  //清楚地图上所有充电桩标识@江旻
         NSLog(@"Item: %@", item);
     }];
     
@@ -593,6 +596,12 @@ return nil;
     }
     else
         selectCharger = selectTag;
+}
+
+-(void)removeAllAnnotations
+{
+    NSLog(@"清楚所有地图标注");
+    [_mapView removeAnnotations:[NSArray arrayWithArray:_mapView.annotations]];
 }
 
 - (IBAction)addSuperCharge:(id)sender {
