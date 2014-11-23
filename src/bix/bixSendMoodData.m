@@ -54,6 +54,10 @@
     //点击发送按钮，软键盘会自动取消，设置代理;
     self.textView.delegate = self;
     
+    self.textView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.textView.layer.borderWidth = 1.0;
+    self.textView.layer.cornerRadius = 5.0;
+    
     testURLArray = [NSMutableArray arrayWithCapacity:2];
 //    ImageURLArray = [NSMutableArray arrayWithCapacity:2];
     

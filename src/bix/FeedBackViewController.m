@@ -30,6 +30,10 @@
     [self.btnFeedBack primaryStyle];
     
     self.feedBackTextView.delegate = self;
+    
+    self.feedBackTextView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.feedBackTextView.layer.borderWidth = 1.0;
+    self.feedBackTextView.layer.cornerRadius = 5.0;
     //    [self.navigationController.navigationBar setHidden:YES];
     // Do any additional setup after loading the view.
     //    self.view.backgroundColor = [UIColor whiteColor];
