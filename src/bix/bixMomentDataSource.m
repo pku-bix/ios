@@ -71,6 +71,22 @@
     return true;
 }
 
+-(BOOL) removeMomentDataItem:(int)index
+{
+    if (index > [self.momentDataItemsArray count]) {
+        return false;
+    }
+    else
+    {
+        [self.momentDataItemsArray removeObjectAtIndex:index];
+
+        [self.observer modelUpdated:self];
+        return true;
+    }
+    
+    
+}
+
 -(int)numberOfMomentDataItem
 {
     return [self.momentDataItemsArray count];
