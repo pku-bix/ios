@@ -156,6 +156,7 @@
 //当进入拍照模式拍照 并且点击Use photo后 或者 从本地图库选择图片后 会调用此方法;
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    self.pictureNumber++;//添加的图片数目加1;
     [UIApplication sharedApplication].statusBarHidden = NO;
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     
@@ -256,6 +257,7 @@
         
         NSLog(@"end picker image");
         
+//
         
         //        [picker pushViewController:sendMoodData animated:YES];
         [picker dismissViewControllerAnimated:YES completion:nil];
@@ -288,7 +290,7 @@
 
 
 - (IBAction)addPicture:(id)sender {
-    self.pictureNumber++;//添加的图片数目加1;
+    
     if (self.pictureNumber >= 10) {
         [MessageBox Toast:@"最多只能添加9张图片哦!!" In: self.view];
         return ;
