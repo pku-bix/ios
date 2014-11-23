@@ -29,6 +29,8 @@
 
 -(BOOL) addMomentDataItem: (bixMomentDataItem*)item;
 
+-(BOOL) removeMomentDataItem:(int)index;
+
 -(int)numberOfMomentDataItem;
 
 -(BOOL) update;

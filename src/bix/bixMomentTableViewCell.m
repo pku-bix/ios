@@ -153,7 +153,7 @@
 }
 
 
-#pragma mark - imgCollectionView
+#pragma mark - imgCollectionView dataSource
 
 -(UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"moment-image"
@@ -171,7 +171,20 @@
 
 -(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
 //    NSLog(@"")
+    
     return self.momentDataItem.uiImageData.count;
+}
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+#pragma mark - imgCollectionView delegate
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"select collectionView is section %d, row %d", indexPath.section, indexPath.row);
 }
 
 @end

@@ -28,6 +28,7 @@
     MBProgressHUD *hud;
     
     NSMutableArray *testURLArray;
+    int flag_sendMoodData_success_or_not; // 标记本次发送是否成功;
 
 //本来是设计用来存发送图片的NSURL， 但发送到前台不能实时响应，故取消这种设计，直接传数据给前台实时显示;
 //    NSMutableArray *ImageURLArray;
@@ -49,6 +50,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    flag_sendMoodData_success_or_not = 1;   //一进分享圈界面就默认 本次会发送成功，设置为1， 当发送不成功时，再设置为0;
+    
     self.pictureNumber = 1;
     timeOfNotification = 0;
     //点击发送按钮，软键盘会自动取消，设置代理;
@@ -76,7 +79,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseSuccessOrNot:) name:@"sendMomentDataSuccessOrNot" object:nil];
     
 //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseDataItem:) name:@"returnMomentData" object:nil];
-    
+
     NSLog(@"viewWillAppear");
 }
 
@@ -85,7 +88,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"sendMomentDataSuccessOrNot" object:nil];
-//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"returnMomentData" object:nil];
+//  [[NSNotificationCenter defaultCenter]removeObserver:self name:@"returnMomentData" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -307,26 +310,28 @@
         return ;
     }
 
-    // create MomentDataItem item
-    // add item to MomentDataSource
-    Account *account = [bixLocalAccount instance];
-    account.avatarUrl = [NSURL URLWithString: @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg"];
-    account.nickname = account.username;
-    
-    bixMomentDataItem *item = [[bixMomentDataItem alloc]initWithSender:account];
-    //    item.imgUrls = [NSMutableArray arrayWithArray:self.mutableArray];
-    //    item.imgUrls = [NSMutableArray arrayWithArray:ImageURLArray];
-    //    item.imgUrls = [NSMutableArray arrayWithArray:testURLArray];
-//    item.uiImageData = [NSMutableArray arrayWithArray:self.mutableArray];
-    for (id obj in self.mutableArray) {
-        [item.uiImageData addObject:obj];
+    if(flag_sendMoodData_success_or_not == 1)
+    {
+        // create MomentDataItem item
+        // add item to MomentDataSource
+        Account *account = [bixLocalAccount instance];
+        account.avatarUrl = [NSURL URLWithString: @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg"];
+        account.nickname = account.username;
+        bixMomentDataItem *item = [[bixMomentDataItem alloc]initWithSender:account];
+        //    item.imgUrls = [NSMutableArray arrayWithArray:self.mutableArray];
+        //    item.imgUrls = [NSMutableArray arrayWithArray:ImageURLArray];
+        //    item.imgUrls = [NSMutableArray arrayWithArray:testURLArray];
+        //    item.uiImageData = [NSMutableArray arrayWithArray:self.mutableArray];
+        for (id obj in self.mutableArray) {
+            [item.uiImageData addObject:obj];
+        }
+        NSLog(@"item.uiImageData count is %d, self.mutableArray count is %d", [item.uiImageData count], [self.mutableArray count]);
+        NSLog(@"bixSendMoodData.m item.uiImageData count is %d", [item.uiImageData count]);
+        item.textContent = self.textView.text;
+        [[bixMomentDataSource defaultSource]addMomentDataItem:item];
+        
+        NSLog(@"bixSendMoodData.m momentDataItem number is %d", [[bixMomentDataSource defaultSource]numberOfMomentDataItem]);
     }
-    NSLog(@"item.uiImageData count is %d, self.mutableArray count is %d", [item.uiImageData count], [self.mutableArray count]);
-    NSLog(@"bixSendMoodData.m item.uiImageData count is %d", [item.uiImageData count]);
-    item.textContent = self.textView.text;
-    [[bixMomentDataSource defaultSource]addMomentDataItem:item];
-    
-    NSLog(@"bixSendMoodData.m momentDataItem number is %d", [[bixMomentDataSource defaultSource]numberOfMomentDataItem]);
     
     if ((self.pictureNumber) == [self.mutableArray count]) {
         [self.mutableArray addObject:self.textView.text];
@@ -338,13 +343,12 @@
     }
     NSLog(@"text is %@", [self.mutableArray objectAtIndex:([self.mutableArray count]-1)]);
 
-
     request = [[RequestInfoFromServer alloc]init];
     [request sendAsynchronousPostMomentData:self.mutableArray];
     NSLog(@"the textView.text is %@", self.textView.text);
     
-    //退出时，得清空之前的数组元素， 否则下次进来会一直叠加元素;
-    [self.mutableArray removeAllObjects];
+//    //退出时，得清空之前的数组元素， 否则下次进来会一直叠加元素;
+//    [self.mutableArray removeAllObjects];
 
 }
 /*
@@ -388,11 +392,18 @@
         [MessageBox Toasting:@"发送成功！" In:self.view];
         self.view.userInteractionEnabled = YES;
         
+        //退出时，得清空之前的数组元素， 否则下次进来会一直叠加元素;
+        [self.mutableArray removeAllObjects];
+        flag_sendMoodData_success_or_not = 1;
+        
         [[self navigationController] popViewControllerAnimated:YES];
     }
     else if([notification.object isEqualToString:@"networkLost"])
     {
+        //清楚上次没发送成功的item;
+//        [[bixMomentDataSource defaultSource]removeMomentDataItem:([[bixMomentDataSource defaultSource]numberOfMomentDataItem]-1)];
         NSLog(@"发送失败");
+        flag_sendMoodData_success_or_not = 0;  //标记本次发送失败；
         [hud hide:YES];
         [MessageBox Toast:@"发送失败，请检查网络设置！" In:self.view];
         self.view.userInteractionEnabled = YES;
@@ -406,6 +417,7 @@
     }
     else
     {
+        flag_sendMoodData_success_or_not = 0;  //标记本次发送失败；
         [hud hide:YES];
         [MessageBox Toast:@"发送失败，服务器出错！" In:self.view];
         self.view.userInteractionEnabled = YES;
