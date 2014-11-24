@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "bixCaptureViewController.h"
 #import "bixSendMoodData.h"
+#import "UIScrollView+MJRefresh.h"
 
 @interface bixMomentViewController ()
 
@@ -24,6 +25,7 @@
     int numberOFMomentDataItem;
     UIImage *image_send_mood_data;
     NSString *newMomentText;
+    BOOL isRefresh;
 }
 
 
@@ -42,42 +44,116 @@
     numberOFMomentDataItem = 1;
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
+    isRefresh = false;
     [[bixMomentDataSource defaultSource]initMomentDataItemsArray];
-    
-//    self.momentText = [NSMutableArray arrayWithCapacity:numberOFMomentCell];
-//    [self.momentText addObject:@"这是分享圈的第一条信息"];
-    // Do any additional setup after loading the view.
-
-//    newMomentText = @"这是分享圈的第一条信息";
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment2:) name:@"sendOneMomentDataItem" object:nil];
-    //为momentDataItemsArray数组初始化;
+    //上拉刷新， 下拉加载更多， 用了一个插件， 吊啊！
+    [self header_footer_refreshing];
 }
+
+-(void)header_footer_refreshing
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    //#warning 自动刷新(一进入程序就下拉刷新)
+    [self.tableView headerBeginRefreshing];
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+    
+    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
+    self.tableView.headerPullToRefreshText = @"下拉可以刷新了";
+    self.tableView.headerReleaseToRefreshText = @"松开马上刷新了";
+    self.tableView.headerRefreshingText = @"dsx正在帮你刷新中,不客气";
+    
+    self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据了";
+    self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
+    self.tableView.footerRefreshingText = @"dsx正在帮你加载中,不客气";
+
+}
+
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
+{
+    NSLog(@"正在刷新，在这里请求服务器数据");
+    // 1.添加假数据
+    for (int i = 0; i<5; i++) {
+//        [self.fakeData insertObject:MJRandomData atIndex:0];
+    }
+    
+    // 2.2秒后刷新表格UI
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 刷新表格
+        [self.tableView reloadData];
+        
+        // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
+        [self.tableView headerEndRefreshing];
+    });
+}
+
+- (void)footerRereshing
+{
+    NSLog(@"正在上拉加载， 在这里请求后面的数据");
+    // 1.添加假数据
+    for (int i = 0; i<5; i++) {
+//        [self.fakeData addObject:MJRandomData];
+    }
+    
+    // 2.2秒后刷新表格UI
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 刷新表格
+        [self.tableView reloadData];
+        
+        // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
+        [self.tableView footerEndRefreshing];
+    });
+}
+
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//
+//{
+//    
+//    // 假设偏移表格高度的20%进行刷新
+//    
+//    if (!isRefresh) { // 判断是否处于刷新状态，刷新中就不执行
+//        
+//        // 取内容的高度：
+//        
+//        //    如果内容高度大于UITableView高度，就取TableView高度
+//        
+//        //    如果内容高度小于UITableView高度，就取内容的实际高度
+//        
+//        float height = scrollView.contentSize.height > _tableView.frame.size.height ?_tableView.frame.size.height : scrollView.contentSize.height;
+//        
+//        
+//        
+//        if ((height - scrollView.contentSize.height + scrollView.contentOffset.y) / height > 0.2) {
+//            
+//            // 调用上拉刷新方法
+//            NSLog(@"上拉刷新");
+//            
+//        }
+//        
+//        
+//        
+//        if (- scrollView.contentOffset.y / _tableView.frame.size.height > 0.2) {
+//            
+//            // 调用下拉刷新方法
+//            NSLog(@"下拉刷新");
+//            
+//        }
+//        
+//    }
+//    
+//}
 
 -(void)viewWillAppear:(BOOL)animated
 {
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment2:) name:@"sendOneMomentDataItem" object:nil];
-
-//     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment:) name:@"sendOneMomentDataItem" object:nil];
-    
     [ self.tableView reloadData ];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-//    [[NSNotificationCenter defaultCenter] removeObserver:self                                                    name:@"sendOneMomentDataItem" object:nil];
 }
-/*
--(void)parseMoment2:(NSNotification*)notification
-{
-    NSLog(@"发送了一条新的状态，心情");
-    numberOFMomentCell++; //多一条 状态说说;
-    NSLog(@"bixViewController.m  moment number is %d", numberOFMomentCell);
-    NSLog(@"the text send from bixSendMoodData.m is %@", notification.object);
-    newMomentText = notification.object;
-    
-//    [self.momentText addObject:notification.object];
-}
-*/
 
 - (void)didReceiveMemoryWarning
 {
