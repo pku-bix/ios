@@ -25,7 +25,10 @@
     //       NSString *strLatitude, *strLongitude;
     //    IBOutlet BMKMapView *reportMap;
     
+    IBOutlet UIButton *btnBack;
 }
+
+- (IBAction)backSettingView:(id)sender;
 
 @property NSString *strLatitude;
 @property NSString *strLongitude;

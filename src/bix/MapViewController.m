@@ -79,7 +79,19 @@
 //    [self initMapView];
     
     __block typeof(self) blockSelf = self;
-    UzysSMMenuItem *item0 = [[UzysSMMenuItem alloc] initWithTitle:@"超级充电桩" image:[UIImage imageNamed:@"charge_super_label.png"] action:^(UzysSMMenuItem *item) {
+    
+    UzysSMMenuItem *itemClose = [[UzysSMMenuItem alloc] initWithTitle:@"取消显示" image:[UIImage imageNamed:@"close_charger_label.png"] action:^(UzysSMMenuItem *item) {
+        NSLog(@"Item: %@", item);
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            blockSelf.chargerItem.frame = CGRectMake(10, 150, blockSelf.chargerItem.bounds.size.width, blockSelf.chargerItem.bounds.size.height);
+        }];
+        
+        [self removeCharger:item.tag];
+        
+    }];
+    
+    UzysSMMenuItem *itemSuper = [[UzysSMMenuItem alloc] initWithTitle:@"超级充电桩" image:[UIImage imageNamed:@"charge_super_label.png"] action:^(UzysSMMenuItem *item) {
         NSLog(@"Item: %@", item);
         
         [UIView animateWithDuration:0.2 animations:^{
@@ -87,31 +99,35 @@
         }];
         
         [self addSuperCharger:item.tag];
+
     }];
     
-    UzysSMMenuItem *item1 = [[UzysSMMenuItem alloc] initWithTitle:@"目的充电桩" image:[UIImage imageNamed:@"charge_des_label.png"] action:^(UzysSMMenuItem *item) {
+    UzysSMMenuItem *itemDes = [[UzysSMMenuItem alloc] initWithTitle:@"目的充电桩" image:[UIImage imageNamed:@"charge_des_label.png"] action:^(UzysSMMenuItem *item) {
         NSLog(@"Item: %@", item);
         [UIView animateWithDuration:0.2 animations:^{
-            blockSelf.chargerItem.frame = CGRectMake(10, 150, blockSelf.chargerItem.bounds.size.width, blockSelf.chargerItem.bounds.size.height);
+            blockSelf.chargerItem.frame = CGRectMake(10, 250, blockSelf.chargerItem.bounds.size.width, blockSelf.chargerItem.bounds.size.height);
         }];
         
         [self addDestinationCHarger:item.tag];
         
     }];
-    UzysSMMenuItem *item2 = [[UzysSMMenuItem alloc] initWithTitle:@"家庭充电桩" image:[UIImage imageNamed:@"charge_home_label.png"] action:^(UzysSMMenuItem *item) {
+    UzysSMMenuItem *itemHome = [[UzysSMMenuItem alloc] initWithTitle:@"家庭充电桩" image:[UIImage imageNamed:@"charge_home_label.png"] action:^(UzysSMMenuItem *item) {
         
         [UIView animateWithDuration:0.2 animations:^{
-            blockSelf.chargerItem.frame = CGRectMake(10, 250, blockSelf.chargerItem.bounds.size.width, blockSelf.chargerItem.bounds.size.height);
+            blockSelf.chargerItem.frame = CGRectMake(10, 300, blockSelf.chargerItem.bounds.size.width, blockSelf.chargerItem.bounds.size.height);
         }];
+        
+        //[self removeAllAnnotations];  //清楚地图上所有充电桩标识@江旻
         NSLog(@"Item: %@", item);
     }];
     
-    item0.tag = 0;
-    item1.tag = 1;
-    item2.tag = 2;
+    itemClose.tag = 0;
+    itemSuper.tag = 1;
+    itemDes.tag = 2;
+    itemHome.tag = 3;
     
     //Items must contain ImageView(icon).
-    self.chargerMenu = [[UzysSlideMenu alloc] initWithItems:@[item0,item1,item2]];
+    self.chargerMenu = [[UzysSlideMenu alloc] initWithItems:@[itemClose,itemSuper,itemDes,itemHome]];
     self.chargerMenu.frame = CGRectMake(self.chargerMenu.frame.origin.x, 20, self.chargerMenu.frame.size.width, self.chargerMenu.frame.size.width);
     [self.view addSubview:self.chargerMenu];
 }
@@ -127,6 +143,15 @@
 //        int a = 5;
         NSLog(@"test");
     }
+    
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8) {
+        //由于IOS8中定位的授权机制改变 需要进行手动授权
+//        CLLocationManager  *locationManager = [[CLLocationManager alloc] init];
+        //获取授权认证
+//        [locationManager requestAlwaysAuthorization];
+//        [locationManager requestWhenInUseAuthorization];
+    }
+    
     // once launch the baidu map, locate the position of user immediately
     [mapButton launchMapView_locate:_mapView];
     
@@ -593,6 +618,22 @@ return nil;
     }
     else
         selectCharger = selectTag;
+}
+
+- (void)removeCharger:(NSInteger)selectTag
+{
+    if (selectCharger >= 0) {
+        [self removeAllAnnotations];
+        [self.chargerMenu openIconMenu];
+    }
+    else
+        selectCharger = selectTag;
+}
+
+-(void)removeAllAnnotations
+{
+    NSLog(@"清楚所有地图标注");
+    [_mapView removeAnnotations:[NSArray arrayWithArray:_mapView.annotations]];
 }
 
 - (IBAction)addSuperCharge:(id)sender {
