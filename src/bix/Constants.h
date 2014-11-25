@@ -51,6 +51,9 @@ static NSString *const POST_MOMENT_IP = @"http://121.40.72.197:80/api/posts";
 // TODO: @杜实现 在该方法中POST该Token至 /api/user/<username>
 static NSString *const POST_DEVICE_TOKEN_IP = @"http://121.40.72.197/api/user/";
 
+//分享圈下拉刷新请求最新的10条状态数据；
+static NSString *const GET_LATEST_MOMENT_DATA_IP = @"http://121.40.72.197/api/posts?limit=10";
+
 
 /*
  设置界面 -》个人信息 -》名字 字段类型

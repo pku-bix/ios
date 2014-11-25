@@ -454,6 +454,10 @@
     {
 //        [[NSNotificationCenter defaultCenter]postNotificationName:@"returnMomentData" object:self.theResultData];
     }
+    else if(_selectNotificationKind == 6) //从服务器获取最新的10条分享圈状态数据;
+    {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"latestMomentData" object:self.theResultData];
+    }
     
     
     //    [self parseResult];

@@ -41,6 +41,10 @@
 //向用户推送通知时，需要知道用户的deviceToken，向用户post此deviceToken;
 -(void)sendAsynchronousPostDeviceToken:(NSData *)deviceToken;
 
+//获取服务器最新的10条分享圈数据
+//-(void)getLatestMomentData;
+
+
 //-(void)parseResult;
 
 //-(void)parseDetailResult;

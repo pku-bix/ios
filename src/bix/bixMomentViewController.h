@@ -17,6 +17,7 @@
 }
 
 @property (nonatomic) UIRefreshControl *refresh;
+@property (retain, nonatomic) NSMutableData  *theResultData;//服务器返回的最新10条状态数据;
 //@property(nonatomic)NSMutableArray * momentText; //保存每条状态的文字信息;
 
 - (IBAction)sendMood:(id)sender;

@@ -13,6 +13,8 @@
 #import "bixCaptureViewController.h"
 #import "bixSendMoodData.h"
 #import "UIScrollView+MJRefresh.h"
+#import "RequestInfoFromServer.h"
+#import "bixMomentDataItem.h"
 
 @interface bixMomentViewController ()
 
@@ -26,6 +28,8 @@
     UIImage *image_send_mood_data;
     NSString *newMomentText;
     BOOL isRefresh;
+    RequestInfoFromServer *request;
+    bixMomentDataItem *itemRefresh;
 }
 
 
@@ -45,9 +49,65 @@
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
     isRefresh = false;
+
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseLatestMomentData:) name:@"latestMomentData" object:nil];
+    request = [[RequestInfoFromServer alloc]init];
+    request.selectNotificationKind = 6;
+    
     [[bixMomentDataSource defaultSource]initMomentDataItemsArray];
     //上拉刷新， 下拉加载更多， 用了一个插件， 吊啊！
     [self header_footer_refreshing];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseLatestMomentData:) name:@"latestMomentData" object:nil];
+    [self.tableView reloadData];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"latestMomentData" object:nil];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)parseLatestMomentData:(NSNotification *)notification
+{
+//    NSString *temp = [NSString alloc];
+    NSDictionary *authorDic = [NSDictionary alloc];
+    NSArray *urlArray = [[NSArray alloc]init];
+
+    NSLog(@"parseLatestMomentData");
+    self.theResultData = notification.object;
+//    NSLog(@"get the notification data, it is %@", self.theResultData);
+    NSArray *latestMomentDataArray = [NSJSONSerialization JSONObjectWithData:self.theResultData options:NSJSONReadingMutableLeaves error:nil];
+    for (id obj in latestMomentDataArray) {
+        
+        authorDic = [obj objectForKey:@"author"];
+        NSLog(@"author is %@", authorDic);
+        
+        NSLog(@"avatarUrl is %@", [authorDic objectForKey:@"avatar"]);
+        NSString *avatarUrlRight = [@"http://121.40.72.197/upload/" stringByAppendingString:[authorDic objectForKey:@"avatar"]];
+        NSLog(@"full avatarUrl is %@", avatarUrlRight);
+        
+        Account *account = [bixLocalAccount instance];
+//        account.avatarUrl = [NSURL URLWithString: @"http://121.40.72.197/upload/26674-c0199v.png"];
+        account.avatarUrl = [NSURL URLWithString:avatarUrlRight];
+        account.nickname = [authorDic objectForKey:@"username"];
+        itemRefresh = [[bixMomentDataItem alloc]initWithSender:account];
+        
+        urlArray =  [obj objectForKey:@"imgs"];
+        for (id url in urlArray) {
+            [itemRefresh.imgUrls addObject:[NSURL URLWithString:url]];
+        }
+        itemRefresh.textContent = [obj objectForKey:@"text"];
+        [[bixMomentDataSource defaultSource]addMomentDataItem:itemRefresh];
+    }
 }
 
 -(void)header_footer_refreshing
@@ -63,11 +123,11 @@
     // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
     self.tableView.headerPullToRefreshText = @"下拉可以刷新了";
     self.tableView.headerReleaseToRefreshText = @"松开马上刷新了";
-    self.tableView.headerRefreshingText = @"dsx正在帮你刷新中,不客气";
+    self.tableView.headerRefreshingText = @"bix正在帮你刷新中,不客气";
     
     self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据了";
     self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
-    self.tableView.footerRefreshingText = @"dsx正在帮你加载中,不客气";
+    self.tableView.footerRefreshingText = @"bix正在帮你加载中,不客气";
 
 }
 
@@ -75,6 +135,10 @@
 - (void)headerRereshing
 {
     NSLog(@"正在刷新，在这里请求服务器数据");
+    [request sendRequest:GET_LATEST_MOMENT_DATA_IP];
+    NSLog(@"请求最新10条分享圈数据");
+//    [request sendRequest:LOCATION_INFO_IP];
+    NSLog(@"请求所有充电桩数据");
     // 1.添加假数据
     for (int i = 0; i<5; i++) {
 //        [self.fakeData insertObject:MJRandomData atIndex:0];
@@ -146,20 +210,6 @@
 //    
 //}
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [ self.tableView reloadData ];
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - TableViewSource
 
@@ -188,15 +238,6 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
-//    // Configure Cell
-//    AppDelegate* appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    
-//    NSUInteger row = [indexPath row];
-//    NSLog(@"row is %d", row);
-//
-//    [cell loadFromMomentDataItem:[appdelegate.momentDataSrouce getOneMoment:[self.momentText objectAtIndex:(self.momentText.count-row-1)]]];
-////    [cell loadFromMomentDataItem:[appdelegate.momentDataSrouce getOneMoment]];
-//    
 //    //点击cell的时候，不会变暗，不会有反应;
 ////    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
