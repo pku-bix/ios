@@ -21,7 +21,7 @@ static NSString* const XMPP_SERVER_DOMAIN = @"bix.org";
 static const NSTimeInterval XMPP_CONNECT_TIMEOUT = 10;
 
 // API 服务器
-static NSString* const API_SERVER = @"192.168.1.105:3000";
+static NSString* const API_SERVER = @"http://121.40.72.197";
 
 // 百度地图
 static NSString* const BAIDU_MAP_KEY = @"oCvXZCd41PsMzOw0disOu1QA";

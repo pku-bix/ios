@@ -184,6 +184,11 @@
 
 #pragma mark - imgCollectionView delegate
 
+- (BOOL)collectionView:(UICollectionView *)collectionView
+shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"select collectionView is section %d, row %d", indexPath.section, indexPath.row);

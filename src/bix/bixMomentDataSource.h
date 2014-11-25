@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "bixMomentDataItem.h"
-#import "bixRemoteModel.h"
+#import "bixRemoteModelObserver.h"
 
 @interface bixMomentDataSource : NSObject
 

@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "bixRemoteModel.h"
+#import "bixRemoteModelDataSource.h"
 
 @protocol bixRemoteModelObserver <NSObject>
 
--(void) modelUpdated: (id) m;
+-(void) modelUpdated: (id) model;
 
 @end

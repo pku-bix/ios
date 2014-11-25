@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "BMapKit.h"
 #import "UzysSlideMenu.h"
+#import "bixRemoteModelObserver.h"
 
-@interface MapViewController : UIViewController<BMKMapViewDelegate,BMKSearchDelegate,NSURLConnectionDataDelegate>
+@interface MapViewController : UIViewController<BMKMapViewDelegate,BMKSearchDelegate,NSURLConnectionDataDelegate, bixRemoteModelObserver>
 {    
     IBOutlet BMKMapView *_mapView;
     BMKSearch *_search;

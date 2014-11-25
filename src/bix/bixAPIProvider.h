@@ -1,5 +1,5 @@
 //
-//  bixRemoteSync.h
+//  bixAPIProvider.h
 //  bix
 //
 //  Created by harttle on 11/18/14.
@@ -7,18 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "bixRemoteModel.h"
+#import "bixRemoteModelDelegate.h"
+#import "bixRemoteModelDataSource.h"
 
 @interface bixAPIProvider : NSObject<NSURLConnectionDataDelegate>
 
 // 远程模型
-@property (nonatomic) id<bixRemoteModel> model;
+@property (nonatomic) id<bixRemoteModelDelegate, bixRemoteModelDataSource> model;
 
 
 // 上传
--(bool) Push: (id<bixRemoteModel>) model;
++(bixAPIProvider*) Push: (id<bixRemoteModelDelegate, bixRemoteModelDataSource>) model;
 
 // 下载
--(bool) Pull: (id<bixRemoteModel>) model;
++(bixAPIProvider*) Pull: (id<bixRemoteModelDelegate, bixRemoteModelDataSource>) model;
 
 @end

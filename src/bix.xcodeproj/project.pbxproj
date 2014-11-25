@@ -191,6 +191,9 @@
 		EC9908A818C33C9200798FAB /* XMPPStringPrep.m in Sources */ = {isa = PBXBuildFile; fileRef = EC99089018C33C9200798FAB /* XMPPStringPrep.m */; };
 		EC9908AA18C33CEE00798FAB /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC9908A918C33CEE00798FAB /* libresolv.dylib */; };
 		EC9EA8571A1AD18E000306C8 /* bixAPIProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9EA8561A1AD18E000306C8 /* bixAPIProvider.m */; };
+		ECB81C4A1A24CA0800C13281 /* bixHomeCharger.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB81C491A24CA0800C13281 /* bixHomeCharger.m */; };
+		ECB81C4D1A24CA1900C13281 /* bixDestCharger.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB81C4C1A24CA1900C13281 /* bixDestCharger.m */; };
+		ECB81C501A24CA2D00C13281 /* bixSuperCharger.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB81C4F1A24CA2D00C13281 /* bixSuperCharger.m */; };
 		ECD998E818DACE9F00F30FE3 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ECD998E618DACE9F00F30FE3 /* mapapi.bundle */; };
 		ECD998EE18DAD7DE00F30FE3 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD998ED18DAD7DE00F30FE3 /* libbaidumapapi.a */; };
 		ECED787918CF7FE30041CCC7 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED787818CF7FE30041CCC7 /* Session.m */; };
@@ -525,10 +528,17 @@
 		EC99088F18C33C9200798FAB /* XMPPStringPrep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPStringPrep.h; sourceTree = "<group>"; };
 		EC99089018C33C9200798FAB /* XMPPStringPrep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPStringPrep.m; sourceTree = "<group>"; };
 		EC9908A918C33CEE00798FAB /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
-		EC9EA8541A1AD13F000306C8 /* bixRemoteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bixRemoteModel.h; sourceTree = "<group>"; };
+		EC9EA8541A1AD13F000306C8 /* bixRemoteModelDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bixRemoteModelDelegate.h; sourceTree = "<group>"; };
 		EC9EA8551A1AD18E000306C8 /* bixAPIProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixAPIProvider.h; sourceTree = "<group>"; };
 		EC9EA8561A1AD18E000306C8 /* bixAPIProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixAPIProvider.m; sourceTree = "<group>"; };
 		EC9EA8581A1AD1B6000306C8 /* bixRemoteModelObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bixRemoteModelObserver.h; sourceTree = "<group>"; };
+		ECB81C481A24CA0800C13281 /* bixHomeCharger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixHomeCharger.h; sourceTree = "<group>"; };
+		ECB81C491A24CA0800C13281 /* bixHomeCharger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixHomeCharger.m; sourceTree = "<group>"; };
+		ECB81C4B1A24CA1900C13281 /* bixDestCharger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixDestCharger.h; sourceTree = "<group>"; };
+		ECB81C4C1A24CA1900C13281 /* bixDestCharger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixDestCharger.m; sourceTree = "<group>"; };
+		ECB81C4E1A24CA2D00C13281 /* bixSuperCharger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixSuperCharger.h; sourceTree = "<group>"; };
+		ECB81C4F1A24CA2D00C13281 /* bixSuperCharger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixSuperCharger.m; sourceTree = "<group>"; };
+		ECB81C511A24D31A00C13281 /* bixRemoteModelDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bixRemoteModelDataSource.h; sourceTree = "<group>"; };
 		ECD998BD18DACE9F00F30FE3 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		ECD998BE18DACE9F00F30FE3 /* BMKActionPaopaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKActionPaopaoView.h; sourceTree = "<group>"; };
 		ECD998BF18DACE9F00F30FE3 /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
@@ -740,11 +750,17 @@
 				E3CF760B1A206D3200268631 /* bixCharger.m */,
 				E3CF760D1A20702100268631 /* bixChargerDataSource.h */,
 				E3CF760E1A20702100268631 /* bixChargerDataSource.m */,
+				ECB81C481A24CA0800C13281 /* bixHomeCharger.h */,
+				ECB81C491A24CA0800C13281 /* bixHomeCharger.m */,
+				ECB81C4B1A24CA1900C13281 /* bixDestCharger.h */,
+				ECB81C4C1A24CA1900C13281 /* bixDestCharger.m */,
+				ECB81C4E1A24CA2D00C13281 /* bixSuperCharger.h */,
+				ECB81C4F1A24CA2D00C13281 /* bixSuperCharger.m */,
 			);
 			name = ChargerProvider;
 			sourceTree = "<group>";
 		};
-		E3D037831A1AEB290034D4DA /* MomentModel */ = {
+		E3D037831A1AEB290034D4DA /* MomentProvider */ = {
 			isa = PBXGroup;
 			children = (
 				EC4613F019FFC55F0046FFAE /* bixMomentDataItem.h */,
@@ -754,7 +770,7 @@
 				EC4613F419FFC55F0046FFAE /* bixMomentReplyItem.h */,
 				EC4613F519FFC55F0046FFAE /* bixMomentReplyItem.m */,
 			);
-			name = MomentModel;
+			name = MomentProvider;
 			sourceTree = "<group>";
 		};
 		E3D127F019F698570018900B /* aboutBix */ = {
@@ -1243,9 +1259,10 @@
 				EC9EA8551A1AD18E000306C8 /* bixAPIProvider.h */,
 				EC9EA8561A1AD18E000306C8 /* bixAPIProvider.m */,
 				EC9EA8581A1AD1B6000306C8 /* bixRemoteModelObserver.h */,
-				EC9EA8541A1AD13F000306C8 /* bixRemoteModel.h */,
+				EC9EA8541A1AD13F000306C8 /* bixRemoteModelDelegate.h */,
 				E3CF76101A2070FA00268631 /* bixRemoteModelBase.h */,
 				E3CF76111A2070FA00268631 /* bixRemoteModelBase.m */,
+				ECB81C511A24D31A00C13281 /* bixRemoteModelDataSource.h */,
 			);
 			name = APIProvider;
 			sourceTree = "<group>";
@@ -1433,7 +1450,7 @@
 				ECED787618CF7FE30041CCC7 /* AccountProvider */,
 				EC57886019A61E7A0058837C /* ChatProvider */,
 				E3D5406E19FD550500FDC819 /* MapProvider */,
-				E3D037831A1AEB290034D4DA /* MomentModel */,
+				E3D037831A1AEB290034D4DA /* MomentProvider */,
 				ECED787A18CF80040041CCC7 /* Utilities */,
 				EC05DD9918D0BE49000C9D89 /* Resources */,
 				EC4613EF19FFC4F30046FFAE /* MomentView */,
@@ -1701,6 +1718,7 @@
 				E3E59A2C1A07DBB500B0DA76 /* weChatIDViewController.m in Sources */,
 				EC316623193065AC002E9609 /* NSString+FontAwesome.m in Sources */,
 				EC9908A418C33C9200798FAB /* GCDMulticastDelegate.m in Sources */,
+				ECB81C4D1A24CA1900C13281 /* bixDestCharger.m in Sources */,
 				E3E59A2F1A07DBFD00B0DA76 /* teslaTypeViewController.m in Sources */,
 				EC99089C18C33C9200798FAB /* XMPPIQ.m in Sources */,
 				EC4613E719FFC4E80046FFAE /* SDWebImagePrefetcher.m in Sources */,
@@ -1708,6 +1726,7 @@
 				E3FC3F05199A4CCB00E0E784 /* generalTableView.m in Sources */,
 				EC57887B19A620FA0058837C /* LoginViewController.m in Sources */,
 				E36C255B198F6A7700D129E9 /* aboutViewController.m in Sources */,
+				ECB81C4A1A24CA0800C13281 /* bixHomeCharger.m in Sources */,
 				ECF7E1DE18C0516D002BA385 /* AppDelegate.mm in Sources */,
 				EC316626193065AC002E9609 /* UIButton+Bootstrap.m in Sources */,
 				EC99084218C3397000798FAB /* DDAbstractDatabaseLogger.m in Sources */,
@@ -1753,6 +1772,7 @@
 				EC4613E819FFC4E80046FFAE /* UIButton+WebCache.m in Sources */,
 				EC31662A19308978002E9609 /* MBProgressHUD.m in Sources */,
 				EC4613FC19FFC55F0046FFAE /* bixMomentReplyItem.m in Sources */,
+				ECB81C501A24CA2D00C13281 /* bixSuperCharger.m in Sources */,
 				EC57886E19A620710058837C /* ChatListViewController.m in Sources */,
 				EC9908A818C33C9200798FAB /* XMPPStringPrep.m in Sources */,
 				E3E59A231A07DAAD00B0DA76 /* signatureViewController.m in Sources */,

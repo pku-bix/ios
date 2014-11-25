@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "bixRemoteModel.h"
+#import "bixRemoteModelDataSource.h"
+#import "bixRemoteModelDelegate.h"
 #import "bixRemoteModelBase.h"
 
-@interface bixCharger : bixRemoteModelBase<bixRemoteModel>
+@interface bixCharger : bixRemoteModelBase<bixRemoteModelDataSource, bixRemoteModelDelegate>
 
-@property (nonatomic) NSString * detailAddress;
-
+@property (nonatomic) NSString * detailedAddress;
+@property (nonatomic) double latitude;
+@property (nonatomic) double longitude;
+@property (nonatomic) int parkingnum;
 
 @end
