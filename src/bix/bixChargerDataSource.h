@@ -7,7 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "bixCharger.h"
+#import "bixRemoteModelDelegate.h"
+#import "bixRemoteModelDataSource.h"
 
-@interface bixChargerDataSource : NSObject
+@interface bixChargerDataSource : bixRemoteModelBase<bixRemoteModelDataSource, bixRemoteModelDelegate>
+
+// 所有充电桩
+@property NSMutableDictionary* chargers;
+
+-(void) pullChargerById: (NSString*)id;
+-(void) pullChargers;
+
++(bixChargerDataSource*) defaultSource;
+
 
 @end

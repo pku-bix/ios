@@ -28,27 +28,30 @@ typedef enum {
 
 @implementation bixAPIProvider
 
-static NSString* errDomain = @"remotesync";
-static NSString* apiPath   = @"api";
+static NSString* errDomain = @"apiprovider";
 
 
 // TODO: 初始化connection并开始请求
--(bool) Push: (id<bixRemoteModel>) model{
-    
-    [self startRequestWithOperation: PUSH];
-    self.operation = PUSH;
-    return true;
++(bixAPIProvider*) Push: (id<bixRemoteModelDataSource, bixRemoteModelDelegate>) model{
+    bixAPIProvider* p = [bixAPIProvider new];
+    p.model = model;
+    p.operation = PUSH;
+    [p startRequestWithOperation: PUSH];
+    return p;
 }
 
 // TODO: 初始化connection并开始请求
--(bool) Pull: (id<bixRemoteModel>) model{
-    self.operation = PULL;
-    return true;
++(bixAPIProvider*) Pull: (id<bixRemoteModelDelegate, bixRemoteModelDataSource>) model{
+    bixAPIProvider* p = [bixAPIProvider new];
+    p.model = model;
+    p.operation = PULL;
+    [p startRequestWithOperation: PULL];
+    return p;
 }
 
 -(bool) startRequestWithOperation: (OperationType) operation{
     self.url = [NSURL URLWithString:
-                [NSString stringWithFormat:@"%@/%@/%@", API_SERVER, apiPath, [self.model modelPath]]];
+                [NSString stringWithFormat:@"%@%@", API_SERVER, [self.model modelPath]]];
     //创建请求
     self.request = [NSMutableURLRequest requestWithURL:self.url
                                        cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -84,7 +87,7 @@ static NSString* apiPath   = @"api";
         [self.model succeedWithStatus:self.response.statusCode];
     }
     else if([self isRequestError]){
-        [self.model failedWithError:[NSError errorWithDomain:errDomain code:self.response.statusCode
+        [self.model requestFailedWithError:[NSError errorWithDomain:errDomain code:self.response.statusCode
                                                     userInfo:[NSDictionary dictionaryWithObject:
                                                               self.response forKey:@"response"]]];
     }
@@ -99,8 +102,13 @@ static NSString* apiPath   = @"api";
 //接收完毕
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSObject* json = [NSJSONSerialization JSONObjectWithData:self.receiveBuffer options:NSJSONReadingMutableLeaves error:nil];
+    NSJSONReadingOptions options = NSJSONReadingMutableLeaves|NSJSONReadingMutableContainers|NSJSONReadingAllowFragments;
     
+    NSObject* json = [NSJSONSerialization
+                      JSONObjectWithData:self.receiveBuffer
+                      options: options
+                      error:nil];
+
     if([self isRequestSuccess]){
         [self.model SucceedWithStatus:self.response.statusCode andJSONResult:json];
     }

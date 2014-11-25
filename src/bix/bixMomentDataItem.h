@@ -8,9 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "Account.h"
-#import "bixRemoteModel.h"
 
-@interface bixMomentDataItem : NSObject<bixRemoteModel>
+@interface bixMomentDataItem : NSObject
 {
     
 }
