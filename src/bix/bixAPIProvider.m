@@ -126,7 +126,7 @@ static NSString* errDomain = @"apiprovider";
     return self.response.statusCode == 200 || self.response.statusCode == 304;
 }
 
-// 下拉请求是否成功
+// 下拉请求是否失败
 -(bool) isRequestError{
     return self.response.statusCode == 400 || self.response.statusCode == 404;
 }

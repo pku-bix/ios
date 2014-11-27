@@ -74,7 +74,7 @@
             charger = [bixHomeCharger new];
         }
         else if([type isEqualToString:@"SuperCharger"]){
-            continue;
+//            continue;
             charger = [bixSuperCharger new];
         }
         
