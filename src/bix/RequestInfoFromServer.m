@@ -380,9 +380,9 @@
     [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"deviceToken\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
 //    [body appendData:[[NSString stringWithString:momentText] dataUsingEncoding:NSUTF8StringEncoding]];
     //将deviceToken 从NSData转化成 NSString;
-    NSString * temp = [[NSString alloc]initWithData:deviceToken encoding:NSUTF8StringEncoding];
-    
-    [body appendData:[[NSString stringWithString:temp] dataUsingEncoding:NSUTF8StringEncoding]];
+//    NSString * temp = [[NSString alloc]initWithData:deviceToken encoding:NSUTF8StringEncoding];
+    [body appendData:deviceToken];
+//    [body appendData:[[NSString stringWithString:temp] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     
     // close form

@@ -14,6 +14,9 @@
 #import <UIKit/UIKit.h>
 
 @implementation AppDelegate
+{
+//    CLLocationManager  *locationManager;
+}
 
 ////////////////////////////////////////////////////////////////
 //methods
@@ -44,6 +47,17 @@
 
     // 要使用百度地图，请先启动BaiduMapManager
     self.mapManager = [[BMKMapManager alloc]init];
+    
+//    //
+//    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8) {
+//        //由于IOS8中定位的授权机制改变 需要进行手动授权
+//        locationManager = [[CLLocationManager alloc] init];
+//        //获取授权认证
+////        [locationManager requestAlwaysAuthorization];
+////        NSLog(@"requestAlwaysAuthorization is %@", [locationManager requestAlwaysAuthorization]);
+//        [locationManager requestWhenInUseAuthorization];
+//    }
+
     
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
     
