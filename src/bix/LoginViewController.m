@@ -137,7 +137,7 @@ bixLocalAccount* account;
     [hud hide:YES];
     self.view.userInteractionEnabled = YES;
     
-    [[AppDelegate instance] registerAPN];
+//    [[AppDelegate instance] registerAPN];
     
     [self performSegueWithIdentifier:@"main" sender:self];
 }

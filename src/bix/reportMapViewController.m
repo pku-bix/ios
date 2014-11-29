@@ -20,7 +20,7 @@
 {
     CGRect rect;
     BMKPointAnnotation* item_Annotation ;
-    
+    UIImage *image;
     NSDictionary *coordinateDic;
 }
 
@@ -39,17 +39,44 @@
     NSLog(@"reportMapView viewDidLoad");
     // Do any additional setup after loading the view.
     rect = [[UIScreen mainScreen]bounds];
-    reportMapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height)];
+    
+    //reportMapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 64, rect.size.width, rect.size.height)];
     //
     _search = [[BMKSearch alloc]init ];
     item_Annotation = [[BMKPointAnnotation alloc]init];
     
+    self.tabBarController.tabBar.hidden=YES;
+    
+//    [reportMapView addSubview:btnShrink];
+    
+    image= [UIImage imageNamed:@"plus2-64.png"];
+     btnMagnify= [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [btnMagnify setBackgroundImage:image forState:UIControlStateNormal];
+    //    设置和大小
+    CGRect frame = CGRectMake(rect.size.width-50, rect.size.height-200, 32, 32);
+    //    将frame的位置大小复制给Button
+    btnMagnify.frame = frame;
+    [btnMagnify addTarget:self action:@selector(zoomInReport) forControlEvents:UIControlEventTouchUpInside];
+    
+    btnShrink = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [btnShrink setBackgroundImage:[UIImage imageNamed:@"minus2-64.png"] forState:UIControlStateNormal];
+    CGRect shrinkFrame = CGRectMake(rect.size.width-50, rect.size.height-150, 32, 32);
+    btnShrink.frame = shrinkFrame;
+    [btnShrink addTarget:self action:@selector(zoomOutReport) forControlEvents:UIControlEventTouchUpInside];
+    
+    btnCurrentLocation = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [btnCurrentLocation setBackgroundImage:[UIImage imageNamed:@"charge_home_label.png"] forState:UIControlStateNormal];
+    CGRect locationFrame = CGRectMake(rect.size.width-50, rect.size.height-350, 32, 32);
+    btnCurrentLocation.frame = locationFrame;
+    [btnCurrentLocation addTarget:self action:@selector(currentLocation) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:reportMapView];
-    [self.view addSubview:btnReportCharger];
-    [self.view addSubview:btnCurrentLocation];
+ //   [self.view addSubview:btnReportCharger];
+ //   [self.view addSubview:btnCurrentLocation];
     [self.view addSubview:btnMagnify];
     [self.view addSubview:btnShrink];
-    [self.view addSubview:btnBack];
+    [self.view addSubview:btnCurrentLocation];
+//    [self.view addSubview:btnShrink];
     
     //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseAgain:) name:@"chargerInfoViewController" object:nil];
     //    [self getCurrentButtonClicked:_search current_Location:current_Location];
@@ -81,6 +108,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    self.tabBarController.tabBar.hidden=YES;
     NSLog(@"reportMap viewWillAppear");
     [reportMapView viewWillAppear];
     reportMapView.delegate = self;
@@ -91,6 +119,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     NSLog(@"reportMapView viewWillDisappear");
+    self.tabBarController.tabBar.hidden=NO;
     [reportMapView viewWillDisappear];
     reportMapView.delegate = nil;
     _search.delegate = nil;
@@ -180,7 +209,7 @@
  */
 
 
-- (IBAction)zoomOut:(id)sender {
+- (IBAction)zoomOutReport{
     if(reportMapView.zoomLevel > 3)
     {
         reportMapView.zoomLevel -= 1;
@@ -192,7 +221,7 @@
     
 }
 
-- (IBAction)zoomIn:(id)sender {
+- (void)zoomInReport{
     
     if(reportMapView.zoomLevel < 21)
     {
@@ -205,7 +234,7 @@
 
 }
 
-- (IBAction)currentLocation:(id)sender {
+- (void)currentLocation {
     [self getCurrentButtonClicked:_search current_Location:current_Location];
 }
 
