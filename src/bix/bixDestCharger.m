@@ -15,14 +15,13 @@
 
 // 数据响应成功，填充pull下来的字段
 -(void) SucceedWithStatus: (NSInteger) code andJSONResult: (NSObject*) result{
-    id obj = (NSDictionary*)result;
-    self.info = [obj objectForKey:@"info"] ;
+    //id obj = (NSDictionary*)result;
+    
+    
     
     [self.observer modelUpdated:self];
     self.cb(self);
 
-    
-    [self.observer modelUpdated: self];
 }
 
 @end

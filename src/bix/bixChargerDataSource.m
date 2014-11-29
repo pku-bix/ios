@@ -39,9 +39,6 @@
     return self;
 }
 
--(void) pullChargers{
-    [bixAPIProvider Pull: self];
-}
 
 -(void) pullChargerById: (NSString*)modelId{
     bixCharger* charger = [self.chargers objectForKey:modelId];
@@ -85,7 +82,7 @@
         charger.modelId = [obj objectForKey:@"_id"];
         charger.latitude = [[obj objectForKey:@"latitude"] doubleValue];
         charger.longitude = [[obj objectForKey:@"longitude"] doubleValue];
-        charger.detailedAddress = [obj objectForKey:@"detailedaddress"];
+        charger.address = [obj objectForKey:@"detailedaddress"];
         
         [self.chargers setObject:charger forKey:charger.modelId];
     }

@@ -54,7 +54,7 @@
     //充电位数量;
     self.chargerParkingnum.text = [NSString stringWithFormat:@"%d", self.charger.parkingnum ];
     //详细地址;
-    self.chargerAddress.text =self.charger.detailedAddress;
+    self.chargerAddress.text =self.charger.address;
 //    self.chargerAddress.text = self.detailAddress;
     self.chargerAddress.font = [UIFont systemFontOfSize:16];
     self.chargerAddress.selectable = NO;

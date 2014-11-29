@@ -50,9 +50,10 @@ static NSString* errDomain = @"apiprovider";
 }
 
 -(bool) startRequestWithOperation: (OperationType) operation{
+    //创建请求
     self.url = [NSURL URLWithString:
                 [NSString stringWithFormat:@"%@%@", API_SERVER, [self.model modelPath]]];
-    //创建请求
+    
     self.request = [NSMutableURLRequest requestWithURL:self.url
                                        cachePolicy:NSURLRequestUseProtocolCachePolicy
                                        timeoutInterval:60];

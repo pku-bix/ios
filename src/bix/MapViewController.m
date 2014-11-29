@@ -424,7 +424,7 @@ return nil;
     
     for (id key in self.chargerDataSource.chargers) {
         bixCharger* charger = self.chargerDataSource.chargers[key];
-        if ([charger.detailedAddress isEqualToString:view.annotation.title]) {
+        if ([charger.address isEqualToString:view.annotation.title]) {
 //            strId = charger.modelId;
             NSLog(@"id is :%@", charger.modelId);
             charger.cb = ^(bixCharger* c){
@@ -607,7 +607,7 @@ return nil;
             if ([charger isKindOfClass:[bixSuperCharger class]]) {
                 CustomBMKPointAnnotation *bmk = [CustomBMKPointAnnotation new];
                 bmk.coordinate = CLLocationCoordinate2DMake(charger.latitude, charger.longitude);
-                bmk.title = charger.detailedAddress;
+                bmk.title = charger.address;
                 bmk.type = 2; // type = 2; 表示超级充电桩;
                 
                 [_mapView addAnnotation:bmk];
@@ -657,7 +657,7 @@ return nil;
             if ([charger isKindOfClass:[bixDestCharger class]]) {
                 CustomBMKPointAnnotation *bmk = [CustomBMKPointAnnotation new];
                 bmk.coordinate = CLLocationCoordinate2DMake(charger.latitude, charger.longitude);
-                bmk.title = charger.detailedAddress;
+                bmk.title = charger.address;
                 bmk.type = 1; // type = 1; 表示目的充电桩;
 //                BMKPointAnnotation
                 

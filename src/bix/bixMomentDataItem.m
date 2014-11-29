@@ -33,7 +33,7 @@
 // TODO: 借助用HTTP层，从 user 动态获取以下属性
 
 -(NSURL*) avatarUrl{
-    return self.sender.avatar;
+    return [NSURL URLWithString: self.sender.avatar];
 }
 
 -(NSString*) nickname{
@@ -73,7 +73,7 @@
 
 -(NSString *)description{
     return [NSString stringWithFormat:@"nickname:%@\navatarUrl:%@\npassage:%@\npictureUrls:%@\nreplies:%@",
-     self.nickname, self.avatarUrl, self.textContent, self.imgUrls, self.replies];
+     self.nickname, self.sender.avatar, self.textContent, self.imgUrls, self.replies];
 }
 
 @end

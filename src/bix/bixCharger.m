@@ -30,10 +30,10 @@
     id obj = (NSDictionary*)result;
     @try {
         self.parkingnum = [[obj objectForKey:@"parkingnum"] intValue];
-        self.detailedAddress = [obj objectForKey:@"detailedaddress"];
+        self.address = [obj objectForKey:@"detailedaddress"];
         self.latitude = [[obj objectForKey:@"latitude" ] doubleValue];
         self.longitude = [[obj objectForKey:@"longitude"]doubleValue];
-        
+        self.comment = [obj objectForKey:@"comment"] ;
                 
     }
     @catch (NSException *exception) {
