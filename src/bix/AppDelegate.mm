@@ -22,10 +22,13 @@
 //methods
 
 -(void)registerAPN{
-    UIRemoteNotificationType types = UIRemoteNotificationTypeBadge |
-    UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert;
+    UIUserNotificationType types = UIUserNotificationTypeBadge |
+    UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
     
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
+    UIUserNotificationSettings *mySettings =
+    [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    
+    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
 }
 
 -(id)init{
