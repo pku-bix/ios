@@ -69,6 +69,7 @@
     
     rect = [[UIScreen mainScreen] bounds];
     GLfloat _mapY = self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y;
+    
     //  CGSize size = rect.size;   CGFloat width = size.width;  CGFloat height = size.height;
    
     //手动开启ios8的定位授权
@@ -579,31 +580,52 @@ return nil;
 
 - (void)addSuperCharger:(NSInteger) selectTag
 {
-    if (selectCharger >= 0) {
-        selectCharger = -1;
-        NSLog(@"fuck superCharge");
-        [_mapView removeAnnotations: [NSArray arrayWithArray:_mapView.annotations]];
-        NSLog(@"removeAnnotations");
-        int k = 0, sum = 0;
-        for(int i = 0; i < chargePileNumber; i++)
-        {
+    if(selectCharger >= 0){
+        //在展示当前充电桩数据之前，先将之前的地图充电桩数据删除;
+        [_mapView removeAnnotations:[NSArray arrayWithArray:_mapView.annotations]];
+        
+        for (id key in self.chargerDataSource.chargers) {
+            bixCharger* charger = self.chargerDataSource.chargers[key];
             
-            //        BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
-            CustomBMKPointAnnotation *j = [CustomBMKPointAnnotation new];
-            if([[muArray objectAtIndex:k]  isEqual: @"SuperCharger"])
-            {
-                sum++;
-                j.coordinate = CLLocationCoordinate2DMake([[muArray objectAtIndex:k+2] doubleValue], [[muArray objectAtIndex:k+3] doubleValue]);
-                j.title = [muArray objectAtIndex:k+1];
-                j.type = 0; // type = 0 表示超级充电桩;
-                [_mapView addAnnotation:j];
+            if ([charger isKindOfClass:[bixSuperCharger class]]) {
+                CustomBMKPointAnnotation *bmk = [CustomBMKPointAnnotation new];
+                bmk.coordinate = CLLocationCoordinate2DMake(charger.latitude, charger.longitude);
+                bmk.title = charger.detailedAddress;
+                bmk.type = 2; // type = 2; 表示超级充电桩;
+                
+                [_mapView addAnnotation:bmk];
             }
-            k = k+5;
         }
-        NSLog(@"superCharge have %d", sum);
     }
-    else
+    else{
         selectCharger = selectTag;
+    }
+
+//    if (selectCharger >= 0) {
+//        selectCharger = -1;
+//        NSLog(@"fuck superCharge");
+//        [_mapView removeAnnotations: [NSArray arrayWithArray:_mapView.annotations]];
+//        NSLog(@"removeAnnotations");
+//        int k = 0, sum = 0;
+//        for(int i = 0; i < chargePileNumber; i++)
+//        {
+//            
+//            //        BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
+//            CustomBMKPointAnnotation *j = [CustomBMKPointAnnotation new];
+//            if([[muArray objectAtIndex:k]  isEqual: @"SuperCharger"])
+//            {
+//                sum++;
+//                j.coordinate = CLLocationCoordinate2DMake([[muArray objectAtIndex:k+2] doubleValue], [[muArray objectAtIndex:k+3] doubleValue]);
+//                j.title = [muArray objectAtIndex:k+1];
+//                j.type = 0; // type = 0 表示超级充电桩;
+//                [_mapView addAnnotation:j];
+//            }
+//            k = k+5;
+//        }
+//        NSLog(@"superCharge have %d", sum);
+//    }
+//    else
+//        selectCharger = selectTag;
 }
 
 - (void)addDestinationCHarger:(NSInteger)selectTag

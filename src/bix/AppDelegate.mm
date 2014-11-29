@@ -21,12 +21,12 @@
 ////////////////////////////////////////////////////////////////
 //methods
 
--(void)registerAPN{
-    UIRemoteNotificationType types = UIRemoteNotificationTypeBadge |
-    UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert;
-    
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
-}
+//-(void)registerAPN{
+//    UIRemoteNotificationType types = UIRemoteNotificationTypeBadge |
+//    UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert;
+//    
+//    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
+//}
 
 -(id)init{
     self = [super init];

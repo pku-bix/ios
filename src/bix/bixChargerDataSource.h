@@ -12,7 +12,8 @@
 #import "bixRemoteModelDataSource.h"
 
 @interface bixChargerDataSource : bixRemoteModelBase<bixRemoteModelDataSource, bixRemoteModelDelegate>
-
+{
+}
 // 所有充电桩
 @property NSMutableDictionary* chargers;
 

@@ -55,6 +55,7 @@
 }
 
 #pragma mark RemoteModel Delegate
+//将充电桩数据分别封装进三种不同充电桩对象里面;
 
 -(void) SucceedWithStatus: (NSInteger) code andJSONResult: (NSObject*) result{
     [self.chargers removeAllObjects];
