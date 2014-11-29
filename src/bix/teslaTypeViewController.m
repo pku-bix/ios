@@ -33,7 +33,11 @@
     // Do any additional setup after loading the view.
     //self.teslaType.delegate = self;
     
-    myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8) {
+        myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
+    }
+    else
+        myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
     
 //    myTableView.allowsSelection = YES;
     [self.view addSubview:myTableView];

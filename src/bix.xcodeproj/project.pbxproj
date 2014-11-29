@@ -1875,6 +1875,7 @@
 					"-ObjC",
 				);
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7s armv7 arm64";
 			};
 			name = Debug;
 		};
@@ -1917,6 +1918,7 @@
 				);
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7s armv7 arm64";
 			};
 			name = Release;
 		};
