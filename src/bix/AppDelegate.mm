@@ -21,6 +21,7 @@
 ////////////////////////////////////////////////////////////////
 //methods
 
+
 -(void)registerAPN{
     UIUserNotificationType types = UIUserNotificationTypeBadge |
     UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
