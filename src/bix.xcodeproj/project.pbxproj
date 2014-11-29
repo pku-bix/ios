@@ -1270,6 +1270,7 @@
 		ECB402231A202DF100616235 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				E3C863DB1A238ACA005364DC /* MJRefresh */,
 				84758ED01A2047C400845672 /* UzysMenu */,
 				E381F0B51A07E07B0030939E /* AGSimpleImageEditorView */,
 				ECD998BB18DACE9F00F30FE3 /* BaiduMap */,
@@ -1443,7 +1444,6 @@
 		ECF7E1D318C0516D002BA385 /* bix */ = {
 			isa = PBXGroup;
 			children = (
-				E3C863DB1A238ACA005364DC /* MJRefresh */,
 				E3CF76091A206CF400268631 /* ChargerProvider */,
 				ECB402231A202DF100616235 /* Vendor */,
 				EC9EA8501A1AD042000306C8 /* APIProvider */,
@@ -1542,7 +1542,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = bix;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = bix;
 				TargetAttributes = {
 					ECF7E1C918C0516D002BA385 = {
@@ -1923,19 +1923,21 @@
 		ECF7E20018C0516D002BA385 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bix/bix-Prefix.pch";
 				INFOPLIST_FILE = "bix/bix-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)/bix/XMPP/Vendor/libidn",
 					"$(SRCROOT)/bix/BaiduMap/",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1943,19 +1945,21 @@
 		ECF7E20118C0516D002BA385 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bix/bix-Prefix.pch";
 				INFOPLIST_FILE = "bix/bix-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)/bix/XMPP/Vendor/libidn",
 					"$(SRCROOT)/bix/BaiduMap/",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

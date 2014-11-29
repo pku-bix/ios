@@ -51,6 +51,7 @@ static bixLocalAccount *instance = nil;
     if (instance==nil) {
         instance = [[bixLocalAccount alloc] initWithUsername:username Password:password];
     }
+    
     return instance;
 }
 
@@ -77,7 +78,7 @@ static bixLocalAccount *instance = nil;
 
 - (id)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
-    
+
     if (self) {
         _password    = [coder decodeObjectForKey: @"password"];
         _autoLogin   = [coder decodeBoolForKey:   @"auto_login"];
@@ -125,10 +126,10 @@ static bixLocalAccount *instance = nil;
 
 - (void) setDeviceToken:(NSData *)deviceToken{
     _deviceToken = deviceToken;
+    NSLog(@"发送deviceToken...");
+    request = [[RequestInfoFromServer alloc]init];
     
-//    request = [[RequestInfoFromServer alloc]init];
-    
-//    [request sendAsynchronousPostDeviceToken:_deviceToken];
+    [request sendAsynchronousPostDeviceToken:_deviceToken];
     
 }
 

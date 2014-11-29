@@ -22,9 +22,10 @@ static const NSTimeInterval XMPP_CONNECT_TIMEOUT = 10;
 
 // API 服务器
 static NSString* const API_SERVER = @"http://121.40.72.197";
+//static NSString* const API_SERVER = @"http://192.168.1.105:3000";
 
 // 百度地图
-static NSString* const BAIDU_MAP_KEY = @"oCvXZCd41PsMzOw0disOu1QA";
+static NSString* const BAIDU_MAP_KEY = @"ARt5D0OqSaZEoRsPrM1TU1KF";
 
 
 
@@ -49,7 +50,12 @@ static NSString *const POST_MOMENT_IP = @"http://121.40.72.197:80/api/posts";
 
 //通知需要设备的deviceToken, 将每个用户的deviceToken post到服务器的 ip 地址
 // TODO: @杜实现 在该方法中POST该Token至 /api/user/<username>
-static NSString *const POST_DEVICE_TOKEN_IP = @"http://121.40.72.197/api/user/";
+//static NSString *const POST_DEVICE_TOKEN_IP = @"http://121.40.72.197/api/user/";
+static NSString *const POST_DEVICE_TOKEN_IP = @"http://192.168.1.105:3000/api/user/";
+
+//分享圈下拉刷新请求最新的10条状态数据；
+static NSString *const GET_LATEST_MOMENT_DATA_IP = @"http://121.40.72.197/api/posts?limit=10";
+//static NSString *const GET_LATEST_MOMENT_DATA_IP = @"http://192.168.1.105:3000/api/posts?limit=10";
 
 
 /*

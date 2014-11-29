@@ -42,6 +42,7 @@
     int isFinishLoading, isSimpleOrDetailRequest ;
     NSInteger selectCharger;
     detailViewController *detail;
+    CLLocationManager  *locationManager;
 }
 
 #pragma mark initialize
@@ -69,6 +70,16 @@
     rect = [[UIScreen mainScreen] bounds];
     GLfloat _mapY = self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y;
     //  CGSize size = rect.size;   CGFloat width = size.width;  CGFloat height = size.height;
+   
+    //手动开启ios8的定位授权
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8) {
+        //由于IOS8中定位的授权机制改变 需要进行手动授权
+        locationManager = [[CLLocationManager alloc] init];
+        //获取授权认证
+        [locationManager requestAlwaysAuthorization];
+        [locationManager requestWhenInUseAuthorization];
+    }
+    
     _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, _mapY, rect.size.width, rect.size.height-40)];
 
 //    _mapView.delegate = self;
@@ -83,6 +94,7 @@
     self.chargerDataSource = [bixChargerDataSource defaultSource];
     self.chargerDataSource.observer = self;
     [self.chargerDataSource pullChargers];
+    
     [self initMapViewButton];
 
    
@@ -155,15 +167,7 @@
 //        int a = 5;
         NSLog(@"test");
     }
-    
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8) {
-        //由于IOS8中定位的授权机制改变 需要进行手动授权
-//        CLLocationManager  *locationManager = [[CLLocationManager alloc] init];
-        //获取授权认证
-//        [locationManager requestAlwaysAuthorization];
-//        [locationManager requestWhenInUseAuthorization];
-    }
-    
+
     // once launch the baidu map, locate the position of user immediately
     [mapButton launchMapView_locate:_mapView];
     
@@ -294,6 +298,14 @@
  */
 - (void)mapViewWillStartLocatingUser:(BMKMapView *)mapView
 {
+//    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8) {
+//        //由于IOS8中定位的授权机制改变 需要进行手动授权
+//        CLLocationManager  *locationManager = [[CLLocationManager alloc] init];
+//        //获取授权认证
+//        [locationManager requestAlwaysAuthorization];
+//        [locationManager requestWhenInUseAuthorization];
+//    }
+
 	//NSLog(@"start locate");
 }
 
@@ -668,7 +680,7 @@ return nil;
     int k = 0, sum = 0;
     for(int i = 0; i < chargePileNumber; i++)
     {
-        
+
 //        BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
         CustomBMKPointAnnotation *j = [CustomBMKPointAnnotation new];
         if([[muArray objectAtIndex:k]  isEqual: @"SuperCharger"])

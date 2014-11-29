@@ -380,9 +380,9 @@
     [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"deviceToken\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
 //    [body appendData:[[NSString stringWithString:momentText] dataUsingEncoding:NSUTF8StringEncoding]];
     //将deviceToken 从NSData转化成 NSString;
-    NSString * temp = [[NSString alloc]initWithData:deviceToken encoding:NSUTF8StringEncoding];
-    
-    [body appendData:[[NSString stringWithString:temp] dataUsingEncoding:NSUTF8StringEncoding]];
+//    NSString * temp = [[NSString alloc]initWithData:deviceToken encoding:NSUTF8StringEncoding];
+    [body appendData:deviceToken];
+//    [body appendData:[[NSString stringWithString:temp] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     
     // close form
@@ -453,6 +453,10 @@
     else if(_selectNotificationKind == 5) //发送分享圈的响应数据;
     {
 //        [[NSNotificationCenter defaultCenter]postNotificationName:@"returnMomentData" object:self.theResultData];
+    }
+    else if(_selectNotificationKind == 6) //从服务器获取最新的10条分享圈状态数据;
+    {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"latestMomentData" object:self.theResultData];
     }
     
     
