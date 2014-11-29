@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jJR-kc-dNW">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
@@ -124,7 +123,7 @@
                                             <constraint firstAttribute="width" constant="40" id="QVK-bP-P4b"/>
                                             <constraint firstAttribute="height" constant="40" id="S3M-6V-HbN"/>
                                         </constraints>
-                                        <state key="normal" image="3DBE4992-F9D7-4664-99B4-49F215066909">
+                                        <state key="normal" image="7C5DC188-F82F-4F56-A763-8B4AC747A592">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -151,7 +150,7 @@
                     <connections>
                         <outlet property="_mapView" destination="2DP-xn-oHk" id="MYw-ax-bzU"/>
                         <outlet property="chargerItem" destination="2Tu-zZ-iq8" id="uTi-sT-gHs"/>
-                        <segue destination="zTK-3x-xS0" kind="modal" identifier="detail" modalTransitionStyle="flipHorizontal" id="8Bj-fI-a2f"/>
+                        <segue destination="zTK-3x-xS0" kind="modal" identifier="detail" id="8Bj-fI-a2f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E7j-KQ-vTl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -229,6 +228,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="RNa-UO-xej"/>
                     <connections>
                         <outlet property="chargerAddress" destination="Z91-5b-uxS" id="lki-hV-EgQ"/>
                         <outlet property="chargerInfo" destination="OWi-jU-LL1" id="xDS-8j-Dzi"/>
@@ -1319,7 +1319,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="3DBE4992-F9D7-4664-99B4-49F215066909" width="90" height="90">
+        <image name="7C5DC188-F82F-4F56-A763-8B4AC747A592" width="90" height="90">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

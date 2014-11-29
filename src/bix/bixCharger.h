@@ -18,4 +18,6 @@
 @property (nonatomic) double longitude;
 @property (nonatomic) int parkingnum;
 
+@property (nonatomic) NSString *chargerType;
+
 @end

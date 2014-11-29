@@ -18,6 +18,9 @@
     //id obj = (NSDictionary*)result;
     [super SucceedWithStatus:code andJSONResult:result];
     
+    [self.observer modelUpdated:self];
+     self.cb(self);
+
     // todo 子类特有的
     [self.observer modelUpdated: self];
 }

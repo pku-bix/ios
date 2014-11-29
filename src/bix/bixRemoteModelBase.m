@@ -7,6 +7,7 @@
 //
 
 #import "bixRemoteModelBase.h"
+#import "bixAPIProvider.h"
 
 @implementation bixRemoteModelBase
 
@@ -19,6 +20,15 @@
     return self;
 }
 
+-(NSString*) modelPath
+{
+    return @"";
+}
+
+-(void)pull
+{
+    [bixAPIProvider Pull:self];
+}
 
 // 数据响应成功
 -(void) SucceedWithStatus: (NSInteger) code andJSONResult: (NSObject*) result{

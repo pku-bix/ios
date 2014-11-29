@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "bixCharger.h"
 
 @interface detailViewController : UIViewController
 
@@ -16,6 +17,7 @@
 @property NSString* time;
 @property NSString* info;
 
+@property (weak, nonatomic) bixCharger *charger;
 @property (strong, nonatomic) IBOutlet UILabel *chargerType;
 
 @property (strong, nonatomic) IBOutlet UITextView *chargerAddress;
