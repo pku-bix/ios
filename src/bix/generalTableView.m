@@ -10,6 +10,7 @@
 #import "aboutViewController.h"
 #import "FeedBackViewController.h"
 #import "AppDelegate.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 @implementation generalTableView
 @synthesize list1 = _list1;
@@ -66,7 +67,9 @@
 
     ////    cell.detailTextLabel.text = @"i am tian cai";
 //    UIImage *image0 = [UIImage imageNamed:@"personInfo"];
-    UIImage *image0 = [bixLocalAccount instance].avatar;
+
+// 用头像url字符串直接设置uiimageview
+//    UIImage *image0 = [bixLocalAccount instance].avatar;
     UIImage *image1 = [UIImage imageNamed:@"reported"];
     UIImage *image2 = [UIImage imageNamed:@"feedback"];
 //    UIImage *image3 = [UIImage imageNamed:@"inviteFriends"];
@@ -84,12 +87,15 @@
         
         switch (row) {
             case 0:
-                if (image0 == NULL) {  //初始化头像
-                    NSLog(@"image0 is null");
-                    image0 = [UIImage imageNamed:@"default_headshow.png"];
-                }
-                cell.imageView.image = image0;
-//                cell.detailTextLabel.text= @"     dsx";
+//                if (image0 == NULL) {  //初始化头像
+//                    NSLog(@"image0 is null");
+//                    image0 = [UIImage imageNamed:@"default_headshow.png"];
+                //                }
+                //                cell.detailTextLabel.text= @"     dsx";
+                
+                [cell.imageView sd_setImageWithURL:
+                 [NSURL URLWithString: [bixLocalAccount instance].avatar]
+                                  placeholderImage:[UIImage imageNamed:@"default_headshow.png"]];
                 break;
             default:
                 break;

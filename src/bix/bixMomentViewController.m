@@ -97,7 +97,7 @@
         
         Account *account = [bixLocalAccount instance];
 //        account.avatarUrl = [NSURL URLWithString: @"http://121.40.72.197/upload/26674-c0199v.png"];
-        account.avatarUrl = [NSURL URLWithString:avatarUrlRight];
+        account.avatar = avatarUrlRight;
         account.nickname = [authorDic objectForKey:@"username"];
         itemRefresh = [[bixMomentDataItem alloc]initWithSender:account];
         

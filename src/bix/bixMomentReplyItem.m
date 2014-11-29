@@ -36,8 +36,8 @@
     return self.sender.nickname;
 }
 
--(NSURL*) avatarUrl{
-    return self.sender.avatarUrl;
+-(NSString*) avatar{
+    return self.sender.avatar;
 }
 
 -(NSString *)description{

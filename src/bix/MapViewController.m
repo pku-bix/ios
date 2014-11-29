@@ -83,9 +83,11 @@
         [locationManager requestWhenInUseAuthorization];
     }
     
+
 //    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, _mapY, rect.size.width, rect.size.height-40)];
     _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
     _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
+
     
 //    requestInfoFromServer = [[RequestInfoFromServer alloc]init];
 //    requestInfoFromServer.selectNotificationKind = 1;

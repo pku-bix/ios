@@ -33,7 +33,7 @@
 // TODO: 借助用HTTP层，从 user 动态获取以下属性
 
 -(NSURL*) avatarUrl{
-    return self.sender.avatarUrl;
+    return self.sender.avatar;
 }
 
 -(NSString*) nickname{

@@ -317,7 +317,7 @@
         // create MomentDataItem item
         // add item to MomentDataSource
         Account *account = [bixLocalAccount instance];
-        account.avatarUrl = [NSURL URLWithString: @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg"];
+        account.avatar = @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg";
         account.nickname = account.username;
         bixMomentDataItem *item = [[bixMomentDataItem alloc]initWithSender:account];
         //    item.imgUrls = [NSMutableArray arrayWithArray:self.mutableArray];

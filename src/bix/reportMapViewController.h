@@ -22,10 +22,12 @@
     IBOutlet UIButton *btnCurrentLocation;
     BMKSearch *_search;
     BMKUserLocation *current_Location;
+    
+    
+    __weak IBOutlet UIButton *btnEnlarge;
+    
     //       NSString *strLatitude, *strLongitude;
     //    IBOutlet BMKMapView *reportMap;
-    
-    IBOutlet UIButton *btnBack;
 }
 
 - (IBAction)backSettingView:(id)sender;
@@ -34,11 +36,11 @@
 @property NSString *strLongitude;
 
 //放大
-- (IBAction)zoomIn:(id)sender;
+- (void)zoomInReport;
 //缩小
-- (IBAction)zoomOut:(id)sender;
+- (void)zoomOutReport;
 
-- (IBAction)currentLocation:(id)sender;
+- (void)currentLocation;
 
 - (IBAction)nextStep:(id)sender;
 @end
