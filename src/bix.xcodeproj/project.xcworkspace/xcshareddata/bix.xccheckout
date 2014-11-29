@@ -10,31 +10,31 @@
 	<string>bix</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>C8F089DF-257A-4452-972E-E3FCEA87DBE7</key>
+		<key>ACFA69F1AAE8ACA9C70D75170EEDE90D3CE10730</key>
 		<string>https://bitbucket.org/pkubix/bix.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>src/bix.xcodeproj/project.xcworkspace</string>
+	<string>src/bix.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>C8F089DF-257A-4452-972E-E3FCEA87DBE7</key>
+		<key>ACFA69F1AAE8ACA9C70D75170EEDE90D3CE10730</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://bitbucket.org/pkubix/bix.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C8F089DF-257A-4452-972E-E3FCEA87DBE7</string>
+	<string>ACFA69F1AAE8ACA9C70D75170EEDE90D3CE10730</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C8F089DF-257A-4452-972E-E3FCEA87DBE7</string>
+			<string>ACFA69F1AAE8ACA9C70D75170EEDE90D3CE10730</string>
 			<key>IDESourceControlWCCName</key>
-			<string>bix-client</string>
+			<string>bix</string>
 		</dict>
 	</array>
 </dict>
