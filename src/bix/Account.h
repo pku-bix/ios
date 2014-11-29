@@ -25,7 +25,7 @@
 @property (nonatomic) NSString* wechatID;
 @property (nonatomic) NSString* teslaType;
 @property (nonatomic) NSString* nickname;
-@property (nonatomic) NSURL* avatarUrl;
+@property (nonatomic) NSString* avatar;
 
 - (void) save;
 

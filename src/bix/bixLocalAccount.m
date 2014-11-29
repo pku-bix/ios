@@ -83,7 +83,6 @@ static bixLocalAccount *instance = nil;
         _password    = [coder decodeObjectForKey: @"password"];
         _autoLogin   = [coder decodeBoolForKey:   @"auto_login"];
         _deviceToken = [coder decodeObjectForKey: @"device_token"];
-        _avatar = [coder decodeObjectForKey:@"avatar"];
     }
 
     return self;
