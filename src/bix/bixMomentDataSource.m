@@ -12,16 +12,19 @@
 
 @interface bixMomentDataSource()
 
+// 当前的操作
+typedef enum{
+    APPENDING,
+    REFRESHING
+}OperationType;
+
 @property NSMutableArray* items;
+@property OperationType operation;
 
 @end
 
+
 @implementation bixMomentDataSource
-{
-    AppDelegate *appDelegate;
-    // TODO: 测试数据，完成HTTP层后删除
-    Account* account;
-}
 
 +(bixMomentDataSource*) defaultSource
 {
@@ -40,13 +43,38 @@
 
 -(BOOL) update
 {
-    return YES;
+    self.operation = REFRESHING;
+    return [bixAPIProvider Pull:self];
 }
 
 -(BOOL) loadMore
 {
-    return YES;
+    self.operation = APPENDING;
+    return [bixAPIProvider Pull:self];
 }
+
+#pragma mark RemoteModel DataSource
+
+-(NSString*) modelPath{
+    return @"/api/posts";
+}
+
+
+#pragma mark RemoteModel Delegate
+
+-(void)PopulateWithData: (NSObject *)result{
+    
+    if (self.operation == REFRESHING) [self.items removeAllObjects];
+    
+    for (id resultItem in (NSArray*)result) {
+        bixMomentDataItem* dataItem = [bixMomentDataItem new];
+        [dataItem populateWithJSON:resultItem];
+        [self.items addObject:dataItem];
+    }
+}
+
+
+#pragma mark MomentDataSource
 
 -(BOOL) addMomentDataItem: (bixMomentDataItem*)item{
     //todo: add item to itemsArray

@@ -54,37 +54,42 @@
 #pragma mark RemoteModel Delegate
 //将充电桩数据分别封装进三种不同充电桩对象里面;
 
--(void) SucceedWithStatus: (NSInteger) code andJSONResult: (NSObject*) result{
+-(void) populateWithJSON:(NSObject *)result{
     [self.chargers removeAllObjects];
     
-    for (id obj in (NSArray*)result) {
-        bixCharger* charger = nil;
-        
-        NSString* type = [obj objectForKey:@"__t"];
-        
-        NSLog(@"%@, %d", type, [type isEqualToString:@"DestCharger"]);
-        
-        if([type isEqualToString:@"DestCharger"]){
-            charger = [bixDestCharger new];
-            charger.chargerType = @"目的充电桩";
+    @try {
+        for (id obj in (NSArray*)result) {
+            bixCharger* charger = nil;
+            
+            NSString* type = [obj objectForKey:@"type"];
+            
+            NSLog(@"%@, %d", type, [type isEqualToString:@"DestCharger"]);
+            
+            if([type isEqualToString:@"DestCharger"]){
+                charger = [bixDestCharger new];
+                charger.chargerType = @"目的充电桩";
+            }
+            else if([type isEqualToString:@"HomeCharger"]){
+                //continue;
+                charger = [bixHomeCharger new];
+                charger.chargerType = @"家庭充电桩";
+            }
+            else if([type isEqualToString:@"SuperCharger"]){
+                //            continue;
+                charger = [bixSuperCharger new];
+                charger.chargerType = @"超级充电桩";
+            }
+            
+            charger.modelId = [obj objectForKey:@"id"];
+            charger.latitude = [[obj objectForKey:@"latitude"] doubleValue];
+            charger.longitude = [[obj objectForKey:@"longitude"] doubleValue];
+            charger.address = [obj objectForKey:@"address"];
+            
+            [self.chargers setObject:charger forKey:charger.modelId];
         }
-        else if([type isEqualToString:@"HomeCharger"]){
-            //continue;
-            charger = [bixHomeCharger new];
-            charger.chargerType = @"家庭充电桩";
-        }
-        else if([type isEqualToString:@"SuperCharger"]){
-//            continue;
-            charger = [bixSuperCharger new];
-            charger.chargerType = @"超级充电桩";
-        }
-        
-        charger.modelId = [obj objectForKey:@"_id"];
-        charger.latitude = [[obj objectForKey:@"latitude"] doubleValue];
-        charger.longitude = [[obj objectForKey:@"longitude"] doubleValue];
-        charger.address = [obj objectForKey:@"detailedaddress"];
-        
-        [self.chargers setObject:charger forKey:charger.modelId];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"parse charger datasource error: %@", exception);
     }
     [self.observer modelUpdated: self];
 }

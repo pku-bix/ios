@@ -9,10 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "bixMomentDataItem.h"
 #import "bixRemoteModelObserver.h"
+#import "bixAPIProvider.h"
 
-@interface bixMomentDataSource : NSObject
-
-@property (nonatomic) id<bixRemoteModelObserver> observer;
+@interface bixMomentDataSource : bixRemoteModelBase
 
 //此数组保存添加的momentDataItem;
 @property (nonatomic) NSMutableArray *momentDataItemsArray;

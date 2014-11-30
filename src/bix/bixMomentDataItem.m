@@ -65,10 +65,15 @@
     return self;
 }
 
--(void)parseMoment:(NSNotification*)notification
-{
-    self.textContent = notification.object;
-    //NSLog(@"parseMoment in bixMomentDataItem.h is %@", momentPassage);
+-(void)populateWithJSON:(NSObject *)result{
+    @try{
+        NSDictionary* dict = (NSDictionary*) result;
+        self.textContent = [dict objectForKey:@"content"];
+        // TODO: 填充字段
+    }
+    @catch(NSException* e){
+        NSLog(@"parse moment item error, %@", e);
+    }
 }
 
 -(NSString *)description{

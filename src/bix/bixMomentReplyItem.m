@@ -32,6 +32,10 @@
     return self;
 }
 
+-(void)populateWithJSON:(NSObject *)result{
+    // TODO: 填充字段
+}
+
 -(NSString*) nickname{
     return self.sender.nickname;
 }

@@ -10,16 +10,17 @@
 #import "bixRemoteModelDelegate.h"
 #import "bixRemoteModelDataSource.h"
 
+// 提供 HTTP API 的原子操作
 @interface bixAPIProvider : NSObject<NSURLConnectionDataDelegate>
 
 // 远程模型
-@property (nonatomic) id<bixRemoteModelDelegate, bixRemoteModelDataSource> model;
+@property (nonatomic, weak) id<bixRemoteModelDelegate, bixRemoteModelDataSource> model;
 
 
 // 上传
-+(bixAPIProvider*) Push: (id<bixRemoteModelDelegate, bixRemoteModelDataSource>) model;
++(BOOL) Push: (id<bixRemoteModelDelegate, bixRemoteModelDataSource>) model;
 
 // 下载
-+(bixAPIProvider*) Pull: (id<bixRemoteModelDelegate, bixRemoteModelDataSource>) model;
++(BOOL) Pull: (id<bixRemoteModelDelegate, bixRemoteModelDataSource>) model;
 
 @end
