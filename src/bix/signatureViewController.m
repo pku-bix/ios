@@ -47,13 +47,13 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseTest:) name:@"nameChange" object:nil];
-    request = [[RequestInfoFromServer alloc]init];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseTest:) name:@"nameChange" object:nil];
+//    request = [[RequestInfoFromServer alloc]init];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"nameChange" object:nil];
+//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"nameChange" object:nil];
 }
 
 -(void)parseTest:(NSNotification*)notification
@@ -75,11 +75,13 @@
  */
 
 - (IBAction)saveSignature:(id)sender {
-    NSLog(@"signature is %@", self.signature.text);
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"signatureChange" object:self.signature.text];
-    Account *account = [bixLocalAccount instance];
+//    NSLog(@"signature is %@", self.signature.text);
+//    [[NSNotificationCenter defaultCenter]postNotificationName:@"signatureChange" object:self.signature.text];
+    bixLocalAccount *account = [bixLocalAccount instance];
     account.signature = self.signature.text;
-    [account save];
+    
+    [account pushProperties:signature];
+//    [account save];
     //发送图片、文字的异步信息;
     //    [request sendAsynchronousPostRequest];
     

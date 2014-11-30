@@ -75,6 +75,15 @@ static bixLocalAccount *instance = nil;
     return [formBuild closeForm];
 }
 
+#pragma mark bixRemoteModelDelegate
+-(void)succeedWithStatus:(NSInteger)code
+{
+    NSLog(@"push成功，httpStatus: %d", code);
+    [self save];
+}
+
+
+
 // singleton instance
 +(bixLocalAccount*)instance{
     return instance;
