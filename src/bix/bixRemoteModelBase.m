@@ -31,13 +31,10 @@
 }
 
 // 数据响应成功
--(void) SucceedWithStatus: (NSInteger) code andJSONResult: (NSObject*) result{
-    
-}
-
-// 响应成功
--(void) succeedWithStatus: (NSInteger) code{
-    
+-(void) succeedWithStatus:(NSInteger)code{
+#ifdef DEBUG
+    NSLog(@"request succeed with code: %d", code);
+#endif
 }
 
 // 失败

@@ -8,11 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "Account.h"
+#import "bixRemoteModelDelegate.h"
 
-@interface bixMomentDataItem : NSObject
-{
-    
-}
+@interface bixMomentDataItem : NSObject<bixRemoteModelDelegate>
 
 // 用发送者初始化
 - (id) initWithSender: (Account*) user;
