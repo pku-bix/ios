@@ -405,7 +405,6 @@
 //服务器开始响应请求,异步请求的代理方法;
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-//    [response ]
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
     if ([response respondsToSelector:@selector(allHeaderFields)]) {
 //        NSDictionary *dictionary = [httpResponse allHeaderFields];
