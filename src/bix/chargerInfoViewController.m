@@ -161,7 +161,8 @@
 }
 
 - (IBAction)backReportMapView:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    self.tabBarController.tabBar.hidden = YES;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

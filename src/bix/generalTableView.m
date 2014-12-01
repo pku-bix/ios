@@ -93,9 +93,9 @@
                 //                }
                 //                cell.detailTextLabel.text= @"     dsx";
                 
-                [cell.imageView sd_setImageWithURL:
-                 [NSURL URLWithString: [bixLocalAccount instance].avatar]
-                                  placeholderImage:[UIImage imageNamed:@"default_headshow.png"]];
+//                [cell.imageView sd_setImageWithURL:
+//                 [NSURL URLWithString: [bixLocalAccount instance].avatar]
+//                                  placeholderImage:[UIImage imageNamed:@"default_headshow.png"]];
                 break;
             default:
                 break;

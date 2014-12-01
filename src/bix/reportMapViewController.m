@@ -48,7 +48,7 @@
     self.tabBarController.tabBar.hidden=YES;
     
 //    [reportMapView addSubview:btnShrink];
-    
+    self.tabBarController.tabBar.hidden = YES;
     image= [UIImage imageNamed:@"plus2-64.png"];
      btnMagnify= [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [btnMagnify setBackgroundImage:image forState:UIControlStateNormal];
@@ -70,12 +70,22 @@
     btnCurrentLocation.frame = locationFrame;
     [btnCurrentLocation addTarget:self action:@selector(currentLocation) forControlEvents:UIControlEventTouchUpInside];
     
+    
+    chargerLoc = [[UITextField alloc] initWithFrame:CGRectMake(10, 74, 220.0f, 30.0f)];
+    [chargerLoc setBorderStyle:UITextBorderStyleRoundedRect];
+    
+    chargerLoc.placeholder = @"经度：116.400819   纬度：39.914714";
+    chargerLoc.textAlignment=NSTextAlignmentCenter;
+    chargerLoc.font=[UIFont fontWithName:@"Times New Roman" size:12];
+    chargerLoc.textColor=[UIColor blackColor];
+    
     [self.view addSubview:reportMapView];
  //   [self.view addSubview:btnReportCharger];
  //   [self.view addSubview:btnCurrentLocation];
     [self.view addSubview:btnMagnify];
     [self.view addSubview:btnShrink];
     [self.view addSubview:btnCurrentLocation];
+    [self.view addSubview:chargerLoc];
 //    [self.view addSubview:btnShrink];
     
     //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseAgain:) name:@"chargerInfoViewController" object:nil];
@@ -113,6 +123,7 @@
     [reportMapView viewWillAppear];
     reportMapView.delegate = self;
     _search.delegate = self;
+    self.tabBarController.tabBar.hidden = YES;
     [self locateCurrentPosition];
 }
 
@@ -124,6 +135,7 @@
     reportMapView.delegate = nil;
     _search.delegate = nil;
     reportMapView.showsUserLocation = NO;
+    self.tabBarController.tabBar.hidden = NO;
 }
 
 
@@ -335,6 +347,6 @@
 
 
 - (IBAction)backSettingView:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

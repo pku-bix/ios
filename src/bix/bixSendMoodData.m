@@ -70,6 +70,9 @@
 //    flag = 0;  //
     self.imageView1.image = self.image1;
     
+    self.addPictureButton.frame = CGRectMake(self.imageView2.frame.origin.x, self.imageView2.frame.origin.y,
+                                             self.imageView2.frame.size.width, self.imageView2.frame.size.height);
+    
     self.mutableArray = [NSMutableArray arrayWithCapacity:9];//最多添加9张图片;
     [self.mutableArray addObject:self.image1];
 }
