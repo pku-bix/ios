@@ -40,7 +40,7 @@
     // Do any additional setup after loading the view.
     rect = [[UIScreen mainScreen]bounds];
    
-    //reportMapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 64, rect.size.width, rect.size.height)];
+    reportMapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 64, rect.size.width, rect.size.height)];
     //
     _search = [[BMKSearch alloc]init ];
     item_Annotation = [[BMKPointAnnotation alloc]init];
@@ -78,6 +78,9 @@
     chargerLoc.textAlignment=NSTextAlignmentCenter;
     chargerLoc.font=[UIFont fontWithName:@"Times New Roman" size:12];
     chargerLoc.textColor=[UIColor blackColor];
+    
+    reportMapView.delegate = self;
+    _search.delegate = self;
     
     [self.view addSubview:reportMapView];
  //   [self.view addSubview:btnReportCharger];
@@ -121,8 +124,7 @@
     self.tabBarController.tabBar.hidden=YES;
     NSLog(@"reportMap viewWillAppear");
     [reportMapView viewWillAppear];
-    reportMapView.delegate = self;
-    _search.delegate = self;
+    
     self.tabBarController.tabBar.hidden = YES;
     [self locateCurrentPosition];
 }
@@ -130,7 +132,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     NSLog(@"reportMapView viewWillDisappear");
-    self.tabBarController.tabBar.hidden=NO;
+//    self.tabBarController.tabBar.hidden=NO;
     [reportMapView viewWillDisappear];
     reportMapView.delegate = nil;
     _search.delegate = nil;
