@@ -23,6 +23,7 @@
     BMKSearch *_search;
     BMKUserLocation *current_Location;
     
+    UITextField *chargerLoc;
     
     __weak IBOutlet UIButton *btnEnlarge;
     

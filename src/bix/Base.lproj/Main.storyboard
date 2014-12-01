@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jJR-kc-dNW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6246" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="jJR-kc-dNW">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6239"/>
     </dependencies>
     <scenes>
         <!--First-->
@@ -123,7 +123,7 @@
                                             <constraint firstAttribute="width" constant="40" id="QVK-bP-P4b"/>
                                             <constraint firstAttribute="height" constant="40" id="S3M-6V-HbN"/>
                                         </constraints>
-                                        <state key="normal" image="7C5DC188-F82F-4F56-A763-8B4AC747A592">
+                                        <state key="normal" image="D6F54521-302C-41C6-8BEE-D07DD8E0A54B">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -602,7 +602,7 @@
                         <segue destination="bWp-0K-nfV" kind="push" identifier="aboutBix" id="ULP-xE-8ax"/>
                         <segue destination="jqC-9z-dlB" kind="push" identifier="feedBack" id="Lwm-qc-VlT"/>
                         <segue destination="Rn6-PE-tOj" kind="push" identifier="personInfo" id="uLg-Jp-l8o"/>
-                        <segue destination="fYr-A5-RDc" kind="modal" identifier="reportMap" id="VBg-uU-6gf"/>
+                        <segue destination="fYr-A5-RDc" kind="push" identifier="reportMap" id="VBg-uU-6gf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Jj-xf-RIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -662,70 +662,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0SW-xN-ay3" customClass="BMKMapView">
-                                <rect key="frame" x="0.0" y="64" width="320" height="454"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRz-ek-cxl">
-                                        <rect key="frame" x="265" y="109" width="39" height="38"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="38" id="R4k-XI-fN8"/>
-                                            <constraint firstAttribute="width" constant="39" id="oOv-PP-aob"/>
-                                        </constraints>
-                                        <state key="normal" image="report_charger.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="nextStep:" destination="fYr-A5-RDc" eventType="touchUpInside" id="Euk-hN-pbm"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NbY-hy-LiO">
-                                        <rect key="frame" x="265" y="169" width="38" height="38"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="38" id="Dkz-Eg-Tsv"/>
-                                            <constraint firstAttribute="height" constant="38" id="V4R-jb-xmX"/>
-                                        </constraints>
-                                        <state key="normal" image="locate_charger.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="currentLocation:" destination="fYr-A5-RDc" eventType="touchUpInside" id="1Vu-g3-idd"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kA7-vv-FCm">
-                                        <rect key="frame" x="268" y="341" width="32" height="32"/>
-                                        <state key="normal" image="minus2-64.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="zoomOut:" destination="fYr-A5-RDc" eventType="touchUpInside" id="BS6-w5-SM6"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyC-Fp-fZl">
-                                        <rect key="frame" x="268" y="311" width="32" height="32"/>
-                                        <state key="normal" image="plus2-64.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="zoomIn:" destination="fYr-A5-RDc" eventType="touchUpInside" id="QuF-Ib-Gh0"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2K-kb-adX">
-                                        <rect key="frame" x="26" y="20" width="30" height="30"/>
-                                        <state key="normal" title="返回">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="backSettingView:" destination="fYr-A5-RDc" eventType="touchUpInside" id="58G-YJ-OpI"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0SW-xN-ay3" customClass="BMKMapView">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="NbY-hy-LiO" secondAttribute="trailing" constant="17" id="ADR-2a-I1y"/>
-                                    <constraint firstItem="wRz-ek-cxl" firstAttribute="top" secondItem="0SW-xN-ay3" secondAttribute="top" constant="109" id="OHl-xS-1vb"/>
-                                    <constraint firstItem="NbY-hy-LiO" firstAttribute="top" secondItem="wRz-ek-cxl" secondAttribute="bottom" constant="22" id="PIt-j7-mPV"/>
-                                    <constraint firstAttribute="trailing" secondItem="wRz-ek-cxl" secondAttribute="trailing" constant="16" id="mxq-7d-yTe"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -733,18 +672,25 @@
                             <constraint firstAttribute="trailing" secondItem="0SW-xN-ay3" secondAttribute="trailing" id="Zrv-Eb-tfs"/>
                             <constraint firstItem="0SW-xN-ay3" firstAttribute="top" secondItem="g3v-qW-hgG" secondAttribute="bottom" id="eSN-ay-MNk"/>
                             <constraint firstItem="0SW-xN-ay3" firstAttribute="leading" secondItem="ILv-PV-Shu" secondAttribute="leading" id="jM3-fP-hZn"/>
-                            <constraint firstItem="doW-vQ-XL4" firstAttribute="top" secondItem="0SW-xN-ay3" secondAttribute="bottom" constant="1" id="ubA-zx-Bfa"/>
+                            <constraint firstItem="doW-vQ-XL4" firstAttribute="top" secondItem="0SW-xN-ay3" secondAttribute="bottom" constant="-49" id="ubA-zx-Bfa"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="充电桩位置" id="SHi-qz-M7F"/>
+                    <navigationItem key="navigationItem" title="充电桩位置" id="SHi-qz-M7F">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="8S3-4v-TbH">
+                            <connections>
+                                <action selector="backSettingView:" destination="fYr-A5-RDc" id="L6L-zN-IDA"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="上报" id="MK6-ZA-riU">
+                            <color key="tintColor" red="0.12669771639999999" green="0.89595170449999995" blue="0.26163901369999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="nextStep:" destination="fYr-A5-RDc" id="ELD-8v-zfI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="btnBack" destination="D2K-kb-adX" id="Xqt-Lf-g6p"/>
-                        <outlet property="btnCurrentLocation" destination="NbY-hy-LiO" id="dng-F1-P7s"/>
-                        <outlet property="btnMagnify" destination="VyC-Fp-fZl" id="4FE-eJ-UV0"/>
-                        <outlet property="btnReportCharger" destination="wRz-ek-cxl" id="Bbq-X0-6El"/>
-                        <outlet property="btnShrink" destination="kA7-vv-FCm" id="CUh-f7-Qgc"/>
                         <outlet property="reportMapView" destination="0SW-xN-ay3" id="bWr-uN-hOH"/>
-                        <segue destination="hlB-Rf-wAR" kind="modal" identifier="report" modalTransitionStyle="coverVertical" id="Q32-gz-yb6"/>
+                        <segue destination="hlB-Rf-wAR" kind="push" identifier="report" id="Q32-gz-yb6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZDv-d8-SYh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -988,22 +934,22 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮箱地址" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="akX-M6-yYY">
-                                <rect key="frame" x="10" y="164" width="300" height="30"/>
+                                <rect key="frame" x="10" y="159" width="300" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="详细地址" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="iqK-tT-g6g">
-                                <rect key="frame" x="10" y="207" width="300" height="30"/>
+                                <rect key="frame" x="10" y="197" width="300" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="充电桩数量" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="HgH-W5-kwT">
-                                <rect key="frame" x="10" y="250" width="300" height="30"/>
+                                <rect key="frame" x="10" y="235" width="300" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="经纬度" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ace-Oa-y7E">
-                                <rect key="frame" x="10" y="296" width="300" height="30"/>
+                                <rect key="frame" x="10" y="273" width="300" height="30"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="NO"/>
                                 </accessibility>
@@ -1011,26 +957,17 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="备注" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZeI-lU-fPN">
-                                <rect key="frame" x="10" y="339" width="300" height="30"/>
+                                <rect key="frame" x="10" y="311" width="300" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1cQ-4j-Neh">
-                                <rect key="frame" x="10" y="386" width="300" height="30"/>
+                                <rect key="frame" x="10" y="349" width="300" height="30"/>
                                 <state key="normal" title="上报">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="reportDetailChargerInfo:" destination="hlB-Rf-wAR" eventType="touchUpInside" id="RMw-TM-ugH"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiK-CS-4wh">
-                                <rect key="frame" x="20" y="20" width="30" height="30"/>
-                                <state key="normal" title="返回">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="backReportMapView:" destination="hlB-Rf-wAR" eventType="touchUpInside" id="aOH-Vf-sDf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1044,7 +981,13 @@
                             <outletCollection property="gestureRecognizers" destination="9qq-0s-15z" appends="YES" id="yfg-MW-0Il"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="分享详情" id="wVf-zr-3ve"/>
+                    <navigationItem key="navigationItem" title="分享详情" id="wVf-zr-3ve">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="iFm-yX-f8b">
+                            <connections>
+                                <action selector="backReportMapView:" destination="hlB-Rf-wAR" id="9EC-ew-0X2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="btnSubmitReport" destination="1cQ-4j-Neh" id="IYc-DT-OF8"/>
                         <outlet property="coordinate" destination="Ace-Oa-y7E" id="mkQ-PB-i6K"/>
@@ -1317,7 +1260,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="7C5DC188-F82F-4F56-A763-8B4AC747A592" width="90" height="90">
+        <image name="D6F54521-302C-41C6-8BEE-D07DD8E0A54B" width="90" height="90">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -1912,12 +1855,8 @@ AAAAAAAAAAAAiL8
         <image name="add_photo_label.png" width="32" height="32"/>
         <image name="contacts-24.png" width="24" height="24"/>
         <image name="destination_960.png" width="640" height="960"/>
-        <image name="locate_charger.png" width="90" height="91"/>
         <image name="loginbg.png" width="640" height="1136"/>
         <image name="map_marker-24.png" width="24" height="24"/>
-        <image name="minus2-64.png" width="32" height="32"/>
-        <image name="plus2-64.png" width="32" height="32"/>
-        <image name="report_charger.png" width="90" height="90"/>
         <image name="settings-24.png" width="24" height="24"/>
         <image name="share.png" width="30" height="24"/>
         <image name="topic-24.png" width="24" height="24"/>
