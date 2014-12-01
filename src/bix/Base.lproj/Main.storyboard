@@ -123,7 +123,7 @@
                                             <constraint firstAttribute="width" constant="40" id="QVK-bP-P4b"/>
                                             <constraint firstAttribute="height" constant="40" id="S3M-6V-HbN"/>
                                         </constraints>
-                                        <state key="normal" image="7C5DC188-F82F-4F56-A763-8B4AC747A592">
+                                        <state key="normal" image="A07954D4-251B-4ACE-B218-8FBFC47D6824">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -583,7 +583,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1621" y="-491"/>
+            <point key="canvasLocation" x="1621" y="-415"/>
         </scene>
         <!--设置-->
         <scene sceneID="ePL-wr-2wg">
@@ -664,87 +664,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0SW-xN-ay3" customClass="BMKMapView">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0SW-xN-ay3" customClass="BMKMapView">
                                 <rect key="frame" x="0.0" y="64" width="320" height="454"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRz-ek-cxl">
-                                        <rect key="frame" x="265" y="109" width="39" height="38"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="38" id="R4k-XI-fN8"/>
-                                            <constraint firstAttribute="width" constant="39" id="oOv-PP-aob"/>
-                                        </constraints>
-                                        <state key="normal" image="report_charger.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="nextStep:" destination="fYr-A5-RDc" eventType="touchUpInside" id="Euk-hN-pbm"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NbY-hy-LiO">
-                                        <rect key="frame" x="265" y="169" width="38" height="38"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="38" id="Dkz-Eg-Tsv"/>
-                                            <constraint firstAttribute="height" constant="38" id="V4R-jb-xmX"/>
-                                        </constraints>
-                                        <state key="normal" image="locate_charger.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="currentLocation:" destination="fYr-A5-RDc" eventType="touchUpInside" id="1Vu-g3-idd"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kA7-vv-FCm">
-                                        <rect key="frame" x="268" y="341" width="32" height="32"/>
-                                        <state key="normal" image="minus2-64.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="zoomOut:" destination="fYr-A5-RDc" eventType="touchUpInside" id="BS6-w5-SM6"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyC-Fp-fZl">
-                                        <rect key="frame" x="268" y="311" width="32" height="32"/>
-                                        <state key="normal" image="plus2-64.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="zoomIn:" destination="fYr-A5-RDc" eventType="touchUpInside" id="QuF-Ib-Gh0"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2K-kb-adX">
-                                        <rect key="frame" x="26" y="20" width="30" height="30"/>
-                                        <state key="normal" title="返回">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="backSettingView:" destination="fYr-A5-RDc" eventType="touchUpInside" id="58G-YJ-OpI"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="NbY-hy-LiO" secondAttribute="trailing" constant="17" id="ADR-2a-I1y"/>
-                                    <constraint firstItem="wRz-ek-cxl" firstAttribute="top" secondItem="0SW-xN-ay3" secondAttribute="top" constant="109" id="OHl-xS-1vb"/>
-                                    <constraint firstItem="NbY-hy-LiO" firstAttribute="top" secondItem="wRz-ek-cxl" secondAttribute="bottom" constant="22" id="PIt-j7-mPV"/>
-                                    <constraint firstAttribute="trailing" secondItem="wRz-ek-cxl" secondAttribute="trailing" constant="16" id="mxq-7d-yTe"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="0SW-xN-ay3" secondAttribute="trailing" id="Zrv-Eb-tfs"/>
-                            <constraint firstItem="0SW-xN-ay3" firstAttribute="top" secondItem="g3v-qW-hgG" secondAttribute="bottom" id="eSN-ay-MNk"/>
-                            <constraint firstItem="0SW-xN-ay3" firstAttribute="leading" secondItem="ILv-PV-Shu" secondAttribute="leading" id="jM3-fP-hZn"/>
-                            <constraint firstItem="doW-vQ-XL4" firstAttribute="top" secondItem="0SW-xN-ay3" secondAttribute="bottom" constant="1" id="ubA-zx-Bfa"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="充电桩位置" id="SHi-qz-M7F"/>
                     <connections>
-                        <outlet property="btnBack" destination="D2K-kb-adX" id="Xqt-Lf-g6p"/>
-                        <outlet property="btnCurrentLocation" destination="NbY-hy-LiO" id="dng-F1-P7s"/>
-                        <outlet property="btnMagnify" destination="VyC-Fp-fZl" id="4FE-eJ-UV0"/>
-                        <outlet property="btnReportCharger" destination="wRz-ek-cxl" id="Bbq-X0-6El"/>
-                        <outlet property="btnShrink" destination="kA7-vv-FCm" id="CUh-f7-Qgc"/>
                         <outlet property="reportMapView" destination="0SW-xN-ay3" id="bWr-uN-hOH"/>
                         <segue destination="hlB-Rf-wAR" kind="modal" identifier="report" modalTransitionStyle="coverVertical" id="Q32-gz-yb6"/>
                     </connections>
@@ -1319,7 +1247,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="7C5DC188-F82F-4F56-A763-8B4AC747A592" width="90" height="90">
+        <image name="A07954D4-251B-4ACE-B218-8FBFC47D6824" width="90" height="90">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -1914,12 +1842,8 @@ AAAAAAAAAAAAiL8
         <image name="add_photo_label.png" width="32" height="32"/>
         <image name="contacts-24.png" width="24" height="24"/>
         <image name="destination_960.png" width="640" height="960"/>
-        <image name="locate_charger.png" width="90" height="91"/>
         <image name="loginbg.png" width="640" height="1136"/>
         <image name="map_marker-24.png" width="24" height="24"/>
-        <image name="minus2-64.png" width="32" height="32"/>
-        <image name="plus2-64.png" width="32" height="32"/>
-        <image name="report_charger.png" width="90" height="90"/>
         <image name="settings-24.png" width="24" height="24"/>
         <image name="share.png" width="30" height="24"/>
         <image name="topic-24.png" width="24" height="24"/>
