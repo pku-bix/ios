@@ -46,6 +46,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imageView8;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView9;
 
+@property (weak, nonatomic) IBOutlet UIButton *addPictureButton;
 
 - (IBAction)cancleSendMood:(id)sender;
 

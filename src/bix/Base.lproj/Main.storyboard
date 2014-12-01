@@ -504,36 +504,40 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9xt-3r-6Eo">
-                                <rect key="frame" x="41" y="232" width="70" height="70"/>
+                                <rect key="frame" x="20" y="198" width="64" height="64"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="goq-d2-Uzq">
-                                <rect key="frame" x="124" y="232" width="70" height="70"/>
+                                <rect key="frame" x="92" y="198" width="64" height="64"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q3b-q7-D74">
-                                <rect key="frame" x="209" y="232" width="70" height="70"/>
+                                <rect key="frame" x="164" y="198" width="64" height="64"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3YE-CW-Il2">
-                                <rect key="frame" x="41" y="308" width="70" height="70"/>
+                                <rect key="frame" x="237" y="198" width="64" height="64"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SBg-AT-2c0">
-                                <rect key="frame" x="124" y="308" width="70" height="70"/>
+                                <rect key="frame" x="20" y="270" width="64" height="64"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vqc-QL-kiG">
-                                <rect key="frame" x="209" y="308" width="70" height="70"/>
+                                <rect key="frame" x="92" y="270" width="64" height="64"/>
                             </imageView>
-                            <button opaque="NO" alpha="0.69999999999999973" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xh8-T0-6x3">
-                                <rect key="frame" x="233" y="188" width="74" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.76662138476714714" blue="0.24184339931349474" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="发送">
-                                    <color key="titleColor" red="0.16370738636363635" green="0.15865604046533796" blue="0.163289745697246" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendTextAndPicture:" destination="aOG-92-vkB" eventType="touchUpInside" id="mFn-ey-XRK"/>
-                                </connections>
-                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="01F-0H-a51">
+                                <rect key="frame" x="164" y="270" width="64" height="64"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JEB-Dd-dJE">
+                                <rect key="frame" x="237" y="270" width="64" height="64"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="这一刻的想法……" translatesAutoresizingMaskIntoConstraints="NO" id="3SQ-F9-p9t">
+                                <rect key="frame" x="20" y="78" width="281" height="102"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qvH-kq-Ftt">
+                                <rect key="frame" x="20" y="342" width="64" height="64"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2F-mu-UFA">
-                                <rect key="frame" x="20" y="187" width="32" height="32"/>
+                                <rect key="frame" x="108" y="358" width="32" height="32"/>
                                 <state key="normal" image="add_photo_label.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -541,21 +545,6 @@
                                     <action selector="addPicture:" destination="aOG-92-vkB" eventType="touchUpInside" id="8Sp-G1-BvQ"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="01F-0H-a51">
-                                <rect key="frame" x="41" y="384" width="70" height="70"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JEB-Dd-dJE">
-                                <rect key="frame" x="124" y="384" width="70" height="70"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qvH-kq-Ftt">
-                                <rect key="frame" x="209" y="384" width="70" height="70"/>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="这一刻的想法……" translatesAutoresizingMaskIntoConstraints="NO" id="3SQ-F9-p9t">
-                                <rect key="frame" x="20" y="78" width="280" height="102"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -563,7 +552,16 @@
                             <outletCollection property="gestureRecognizers" destination="LBp-gv-b36" appends="YES" id="Eoj-i9-ipM"/>
                         </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="Q38-uz-5q4">
+                        <barButtonItem key="rightBarButtonItem" title="发送" id="lgJ-TC-kjd">
+                            <color key="tintColor" red="0.12669771639999999" green="0.89595170449999995" blue="0.26163901369999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="sendTextAndPicture:" destination="aOG-92-vkB" id="GDX-Td-CID"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="addPictureButton" destination="d2F-mu-UFA" id="sso-Gg-7O1"/>
                         <outlet property="imageView1" destination="9xt-3r-6Eo" id="BPJ-1W-iUu"/>
                         <outlet property="imageView2" destination="goq-d2-Uzq" id="jKB-yn-Iub"/>
                         <outlet property="imageView3" destination="q3b-q7-D74" id="ExY-mj-mAO"/>
@@ -583,7 +581,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1621" y="-491"/>
+            <point key="canvasLocation" x="1621" y="-493"/>
         </scene>
         <!--设置-->
         <scene sceneID="ePL-wr-2wg">
