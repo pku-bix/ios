@@ -33,7 +33,7 @@
 // TODO: 借助用HTTP层，从 user 动态获取以下属性
 
 -(NSURL*) avatarUrl{
-    return self.sender.avatarUrl;
+    return [NSURL URLWithString: self.sender.avatar];
 }
 
 -(NSString*) nickname{
@@ -65,15 +65,20 @@
     return self;
 }
 
--(void)parseMoment:(NSNotification*)notification
-{
-    self.textContent = notification.object;
-    //NSLog(@"parseMoment in bixMomentDataItem.h is %@", momentPassage);
+-(void)populateWithJSON:(NSObject *)result{
+    @try{
+        NSDictionary* dict = (NSDictionary*) result;
+        self.textContent = [dict objectForKey:@"content"];
+        // TODO: 填充字段
+    }
+    @catch(NSException* e){
+        NSLog(@"parse moment item error, %@", e);
+    }
 }
 
 -(NSString *)description{
     return [NSString stringWithFormat:@"nickname:%@\navatarUrl:%@\npassage:%@\npictureUrls:%@\nreplies:%@",
-     self.nickname, self.avatarUrl, self.textContent, self.imgUrls, self.replies];
+     self.nickname, self.sender.avatar, self.textContent, self.imgUrls, self.replies];
 }
 
 @end

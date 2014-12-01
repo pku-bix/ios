@@ -51,15 +51,21 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.chargerAddress.text = self.detailAddress;
+    //充电位数量;
+    self.chargerParkingnum.text = [NSString stringWithFormat:@"%d", self.charger.parkingnum ];
+    //详细地址;
+    self.chargerAddress.text =self.charger.address;
+//    self.chargerAddress.text = self.detailAddress;
     self.chargerAddress.font = [UIFont systemFontOfSize:16];
     self.chargerAddress.selectable = NO;
     self.chargerAddress.editable = NO;
     self.chargerAddress.scrollEnabled = NO;
-    
-    self.chargerType.text = self.type;
-    self.chargerParkingnum.text = self.parkingnum;
-    self.chargerInfo.text = self.info;
+    //充电桩类型
+    self.chargerType.text = self.charger.chargerType;
+//
+//    self.chargerType.text = self.type;
+//    self.chargerParkingnum.text = self.parkingnum;
+//    self.chargerInfo.text = self.info;
 }
 - (IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

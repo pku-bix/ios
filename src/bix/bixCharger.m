@@ -16,7 +16,8 @@
 // 在API服务器模型的路径，eg：charger/ef131ab3f34133ab
 -(NSString*) modelPath
 {
-    return [NSString stringWithFormat:@"charger/%@", self.modelId];
+
+    return [NSString stringWithFormat:@"/api/charger/%@", self.modelId];
 }
 
 // PUSH请求的request body
@@ -27,7 +28,20 @@
 
 -(void) SucceedWithStatus: (NSInteger) code andJSONResult: (NSObject*) result{
     id obj = (NSDictionary*)result;
-    self.parkingnum = [[obj objectForKey:@"parkingnum"] intValue];
+    @try {
+        self.parkingnum = [[obj objectForKey:@"parkingnum"] intValue];
+        self.address = [obj objectForKey:@"detailedaddress"];
+        self.latitude = [[obj objectForKey:@"latitude" ] doubleValue];
+        self.longitude = [[obj objectForKey:@"longitude"]doubleValue];
+        self.comment = [obj objectForKey:@"comment"] ;
+                
+    }
+    @catch (NSException *exception) {
+        NSLog(@"解析错误，exception:%@", exception);
+    }
+    @finally {
+        
+    }
 }
 
 @end

@@ -17,7 +17,7 @@
 #import "bixDestCharger.h"
 #import "bixHomeCharger.h"
 #import "bixSuperCharger.h"
-
+#import "bixAPIProvider.h"
 
 @interface MapViewController()
 {
@@ -43,6 +43,8 @@
     NSInteger selectCharger;
     detailViewController *detail;
     CLLocationManager  *locationManager;
+    
+    detailViewController *detailView; //
 }
 
 #pragma mark initialize
@@ -68,7 +70,7 @@
     selectCharger = -1;
     
     rect = [[UIScreen mainScreen] bounds];
-    GLfloat _mapY = self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y;
+//    GLfloat _mapY = self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y;
     
     //  CGSize size = rect.size;   CGFloat width = size.width;  CGFloat height = size.height;
    
@@ -81,12 +83,11 @@
         [locationManager requestWhenInUseAuthorization];
     }
     
-    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 20, rect.size.width, rect.size.height-40)];
 
-//    _mapView.delegate = self;
-//    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
-//  [self sendRequest];
-    
+//    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, _mapY, rect.size.width, rect.size.height-40)];
+    _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
+    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
+
     
 //    requestInfoFromServer = [[RequestInfoFromServer alloc]init];
 //    requestInfoFromServer.selectNotificationKind = 1;
@@ -94,11 +95,10 @@
     
     self.chargerDataSource = [bixChargerDataSource defaultSource];
     self.chargerDataSource.observer = self;
-    [self.chargerDataSource pullChargers];
+    [self.chargerDataSource pull];
     
     [self initMapViewButton];
 
-   
     detailInfoArray = [NSMutableArray arrayWithCapacity:DETAIL_INFO_NUMBER];
     NSLog(@"end viewDidLoad");
 //    [self initMapView];
@@ -264,27 +264,19 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseResult:) name:REQUEST_SIMPLE_INFO object:nil];
-    //注册获取某个具体充电桩详细信息的通知;
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseDetailResult:) name:REQUEST_CHARGER_DETAIL_INFO object:nil];
-
-   //  [_mapManager start:BAIDU_MAP_KEY  generalDelegate:self];
-    NSLog(@"viewWillAppear");
-    [_mapView viewWillAppear];
-    _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
-    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
+    NSLog(@"MapViewController viewWillAppear");
+//    [_mapView viewWillAppear];
+//    _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
+//    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"viewWillDisappear");
-    [_mapView viewWillDisappear];
-    _mapView.delegate = nil; // 不用时，置nil
-    _search.delegate = nil; // 不用时，置nil
-    
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:REQUEST_SIMPLE_INFO object:nil];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:REQUEST_CHARGER_DETAIL_INFO object:nil];
-   // NSLog(@"map view disappear");
+    NSLog(@"MapViewController viewWillDisappear");
+//    [_mapView viewWillDisappear];
+//    _mapView.delegate = nil; // 不用时，置nil
+//    _search.delegate = nil; // 不用时，置nil
+//
 }
 
 - (void)didReceiveMemoryWarning
@@ -344,7 +336,7 @@
 
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
 {
-    if (([annotation isKindOfClass:[CustomBMKPointAnnotation class]]) && (        [(CustomBMKPointAnnotation*)annotation type] == 0))
+    if (([annotation isKindOfClass:[CustomBMKPointAnnotation class]]) && (        [(CustomBMKPointAnnotation*)annotation type] == 2))
     {
 //    (CustomBMKPointAnnotation*)annotation.type 会报错， 因为.的优先级高于(),所以在类型没转化成功时就调用了，故访问不了type这个属性;
         BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
@@ -382,7 +374,7 @@
 //        [selectButton setBackgroundColor:[UIColor redColor]];
         return newAnnotationView;
     }
-
+    NSLog(@"no annotation type ,fuck");
 return nil;
 
 }
@@ -422,30 +414,51 @@ return nil;
 //当点击annotation view弹出的泡泡时，调用此接口
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view
 {
-//    NSLog(@" view.accessibilityValue is %@", view.reuseIdentifier);
     NSLog(@"点击annotation view弹出的泡泡, I like programming!");
     NSLog(@"%@", view.annotation.title);
-    NSString *strId;
-   
-//    detailInfoArray = [NSMutableArray arrayWithCapacity:DETAIL_INFO_NUMBER];
-    //先删除之前数组的数据，否则数据会不断累加，这是可变数组。
-//    [detailInfoArray removeAllObjects];
-    int k = 0;
+//    NSString *strId;
+    //如果点击的是百度地图自带的 “我的位置” 按钮,则不需要弹出充电桩详情页面;
     if ([(view.annotation.title) isEqualToString:@"我的位置"]) {
-        return ;
-    }
-    for (int i = 0; i < chargePileNumber; i++) {
-        //通过详细地址名来找到对应的id,从而构成请求的地址;
-        if([[muArray objectAtIndex:k+1] isEqual:view.annotation.title])
-        {
-            NSLog(@"类型:%@", [muArray objectAtIndex:k]);
-            NSLog(@"维度:%@", [muArray objectAtIndex:k+2]);
-            strId = [NSString stringWithString:[muArray objectAtIndex:k+4]];
-            NSLog(@"id is %@", strId);
-            break;   //找到立刻退出循环;
+                return ;
+            }
+    
+    for (id key in self.chargerDataSource.chargers) {
+        bixCharger* charger = self.chargerDataSource.chargers[key];
+        if ([charger.address isEqualToString:view.annotation.title]) {
+//            strId = charger.modelId;
+            NSLog(@"id is :%@", charger.modelId);
+            charger.cb = ^(bixCharger* c){
+                detailView = [[detailViewController alloc]init];
+                detailView.charger = c;
+                [self performSegueWithIdentifier:@"detail" sender:self];
+//                [self pushViewController:detailView animated:YES];
+            };
+            [charger pull];
+//            charger.observer = self;
+            break;
         }
-        k = k+5;
     }
+    
+    
+////    detailInfoArray = [NSMutableArray arrayWithCapacity:DETAIL_INFO_NUMBER];
+//    //先删除之前数组的数据，否则数据会不断累加，这是可变数组。
+////    [detailInfoArray removeAllObjects];
+//    int k = 0;
+//    if ([(view.annotation.title) isEqualToString:@"我的位置"]) {
+//        return ;
+//    }
+//    for (int i = 0; i < chargePileNumber; i++) {
+//        //通过详细地址名来找到对应的id,从而构成请求的地址;
+//        if([[muArray objectAtIndex:k+1] isEqual:view.annotation.title])
+//        {
+//            NSLog(@"类型:%@", [muArray objectAtIndex:k]);
+//            NSLog(@"维度:%@", [muArray objectAtIndex:k+2]);
+//            strId = [NSString stringWithString:[muArray objectAtIndex:k+4]];
+//            NSLog(@"id is %@", strId);
+//            break;   //找到立刻退出循环;
+//        }
+//        k = k+5;
+//    }
     
     
 
@@ -457,8 +470,10 @@ return nil;
 //    requestInfoFromServer.selectNotificationKind = 2;
 //    [requestInfoFromServer sendRequest:path];
 }
-
+//
 -(void) modelUpdated: (id) model{
+    //bixCharger *charger = (bixCharger*)model;
+    
     // data arrived!
 }
 
@@ -468,29 +483,31 @@ return nil;
 
     if ([[segue identifier] isEqualToString:@"detail"]) {
         NSLog(@"prepareForSegue ing......");
-
+ 
+        detailViewController *dVC = (detailViewController*)segue.destinationViewController;
+        dVC.charger = detailView.charger;
 //        [NSThread sleepForTimeInterval:1];
-         detail = [segue destinationViewController];
+//         detailView = [segue destinationViewController];
         
     
-        if (([detailInfoArray count] != 0) && ([[detailInfoArray objectAtIndex:0] isEqualToString:@"SuperCharger"])) {
-            detail.type = [detailInfoArray objectAtIndex:0];
-            detail.detailAddress = [detailInfoArray objectAtIndex:1];
-            detail.parkingnum = [detailInfoArray objectAtIndex:2];
-            detail.info = [detailInfoArray objectAtIndex:3];
-        }
-        else if(([detailInfoArray count] != 0) && ([[detailInfoArray objectAtIndex:0] isEqualToString:@"DestCharger"]))
-        {
-            detail.type = [detailInfoArray objectAtIndex:0];
-            detail.detailAddress = [detailInfoArray objectAtIndex:1];
-            detail.parkingnum = [detailInfoArray objectAtIndex:2];
-            detail.info = [detailInfoArray objectAtIndex:3];
-        }
-//
-        
-//        NSLog(@"detail.szAddress is %@", detail.szAddress);
-        NSLog(@"type is %@, detailAddress is %@, parkingnum is %@, time is %@, info is %@", detail.type, detail.detailAddress, detail.parkingnum, detail.time, detail.info);
-        //detail.session = sessionToOpen;
+//        if (([detailInfoArray count] != 0) && ([[detailInfoArray objectAtIndex:0] isEqualToString:@"SuperCharger"])) {
+//            detail.type = [detailInfoArray objectAtIndex:0];
+//            detail.detailAddress = [detailInfoArray objectAtIndex:1];
+//            detail.parkingnum = [detailInfoArray objectAtIndex:2];
+//            detail.info = [detailInfoArray objectAtIndex:3];
+//        }
+//        else if(([detailInfoArray count] != 0) && ([[detailInfoArray objectAtIndex:0] isEqualToString:@"DestCharger"]))
+//        {
+//            detail.type = [detailInfoArray objectAtIndex:0];
+//            detail.detailAddress = [detailInfoArray objectAtIndex:1];
+//            detail.parkingnum = [detailInfoArray objectAtIndex:2];
+//            detail.info = [detailInfoArray objectAtIndex:3];
+//        }
+////
+//        
+////        NSLog(@"detail.szAddress is %@", detail.szAddress);
+//        NSLog(@"type is %@, detailAddress is %@, parkingnum is %@, time is %@, info is %@", detail.type, detail.detailAddress, detail.parkingnum, detail.time, detail.info);
+//        //detail.session = sessionToOpen;
     }
 }
 
@@ -590,7 +607,7 @@ return nil;
             if ([charger isKindOfClass:[bixSuperCharger class]]) {
                 CustomBMKPointAnnotation *bmk = [CustomBMKPointAnnotation new];
                 bmk.coordinate = CLLocationCoordinate2DMake(charger.latitude, charger.longitude);
-                bmk.title = charger.detailedAddress;
+                bmk.title = charger.address;
                 bmk.type = 2; // type = 2; 表示超级充电桩;
                 
                 [_mapView addAnnotation:bmk];
@@ -640,8 +657,9 @@ return nil;
             if ([charger isKindOfClass:[bixDestCharger class]]) {
                 CustomBMKPointAnnotation *bmk = [CustomBMKPointAnnotation new];
                 bmk.coordinate = CLLocationCoordinate2DMake(charger.latitude, charger.longitude);
-                bmk.title = charger.detailedAddress;
+                bmk.title = charger.address;
                 bmk.type = 1; // type = 1; 表示目的充电桩;
+//                BMKPointAnnotation
                 
                 [_mapView addAnnotation:bmk];
             }
@@ -694,54 +712,54 @@ return nil;
     NSLog(@"清楚所有地图标注");
     [_mapView removeAnnotations:[NSArray arrayWithArray:_mapView.annotations]];
 }
-
-- (IBAction)addSuperCharge:(id)sender {
-    NSLog(@"fuck superCharge");
-    [_mapView removeAnnotations: [NSArray arrayWithArray:_mapView.annotations]];
-    NSLog(@"removeAnnotations");
-    int k = 0, sum = 0;
-    for(int i = 0; i < chargePileNumber; i++)
-    {
-
-//        BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
-        CustomBMKPointAnnotation *j = [CustomBMKPointAnnotation new];
-        if([[muArray objectAtIndex:k]  isEqual: @"SuperCharger"])
-        {
-            sum++;
-            j.coordinate = CLLocationCoordinate2DMake([[muArray objectAtIndex:k+2] doubleValue], [[muArray objectAtIndex:k+3] doubleValue]);
-            j.title = [muArray objectAtIndex:k+1];
-            j.type = 0; // type = 0 表示超级充电桩;
-            [_mapView addAnnotation:j];
-        }
-        k = k+5;
-    }
-    NSLog(@"superCharge have %d", sum);
-}
-
-- (IBAction)addDestinationCharge:(id)sender {
-    NSLog(@"fuck destinationCharge");
-    
-    NSLog(@"addBatteryChargeAnnotation chargePileNumber is %d", chargePileNumber);
-    [_mapView removeAnnotations:[NSArray arrayWithArray:_mapView.annotations]];
-    NSLog(@"removeAnnotations");
-    int k = 0, sum = 0;
-    for(int i = 0; i < chargePileNumber; i++)
-    {
-//        BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
-        CustomBMKPointAnnotation *j = [CustomBMKPointAnnotation new];
-        if([[muArray objectAtIndex:k]  isEqual: @"DestCharger"])
-        {
-            sum++;
-            j.coordinate = CLLocationCoordinate2DMake([[muArray objectAtIndex:k+2] doubleValue], [[muArray objectAtIndex:k+3] doubleValue]);
-            j.title = [muArray objectAtIndex:k+1];
-            j.type = 1; // type = 1; 表示目的充电桩;
-            [_mapView addAnnotation:j];
-        }
-        k = k+5;
-    }
-    NSLog(@"destinationCharger have %d", sum);
-}
-
+//
+//- (IBAction)addSuperCharge:(id)sender {
+//    NSLog(@"fuck superCharge");
+//    [_mapView removeAnnotations: [NSArray arrayWithArray:_mapView.annotations]];
+//    NSLog(@"removeAnnotations");
+//    int k = 0, sum = 0;
+//    for(int i = 0; i < chargePileNumber; i++)
+//    {
+//
+////        BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
+//        CustomBMKPointAnnotation *j = [CustomBMKPointAnnotation new];
+//        if([[muArray objectAtIndex:k]  isEqual: @"SuperCharger"])
+//        {
+//            sum++;
+//            j.coordinate = CLLocationCoordinate2DMake([[muArray objectAtIndex:k+2] doubleValue], [[muArray objectAtIndex:k+3] doubleValue]);
+//            j.title = [muArray objectAtIndex:k+1];
+//            j.type = 0; // type = 0 表示超级充电桩;
+//            [_mapView addAnnotation:j];
+//        }
+//        k = k+5;
+//    }
+//    NSLog(@"superCharge have %d", sum);
+//}
+//
+//- (IBAction)addDestinationCharge:(id)sender {
+//    NSLog(@"fuck destinationCharge");
+//    
+//    NSLog(@"addBatteryChargeAnnotation chargePileNumber is %d", chargePileNumber);
+//    [_mapView removeAnnotations:[NSArray arrayWithArray:_mapView.annotations]];
+//    NSLog(@"removeAnnotations");
+//    int k = 0, sum = 0;
+//    for(int i = 0; i < chargePileNumber; i++)
+//    {
+////        BMKPointAnnotation * j = [[BMKPointAnnotation alloc]init];
+//        CustomBMKPointAnnotation *j = [CustomBMKPointAnnotation new];
+//        if([[muArray objectAtIndex:k]  isEqual: @"DestCharger"])
+//        {
+//            sum++;
+//            j.coordinate = CLLocationCoordinate2DMake([[muArray objectAtIndex:k+2] doubleValue], [[muArray objectAtIndex:k+3] doubleValue]);
+//            j.title = [muArray objectAtIndex:k+1];
+//            j.type = 1; // type = 1; 表示目的充电桩;
+//            [_mapView addAnnotation:j];
+//        }
+//        k = k+5;
+//    }
+//    NSLog(@"destinationCharger have %d", sum);
+//}
+//
 - (IBAction)chargerSelect:(id)sender {
 }
 

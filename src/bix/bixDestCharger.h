@@ -10,6 +10,5 @@
 
 @interface bixDestCharger : bixCharger
 
-@property (nonatomic) NSString* info;
 
 @end

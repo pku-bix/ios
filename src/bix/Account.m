@@ -29,6 +29,7 @@
     if (self) {
         self.nickname = [coder decodeObjectForKey:@"nickname"];
         self.signature = [coder decodeObjectForKey:@"signature"];
+        self.avatar = [coder decodeObjectForKey:@"avatar"];
         self.wechatID = [coder decodeObjectForKey:@"wechatID"];
         self.teslaType = [coder decodeObjectForKey:@"teslaType"];
         self.presence = NO;
@@ -40,6 +41,7 @@
     [coder encodeObject:self.username forKey:@"username"];
     [coder encodeObject:self.nickname forKey:@"nickname"];
     [coder encodeObject:self.signature forKey:@"signature"];
+    [coder encodeObject:self.avatar forKey:@"avatar"];
     [coder encodeObject:self.wechatID forKey:@"wechatID"];
     [coder encodeObject:self.teslaType forKey:@"teslaType"];
 }
@@ -59,6 +61,18 @@
     NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:
                     [@"account_" stringByAppendingString: username]];
     return data == nil ? nil : [NSKeyedUnarchiver unarchiveObjectWithData: data];
+}
+
+-(NSString*) modelPath{
+    return [NSString stringWithFormat: @"/api/user/%@", self.username];
+}
+
+-(void)SucceedWithStatus:(NSInteger)code andJSONResult:(NSObject *)result{
+    NSDictionary* dict = (NSDictionary*)result;
+    self.nickname = [dict objectForKey:@"nickname"];
+    self.avatar = [dict objectForKey:@"avatar"];
+    self.signature = [dict objectForKey:@"signature"];
+    [self.observer modelUpdated:self];
 }
 
 @end

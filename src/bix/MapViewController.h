@@ -26,8 +26,8 @@
     IBOutlet UIButton *destinationCharge;
     IBOutlet UIButton *superCharge;
 }
-- (IBAction)addSuperCharge:(id)sender;
-- (IBAction)addDestinationCharge:(id)sender;
+//- (IBAction)addSuperCharge:(id)sender;
+//- (IBAction)addDestinationCharge:(id)sender;
 - (IBAction)chargerSelect:(id)sender;
 
 @property (nonatomic,strong) UzysSlideMenu *chargerMenu;

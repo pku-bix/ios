@@ -39,7 +39,7 @@
     NSLog(@"reportMapView viewDidLoad");
     // Do any additional setup after loading the view.
     rect = [[UIScreen mainScreen]bounds];
-    
+   
     //reportMapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 64, rect.size.width, rect.size.height)];
     //
     _search = [[BMKSearch alloc]init ];

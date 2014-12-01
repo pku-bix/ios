@@ -38,6 +38,7 @@
 		E33FF0D6197E50ED007FE69F /* geo_fence-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D5197E50ED007FE69F /* geo_fence-64@2x.png */; };
 		E33FF0D8197E50FD007FE69F /* define_location-64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */; };
 		E34419971980BAA400F03459 /* MapButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E34419961980BAA400F03459 /* MapButton.m */; };
+		E348A6B81A2B66F900EC9669 /* bixFormBuild.m in Sources */ = {isa = PBXBuildFile; fileRef = E348A6B71A2B66F900EC9669 /* bixFormBuild.m */; };
 		E35878A719E83363008FBD1C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E35878A619E83363008FBD1C /* MobileCoreServices.framework */; };
 		E35A14BC19CDCB4A00867D49 /* icon_nav_end.png in Resources */ = {isa = PBXBuildFile; fileRef = E35A14BA19CDCB4A00867D49 /* icon_nav_end.png */; };
 		E35A14BD19CDCB4A00867D49 /* icon_nav_end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E35A14BB19CDCB4A00867D49 /* icon_nav_end@2x.png */; };
@@ -260,6 +261,8 @@
 		E33FF0D7197E50FD007FE69F /* define_location-64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "define_location-64@2x.png"; sourceTree = "<group>"; };
 		E34419951980BAA400F03459 /* MapButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapButton.h; sourceTree = "<group>"; };
 		E34419961980BAA400F03459 /* MapButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapButton.m; sourceTree = "<group>"; };
+		E348A6B61A2B66F900EC9669 /* bixFormBuild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixFormBuild.h; sourceTree = "<group>"; };
+		E348A6B71A2B66F900EC9669 /* bixFormBuild.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixFormBuild.m; sourceTree = "<group>"; };
 		E34F44E1199B16E700BAB7D8 /* ButtonProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonProtocal.h; sourceTree = "<group>"; };
 		E35878A619E83363008FBD1C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E35A14BA19CDCB4A00867D49 /* icon_nav_end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_nav_end.png; sourceTree = "<group>"; };
@@ -1263,6 +1266,8 @@
 				E3CF76101A2070FA00268631 /* bixRemoteModelBase.h */,
 				E3CF76111A2070FA00268631 /* bixRemoteModelBase.m */,
 				ECB81C511A24D31A00C13281 /* bixRemoteModelDataSource.h */,
+				E348A6B61A2B66F900EC9669 /* bixFormBuild.h */,
+				E348A6B71A2B66F900EC9669 /* bixFormBuild.m */,
 			);
 			name = APIProvider;
 			sourceTree = "<group>";
@@ -1774,6 +1779,7 @@
 				EC4613FC19FFC55F0046FFAE /* bixMomentReplyItem.m in Sources */,
 				ECB81C501A24CA2D00C13281 /* bixSuperCharger.m in Sources */,
 				EC57886E19A620710058837C /* ChatListViewController.m in Sources */,
+				E348A6B81A2B66F900EC9669 /* bixFormBuild.m in Sources */,
 				EC9908A818C33C9200798FAB /* XMPPStringPrep.m in Sources */,
 				E3E59A231A07DAAD00B0DA76 /* signatureViewController.m in Sources */,
 				E3F571BE19E5829000AA20E0 /* RequestInfoFromServer.m in Sources */,

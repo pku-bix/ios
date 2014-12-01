@@ -14,10 +14,13 @@
 #pragma mark RemoteModel Delegate
 
 // 数据响应成功，填充pull下来的字段
--(void) SucceedWithStatus: (NSInteger) code andJSONResult: (NSObject*) result{
+-(void) populateWithJSON:(NSObject *)result{
     //id obj = (NSDictionary*)result;
-    [super SucceedWithStatus:code andJSONResult:result];
+    [super populateWithJSON:result];
     
+    [self.observer modelUpdated:self];
+     self.cb(self);
+
     // todo 子类特有的
     [self.observer modelUpdated: self];
 }

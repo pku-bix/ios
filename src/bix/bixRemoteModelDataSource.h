@@ -11,7 +11,7 @@
 @protocol bixRemoteModelDataSource <NSObject>
 
 
-// 在API服务器模型的路径，eg：charger/ef131ab3f34133ab
+// 在API服务器模型的路径，eg：/api/charger/ef131ab3f34133ab
 -(NSString*) modelPath;
 
 

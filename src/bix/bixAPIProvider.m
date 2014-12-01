@@ -26,51 +26,93 @@ typedef enum {
 @end
 
 
-@implementation bixAPIProvider
+@implementation bixAPIProvider{
+    // 流控制：正在请求过程中不允许重复请求
+    bool busy;
+}
 
 static NSString* errDomain = @"apiprovider";
 
 
 // TODO: 初始化connection并开始请求
-+(bixAPIProvider*) Push: (id<bixRemoteModelDataSource, bixRemoteModelDelegate>) model{
++(BOOL) Push: (id<bixRemoteModelDataSource, bixRemoteModelDelegate>) model{
     bixAPIProvider* p = [bixAPIProvider new];
     p.model = model;
     p.operation = PUSH;
-    [p startRequestWithOperation: PUSH];
-    return p;
+    return [p startRequestWithOperation: PUSH];
 }
 
 // TODO: 初始化connection并开始请求
-+(bixAPIProvider*) Pull: (id<bixRemoteModelDelegate, bixRemoteModelDataSource>) model{
++(BOOL) Pull: (id<bixRemoteModelDelegate, bixRemoteModelDataSource>) model{
     bixAPIProvider* p = [bixAPIProvider new];
     p.model = model;
     p.operation = PULL;
-    [p startRequestWithOperation: PULL];
-    return p;
+    return [p startRequestWithOperation: PULL];
 }
 
--(bool) startRequestWithOperation: (OperationType) operation{
+-(BOOL) startRequestWithOperation: (OperationType) operation{
+
+    if(busy){
+#ifdef DEBUG
+        NSLog(@"api provider is busy, request omited");
+#endif
+        return NO;
+    }
+    busy = true;
+    
+    //创建请求
     self.url = [NSURL URLWithString:
                 [NSString stringWithFormat:@"%@%@", API_SERVER, [self.model modelPath]]];
-    //创建请求
+    
     self.request = [NSMutableURLRequest requestWithURL:self.url
                                        cachePolicy:NSURLRequestUseProtocolCachePolicy
                                        timeoutInterval:60];
-    switch (operation) {
-        case PUSH:
-            [self.request setHTTPMethod:@"POST"];
+    if (operation == PUSH) {
+        [self.request setHTTPMethod:@"POST"];
+        NSString *boundary = @"PkuBixMustSuccess";
+        if ([self.model respondsToSelector: @selector(modelBody)]) {
             [self.request setHTTPBody:[self.model modelBody]];
-            self.operation = PUSH;
-            break;
             
-        case PULL:
-            [self.request setHTTPMethod:@"GET"];
-            self.operation = PULL;
-            break;
+            //设置HTTPHeader中Content-Type的值
+            NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+            [self.request setValue:contentType forHTTPHeaderField:@"Content-Type"];
             
-        default:
-            break;
+            //设置Content-Length
+            [self.request setValue:[NSString stringWithFormat:@"%d", [[self.model modelBody] length]] forHTTPHeaderField:@"Content-Length"];
+        }
+        self.operation = PUSH;
     }
+    else if(operation == PULL)
+    {
+        [self.request setHTTPMethod:@"GET"];
+        self.operation = PULL;
+    }
+//    switch (operation) {
+//        case PUSH:
+//            [self.request setHTTPMethod:@"POST"];
+//            
+//            if ([self.model respondsToSelector: @selector(modelBody)]) {
+//                [self.request setHTTPBody:[self.model modelBody]];
+//                
+//                //设置HTTPHeader中Content-Type的值
+//                NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+//                [self.request setValue:contentType forHTTPHeaderField:@"Content-Type"];
+//                
+//                //设置Content-Length
+//                [self.request setValue:[NSString stringWithFormat:@"%d", [[self.model modelBody] length]] forHTTPHeaderField:@"Content-Length"];
+//            }
+//
+//            self.operation = PUSH;
+//            break;
+//            
+//        case PULL:
+//            [self.request setHTTPMethod:@"GET"];
+//            self.operation = PULL;
+//            break;
+//            
+//        default:
+//            break;
+//    }
     
     //创建连接
     [NSURLConnection connectionWithRequest:self.request delegate:self];
@@ -83,13 +125,14 @@ static NSString* errDomain = @"apiprovider";
     self.receiveBuffer = [NSMutableData data];
     self.response = (NSHTTPURLResponse*)response;
     
-    if([self isRequestSuccess]){
+    if([self isRequestSuccess] && [self.model respondsToSelector:@selector(succeedWithStatus:)]){
         [self.model succeedWithStatus:self.response.statusCode];
     }
-    else if([self isRequestError]){
-        [self.model requestFailedWithError:[NSError errorWithDomain:errDomain code:self.response.statusCode
-                                                    userInfo:[NSDictionary dictionaryWithObject:
-                                                              self.response forKey:@"response"]]];
+    else if([self isRequestError] && [self.model respondsToSelector:@selector(requestFailedWithError:)]){
+        [self.model requestFailedWithError:
+         [NSError errorWithDomain:errDomain code:self.response.statusCode
+                         userInfo:[NSDictionary dictionaryWithObject:
+                                   self.response forKey:@"response"]]];
     }
 }
 
@@ -110,16 +153,33 @@ static NSString* errDomain = @"apiprovider";
                       error:nil];
 
     if([self isRequestSuccess]){
-        [self.model SucceedWithStatus:self.response.statusCode andJSONResult:json];
+        if([self.model respondsToSelector:@selector(populateWithJSON:)]){
+            [self.model populateWithJSON:json];
+        }
+
+        if([self.model respondsToSelector:@selector(succeedWithStatus:andJSON:)]){
+            [self.model succeedWithStatus:self.response.statusCode andJSON:json];
+        }
     }
+
+    busy = false;
 }
 
 //连接错误
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"错误信息是%@", [error localizedDescription]);
-    [self.model connectionFailedWithError:error];
+#ifdef DEBUG
+    NSLog(@"连接错误：%@", [error localizedDescription]);
+#endif
+    if ([self.model respondsToSelector:@selector(connectionFailedWithError:)]) {
+        [self.model connectionFailedWithError:error];
+    }
+    
+    busy = false;
 }
+
+
+#pragma mark 工具函数
 
 // 下拉请求是否成功
 -(bool) isRequestSuccess{

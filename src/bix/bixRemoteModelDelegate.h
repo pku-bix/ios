@@ -11,8 +11,11 @@
 
 @protocol bixRemoteModelDelegate <NSObject>
 
-// 数据响应成功
--(void) SucceedWithStatus: (NSInteger) code andJSONResult: (NSObject*) result;
+@optional
+
+// 数据相应成功
+-(void) populateWithJSON: (NSObject*) result;
+-(void) succeedWithStatus: (NSInteger) code andJSON: (NSObject*) result;
 
 // 响应成功
 -(void) succeedWithStatus: (NSInteger) code;

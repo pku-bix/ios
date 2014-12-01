@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Account.h"
 
-@interface bixMomentReplyItem : NSObject
+@interface bixMomentReplyItem : NSObject<bixRemoteModelDelegate>
 
 @property (readonly,nonatomic) NSURL* avatarUrl;  //评论者的头像
 @property (readonly) NSString* nickname;          //评论者的用户名

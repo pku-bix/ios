@@ -11,8 +11,12 @@
 
 #import <Foundation/Foundation.h>
 #import "XMPP.h"
+#import "bixRemoteModelBase.h"
+#import "bixRemoteModelDataSource.h"
+#import "bixRemoteModelDelegate.h"
+#import "bixRemoteModelObserver.h"
 
-@interface Account : NSObject<NSCoding>
+@interface Account : bixRemoteModelBase<NSCoding, bixRemoteModelDataSource, bixRemoteModelDelegate>
 
 @property (nonatomic) bool presence;
 
@@ -21,10 +25,11 @@
 @property (nonatomic) NSString* wechatID;
 @property (nonatomic) NSString* teslaType;
 @property (nonatomic) NSString* nickname;
-@property (nonatomic) NSURL* avatarUrl;
+@property (nonatomic) NSString* avatar;
+
+- (void) save;
 
 - (id) initWithUsername: (NSString*)username;
-- (void) save;
 
 + (Account*) loadByUsername: (NSString*)username;
 

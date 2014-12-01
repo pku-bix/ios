@@ -13,9 +13,12 @@
 
 @interface bixCharger : bixRemoteModelBase<bixRemoteModelDataSource, bixRemoteModelDelegate>
 
-@property (nonatomic) NSString * detailedAddress;
+@property (nonatomic) NSString * address;
 @property (nonatomic) double latitude;
 @property (nonatomic) double longitude;
 @property (nonatomic) int parkingnum;
+@property (nonatomic) NSString* comment;
+
+@property (nonatomic) NSString *chargerType;
 
 @end

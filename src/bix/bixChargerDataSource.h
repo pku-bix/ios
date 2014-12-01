@@ -18,7 +18,7 @@
 @property NSMutableDictionary* chargers;
 
 -(void) pullChargerById: (NSString*)id;
--(void) pullChargers;
+
 
 +(bixChargerDataSource*) defaultSource;
 

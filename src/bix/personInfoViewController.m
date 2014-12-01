@@ -13,6 +13,7 @@
 #import "RequestInfoFromServer.h"
 #import "MessageBox.h"
 #import "MBProgressHUD.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 @interface personInfoViewController ()
 
@@ -72,7 +73,8 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getTeslaType:) name:@"TeslaType" object:nil];
     
     //加载之前保存的头像；
-    headImage = account.avatar;
+    [imageView sd_setImageWithURL: [NSURL URLWithString: account.avatar]];
+    
     NSLog(@"headImage is ...  %@", headImage);
     
     if (headImage == NULL) {
@@ -394,7 +396,7 @@
 //    accout.avatar = headImage;
     
     bixLocalAccount *account = [bixLocalAccount instance];
-    account.avatar = headImage;
+    //account.avatar = headImage;
     [account save];
 }
 

@@ -11,11 +11,17 @@
 #import "AppDelegate.h"
 #import "NSString+Account.h"
 #import "RequestInfoFromServer.h"
+#import "bixAPIProvider.h"
+#import "bixFormBuild.h"
+
 
 @interface bixLocalAccount()
 
 // 获得上次登录的本地用户
 + (NSString*) restoreUsername;
+
+//push的body类型:图片或者文字或者图片+文字;
+@property (nonatomic)int bodyType;
 
 -(id) initWithUsername:(NSString *)username Password: password;
 @end
@@ -24,9 +30,58 @@
 @implementation bixLocalAccount
 {
     RequestInfoFromServer *request;
+
 }
 
 static bixLocalAccount *instance = nil;
+
+-(void)pushProperties:(Properties)properties
+{
+    self.bodyType = properties;
+    [bixAPIProvider Push:self];
+}
+
+#pragma mark bixRemoteModelDataSource
+
+-(NSString*)modelPath
+{
+    return [NSString stringWithFormat: @"/api/user/%@",self.username];
+}
+
+-(NSData*)modelBody
+{
+    bixFormBuild *formBuild = [[bixFormBuild alloc]init];
+    if (self.bodyType & avatar) {
+        [formBuild addPicture:@"avatar" andImage:self.avatarImage];
+    }
+    
+    if(self.bodyType & nickname){
+        [formBuild addText:@"nickname" andText:self.nickname];
+    }
+    
+    if (self.bodyType & signature)
+    {
+        [formBuild addText:@"signature" andText:self.signature];
+    }
+    
+    if (self.bodyType & wechat_id) {
+        [formBuild addText:@"wechat_id" andText:self.wechatID];
+    }
+    
+    if (self.bodyType & teslaModel) {
+        [formBuild addText:@"tesla_model" andText:self.teslaType];
+    }
+    
+    return [formBuild closeForm];
+}
+
+#pragma mark bixRemoteModelDelegate
+-(void)succeedWithStatus:(NSInteger)code
+{
+    NSLog(@"push成功，httpStatus: %d", code);
+    [self save];
+}
+
 
 
 // singleton instance
@@ -83,7 +138,6 @@ static bixLocalAccount *instance = nil;
         _password    = [coder decodeObjectForKey: @"password"];
         _autoLogin   = [coder decodeBoolForKey:   @"auto_login"];
         _deviceToken = [coder decodeObjectForKey: @"device_token"];
-        _avatar = [coder decodeObjectForKey:@"avatar"];
     }
 
     return self;

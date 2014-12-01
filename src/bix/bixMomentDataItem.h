@@ -8,11 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "Account.h"
+#import "bixRemoteModelDelegate.h"
 
-@interface bixMomentDataItem : NSObject
-{
-    
-}
+@interface bixMomentDataItem : NSObject<bixRemoteModelDelegate>
 
 // 用发送者初始化
 - (id) initWithSender: (Account*) user;
@@ -22,6 +20,7 @@
 
 // 头像
 @property (readonly,nonatomic) NSURL* avatarUrl;
+
 // 昵称, 用户在设置界面设置的   名字   字段;
 @property (readonly,nonatomic) NSString* nickname;
 // 分享文章、说说

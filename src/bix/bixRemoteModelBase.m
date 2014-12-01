@@ -7,6 +7,7 @@
 //
 
 #import "bixRemoteModelBase.h"
+#import "bixAPIProvider.h"
 
 @implementation bixRemoteModelBase
 
@@ -19,15 +20,21 @@
     return self;
 }
 
-
-// 数据响应成功
--(void) SucceedWithStatus: (NSInteger) code andJSONResult: (NSObject*) result{
-    
+-(NSString*) modelPath
+{
+    return @"";
 }
 
-// 响应成功
--(void) succeedWithStatus: (NSInteger) code{
-    
+-(void)pull
+{
+    [bixAPIProvider Pull:self];
+}
+
+// 数据响应成功
+-(void) succeedWithStatus:(NSInteger)code{
+#ifdef DEBUG
+    NSLog(@"request succeed with code: %d", code);
+#endif
 }
 
 // 失败
