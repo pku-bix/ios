@@ -85,8 +85,6 @@
     
 
     _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height-40)];
-    _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
-    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
 
 
     self.chargerDataSource = [bixChargerDataSource defaultSource];
@@ -257,25 +255,19 @@
 
 #pragma mark LifeCycle
 
--(void)viewDidAppear:(BOOL)animated{
-        NSLog(@"fuck didappear");
-}
-
 -(void)viewWillAppear:(BOOL)animated{
-        NSLog(@"fuck willapear");
     [super viewDidAppear:animated];
-    //[_mapView viewWillAppear];
-    //    _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
-    //    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
+    [_mapView viewWillAppear];
+    _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
+    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"fuck disappear");
     [super viewWillDisappear:animated];
-    //[_mapView viewWillDisappear];
-    //_mapView.delegate = nil; // 不用时，置nil
-    //_search.delegate = nil; // 不用时，置nil
+    [_mapView viewWillDisappear];
+    _mapView.delegate = nil; // 不用时，置nil
+    _search.delegate = nil; // 不用时，置nil
 }
 
 - (void)didReceiveMemoryWarning
