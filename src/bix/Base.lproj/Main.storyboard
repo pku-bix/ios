@@ -113,23 +113,10 @@
                     <view key="view" contentMode="scaleToFill" id="fRV-09-ZcG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DP-xn-oHk" customClass="BMKMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="520"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="2DP-xn-oHk" secondAttribute="bottom" constant="48" id="HbS-sE-NNo"/>
-                            <constraint firstAttribute="trailing" secondItem="2DP-xn-oHk" secondAttribute="trailing" id="XvO-Ks-Ypw"/>
-                            <constraint firstItem="2DP-xn-oHk" firstAttribute="leading" secondItem="fRV-09-ZcG" secondAttribute="leading" id="amx-Y6-Auj"/>
-                            <constraint firstItem="2DP-xn-oHk" firstAttribute="top" secondItem="fRV-09-ZcG" secondAttribute="top" id="d5o-Ah-i9d"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="地图" image="map_marker-24.png" id="1Kn-20-5cf"/>
                     <connections>
-                        <outlet property="_mapView" destination="2DP-xn-oHk" id="MYw-ax-bzU"/>
                         <segue destination="zTK-3x-xS0" kind="modal" identifier="detail" id="8Bj-fI-a2f"/>
                     </connections>
                 </viewController>

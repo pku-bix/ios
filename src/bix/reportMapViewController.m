@@ -121,10 +121,9 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.tabBarController.tabBar.hidden=YES;
     NSLog(@"reportMap viewWillAppear");
     [reportMapView viewWillAppear];
-    
+
     self.tabBarController.tabBar.hidden = YES;
     [self locateCurrentPosition];
 }

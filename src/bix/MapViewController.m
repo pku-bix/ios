@@ -84,7 +84,7 @@
     }
     
 
-//    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, _mapY, rect.size.width, rect.size.height-40)];
+    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height-40)];
     _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
     _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
 
@@ -165,7 +165,6 @@
     {
         //        self.edgesForExtendedLayout=UIRectEdgeNone;
         self.navigationController.navigationBar.translucent = NO;
-//        int a = 5;
         NSLog(@"test");
     }
 
@@ -223,8 +222,8 @@
     [self.view addSubview:locateButton];
     [self.view addSubview:compassButton];
     [self.view addSubview:getCurrentLocationBtn];
-    [self.view addSubview:superCharge];
-    [self.view addSubview:destinationCharge];
+//    [self.view addSubview:superCharge];
+//    [self.view addSubview:destinationCharge];
     [self.view addSubview:self.chargerItem];
 }
 
