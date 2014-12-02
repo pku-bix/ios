@@ -26,7 +26,7 @@
 }
 
 
--(void) SucceedWithStatus: (NSInteger) code andJSONResult: (NSObject*) result{
+-(void) populateWithJSON:(NSObject *)result{
     id obj = (NSDictionary*)result;
     @try {
         self.parkingnum = [[obj objectForKey:@"parkingnum"] intValue];

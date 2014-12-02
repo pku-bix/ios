@@ -15,7 +15,7 @@
 {
 }
 // 所有充电桩
-@property NSMutableDictionary* chargers;
+@property (nonatomic, strong) NSMutableDictionary* chargers;
 
 -(void) pullChargerById: (NSString*)id;
 

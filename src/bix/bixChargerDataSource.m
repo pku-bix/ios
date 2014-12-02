@@ -63,19 +63,15 @@
             
             NSString* type = [obj objectForKey:@"type"];
             
-            NSLog(@"%@, %d", type, [type isEqualToString:@"DestCharger"]);
-            
             if([type isEqualToString:@"DestCharger"]){
                 charger = [bixDestCharger new];
                 charger.chargerType = @"目的充电桩";
             }
             else if([type isEqualToString:@"HomeCharger"]){
-                //continue;
                 charger = [bixHomeCharger new];
                 charger.chargerType = @"家庭充电桩";
             }
             else if([type isEqualToString:@"SuperCharger"]){
-                //            continue;
                 charger = [bixSuperCharger new];
                 charger.chargerType = @"超级充电桩";
             }

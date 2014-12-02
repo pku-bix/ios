@@ -13,8 +13,10 @@
 
 @interface MapViewController : UIViewController<BMKMapViewDelegate,BMKSearchDelegate,NSURLConnectionDataDelegate, bixRemoteModelObserver>
 {    
-    BMKMapView *_mapView;
+//    BMKMapView *_mapView;
+//    __weak IBOutlet BMKMapView *_mapView;
     
+    IBOutlet BMKMapView *_mapView;
     BMKSearch *_search;
     BMKUserLocation *current_Location;
     NSArray* array;
