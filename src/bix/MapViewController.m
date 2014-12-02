@@ -85,10 +85,8 @@
     
 
     _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height-40)];
-    _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
-    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
 
-    
+
     self.chargerDataSource = [bixChargerDataSource defaultSource];
     self.chargerDataSource.observer = self;
     [self.chargerDataSource pull];
@@ -257,21 +255,19 @@
 
 #pragma mark LifeCycle
 
--(void)viewWillAppear:(BOOL)animated
-{
-    NSLog(@"MapViewController viewWillAppear");
-//    [_mapView viewWillAppear];
-//    _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
-//    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [_mapView viewWillAppear];
+    _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
+    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"MapViewController viewWillDisappear");
-//    [_mapView viewWillDisappear];
-//    _mapView.delegate = nil; // 不用时，置nil
-//    _search.delegate = nil; // 不用时，置nil
-//
+    [super viewWillDisappear:animated];
+    [_mapView viewWillDisappear];
+    _mapView.delegate = nil; // 不用时，置nil
+    _search.delegate = nil; // 不用时，置nil
 }
 
 - (void)didReceiveMemoryWarning
@@ -425,7 +421,7 @@ return nil;
             charger.cb = ^(bixCharger* c){
                 detailView = [[detailViewController alloc]init];
                 detailView.charger = c;
-                [self performSegueWithIdentifier:@"detail" sender:self];
+                [self performSegueWithIdentifier:@"chargerDetail" sender:self];
 //                [self pushViewController:detailView animated:YES];
             };
             [charger pull];
