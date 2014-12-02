@@ -12,5 +12,8 @@
 //@property (strong, nonatomic) IBOutlet UITextField *teslaType;
 //- (IBAction)saveTeslaType:(id)sender;
 //- (IBAction)Tap:(id)sender;
+- (IBAction)SaveTeslaType:(id)sender;
+
+@property (strong, nonatomic) NSString *myTeslaType;
 
 @end

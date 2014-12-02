@@ -133,7 +133,37 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Tap TableView");
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSArray *array = [tableView visibleCells];
+    for (UITableViewCell *cell in array) {
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        cell.textLabel.textColor=[UIColor blackColor];
+        
+    }
+    UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
+    cell.textLabel.textColor=[UIColor redColor];
+    [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    
     NSString *titileString = [NSString stringWithFormat: @"section: %d, row: %d", indexPath.section, indexPath.row];
+    switch (indexPath.section) {
+        case 0:
+            if (indexPath.row == 0) {
+                _myTeslaType = @"MODEL S 60";
+            }
+            else if(indexPath.row == 1){
+                _myTeslaType = @"MODEL S 85";
+            }
+            else
+                _myTeslaType = @"MODEL S P85D";
+            
+            break;
+        case 1:
+            _myTeslaType = @"MODEL X";
+            break;
+        case 2:
+            _myTeslaType = @"ROADSTER";
+            break;
+    }
     NSLog(titileString, nil);
 }
 
@@ -155,4 +185,9 @@
  }
  */
 
+- (IBAction)SaveTeslaType:(id)sender {
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"TeslaType" object:self.myTeslaType];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
  @end
