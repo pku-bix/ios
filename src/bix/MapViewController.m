@@ -88,11 +88,7 @@
     _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
     _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
 
-    
-//    requestInfoFromServer = [[RequestInfoFromServer alloc]init];
-//    requestInfoFromServer.selectNotificationKind = 1;
-//    [requestInfoFromServer sendRequest:LOCATION_INFO_IP];
-    
+
     self.chargerDataSource = [bixChargerDataSource defaultSource];
     self.chargerDataSource.observer = self;
     [self.chargerDataSource pull];
@@ -261,21 +257,25 @@
 
 #pragma mark LifeCycle
 
--(void)viewWillAppear:(BOOL)animated
-{
-    NSLog(@"MapViewController viewWillAppear");
-//    [_mapView viewWillAppear];
-//    _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
-//    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
+-(void)viewDidAppear:(BOOL)animated{
+        NSLog(@"fuck didappear");
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+        NSLog(@"fuck willapear");
+    [super viewDidAppear:animated];
+    //[_mapView viewWillAppear];
+    //    _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
+    //    _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"MapViewController viewWillDisappear");
-//    [_mapView viewWillDisappear];
-//    _mapView.delegate = nil; // 不用时，置nil
-//    _search.delegate = nil; // 不用时，置nil
-//
+    NSLog(@"fuck disappear");
+    [super viewWillDisappear:animated];
+    //[_mapView viewWillDisappear];
+    //_mapView.delegate = nil; // 不用时，置nil
+    //_search.delegate = nil; // 不用时，置nil
 }
 
 - (void)didReceiveMemoryWarning
@@ -429,7 +429,7 @@ return nil;
             charger.cb = ^(bixCharger* c){
                 detailView = [[detailViewController alloc]init];
                 detailView.charger = c;
-                [self performSegueWithIdentifier:@"detail" sender:self];
+                [self performSegueWithIdentifier:@"chargerDetail" sender:self];
 //                [self pushViewController:detailView animated:YES];
             };
             [charger pull];

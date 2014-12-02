@@ -159,7 +159,8 @@
 
 -(void) didLogOut: (NSNotification*) notification{
     
-    [self performSegueWithIdentifier:@"login" sender:self];
+    //[self performSegueWithIdentifier:@"login" sender:self];
+    [self.tabBarController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
