@@ -73,7 +73,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getTeslaType:) name:@"TeslaType" object:nil];
     
     //加载之前保存的头像；
-    [imageView sd_setImageWithURL: [NSURL URLWithString: account.avatar]];
+//    [imageView sd_setImageWithURL: [NSURL URLWithString: account.avatar]];
     
     NSLog(@"headImage is ...  %@", headImage);
     
