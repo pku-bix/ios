@@ -17,7 +17,7 @@
 
 @implementation weChatIDViewController
 {
-    RequestInfoFromServer *request;
+//    RequestInfoFromServer *request;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -54,11 +54,11 @@
 
 - (IBAction)weChatID:(id)sender {
     NSLog(@"weChatIDChange is %@", self.weChatID.text);
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"WechatID" object:self.weChatID.text];
+//    [[NSNotificationCenter defaultCenter]postNotificationName:@"WechatID" object:self.weChatID.text];
     
-    request = [[RequestInfoFromServer alloc]init];
+//    request = [[RequestInfoFromServer alloc]init];
     //上传修改的微信号
-    [request sendAsynchronousPostTextRequest: self.weChatID.text type:WE_CHAT_ID_TYPE];
+//    [request sendAsynchronousPostTextRequest: self.weChatID.text type:WE_CHAT_ID_TYPE];
     
     Account *account = [bixLocalAccount instance];
     account.wechatID = self.weChatID.text;

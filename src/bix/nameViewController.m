@@ -17,8 +17,8 @@
 
 @implementation nameViewController
 {
-    AppDelegate * appDelegate;
-    RequestInfoFromServer *request;
+//    AppDelegate * appDelegate;
+//    RequestInfoFromServer *request;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -68,16 +68,20 @@
 - (IBAction)saveAndReturn:(id)sender {
     
     //     self.nameTextField
-    NSLog(@" self.nameTextField.text is %@", self.nameTextField.text);
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"nameChange" object:self.nameTextField.text];
-
-    //上传修改的名字字段;
-    request = [[RequestInfoFromServer alloc]init];
-    [request sendAsynchronousPostTextRequest:self.nameTextField.text type:NAME_TYPE];
-    
-    Account* account = [bixLocalAccount instance];
+//    NSLog(@" self.nameTextField.text is %@", self.nameTextField.text);
+//    [[NSNotificationCenter defaultCenter]postNotificationName:@"nameChange" object:self.nameTextField.text];
+//
+//    //上传修改的名字字段;
+//    request = [[RequestInfoFromServer alloc]init];
+//    [request sendAsynchronousPostTextRequest:self.nameTextField.text type:NAME_TYPE];
+//    
+//    Account* account = [bixLocalAccount instance];
+//    account.nickname = self.nameTextField.text;
+//    [account save];
+    bixLocalAccount *account = [bixLocalAccount instance];
     account.nickname = self.nameTextField.text;
-    [account save];
+    
+    [account pushProperties:nickname];
 
     [self.navigationController popViewControllerAnimated:YES];
     

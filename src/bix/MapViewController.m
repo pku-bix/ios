@@ -89,10 +89,6 @@
     _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
 
     
-//    requestInfoFromServer = [[RequestInfoFromServer alloc]init];
-//    requestInfoFromServer.selectNotificationKind = 1;
-//    [requestInfoFromServer sendRequest:LOCATION_INFO_IP];
-    
     self.chargerDataSource = [bixChargerDataSource defaultSource];
     self.chargerDataSource.observer = self;
     [self.chargerDataSource pull];

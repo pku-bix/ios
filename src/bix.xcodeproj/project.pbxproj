@@ -729,9 +729,9 @@
 				E3E59A211A07DAAD00B0DA76 /* signatureViewController.h */,
 				E3E59A221A07DAAD00B0DA76 /* signatureViewController.m */,
 				E3E59A241A07DAC900B0DA76 /* nameViewController.h */,
-				E3E59A2B1A07DBB500B0DA76 /* weChatIDViewController.m */,
 				E3E59A251A07DAC900B0DA76 /* nameViewController.m */,
 				E3E59A2A1A07DBB500B0DA76 /* weChatIDViewController.h */,
+				E3E59A2B1A07DBB500B0DA76 /* weChatIDViewController.m */,
 				E3E59A2D1A07DBFD00B0DA76 /* teslaTypeViewController.h */,
 				E3E59A2E1A07DBFD00B0DA76 /* teslaTypeViewController.m */,
 			);
