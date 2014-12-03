@@ -171,7 +171,9 @@ AppDelegate* appdelegate;
                     margin_msg_top,
                     CHAT_HEAD_SHOW_SIZE,
                     CHAT_HEAD_SHOW_SIZE)];
-        cell.chatHeadShow.image = [UIImage imageNamed:@"default_headshow.png"];
+        cell.chatHeadShow.image = [UIImage imageNamed:@"head_show.jpeg"];
+        cell.chatHeadShow.layer.masksToBounds = YES;
+        cell.chatHeadShow.layer.cornerRadius = CHAT_HEAD_SHOW_SIZE / 2;
         
         bgImage = [[UIImage imageNamed:@"msg_sent-100.png"]
                    resizableImageWithCapInsets:UIEdgeInsetsMake(6, 6, 10, 24)
@@ -191,7 +193,9 @@ AppDelegate* appdelegate;
                     margin_msg_top,
                     CHAT_HEAD_SHOW_SIZE,
                     CHAT_HEAD_SHOW_SIZE)];
-        cell.chatHeadShow.image = [UIImage imageNamed:@"default_headshow.png"];
+        cell.chatHeadShow.image = [UIImage imageNamed:@"head_show.jpeg"];
+        cell.chatHeadShow.layer.masksToBounds = YES;
+        cell.chatHeadShow.layer.cornerRadius = CHAT_HEAD_SHOW_SIZE / 2;
         
         bgImage = [[UIImage imageNamed:@"msg_received-100.png"]
                    resizableImageWithCapInsets:UIEdgeInsetsMake(6, 24, 10, 6)

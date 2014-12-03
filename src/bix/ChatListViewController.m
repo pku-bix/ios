@@ -104,9 +104,11 @@ Session* sessionToOpen;
     //标记
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     //头像
-    UIImage *headShow = [UIImage imageNamed:@"default_headshow.png"];
+    UIImage *headShow = [UIImage imageNamed:@"head_show.jpeg"];
     CGSize headShowSize = CGSizeMake(48, 48);
     cell.imageView.image = [self scaleToSize:headShow size:headShowSize];
+    cell.imageView.layer.masksToBounds = YES;
+    cell.imageView.layer.cornerRadius = 24;
     
     cell.detailTextLabel.text = [NSString stringWithFormat:@"This is just a Test!"];
     cell.detailTextLabel.textColor = [UIColor grayColor];

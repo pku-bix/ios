@@ -17,6 +17,7 @@
 		84758EDA1A2047C400845672 /* UzysSMMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 84758ED51A2047C400845672 /* UzysSMMenuItem.m */; };
 		84758EDB1A2047C400845672 /* UzysSMMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84758ED71A2047C400845672 /* UzysSMMenuItemView.m */; };
 		84758EDC1A2047C400845672 /* UzysSMMenuItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84758ED81A2047C400845672 /* UzysSMMenuItemView.xib */; };
+		84E312B21A2F3F5700E8F5A5 /* head_show.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 84E312B11A2F3F5700E8F5A5 /* head_show.jpeg */; };
 		E3041FDA19E6A66F0016B7FD /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3041FD919E6A66F0016B7FD /* marker@2x.png */; };
 		E3041FDD19E6A6F70016B7FD /* home_charge.png in Resources */ = {isa = PBXBuildFile; fileRef = E3041FDB19E6A6F60016B7FD /* home_charge.png */; };
 		E3041FDE19E6A6F70016B7FD /* super_charge.png in Resources */ = {isa = PBXBuildFile; fileRef = E3041FDC19E6A6F70016B7FD /* super_charge.png */; };
@@ -239,6 +240,7 @@
 		84758ED61A2047C400845672 /* UzysSMMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysSMMenuItemView.h; sourceTree = "<group>"; };
 		84758ED71A2047C400845672 /* UzysSMMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysSMMenuItemView.m; sourceTree = "<group>"; };
 		84758ED81A2047C400845672 /* UzysSMMenuItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UzysSMMenuItemView.xib; sourceTree = "<group>"; };
+		84E312B11A2F3F5700E8F5A5 /* head_show.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = head_show.jpeg; sourceTree = "<group>"; };
 		E3041FD919E6A66F0016B7FD /* marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker@2x.png"; sourceTree = "<group>"; };
 		E3041FDB19E6A6F60016B7FD /* home_charge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_charge.png; sourceTree = "<group>"; };
 		E3041FDC19E6A6F70016B7FD /* super_charge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = super_charge.png; sourceTree = "<group>"; };
@@ -875,6 +877,7 @@
 		EC05DD9A18D0BE49000C9D89 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				84E312B11A2F3F5700E8F5A5 /* head_show.jpeg */,
 				8443EDAB1A17953E00A6B35C /* share@2x.png */,
 				8443EDA51A17815500A6B35C /* locate_charger.png */,
 				8443EDA61A17815500A6B35C /* report_charger.png */,
@@ -1650,6 +1653,7 @@
 				EC3166301930B595002E9609 /* map_marker-24@2x.png in Resources */,
 				E3E59A421A07DF8F00B0DA76 /* transparencyPattern.png in Resources */,
 				E3041FDD19E6A6F70016B7FD /* home_charge.png in Resources */,
+				84E312B21A2F3F5700E8F5A5 /* head_show.jpeg in Resources */,
 				ECF7E1E118C0516D002BA385 /* Main.storyboard in Resources */,
 				E3D8A8E619800B9B00E40C14 /* Default@2x.png in Resources */,
 				EC31663E1930BC18002E9609 /* msg_received-100@2x.png in Resources */,
