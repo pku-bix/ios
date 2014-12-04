@@ -90,9 +90,11 @@ AppDelegate* appdelegate;
     cell.accessoryType = UITableViewCellAccessoryNone;
     
     //头像
-    UIImage *headShow = [UIImage imageNamed:@"default_headshow.png"];
+    UIImage *headShow = [UIImage imageNamed:@"head_show.jpeg"];
     CGSize headShowSize = CGSizeMake(42, 42);
     cell.imageView.image = [self scaleToSize:headShow size:headShowSize];
+    cell.imageView.layer.masksToBounds = YES;
+    cell.imageView.layer.cornerRadius = 21;
     
     return cell;
 }
