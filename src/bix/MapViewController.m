@@ -256,7 +256,8 @@
 #pragma mark LifeCycle
 
 -(void)viewWillAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+//    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
     [_mapView viewWillAppear];
     _mapView.delegate = self;   //此处记得不用的时候需要置nil，否则影响内存的释放
     _search.delegate = self;  // 此处记得不用的时候需要置nil，否则影响内存的释放
@@ -414,7 +415,10 @@ return nil;
             }
     
     for (id key in self.chargerDataSource.chargers) {
+
         bixCharger* charger = self.chargerDataSource.chargers[key];
+        NSLog(@" address is %@", charger.address);
+        
         if ([charger.address isEqualToString:view.annotation.title]) {
 //            strId = charger.modelId;
             NSLog(@"id is :%@", charger.modelId);

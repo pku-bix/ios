@@ -158,7 +158,7 @@
 -(UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"moment-image"
                                               forIndexPath:indexPath];
-
+ 
     UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:111];
     [imageView sd_setImageWithURL:self.momentDataItem.imgUrls[indexPath.row]];
 //    NSLog(@"bixMomentTableViewCell.m self.momentDataItem.uiImageData count is %d", [self.momentDataItem.uiImageData count]);

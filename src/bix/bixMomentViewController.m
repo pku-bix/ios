@@ -5,7 +5,6 @@
 //  Created by harttle on 10/28/14.
 //  Copyright (c) 2014 bix. All rights reserved.
 //
-
 #import "bixMomentViewController.h"
 #import "bixMomentTableViewCell.h"
 #import "Constants.h"
@@ -92,7 +91,7 @@
         NSLog(@"author is %@", authorDic);
         
         NSLog(@"avatarUrl is %@", [authorDic objectForKey:@"avatar"]);
-        NSString *avatarUrlRight = [@"http://121.40.72.197/upload/" stringByAppendingString:[authorDic objectForKey:@"avatar"]];
+        NSString *avatarUrlRight = [@"http://121.40.72.197" stringByAppendingString:[authorDic objectForKey:@"avatar"]];
         NSLog(@"full avatarUrl is %@", avatarUrlRight);
         
         Account *account = [bixLocalAccount instance];

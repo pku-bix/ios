@@ -222,6 +222,7 @@
             //            cell.detailTextLabel.text = ID;
             //获取用户的聊天ID
             cell.detailTextLabel.text = [bixLocalAccount instance].username;
+            cell.accessoryType = UITableViewCellAccessoryNone;
         }
         else if (row == 1)
         {
@@ -232,7 +233,10 @@
             cell.detailTextLabel.text = TeslaType;
         }
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if (!((indexPath.section == 1) && (indexPath.row == 0))) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+
     //    NSLog(@"tableView.rowHeight is %f", tableView.rowHeight);
     return cell;
 }

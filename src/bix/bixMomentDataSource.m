@@ -18,7 +18,7 @@ typedef enum{
     REFRESHING
 }OperationType;
 
-@property NSMutableArray* items;
+@property NSMutableArray* items;   //缺少对其的初始化创建;
 @property OperationType operation;
 
 @end

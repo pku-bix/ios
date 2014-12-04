@@ -59,10 +59,14 @@
 //    request = [[RequestInfoFromServer alloc]init];
     //上传修改的微信号
 //    [request sendAsynchronousPostTextRequest: self.weChatID.text type:WE_CHAT_ID_TYPE];
-    
-    Account *account = [bixLocalAccount instance];
+//    
+//    Account *account = [bixLocalAccount instance];
+//    account.wechatID = self.weChatID.text;
+//    [account save];
+//
+    bixLocalAccount *account = [bixLocalAccount instance];
     account.wechatID = self.weChatID.text;
-    [account save];
+    [account pushProperties:wechat_id];
     
     //[self dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController popViewControllerAnimated:YES];
