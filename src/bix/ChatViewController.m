@@ -51,6 +51,7 @@ AppDelegate* appdelegate;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -133,6 +134,7 @@ AppDelegate* appdelegate;
     
     // set msg time
     int margin_msg_top = 0;
+    int chat_head_space = 0;
     
     if ([self.session msgExpiredAt:indexPath.row]) {
         cell.timeInfo.text = [msg.date toFriendlyString];
@@ -140,6 +142,7 @@ AppDelegate* appdelegate;
         cell.timeInfo.center = CGPointMake(self.view.frame.size.width/2,
                                                TIMEINFO_HEIGHT - cell.timeInfo.frame.size.height/2);
         margin_msg_top =MARGIN_MSG_TOP + TIMEINFO_HEIGHT;
+        chat_head_space = TIMEINFO_HEIGHT;
     }
     else{
         [cell.timeInfo setHidden:true];
@@ -153,14 +156,15 @@ AppDelegate* appdelegate;
     UIImage *bgImage = nil;
 
     if (msg.isMine) {
+        float textWidth = size.width > 30 ? size.width : size.width+5;
         [cell.msgTextView setFrame:
-         CGRectMake(self.view.frame.size.width - size.width - PADDING_MSG_SENDER - MARGIN_MSG_SENDER - CHAT_HEAD_SHOW_SIZE - CHAT_HEAD_SHOW_PADDING_LEFT - CHAT_HEAD_SHOW_PADDING_RIGHT,
+         CGRectMake(self.view.frame.size.width - textWidth - PADDING_MSG_SENDER - MARGIN_MSG_SENDER - CHAT_HEAD_SHOW_SIZE*5/6- CHAT_HEAD_SHOW_PADDING_LEFT - CHAT_HEAD_SHOW_PADDING_RIGHT,
                     margin_msg_top + PADDING_MSG_TOP,
                     size.width,
                     size.height)];
 
         [cell.bgImageView setFrame:
-         CGRectMake(self.view.frame.size.width - size.width - MARGIN_MSG_SENDER - PADDING_MSG_SENDER - PADDING_MSG_RECEIVER - CHAT_HEAD_SHOW_SIZE - CHAT_HEAD_SHOW_PADDING_LEFT - CHAT_HEAD_SHOW_PADDING_RIGHT,
+         CGRectMake(self.view.frame.size.width - textWidth - MARGIN_MSG_SENDER - PADDING_MSG_SENDER - PADDING_MSG_RECEIVER - CHAT_HEAD_SHOW_SIZE*2/3 - CHAT_HEAD_SHOW_PADDING_LEFT - CHAT_HEAD_SHOW_PADDING_RIGHT,
                     margin_msg_top,
                     size.width + PADDING_MSG_RECEIVER + PADDING_MSG_SENDER,
                     size.height + PADDING_MSG_TOP + PADDING_MSG_BOTTOM)];
@@ -168,37 +172,37 @@ AppDelegate* appdelegate;
         [cell.chatHeadShow setFrame:
          CGRectMake(self.view.frame.size.width - MARGIN_MSG_SENDER - CHAT_HEAD_SHOW_SIZE - CHAT_HEAD_SHOW_PADDING_LEFT - CHAT_HEAD_SHOW_PADDING_RIGHT,
                     //self.view.frame.size.width - CHAT_HEAD_SHOW_SIZE - CHAT_HEAD_SHOW_PADDING_LEFT - CHAT_HEAD_SHOW_PADDING_RIGHT,
-                    margin_msg_top,
+                    cell.bgImageView.frame.size.height-CHAT_HEAD_SHOW_SIZE+chat_head_space - 3,
                     CHAT_HEAD_SHOW_SIZE,
                     CHAT_HEAD_SHOW_SIZE)];
         cell.chatHeadShow.image = [UIImage imageNamed:@"head_show.jpeg"];
         cell.chatHeadShow.layer.masksToBounds = YES;
         cell.chatHeadShow.layer.cornerRadius = CHAT_HEAD_SHOW_SIZE / 2;
         
-        bgImage = [[UIImage imageNamed:@"msg_sent-100.png"]
-                   resizableImageWithCapInsets:UIEdgeInsetsMake(6, 6, 10, 24)
+        bgImage = [[UIImage imageNamed:@"msg_sent_HEMI-100.png"]
+                   resizableImageWithCapInsets:UIEdgeInsetsMake(17, 20, 22, 44)
                    resizingMode:UIImageResizingModeStretch];
 
     }else {
-        [cell.msgTextView setFrame:CGRectMake(PADDING_MSG_SENDER + MARGIN_MSG_SENDER + CHAT_HEAD_SHOW_PADDING_LEFT + CHAT_HEAD_SHOW_SIZE + CHAT_HEAD_SHOW_PADDING_RIGHT,
+        [cell.msgTextView setFrame:CGRectMake(PADDING_MSG_SENDER + MARGIN_MSG_SENDER + CHAT_HEAD_SHOW_PADDING_LEFT + CHAT_HEAD_SHOW_SIZE*5/6 + CHAT_HEAD_SHOW_PADDING_RIGHT,
                                               margin_msg_top + PADDING_MSG_TOP,
                                               size.width,   size.height)];
-        [cell.bgImageView setFrame:CGRectMake(MARGIN_MSG_SENDER + CHAT_HEAD_SHOW_PADDING_LEFT + CHAT_HEAD_SHOW_SIZE + CHAT_HEAD_SHOW_PADDING_RIGHT,
+        [cell.bgImageView setFrame:CGRectMake(MARGIN_MSG_SENDER + CHAT_HEAD_SHOW_PADDING_LEFT + CHAT_HEAD_SHOW_SIZE/2+2 + CHAT_HEAD_SHOW_PADDING_RIGHT,
                                               margin_msg_top,
                                               size.width + PADDING_MSG_RECEIVER + PADDING_MSG_SENDER,
                                               size.height + PADDING_MSG_TOP + PADDING_MSG_BOTTOM)];
         
         [cell.chatHeadShow setFrame:
          CGRectMake(MARGIN_MSG_SENDER + CHAT_HEAD_SHOW_PADDING_LEFT + CHAT_HEAD_SHOW_PADDING_LEFT,
-                    margin_msg_top,
+                    cell.bgImageView.frame.size.height-CHAT_HEAD_SHOW_SIZE+chat_head_space - 3,
                     CHAT_HEAD_SHOW_SIZE,
                     CHAT_HEAD_SHOW_SIZE)];
         cell.chatHeadShow.image = [UIImage imageNamed:@"head_show.jpeg"];
         cell.chatHeadShow.layer.masksToBounds = YES;
         cell.chatHeadShow.layer.cornerRadius = CHAT_HEAD_SHOW_SIZE / 2;
         
-        bgImage = [[UIImage imageNamed:@"msg_received-100.png"]
-                   resizableImageWithCapInsets:UIEdgeInsetsMake(6, 24, 10, 6)
+        bgImage = [[UIImage imageNamed:@"msg_received_HEMI-100.png"]
+                   resizableImageWithCapInsets:UIEdgeInsetsMake(17, 44, 22, 20)
                    resizingMode:UIImageResizingModeStretch];
     }
     cell.bgImageView.image = bgImage;

@@ -39,6 +39,7 @@
         //聊天信息
         _msgTextView = [[UITextView alloc] init];
         _msgTextView.backgroundColor = [UIColor clearColor];
+        _msgTextView.textColor = [UIColor whiteColor];
         _msgTextView.editable = NO;
         _msgTextView.scrollEnabled = NO;
         
