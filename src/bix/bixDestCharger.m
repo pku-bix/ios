@@ -10,16 +10,19 @@
 
 @implementation bixDestCharger
 
++(NSString*) description{
+    return @"目的地充电桩";
+}
+
 
 #pragma mark RemoteModel Delegate
 
 // 数据响应成功，填充pull下来的字段
 -(void) populateWithJSON:(NSObject *)result{
-    //id obj = (NSDictionary*)result;
+    [super populateWithJSON:result];
     
-    [self.observer modelUpdated:self];
-    self.cb(self);
-
+    
+    [super modelUpdateComplete];
 }
 
 @end

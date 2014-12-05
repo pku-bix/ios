@@ -10,4 +10,8 @@
 
 @implementation bixHomeCharger
 
++(NSString*) description{
+    return @"家庭充电桩";
+}
+
 @end

@@ -10,19 +10,27 @@
 
 @implementation bixSuperCharger
 
++(NSString*) description{
+    return @"超级充电桩";
+}
+
 
 #pragma mark RemoteModel Delegate
 
 // 数据响应成功，填充pull下来的字段
 -(void) populateWithJSON:(NSObject *)result{
-    //id obj = (NSDictionary*)result;
     [super populateWithJSON:result];
     
-    [self.observer modelUpdated:self];
-     self.cb(self);
-
-    // todo 子类特有的
-    [self.observer modelUpdated: self];
+    @try{
+        self.hours = [result valueForKey:@"hours"];
+        self.homepage = [result valueForKey:@"homepage"];
+    }
+    @catch(NSException* e){
+#ifdef DEBUG
+        NSLog(@"parse super charger error:%@", e);
+#endif
+    }
+    [super modelUpdateComplete];
 }
 
 @end

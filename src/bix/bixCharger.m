@@ -10,6 +10,9 @@
 
 @implementation bixCharger
 
++(NSString*) description{
+    return @"充电桩";
+}
 
 #pragma mark RemoteModel DataSource
 
@@ -30,7 +33,7 @@
     id obj = (NSDictionary*)result;
     @try {
         self.parkingnum = [[obj objectForKey:@"parkingnum"] intValue];
-        self.address = [obj objectForKey:@"detailedaddress"];
+        self.address = [obj objectForKey:@"address"];
         self.latitude = [[obj objectForKey:@"latitude" ] doubleValue];
         self.longitude = [[obj objectForKey:@"longitude"]doubleValue];
         self.comment = [obj objectForKey:@"comment"] ;

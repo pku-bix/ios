@@ -9,15 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "bixCharger.h"
 
-@interface detailViewController : UIViewController
+@interface bixDetailViewController : UIViewController<bixRemoteModelObserver>
 
-@property NSString* detailAddress;
-@property NSString* type;
-@property NSString* parkingnum;
-@property NSString* time;
-@property NSString* info;
+@property (nonatomic) bixCharger *charger;
 
-@property (weak, nonatomic) bixCharger *charger;
 @property (strong, nonatomic) IBOutlet UILabel *chargerType;
 
 @property (strong, nonatomic) IBOutlet UITextView *chargerAddress;
@@ -27,5 +22,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *chargerInfo;
 
 - (IBAction)back:(id)sender;
+
 
 @end

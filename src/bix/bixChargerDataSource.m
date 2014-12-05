@@ -65,15 +65,12 @@
             
             if([type isEqualToString:@"DestCharger"]){
                 charger = [bixDestCharger new];
-                charger.chargerType = @"目的充电桩";
             }
             else if([type isEqualToString:@"HomeCharger"]){
                 charger = [bixHomeCharger new];
-                charger.chargerType = @"家庭充电桩";
             }
             else if([type isEqualToString:@"SuperCharger"]){
                 charger = [bixSuperCharger new];
-                charger.chargerType = @"超级充电桩";
             }
             
             charger.modelId = [obj objectForKey:@"id"];
