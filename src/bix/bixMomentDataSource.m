@@ -80,8 +80,9 @@ typedef enum{
     //todo: add item to itemsArray
     [self.momentDataItemsArray addObject:item];
     
-    [self.observer modelUpdated:self];
-    
+//    [self.observer modelUpdated:self];
+
+    [super modelUpdateComplete];
     return true;
 }
 

@@ -98,6 +98,7 @@
     @catch(NSException* e){
         NSLog(@"parse moment item error, %@", e);
     }
+    [super modelUpdateComplete];
 }
 
 -(NSString *)description{
