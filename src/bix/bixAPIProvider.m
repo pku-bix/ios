@@ -63,6 +63,7 @@ static NSString* errDomain = @"apiprovider";
     //创建请求
     self.url = [NSURL URLWithString:
                 [NSString stringWithFormat:@"%@%@", API_SERVER, [self.model modelPath]]];
+    NSLog(@"url is :%@", self.url);
     
     self.request = [NSMutableURLRequest requestWithURL:self.url
                                        cachePolicy:NSURLRequestUseProtocolCachePolicy

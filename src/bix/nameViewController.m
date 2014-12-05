@@ -78,6 +78,7 @@
 //    Account* account = [bixLocalAccount instance];
 //    account.nickname = self.nameTextField.text;
 //    [account save];
+    
     bixLocalAccount *account = [bixLocalAccount instance];
     account.nickname = self.nameTextField.text;
     

@@ -100,11 +100,13 @@
         account.nickname = [authorDic objectForKey:@"username"];
         itemRefresh = [[bixMomentDataItem alloc]initWithSender:account];
         
-        urlArray =  [obj objectForKey:@"imgs"];
+        urlArray =  [obj objectForKey:@"images"];
         for (id url in urlArray) {
-            [itemRefresh.imgUrls addObject:[NSURL URLWithString:url]];
+            NSString *strURL = [NSString stringWithFormat:@"%@%@",@"http://121.40.72.197",url];
+            NSLog(@"strURL is : %@", strURL);
+            [itemRefresh.imgUrls addObject:[NSURL URLWithString:strURL]];
         }
-        itemRefresh.textContent = [obj objectForKey:@"text"];
+        itemRefresh.textContent = [obj objectForKey:@"content"];
         [[bixMomentDataSource defaultSource]addMomentDataItem:itemRefresh];
     }
 }

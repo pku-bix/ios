@@ -10,12 +10,12 @@
 #import "Account.h"
 #import "bixRemoteModelDelegate.h"
 
-@interface bixMomentDataItem : NSObject<bixRemoteModelDelegate>
+@interface bixMomentDataItem : bixRemoteModelBase<bixRemoteModelDelegate,bixRemoteModelDataSource>
 
 // 用发送者初始化
 - (id) initWithSender: (Account*) user;
 
-- (bool) post;
+-(void)push;
 
 
 // 头像
@@ -32,6 +32,8 @@
 @property (nonatomic) NSMutableArray* uiImageData;
 // 回复
 @property (nonatomic) NSMutableArray* replies;
+
+
 
 
 

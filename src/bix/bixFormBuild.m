@@ -48,7 +48,12 @@ static NSString *const boundary = @"PkuBixMustSuccess";
     [self.body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
    [self.body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n",name] dataUsingEncoding:NSUTF8StringEncoding]];
     
+//    [self.body appendData:[[NSString stringWithString:text] dataUsingEncoding:NSUTF8StringEncoding]];
+//    [self.body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+ 
+    NSLog(@"author name is :%@", text);
     [self.body appendData:[[NSString stringWithString:text] dataUsingEncoding:NSUTF8StringEncoding]];
+
     [self.body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     
 }

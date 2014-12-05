@@ -11,6 +11,11 @@
 
 @protocol bixRemoteModelObserver <NSObject>
 
+
+@optional
+
 -(void) modelUpdated: (id) model;
+
+-(void)pushDidSuccess;
 
 @end

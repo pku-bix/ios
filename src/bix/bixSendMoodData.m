@@ -29,6 +29,8 @@
     
     NSMutableArray *testURLArray;
     int flag_sendMoodData_success_or_not; // 标记本次发送是否成功;
+    
+    bixMomentDataItem *item;  //用于发送的momentDataItem;
 
 //本来是设计用来存发送图片的NSURL， 但发送到前台不能实时响应，故取消这种设计，直接传数据给前台实时显示;
 //    NSMutableArray *ImageURLArray;
@@ -61,12 +63,12 @@
     self.textView.layer.borderWidth = 1.0;
     self.textView.layer.cornerRadius = 5.0;
     
-    testURLArray = [NSMutableArray arrayWithCapacity:2];
-//    ImageURLArray = [NSMutableArray arrayWithCapacity:2];
-    
-    [testURLArray addObject:[NSURL URLWithString: @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg"]];
-    [testURLArray addObject:[NSURL URLWithString: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"]];
-    
+//    testURLArray = [NSMutableArray arrayWithCapacity:2];
+////    ImageURLArray = [NSMutableArray arrayWithCapacity:2];
+//    
+//    [testURLArray addObject:[NSURL URLWithString: @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg"]];
+//    [testURLArray addObject:[NSURL URLWithString: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"]];
+//    
 //    flag = 0;  //
     self.imageView1.image = self.image1;
     
@@ -79,7 +81,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseSuccessOrNot:) name:@"sendMomentDataSuccessOrNot" object:nil];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseSuccessOrNot:) name:@"sendMomentDataSuccessOrNot" object:nil];
     
 //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseDataItem:) name:@"returnMomentData" object:nil];
 
@@ -90,7 +92,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"sendMomentDataSuccessOrNot" object:nil];
+//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"sendMomentDataSuccessOrNot" object:nil];
 //  [[NSNotificationCenter defaultCenter]removeObserver:self name:@"returnMomentData" object:nil];
 }
 
@@ -259,13 +261,7 @@
         picker.navigationBar.hidden = YES;
         
         NSLog(@"end picker image");
-        
-//
-        
-        //        [picker pushViewController:sendMoodData animated:YES];
         [picker dismissViewControllerAnimated:YES completion:nil];
-        //        [self presentViewController:sendMoodData animated:YES completion:nil];
-//        [self performSegueWithIdentifier:@"sendMood" sender:self];
     }
 }
 
@@ -306,6 +302,7 @@
 - (IBAction)sendTextAndPicture:(id)sender {
     //取消软键盘，让软键盘退下去;
     [self.textView resignFirstResponder];
+    
     hud = [MessageBox Toasting:@"正在发送" In:self.view];
     
     NSLog(@"图片数组个数是 %d", [self.mutableArray count]);
@@ -320,9 +317,9 @@
         // create MomentDataItem item
         // add item to MomentDataSource
         Account *account = [bixLocalAccount instance];
-        account.avatar = @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg";
+        account.avatar = @"http://121.40.72.197/upload/1171-g2ixyb.png";
         account.nickname = account.username;
-        bixMomentDataItem *item = [[bixMomentDataItem alloc]initWithSender:account];
+        item = [[bixMomentDataItem alloc]initWithSender:account];
         //    item.imgUrls = [NSMutableArray arrayWithArray:self.mutableArray];
         //    item.imgUrls = [NSMutableArray arrayWithArray:ImageURLArray];
         //    item.imgUrls = [NSMutableArray arrayWithArray:testURLArray];
@@ -346,16 +343,38 @@
         [self.mutableArray removeLastObject];
         [self.mutableArray addObject:self.textView.text];
     }
+    
     NSLog(@"text is %@", [self.mutableArray objectAtIndex:([self.mutableArray count]-1)]);
-
-    request = [[RequestInfoFromServer alloc]init];
-    [request sendAsynchronousPostMomentData:self.mutableArray];
-    NSLog(@"the textView.text is %@", self.textView.text);
+    //item 发送到服务器
+    item.observer = self;
+    [item push];
+    
+//
+//    request = [[RequestInfoFromServer alloc]init];
+//    [request sendAsynchronousPostMomentData:self.mutableArray];
+    
+//    NSLog(@"the textView.text is %@", self.textView.text);
     
 //    //退出时，得清空之前的数组元素， 否则下次进来会一直叠加元素;
 //    [self.mutableArray removeAllObjects];
 
 }
+
+-(void)pushDidSuccess
+{
+    //发送成功才能给bixMomentViewController.m 发送通知，从而使 cell个数加1;
+//    [[NSNotificationCenter defaultCenter]postNotificationName:@"sendOneMomentDataItem" object:self.textView.text];
+    [hud hide:YES];
+    [MessageBox Toasting:@"发送成功！" In:self.view];
+    self.view.userInteractionEnabled = YES;
+    
+    //退出时，得清空之前的数组元素， 否则下次进来会一直叠加元素;
+    [self.mutableArray removeAllObjects];
+    flag_sendMoodData_success_or_not = 1;
+    
+    [[self navigationController] popViewControllerAnimated:YES];
+}
+
 /*
 -(void)parseDataItem:(NSNotification *)notification
 {

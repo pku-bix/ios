@@ -17,7 +17,6 @@
 // 所有充电桩
 @property (nonatomic, strong) NSMutableDictionary* chargers;
 
--(void) pullChargerById: (NSString*)id;
 
 
 +(bixChargerDataSource*) defaultSource;

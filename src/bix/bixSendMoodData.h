@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PassImageDelegate.h"
+#import "bixRemoteModelObserver.h"
 
-@interface bixSendMoodData : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PassImageDelegate,UITextViewDelegate>
+@interface bixSendMoodData : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PassImageDelegate,UITextViewDelegate,bixRemoteModelObserver>
 {
 //    int pictureNumber ;
 

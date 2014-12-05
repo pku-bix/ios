@@ -9,6 +9,9 @@
 #import "bixMomentDataItem.h"
 #import "Account.h"
 #import "bixMomentReplyItem.h"
+#import "bixAPIProvider.h"
+#import "bixFormBuild.h"
+#import "bixLocalAccount.h"
 
 @interface bixMomentDataItem()
 
@@ -19,16 +22,7 @@
 @implementation bixMomentDataItem
 
 
-- (bool) post{
-    // sync = [[bixRemoteSync alloc] init];
-    // sync.model = self;
-    // [sync push];
-    return true;
-}
 
--(NSString*) modelPath{
-    return @"chargers/";
-}
 
 // TODO: 借助用HTTP层，从 user 动态获取以下属性
 
@@ -63,6 +57,36 @@
     }
 //    [self.momentText addObject: @"这是一个分享的内容，这是一个分享的内容，这是一个分享的内容。"];
     return self;
+}
+
+-(NSString *)modelPath
+{
+    return @"/api/posts";
+}
+
+-(NSData *)modelBody
+{
+    bixLocalAccount *localAccount = [bixLocalAccount instance];
+    
+    bixFormBuild *formBuild = [[bixFormBuild alloc]init];
+    //添加用户名字段
+    [formBuild addText:@"author" andText:localAccount.username];
+    //添加分享的文字字段
+    [formBuild addText:@"content" andText:self.textContent];
+    
+    //添加分享的图片
+    for (id image in self.uiImageData) {
+        NSLog(@"分享的图片数据");
+        [formBuild addPicture:@"images" andImage:image];
+    }
+    
+    return [formBuild closeForm];
+}
+
+
+-(void)push
+{
+    [bixAPIProvider Push:self];
 }
 
 -(void)populateWithJSON:(NSObject *)result{

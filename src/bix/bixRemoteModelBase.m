@@ -35,6 +35,8 @@
 #ifdef DEBUG
     NSLog(@"request succeed with code: %d", code);
 #endif
+    if([self.observer respondsToSelector:@selector(pushDidSuccess)])
+    [self.observer pushDidSuccess];
 }
 
 // 失败
