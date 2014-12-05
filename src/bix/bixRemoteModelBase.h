@@ -25,11 +25,6 @@ typedef void (^callback)(id<bixRemoteModelDataSource>);
 
 -(id)initWithId:(NSString*)modelId;
 
-
-//-(void) connectionFailedWithError: (NSError*)err;
-//-(void) requestFailedWithError: (NSError*)err;
-//-(void) succeedWithStatus: (NSInteger) code;
-//-(void) populateWithJSON: (NSObject*) result;
-
+-(void)modelUpdateComplete;
 
 @end

@@ -10,5 +10,4 @@
 
 @interface bixDestCharger : bixCharger
 
-
 @end

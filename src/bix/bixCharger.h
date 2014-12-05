@@ -19,6 +19,6 @@
 @property (nonatomic) int parkingnum;
 @property (nonatomic) NSString* comment;
 
-@property (nonatomic) NSString *chargerType;
++(NSString*) description;
 
 @end

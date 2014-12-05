@@ -7,9 +7,12 @@
 //
 
 #import "BMKPointAnnotation.h"
+#import "bixCharger.h"
 
-@interface CustomBMKPointAnnotation : BMKPointAnnotation
+@interface bixChargerPointAnnotation : BMKPointAnnotation
 
-@property int type;
+@property (nonatomic) bixCharger* charger;
+
+-(id) initWithCharger:(bixCharger*)charger;
 
 @end

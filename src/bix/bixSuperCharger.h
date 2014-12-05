@@ -10,4 +10,7 @@
 
 @interface bixSuperCharger : bixCharger
 
+@property (nonatomic) NSString* hours;
+@property (nonatomic) NSString* homepage;
+
 @end

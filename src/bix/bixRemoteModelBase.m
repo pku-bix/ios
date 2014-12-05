@@ -51,5 +51,14 @@
 #endif
 }
 
+// utility
+-(void)modelUpdateComplete{
+    if ([self.observer respondsToSelector:@selector(modelUpdated:)]) {
+        [self.observer modelUpdated:self];
+    }
+    if (self.cb!=nil) {
+        self.cb(self);
+    }
+}
 
 @end
