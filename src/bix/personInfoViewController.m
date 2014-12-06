@@ -33,6 +33,7 @@
 
     CGRect rect;
     UITableView *_tableView;
+    CGFloat headShowHeight;
     AppDelegate* appDelegate;
 //    RequestInfoFromServer* request;
     
@@ -220,6 +221,7 @@
         if (row == 0) {
             //            cell.accessoryView = image0;
             cell.accessoryView = imgView;
+            headShowHeight = imgView.frame.size.height;
         }
         else if(row == 1)
         {
@@ -272,7 +274,7 @@
     //    return [general_TableView tableView:tableView heightForRowAtIndexPath:indexPath];
     if(indexPath.section == 0 && indexPath.row == 0)
     {
-        return headImage.size.height + 20;
+        return (headShowHeight + 20) > 70 ? (headShowHeight + 20) : 70;
     }
     else
         return tableView.rowHeight;
