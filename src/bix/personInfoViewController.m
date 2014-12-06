@@ -21,20 +21,20 @@
 
 @implementation personInfoViewController
 {
-    //个人信息页面的5个字段;
-    NSString * name;
-    NSString* signature;
-    NSString* ID;
-    NSString* WechatID;
-    NSString* TeslaType;
-    
-    UIImageView *imageView;
-    UIImage * headImage;
-    
+//    //个人信息页面的5个字段;
+//    NSString * name;
+//    NSString* signature;
+//    NSString* ID;
+//    NSString* WechatID;
+//    NSString* TeslaType;
+//    
+//    UIImageView *imageView;
+//    UIImage * headImage;
+
     CGRect rect;
     UITableView *_tableView;
     AppDelegate* appDelegate;
-    RequestInfoFromServer* request;
+//    RequestInfoFromServer* request;
     
     MBProgressHUD *hud;
     
@@ -57,31 +57,33 @@
     // Do any additional setup after loading the view.
     
     bixLocalAccount* account = [bixLocalAccount instance];
+    account.observer = self;
+    [account pull];
     
     //加载之前保存的名字字段;
-    name = account.nickname;
-    signature = account.signature;
-    ID = account.username;
-    WechatID = account.wechatID;
-    TeslaType = account.teslaType;
+//    name = account.nickname;
+//    signature = account.signature;
+//    ID = account.username;
+//    WechatID = account.wechatID;
+//    TeslaType = account.teslaType;
 
     //这些通知 只要注册一次就可以了
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getName:) name:@"nameChange" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getSignature:) name:@"signatureChange" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getID:) name:@"IDChange" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getWechatID:) name:@"WechatID" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getTeslaType:) name:@"TeslaType" object:nil];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getName:) name:@"nameChange" object:nil];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getSignature:) name:@"signatureChange" object:nil];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getID:) name:@"IDChange" object:nil];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getWechatID:) name:@"WechatID" object:nil];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getTeslaType:) name:@"TeslaType" object:nil];
     
     //加载之前保存的头像；
 //    [imageView sd_setImageWithURL: [NSURL URLWithString: account.avatar]];
     
-    NSLog(@"headImage is ...  %@", headImage);
-    
-    if (headImage == NULL) {
-        headImage = [UIImage imageNamed:@"default_headshow.png"];
-    }
-    
-    NSLog(@"last name is %@", name);
+//    NSLog(@"headImage is ...  %@", headImage);
+//    
+//    if (headImage == NULL) {
+//        headImage = [UIImage imageNamed:@"default_headshow.png"];
+//    }
+//    
+//    NSLog(@"last name is %@", name);
     
     rect = [[UIScreen mainScreen]bounds];
     
@@ -119,35 +121,41 @@
     _tableView.dataSource = self;
 }
 
--(void)getName:(NSNotification*)notification
-{
-    name = notification.object;
-    NSLog(@"name from notification is %@", name);
+-(void)modelUpdated:(id)model{
+    // bixLocalAccount* account = [bixLocalAccount instance];
+   
+    // 已得到最新的用户数据，这里进行填充
 }
 
--(void)getSignature:(NSNotification*)notification
-{
-    signature = notification.object;
-    NSLog(@"signature from notification is %@",signature);
-}
-
--(void)getID:(NSNotification*)notification
-{
-    ID = notification.object;
-    NSLog(@"ID from notification is %@",ID);
-}
-
--(void)getWechatID:(NSNotification*)notification
-{
-    WechatID = notification.object;
-    NSLog(@"weChatID from notification is %@",WechatID);
-}
-
--(void)getTeslaType:(NSNotification*)notification
-{
-    TeslaType = notification.object;
-    NSLog(@"teslaType from notification is %@",TeslaType);
-}
+//-(void)getName:(NSNotification*)notification
+//{
+//    name = notification.object;
+//    NSLog(@"name from notification is %@", name);
+//}
+//
+//-(void)getSignature:(NSNotification*)notification
+//{
+//    signature = notification.object;
+//    NSLog(@"signature from notification is %@",signature);
+//}
+//
+//-(void)getID:(NSNotification*)notification
+//{
+//    ID = notification.object;
+//    NSLog(@"ID from notification is %@",ID);
+//}
+//
+//-(void)getWechatID:(NSNotification*)notification
+//{
+//    WechatID = notification.object;
+//    NSLog(@"weChatID from notification is %@",WechatID);
+//}
+//
+//-(void)getTeslaType:(NSNotification*)notification
+//{
+//    TeslaType = notification.object;
+//    NSLog(@"teslaType from notification is %@",TeslaType);
+//}
 
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -194,12 +202,16 @@
                 reuseIdentifier:TableSampleIdentifier];
     }
     
+    bixLocalAccount* account = [bixLocalAccount instance];
+    
     //    UIImage *image = [UIImage imageNamed:@"superChargerPile_90"];
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect frame = CGRectMake(0.0,0.0,headImage.size.width,headImage.size.height);
-    button.frame = frame;
-    [button setBackgroundImage:headImage forState:UIControlStateNormal];
-    button.backgroundColor = [UIColor clearColor];
+    //UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    button.frame = frame;
+    //[button setBackgroundImage:[account.avatar] forState:UIControlStateNormal];
+    //button.backgroundColor = [UIColor clearColor];
+    
+    CGRect frame = CGRectMake(0.0,0.0,60,60);
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:frame];
     
     //    UIImage *image0 = [UIImage imageNamed:@"personInfo"];
     NSUInteger row = [indexPath row];
@@ -207,15 +219,15 @@
         cell.textLabel.text = [self.list objectAtIndex:row];
         if (row == 0) {
             //            cell.accessoryView = image0;
-            cell.accessoryView = button;
+            cell.accessoryView = imgView;
         }
         else if(row == 1)
         {
-            cell.detailTextLabel.text = name;
+            cell.detailTextLabel.text = account.nickname;
         }
         else if (row == 2)
         {
-            cell.detailTextLabel.text = signature;
+            cell.detailTextLabel.text = account.signature;
         }
     }
     else if(indexPath.section == 1)
@@ -229,11 +241,11 @@
         }
         else if (row == 1)
         {
-            cell.detailTextLabel.text = WechatID;
+            cell.detailTextLabel.text = account.wechatID;
         }
         else if (row == 2)
         {
-            cell.detailTextLabel.text = TeslaType;
+            cell.detailTextLabel.text = account.teslaType;
         }
     }
     if (!((indexPath.section == 1) && (indexPath.row == 0))) {
@@ -390,20 +402,14 @@
 #pragma mark - 图片回传协议方法
 -(void)passImage:(UIImage *)image
 {
-    imageView.image = image;
-    //设置头像缩放成 60*60 的
-    headImage = [self scaleFromImage:image];
-    
-    //上传头像 数据到服务器, PNG格式;
-    request = [[RequestInfoFromServer alloc]init];
-    [request sendAsynchronousPostImageRequest:headImage];
-    
-    //保存裁剪后的头像;
-//    Account * accout = [appDelegate account];
-//    accout.avatar = headImage;
-    
     bixLocalAccount *account = [bixLocalAccount instance];
-    //account.avatar = headImage;
+    account.avatar = [[bixImageProxy alloc] initWithImage:image];
+    
+    // 这里应该让imageview自适应image，而不应该对image做剪裁，这样会消耗性能，并损坏数据。
+    //设置头像缩放成 60*60 的
+    //image = [self scaleFromImage:image];
+    
+    [account pushProperties:avatar];
     [account save];
 }
 

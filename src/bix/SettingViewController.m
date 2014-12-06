@@ -141,9 +141,8 @@
     // cancel
     if (buttonIndex == 0) return;
     
-    bixLocalAccount* localAccount;
-    
-    localAccount.autoLogin = false;
+    [bixLocalAccount instance].autoLogin = false;
+    [bixLocalAccount save];
     [[bixChatProvider defaultChatProvider] logOut];
 }
 

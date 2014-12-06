@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "NSString+Account.h"
 #import "Session.h"
+#import "bixImageProxy.h"
 
 @implementation Account
 
@@ -67,12 +68,21 @@
     return [NSString stringWithFormat: @"/api/user/%@", self.username];
 }
 
--(void)SucceedWithStatus:(NSInteger)code andJSONResult:(NSObject *)result{
-    NSDictionary* dict = (NSDictionary*)result;
-    self.nickname = [dict objectForKey:@"nickname"];
-    self.avatar = [dict objectForKey:@"avatar"];
-    self.signature = [dict objectForKey:@"signature"];
-    [self.observer modelUpdated:self];
+-(void)populateWithJSON:(NSObject *)result{
+    @try {
+        self.nickname = [result valueForKey:@"nickname"];
+        self.signature = [result valueForKey:@"signature"];
+        
+        self.avatar = [[bixImageProxy alloc]
+                       initWithUrl:[result valueForKey:@"avatar"]
+                       andThumbnail:[result valueForKey:@"avatar_thumbnail"]];
+    }
+    @catch (NSException *exception) {
+#ifdef DEBUG
+        NSLog(@"parse account error:%@", exception);
+#endif
+    }
+    [super modelUpdateComplete];
 }
 
 @end

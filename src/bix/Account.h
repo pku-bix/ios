@@ -15,6 +15,7 @@
 #import "bixRemoteModelDataSource.h"
 #import "bixRemoteModelDelegate.h"
 #import "bixRemoteModelObserver.h"
+#import "bixImageProxy.h"
 
 @interface Account : bixRemoteModelBase<NSCoding, bixRemoteModelDataSource, bixRemoteModelDelegate>
 
@@ -25,7 +26,7 @@
 @property (nonatomic) NSString* wechatID;
 @property (nonatomic) NSString* teslaType;
 @property (nonatomic) NSString* nickname;
-@property (nonatomic) NSString* avatar;
+@property (nonatomic) bixImageProxy* avatar;
 
 - (void) save;
 

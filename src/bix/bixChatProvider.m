@@ -115,6 +115,9 @@ static bixChatProvider *instance = nil;
     [self.contacts addObject:account];
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_CONTACT_ADDED object:self ];
     
+    // just pull it!
+    [account pull];
+    
     return account;
 }
 
