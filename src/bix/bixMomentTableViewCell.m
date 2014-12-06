@@ -160,7 +160,8 @@
                                               forIndexPath:indexPath];
  
     UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:111];
-    [imageView sd_setImageWithURL:self.momentDataItem.imgUrls[indexPath.row]];
+    bixImageProxy* ip = self.momentDataItem.imgUrls[indexPath.row];
+    [ip setImageToImageView:imageView];
 //    NSLog(@"bixMomentTableViewCell.m self.momentDataItem.uiImageData count is %d", [self.momentDataItem.uiImageData count]);
     NSLog(@"indexPath.row is %d",indexPath.row);
 //    imageView.image = [self.momentDataItem.uiImageData objectAtIndex:indexPath.row];
@@ -170,11 +171,7 @@
 }
 
 -(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-//    NSLog(@"")
-    NSLog(@"collectionView 的图片个数是 %d", self.momentDataItem.imgUrls.count);
-          
     return self.momentDataItem.imgUrls.count;
-//    return self.momentDataItem.uiImageData.count;
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView

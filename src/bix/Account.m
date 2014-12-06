@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "NSString+Account.h"
 #import "Session.h"
+#import "bixImageProxy.h"
 
 @implementation Account
 
