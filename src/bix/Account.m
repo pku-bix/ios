@@ -67,12 +67,18 @@
     return [NSString stringWithFormat: @"/api/user/%@", self.username];
 }
 
--(void)SucceedWithStatus:(NSInteger)code andJSONResult:(NSObject *)result{
-    NSDictionary* dict = (NSDictionary*)result;
-    self.nickname = [dict objectForKey:@"nickname"];
-    self.avatar = [dict objectForKey:@"avatar"];
-    self.signature = [dict objectForKey:@"signature"];
-    [self.observer modelUpdated:self];
+-(void)populateWithJSON:(NSObject *)result{
+    @try {
+        self.nickname = [result valueForKey:@"nickname"];
+        self.avatar = [result valueForKey:@"avatar"];
+        self.signature = [result valueForKey:@"signature"];
+    }
+    @catch (NSException *exception) {
+#ifdef DEBUG
+        NSLog(@"parse account error:%@", exception);
+#endif
+    }
+    [super modelUpdateComplete];
 }
 
 @end
