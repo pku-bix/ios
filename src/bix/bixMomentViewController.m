@@ -96,7 +96,7 @@
         
         Account *account = [bixLocalAccount instance];
 //        account.avatarUrl = [NSURL URLWithString: @"http://121.40.72.197/upload/26674-c0199v.png"];
-        account.avatar = avatarUrlRight;
+        //account.avatar = avatarUrlRight;
         account.nickname = [authorDic objectForKey:@"username"];
         itemRefresh = [[bixMomentDataItem alloc]initWithSender:account];
         
@@ -104,7 +104,7 @@
         for (id url in urlArray) {
             NSString *strURL = [NSString stringWithFormat:@"%@%@",@"http://121.40.72.197",url];
             NSLog(@"strURL is : %@", strURL);
-            [itemRefresh.imgUrls addObject:[NSURL URLWithString:strURL]];
+            //[itemRefresh.imgProxies addObject:[NSURL URLWithString:strURL]];
         }
         itemRefresh.textContent = [obj objectForKey:@"content"];
         [[bixMomentDataSource defaultSource]addMomentDataItem:itemRefresh];

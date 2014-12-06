@@ -317,7 +317,7 @@
         // create MomentDataItem item
         // add item to MomentDataSource
         Account *account = [bixLocalAccount instance];
-        account.avatar = @"http://121.40.72.197/upload/1171-g2ixyb.png";
+        //account.avatar = @"http://121.40.72.197/upload/1171-g2ixyb.png";
         account.nickname = account.username;
         item = [[bixMomentDataItem alloc]initWithSender:account];
         //    item.imgUrls = [NSMutableArray arrayWithArray:self.mutableArray];
@@ -329,8 +329,8 @@
             
 //            [item.imageProxy ]
         }
-        NSLog(@"item.uiImageData count is %d, self.mutableArray count is %d", [item.uiImageData count], [self.mutableArray count]);
-        NSLog(@"bixSendMoodData.m item.uiImageData count is %d", [item.uiImageData count]);
+        //NSLog(@"item.uiImageData count is %d, self.mutableArray count is %d", [item.uiImageData count], [self.mutableArray count]);
+        //NSLog(@"bixSendMoodData.m item.uiImageData count is %d", [item.uiImageData count]);
         item.textContent = self.textView.text;
         [[bixMomentDataSource defaultSource]addMomentDataItem:item];
         

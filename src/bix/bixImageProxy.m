@@ -24,7 +24,6 @@
 {
     self = [super init];
     if (self) {
-//        self.image = [UIImage imageWithCIImage:<#(CIImage *)#>]
         self.image = image;
     }
     return self;
@@ -33,10 +32,9 @@
 -(void)setImageToImageView:(UIImageView *)imageView
 {
     if (self.image == NULL) {
-    [imageView sd_setImageWithURL:[NSURL URLWithString:self.url]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:self.url]];
     }
-    else
-    {
+    else{
         imageView.image = self.image;
     }
 }

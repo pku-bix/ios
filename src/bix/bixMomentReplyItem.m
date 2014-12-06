@@ -40,10 +40,6 @@
     return self.sender.nickname;
 }
 
--(NSString*) avatar{
-    return self.sender.avatar;
-}
-
 -(NSString *)description{
     return [NSString stringWithFormat:@"%@ replies: %@ with avatarUrl:%@",self.nickname, self.text, self.avatarUrl];
 }
