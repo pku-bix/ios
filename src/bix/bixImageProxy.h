@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface bixImageProxy : NSObject
+@interface bixImageProxy : NSObject<NSCoding>
 
 @property (nonatomic)NSString *url;
 @property (nonatomic)UIImage *image;
