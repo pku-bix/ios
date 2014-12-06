@@ -12,9 +12,10 @@
 
 @property (nonatomic)NSString *url;
 @property (nonatomic)UIImage *image;
+@property (nonatomic)NSString *thumbnailUrl;
 
 
--(id)initWithUrl:(NSString *)url;
+-(id)initWithUrl:(NSString *)url andThumbnail:(NSString*)thumbnail;
 -(id)initWithImage:(UIImage *)image;
 
 -(void)setImageToImageView:(UIImageView *)imageView;

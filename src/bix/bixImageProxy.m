@@ -11,11 +11,12 @@
 
 @implementation bixImageProxy
 
-- (id)initWithUrl:(NSString *)url
+-(id)initWithUrl:(NSString *)url andThumbnail:(NSString*)thumbnail
 {
     self = [super init];
     if (self) {
         self.url = url;
+        self.thumbnailUrl = thumbnail;
     }
     return self;
 }
