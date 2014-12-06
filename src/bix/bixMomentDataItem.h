@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Account.h"
 #import "bixRemoteModelDelegate.h"
+#import "bixImageProxy.h"
 
 @interface bixMomentDataItem : bixRemoteModelBase<bixRemoteModelDelegate,bixRemoteModelDataSource>
 
@@ -33,7 +34,7 @@
 // 回复
 @property (nonatomic) NSMutableArray* replies;
 
-
+@property (nonatomic) NSMutableArray *imageProxy;
 
 
 

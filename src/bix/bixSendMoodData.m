@@ -326,6 +326,8 @@
         //    item.uiImageData = [NSMutableArray arrayWithArray:self.mutableArray];
         for (id obj in self.mutableArray) {
             [item.uiImageData addObject:obj];
+            
+//            [item.imageProxy ]
         }
         NSLog(@"item.uiImageData count is %d, self.mutableArray count is %d", [item.uiImageData count], [self.mutableArray count]);
         NSLog(@"bixSendMoodData.m item.uiImageData count is %d", [item.uiImageData count]);

@@ -42,9 +42,10 @@
     
     if(self){
         _sender = sender;
-        _imgUrls = [NSMutableArray arrayWithCapacity:10];
+        _imgUrls = [NSMutableArray arrayWithCapacity:9];
         _replies = [NSMutableArray new];
         _uiImageData = [NSMutableArray arrayWithCapacity:2];   //用户发送的图片数据;
+        self.imageProxy = [NSMutableArray arrayWithCapacity:9];
         
         // TODO: 使用HTTP层代替以下的静态测试数据
 //        [_imgUrls addObject:sender.avatarUrl];
