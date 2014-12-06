@@ -31,6 +31,23 @@
     return self;
 }
 
+-(id)initWithCoder:(NSCoder *)coder{
+    self = [super init];
+    
+    if (self) {
+        self.url = [coder decodeObjectForKey:@"url"];
+        self.thumbnailUrl = [coder decodeObjectForKey:@"thumbnail"];
+        self.image = [coder decodeObjectForKey:@"image"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.url forKey:@"url"];
+    [coder encodeObject:self.thumbnailUrl forKey:@"thumbnail"];
+    [coder encodeObject:self.image forKey:@"image"];
+}
+
 -(void)setImageToImageView:(UIImageView *)imageView
 {
     if (self.image == NULL) {

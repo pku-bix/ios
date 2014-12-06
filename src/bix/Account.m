@@ -71,11 +71,13 @@
 -(void)populateWithJSON:(NSObject *)result{
     @try {
         self.nickname = [result valueForKey:@"nickname"];
-        self.avatar =  [[bixImageProxy alloc]
-                        initWithUrl:[result valueForKey:@"avatar"]
-                        andThumbnail:[result valueForKey:@"avatar_thumbnail"]] ;
-        
+
+
         self.signature = [result valueForKey:@"signature"];
+        
+        self.avatar = [[bixImageProxy alloc]
+                       initWithUrl:[result valueForKey:@"avatar"]
+                       andThumbnail:[result valueForKey:@"avatar_thumbnail"]];
     }
     @catch (NSException *exception) {
 #ifdef DEBUG

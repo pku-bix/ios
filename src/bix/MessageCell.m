@@ -22,6 +22,7 @@
                                          [UIScreen mainScreen].currentMode.size.width,
                                          TIMEINFO_HEIGHT)];
         _timeInfo.font = [UIFont systemFontOfSize:11.0];
+        _timeInfo.backgroundColor = [UIColor clearColor];
         _timeInfo.textColor = [UIColor lightGrayColor];
         //timeInfo.adjustsFontSizeToFitWidth = false;
         _timeInfo.textAlignment =  NSTextAlignmentCenter;
@@ -48,7 +49,7 @@
         _msgTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
         _msgTextView.textContainer.lineFragmentPadding = 0;
         
-        [_msgTextView setFont:[UIFont systemFontOfSize:13]];
+        [_msgTextView setFont:[UIFont systemFontOfSize:16]];
         [self.contentView addSubview:_msgTextView];
 
     }

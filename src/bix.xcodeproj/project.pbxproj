@@ -20,6 +20,7 @@
 		84758EDA1A2047C400845672 /* UzysSMMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 84758ED51A2047C400845672 /* UzysSMMenuItem.m */; };
 		84758EDB1A2047C400845672 /* UzysSMMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84758ED71A2047C400845672 /* UzysSMMenuItemView.m */; };
 		84758EDC1A2047C400845672 /* UzysSMMenuItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84758ED81A2047C400845672 /* UzysSMMenuItemView.xib */; };
+		84CE70841A32E4E2004AD41C /* bixUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CE70831A32E4E2004AD41C /* bixUserDetailViewController.m */; };
 		84E312B21A2F3F5700E8F5A5 /* head_show.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 84E312B11A2F3F5700E8F5A5 /* head_show.jpeg */; };
 		E3041FDA19E6A66F0016B7FD /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3041FD919E6A66F0016B7FD /* marker@2x.png */; };
 		E3041FDD19E6A6F70016B7FD /* home_charge.png in Resources */ = {isa = PBXBuildFile; fileRef = E3041FDB19E6A6F60016B7FD /* home_charge.png */; };
@@ -247,6 +248,8 @@
 		84758ED61A2047C400845672 /* UzysSMMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysSMMenuItemView.h; sourceTree = "<group>"; };
 		84758ED71A2047C400845672 /* UzysSMMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysSMMenuItemView.m; sourceTree = "<group>"; };
 		84758ED81A2047C400845672 /* UzysSMMenuItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UzysSMMenuItemView.xib; sourceTree = "<group>"; };
+		84CE70821A32E4E2004AD41C /* bixUserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixUserDetailViewController.h; sourceTree = "<group>"; };
+		84CE70831A32E4E2004AD41C /* bixUserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixUserDetailViewController.m; sourceTree = "<group>"; };
 		84E312B11A2F3F5700E8F5A5 /* head_show.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = head_show.jpeg; sourceTree = "<group>"; };
 		E3041FD919E6A66F0016B7FD /* marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker@2x.png"; sourceTree = "<group>"; };
 		E3041FDB19E6A6F60016B7FD /* home_charge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_charge.png; sourceTree = "<group>"; };
@@ -681,6 +684,8 @@
 				EC10201018C8701400B3775E /* MapViewController.m */,
 				E37F2C4319DBFA5A0090AB24 /* bixDetailViewController.h */,
 				E37F2C4419DBFA5A0090AB24 /* bixDetailViewController.m */,
+				84CE70821A32E4E2004AD41C /* bixUserDetailViewController.h */,
+				84CE70831A32E4E2004AD41C /* bixUserDetailViewController.m */,
 			);
 			name = BaiduMapView;
 			sourceTree = "<group>";
@@ -1714,6 +1719,7 @@
 				EC57887019A620710058837C /* MessageCell.m in Sources */,
 				EC9908A218C33C9200798FAB /* XMPPStream.m in Sources */,
 				E3E59A1D1A07D93600B0DA76 /* bixCaptureViewController.m in Sources */,
+				84CE70841A32E4E2004AD41C /* bixUserDetailViewController.m in Sources */,
 				EC99083018C3391300798FAB /* DDXMLNode.m in Sources */,
 				ECED789118D00CAD0041CCC7 /* Account.m in Sources */,
 				EC0F2A3E19C5EEA800BE1F62 /* ChatNavigationController.m in Sources */,

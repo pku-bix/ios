@@ -138,11 +138,14 @@ AppDelegate* appdelegate;
     
     if ([self.session msgExpiredAt:indexPath.row]) {
         cell.timeInfo.text = [msg.date toFriendlyString];
+       // NSLog(cell.timeInfo.text);
         [cell.timeInfo sizeToFit];
         cell.timeInfo.center = CGPointMake(self.view.frame.size.width/2,
                                                TIMEINFO_HEIGHT - cell.timeInfo.frame.size.height/2);
+       // NSLog(@"TimeInfo Height %f", cell.timeInfo.frame.size.height);
         margin_msg_top =MARGIN_MSG_TOP + TIMEINFO_HEIGHT;
         chat_head_space = TIMEINFO_HEIGHT;
+        [cell.timeInfo setHidden:NO];
     }
     else{
         [cell.timeInfo setHidden:true];
@@ -154,19 +157,22 @@ AppDelegate* appdelegate;
     
     CGSize size = [self getDisplaySize:msg.body];
     UIImage *bgImage = nil;
-
+    
+    CGFloat bgWidth = size.width > 35.0 ? size.width : 35.0;
+    CGFloat sendTextWidth = size.width > 35.0 ? size.width : (size.width + 35.0)/2.0;
+    CGFloat receiveTextWidth = size.width > 35.0 ? 0.0 : (35.0 - size.width)/2.0;
+    
     if (msg.isMine) {
-        float textWidth = size.width > 30 ? size.width : size.width+5;
         [cell.msgTextView setFrame:
-         CGRectMake(self.view.frame.size.width - textWidth - PADDING_MSG_SENDER - MARGIN_MSG_SENDER - CHAT_HEAD_SHOW_SIZE*5/6- CHAT_HEAD_SHOW_PADDING_LEFT - CHAT_HEAD_SHOW_PADDING_RIGHT,
-                    margin_msg_top + PADDING_MSG_TOP,
+         CGRectMake(self.view.frame.size.width - sendTextWidth - PADDING_MSG_SENDER - MARGIN_MSG_SENDER - CHAT_HEAD_SHOW_SIZE*12/13- CHAT_HEAD_SHOW_PADDING_LEFT - CHAT_HEAD_SHOW_PADDING_RIGHT,
+                    margin_msg_top + PADDING_MSG_TOP+4,
                     size.width,
                     size.height)];
 
         [cell.bgImageView setFrame:
-         CGRectMake(self.view.frame.size.width - textWidth - MARGIN_MSG_SENDER - PADDING_MSG_SENDER - PADDING_MSG_RECEIVER - CHAT_HEAD_SHOW_SIZE*2/3 - CHAT_HEAD_SHOW_PADDING_LEFT - CHAT_HEAD_SHOW_PADDING_RIGHT,
+         CGRectMake(self.view.frame.size.width - bgWidth - MARGIN_MSG_SENDER - PADDING_MSG_SENDER - PADDING_MSG_RECEIVER - CHAT_HEAD_SHOW_SIZE*4/5 - CHAT_HEAD_SHOW_PADDING_LEFT - CHAT_HEAD_SHOW_PADDING_RIGHT,
                     margin_msg_top,
-                    size.width + PADDING_MSG_RECEIVER + PADDING_MSG_SENDER,
+                    bgWidth + PADDING_MSG_RECEIVER + PADDING_MSG_SENDER,
                     size.height + PADDING_MSG_TOP + PADDING_MSG_BOTTOM)];
         
         [cell.chatHeadShow setFrame:
@@ -184,12 +190,12 @@ AppDelegate* appdelegate;
                    resizingMode:UIImageResizingModeStretch];
 
     }else {
-        [cell.msgTextView setFrame:CGRectMake(PADDING_MSG_SENDER + MARGIN_MSG_SENDER + CHAT_HEAD_SHOW_PADDING_LEFT + CHAT_HEAD_SHOW_SIZE*5/6 + CHAT_HEAD_SHOW_PADDING_RIGHT,
-                                              margin_msg_top + PADDING_MSG_TOP,
+        [cell.msgTextView setFrame:CGRectMake(PADDING_MSG_SENDER + MARGIN_MSG_SENDER + CHAT_HEAD_SHOW_PADDING_LEFT + CHAT_HEAD_SHOW_SIZE*7/8 + CHAT_HEAD_SHOW_PADDING_RIGHT+receiveTextWidth,
+                                              margin_msg_top + PADDING_MSG_TOP +4,
                                               size.width,   size.height)];
-        [cell.bgImageView setFrame:CGRectMake(MARGIN_MSG_SENDER + CHAT_HEAD_SHOW_PADDING_LEFT + CHAT_HEAD_SHOW_SIZE/2+2 + CHAT_HEAD_SHOW_PADDING_RIGHT,
+        [cell.bgImageView setFrame:CGRectMake(MARGIN_MSG_SENDER + CHAT_HEAD_SHOW_PADDING_LEFT + CHAT_HEAD_SHOW_SIZE*2/3+1 + CHAT_HEAD_SHOW_PADDING_RIGHT,
                                               margin_msg_top,
-                                              size.width + PADDING_MSG_RECEIVER + PADDING_MSG_SENDER,
+                                              bgWidth + PADDING_MSG_RECEIVER + PADDING_MSG_SENDER,
                                               size.height + PADDING_MSG_TOP + PADDING_MSG_BOTTOM)];
         
         [cell.chatHeadShow setFrame:
@@ -202,7 +208,7 @@ AppDelegate* appdelegate;
         cell.chatHeadShow.layer.cornerRadius = CHAT_HEAD_SHOW_SIZE / 2;
         
         bgImage = [[UIImage imageNamed:@"msg_received_HEMI-100.png"]
-                   resizableImageWithCapInsets:UIEdgeInsetsMake(17, 44, 22, 20)
+                   resizableImageWithCapInsets:UIEdgeInsetsMake(17, 44, 25, 20)
                    resizingMode:UIImageResizingModeStretch];
     }
     cell.bgImageView.image = bgImage;
@@ -225,9 +231,10 @@ AppDelegate* appdelegate;
     
     CGSize size = [str boundingRectWithSize:textSize
                                     options:NSStringDrawingUsesLineFragmentOrigin
-                                 attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13]}
+                                 attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]}
                                     context: nil].size;
-    return size;
+    CGSize _textSize = CGSizeMake(size.width, size.height+8);
+    return _textSize;
 }
 
 

@@ -44,6 +44,8 @@
 	// Do any additional setup after loading the view.
     rect = [[UIScreen mainScreen]bounds];
     
+    NSLog(@"Width %f, Height %f", rect.size.width, rect.size.height);
+    
     general_TableView = [[generalTableView alloc]init];
     
 //    NSArray * array = [[NSArray alloc]initWithObjects:@"个人信息", @"上报充电桩",@"反馈与建议",@"邀请好友", nil];
@@ -56,7 +58,11 @@
     general_TableView.list3 = array3;
     
     //用代码来创建 tableview, tableview的高度需要设置成rect.size.height-navigationbar的高度，才不会出现滚动到最下面的行又自动滚动回前面。
-     table_View =[[UITableView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height) style:UITableViewStyleGrouped];
+     table_View =[[UITableView alloc]initWithFrame:CGRectMake(0,
+                                                              self.navigationController.navigationBar.frame.size.height + 20,
+                                                              rect.size.width,
+                                                              rect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height-20) style:UITableViewStyleGrouped];
+    NSLog(@"TableView Height NVBar %f, TBar %f", self.navigationController.navigationBar.frame.size.height, self.navigationController.toolbar.frame.size.height);
 //    table_View.contentSize = CGSizeMake(320, 2000);
     
     [self.view addSubview:table_View];
@@ -135,9 +141,8 @@
     // cancel
     if (buttonIndex == 0) return;
     
-    bixLocalAccount* localAccount;
-    
-    localAccount.autoLogin = false;
+    [bixLocalAccount instance].autoLogin = false;
+    [bixLocalAccount save];
     [[bixChatProvider defaultChatProvider] logOut];
 }
 
