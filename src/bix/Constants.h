@@ -122,7 +122,7 @@ static const int PADDING_MSG_BOTTOM   =   14;  //下方
 static const int PADDING_MSG_RECEIVER =   15;  //接收方
 static const int PADDING_MSG_SENDER   =   15;  //发送方
 
-static const int CHAT_HEAD_SHOW_SIZE            =       32;         // 聊天头像大小
+static const int CHAT_HEAD_SHOW_SIZE            =       42;         // 聊天头像大小
 static const int CHAT_HEAD_SHOW_PADDING_TOP     =       5;          // 聊天头像上边距
 static const int CHAT_HEAD_SHOW_PADDING_BOTTOM  =       5;          // 聊天头像下边距
 static const int CHAT_HEAD_SHOW_PADDING_LEFT    =       2;          // 聊天头像左边距

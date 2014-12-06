@@ -94,7 +94,10 @@
     self.list2 = array2;
     
     //用代码来创建 tableview, tableview的高度需要设置成rect.size.height-navigationbar的高度，才不会出现滚动到最下面的行又自动滚动回前面。
-    _tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height-50) style:UITableViewStyleGrouped];
+    _tableView =[[UITableView alloc]initWithFrame:CGRectMake(0,
+                                                             self.navigationController.navigationBar.frame.size.height + 20,
+                                                             rect.size.width,
+                                                             rect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height-20) style:UITableViewStyleGrouped];
     //    table_View.contentSize = CGSizeMake(320, 2000);
     //设置tableview的背景；
     //    UIImageView *tableBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Tesla"]];
@@ -257,7 +260,7 @@
     //    return [general_TableView tableView:tableView heightForRowAtIndexPath:indexPath];
     if(indexPath.section == 0 && indexPath.row == 0)
     {
-        return tableView.rowHeight+75;
+        return headImage.size.height + 20;
     }
     else
         return tableView.rowHeight;

@@ -33,11 +33,10 @@
     // Do any additional setup after loading the view.
     //self.teslaType.delegate = self;
     
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8) {
-        myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
-    }
-    else
-        myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
+    myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,
+                                                                self.navigationController.navigationBar.frame.size.height + 20,
+                                                                self.view.bounds.size.width,
+                                                                self.view.bounds.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height-20) style:UITableViewStyleGrouped];
     
 //    myTableView.allowsSelection = YES;
     [self.view addSubview:myTableView];
