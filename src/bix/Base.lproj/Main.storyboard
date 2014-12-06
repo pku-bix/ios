@@ -127,6 +127,7 @@
                     <connections>
                         <outlet property="_mapView" destination="VLP-1P-iHj" id="4Dv-54-6DE"/>
                         <segue destination="zTK-3x-xS0" kind="modal" identifier="chargerDetail" id="RCk-Oc-zJp"/>
+                        <segue destination="guD-IW-hwH" kind="push" identifier="userDetail" id="XEm-5x-Dse"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E7j-KQ-vTl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -215,6 +216,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tk1-3q-ikr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1179" y="279"/>
+        </scene>
+        <!--Bix User Detail View Controller-->
+        <scene sceneID="uPH-gn-5T3">
+            <objects>
+                <viewController id="guD-IW-hwH" customClass="bixUserDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="APf-9T-kJY"/>
+                        <viewControllerLayoutGuide type="bottom" id="yNC-Oz-8JC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="khj-Wi-TKE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZUw-LD-UAt">
+                                <rect key="frame" x="50" y="43" width="221" height="156"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NK5-cZ-HWf">
+                                <rect key="frame" x="50" y="221" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7O-fw-2UM">
+                                <rect key="frame" x="50" y="261" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H6j-7k-AqX">
+                                <rect key="frame" x="137" y="302" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="MC3-cf-Ayd" kind="modal" id="Op3-p4-xeA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="EtY-Wb-MdP"/>
+                    <connections>
+                        <outlet property="avatarImage" destination="ZUw-LD-UAt" id="Gka-QX-Ago"/>
+                        <outlet property="nickname" destination="NK5-cZ-HWf" id="jv5-CI-Bq3"/>
+                        <outlet property="signature" destination="k7O-fw-2UM" id="Wfb-EE-7R1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="djM-Gt-NTU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2047" y="-1072"/>
         </scene>
         <!--消息-->
         <scene sceneID="xOX-DP-ODC">
@@ -1255,4 +1306,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Op3-p4-xeA"/>
+    </inferredMetricsTieBreakers>
 </document>
