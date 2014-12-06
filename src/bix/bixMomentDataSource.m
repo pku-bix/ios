@@ -84,7 +84,7 @@ typedef enum{
 
 -(BOOL) addMomentDataItem: (bixMomentDataItem*)item{
     //todo: add item to itemsArray
-    [self.momentDataItemsArray addObject:item];
+    [self.items addObject:item];
     
 //    [self.observer modelUpdated:self];
 
@@ -94,12 +94,12 @@ typedef enum{
 
 -(BOOL) removeMomentDataItem:(int)index
 {
-    if (index > [self.momentDataItemsArray count]) {
+    if (index > [self.items count]) {
         return false;
     }
     else
     {
-        [self.momentDataItemsArray removeObjectAtIndex:index];
+        [self.items removeObjectAtIndex:index];
 
         [self.observer modelUpdated:self];
         return true;

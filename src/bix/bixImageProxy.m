@@ -51,7 +51,7 @@
 -(void)setImageToImageView:(UIImageView *)imageView
 {
     if (self.image == NULL) {
-        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_SERVER, self.url]]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_SERVER, self.thumbnailUrl]]];
     }
     else{
         imageView.image = self.image;

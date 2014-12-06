@@ -56,6 +56,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -130,10 +131,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    bixMomentDataItem* item = [[bixMomentDataSource defaultSource] getMomentAtIndex:(numberOFMomentDataItem-indexPath.row-1)];
-    
-    NSLog(@"第%d个item，momentViewController.m", (numberOFMomentDataItem-indexPath.row-1));
+    bixMomentDataItem *item = [[bixMomentDataSource defaultSource]getMomentAtIndex:(indexPath.row)];
+//    NSLog(@"第%d个item，momentViewController.m", (numberOFMomentDataItem-indexPath.row-1));
     
     // reuse key must be identical to that set on storyboard
     bixMomentTableViewCell *cell = (bixMomentTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"moment-item" forIndexPath:indexPath];
