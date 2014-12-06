@@ -16,6 +16,7 @@
 
 -(id)initWithUrl:(NSString *)url;
 -(id)initWithImage:(UIImage *)image;
+
 -(void)setImageToImageView:(UIImageView *)imageView;
 
 @end

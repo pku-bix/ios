@@ -34,7 +34,8 @@
 // 回复
 @property (nonatomic) NSMutableArray* replies;
 
-@property (nonatomic) NSMutableArray *imageProxy;
+
+@property (nonatomic) NSMutableArray *imageProxyArray;
 
 
 

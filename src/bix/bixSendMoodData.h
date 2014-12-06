@@ -18,7 +18,7 @@
 
 @property(nonatomic)int pictureNumber; //添加的图片数量;
 
-@property(nonatomic) NSMutableArray *mutableArray;
+@property(nonatomic) NSMutableArray *imageArray;
 
 @property(strong,nonatomic) NSObject<PassImageDelegate> *delegate;
 
@@ -49,7 +49,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *addPictureButton;
 
-- (IBAction)cancleSendMood:(id)sender;
+//- (IBAction)cancleSendMood:(id)sender;
 
 - (IBAction)addPicture:(id)sender;
 

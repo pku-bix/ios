@@ -160,7 +160,7 @@
                                               forIndexPath:indexPath];
  
     UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:111];
-    bixImageProxy* ip = self.momentDataItem.imgUrls[indexPath.row];
+    bixImageProxy* ip = self.momentDataItem.imageProxyArray[indexPath.row];
     [ip setImageToImageView:imageView];
 //    NSLog(@"bixMomentTableViewCell.m self.momentDataItem.uiImageData count is %d", [self.momentDataItem.uiImageData count]);
     NSLog(@"indexPath.row is %d",indexPath.row);
@@ -171,7 +171,7 @@
 }
 
 -(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.momentDataItem.imgUrls.count;
+    return self.momentDataItem.imageProxyArray.count;
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
