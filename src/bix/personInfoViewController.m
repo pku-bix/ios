@@ -57,38 +57,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    bixLocalAccount* account = [bixLocalAccount instance];
-    account.observer = self;
-    [account pull];
-    
-    //加载之前保存的名字字段;
-//    name = account.nickname;
-//    signature = account.signature;
-//    ID = account.username;
-//    WechatID = account.wechatID;
-//    TeslaType = account.teslaType;
-
-    //这些通知 只要注册一次就可以了
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getName:) name:@"nameChange" object:nil];
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getSignature:) name:@"signatureChange" object:nil];
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getID:) name:@"IDChange" object:nil];
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getWechatID:) name:@"WechatID" object:nil];
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getTeslaType:) name:@"TeslaType" object:nil];
-    
-    //加载之前保存的头像；
-//    [imageView sd_setImageWithURL: [NSURL URLWithString: account.avatar]];
-    
-//    NSLog(@"headImage is ...  %@", headImage);
-//    
-//    if (headImage == NULL) {
-//        headImage = [UIImage imageNamed:@"default_headshow.png"];
-//    }
-//    
-//    NSLog(@"last name is %@", name);
-    
     rect = [[UIScreen mainScreen]bounds];
-    
-    //    personInfo_generalTableView = [[generalTableView alloc]init];
     
     NSArray * array = [[NSArray alloc]initWithObjects:@"头像", @"名字",@"个性签名", nil];
     NSArray * array2 = [[NSArray alloc]initWithObjects:@"个人ID", @"微信号", @"Tesla车型", nil];
@@ -101,10 +70,6 @@
                                                              self.navigationController.navigationBar.frame.size.height + 20,
                                                              rect.size.width,
                                                              rect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height-20) style:UITableViewStyleGrouped];
-    //    table_View.contentSize = CGSizeMake(320, 2000);
-    //设置tableview的背景；
-    //    UIImageView *tableBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Tesla"]];
-    //    [_tableView setBackgroundView:tableBg];
     [self.view addSubview:_tableView];
 }
 
@@ -122,50 +87,7 @@
     _tableView.dataSource = self;
 }
 
--(void)modelUpdated:(id)model{
-    // bixLocalAccount* account = [bixLocalAccount instance];
-   
-    // 已得到最新的用户数据，这里进行填充
-}
-
-//-(void)getName:(NSNotification*)notification
-//{
-//    name = notification.object;
-//    NSLog(@"name from notification is %@", name);
-//}
-//
-//-(void)getSignature:(NSNotification*)notification
-//{
-//    signature = notification.object;
-//    NSLog(@"signature from notification is %@",signature);
-//}
-//
-//-(void)getID:(NSNotification*)notification
-//{
-//    ID = notification.object;
-//    NSLog(@"ID from notification is %@",ID);
-//}
-//
-//-(void)getWechatID:(NSNotification*)notification
-//{
-//    WechatID = notification.object;
-//    NSLog(@"weChatID from notification is %@",WechatID);
-//}
-//
-//-(void)getTeslaType:(NSNotification*)notification
-//{
-//    TeslaType = notification.object;
-//    NSLog(@"teslaType from notification is %@",TeslaType);
-//}
-
-
 - (void)viewWillDisappear:(BOOL)animated{
-
-//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"nameChange" object:nil];
-//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"signatureChange" object:nil];
-//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"IDChange" object:nil];
-//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"WechatID" object:nil];
-//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"TeslaType" object:nil];
     //不用时，置nil
     _tableView.delegate = nil;
     _tableView.dataSource = nil;
@@ -205,16 +127,9 @@
     
     bixLocalAccount* account = [bixLocalAccount instance];
     
-    //    UIImage *image = [UIImage imageNamed:@"superChargerPile_90"];
-    //UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-//    button.frame = frame;
-    //[button setBackgroundImage:[account.avatar] forState:UIControlStateNormal];
-    //button.backgroundColor = [UIColor clearColor];
-    
     CGRect frame = CGRectMake(0.0,0.0,60,60);
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:frame];
     
-    //    UIImage *image0 = [UIImage imageNamed:@"personInfo"];
     NSUInteger row = [indexPath row];
     if (indexPath.section == 0) {
         cell.textLabel.text = [self.list objectAtIndex:row];
@@ -257,18 +172,7 @@
     //    NSLog(@"tableView.rowHeight is %f", tableView.rowHeight);
     return cell;
 }
-//
-//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-////    return [general_TableView titleForHeaderInSection:section];
-//
-//}
-//
-//-(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
-//{
-////    return [general_TableView titleForFooterInSection:section];
-//}
-//
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //    return [general_TableView tableView:tableView heightForRowAtIndexPath:indexPath];
@@ -278,7 +182,6 @@
     }
     else
         return tableView.rowHeight;
-    
 }
 
 
