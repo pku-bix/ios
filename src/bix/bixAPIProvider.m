@@ -88,33 +88,6 @@ static NSString* errDomain = @"apiprovider";
         [self.request setHTTPMethod:@"GET"];
         self.operation = PULL;
     }
-//    switch (operation) {
-//        case PUSH:
-//            [self.request setHTTPMethod:@"POST"];
-//            
-//            if ([self.model respondsToSelector: @selector(modelBody)]) {
-//                [self.request setHTTPBody:[self.model modelBody]];
-//                
-//                //设置HTTPHeader中Content-Type的值
-//                NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-//                [self.request setValue:contentType forHTTPHeaderField:@"Content-Type"];
-//                
-//                //设置Content-Length
-//                [self.request setValue:[NSString stringWithFormat:@"%d", [[self.model modelBody] length]] forHTTPHeaderField:@"Content-Length"];
-//            }
-//
-//            self.operation = PUSH;
-//            break;
-//            
-//        case PULL:
-//            [self.request setHTTPMethod:@"GET"];
-//            self.operation = PULL;
-//            break;
-//            
-//        default:
-//            break;
-//    }
-    
     //创建连接
     [NSURLConnection connectionWithRequest:self.request delegate:self];
     return true;

@@ -22,6 +22,8 @@ static const NSTimeInterval XMPP_CONNECT_TIMEOUT = 10;
 
 // API 服务器
 static NSString* const API_SERVER = @"http://121.40.72.197";
+
+static NSString* const IMAGE_SERVER = @"http://121.40.72.197";
 //static NSString* const API_SERVER = @"http://192.168.1.105:3000";
 
 // 百度地图
@@ -56,6 +58,7 @@ static NSString *const POST_DEVICE_TOKEN_IP = @"http://192.168.1.105:3000/api/us
 //分享圈下拉刷新请求最新的10条状态数据；
 static NSString *const GET_LATEST_MOMENT_DATA_IP = @"http://121.40.72.197/api/posts?limit=10";
 //static NSString *const GET_LATEST_MOMENT_DATA_IP = @"http://192.168.1.105:3000/api/posts?limit=10";
+
 
 
 /*

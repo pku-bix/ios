@@ -49,66 +49,24 @@
     self.tableView.delegate   = self;
     isRefresh = false;
 
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseLatestMomentData:) name:@"latestMomentData" object:nil];
-    request = [[RequestInfoFromServer alloc]init];
-    request.selectNotificationKind = 6;
-    
-    [[bixMomentDataSource defaultSource]initMomentDataItemsArray];
-    //上拉刷新， 下拉加载更多， 用了一个插件， 吊啊！
+    [bixMomentDataSource defaultSource].observer = self;
     [self header_footer_refreshing];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseLatestMomentData:) name:@"latestMomentData" object:nil];
-    [self.tableView reloadData];
+    [super viewWillAppear:animated];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"latestMomentData" object:nil];
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)parseLatestMomentData:(NSNotification *)notification
-{
-//    NSString *temp = [NSString alloc];
-    NSDictionary *authorDic = [NSDictionary alloc];
-    NSArray *urlArray = [[NSArray alloc]init];
-
-    NSLog(@"parseLatestMomentData");
-    self.theResultData = notification.object;
-//    NSLog(@"get the notification data, it is %@", self.theResultData);
-    NSArray *latestMomentDataArray = [NSJSONSerialization JSONObjectWithData:self.theResultData options:NSJSONReadingMutableLeaves error:nil];
-    for (id obj in latestMomentDataArray) {
-        
-        authorDic = [obj objectForKey:@"author"];
-        NSLog(@"author is %@", authorDic);
-        
-        NSLog(@"avatarUrl is %@", [authorDic objectForKey:@"avatar"]);
-        NSString *avatarUrlRight = [@"http://121.40.72.197" stringByAppendingString:[authorDic objectForKey:@"avatar"]];
-        NSLog(@"full avatarUrl is %@", avatarUrlRight);
-        
-        Account *account = [bixLocalAccount instance];
-//        account.avatarUrl = [NSURL URLWithString: @"http://121.40.72.197/upload/26674-c0199v.png"];
-        //account.avatar = avatarUrlRight;
-        account.nickname = [authorDic objectForKey:@"username"];
-        itemRefresh = [[bixMomentDataItem alloc]initWithSender:account];
-        
-        urlArray =  [obj objectForKey:@"images"];
-        for (id url in urlArray) {
-            NSString *strURL = [NSString stringWithFormat:@"%@%@",@"http://121.40.72.197",url];
-            NSLog(@"strURL is : %@", strURL);
-            //[itemRefresh.imgProxies addObject:[NSURL URLWithString:strURL]];
-        }
-        itemRefresh.textContent = [obj objectForKey:@"content"];
-        [[bixMomentDataSource defaultSource]addMomentDataItem:itemRefresh];
-    }
 }
 
 -(void)header_footer_refreshing
@@ -129,30 +87,13 @@
     self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据了";
     self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据了";
     self.tableView.footerRefreshingText = @"bix正在帮你加载中,不客气";
-
 }
 
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
     NSLog(@"正在刷新，在这里请求服务器数据");
-    [request sendRequest:GET_LATEST_MOMENT_DATA_IP];
-    NSLog(@"请求最新10条分享圈数据");
-//    [request sendRequest:LOCATION_INFO_IP];
-    NSLog(@"请求所有充电桩数据");
-    // 1.添加假数据
-    for (int i = 0; i<5; i++) {
-//        [self.fakeData insertObject:MJRandomData atIndex:0];
-    }
-    
-    // 2.2秒后刷新表格UI
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        // 刷新表格
-        [self.tableView reloadData];
-        
-        // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
-        [self.tableView headerEndRefreshing];
-    });
+    [[bixMomentDataSource defaultSource] pull];
 }
 
 - (void)footerRereshing
@@ -173,45 +114,6 @@
     });
 }
 
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-//
-//{
-//    
-//    // 假设偏移表格高度的20%进行刷新
-//    
-//    if (!isRefresh) { // 判断是否处于刷新状态，刷新中就不执行
-//        
-//        // 取内容的高度：
-//        
-//        //    如果内容高度大于UITableView高度，就取TableView高度
-//        
-//        //    如果内容高度小于UITableView高度，就取内容的实际高度
-//        
-//        float height = scrollView.contentSize.height > _tableView.frame.size.height ?_tableView.frame.size.height : scrollView.contentSize.height;
-//        
-//        
-//        
-//        if ((height - scrollView.contentSize.height + scrollView.contentOffset.y) / height > 0.2) {
-//            
-//            // 调用上拉刷新方法
-//            NSLog(@"上拉刷新");
-//            
-//        }
-//        
-//        
-//        
-//        if (- scrollView.contentOffset.y / _tableView.frame.size.height > 0.2) {
-//            
-//            // 调用下拉刷新方法
-//            NSLog(@"下拉刷新");
-//            
-//        }
-//        
-//    }
-//    
-//}
-
-
 #pragma mark - TableViewSource
 
 //一个section区域
@@ -230,6 +132,7 @@
 {
 
     bixMomentDataItem* item = [[bixMomentDataSource defaultSource] getMomentAtIndex:(numberOFMomentDataItem-indexPath.row-1)];
+    
     NSLog(@"第%d个item，momentViewController.m", (numberOFMomentDataItem-indexPath.row-1));
     
     // reuse key must be identical to that set on storyboard
@@ -265,17 +168,6 @@
     //选中后的反显颜色即刻消失,即选中cell后，cell的高亮立刻消失；
 
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 - (IBAction)sendMood:(id)sender {
     UIActionSheet *chooseImageSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从手机相册选择", nil];
@@ -383,8 +275,8 @@
 }
 
 - (void) modelUpdated:(id)model{
-//    NSLog(@"")
     [self.tableView reloadData];
+    [self.tableView headerEndRefreshing];
 }
 
 @end

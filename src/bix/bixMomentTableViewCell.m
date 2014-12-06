@@ -67,19 +67,14 @@
     NSLog(@"loading moment...\n%@",item);
     
     self.momentDataItem = item;
-    
-    //UILabel *label = (UILabel *)[self.contentView viewWithTag:10];
-    [self.userLabel setText:item.nickname];
-    
-    //UITextView *text = (UITextView*)[self.contentView viewWithTag:20];
 
+    NSString* displayName = item.sender.nickname;
+    if (displayName == nil || [displayName isEqualToString:@""]) {
+        displayName = item.sender.username;
+    }
+    [self.userLabel setText:displayName];
     [self.contentTextView setText:item.textContent];
-
-    //UIImageView *avatar = (UIImageView*)[self.contentView viewWithTag:30];
-    //item.avatarUrl 是NSURL类型， 不是ImageData类型
-    [self.userImageView sd_setImageWithURL:item.avatarUrl];
-    
-    //UITableView *replies = (UITableView*)[self.contentView viewWithTag:40];
+    [item.sender.avatar setImageToImageView:self.userImageView];
     
     self.imgCollectionView.dataSource = self;
     self.imgCollectionView.delegate = self;
@@ -89,17 +84,6 @@
     self.replyTableView.delegate   = self;
     [self.replyTableView reloadData];
 }
-//
-//-(void)parseMoment1:(NSNotification*)notification
-//{
-//    NSLog(@"bixMomentTableViewCell.h notification");
-//    message = notification.object;
-//    flag_notification = 1; //表明有通知发送出来
-//    [self.momentText addObject:message];
-//    NSLog(@"message is %@", message);
-//    
-//}
-
 
 - (void)awakeFromNib
 {

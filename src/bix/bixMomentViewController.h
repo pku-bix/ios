@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "PassImageDelegate.h"
 #import "bixRemoteModelObserver.h"
+#import "bixRemoteModelDataSource.h"
+#import "bixRemoteModelDelegate.h"
 
 @interface bixMomentViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, bixRemoteModelObserver,UIScrollViewDelegate>
 {

@@ -8,6 +8,7 @@
 
 #import "bixImageProxy.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "Constants.h"
 
 @implementation bixImageProxy
 
@@ -33,7 +34,7 @@
 -(void)setImageToImageView:(UIImageView *)imageView
 {
     if (self.image == NULL) {
-        [imageView sd_setImageWithURL:[NSURL URLWithString:self.url]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_SERVER, self.url]]];
     }
     else{
         imageView.image = self.image;

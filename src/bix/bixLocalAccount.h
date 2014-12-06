@@ -27,7 +27,7 @@ typedef enum Properties: NSUInteger
 -(void)pushProperties:(Properties)properties;
 
 //用户的头像image数据; 用于post，不是用于展示,展示头像还是通过url;
-@property (nonatomic) UIImage * avatarImage;
+//@property (nonatomic) UIImage * avatarImage;
 
 @property (nonatomic) NSString* password;
 @property (nonatomic) bool autoLogin;

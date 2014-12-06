@@ -12,10 +12,10 @@
 #import "bixAPIProvider.h"
 #import "bixFormBuild.h"
 #import "bixLocalAccount.h"
+#import "bixImageProxy.h"
+#import "bixChatProvider.h"
 
 @interface bixMomentDataItem()
-
-@property Account* sender;
 
 @end
 
@@ -30,29 +30,25 @@
     return self.sender.nickname;
 }
 
+-(id)init
+{
+    self = [super init];
+        if(self){
+            _replies = [NSMutableArray new];
+            self.imageProxyArray = [NSMutableArray new];
+        }
+    return self;
+}
+
 //传进去的sender要设置好avatarUrl和nickname两个属性字段;
 -(id) initWithSender:(Account *)sender{
-    self = [super init];
+    self = [self init];
     
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseMoment:) name:@"sendNewMomentText" object:nil];
-    
-    if(self){
+    if (self) {
         _sender = sender;
-//        _imgUrls = [NSMutableArray arrayWithCapacity:9];
-        _replies = [NSMutableArray new];
-//        _uiImageData = [NSMutableArray arrayWithCapacity:2];   //用户发送的图片数据;
-        self.imageProxyArray = [NSMutableArray arrayWithCapacity:9];
-        
-        // TODO: 使用HTTP层代替以下的静态测试数据
-//        [_imgUrls addObject:sender.avatarUrl];
-//        [_imgUrls addObject: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];
-//        [_imgUrls addObject: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];
-//        [_imgUrls addObject: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"];
-//        
         [_replies addObject:[[bixMomentReplyItem alloc] initWithSender:sender andReplyText:@"成功显示"]];
         [_replies addObject:[[bixMomentReplyItem alloc] initWithSender:sender andReplyText:@"棒啊"]];
     }
-//    [self.momentText addObject: @"这是一个分享的内容，这是一个分享的内容，这是一个分享的内容。"];
     return self;
 }
 
@@ -72,9 +68,10 @@
     [formBuild addText:@"content" andText:self.textContent];
     
     //添加分享的图片
-    for (id image in self.uiImageData) {
+    for (bixImageProxy*p in self.imageProxyArray) {
         NSLog(@"分享的图片数据");
-        [formBuild addPicture:@"images" andImage:image];
+        
+        [formBuild addPicture:@"images" andImage:p.image];
     }
     
     return [formBuild closeForm];
@@ -90,7 +87,21 @@
     @try{
         NSDictionary* dict = (NSDictionary*) result;
         self.textContent = [dict objectForKey:@"content"];
-        // TODO: 填充字段
+        
+        // images sended
+        NSMutableArray *imagesURL = [dict objectForKey:@"images"];
+        NSMutableArray *thumbnailImagesURL = [dict objectForKey:@"images_thumbnail"];
+        for(int i = 0; i < imagesURL.count; i++)
+        {
+            bixImageProxy *imageProxy = [[bixImageProxy alloc]initWithUrl:imagesURL[i] andThumbnail:thumbnailImagesURL[i]];
+            [self.imageProxyArray addObject:imageProxy];
+        }
+        
+        // sender object
+        NSObject* author = [result valueForKey:@"author"];
+        self.sender = [[bixChatProvider defaultChatProvider]
+                       getConcactByUsername: [author valueForKey:@"username"]];
+        [self.sender populateWithJSON:author];
     }
     @catch(NSException* e){
         NSLog(@"parse moment item error, %@", e);
