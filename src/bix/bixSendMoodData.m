@@ -14,6 +14,7 @@
 #import "MessageBox.h"
 #import "MBProgressHUD.h"
 #import "bixMomentDataItem.h"
+#import "bixImageProxy.h"
 
 @interface bixSendMoodData ()
 
@@ -24,10 +25,8 @@
     int timeOfNotification;
     UIImage *pickImage;
     AppDelegate* appDelegate;
-    RequestInfoFromServer* request;
     MBProgressHUD *hud;
     
-    NSMutableArray *testURLArray;
     int flag_sendMoodData_success_or_not; // 标记本次发送是否成功;
     
     bixMomentDataItem *item;  //用于发送的momentDataItem;
@@ -63,37 +62,24 @@
     self.textView.layer.borderWidth = 1.0;
     self.textView.layer.cornerRadius = 5.0;
     
-//    testURLArray = [NSMutableArray arrayWithCapacity:2];
-////    ImageURLArray = [NSMutableArray arrayWithCapacity:2];
-//    
-//    [testURLArray addObject:[NSURL URLWithString: @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg"]];
-//    [testURLArray addObject:[NSURL URLWithString: @"http://image.tianjimedia.com/uploadImages/2013/231/Y86BKHJ2E2UH.jpg"]];
-//    
-//    flag = 0;  //
     self.imageView1.image = self.image1;
     
     self.addPictureButton.frame = CGRectMake(self.imageView2.frame.origin.x, self.imageView2.frame.origin.y,
                                              self.imageView2.frame.size.width, self.imageView2.frame.size.height);
     
-    self.mutableArray = [NSMutableArray arrayWithCapacity:9];//最多添加9张图片;
-    [self.mutableArray addObject:self.image1];
+    self.imageArray = [NSMutableArray arrayWithCapacity:9];//最多添加9张图片;
+    [self.imageArray addObject:self.image1];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseSuccessOrNot:) name:@"sendMomentDataSuccessOrNot" object:nil];
-    
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(parseDataItem:) name:@"returnMomentData" object:nil];
-
     NSLog(@"viewWillAppear");
 }
 
-//-(BOOL)textViewShouldEndEditing:(UITextView *)textView
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"sendMomentDataSuccessOrNot" object:nil];
-//  [[NSNotificationCenter defaultCenter]removeObserver:self name:@"returnMomentData" object:nil];
+    NSLog(@"bixSendMoodData.m viewWillDisapper");
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,29 +88,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 #pragma PassImageDelegate
 
 -(void)passImage:(UIImage *)image
 {
     pickImage = image;
 }
-
-
-- (IBAction)cancleSendMood:(id)sender {
-
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+//
+//
+//- (IBAction)cancleSendMood:(id)sender {
+//
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//}
 
 #pragma mark UIActionSheetDelegate Method
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -190,7 +165,7 @@
                 self.image2 = [UIImage imageWithData:data];
                 self.imageView2.image = self.image2;
                 
-                [self.mutableArray addObject:self.image2];
+                [self.imageArray addObject:self.image2];
             }
                 break;
             case 3:
@@ -198,7 +173,7 @@
                 self.image3 = [UIImage imageWithData:data];
                 self.imageView3.image = self.image3;
                 
-                [self.mutableArray addObject:self.image3];
+                [self.imageArray addObject:self.image3];
             }
                 break;
             case 4:
@@ -206,7 +181,7 @@
                 self.image4 = [UIImage imageWithData:data];
                 self.imageView4.image = self.image4;
                 
-                [self.mutableArray addObject:self.image4];
+                [self.imageArray addObject:self.image4];
             }
                 break;
             case 5:
@@ -214,7 +189,7 @@
                 self.image5 = [UIImage imageWithData:data];
                 self.imageView5.image = self.image5;
                 
-                [self.mutableArray addObject:self.image5];
+                [self.imageArray addObject:self.image5];
             }
                 break;
             case 6:
@@ -222,7 +197,7 @@
                 self.image6 = [UIImage imageWithData:data];
                 self.imageView6.image = self.image6;
                 
-                [self.mutableArray addObject:self.image6];
+                [self.imageArray addObject:self.image6];
             }
                 break;
             case 7:
@@ -230,7 +205,7 @@
                 self.image7 = [UIImage imageWithData:data];
                 self.imageView7.image = self.image7;
                 
-                [self.mutableArray addObject:self.image7];
+                [self.imageArray addObject:self.image7];
             }
                 break;
             case 8:
@@ -238,7 +213,7 @@
                 self.image8 = [UIImage imageWithData:data];
                 self.imageView8.image = self.image8;
                 
-                [self.mutableArray addObject:self.image8];
+                [self.imageArray addObject:self.image8];
             }
                 break;
             case 9:
@@ -246,7 +221,7 @@
                 self.image9 = [UIImage imageWithData:data];
                 self.imageView9.image = self.image9;
                 
-                [self.mutableArray addObject:self.image9];
+                [self.imageArray addObject:self.image9];
             }
                 break;
                 
@@ -305,7 +280,7 @@
     
     hud = [MessageBox Toasting:@"正在发送" In:self.view];
     
-    NSLog(@"图片数组个数是 %d", [self.mutableArray count]);
+    NSLog(@"图片数组个数是 %d", [self.imageArray count]);
     NSLog(@"输入的文字是 %@", self.textView.text);
     if ([self.textView.text isEqualToString:@""]) {
         [MessageBox Toast:@"输入点文字呀..." In: self.view];
@@ -314,62 +289,48 @@
 
     if(flag_sendMoodData_success_or_not == 1)
     {
-        // create MomentDataItem item
-        // add item to MomentDataSource
         Account *account = [bixLocalAccount instance];
         //account.avatar = @"http://121.40.72.197/upload/1171-g2ixyb.png";
-        account.nickname = account.username;
+//        account.nickname = account.username;
+        
         item = [[bixMomentDataItem alloc]initWithSender:account];
-        //    item.imgUrls = [NSMutableArray arrayWithArray:self.mutableArray];
-        //    item.imgUrls = [NSMutableArray arrayWithArray:ImageURLArray];
-        //    item.imgUrls = [NSMutableArray arrayWithArray:testURLArray];
-        //    item.uiImageData = [NSMutableArray arrayWithArray:self.mutableArray];
-        for (id obj in self.mutableArray) {
-            [item.uiImageData addObject:obj];
+        
+        for (id obj in self.imageArray) {
+            bixImageProxy *imageProxy = [[bixImageProxy alloc]initWithImage:obj];
+            [item.imageProxyArray addObject:imageProxy];
         }
         //NSLog(@"item.uiImageData count is %d, self.mutableArray count is %d", [item.uiImageData count], [self.mutableArray count]);
         //NSLog(@"bixSendMoodData.m item.uiImageData count is %d", [item.uiImageData count]);
+        
         item.textContent = self.textView.text;
         [[bixMomentDataSource defaultSource]addMomentDataItem:item];
         
         NSLog(@"bixSendMoodData.m momentDataItem number is %d", [[bixMomentDataSource defaultSource]numberOfMomentDataItem]);
     }
     
-    if ((self.pictureNumber) == [self.mutableArray count]) {
-        [self.mutableArray addObject:self.textView.text];
+    if ((self.pictureNumber) == [self.imageArray count]) {
+        [self.imageArray addObject:self.textView.text];
     }
-    else if((self.pictureNumber+1) == [self.mutableArray count])
+    else if((self.pictureNumber+1) == [self.imageArray count])
     {
-        [self.mutableArray removeLastObject];
-        [self.mutableArray addObject:self.textView.text];
+        [self.imageArray removeLastObject];
+        [self.imageArray addObject:self.textView.text];
     }
     
-    NSLog(@"text is %@", [self.mutableArray objectAtIndex:([self.mutableArray count]-1)]);
+    NSLog(@"text is %@", [self.imageArray objectAtIndex:([self.imageArray count]-1)]);
     //item 发送到服务器
     item.observer = self;
     [item push];
-    
-//
-//    request = [[RequestInfoFromServer alloc]init];
-//    [request sendAsynchronousPostMomentData:self.mutableArray];
-    
-//    NSLog(@"the textView.text is %@", self.textView.text);
-    
-//    //退出时，得清空之前的数组元素， 否则下次进来会一直叠加元素;
-//    [self.mutableArray removeAllObjects];
-
 }
 
 -(void)pushDidSuccess
 {
-    //发送成功才能给bixMomentViewController.m 发送通知，从而使 cell个数加1;
-//    [[NSNotificationCenter defaultCenter]postNotificationName:@"sendOneMomentDataItem" object:self.textView.text];
     [hud hide:YES];
     [MessageBox Toasting:@"发送成功！" In:self.view];
     self.view.userInteractionEnabled = YES;
     
     //退出时，得清空之前的数组元素， 否则下次进来会一直叠加元素;
-    [self.mutableArray removeAllObjects];
+    [self.imageArray removeAllObjects];
     flag_sendMoodData_success_or_not = 1;
     
     [[self navigationController] popViewControllerAnimated:YES];
@@ -417,7 +378,7 @@
         self.view.userInteractionEnabled = YES;
         
         //退出时，得清空之前的数组元素， 否则下次进来会一直叠加元素;
-        [self.mutableArray removeAllObjects];
+        [self.imageArray removeAllObjects];
         flag_sendMoodData_success_or_not = 1;
         
         [[self navigationController] popViewControllerAnimated:YES];
@@ -434,8 +395,8 @@
 
         timeOfNotification++;
         NSLog(@"timeOfNotification is %d", timeOfNotification);
-        NSLog(@"mutableArray number is %d", [self.mutableArray count]);
-        for (id obj in self.mutableArray) {
+        NSLog(@"mutableArray number is %d", [self.imageArray count]);
+        for (id obj in self.imageArray) {
             NSLog(@"mutableArray is %@", obj);
         }
     }

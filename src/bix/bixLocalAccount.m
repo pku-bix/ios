@@ -52,7 +52,7 @@ static bixLocalAccount *instance = nil;
 {
     bixFormBuild *formBuild = [[bixFormBuild alloc]init];
     if (self.bodyType & avatar) {
-        [formBuild addPicture:@"avatar" andImage:self.avatarImage];
+        [formBuild addPicture:@"avatar" andImage:self.avatar.image];
     }
     
     if(self.bodyType & nickname){

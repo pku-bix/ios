@@ -21,7 +21,7 @@
 
 // 该文件作为MomentDataItem的数据源，应借助HTTP层，实现MomentViewController需要的各种方法。
 
--(void)initMomentDataItemsArray;
+//-(void)initMomentDataItemsArray;
 
 -(bixMomentDataItem*) getMomentAtIndex: (NSInteger) index;
 // todo:  provide number
@@ -31,8 +31,6 @@
 -(BOOL) removeMomentDataItem:(int)index;
 
 -(int)numberOfMomentDataItem;
-
--(BOOL) update;
 
 -(BOOL) loadMore;
 

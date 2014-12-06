@@ -71,6 +71,8 @@
 -(void)populateWithJSON:(NSObject *)result{
     @try {
         self.nickname = [result valueForKey:@"nickname"];
+
+
         self.signature = [result valueForKey:@"signature"];
         
         self.avatar = [[bixImageProxy alloc]

@@ -28,23 +28,26 @@ typedef enum{
 
 +(bixMomentDataSource*) defaultSource
 {
-    static bixMomentDataSource *sharedMyManager = nil;
+    static bixMomentDataSource *instance = nil;
     @synchronized(self) {
-        if (sharedMyManager == nil)
-            sharedMyManager = [[self alloc] init];
+        if (instance == nil)
+        {
+            instance = [[self alloc] init];
+            instance.items = [NSMutableArray new];
+        }
     }
-    return sharedMyManager;
+    return instance;
 }
 
--(void)initMomentDataItemsArray
-{
-    self.momentDataItemsArray = [NSMutableArray arrayWithCapacity:5];
-}
+//-(void)initMomentDataItemsArray
+//{
+//    self.momentDataItemsArray = [NSMutableArray arrayWithCapacity:5];
+//}
 
--(BOOL) update
+-(void) pull
 {
     self.operation = REFRESHING;
-    return [bixAPIProvider Pull:self];
+    [bixAPIProvider Pull:self];
 }
 
 -(BOOL) loadMore
@@ -60,9 +63,10 @@ typedef enum{
 }
 
 
+
 #pragma mark RemoteModel Delegate
 
--(void)PopulateWithData: (NSObject *)result{
+-(void)populateWithJSON: (NSObject *)result{
     
     if (self.operation == REFRESHING) [self.items removeAllObjects];
     
@@ -70,7 +74,9 @@ typedef enum{
         bixMomentDataItem* dataItem = [bixMomentDataItem new];
         [dataItem populateWithJSON:resultItem];
         [self.items addObject:dataItem];
+        
     }
+    [super modelUpdateComplete];
 }
 
 
@@ -104,12 +110,12 @@ typedef enum{
 
 -(int)numberOfMomentDataItem
 {
-    return [self.momentDataItemsArray count];
+    return [self.items count];
 }
 
 -(bixMomentDataItem*) getMomentAtIndex: (NSInteger) index
 {
-    return [self.momentDataItemsArray objectAtIndex:index];
+    return [self.items objectAtIndex:index];
 }
 
 
