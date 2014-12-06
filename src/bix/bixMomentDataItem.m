@@ -84,11 +84,13 @@
 }
 
 -(void)populateWithJSON:(NSObject *)result{
+    [super populateWithJSON:result];
     @try{
         NSDictionary* dict = (NSDictionary*) result;
         self.textContent = [dict objectForKey:@"content"];
-        
+
         // images sended
+        [self.imageProxyArray removeAllObjects];
         NSMutableArray *imagesURL = [dict objectForKey:@"images"];
         NSMutableArray *thumbnailImagesURL = [dict objectForKey:@"images_thumbnail"];
         for(int i = 0; i < imagesURL.count; i++)
@@ -96,7 +98,7 @@
             bixImageProxy *imageProxy = [[bixImageProxy alloc]initWithUrl:imagesURL[i] andThumbnail:thumbnailImagesURL[i]];
             [self.imageProxyArray addObject:imageProxy];
         }
-        
+
         // sender object
         NSObject* author = [result valueForKey:@"author"];
         self.sender = [[bixChatProvider defaultChatProvider]

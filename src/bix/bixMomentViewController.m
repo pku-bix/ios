@@ -100,19 +100,15 @@
 - (void)footerRereshing
 {
     NSLog(@"正在上拉加载， 在这里请求后面的数据");
-    // 1.添加假数据
-    for (int i = 0; i<5; i++) {
-//        [self.fakeData addObject:MJRandomData];
-    }
-    
-    // 2.2秒后刷新表格UI
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        // 刷新表格
-        [self.tableView reloadData];
-        
-        // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
-        [self.tableView footerEndRefreshing];
-    });
+    [[bixMomentDataSource defaultSource]loadMore];
+//    // 2.2秒后刷新表格UI
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        // 刷新表格
+//        [self.tableView reloadData];
+//        
+//        // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
+//        [self.tableView footerEndRefreshing];
+//    });
 }
 
 #pragma mark - TableViewSource
@@ -276,6 +272,7 @@
 - (void) modelUpdated:(id)model{
     [self.tableView reloadData];
     [self.tableView headerEndRefreshing];
+    [self.tableView footerEndRefreshing];
 }
 
 @end

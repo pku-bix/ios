@@ -30,6 +30,11 @@
     [bixAPIProvider Pull:self];
 }
 
+-(void)populateWithJSON:(NSObject *)result
+{
+    self.modelId = [result valueForKey:@"id"];
+}
+
 // 数据响应成功
 -(void) succeedWithStatus:(NSInteger)code{
 #ifdef DEBUG

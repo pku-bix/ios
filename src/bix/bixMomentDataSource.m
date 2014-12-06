@@ -59,6 +59,12 @@ typedef enum{
 #pragma mark RemoteModel DataSource
 
 -(NSString*) modelPath{
+    if (self.operation == APPENDING) {
+        NSString *modelId = [(bixMomentDataItem*)self.items.lastObject modelId];
+        if (modelId != nil && ![modelId isEqualToString:@""]) {
+            return [NSString stringWithFormat:@"%@%@",@"/api/posts?query=",modelId];
+        }
+    }
     return @"/api/posts";
 }
 
@@ -67,7 +73,6 @@ typedef enum{
 #pragma mark RemoteModel Delegate
 
 -(void)populateWithJSON: (NSObject *)result{
-    
     if (self.operation == REFRESHING) [self.items removeAllObjects];
     
     for (id resultItem in (NSArray*)result) {
@@ -84,7 +89,9 @@ typedef enum{
 
 -(BOOL) addMomentDataItem: (bixMomentDataItem*)item{
     //todo: add item to itemsArray
-    [self.items addObject:item];
+//    [self.items addObject:item];
+    //将新的item加在数组首位置;
+    [self.items insertObject:item atIndex:0];
     
 //    [self.observer modelUpdated:self];
 

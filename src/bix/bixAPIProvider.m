@@ -59,7 +59,6 @@ static NSString* errDomain = @"apiprovider";
         return NO;
     }
     busy = true;
-    
     //创建请求
     self.url = [NSURL URLWithString:
                 [NSString stringWithFormat:@"%@%@", API_SERVER, [self.model modelPath]]];

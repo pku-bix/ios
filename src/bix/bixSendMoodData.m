@@ -299,11 +299,13 @@
             bixImageProxy *imageProxy = [[bixImageProxy alloc]initWithImage:obj];
             [item.imageProxyArray addObject:imageProxy];
         }
+       
         //NSLog(@"item.uiImageData count is %d, self.mutableArray count is %d", [item.uiImageData count], [self.mutableArray count]);
         //NSLog(@"bixSendMoodData.m item.uiImageData count is %d", [item.uiImageData count]);
         
         item.textContent = self.textView.text;
         [[bixMomentDataSource defaultSource]addMomentDataItem:item];
+        NSLog(@"%d", item.imageProxyArray.count);
         
         NSLog(@"bixSendMoodData.m momentDataItem number is %d", [[bixMomentDataSource defaultSource]numberOfMomentDataItem]);
     }
