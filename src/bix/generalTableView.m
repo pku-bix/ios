@@ -76,7 +76,7 @@
     UIImage *image4 = [UIImage imageNamed:@"aboutBix"];
     UIImage *image5 = [UIImage imageNamed:@"supportUs"];
     UIImage *image6 = [UIImage imageNamed:@"logout"];
-    
+
     //  cell.showsReorderControl = YES;
     NSUInteger row = [indexPath row];
     // NSUInteger section = [indexPath section];
@@ -87,6 +87,14 @@
         
         switch (row) {
             case 0:
+            {
+                bixLocalAccount *account = [bixLocalAccount instance];
+                CGRect frame = CGRectMake(0.0,0.0,60,60);
+                UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+                imageView.image = account.avatarImage;
+                cell.accessoryView = imageView;
+            }
+
 //                if (image0 == NULL) {  //初始化头像
 //                    NSLog(@"image0 is null");
 //                    image0 = [UIImage imageNamed:@"default_headshow.png"];

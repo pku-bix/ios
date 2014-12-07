@@ -139,9 +139,6 @@
     return cell;
 //    //点击cell的时候，不会变暗，不会有反应;
 ////    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-//    [cell loadFromMomentDataItem:item];
-
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

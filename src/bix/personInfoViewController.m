@@ -30,7 +30,6 @@
 //    
 //    UIImageView *imageView;
 //    UIImage * headImage;
-
     CGRect rect;
     UITableView *_tableView;
     CGFloat headShowHeight;
@@ -132,12 +131,12 @@
                 initWithStyle:UITableViewCellStyleValue1  //cell的风格会决定下面cell.detailTextLabel.text是否有效，以及效果是怎么样的。
                 reuseIdentifier:TableSampleIdentifier];
     }
-    
-    bixLocalAccount* account = [bixLocalAccount instance];
-    
+
+    bixLocalAccount *account = [bixLocalAccount instance];
     CGRect frame = CGRectMake(0.0,0.0,60,60);
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:frame];
-    
+    imgView.image = account.avatarImage;
+
     NSUInteger row = [indexPath row];
     if (indexPath.section == 0) {
         cell.textLabel.text = [self.list objectAtIndex:row];
@@ -317,11 +316,12 @@
 {
     bixLocalAccount *account = [bixLocalAccount instance];
     account.avatar = [[bixImageProxy alloc] initWithImage:image];
-    
+
     // 这里应该让imageview自适应image，而不应该对image做剪裁，这样会消耗性能，并损坏数据。
     //设置头像缩放成 60*60 的
-    //image = [self scaleFromImage:image];
-    
+    image = [self scaleFromImage:image];
+//    self.avatarImage = image;
+    account.avatarImage = image;
     [account pushProperties:avatar];
     [account save];
 }
@@ -348,17 +348,5 @@
     return newImage;
 }
 
-
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

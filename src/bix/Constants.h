@@ -21,9 +21,9 @@ static NSString* const XMPP_SERVER_DOMAIN = @"bix.org";
 static const NSTimeInterval XMPP_CONNECT_TIMEOUT = 10;
 
 // API 服务器
-static NSString* const API_SERVER = @"http://121.40.72.197:3000";
+static NSString* const API_SERVER = @"http://121.40.72.197";
 
-static NSString* const IMAGE_SERVER = @"http://121.40.72.197:3000";
+static NSString* const IMAGE_SERVER = @"http://121.40.72.197";
 //
 //static NSString* const IMAGE_SERVER = @"http://192.168.1.105:3000";
 //static NSString* const API_SERVER = @"http://192.168.1.105:3000";

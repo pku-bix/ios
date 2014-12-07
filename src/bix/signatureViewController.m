@@ -75,16 +75,10 @@
  */
 
 - (IBAction)saveSignature:(id)sender {
-//    NSLog(@"signature is %@", self.signature.text);
-//    [[NSNotificationCenter defaultCenter]postNotificationName:@"signatureChange" object:self.signature.text];
     
     bixLocalAccount *account = [bixLocalAccount instance];
     account.signature = self.signature.text;
     [account pushProperties:signature];
-    
-//    [account save];
-    //发送图片、文字的异步信息;
-    //    [request sendAsynchronousPostRequest];
     
     //[self dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController popViewControllerAnimated:YES];

@@ -82,8 +82,6 @@ static bixLocalAccount *instance = nil;
     [self save];
 }
 
-
-
 // singleton instance
 +(bixLocalAccount*)instance{
     return instance;
@@ -138,6 +136,7 @@ static bixLocalAccount *instance = nil;
         _password    = [coder decodeObjectForKey: @"password"];
         _autoLogin   = [coder decodeBoolForKey:   @"auto_login"];
         _deviceToken = [coder decodeObjectForKey: @"device_token"];
+        self.avatarImage = [coder decodeObjectForKey:@"avatarImage"];
     }
 
     return self;
@@ -150,6 +149,8 @@ static bixLocalAccount *instance = nil;
     [coder encodeObject:self.deviceToken forKey:@"device_token"];
     //序列化本地头像
     [coder encodeObject:self.avatar forKey:@"avatar"];
+    
+    [coder encodeObject:self.avatarImage forKey:@"avatarImage"];
 }
 
 
