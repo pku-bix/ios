@@ -32,8 +32,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //self.teslaType.delegate = self;
-    
-    myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,
+    if ([[[UIDevice currentDevice] systemVersion] doubleValue]>=8.0) {
+        myTableView =[[UITableView alloc]initWithFrame:CGRectMake(0,
+                                                                 0,
+                                                                 self.view.bounds.size.width,
+                                                                 self.view.bounds.size.height -20)
+                                                style:UITableViewStyleGrouped];
+    }
+    else
+        myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,
                                                                 self.navigationController.navigationBar.frame.size.height + 20,
                                                                 self.view.bounds.size.width,
                                                                 self.view.bounds.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height-20) style:UITableViewStyleGrouped];

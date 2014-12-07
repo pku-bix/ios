@@ -66,7 +66,15 @@
     self.list2 = array2;
     
     //用代码来创建 tableview, tableview的高度需要设置成rect.size.height-navigationbar的高度，才不会出现滚动到最下面的行又自动滚动回前面。
-    _tableView =[[UITableView alloc]initWithFrame:CGRectMake(0,
+    if ([[[UIDevice currentDevice] systemVersion] doubleValue]>=8.0) {
+        _tableView =[[UITableView alloc]initWithFrame:CGRectMake(0,
+                                                                 0,
+                                                                 rect.size.width,
+                                                                 rect.size.height -20)
+                                                style:UITableViewStyleGrouped];
+    }
+    else
+        _tableView =[[UITableView alloc]initWithFrame:CGRectMake(0,
                                                              self.navigationController.navigationBar.frame.size.height + 20,
                                                              rect.size.width,
                                                              rect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height-20) style:UITableViewStyleGrouped];
