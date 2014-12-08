@@ -51,7 +51,7 @@
 
 //- (IBAction)cancleSendMood:(id)sender;
 
-- (IBAction)addPicture:(id)sender;
+- (void)addPicture;
 
 - (IBAction)sendTextAndPicture:(id)sender;
 

@@ -26,6 +26,7 @@
     UIImage *pickImage;
     AppDelegate* appDelegate;
     MBProgressHUD *hud;
+    IBOutlet UIButton *addPhotoButton;
     
     int flag_sendMoodData_success_or_not; // 标记本次发送是否成功;
     
@@ -64,9 +65,21 @@
     
     self.imageView1.image = self.image1;
     
+    NSLog(@"Button X %f Y %f", self.addPictureButton.frame.origin.x, self.addPictureButton.frame.origin.y);
+    
     self.addPictureButton.frame = CGRectMake(self.imageView2.frame.origin.x, self.imageView2.frame.origin.y,
                                              self.imageView2.frame.size.width, self.imageView2.frame.size.height);
     
+    NSLog(@"Button X %f Y %f", self.imageView2.frame.origin.x, self.imageView2.frame.origin.y);
+    
+    addPhotoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [addPhotoButton setBackgroundImage:[UIImage imageNamed:@"add_photo_label.png"] forState:UIControlStateNormal];
+    CGRect photoButtonFrame = CGRectMake(self.imageView2.frame.origin.x, self.imageView2.frame.origin.y,
+                                         self.imageView2.frame.size.width, self.imageView2.frame.size.height);
+    addPhotoButton.frame = photoButtonFrame;
+    [addPhotoButton addTarget:self action:@selector(addPicture) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:addPhotoButton];
     self.imageArray = [NSMutableArray arrayWithCapacity:9];//最多添加9张图片;
     [self.imageArray addObject:self.image1];
 }
@@ -131,12 +144,56 @@
     }
 }
 
+-(void)adjustAddPhotoButtonPosition:(NSInteger)loc
+{
+    UIView *locView;
+    switch (loc) {
+        case 0:
+            locView = self.imageView1;
+            break;
+        case 1:
+            locView = self.imageView2;
+            break;
+        case 2:
+            locView = self.imageView3;
+            break;
+        case 3:
+            locView = self.imageView4;
+            break;
+        case 4:
+            locView = self.imageView5;
+            break;
+        case 5:
+            locView = self.imageView6;
+            break;
+        case 6:
+            locView = self.imageView7;
+            break;
+        case 7:
+            locView = self.imageView8;
+            break;
+        case 8:
+            locView = self.imageView9;
+            break;
+        case 9:
+            addPhotoButton.hidden = YES;
+            break;
+        default:
+            break;
+    }
+    addPhotoButton.frame = CGRectMake(locView.frame.origin.x, locView.frame.origin.y,
+                                      locView.frame.size.width, locView.frame.size.height);
+}
+
 
 #pragma mark 拍照选择照片协议方法
 //当进入拍照模式拍照 并且点击Use photo后 或者 从本地图库选择图片后 会调用此方法;
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     self.pictureNumber++;//添加的图片数目加1;
+    
+    [self adjustAddPhotoButtonPosition:self.pictureNumber];
+    
     [UIApplication sharedApplication].statusBarHidden = NO;
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     
@@ -263,8 +320,8 @@
 }
 
 
-- (IBAction)addPicture:(id)sender {
-    
+- (void)addPicture
+{    
     if (self.pictureNumber >= 10) {
         [MessageBox Toast:@"最多只能添加9张图片哦!!" In: self.view];
         return ;
@@ -272,6 +329,7 @@
     
     UIActionSheet *chooseImageSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从手机相册选择", nil];
     [chooseImageSheet showInView:self.view];
+    
 }
 
 - (IBAction)sendTextAndPicture:(id)sender {
