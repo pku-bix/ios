@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "PassImageDelegate.h"
 #import "bixRemoteModelObserver.h"
+#import "bixRemoteModelBase.h"
 
 @interface bixSendMoodData : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PassImageDelegate,UITextViewDelegate,bixRemoteModelObserver>
 {
-//    int pictureNumber ;
 
 }
 
@@ -36,6 +36,8 @@
 @property(nonatomic,strong) UIImage *image7;
 @property(nonatomic,strong) UIImage *image8;
 @property(nonatomic,strong) UIImage *image9;
+
+//@property (strong, nonatomic) NSMutableArray *imageArray;
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView1;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView2;

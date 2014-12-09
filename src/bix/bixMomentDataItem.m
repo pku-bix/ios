@@ -30,6 +30,7 @@
     return self.sender.nickname;
 }
 
+//初始化函数中需要对数组进行内存申请
 -(id)init
 {
     self = [super init];
@@ -40,7 +41,6 @@
     return self;
 }
 
-//传进去的sender要设置好avatarUrl和nickname两个属性字段;
 -(id) initWithSender:(Account *)sender{
     self = [self init];
     
@@ -77,7 +77,6 @@
     return [formBuild closeForm];
 }
 
-
 -(void)push
 {
     [bixAPIProvider Push:self];
@@ -90,25 +89,59 @@
         self.textContent = [dict objectForKey:@"content"];
 
         // images sended
-        [self.imageProxyArray removeAllObjects];
-        NSMutableArray *imagesURL = [dict objectForKey:@"images"];
-        NSMutableArray *thumbnailImagesURL = [dict objectForKey:@"images_thumbnail"];
-        for(int i = 0; i < imagesURL.count; i++)
-        {
-            bixImageProxy *imageProxy = [[bixImageProxy alloc]initWithUrl:imagesURL[i] andThumbnail:thumbnailImagesURL[i]];
-            [self.imageProxyArray addObject:imageProxy];
-        }
 
+//        for (id obj in self.imageProxyArray) {
+//            bixImageProxy *imageProxy = [[bixImageProxy alloc]initWithImage:obj];
+//            imageProxy.image
+//        }
+
+//        if ([(bixImageProxy*)self.imageProxyArray[0] image] == nil) {
+//            [self.imageProxyArray removeAllObjects];
+//        }
+//            [self.imageProxyArray removeAllObjects];
+
+
+//        if (tempImageProxy.image == nil) {
+//           [self.imageProxyArray removeAllObjects];
+            NSMutableArray *imagesURL = [dict objectForKey:@"images"];
+            NSMutableArray *thumbnailImagesURL = [dict objectForKey:@"images_thumbnail"];
+            for(int i = 0; i < imagesURL.count; i++)
+            {
+                NSLog(@"bixMomentDataItem.m imagesURL.count is %d", imagesURL.count);
+                bixImageProxy *imageProxy = [[bixImageProxy alloc]initWithUrl:imagesURL[i] andThumbnail:thumbnailImagesURL[i]];
+                [self.imageProxyArray addObject:imageProxy];
+            }
+            bixImageProxy *tempImageProxy = [self.imageProxyArray objectAtIndex:0];
+            if (tempImageProxy.image != nil)
+            {
+                for (int j = 0; j < imagesURL.count; j++) {
+                    [self.imageProxyArray removeLastObject];
+                }
+            }
+////        }
+//        if (tempImageProxy.image != nil) {
+//            for (int j = 0; j < imagesURL.count; j++) {
+//                [self.imageProxyArray removeLastObject];
+//            }
+////
+//        }
         // sender object
         NSObject* author = [result valueForKey:@"author"];
         self.sender = [[bixChatProvider defaultChatProvider]
                        getConcactByUsername: [author valueForKey:@"username"]];
-        [self.sender populateWithJSON:author];
+        [self.sender populateWithJSON:author];     
+        
+
     }
     @catch(NSException* e){
         NSLog(@"parse moment item error, %@", e);
     }
     [super modelUpdateComplete];
+}
+
+-(void)connectionFailedWithError:(NSError *)err
+{
+    
 }
 
 -(NSString *)description{

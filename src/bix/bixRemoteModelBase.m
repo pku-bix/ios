@@ -56,6 +56,9 @@
 #ifdef DEBUG
     NSLog(@"connection failed with error: %@",err);
 #endif
+//    if (self.observer respondsToSelector:@selector(<#selector#>)) {
+//        <#statements#>
+//    }
 }
 
 // utility
@@ -67,5 +70,6 @@
         self.cb(self);
     }
 }
+
 
 @end

@@ -39,7 +39,6 @@ AppDelegate *appdelegate;
     [chatlist openSession:session];
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

@@ -18,7 +18,7 @@ typedef enum{
     REFRESHING
 }OperationType;
 
-@property NSMutableArray* items;   //缺少对其的初始化创建;
+@property NSMutableArray* items;   //momentDataItem 数组;
 @property OperationType operation;
 
 @end
@@ -39,11 +39,6 @@ typedef enum{
     return instance;
 }
 
-//-(void)initMomentDataItemsArray
-//{
-//    self.momentDataItemsArray = [NSMutableArray arrayWithCapacity:5];
-//}
-
 -(void) pull
 {
     self.operation = REFRESHING;
@@ -62,10 +57,10 @@ typedef enum{
     if (self.operation == APPENDING) {
         NSString *modelId = [(bixMomentDataItem*)self.items.lastObject modelId];
         if (modelId != nil && ![modelId isEqualToString:@""]) {
-            return [NSString stringWithFormat:@"%@%@",@"/api/posts?query=",modelId];
+            return [NSString stringWithFormat:@"%@%@",@"/api/posts?limit=10&before=",modelId];
         }
     }
-    return @"/api/posts";
+    return @"/api/posts?limit=10";
 }
 
 
@@ -84,6 +79,11 @@ typedef enum{
     [super modelUpdateComplete];
 }
 
+-(void)connectionFailedWithError:(NSError *)err
+{
+//    [super connectionFailedWithError:err];
+    [self.observer connectFailWithError];
+}
 
 #pragma mark MomentDataSource
 
@@ -101,7 +101,7 @@ typedef enum{
 
 -(BOOL) removeMomentDataItem:(int)index
 {
-    if (index > [self.items count]) {
+    if (index >= [self.items count]) {
         return false;
     }
     else

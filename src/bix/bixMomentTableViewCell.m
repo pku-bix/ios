@@ -36,8 +36,8 @@
 
 @implementation bixMomentTableViewCell
 {
-    NSString *message;
-    int flag_notification;
+//    NSString *message;
+//    int flag_notification;
 }
 
 // load from reuse key
@@ -155,6 +155,7 @@
 }
 
 -(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    NSLog(@"imageProxyArray count is %d",self.momentDataItem.imageProxyArray.count);
     return self.momentDataItem.imageProxyArray.count;
 }
 

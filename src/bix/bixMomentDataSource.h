@@ -12,19 +12,12 @@
 #import "bixAPIProvider.h"
 
 @interface bixMomentDataSource : bixRemoteModelBase
-
-//此数组保存添加的momentDataItem;
-@property (nonatomic) NSMutableArray *momentDataItemsArray;
+// 该文件作为MomentDataItem的数据源，应借助HTTP层，实现MomentViewController需要的各种方法。
 
 // singleton
 +(bixMomentDataSource*) defaultSource;
 
-// 该文件作为MomentDataItem的数据源，应借助HTTP层，实现MomentViewController需要的各种方法。
-
-//-(void)initMomentDataItemsArray;
-
 -(bixMomentDataItem*) getMomentAtIndex: (NSInteger) index;
-// todo:  provide number
 
 -(BOOL) addMomentDataItem: (bixMomentDataItem*)item;
 

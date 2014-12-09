@@ -26,7 +26,7 @@
 // 回复
 @property (nonatomic) NSMutableArray* replies;
 
-// 图片们
+// 发送的图片数组
 @property (nonatomic) NSMutableArray *imageProxyArray;
 
 
