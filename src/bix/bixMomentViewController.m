@@ -24,7 +24,6 @@
 
 @implementation bixMomentViewController
 {
-    int numberOFMomentDataItem;
     UIImage *image_send_mood_data;
     NSString *newMomentText;
     BOOL isRefresh;
@@ -46,9 +45,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    numberOFMomentDataItem = 1;
+    
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
+    //self.tableView.allowsSelection = false;
+    
     isRefresh = false;
 
     [bixMomentDataSource defaultSource].observer = self;
@@ -122,9 +123,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    numberOFMomentDataItem = [[bixMomentDataSource defaultSource] numberOfMomentDataItem];
-    NSLog(@"bixMomentViewController.m numberOfRows is %d", [[bixMomentDataSource defaultSource]numberOfMomentDataItem]);
-    return numberOFMomentDataItem;
+    return [[bixMomentDataSource defaultSource] numberOfMomentDataItem];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -156,7 +155,6 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
 }
-
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

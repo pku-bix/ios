@@ -76,12 +76,12 @@
     [self.contentTextView setText:item.textContent];
     [item.sender.avatar setImageToImageView:self.userImageView];
     
-    self.imgCollectionView.dataSource = self;
     self.imgCollectionView.delegate = self;
+    self.imgCollectionView.dataSource = self;
     [self.imgCollectionView reloadData];
-    
-    self.replyTableView.dataSource = self;
+
     self.replyTableView.delegate   = self;
+    self.replyTableView.dataSource = self;
     [self.replyTableView reloadData];
 }
 
@@ -166,8 +166,7 @@
 
 #pragma mark - imgCollectionView delegate
 
-- (BOOL)collectionView:(UICollectionView *)collectionView
-shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
 
