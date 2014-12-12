@@ -18,4 +18,6 @@
 
 -(void)pushDidSuccess;
 
+-(void)connectFailWithError;
+
 @end

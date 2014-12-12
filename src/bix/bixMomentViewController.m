@@ -14,6 +14,7 @@
 #import "UIScrollView+MJRefresh.h"
 #import "RequestInfoFromServer.h"
 #import "bixMomentDataItem.h"
+#import "MessageBox.h"
 
 @interface bixMomentViewController ()
 
@@ -23,12 +24,12 @@
 
 @implementation bixMomentViewController
 {
-    int numberOFMomentDataItem;
     UIImage *image_send_mood_data;
     NSString *newMomentText;
     BOOL isRefresh;
     RequestInfoFromServer *request;
     bixMomentDataItem *itemRefresh;
+    MBProgressHUD *hud;
 }
 
 
@@ -44,9 +45,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    numberOFMomentDataItem = 1;
+    
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
+    //self.tableView.allowsSelection = false;
+    
     isRefresh = false;
 
     [bixMomentDataSource defaultSource].observer = self;
@@ -120,22 +123,26 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    numberOFMomentDataItem = [[bixMomentDataSource defaultSource] numberOfMomentDataItem];
-    NSLog(@"bixMomentViewController.m numberOfRows is %d", [[bixMomentDataSource defaultSource]numberOfMomentDataItem]);
-    return numberOFMomentDataItem;
+    return [[bixMomentDataSource defaultSource] numberOfMomentDataItem];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     bixMomentDataItem *item = [[bixMomentDataSource defaultSource]getMomentAtIndex:(indexPath.row)];
 //    NSLog(@"第%d个item，momentViewController.m", (numberOFMomentDataItem-indexPath.row-1));
-    
+//    if (indexPath.row == 0) {
+//        for (id obj in item.imageProxyArray) {
+//            if ([(bixImageProxy*)obj image] != nil) {
+//                <#statements#>
+//            }            imageProxy.image
+//        }
+//    }
     // reuse key must be identical to that set on storyboard
     bixMomentTableViewCell *cell = (bixMomentTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"moment-item" forIndexPath:indexPath];
     
     NSLog(@"Loading Data");
     [cell loadFromMomentDataItem:item];
-    //cell 被选中后颜色不变， 不会变暗！！
+    //cell 被选中后颜色不变， 不会变暗!!
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
@@ -155,7 +162,6 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
 }
-
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -277,6 +283,30 @@
     [self.tableView reloadData];
     [self.tableView headerEndRefreshing];
     [self.tableView footerEndRefreshing];
+}
+
+-(void)connectFailWithError
+{
+    hud = [MessageBox Toasting:@"请求数据失败" In:self.view];
+    self.view.userInteractionEnabled = YES;
+    //开一个计时器，1秒后关掉hud;
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(hideHud) userInfo:nil repeats:NO];
+//    NSLog(@"计时器之前还是之后？");
+    [self.tableView headerEndRefreshing];
+//    self.tableView.footerRefreshingText = @"请求数据失败";
+}
+
+-(void)hideHud
+{
+//    [self.tableView headerBeginRefreshing];
+//    self.tableView.headerPullToRefreshText = @"请求失败";
+//    self.tableView.headerReleaseToRefreshText = @"请求失败啦";
+//    self.tableView.headerRefreshingText = @"不好意思";
+    [self.tableView headerEndRefreshing];
+    [self.tableView footerEndRefreshing];
+
+    NSLog(@"计时器");
+    [hud hide:YES];
 }
 
 @end

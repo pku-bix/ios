@@ -54,6 +54,8 @@
     [super viewDidLoad];
     flag_sendMoodData_success_or_not = 1;   //一进分享圈界面就默认 本次会发送成功，设置为1， 当发送不成功时，再设置为0;
     
+//    self
+    
     self.pictureNumber = 1;
     timeOfNotification = 0;
     //点击发送按钮，软键盘会自动取消，设置代理;
@@ -337,11 +339,13 @@
     [self.textView resignFirstResponder];
     
     hud = [MessageBox Toasting:@"正在发送" In:self.view];
+    self.view.userInteractionEnabled = YES;
     
     NSLog(@"图片数组个数是 %d", [self.imageArray count]);
     NSLog(@"输入的文字是 %@", self.textView.text);
     if ([self.textView.text isEqualToString:@""]) {
         [MessageBox Toast:@"输入点文字呀..." In: self.view];
+        [hud hide:YES];
         return ;
     }
 
@@ -366,6 +370,7 @@
         NSLog(@"%d", item.imageProxyArray.count);
         
         NSLog(@"bixSendMoodData.m momentDataItem number is %d", [[bixMomentDataSource defaultSource]numberOfMomentDataItem]);
+        item = [[bixMomentDataSource defaultSource]getMomentAtIndex:0];
     }
     
     if ((self.pictureNumber) == [self.imageArray count]) {

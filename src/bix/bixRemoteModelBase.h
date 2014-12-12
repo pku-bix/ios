@@ -27,6 +27,4 @@ typedef void (^callback)(id<bixRemoteModelDataSource>);
 
 -(void)modelUpdateComplete;
 
-
-
 @end

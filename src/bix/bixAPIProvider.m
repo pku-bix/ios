@@ -51,7 +51,6 @@ static NSString* errDomain = @"apiprovider";
 }
 
 -(BOOL) startRequestWithOperation: (OperationType) operation{
-
     if(busy){
 #ifdef DEBUG
         NSLog(@"api provider is busy, request omited");

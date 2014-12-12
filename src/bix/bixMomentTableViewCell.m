@@ -24,10 +24,15 @@
 
 @implementation bixMomentTableViewCell
 {
+<<<<<<< HEAD
     NSString *message;
     int flag_notification;
     CGFloat mImgCollectionViewWidth;
     CGFloat mImgCollectionViewHeight;
+=======
+//    NSString *message;
+//    int flag_notification;
+>>>>>>> a01410d1dc5de5ffad9ba829926e88f92ed38815
 }
 
 // load from reuse key
@@ -111,12 +116,12 @@
                                            mImgCollectionViewWidth,
                                            mImgCollectionViewHeight);
     
-    self.imgCollectionView.dataSource = self;
     self.imgCollectionView.delegate = self;
+    self.imgCollectionView.dataSource = self;
     [self.imgCollectionView reloadData];
-    
-    self.replyTableView.dataSource = self;
+
     self.replyTableView.delegate   = self;
+    self.replyTableView.dataSource = self;
     [self.replyTableView reloadData];
 }
 
@@ -210,6 +215,7 @@
 }
 
 -(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    NSLog(@"imageProxyArray count is %d",self.momentDataItem.imageProxyArray.count);
     return self.momentDataItem.imageProxyArray.count;
 }
 
@@ -220,8 +226,7 @@
 
 #pragma mark - imgCollectionView delegate
 
-- (BOOL)collectionView:(UICollectionView *)collectionView
-shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
 
