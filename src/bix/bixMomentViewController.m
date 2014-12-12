@@ -132,6 +132,8 @@
     
     // reuse key must be identical to that set on storyboard
     bixMomentTableViewCell *cell = (bixMomentTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"moment-item" forIndexPath:indexPath];
+    
+    NSLog(@"Loading Data");
     [cell loadFromMomentDataItem:item];
     //cell 被选中后颜色不变， 不会变暗！！
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -139,6 +141,11 @@
     return cell;
 //    //点击cell的时候，不会变暗，不会有反应;
 ////    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 368;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

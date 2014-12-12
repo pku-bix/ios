@@ -13,4 +13,15 @@
 
 - (void) loadFromMomentDataItem:(bixMomentDataItem*)item;
 
+// 用户头像
+@property (nonatomic, retain) IBOutlet UIImageView *userImageView;
+// 用户显示名
+@property (retain, nonatomic) IBOutlet UILabel *userLabel;
+// 分享文本内容
+@property (retain, nonatomic) IBOutlet UITextView *contentTextView;
+// 分享图片组
+@property (retain, nonatomic) IBOutlet UICollectionView *imgCollectionView;
+// 回复列表
+@property (weak, nonatomic) IBOutlet UITableView *replyTableView;
+
 @end
