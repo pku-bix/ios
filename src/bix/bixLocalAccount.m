@@ -184,9 +184,8 @@ static bixLocalAccount *instance = nil;
 }
 
 - (void) setDeviceToken:(NSData *)deviceToken{
-    self.deviceToken = deviceToken;
+    _deviceToken = deviceToken;
     NSLog(@"发送deviceToken...");
-//    self.strDeviceToken = [[NSString alloc]initWithData:deviceToken encoding:NSUTF8StringEncoding];
     [self pushProperties:device_Token];
 }
 

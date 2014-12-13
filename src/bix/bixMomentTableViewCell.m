@@ -24,7 +24,6 @@
 
 @implementation bixMomentTableViewCell
 {
-//<<<<<<< HEAD
     NSString *message;
     int flag_notification;
     CGFloat mImgCollectionViewWidth;
