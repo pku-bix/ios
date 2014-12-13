@@ -133,6 +133,15 @@ static const int CHAT_HEAD_SHOW_PADDING_BOTTOM  =       5;          // 聊天头
 static const int CHAT_HEAD_SHOW_PADDING_LEFT    =       2;          // 聊天头像左边距
 static const int CHAT_HEAD_SHOW_PADDING_RIGHT   =       2;          // 聊天头像右边距
 
+static const int MOMENT_HEAD_SHOW_SIZE          =       60;
+static const int MOMENT_PADDING_LEFT            =       10;
+static const int MOMENT_PADDING_RIGHT           =       10;
+static const int MOMENT_PADDING_TOP             =       10;
+static const int MOMENT_PADDING_BOTTOM          =       10;
+static const int MOMENT_HEAD_SHOW_RIGHT_SP      =       15;
+static const int MOMENT_USER_NAME_BOTTOM_SP     =       5;
+static const int MOMENT_TEXT_CONTENT_BOTTOM_SP  =       5;
+
 static const int TIMEINFO_HEIGHT      =   20;
 static const NSTimeInterval EXPIRE_TIME_INTERVAL =   60.0;    //回话过期时间（s），此后需重新显示日期
 

@@ -233,7 +233,7 @@ AppDelegate* appdelegate;
                                     options:NSStringDrawingUsesLineFragmentOrigin
                                  attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]}
                                     context: nil].size;
-    CGSize _textSize = CGSizeMake(size.width, size.height+8);
+    CGSize _textSize = CGSizeMake(size.width, size.height+6);
     return _textSize;
 }
 
