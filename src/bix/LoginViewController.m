@@ -136,7 +136,8 @@ bixLocalAccount* account;
 - (void)authenticated:(NSNotification*)n{
     [hud hide:YES];
     self.view.userInteractionEnabled = YES;
-    
+   
+    [[AppDelegate instance] registerAPN];
     [[bixLocalAccount instance] pull];
     [self performSegueWithIdentifier:@"main" sender:self];
 }

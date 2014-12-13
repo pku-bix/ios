@@ -21,6 +21,6 @@
 @property (nonatomic)BMKMapManager* mapManager;
 
 + (AppDelegate*) instance;
-//-(void)registerAPN;
+-(void)registerAPN;
 
 @end
