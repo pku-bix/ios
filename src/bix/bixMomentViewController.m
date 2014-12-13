@@ -12,7 +12,6 @@
 #import "bixCaptureViewController.h"
 #import "bixSendMoodData.h"
 #import "UIScrollView+MJRefresh.h"
-//#import "RequestInfoFromServer.h"
 #import "bixMomentDataItem.h"
 #import "MessageBox.h"
 
@@ -25,9 +24,7 @@
 @implementation bixMomentViewController
 {
     UIImage *image_send_mood_data;
-    NSString *newMomentText;
     BOOL isRefresh;
-//    RequestInfoFromServer *request;
     bixMomentDataItem *itemRefresh;
     MBProgressHUD *hud;
 }
