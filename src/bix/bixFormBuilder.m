@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 bix. All rights reserved.
 //
 
-#import "bixFormBuild.h"
+#import "bixFormBuilder.h"
 
-@implementation bixFormBuild
+@implementation bixFormBuilder
 {
     
 }
@@ -56,19 +56,6 @@ static NSString *const boundary = @"PkuBixMustSuccess";
 
      [self.body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     
-}
-
--(void)addDeviceToken:(NSData *)deviceToken forKey:(NSString *)key
-{
-    [self.body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [self.body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n",key] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    //    [self.body appendData:[[NSString stringWithString:text] dataUsingEncoding:NSUTF8StringEncoding]];
-    //    [self.body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    [self.body appendData:deviceToken];
-    
-    [self.body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 -(NSData*)closeForm

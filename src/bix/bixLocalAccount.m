@@ -12,7 +12,7 @@
 #import "NSString+Account.h"
 
 #import "bixAPIProvider.h"
-#import "bixFormBuild.h"
+#import "bixFormBuilder.h"
 
 
 @interface bixLocalAccount()
@@ -50,7 +50,7 @@ static bixLocalAccount *instance = nil;
 
 -(NSData*)modelBody
 {
-    bixFormBuild *formBuild = [[bixFormBuild alloc]init];
+    bixFormBuilder *formBuild = [[bixFormBuilder alloc]init];
     if (self.bodyType & avatar) {
         [formBuild addPicture:@"avatar" andImage:self.avatar.image];
     }
@@ -73,7 +73,7 @@ static bixLocalAccount *instance = nil;
     }
     
     if (self.bodyType & device_Token) {
-        [formBuild addDeviceToken:self.deviceToken forKey:@"device_token"];
+        [formBuild addText:@"device_token" andText:self.deviceToken];
     }
     
     return [formBuild closeForm];
@@ -183,7 +183,7 @@ static bixLocalAccount *instance = nil;
     return [[NSUserDefaults standardUserDefaults] stringForKey: @"restore_username"];
 }
 
-- (void) setDeviceToken:(NSData *)deviceToken{
+- (void) setDeviceToken:(NSString *)deviceToken{
     _deviceToken = deviceToken;
     NSLog(@"发送deviceToken...");
     [self pushProperties:device_Token];

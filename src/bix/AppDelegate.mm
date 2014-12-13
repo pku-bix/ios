@@ -126,8 +126,13 @@
     NSLog(@"device token received: %@", deviceToken);
 #endif
     bixLocalAccount* ac = [bixLocalAccount instance];
-    if(ac!=nil)
-        ac.deviceToken = deviceToken;
+    if(ac!=nil){
+        NSString* str = deviceToken.description;
+        str = [str stringByReplacingOccurrencesOfString:@" " withString:@""];
+        str = [str stringByReplacingOccurrencesOfString:@"<" withString:@""];
+        str = [str stringByReplacingOccurrencesOfString:@">" withString:@""];
+        ac.deviceToken = str;
+    }
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{

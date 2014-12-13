@@ -35,7 +35,7 @@ typedef enum Properties: NSUInteger
 @property (nonatomic) NSString* password;
 @property (nonatomic) bool autoLogin;
 // used for remote push service
-@property (nonatomic) NSData* deviceToken;
+@property (nonatomic) NSString* deviceToken;
 //@property (nonatomic) NSString *strDeviceToken;
 // register validation
 @property (readonly) bool isValid;

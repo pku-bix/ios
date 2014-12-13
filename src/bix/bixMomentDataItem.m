@@ -10,7 +10,7 @@
 #import "Account.h"
 #import "bixMomentReplyItem.h"
 #import "bixAPIProvider.h"
-#import "bixFormBuild.h"
+#import "bixFormBuilder.h"
 #import "bixLocalAccount.h"
 #import "bixImageProxy.h"
 #import "bixChatProvider.h"
@@ -61,7 +61,7 @@
 {
     bixLocalAccount *localAccount = [bixLocalAccount instance];
     
-    bixFormBuild *formBuild = [[bixFormBuild alloc]init];
+    bixFormBuilder *formBuild = [[bixFormBuilder alloc]init];
     //添加用户名字段
     [formBuild addText:@"author" andText:localAccount.username];
     //添加分享的文字字段
