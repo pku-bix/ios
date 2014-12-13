@@ -10,7 +10,7 @@
 #import "Constants.h"
 #import "AppDelegate.h"
 #import "NSString+Account.h"
-#import "RequestInfoFromServer.h"
+
 #import "bixAPIProvider.h"
 #import "bixFormBuild.h"
 
@@ -29,7 +29,7 @@
 
 @implementation bixLocalAccount
 {
-    RequestInfoFromServer *request;
+//    RequestInfoFromServer *request;
 
 }
 
@@ -70,6 +70,10 @@ static bixLocalAccount *instance = nil;
     
     if (self.bodyType & teslaModel) {
         [formBuild addText:@"tesla_model" andText:self.teslaType];
+    }
+    
+    if (self.bodyType & device_Token) {
+        [formBuild addDeviceToken:self.deviceToken forKey:@"device_token"];
     }
     
     return [formBuild closeForm];
@@ -135,7 +139,7 @@ static bixLocalAccount *instance = nil;
     if (self) {
         _password    = [coder decodeObjectForKey: @"password"];
         _autoLogin   = [coder decodeBoolForKey:   @"auto_login"];
-        _deviceToken = [coder decodeObjectForKey: @"device_token"];
+//        _deviceToken = [coder decodeObjectForKey: @"device_token"];
         self.avatarImage = [coder decodeObjectForKey:@"avatarImage"];
     }
 
@@ -146,7 +150,7 @@ static bixLocalAccount *instance = nil;
     [super encodeWithCoder: coder];
     [coder encodeObject:self.password forKey:@"password"];
     [coder encodeBool:self.autoLogin forKey:@"auto_login"];
-    [coder encodeObject:self.deviceToken forKey:@"device_token"];
+//    [coder encodeObject:self.deviceToken forKey:@"device_token"];
     //序列化本地头像
     [coder encodeObject:self.avatar forKey:@"avatar"];
     
@@ -180,12 +184,10 @@ static bixLocalAccount *instance = nil;
 }
 
 - (void) setDeviceToken:(NSData *)deviceToken{
-    _deviceToken = deviceToken;
+    self.deviceToken = deviceToken;
     NSLog(@"发送deviceToken...");
-    request = [[RequestInfoFromServer alloc]init];
-    
-    [request sendAsynchronousPostDeviceToken:_deviceToken];
-    
+//    self.strDeviceToken = [[NSString alloc]initWithData:deviceToken encoding:NSUTF8StringEncoding];
+    [self pushProperties:device_Token];
 }
 
 // propperties

@@ -10,7 +10,7 @@
 #import "MapButton.h"
 #import "Constants.h"
 #import "bixDetailViewController.h"
-#import "RequestInfoFromServer.h"
+//#import "RequestInfoFromServer.h"
 #import "bixChargerPointAnnotation.h"
 #import "bixRemoteModelObserver.h"
 #import "bixChargerDataSource.h"
@@ -31,7 +31,7 @@
 
 @implementation MapViewController
 {
-    RequestInfoFromServer* requestInfoFromServer;
+//    RequestInfoFromServer* requestInfoFromServer;
     MapButton * mapButton;
     UIButton* enlargeButton;
     UIButton* shrinkButton;

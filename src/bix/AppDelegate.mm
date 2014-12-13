@@ -18,18 +18,20 @@
 //    CLLocationManager  *locationManager;
 }
 
-////////////////////////////////////////////////////////////////
-//methods
 
 
 -(void)registerAPN{
-    UIUserNotificationType types = UIUserNotificationTypeBadge |
-    UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
     
-    UIUserNotificationSettings *mySettings =
-    [UIUserNotificationSettings settingsForTypes:types categories:nil];
-    
-    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8)
+     {
+         UIUserNotificationType types = UIUserNotificationTypeBadge |
+         UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+         
+         UIUserNotificationSettings *mySettings =
+         [UIUserNotificationSettings settingsForTypes:types categories:nil];
+         
+         [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
+     }
 }
 
 -(id)init{
@@ -134,6 +136,17 @@ didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
     NSLog(@"failed get device token: %@", error);
 #endif
 }
+//
+//// Delegation methods
+//- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
+//    const void *devTokenBytes = [devToken bytes];
+////    self.registered = YES;
+////    [self sendProviderDeviceToken:devTokenBytes]; // custom method
+//}
+//
+//- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
+//    NSLog(@"Error in registration. Error: %@", err);
+//}
 
 + (AppDelegate*)instance{
     return (AppDelegate*)[UIApplication sharedApplication].delegate;

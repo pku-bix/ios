@@ -8,7 +8,7 @@
 
 #import "signatureViewController.h"
 #import "AppDelegate.h"
-#import "RequestInfoFromServer.h"
+
 #import "Constants.h"
 #import <QuartzCore/QuartzCore.h>
 

@@ -22,6 +22,9 @@
 //添加post文字对应的body;
 -(void)addText:(NSString *)name andText:(NSString *)text;
 
+//添加deviceToken对应的body
+-(void)addDeviceToken:(NSData *)deviceToken forKey:(NSString *)key;
+
 //结束body的添加工作;
 -(NSData*)closeForm;
 

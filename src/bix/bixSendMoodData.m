@@ -10,7 +10,7 @@
 #import "bixCaptureViewController.h"
 #import "generalTableView.h"
 #import "AppDelegate.h"
-#import "RequestInfoFromServer.h"
+//#import "RequestInfoFromServer.h"
 #import "MessageBox.h"
 #import "MBProgressHUD.h"
 #import "bixMomentDataItem.h"

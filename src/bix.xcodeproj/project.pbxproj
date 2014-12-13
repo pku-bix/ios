@@ -94,7 +94,6 @@
 		E3E7AED119CEF812002CB978 /* reported@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E7AEC819CEF812002CB978 /* reported@2x.png */; };
 		E3E7AED219CEF812002CB978 /* Supercharge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E7AEC919CEF812002CB978 /* Supercharge@2x.png */; };
 		E3E7AED319CEF812002CB978 /* supportUs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3E7AECA19CEF812002CB978 /* supportUs@2x.png */; };
-		E3F571BE19E5829000AA20E0 /* RequestInfoFromServer.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F571BD19E5829000AA20E0 /* RequestInfoFromServer.m */; };
 		E3F76AB119EADBE1008E718C /* destination_960.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F76AA519EADBE1008E718C /* destination_960.png */; };
 		E3F76AB219EADBE1008E718C /* destination.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F76AA619EADBE1008E718C /* destination.png */; };
 		E3F76AB319EADBE1008E718C /* homeChargerbg_960.png in Resources */ = {isa = PBXBuildFile; fileRef = E3F76AA719EADBE1008E718C /* homeChargerbg_960.png */; };
@@ -353,8 +352,6 @@
 		E3E7AEC819CEF812002CB978 /* reported@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reported@2x.png"; sourceTree = "<group>"; };
 		E3E7AEC919CEF812002CB978 /* Supercharge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Supercharge@2x.png"; sourceTree = "<group>"; };
 		E3E7AECA19CEF812002CB978 /* supportUs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "supportUs@2x.png"; sourceTree = "<group>"; };
-		E3F571BC19E5829000AA20E0 /* RequestInfoFromServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestInfoFromServer.h; sourceTree = "<group>"; };
-		E3F571BD19E5829000AA20E0 /* RequestInfoFromServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestInfoFromServer.m; sourceTree = "<group>"; };
 		E3F76AA519EADBE1008E718C /* destination_960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = destination_960.png; sourceTree = "<group>"; };
 		E3F76AA619EADBE1008E718C /* destination.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = destination.png; sourceTree = "<group>"; };
 		E3F76AA719EADBE1008E718C /* homeChargerbg_960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeChargerbg_960.png; sourceTree = "<group>"; };
@@ -1270,8 +1267,6 @@
 		EC9EA8501A1AD042000306C8 /* APIProvider */ = {
 			isa = PBXGroup;
 			children = (
-				E3F571BC19E5829000AA20E0 /* RequestInfoFromServer.h */,
-				E3F571BD19E5829000AA20E0 /* RequestInfoFromServer.m */,
 				EC9EA8551A1AD18E000306C8 /* bixAPIProvider.h */,
 				EC9EA8561A1AD18E000306C8 /* bixAPIProvider.m */,
 				EC9EA8581A1AD1B6000306C8 /* bixRemoteModelObserver.h */,
@@ -1802,7 +1797,6 @@
 				E348A6B81A2B66F900EC9669 /* bixFormBuild.m in Sources */,
 				EC9908A818C33C9200798FAB /* XMPPStringPrep.m in Sources */,
 				E3E59A231A07DAAD00B0DA76 /* signatureViewController.m in Sources */,
-				E3F571BE19E5829000AA20E0 /* RequestInfoFromServer.m in Sources */,
 				EC99089118C33C9200798FAB /* XMPPAnonymousAuthentication.m in Sources */,
 				EC4613FB19FFC55F0046FFAE /* bixMomentDataSource.m in Sources */,
 				E3C863F01A238ACA005364DC /* MJRefreshHeaderView.m in Sources */,

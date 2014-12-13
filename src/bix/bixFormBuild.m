@@ -46,16 +46,29 @@ static NSString *const boundary = @"PkuBixMustSuccess";
 -(void)addText:(NSString *)name andText:(NSString *)text
 {
     [self.body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-   [self.body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n",name] dataUsingEncoding:NSUTF8StringEncoding]];
+    [self.body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n",name] dataUsingEncoding:NSUTF8StringEncoding]];
     
 //    [self.body appendData:[[NSString stringWithString:text] dataUsingEncoding:NSUTF8StringEncoding]];
 //    [self.body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
  
-    NSLog(@"author name is :%@", text);
-    [self.body appendData:[[NSString stringWithString:text] dataUsingEncoding:NSUTF8StringEncoding]];
+     NSLog(@"author name is :%@", text);
+     [self.body appendData:[[NSString stringWithString:text] dataUsingEncoding:NSUTF8StringEncoding]];
 
-    [self.body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+     [self.body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     
+}
+
+-(void)addDeviceToken:(NSData *)deviceToken forKey:(NSString *)key
+{
+    [self.body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [self.body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n",key] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //    [self.body appendData:[[NSString stringWithString:text] dataUsingEncoding:NSUTF8StringEncoding]];
+    //    [self.body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.body appendData:deviceToken];
+    
+    [self.body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 -(NSData*)closeForm

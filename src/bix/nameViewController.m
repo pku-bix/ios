@@ -8,7 +8,7 @@
 
 #import "nameViewController.h"
 #import "AppDelegate.h"
-#import "RequestInfoFromServer.h"
+//#import "RequestInfoFromServer.h"
 #import "Constants.h"
 
 @interface nameViewController ()

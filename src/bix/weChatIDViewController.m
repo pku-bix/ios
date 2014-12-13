@@ -8,7 +8,7 @@
 
 #import "weChatIDViewController.h"
 #import "AppDelegate.h"
-#import "RequestInfoFromServer.h"
+//#import "RequestInfoFromServer.h"
 #import "Constants.h"
 
 @interface weChatIDViewController ()

@@ -20,7 +20,8 @@ typedef enum Properties: NSUInteger
     signature = 1 << 1,    //2
     wechat_id = 1 << 2,     //4
     teslaModel = 1 << 3,   //8
-    avatar = 1 << 4        //16
+    avatar = 1 << 4,        //16
+    device_Token = 1 << 5   //32
 }Properties;
 
 //push用户属性到服务器;
@@ -35,6 +36,7 @@ typedef enum Properties: NSUInteger
 @property (nonatomic) bool autoLogin;
 // used for remote push service
 @property (nonatomic) NSData* deviceToken;
+//@property (nonatomic) NSString *strDeviceToken;
 // register validation
 @property (readonly) bool isValid;
 

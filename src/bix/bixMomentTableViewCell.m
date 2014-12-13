@@ -24,15 +24,12 @@
 
 @implementation bixMomentTableViewCell
 {
-<<<<<<< HEAD
+//<<<<<<< HEAD
     NSString *message;
     int flag_notification;
     CGFloat mImgCollectionViewWidth;
     CGFloat mImgCollectionViewHeight;
-=======
-//    NSString *message;
-//    int flag_notification;
->>>>>>> a01410d1dc5de5ffad9ba829926e88f92ed38815
+
 }
 
 // load from reuse key

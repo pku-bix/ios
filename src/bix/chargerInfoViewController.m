@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "UIButton+Bootstrap.h"
 #import "MessageBox.h"
-#import "RequestInfoFromServer.h"
+//#import "RequestInfoFromServer.h"
 
 @interface chargerInfoViewController ()
 
@@ -19,7 +19,7 @@
 @implementation chargerInfoViewController
 {
     AppDelegate * appDelegate;
-    RequestInfoFromServer *request;
+//    RequestInfoFromServer *request;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -155,8 +155,8 @@
     [self.mutableArray addObject:self.latitude];
     NSLog(@"latitude is %@", self.latitude);
     
-    request = [[RequestInfoFromServer alloc]init];
-    [request sendAsynchronousPostReportChargerRequest:self.mutableArray];
+//    request = [[RequestInfoFromServer alloc]init];
+//    [request sendAsynchronousPostReportChargerRequest:self.mutableArray];
     
 }
 
