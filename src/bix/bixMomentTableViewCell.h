@@ -9,19 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "bixMomentDataItem.h"
 
-@interface bixMomentTableViewCell : UITableViewCell<UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface bixMomentTableViewCell : UITableViewCell<UITableViewDataSource,UITableViewDelegate, UICollectionViewDelegate>
 
 - (void) loadFromMomentDataItem:(bixMomentDataItem*)item;
 
+-(void)setCollectionViewDataSourceDelegate:(id<UICollectionViewDataSource, UICollectionViewDelegate>)dataSourceDelegate index:(NSInteger)index;
+
 // 用户头像
-@property (nonatomic, retain) IBOutlet UIImageView *userImageView;
+@property (nonatomic, retain) UIImageView *userImageView;
 // 用户显示名
-@property (retain, nonatomic) IBOutlet UILabel *userLabel;
+@property (retain, nonatomic) UILabel *userLabel;
 // 分享文本内容
-@property (retain, nonatomic) IBOutlet UITextView *contentTextView;
+@property (retain, nonatomic) UITextView *contentTextView;
 // 分享图片组
-@property (retain, nonatomic) IBOutlet UICollectionView *imgCollectionView;
+@property (retain, nonatomic) UICollectionView *imgCollectionView;
 // 回复列表
-@property (weak, nonatomic) IBOutlet UITableView *replyTableView;
+@property (weak, nonatomic) UITableView *replyTableView;
 
 @end

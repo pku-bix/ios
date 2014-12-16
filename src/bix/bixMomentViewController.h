@@ -12,10 +12,9 @@
 #import "bixRemoteModelDataSource.h"
 #import "bixRemoteModelDelegate.h"
 
-@interface bixMomentViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, bixRemoteModelObserver>
+@interface bixMomentViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, bixRemoteModelObserver,UICollectionViewDelegate,UICollectionViewDataSource>
 {
     IBOutlet UIButton *btnSendMood;
-
 }
 
 @property (nonatomic) UIRefreshControl *refresh;
