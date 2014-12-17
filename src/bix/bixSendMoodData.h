@@ -28,16 +28,6 @@
 @property (retain, nonatomic) NSMutableData  *theResultData;
 
 @property(nonatomic,strong) UIImage *image1;
-@property(nonatomic,strong) UIImage *image2;
-@property(nonatomic,strong) UIImage *image3;
-@property(nonatomic,strong) UIImage *image4;
-@property(nonatomic,strong) UIImage *image5;
-@property(nonatomic,strong) UIImage *image6;
-@property(nonatomic,strong) UIImage *image7;
-@property(nonatomic,strong) UIImage *image8;
-@property(nonatomic,strong) UIImage *image9;
-
-//@property (strong, nonatomic) NSMutableArray *imageArray;
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView1;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView2;
@@ -49,7 +39,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imageView8;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView9;
 
-@property (weak, nonatomic) IBOutlet UIButton *addPictureButton;
+@property (weak, nonatomic) UIButton *addPictureButton;
 
 //- (IBAction)cancleSendMood:(id)sender;
 

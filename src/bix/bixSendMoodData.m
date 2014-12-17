@@ -22,19 +22,16 @@
 
 @implementation bixSendMoodData
 {
-    int timeOfNotification;
     UIImage *pickImage;
     AppDelegate* appDelegate;
     MBProgressHUD *hud;
-    IBOutlet UIButton *addPhotoButton;
+    UIButton *addPhotoButton;
     
     int flag_sendMoodData_success_or_not; // 标记本次发送是否成功;
     
     bixMomentDataItem *item;  //用于发送的momentDataItem;
-
 //本来是设计用来存发送图片的NSURL， 但发送到前台不能实时响应，故取消这种设计，直接传数据给前台实时显示;
 //    NSMutableArray *ImageURLArray;
-    
 //    bixMomentDataItem *item;
     //用这个变量来标记发送是否成功，对应在点击发送按钮触发的事件;
 //    int flag;
@@ -52,12 +49,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    flag_sendMoodData_success_or_not = 1;   //一进分享圈界面就默认 本次会发送成功，设置为1， 当发送不成功时，再设置为0;
-    
-//    self
-    
+    //一进分享圈界面就默认 本次会发送成功，设置为1， 当发送不成功时，再设置为0;
+    flag_sendMoodData_success_or_not = 1;
     self.pictureNumber = 1;
-    timeOfNotification = 0;
     //点击发送按钮，软键盘会自动取消，设置代理;
     self.textView.delegate = self;
     
@@ -109,12 +103,6 @@
 {
     pickImage = image;
 }
-//
-//
-//- (IBAction)cancleSendMood:(id)sender {
-//
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//}
 
 #pragma mark UIActionSheetDelegate Method
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -221,66 +209,50 @@
         switch (self.pictureNumber) {
             case 2:
             {
-                self.image2 = [UIImage imageWithData:data];
-                self.imageView2.image = self.image2;
-                
-                [self.imageArray addObject:self.image2];
+                self.imageView2.image = [UIImage imageWithData:data];
+                [self.imageArray addObject:self.imageView2.image];
             }
                 break;
             case 3:
             {
-                self.image3 = [UIImage imageWithData:data];
-                self.imageView3.image = self.image3;
-                
-                [self.imageArray addObject:self.image3];
+                self.imageView3.image = [UIImage imageWithData:data];
+                [self.imageArray addObject:self.imageView3.image];
             }
                 break;
             case 4:
             {
-                self.image4 = [UIImage imageWithData:data];
-                self.imageView4.image = self.image4;
-                
-                [self.imageArray addObject:self.image4];
+                self.imageView4.image = [UIImage imageWithData:data];
+                [self.imageArray addObject:self.imageView4.image];
             }
                 break;
             case 5:
             {
-                self.image5 = [UIImage imageWithData:data];
-                self.imageView5.image = self.image5;
-                
-                [self.imageArray addObject:self.image5];
+                self.imageView5.image = [UIImage imageWithData:data];
+                [self.imageArray addObject:self.imageView5.image];
             }
                 break;
             case 6:
             {
-                self.image6 = [UIImage imageWithData:data];
-                self.imageView6.image = self.image6;
-                
-                [self.imageArray addObject:self.image6];
+                self.imageView6.image = [UIImage imageWithData:data];
+                [self.imageArray addObject:self.imageView6.image];
             }
                 break;
             case 7:
             {
-                self.image7 = [UIImage imageWithData:data];
-                self.imageView7.image = self.image7;
-                
-                [self.imageArray addObject:self.image7];
+                self.imageView7.image = [UIImage imageWithData:data];
+                [self.imageArray addObject:self.imageView7.image];
             }
                 break;
             case 8:
             {
-                self.image8 = [UIImage imageWithData:data];
-                self.imageView8.image = self.image8;
-                
-                [self.imageArray addObject:self.image8];
+                self.imageView8.image = [UIImage imageWithData:data];
+                [self.imageArray addObject:self.imageView8.image];
             }
                 break;
             case 9:
             {
-                self.image9 = [UIImage imageWithData:data];
-                self.imageView9.image = self.image9;
-                
-                [self.imageArray addObject:self.image9];
+                self.imageView9.image = [UIImage imageWithData:data];
+                [self.imageArray addObject:self.imageView9.image];
             }
                 break;
                 
@@ -320,7 +292,6 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
-
 
 - (void)addPicture
 {    
@@ -399,79 +370,6 @@
     flag_sendMoodData_success_or_not = 1;
     
     [[self navigationController] popViewControllerAnimated:YES];
-}
-
-/*
--(void)parseDataItem:(NSNotification *)notification
-{
-    self.theResultData = notification.object;
-    NSDictionary *result = [NSJSONSerialization JSONObjectWithData:self.theResultData options:NSJSONReadingMutableLeaves error:nil];
-   
-    NSArray *imageUrl = [result objectForKey:@"imgs"];
-    
-    for (id obj in imageUrl) {
-        NSLog(@"image URL is %@", obj);
-        [ImageURLArray addObject:[NSURL URLWithString:obj]];
-        NSLog(@"NSURL is %@", [NSURL URLWithString:obj]);
-    }
-    
-    // create MomentDataItem item
-    // add item to MomentDataSource
-    Account *account = [[AppDelegate get] account];
-    account.avatarUrl = [NSURL URLWithString: @"http://img0.bdstatic.com/img/image/shouye/mxlyfs-9632102318.jpg"];
-    account.nickname = account.username;
-    
-    bixMomentDataItem *item = [[bixMomentDataItem alloc]initWithSender:account];
-    //    item.imgUrls = [NSMutableArray arrayWithArray:self.mutableArray];
-    item.imgUrls = [NSMutableArray arrayWithArray:ImageURLArray];
-//    item.imgUrls = [NSMutableArray arrayWithArray:testURLArray];
-    item.textContent = self.textView.text;
-    [[bixMomentDataSource defaultSource]addMomentDataItem:item];
-    NSLog(@"momentDataItem number is %d", [[bixMomentDataSource defaultSource]numberOfMomentDataItem]);
-    [ImageURLArray removeAllObjects];
-}
-*/
-
--(void)parseSuccessOrNot:(NSNotification *)notification
-{
-    NSLog(@"parseSuccessOrNot");
-    if ([notification.object isEqualToString:@"success"]) {
-        //发送成功才能给bixMomentViewController.m 发送通知，从而使 cell个数加1;
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"sendOneMomentDataItem" object:self.textView.text];
-        [hud hide:YES];
-        [MessageBox Toasting:@"发送成功！" In:self.view];
-        self.view.userInteractionEnabled = YES;
-        
-        //退出时，得清空之前的数组元素， 否则下次进来会一直叠加元素;
-        [self.imageArray removeAllObjects];
-        flag_sendMoodData_success_or_not = 1;
-        
-        [[self navigationController] popViewControllerAnimated:YES];
-    }
-    else if([notification.object isEqualToString:@"networkLost"])
-    {
-        //清楚上次没发送成功的item;
-//        [[bixMomentDataSource defaultSource]removeMomentDataItem:([[bixMomentDataSource defaultSource]numberOfMomentDataItem]-1)];
-        NSLog(@"发送失败");
-        flag_sendMoodData_success_or_not = 0;  //标记本次发送失败；
-        [hud hide:YES];
-        [MessageBox Toast:@"发送失败，请检查网络设置！" In:self.view];
-        self.view.userInteractionEnabled = YES;
-
-        timeOfNotification++;
-        NSLog(@"timeOfNotification is %d", timeOfNotification);
-        NSLog(@"mutableArray number is %d", [self.imageArray count]);
-        for (id obj in self.imageArray) {
-            NSLog(@"mutableArray is %@", obj);
-        }
-    }
-    else
-    {
-        flag_sendMoodData_success_or_not = 0;  //标记本次发送失败；
-        [hud hide:YES];
-        [MessageBox Toast:@"发送失败，服务器出错！" In:self.view];
-        self.view.userInteractionEnabled = YES;
-    }
 }
 
 - (IBAction)Tap:(id)sender {
