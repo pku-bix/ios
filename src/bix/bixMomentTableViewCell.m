@@ -11,6 +11,8 @@
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "Constants.h"
 #import "bixMomentReplyItem.h"
+#import "UIButton+Bootstrap.h"
+#import "KxMenu.h"
 
 // 分享列表Cell的控制器
 // 用以控制分享列表Cell的所有子视图，并实现图片组和回复列表的数据源与事件代理。
@@ -24,8 +26,7 @@
 
 @implementation bixMomentTableViewCell
 {
-    CGFloat mImgCollectionViewWidth;
-    CGFloat mImgCollectionViewHeight;
+    UITableView *superView;
 }
 
 // load from reuse key
@@ -35,6 +36,9 @@
     if (self) {
         // Initialization code
         NSLog(@"Init");
+        
+        superView = nil;
+        
         _userImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         //        _userImageView.frame = CGRectMake( MOMENT_PADDING_LEFT, MOMENT_PADDING_TOP, MOMENT_HEAD_SHOW_SIZE, MOMENT_HEAD_SHOW_SIZE);
         [self.contentView addSubview:_userImageView];
@@ -56,8 +60,47 @@
         _imgCollectionView.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:_imgCollectionView];
         [self.imgCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
+        
+        _momentTime = [[UILabel alloc] initWithFrame:CGRectZero];
+        _momentTime.textColor = [UIColor grayColor];
+        _momentTime.backgroundColor = [UIColor clearColor];
+        _momentTime.font = [UIFont systemFontOfSize:13.0];
+        [self.contentView addSubview:_momentTime];
+        
+        _commentButton = [[UIButton alloc] initWithFrame:CGRectZero];
+        _commentButton.backgroundColor = [UIColor blueColor];
+        [_commentButton setTitle:@"评论" forState:UIControlStateNormal];
+        _commentButton.titleLabel.font = [UIFont systemFontOfSize:13.0];
+        [_commentButton primaryStyle];
+        [_commentButton addTarget:self action:@selector(showMenu:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:_commentButton];
+        
+        _mImgCollectionViewWidth = [UIScreen mainScreen].currentMode.size.width/2.0 - (MOMENT_PADDING_LEFT + MOMENT_HEAD_SHOW_SIZE + MOMENT_HEAD_SHOW_RIGHT_SP + MOMENT_PADDING_RIGHT);
+        
+        _mContentHeight = MOMENT_HEAD_SHOW_SIZE + MOMENT_PADDING_TOP + MOMENT_PADDING_BOTTOM;
     }
     return self;
+}
+
+-(void)setSuperViewPointer:(UITableView *)sp
+{
+    superView = sp;
+}
+
+-(void) layoutSubviews
+{
+    [super layoutSubviews];
+    NSLog(@"Call TableViewCell LayoutSubViews");
+}
+
+-(CGFloat)getContentViewHeight:(bixMomentDataItem *)item
+{
+    NSLog(@"GetContentViewHeight");
+    _mContentHeight = 0;
+    _mImgCollectionViewHeight = ((_mImgCollectionViewWidth - 20.0)/3 + 10.0) * ceil(item.imageProxyArray.count/3.0);
+    CGSize _contentTextSize = [self getDisplaySize:item.textContent];
+    _mContentHeight = MOMENT_PADDING_TOP + 20 + MOMENT_USER_NAME_BOTTOM_SP + _contentTextSize.height + MOMENT_TEXT_CONTENT_BOTTOM_SP + _mImgCollectionViewHeight + MOMENT_COMMENT_BUTTON_HEIGHT + MOMENT_PADDING_BOTTOM;
+    return _mContentHeight;
 }
 
 // load from nib or storyboard
@@ -100,6 +143,8 @@
     
     self.momentDataItem = item;
     
+    _mContentHeight = 0;
+    
     NSString* displayName = item.sender.nickname;
     if (displayName == nil || [displayName isEqualToString:@""]) {
         displayName = item.sender.username;
@@ -130,12 +175,24 @@
     //设置textView不可以被选中
     _contentTextView.selectable = NO;
     
-    mImgCollectionViewWidth = [UIScreen mainScreen].currentMode.size.width/2.0 - (MOMENT_PADDING_LEFT + MOMENT_HEAD_SHOW_SIZE + MOMENT_HEAD_SHOW_RIGHT_SP + MOMENT_PADDING_RIGHT);
-    mImgCollectionViewHeight = ((mImgCollectionViewWidth - 20.0)/3 + 10.0) * ceil(item.imageProxyArray.count/3.0);
+    _mImgCollectionViewHeight = ((_mImgCollectionViewWidth - 20.0)/3 + 10.0) * ceil(item.imageProxyArray.count/3.0);
     _imgCollectionView.frame = CGRectMake( MOMENT_PADDING_LEFT + MOMENT_HEAD_SHOW_SIZE + MOMENT_HEAD_SHOW_RIGHT_SP,
                                           MOMENT_PADDING_TOP + 20 + MOMENT_USER_NAME_BOTTOM_SP + _contentTextView.frame.size.height + MOMENT_TEXT_CONTENT_BOTTOM_SP,
-                                          mImgCollectionViewWidth,
-                                          mImgCollectionViewHeight);
+                                          _mImgCollectionViewWidth,
+                                          _mImgCollectionViewHeight);
+    
+    _momentTime.frame = CGRectMake( MOMENT_PADDING_LEFT + MOMENT_HEAD_SHOW_SIZE + MOMENT_HEAD_SHOW_RIGHT_SP,
+                                    MOMENT_PADDING_TOP + 20 + MOMENT_USER_NAME_BOTTOM_SP + _contentTextView.frame.size.height + MOMENT_TEXT_CONTENT_BOTTOM_SP + _mImgCollectionViewHeight,
+                                    [UIScreen mainScreen].currentMode.size.width/2.0 - (MOMENT_PADDING_LEFT + MOMENT_HEAD_SHOW_SIZE + MOMENT_HEAD_SHOW_RIGHT_SP + MOMENT_PADDING_RIGHT),
+                                    MOMENT_TIME_HEIGHT);
+    [_momentTime setText:@"1小时前"];
+    
+    _commentButton.frame = CGRectMake( [UIScreen mainScreen].currentMode.size.width/2.0 - 40 - MOMENT_PADDING_LEFT,
+                                    MOMENT_PADDING_TOP + 20 + MOMENT_USER_NAME_BOTTOM_SP + _contentTextView.frame.size.height + MOMENT_TEXT_CONTENT_BOTTOM_SP + _mImgCollectionViewHeight,
+                                      40,
+                                      MOMENT_COMMENT_BUTTON_HEIGHT);
+    
+    _mContentHeight = MOMENT_PADDING_TOP + 20 + MOMENT_USER_NAME_BOTTOM_SP + _contentTextView.frame.size.height + MOMENT_TEXT_CONTENT_BOTTOM_SP + _mImgCollectionViewHeight + MOMENT_COMMENT_BUTTON_HEIGHT + MOMENT_PADDING_BOTTOM;
     
     //    self.imgCollectionView.delegate = self;
     //    self.imgCollectionView.dataSource = self;
@@ -264,5 +321,51 @@
 //    NSLog(@"select collectionView is section %d, row %d", indexPath.section, indexPath.row);
 //}
 //
+
+- (void)showMenu:(UIButton *)sender
+{
+    NSArray *menuItems =
+    @[
+      
+      //      [KxMenuItem menuItem:@"ACTION MENU"
+      //                     image:nil
+      //                    target:nil
+      //                    action:NULL],
+      
+      [KxMenuItem menuItem:@"评论"
+                     image:[UIImage imageNamed:@"action_icon"]
+                    target:self
+                    action:@selector(pushMenuItem:)],
+      
+      [KxMenuItem menuItem:@"赞"
+                     image:[UIImage imageNamed:@"check_icon"]
+                    target:self
+                    action:@selector(pushMenuItem:)],
+      
+      ];
+    
+    //    KxMenuItem *first = menuItems[0];
+    //    first.foreColor = [UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0];
+    //    first.alignment = NSTextAlignmentCenter;
+    
+    [KxMenu showMenuInView:self.contentView
+                  fromRect:sender.frame
+                 menuItems:menuItems];
+}
+
+- (void) pushMenuItem:(id)sender
+{
+    NSLog(@"Tag %d", self.imgCollectionView.tag);
+    _mContentHeight += 100;
+    self.frame =  CGRectMake(0, 0, self.bounds.size.width, _mContentHeight);
+//    NSIndexPath *path = [NSIndexPath indexPathForRow:self.imgCollectionView.tag inSection:0];
+//    UITableView *superView = (UITableView *)[self superview];
+//    [superView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationNone];
+//    [superView reloadData];
+    if (superView) {
+        [superView reloadData];
+    }
+    NSLog(@"%@", sender);
+}
 
 @end

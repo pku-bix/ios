@@ -41,7 +41,7 @@ bixLocalAccount* account;
 {
     [super viewDidLoad];
 	// UI enhancement
-    [self.btnLogin primaryStyle];
+    //[self.btnLogin primaryStyle];
 
     // 获取上次登录的用户
     account = [bixLocalAccount restore];

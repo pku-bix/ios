@@ -30,6 +30,8 @@
     bixMomentDataItem *globalMomentDataItem;
     MBProgressHUD *hud;
     CGRect rect;
+    GLfloat mImgCollectionViewWidth;
+    bixMomentTableViewCell *prototypeCell;
 }
 
 
@@ -51,20 +53,22 @@
         _tableView =[[UITableView alloc]initWithFrame:CGRectMake(0,
                                                                  0,
                                                                  rect.size.width,
-                                                                 rect.size.height -20)
-                                                style:UITableViewStyleGrouped];
+                                                                 rect.size.height)
+                                                style:UITableViewStylePlain];
     }
     else
         _tableView =[[UITableView alloc]initWithFrame:CGRectMake(0,
                                                                  self.navigationController.navigationBar.frame.size.height + 20,
                                                                  rect.size.width,
-                                                                 rect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height-20) style:UITableViewStyleGrouped];
+                                                                 rect.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height-20) style:UITableViewStylePlain];
     [self.view addSubview:_tableView];
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
     // [self.tableView addGestureRecognizer:tapRecognizer];
     //self.tableView.allowsSelection = false;
     isRefresh = false;
+    
+    prototypeCell = [[bixMomentTableViewCell alloc] init];
     
     [bixMomentDataSource defaultSource].observer = self;
     [self header_footer_refreshing];
@@ -156,14 +160,22 @@
     if (!cell) {
         cell = [[bixMomentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndetifer];
     }
-    
+    mImgCollectionViewWidth = cell.mImgCollectionViewWidth;
     [cell becomeFirstResponder];
     [cell setCollectionViewDataSourceDelegate:self index:indexPath.row];
+    [cell setSuperViewPointer:self.tableView];
     
     NSLog(@"Loading Data");
     [cell loadFromMomentDataItem:item];
     //cell 被选中后颜色不变， 不会变暗!!
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    CGRect cellFrame = [cell frame];
+    cellFrame.origin = CGPointMake(0, 0);
+    cellFrame.size.height = cell.mContentHeight;
+    [cell setFrame:cellFrame];
+    
+//    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     
     return cell;
     //    //点击cell的时候，不会变暗，不会有反应;
@@ -171,8 +183,16 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return 368;
+//    tableView.delegate=nil;
+//    bixMomentTableViewCell *cell=(bixMomentTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+//    tableView.delegate=self;
+//    
+//    if (cell) {
+//        return cell.mContentHeight;
+//    }
+//    else
+    bixMomentDataItem *item = [[bixMomentDataSource defaultSource]getMomentAtIndex:(indexPath.row)];
+    return [prototypeCell getContentViewHeight:item];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -244,7 +264,7 @@
                                                                            forIndexPath:indexPath];
     
     //    UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:111];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, (250 - 20)/3, (250 - 20)/3)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, (mImgCollectionViewWidth - 20)/3, (mImgCollectionViewWidth - 20)/3)];
     [cell.contentView addSubview:imageView];
     
     bixImageProxy* ip = globalMomentDataItem.imageProxyArray[indexPath.row];
@@ -263,17 +283,9 @@
     return 1;
 }
 
-
-- (void)handleTapGesture:(UITapGestureRecognizer *)sender
-{
-    CGPoint tapLocation = [sender locationInView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
-    NSLog(@"Tap Success X %f, Y %f, row %d", tapLocation.x, tapLocation.y, indexPath.row);
-}
-
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    return CGSizeMake((250 - 20)/3, (250 - 20)/3);
+    return CGSizeMake((mImgCollectionViewWidth - 20)/3, (mImgCollectionViewWidth - 20)/3);
 }
 
 -(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{

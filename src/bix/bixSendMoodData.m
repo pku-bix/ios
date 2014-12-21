@@ -69,7 +69,7 @@
     NSLog(@"Button X %f Y %f", self.imageView2.frame.origin.x, self.imageView2.frame.origin.y);
     
     addPhotoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [addPhotoButton setBackgroundImage:[UIImage imageNamed:@"add_photo_label.png"] forState:UIControlStateNormal];
+    [addPhotoButton setBackgroundImage:[UIImage imageNamed:@"addbutton.png"] forState:UIControlStateNormal];
     CGRect photoButtonFrame = CGRectMake(self.imageView2.frame.origin.x, self.imageView2.frame.origin.y,
                                          self.imageView2.frame.size.width, self.imageView2.frame.size.height);
     addPhotoButton.frame = photoButtonFrame;

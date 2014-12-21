@@ -15,6 +15,10 @@
 
 -(void)setCollectionViewDataSourceDelegate:(id<UICollectionViewDataSource, UICollectionViewDelegate>)dataSourceDelegate index:(NSInteger)index;
 
+-(CGFloat)getContentViewHeight:(bixMomentDataItem*)item;
+
+-(void)setSuperViewPointer:(UITableView *)sp;
+
 // 用户头像
 @property (nonatomic, retain) UIImageView *userImageView;
 // 用户显示名
@@ -25,5 +29,13 @@
 @property (retain, nonatomic) UICollectionView *imgCollectionView;
 // 回复列表
 @property (weak, nonatomic) UITableView *replyTableView;
+// 发表时间
+@property (retain, nonatomic) UILabel *momentTime;
+// 评论按钮
+@property (retain, nonatomic) UIButton *commentButton;
+
+@property CGFloat mImgCollectionViewWidth;
+@property CGFloat mImgCollectionViewHeight;
+@property CGFloat mContentHeight;
 
 @end
