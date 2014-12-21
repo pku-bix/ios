@@ -12,6 +12,9 @@
 #import "Session.h"
 #import "NSString+Account.h"
 #import "ChatMessage.h"
+#import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import "AGPushNoteView.h"
 
 @interface bixChatProvider()
 
@@ -173,20 +176,23 @@ static bixChatProvider *instance = nil;
 
 #pragma mark - XMPP utilities
 
+// 通知XMPP服务器：我在线！
 -(void)goOnline{
     XMPPPresence *presence = [XMPPPresence presence];
     [self.xmppStream sendElement:presence];
 }
 
+// 通知XMPP服务器：下线！
 -(void)goOffline{
     XMPPPresence *presence = [XMPPPresence presenceWithType:@"unavailable"];
     [self.xmppStream sendElement:presence];
-    self.account.presence = false;
 }
 
+// 退出登录
 -(void) logOut{
     [self.xmppStream disconnectAfterSending];
     [self goOffline];
+    self.account.presence = false;
     [self save];
 }
 
@@ -396,6 +402,32 @@ static bixChatProvider *instance = nil;
     
     //发送通知
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_MESSAGE_RECEIVED object:self ];
+    
+    UIApplication* app = [UIApplication sharedApplication];
+    UILocalNotification *notification = nil;
+    
+    switch ([app applicationState]) {
+            
+        case UIApplicationStateActive:
+            [AGPushNoteView close];
+            [AGPushNoteView showWithNotificationMessage:chatMessage.body];
+            break;
+            
+        case UIApplicationStateInactive:
+            [AGPushNoteView close];
+            [AGPushNoteView showWithNotificationMessage:chatMessage.body];
+            break;
+
+        //如果应用在后台运行，AGPushView是不可见的，改用本地通知实现。
+        // 貌似我们的app不可能在后台运行，以下代码从未被触发
+        case UIApplicationStateBackground:
+            notification = [UILocalNotification new];
+            notification.alertBody = chatMessage.body;
+            [app scheduleLocalNotification:notification];
+            break;
+        default:
+            break;
+    }
 }
 
 

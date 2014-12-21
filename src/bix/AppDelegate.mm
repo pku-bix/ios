@@ -11,6 +11,7 @@
 #import "MainTabBarController.h"
 #import "SettingViewController.h"
 #import "bixMomentDataItem.h"
+#import "AGPushNoteView.h"
 #import <UIKit/UIKit.h>
 
 @implementation AppDelegate
@@ -23,7 +24,7 @@
 -(void)registerAPN{
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8){
         UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
-        
+    
         UIUserNotificationSettings *mySettings =
         [UIUserNotificationSettings settingsForTypes:types categories:nil];
         
@@ -48,7 +49,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
+
+    NSObject*obj = [launchOptions valueForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
+    NSLog(@"Launch options:%@", obj);
     
     // new a thread to make launch interface remain for 1 seconds
     [NSThread sleepForTimeInterval:1];   
@@ -98,6 +101,9 @@
     
     [bixLocalAccount save];
     [bixChatProvider save];
+    
+    // 貌似本APP不会在后台运行（接收不到消息，本地通知失败），在这里手动下线
+    [[bixChatProvider defaultChatProvider] goOffline];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -117,6 +123,33 @@
     
     // not guaranteed to be called!
     // use applicationDidEnterBackground to save data.
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    NSString *message = [[userInfo valueForKey:@"aps"] valueForKey:@"alert"];
+    
+    switch ([application applicationState]) {
+            
+        // 应用在前台运行并且可接受事件，对应退出登录的情况。此时ios不会显示通知，我们手动显示
+        case UIApplicationStateActive:
+            [AGPushNoteView close];
+            [AGPushNoteView showWithNotificationMessage:message];
+            break;
+            
+        // 应用在前台运行但不可接受事件，对应画面转换的特殊情况。此时ios不会显示通知，我们手动显示
+        case UIApplicationStateInactive:
+            [AGPushNoteView close];
+            [AGPushNoteView showWithNotificationMessage:message];
+            break;
+            
+        // 应用在后台运行，此时并未下线因此不会收到远程通知（即使收到远程通知，此时view不可见，也需要创建本地通知）
+        case UIApplicationStateBackground:
+            break;
+            
+        // 如果应用已结束运行，此时ios会处理推送信息
+        default:
+            break;
+    }
 }
 
 
