@@ -208,6 +208,8 @@
 		ECB81C4A1A24CA0800C13281 /* bixHomeCharger.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB81C491A24CA0800C13281 /* bixHomeCharger.m */; };
 		ECB81C4D1A24CA1900C13281 /* bixDestCharger.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB81C4C1A24CA1900C13281 /* bixDestCharger.m */; };
 		ECB81C501A24CA2D00C13281 /* bixSuperCharger.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB81C4F1A24CA2D00C13281 /* bixSuperCharger.m */; };
+		ECC3FBD41A473DA30080F8D6 /* AGPushNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC3FBD21A473DA30080F8D6 /* AGPushNoteView.m */; };
+		ECC3FBD51A473DA30080F8D6 /* AGPushNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECC3FBD31A473DA30080F8D6 /* AGPushNoteView.xib */; };
 		ECD998E818DACE9F00F30FE3 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ECD998E618DACE9F00F30FE3 /* mapapi.bundle */; };
 		ECD998EE18DAD7DE00F30FE3 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD998ED18DAD7DE00F30FE3 /* libbaidumapapi.a */; };
 		ECED787918CF7FE30041CCC7 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = ECED787818CF7FE30041CCC7 /* Session.m */; };
@@ -570,6 +572,9 @@
 		ECB81C4E1A24CA2D00C13281 /* bixSuperCharger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixSuperCharger.h; sourceTree = "<group>"; };
 		ECB81C4F1A24CA2D00C13281 /* bixSuperCharger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixSuperCharger.m; sourceTree = "<group>"; };
 		ECB81C511A24D31A00C13281 /* bixRemoteModelDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bixRemoteModelDataSource.h; sourceTree = "<group>"; };
+		ECC3FBD11A473DA30080F8D6 /* AGPushNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGPushNoteView.h; sourceTree = "<group>"; };
+		ECC3FBD21A473DA30080F8D6 /* AGPushNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPushNoteView.m; sourceTree = "<group>"; };
+		ECC3FBD31A473DA30080F8D6 /* AGPushNoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGPushNoteView.xib; sourceTree = "<group>"; };
 		ECD998BD18DACE9F00F30FE3 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		ECD998BE18DACE9F00F30FE3 /* BMKActionPaopaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKActionPaopaoView.h; sourceTree = "<group>"; };
 		ECD998BF18DACE9F00F30FE3 /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
@@ -1316,6 +1321,7 @@
 		ECB402231A202DF100616235 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				ECC3FBD01A473DA30080F8D6 /* AGPushNote */,
 				843F15031A466E7A000DF70E /* KxMenu */,
 				E3C863DB1A238ACA005364DC /* MJRefresh */,
 				84758ED01A2047C400845672 /* UzysMenu */,
@@ -1347,6 +1353,16 @@
 				EC57887219A620BB0058837C /* ContactViewController.m */,
 			);
 			name = ContactView;
+			sourceTree = "<group>";
+		};
+		ECC3FBD01A473DA30080F8D6 /* AGPushNote */ = {
+			isa = PBXGroup;
+			children = (
+				ECC3FBD11A473DA30080F8D6 /* AGPushNoteView.h */,
+				ECC3FBD21A473DA30080F8D6 /* AGPushNoteView.m */,
+				ECC3FBD31A473DA30080F8D6 /* AGPushNoteView.xib */,
+			);
+			path = AGPushNote;
 			sourceTree = "<group>";
 		};
 		ECD998BB18DACE9F00F30FE3 /* BaiduMap */ = {
@@ -1653,6 +1669,7 @@
 				8443EDAC1A17953E00A6B35C /* share@2x.png in Resources */,
 				E35A14BD19CDCB4A00867D49 /* icon_nav_end@2x.png in Resources */,
 				8443EDA21A17806400A6B35C /* charge_des_label.png in Resources */,
+				ECC3FBD51A473DA30080F8D6 /* AGPushNoteView.xib in Resources */,
 				E3041FDA19E6A66F0016B7FD /* marker@2x.png in Resources */,
 				E3F76AB119EADBE1008E718C /* destination_960.png in Resources */,
 				E3E7AEAE19CED0FC002CB978 /* icon_nav_start.png in Resources */,
@@ -1759,6 +1776,7 @@
 				EC99083018C3391300798FAB /* DDXMLNode.m in Sources */,
 				ECED789118D00CAD0041CCC7 /* Account.m in Sources */,
 				EC0F2A3E19C5EEA800BE1F62 /* ChatNavigationController.m in Sources */,
+				ECC3FBD41A473DA30080F8D6 /* AGPushNoteView.m in Sources */,
 				EC4613EB19FFC4E80046FFAE /* UIImage+WebP.m in Sources */,
 				EC99089218C33C9200798FAB /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				EC57888519A6215A0058837C /* NSDate+Wrapper.m in Sources */,

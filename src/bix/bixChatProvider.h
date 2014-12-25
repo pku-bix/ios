@@ -40,6 +40,8 @@
 //退出登录
 -(void) logOut;
 //重连，用于断线，连接后自动验证
+-(void)goOffline;
+-(void)goOnline;
 -(BOOL)keepConnectedAndAuthenticated:(int)count;
 //连接，用于注册，连接后不自动验证
 -(BOOL)keepConnected:(int)count;
