@@ -14,11 +14,13 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="MLb-jC-fv4">
                                 <rect key="frame" x="233" y="5" width="71" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="联系人">
                                             <attributes>
-                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                                <font key="NSFont" size="15" name="STHeitiSC-Light"/>
+                                                <font key="NSOriginalFont" size="15" name="HelveticaNeue"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
@@ -65,7 +67,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tXb-Jj-y3y">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tXb-Jj-y3y">
                                 <rect key="frame" x="0.0" y="20" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -124,6 +126,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="地图" image="map_marker-24.png" id="1Kn-20-5cf"/>
                     <navigationItem key="navigationItem" id="FME-1a-kmp"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                     <connections>
                         <outlet property="_mapView" destination="VLP-1P-iHj" id="4Dv-54-6DE"/>
                         <segue destination="zTK-3x-xS0" kind="modal" identifier="chargerDetail" id="RCk-Oc-zJp"/>
@@ -389,21 +392,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="车友圈" id="5Yu-iz-SBQ">
-                        <barButtonItem key="rightBarButtonItem" id="mdH-dZ-hmr">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Bw2-ix-NQI">
-                                <rect key="frame" x="244" y="-3" width="60" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="share.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendMood:" destination="RAT-wc-dfZ" eventType="touchUpInside" id="gg9-bL-5rB"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" image="share.png" id="JWC-Jz-TOh">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="sendMood:" destination="RAT-wc-dfZ" id="30k-lQ-OvZ"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="btnSendMood" destination="Bw2-ix-NQI" id="YeG-ok-Y7a"/>
                         <segue destination="aOG-92-vkB" kind="push" identifier="sendMood" id="r6Z-ji-GgV"/>
                     </connections>
                 </viewController>
@@ -1201,6 +1197,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Op3-p4-xeA"/>
+        <segue reference="R8c-Wm-4C9"/>
     </inferredMetricsTieBreakers>
 </document>

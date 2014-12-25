@@ -50,8 +50,7 @@ AppDelegate* appdelegate;
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;    
 }
 
 - (void)viewWillAppear:(BOOL)animated{

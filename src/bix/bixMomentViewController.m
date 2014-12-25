@@ -64,6 +64,19 @@
     [self.view addSubview:_tableView];
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
+    
+//    [self.navigationController.navigationBar setBarStyle:UIStatusBarStyleLightContent];
+    
+//    [self.navigationController.navigationBar setTranslucent:NO];
+    
+    
+//    UILabel *navigationTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
+//    navigationTitle.text = @"车友圈";
+//    navigationTitle.textColor = [UIColor whiteColor];
+//    self.navigationItem.titleView = navigationTitle;
+    
+//    [[UINavigationBar appearance] setBarTintColor:[UIColor yellowColor]];
+//    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:20.0/255.0 green:20.0/255.0 blue:20.0/255.0 alpha:1.0];
     // [self.tableView addGestureRecognizer:tapRecognizer];
     //self.tableView.allowsSelection = false;
     isRefresh = false;
@@ -72,6 +85,11 @@
     
     [bixMomentDataSource defaultSource].observer = self;
     [self header_footer_refreshing];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 -(void)viewWillAppear:(BOOL)animated

@@ -64,6 +64,7 @@
 - (void)viewDidLoad
 {
     NSLog(@"viewDidLoad");
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     mapButton = [[MapButton alloc]init];
@@ -149,6 +150,7 @@
     self.chargerMenu = [[UzysSlideMenu alloc] initWithItems:@[itemClose,itemSuper,itemDes,itemHome]];
     self.chargerMenu.frame = CGRectMake(self.chargerMenu.frame.origin.x, 20, self.chargerMenu.frame.size.width, self.chargerMenu.frame.size.width);
     [self.view addSubview:self.chargerMenu];
+    [self.tabBarController.tabBar setSelectedImageTintColor:[UIColor redColor]];
 }
 
 -(void)initMapViewButton
