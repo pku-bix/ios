@@ -27,6 +27,7 @@
 @property (nonatomic) NSString* teslaType;
 @property (nonatomic) NSString* nickname;
 @property (nonatomic) bixImageProxy* avatar;
+@property (nonatomic, readonly) NSString* displayName;
 
 - (void) save;
 

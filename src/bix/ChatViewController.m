@@ -54,6 +54,8 @@ AppDelegate* appdelegate;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [self.session open];
+    
     self.navigationItem.title = [NSString stringWithFormat: @"%@", self.session.peerAccount.username];
     
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(keyboardWillShow:)
@@ -70,8 +72,14 @@ AppDelegate* appdelegate;
                                                  name:EVENT_MESSAGE_SENT    object:nil];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [self updateList:nil];
+// 必须在此方法中进行UI调整，相关方法区别如下：
+
+// viewWillAppear: 此时子view将被添加到根view，当然这是constraints未生效（于是这是tableview高度是不对的，不能滚动到正确的位置）。
+// viewDidAppear: 此时子view已经全部添加，并且布局完毕。这时view已经展示给用户，UI调整过程会被用户看到。
+// viewDidLayoutSubviews: 发生在前两者之间，子view已布局完毕，但还没有呈现给用户。
+-(void)viewDidLayoutSubviews{
+    [self.tableView reloadData];
+    [self ScrollToBottomAnimated:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -96,13 +104,13 @@ AppDelegate* appdelegate;
 
 - (void) updateList: (NSNotification*) notification{
     [self.tableView reloadData];
-    [self ScrollToBottom];
+    [self ScrollToBottomAnimated:YES];
 }
 
-- (void) ScrollToBottom{
+- (void) ScrollToBottomAnimated: (BOOL) animated{
     if (self.tableView.contentSize.height > self.tableView.frame.size.height){
         CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height);
-        [self.tableView setContentOffset:offset animated:YES];
+        [self.tableView setContentOffset:offset animated:animated];
     }
 }
 
@@ -251,7 +259,7 @@ AppDelegate* appdelegate;
     [UIView setAnimationCurve:curve];
     self.vsToolbar.constant = kbFrame.CGRectValue.size.height;
     [self.view layoutIfNeeded];
-    [self ScrollToBottom];
+    [self ScrollToBottomAnimated:YES];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
@@ -264,7 +272,7 @@ AppDelegate* appdelegate;
     [UIView setAnimationCurve:curve];
     self.vsToolbar.constant = 0;
     [self.view layoutIfNeeded];
-    [self ScrollToBottom];
+    [self ScrollToBottomAnimated:YES];
 }
 
 - (void)commitKeyboardAnimations:(NSNotification *)notification {

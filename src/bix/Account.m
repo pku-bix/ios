@@ -14,6 +14,13 @@
 
 @implementation Account
 
+-(NSString*)displayName{
+    if (self.nickname && self.nickname.length) {
+        return self.nickname;
+    }
+    return self.username;
+}
+
 -(id)initWithUsername:(NSString *)username{
     self = [super init];
     if(self){
@@ -86,5 +93,6 @@
     }
     [super modelUpdateComplete];
 }
+
 
 @end

@@ -10,6 +10,7 @@
 #import "MainTabBarController.h"
 #import "AppDelegate.h"
 #import "ChatListViewController.h"
+#import "Constants.h"
 
 @interface MainTabBarController ()
 
@@ -57,6 +58,16 @@ AppDelegate *appdelegate;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(messageDidReceive)
+                                                 name:EVENT_MESSAGE_RECEIVED object:nil];
+}
+
+- (void)messageDidReceive{
+    if (self.selectedIndex != 1) {
+        UITabBarItem* item = self.tabBar.items[1];
+        item.badgeValue = [@([bixChatProvider defaultChatProvider].unReadMsgCount) stringValue];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

@@ -50,9 +50,13 @@
 
 -(void)setImageToImageView:(UIImageView *)imageView
 {
+    // url方式
     if (self.image == nil) {
-        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_SERVER, self.thumbnailUrl]]];
+        [imageView sd_setImageWithURL:
+         [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_SERVER, self.thumbnailUrl]]
+         placeholderImage:[UIImage imageNamed:@"head_show.jpeg"]];
     }
+    // img方式
     else{
         imageView.image = self.image;
     }

@@ -43,6 +43,12 @@
     [chatlist openSession:session];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    UITabBarItem* item = self.tabBarItem;
+    [item setBadgeValue:nil];
+}
 
 /*
 #pragma mark - Navigation

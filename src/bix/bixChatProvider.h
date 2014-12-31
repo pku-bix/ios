@@ -23,7 +23,7 @@
 @property (nonatomic) NSMutableArray* contacts;
 // 会话
 @property (nonatomic) NSMutableArray* sessions;
-
+@property (nonatomic, readonly) unsigned int unReadMsgCount;
 
 +(bixChatProvider*)defaultChatProvider;
 +(void)setLocalAccount:(bixLocalAccount*) account;

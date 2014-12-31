@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "Constants.h"
 #import "Session.h"
+#import "ChatMessage.h"
 
 @interface ChatListViewController ()
 
@@ -91,7 +92,6 @@ Session* sessionToOpen;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:REUSE_CELLID_CHATLIST];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
@@ -99,21 +99,44 @@ Session* sessionToOpen;
     }
     Session *session = [[bixChatProvider defaultChatProvider].sessions objectAtIndex:[indexPath row]];
     
-    //文本
-    cell.textLabel.text = session.peerAccount.username;
     //标记
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    //头像
-    UIImage *headShow = [UIImage imageNamed:@"head_show.jpeg"];
-    CGSize headShowSize = CGSizeMake(48, 48);
-    cell.imageView.image = [self scaleToSize:headShow size:headShowSize];
+    
+    //消息
+    ChatMessage* lastMsg = (ChatMessage*)[session.msgs lastObject];
+    NSLog(@"%@",lastMsg.body);
+    cell.detailTextLabel.text = lastMsg.body;
+    cell.detailTextLabel.textColor = [UIColor grayColor];
+    
+    [self updateCell:cell withAccount:session.peerAccount];
+    session.peerAccount.cb = ^(Account* account){
+        [self updateCell:cell withAccount:account];
+    };
+    [session.peerAccount pull];
+    
+    return cell;
+}
+
+- (void) updateCell: (UITableViewCell*)cell withAccount:(Account*)account{
+    //昵称
+    cell.textLabel.text = account.displayName;
+    
+    //头像。这里使用了插件，将url直接设置到imageview。应该操作imageview，让image来适配，而不是调整image。
+    
+    //UIImage *headShow = [UIImage imageNamed:@"head_show.jpeg"];
+    //cell.imageView.image = [self scaleToSize: size:CGSizeMake(48, 48)];
+    
+    [account.avatar setImageToImageView:cell.imageView];
+    
+    cell.imageView.contentMode = UIViewContentModeScaleToFill;
     cell.imageView.layer.masksToBounds = YES;
     cell.imageView.layer.cornerRadius = 24;
     
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"This is just a Test!"];
-    cell.detailTextLabel.textColor = [UIColor grayColor];
+    CGRect frame = cell.imageView.frame;
+    frame.size = CGSizeMake(48, 48);
+    cell.imageView.frame = frame;
     
-    return cell;
+    [cell.imageView layoutIfNeeded];
 }
 
 - (UIImage *)scaleToSize:(UIImage *)img size:(CGSize)size{

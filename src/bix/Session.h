@@ -18,7 +18,11 @@
 @property (weak) Account* peerAccount;
 @property (nonatomic, readonly) NSString* peername;
 @property (nonatomic) NSMutableArray* msgs;
+@property (nonatomic, readonly) unsigned int unReadMsgCount;
 
 -(id) initWithRemoteAccount:(Account*) remoteAccount;
 -(bool) msgExpiredAt: (int) index;
+
+// 打开会话
+-(void) open;
 @end

@@ -11,10 +11,22 @@
 #import "Constants.h"
 #import "AppDelegate.h"
 
+@interface Session()
+@property (nonatomic) unsigned int readMsgCount;
+@end
+
 @implementation Session
+
+-(unsigned int) unReadMsgCount{
+    return self.msgs.count - self.readMsgCount;
+}
 
 -(NSString*)peername{
     return self.peerAccount.username;
+}
+
+-(void) open{
+    self.readMsgCount = self.msgs.count;
 }
 
 -(id) initWithRemoteAccount:(Account*) remoteAccount{
