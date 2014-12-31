@@ -43,7 +43,8 @@
                            (NSString*)[coder decodeObjectForKey:@"peer_username"]];
             
     if (self) {
-        self.msgs = [coder decodeObjectForKey:@"messages"];
+        _msgs = [coder decodeObjectForKey:@"messages"];
+        _readMsgCount = [coder decodeIntegerForKey:@"read_msgcount"];
         if (self.msgs == nil)
             self.msgs = [NSMutableArray array];
     }
@@ -54,6 +55,7 @@
 - (void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.peername forKey:@"peer_username"];
     [coder encodeObject:self.msgs forKey:@"messages"];
+    [coder encodeInt:self.readMsgCount forKey:@"read_msgcount"];
 }
 
 - (bool)msgExpiredAt:(int)index{

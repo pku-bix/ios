@@ -103,9 +103,12 @@ Session* sessionToOpen;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     //消息
-    ChatMessage* lastMsg = (ChatMessage*)[session.msgs lastObject];
-    NSLog(@"%@",lastMsg.body);
-    cell.detailTextLabel.text = lastMsg.body;
+    if(session.unReadMsgCount>0){
+        cell.detailTextLabel.text = [NSString stringWithFormat: @"%d条新消息", session.unReadMsgCount];
+    }
+    else{
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", session.peerAccount.displaySignature];
+    }
     cell.detailTextLabel.textColor = [UIColor grayColor];
     
     [self updateCell:cell withAccount:session.peerAccount];
@@ -115,6 +118,13 @@ Session* sessionToOpen;
     [session.peerAccount pull];
     
     return cell;
+}
+
+-(NSString*) unReadString: (unsigned int)count{
+    if (count>0) {
+        return [NSString stringWithFormat: @"%d条新消息", count];
+    }
+    else    return @"";
 }
 
 - (void) updateCell: (UITableViewCell*)cell withAccount:(Account*)account{

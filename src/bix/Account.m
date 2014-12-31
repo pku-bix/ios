@@ -21,6 +21,13 @@
     return self.username;
 }
 
+-(NSString*)displaySignature{
+    if (self.signature && self.signature.length) {
+        return self.signature;
+    }
+    return @"这个人很懒，还没有描述。";
+}
+
 -(id)initWithUsername:(NSString *)username{
     self = [super init];
     if(self){
