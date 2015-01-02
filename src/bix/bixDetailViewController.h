@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "bixCharger.h"
 
-@interface bixDetailViewController : UIViewController<bixRemoteModelObserver>
+@interface bixDetailViewController : UIViewController<bixRemoteModelObserver, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) bixCharger *charger;
 

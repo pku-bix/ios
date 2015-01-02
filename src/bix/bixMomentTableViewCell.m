@@ -157,6 +157,8 @@
                                       MOMENT_PADDING_TOP,
                                       MOMENT_HEAD_SHOW_SIZE,
                                       MOMENT_HEAD_SHOW_SIZE );
+    _userImageView.layer.masksToBounds = YES;
+    _userImageView.layer.cornerRadius = MOMENT_HEAD_SHOW_SIZE / 2;
     
     _userLabel.frame = CGRectMake( MOMENT_PADDING_LEFT + MOMENT_HEAD_SHOW_SIZE + MOMENT_HEAD_SHOW_RIGHT_SP,
                                   MOMENT_PADDING_TOP,

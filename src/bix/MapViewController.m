@@ -85,7 +85,7 @@
     }
     
 
-    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height-40)];
+//    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 64, rect.size.width, rect.size.height-40)];
 
 
     self.chargerDataSource = [bixChargerDataSource defaultSource];
@@ -148,9 +148,18 @@
     
     //Items must contain ImageView(icon).
     self.chargerMenu = [[UzysSlideMenu alloc] initWithItems:@[itemClose,itemSuper,itemDes,itemHome]];
-    self.chargerMenu.frame = CGRectMake(self.chargerMenu.frame.origin.x, 20, self.chargerMenu.frame.size.width, self.chargerMenu.frame.size.width);
+    self.chargerMenu.frame = CGRectMake(self.chargerMenu.frame.origin.x, 64, self.chargerMenu.frame.size.width, self.chargerMenu.frame.size.width);
     [self.view addSubview:self.chargerMenu];
     [self.tabBarController.tabBar setSelectedImageTintColor:[UIColor redColor]];
+    
+    UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
+    [navigationBar setBackgroundImage:[UIImage imageNamed:@"navigation_bar_bg.png"] forBarMetrics:UIBarMetricsDefault];
+    navigationBar.translucent = YES;
+//    [navigationBar setBackgroundColor:[UIColor colorWithRed:10/255.0 green:10/255.0 blue:10/255.0 alpha:1]];
+    UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:nil];
+    [navigationBar pushNavigationItem:navigationItem animated:NO];
+    [navigationItem setTitle:@"B . I . X"];
+    [self.view addSubview:navigationBar];
 }
 
 -(void)initMapViewButton

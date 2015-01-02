@@ -28,6 +28,9 @@
 		84758EDA1A2047C400845672 /* UzysSMMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 84758ED51A2047C400845672 /* UzysSMMenuItem.m */; };
 		84758EDB1A2047C400845672 /* UzysSMMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84758ED71A2047C400845672 /* UzysSMMenuItemView.m */; };
 		84758EDC1A2047C400845672 /* UzysSMMenuItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84758ED81A2047C400845672 /* UzysSMMenuItemView.xib */; };
+		8486DA211A55A22700ABD081 /* navigation_bar_bg_j@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8486DA201A55A22700ABD081 /* navigation_bar_bg_j@2x.jpg */; };
+		84AD311A1A562D2D0059B2AF /* super_charger_label.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AD31181A562D2D0059B2AF /* super_charger_label.png */; };
+		84AD311B1A562D2D0059B2AF /* super_charger_label@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AD31191A562D2D0059B2AF /* super_charger_label@2x.png */; };
 		84CE70841A32E4E2004AD41C /* bixUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CE70831A32E4E2004AD41C /* bixUserDetailViewController.m */; };
 		84E312B21A2F3F5700E8F5A5 /* head_show.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 84E312B11A2F3F5700E8F5A5 /* head_show.jpeg */; };
 		E3041FDA19E6A66F0016B7FD /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3041FD919E6A66F0016B7FD /* marker@2x.png */; };
@@ -266,6 +269,9 @@
 		84758ED61A2047C400845672 /* UzysSMMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysSMMenuItemView.h; sourceTree = "<group>"; };
 		84758ED71A2047C400845672 /* UzysSMMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysSMMenuItemView.m; sourceTree = "<group>"; };
 		84758ED81A2047C400845672 /* UzysSMMenuItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UzysSMMenuItemView.xib; sourceTree = "<group>"; };
+		8486DA201A55A22700ABD081 /* navigation_bar_bg_j@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "navigation_bar_bg_j@2x.jpg"; sourceTree = "<group>"; };
+		84AD31181A562D2D0059B2AF /* super_charger_label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = super_charger_label.png; sourceTree = "<group>"; };
+		84AD31191A562D2D0059B2AF /* super_charger_label@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "super_charger_label@2x.png"; sourceTree = "<group>"; };
 		84CE70821A32E4E2004AD41C /* bixUserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bixUserDetailViewController.h; sourceTree = "<group>"; };
 		84CE70831A32E4E2004AD41C /* bixUserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bixUserDetailViewController.m; sourceTree = "<group>"; };
 		84E312B11A2F3F5700E8F5A5 /* head_show.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = head_show.jpeg; sourceTree = "<group>"; };
@@ -912,6 +918,9 @@
 		EC05DD9A18D0BE49000C9D89 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				84AD31181A562D2D0059B2AF /* super_charger_label.png */,
+				84AD31191A562D2D0059B2AF /* super_charger_label@2x.png */,
+				8486DA201A55A22700ABD081 /* navigation_bar_bg_j@2x.jpg */,
 				846DE8A51A4B0D140016FCD8 /* camera_button.png */,
 				846DE8A31A4B078E0016FCD8 /* navigation_bar_bg@2x.png */,
 				846DE8A11A4B06100016FCD8 /* navigation_bar_bg.png */,
@@ -1657,6 +1666,7 @@
 				E3F76ABA19EADBE1008E718C /* superChargerbg.png in Resources */,
 				E3CDF59B1A2CCA61006323E6 /* close_charger_label.png in Resources */,
 				E3E7AED219CEF812002CB978 /* Supercharge@2x.png in Resources */,
+				8486DA211A55A22700ABD081 /* navigation_bar_bg_j@2x.jpg in Resources */,
 				8443EDA81A17815500A6B35C /* locate_charger.png in Resources */,
 				E3F76AB819EADBE1008E718C /* loginbg.png in Resources */,
 				8443EDA31A17806400A6B35C /* charge_home_label.png in Resources */,
@@ -1680,6 +1690,7 @@
 				E3F76AB219EADBE1008E718C /* destination.png in Resources */,
 				E33A5BB8197F43220065F7C7 /* Tesla@2x.png in Resources */,
 				846A67A21A30942B002145B8 /* msg_sent_HEMI-100@2x.png in Resources */,
+				84AD311B1A562D2D0059B2AF /* super_charger_label@2x.png in Resources */,
 				E3D8A8E519800B9B00E40C14 /* Default.png in Resources */,
 				E3F76AB719EADBE1008E718C /* loginbg_960.png in Resources */,
 				8443EDA41A17806400A6B35C /* charge_super_label.png in Resources */,
@@ -1713,6 +1724,7 @@
 				EC99084918C3397000798FAB /* README.txt in Resources */,
 				E3F76AB919EADBE1008E718C /* superChargerbg_960.png in Resources */,
 				E337E3EA19E7FD7200C989A7 /* detailInfoTest@2x.png in Resources */,
+				84AD311A1A562D2D0059B2AF /* super_charger_label.png in Resources */,
 				E33DDF4B19E6E4AB00981FD7 /* aboutBix@2x.png in Resources */,
 				EC31663D1930BC18002E9609 /* msg_received-100.png in Resources */,
 				E3F76AB319EADBE1008E718C /* homeChargerbg_960.png in Resources */,

@@ -143,7 +143,7 @@ Session* sessionToOpen;
     cell.imageView.layer.cornerRadius = 24;
     
     CGRect frame = cell.imageView.frame;
-    frame.size = CGSizeMake(48, 48);
+    frame = CGRectMake( 8, 8, 48, 48 );
     cell.imageView.frame = frame;
     
     [cell.imageView layoutIfNeeded];
@@ -170,7 +170,7 @@ Session* sessionToOpen;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 64;
 }
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
